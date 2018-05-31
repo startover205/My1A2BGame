@@ -14,6 +14,8 @@
 		C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */; };
 		C01461B420BE6BD30023EEB6 /* My1A2BGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461B320BE6BD30023EEB6 /* My1A2BGameTests.swift */; };
 		C01461BF20BE6BD30023EEB6 /* My1A2BGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461BE20BE6BD30023EEB6 /* My1A2BGameUITests.swift */; };
+		C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */; };
+		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		C01461BA20BE6BD30023EEB6 /* My1A2BGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C01461BE20BE6BD30023EEB6 /* My1A2BGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My1A2BGameUITests.swift; sourceTree = "<group>"; };
 		C01461C020BE6BD30023EEB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberTableViewController.swift; sourceTree = "<group>"; };
+		C02B46DD20BF8BCA0097197F /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		C014619220BE6BD20023EEB6 = {
 			isa = PBXGroup;
 			children = (
+				C02B46DD20BF8BCA0097197F /* WinViewController.swift */,
 				C014619D20BE6BD20023EEB6 /* My1A2BGame */,
 				C01461B220BE6BD30023EEB6 /* My1A2BGameTests */,
 				C01461BD20BE6BD30023EEB6 /* My1A2BGameUITests */,
@@ -101,6 +106,7 @@
 				C01461A020BE6BD20023EEB6 /* ViewController.swift */,
 				C01461A220BE6BD20023EEB6 /* Main.storyboard */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
+				C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C01461AA20BE6BD30023EEB6 /* Info.plist */,
 			);
@@ -257,7 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01461A120BE6BD20023EEB6 /* ViewController.swift in Sources */,
+				C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
+				C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
