@@ -93,9 +93,8 @@ class GuessNumberTableViewController: UITableViewController {
         //顯示猜的結果
         hintTextView.text = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n" + hintTextView.text
         
-        //????
-        hintTextView.setContentOffset(.zero, animated: true)
-        
+      
+       
         //假如贏了
         if numberOfAs == 4 {
             

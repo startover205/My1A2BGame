@@ -213,7 +213,7 @@
                                         <action selector="restart:" destination="ewl-rv-ptG" eventType="touchUpInside" id="tJf-8Z-Jhk"/>
                                     </connections>
                                 </button>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls1-7D-jZF">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls1-7D-jZF">
                                     <rect key="frame" x="50" y="299.66666666666669" width="315" height="299.00000000000006"/>
                                     <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.80498488079722219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -313,7 +313,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.8025207889" blue="0.9174630372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.80068777660000001" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pKd-JU-qYj" firstAttribute="centerX" secondItem="E9A-G0-4Y8" secondAttribute="centerX" id="1xR-la-e9S"/>
                             <constraint firstItem="hFb-oD-Dmh" firstAttribute="top" secondItem="2ui-b9-e88" secondAttribute="bottom" constant="34" id="2VP-ZF-NlJ"/>
@@ -360,7 +360,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.8025207889" blue="0.9174630372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.80068777660000001" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fXX-bY-sCy" firstAttribute="top" secondItem="pnV-dJ-LCL" secondAttribute="bottom" constant="33" id="GAn-rE-GpL"/>
                             <constraint firstItem="pnV-dJ-LCL" firstAttribute="top" secondItem="TgD-DH-05X" secondAttribute="top" constant="66" id="S4U-Oe-zPG"/>
