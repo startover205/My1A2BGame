@@ -80,7 +80,7 @@
                                                         <constraint firstAttribute="height" constant="62" id="lTa-Ia-LLM"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RFz-2D-flj">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RFz-2D-flj">
                                                     <rect key="frame" x="0.0" y="82" width="61" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="EJC-tx-SLU"/>
@@ -89,6 +89,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
+                                                        <action selector="clearText:" destination="ewl-rv-ptG" eventType="editingDidBegin" id="I8x-5n-wSr"/>
                                                         <action selector="dismissKeyboard:" destination="ewl-rv-ptG" eventType="editingDidEndOnExit" id="K6c-Sr-787"/>
                                                         <action selector="jumpToNextTextField:" destination="ewl-rv-ptG" eventType="editingChanged" id="GgZ-yS-np2"/>
                                                     </connections>
@@ -105,7 +106,7 @@
                                                         <constraint firstAttribute="height" constant="62" id="sqK-Zf-6lU"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q5Z-aB-x5q">
+                                                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q5Z-aB-x5q">
                                                     <rect key="frame" x="0.0" y="82" width="61" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="ihd-AX-jab"/>
@@ -114,6 +115,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
+                                                        <action selector="clearText:" destination="ewl-rv-ptG" eventType="editingDidBegin" id="hPD-Hd-aKj"/>
                                                         <action selector="dismissKeyboard:" destination="ewl-rv-ptG" eventType="editingDidEndOnExit" id="fH5-3g-8ec"/>
                                                         <action selector="jumpToNextTextField:" destination="ewl-rv-ptG" eventType="editingChanged" id="m3F-De-UvM"/>
                                                     </connections>
@@ -130,7 +132,7 @@
                                                         <constraint firstAttribute="height" constant="62" id="ffq-lw-t68"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="r0m-ID-GgS">
+                                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="r0m-ID-GgS">
                                                     <rect key="frame" x="0.0" y="82" width="61" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="nFU-Hj-DHG"/>
@@ -139,6 +141,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
+                                                        <action selector="clearText:" destination="ewl-rv-ptG" eventType="editingDidBegin" id="qPV-ew-YEX"/>
                                                         <action selector="dismissKeyboard:" destination="ewl-rv-ptG" eventType="editingDidEndOnExit" id="apB-O3-Nqh"/>
                                                         <action selector="jumpToNextTextField:" destination="ewl-rv-ptG" eventType="editingChanged" id="4Hs-mu-FXB"/>
                                                     </connections>
@@ -155,7 +158,7 @@
                                                         <constraint firstAttribute="width" constant="61" id="Jzl-5P-7nU"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ner-0y-yUy">
+                                                <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ner-0y-yUy">
                                                     <rect key="frame" x="0.0" y="82" width="61" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="a32-YD-Rd4"/>
@@ -164,6 +167,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
+                                                        <action selector="clearText:" destination="ewl-rv-ptG" eventType="editingDidBegin" id="ktC-eG-tC3"/>
                                                         <action selector="dismissKeyboard:" destination="ewl-rv-ptG" eventType="editingDidEndOnExit" id="0Da-11-xx1"/>
                                                         <action selector="jumpToNextTextField:" destination="ewl-rv-ptG" eventType="editingChanged" id="pPa-Hq-YzT"/>
                                                     </connections>

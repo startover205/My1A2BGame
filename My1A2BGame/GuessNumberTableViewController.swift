@@ -27,6 +27,16 @@ class GuessNumberTableViewController: UITableViewController {
     @IBOutlet weak var quitButton: UIButton!
     
     
+    @IBAction func clearText(_ sender: UITextField) {
+        sender.text = ""
+    }
+    
+    
+    
+    
+    
+    
+    
     @IBOutlet weak var checkFormatLabel: UILabel!
     
     //收鍵盤
