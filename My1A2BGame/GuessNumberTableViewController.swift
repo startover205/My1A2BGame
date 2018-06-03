@@ -8,9 +8,10 @@
 
 import UIKit
 import GameKit
+import AVKit
 
 class GuessNumberTableViewController: UITableViewController {
-    let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
+    
     
     var quizNumbers = [String]()
     
@@ -28,12 +29,9 @@ class GuessNumberTableViewController: UITableViewController {
     
     
     @IBAction func clearText(_ sender: UITextField) {
-        sender.text = ""
+        
+        sender.selectAll(self)
     }
-    
-    
-    
-    
     
     
     
@@ -63,18 +61,18 @@ class GuessNumberTableViewController: UITableViewController {
         guard checkFormat() else{
             checkFormatLabel.isHidden = false;            checkFormatLabel.isHidden = false
             checkFormatLabel.isHidden = false
-
-
+            
+            
             return
             
         }
-
+        
         checkFormatLabel.isHidden = true
         
         //次數-1
         guessCount -= 1
         guessCountLabel.text = "還可以猜 \(guessCount) 次"
-
+        
         
         //對照AB
         var numberOfAs = 0
@@ -82,7 +80,9 @@ class GuessNumberTableViewController: UITableViewController {
         var guessText = ""
         for j in 0...quizNumbers.count-1{
             
+            
             guessText.append(answerTextFields[j].text!)
+
             
             for i in 0...quizNumbers.count-1{
                 
@@ -96,7 +96,9 @@ class GuessNumberTableViewController: UITableViewController {
                 
                 
             }
-            
+         
+            answerTextFields[j].text = ""
+
         }
         
         
@@ -104,7 +106,10 @@ class GuessNumberTableViewController: UITableViewController {
         hintTextView.text = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n" + hintTextView.text
         
       
-       
+        
+        var text = "\(numberOfAs)A\(numberOfBs)B"
+
+        
         //假如贏了
         if numberOfAs == 4 {
             
@@ -114,13 +119,24 @@ class GuessNumberTableViewController: UITableViewController {
             {
                 controller.guessCount = guessCount
                 show(controller, sender: nil)
+                text = "恭喜贏了"
                 
             }
             
             
         }else if guessCount == 0{
             quitButton.sendActions(for: .touchUpInside)
+            text = "GG"
         }
+        
+        
+        let speechUtterance = AVSpeechUtterance(string: text)
+        
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: "zh-TW")
+        
+        let synthesizer = AVSpeechSynthesizer()
+        
+        synthesizer.speak(speechUtterance)
         
         
     }
@@ -173,12 +189,12 @@ class GuessNumberTableViewController: UITableViewController {
             }
             
             if answerTextFields[i].text?.count != 1{
-
+                
                 return false
             }
             
             if Int(answerTextFields[i].text!) == nil{
-
+                
                 return false
             }
             
@@ -206,7 +222,7 @@ class GuessNumberTableViewController: UITableViewController {
         quizNumbers.removeAll()
         
         //UI恢復預設
-      
+        
         
         for i in  0...3{
             quizImageViews[i].image = #imageLiteral(resourceName: "問號")
@@ -219,15 +235,17 @@ class GuessNumberTableViewController: UITableViewController {
         guessButton.isHidden = false
         restartButton.isHidden = true
         hintTextView.text = ""
-
+        
+        let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
         
-       //設定四位數
+        //設定四位數
         
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
+        
         
     }
     
@@ -236,7 +254,8 @@ class GuessNumberTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initGame()
+            initGame()
+        
         
         
         
