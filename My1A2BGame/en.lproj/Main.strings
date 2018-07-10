@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "共猜了 16 次"; ObjectID = "2ui-b9-e88"; */
+"2ui-b9-e88.text" = "共猜了 16 次";
+
+/* Class = "UILabel"; text = "請檢查輸入格式！需要0到9不重複的四位數"; ObjectID = "3ND-DD-vu4"; */
+"3ND-DD-vu4.text" = "請檢查輸入格式！需要0到9不重複的四位數";
+
+/* Class = "UIButton"; normalTitle = "投降😱"; ObjectID = "56D-WB-7Ah"; */
+"56D-WB-7Ah.normalTitle" = "投降😱";
+
+/* Class = "UIButton"; normalTitle = "猜!🤓"; ObjectID = "A6A-rZ-j64"; */
+"A6A-rZ-j64.normalTitle" = "猜!🤓";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "STB-Hu-pTj"; */
+"STB-Hu-pTj.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "重新開始😤"; ObjectID = "Z2n-yZ-M8U"; */
+"Z2n-yZ-M8U.normalTitle" = "重新開始😤";
+
+/* Class = "UILabel"; text = "4A0B！！贏了！！"; ObjectID = "pKd-JU-qYj"; */
+"pKd-JU-qYj.text" = "4A0B！！贏了！！";
+
+/* Class = "UILabel"; text = "輸...輸了？"; ObjectID = "pnV-dJ-LCL"; */
+"pnV-dJ-LCL.text" = "輸...輸了？";
+
+/* Class = "UINavigationItem"; title = "1A2B"; ObjectID = "sdu-hz-xNl"; */
+"sdu-hz-xNl.title" = "1A2B";
+
+/* Class = "UILabel"; text = "還剩 x 次"; ObjectID = "tbN-dj-bwZ"; */
+"tbN-dj-bwZ.text" = "還剩 x 次";

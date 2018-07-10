@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93E77829D47411480CDF5502 /* Pods_My1A2BGameUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0D5F088E656F4E268961C3 /* Pods_My1A2BGameUITests.framework */; };
 		C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C014619E20BE6BD20023EEB6 /* AppDelegate.swift */; };
 		C01461A120BE6BD20023EEB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461A020BE6BD20023EEB6 /* ViewController.swift */; };
 		C01461A420BE6BD20023EEB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A220BE6BD20023EEB6 /* Main.storyboard */; };
 		C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01461A520BE6BD30023EEB6 /* Assets.xcassets */; };
 		C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */; };
-		C01461B420BE6BD30023EEB6 /* My1A2BGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461B320BE6BD30023EEB6 /* My1A2BGameTests.swift */; };
-		C01461BF20BE6BD30023EEB6 /* My1A2BGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461BE20BE6BD30023EEB6 /* My1A2BGameUITests.swift */; };
 		C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */; };
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
+		C02F3DA020F45771001E4C1B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02F3D9F20F45771001E4C1B /* TableViewController.swift */; };
+		E6EA2FC522339ECDACABD265 /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
+		F8D25772A3A649201E050993 /* Pods_My1A2BGameTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFAD157B0B00C01EB96E1762 /* Pods_My1A2BGameTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		237A18DEBF209DB359C2F93C /* Pods-My1A2BGameUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameUITests/Pods-My1A2BGameUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My1A2BGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D0D5F088E656F4E268961C3 /* Pods_My1A2BGameUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My1A2BGameUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BF1E3E6EA4430D225BA48FA /* Pods-My1A2BGameUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameUITests/Pods-My1A2BGameUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B56A471A41384F80BBF1F55C /* Pods-My1A2BGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame.debug.xcconfig"; sourceTree = "<group>"; };
 		C014619B20BE6BD20023EEB6 /* My1A2BGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My1A2BGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C014619E20BE6BD20023EEB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C01461A020BE6BD20023EEB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,13 +51,15 @@
 		C01461A820BE6BD30023EEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C01461AA20BE6BD30023EEB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C01461AF20BE6BD30023EEB6 /* My1A2BGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C01461B320BE6BD30023EEB6 /* My1A2BGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My1A2BGameTests.swift; sourceTree = "<group>"; };
-		C01461B520BE6BD30023EEB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C01461BA20BE6BD30023EEB6 /* My1A2BGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C01461BE20BE6BD30023EEB6 /* My1A2BGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My1A2BGameUITests.swift; sourceTree = "<group>"; };
-		C01461C020BE6BD30023EEB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberTableViewController.swift; sourceTree = "<group>"; };
 		C02B46DD20BF8BCA0097197F /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
+		C02F3D9F20F45771001E4C1B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		C0F6F26120F30A9D00ECA1F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F9FAF4D352E36CA927CDC21C /* Pods-My1A2BGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame.release.xcconfig"; sourceTree = "<group>"; };
+		FED992AD8D99E6385D411354 /* Pods-My1A2BGameTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.release.xcconfig"; sourceTree = "<group>"; };
+		FFAD157B0B00C01EB96E1762 /* Pods_My1A2BGameTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My1A2BGameTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6EA2FC522339ECDACABD265 /* Pods_My1A2BGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D25772A3A649201E050993 /* Pods_My1A2BGameTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,20 +83,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93E77829D47411480CDF5502 /* Pods_My1A2BGameUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C196D9CBE09E93AFDAA4377 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B56A471A41384F80BBF1F55C /* Pods-My1A2BGame.debug.xcconfig */,
+				F9FAF4D352E36CA927CDC21C /* Pods-My1A2BGame.release.xcconfig */,
+				F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */,
+				FED992AD8D99E6385D411354 /* Pods-My1A2BGameTests.release.xcconfig */,
+				9BF1E3E6EA4430D225BA48FA /* Pods-My1A2BGameUITests.debug.xcconfig */,
+				237A18DEBF209DB359C2F93C /* Pods-My1A2BGameUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C014619220BE6BD20023EEB6 = {
 			isa = PBXGroup;
 			children = (
-				C02B46DD20BF8BCA0097197F /* WinViewController.swift */,
 				C014619D20BE6BD20023EEB6 /* My1A2BGame */,
-				C01461B220BE6BD30023EEB6 /* My1A2BGameTests */,
-				C01461BD20BE6BD30023EEB6 /* My1A2BGameUITests */,
 				C014619C20BE6BD20023EEB6 /* Products */,
+				9C196D9CBE09E93AFDAA4377 /* Pods */,
+				C1ACF5BC0592EF53CC18CB7A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,31 +128,25 @@
 			children = (
 				C014619E20BE6BD20023EEB6 /* AppDelegate.swift */,
 				C01461A020BE6BD20023EEB6 /* ViewController.swift */,
+				C02F3D9F20F45771001E4C1B /* TableViewController.swift */,
+				C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */,
+				C02B46DD20BF8BCA0097197F /* WinViewController.swift */,
 				C01461A220BE6BD20023EEB6 /* Main.storyboard */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
-				C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C01461AA20BE6BD30023EEB6 /* Info.plist */,
 			);
 			path = My1A2BGame;
 			sourceTree = "<group>";
 		};
-		C01461B220BE6BD30023EEB6 /* My1A2BGameTests */ = {
+		C1ACF5BC0592EF53CC18CB7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C01461B320BE6BD30023EEB6 /* My1A2BGameTests.swift */,
-				C01461B520BE6BD30023EEB6 /* Info.plist */,
+				6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */,
+				FFAD157B0B00C01EB96E1762 /* Pods_My1A2BGameTests.framework */,
+				7D0D5F088E656F4E268961C3 /* Pods_My1A2BGameUITests.framework */,
 			);
-			path = My1A2BGameTests;
-			sourceTree = "<group>";
-		};
-		C01461BD20BE6BD30023EEB6 /* My1A2BGameUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C01461BE20BE6BD30023EEB6 /* My1A2BGameUITests.swift */,
-				C01461C020BE6BD30023EEB6 /* Info.plist */,
-			);
-			path = My1A2BGameUITests;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +156,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01461C320BE6BD30023EEB6 /* Build configuration list for PBXNativeTarget "My1A2BGame" */;
 			buildPhases = (
+				80B9F8DD66409876B3CD960E /* [CP] Check Pods Manifest.lock */,
 				C014619720BE6BD20023EEB6 /* Sources */,
 				C014619820BE6BD20023EEB6 /* Frameworks */,
 				C014619920BE6BD20023EEB6 /* Resources */,
@@ -155,6 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01461C620BE6BD30023EEB6 /* Build configuration list for PBXNativeTarget "My1A2BGameTests" */;
 			buildPhases = (
+				CFDDAAB45A05E1A4C57F194B /* [CP] Check Pods Manifest.lock */,
 				C01461AB20BE6BD30023EEB6 /* Sources */,
 				C01461AC20BE6BD30023EEB6 /* Frameworks */,
 				C01461AD20BE6BD30023EEB6 /* Resources */,
@@ -173,6 +193,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01461C920BE6BD30023EEB6 /* Build configuration list for PBXNativeTarget "My1A2BGameUITests" */;
 			buildPhases = (
+				E4BFA50B66A983E6002DC081 /* [CP] Check Pods Manifest.lock */,
 				C01461B620BE6BD30023EEB6 /* Sources */,
 				C01461B720BE6BD30023EEB6 /* Frameworks */,
 				C01461B820BE6BD30023EEB6 /* Resources */,
@@ -257,6 +278,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		80B9F8DD66409876B3CD960E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-My1A2BGame-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFDDAAB45A05E1A4C57F194B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-My1A2BGameTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4BFA50B66A983E6002DC081 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-My1A2BGameUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C014619720BE6BD20023EEB6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -265,6 +343,7 @@
 				C01461A120BE6BD20023EEB6 /* ViewController.swift in Sources */,
 				C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
+				C02F3DA020F45771001E4C1B /* TableViewController.swift in Sources */,
 				C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +352,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C01461B420BE6BD30023EEB6 /* My1A2BGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +359,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C01461BF20BE6BD30023EEB6 /* My1A2BGameUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +382,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C01461A320BE6BD20023EEB6 /* Base */,
+				C0F6F26120F30A9D00ECA1F7 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -436,6 +514,7 @@
 		};
 		C01461C420BE6BD30023EEB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B56A471A41384F80BBF1F55C /* Pods-My1A2BGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -449,12 +528,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingtayang.My1A2BGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		C01461C520BE6BD30023EEB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9FAF4D352E36CA927CDC21C /* Pods-My1A2BGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -468,12 +548,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingtayang.My1A2BGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		C01461C720BE6BD30023EEB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -494,6 +575,7 @@
 		};
 		C01461C820BE6BD30023EEB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FED992AD8D99E6385D411354 /* Pods-My1A2BGameTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -514,6 +596,7 @@
 		};
 		C01461CA20BE6BD30023EEB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BF1E3E6EA4430D225BA48FA /* Pods-My1A2BGameUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -533,6 +616,7 @@
 		};
 		C01461CB20BE6BD30023EEB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 237A18DEBF209DB359C2F93C /* Pods-My1A2BGameUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

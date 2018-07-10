@@ -12,38 +12,35 @@ import AVKit
 
 class GuessNumberTableViewController: UITableViewController {
     
-    
     var quizNumbers = [String]()
-    
     var guessCount = 0
+    var guessHistoryText = ""
     
+    @IBOutlet weak var lastGuessLabel: UILabel!
     @IBOutlet weak var guessCountLabel: UILabel!
-    
     @IBOutlet var quizImageViews: [UIImageView]!
-    
     @IBOutlet var answerTextFields: [UITextField]!
-    
     @IBOutlet weak var guessButton: UIButton!
-    
     @IBOutlet weak var quitButton: UIButton!
-    
-    
+    @IBOutlet weak var checkFormatLabel: UILabel!
+    @IBOutlet weak var restartButton: UIButton!
+
+
     @IBAction func clearText(_ sender: UITextField) {
-        
         sender.selectAll(self)
     }
     
-    
-    
-    @IBOutlet weak var checkFormatLabel: UILabel!
-    
     //收鍵盤
-    @IBAction func dismissKeyboard(_ sender: UITextField) {
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        view.endEditing(true)
     }
-    
     
     //連續輸入
     @IBAction func jumpToNextTextField(_ sender: UITextField) {
+        
+        guard sender.text?.count == 1 else {
+            return
+        }
         
         guard sender.tag != answerTextFields.count-1 else {
             sender.resignFirstResponder()
@@ -72,7 +69,6 @@ class GuessNumberTableViewController: UITableViewController {
         //次數-1
         guessCount -= 1
         guessCountLabel.text = "還可以猜 \(guessCount) 次"
-        
         
         //對照AB
         var numberOfAs = 0
@@ -103,9 +99,20 @@ class GuessNumberTableViewController: UITableViewController {
         
         
         //顯示猜的結果
-        hintTextView.text = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n" + hintTextView.text
+        let result = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n"
         
-      
+        lastGuessLabel.text = result
+        lastGuessLabel.alpha = 0.5
+        lastGuessLabel.isHidden = false
+        UIView.animate(withDuration: 0.5) {
+            self.lastGuessLabel.alpha = 1
+
+        }
+        
+        hintTextView.text = "\n" + guessHistoryText
+        guessHistoryText = result + guessHistoryText
+
+
         
         var text = "\(numberOfAs)A\(numberOfBs)B"
 
@@ -118,7 +125,12 @@ class GuessNumberTableViewController: UITableViewController {
             if let controller = storyboard?.instantiateViewController(withIdentifier: "win") as? WinViewController
             {
                 controller.guessCount = guessCount
-                show(controller, sender: nil)
+//                show(controller, sender: nil)
+                
+                let imageView = UIImageView(image: UIImage(named: "firework"))
+                self.view.addSubview(imageView)
+                
+                
                 text = "恭喜贏了"
                 
             }
@@ -138,15 +150,12 @@ class GuessNumberTableViewController: UITableViewController {
         
         synthesizer.speak(speechUtterance)
         
-        
     }
     
     /////輸了
     @IBAction func quit(_ sender: Any) {
         
         endGame()
-        
-        
         
     }
     
@@ -162,21 +171,12 @@ class GuessNumberTableViewController: UITableViewController {
         for i in 0...quizNumbers.count-1{
             let imageName = "數字\(quizNumbers[i])"
             quizImageViews[i].image = UIImage(named: imageName)
-            
         }
-        
     }
-    
-    
-    @IBOutlet weak var restartButton: UIButton!
-    
     
     ////重新開始
     @IBAction func restart(_ sender: Any) {
-        
-        initGame()
-        
-        
+        self.dismiss(animated: false, completion: nil)
     }
     
     @IBOutlet weak var hintTextView: UITextView!
@@ -218,12 +218,27 @@ class GuessNumberTableViewController: UITableViewController {
     func initGame(){
         
         
-        //資料恢復預設
-        quizNumbers.removeAll()
+//        let emitterLayer = CAEmitterLayer()
+//        
+//        emitterLayer.emitterPosition = CGPoint(x: 320, y: 320)
+//        
+//        let cell = CAEmitterCell()
+//        cell.birthRate = 100
+//        cell.lifetime = 10
+//        cell.velocity = 100
+//        cell.scale = 0.1
+//        
+//        cell.emissionRange = CGFloat.pi * 2.0
+//        cell.contents = UIImage(named: "RadialGradient.png")!.cgImage
+//        
+//        emitterLayer.emitterCells = [cell]
+//        
+//        view.layer.addSublayer(emitterLayer)
         
+//        //資料恢復預設
+//        quizNumbers.removeAll()
+//
         //UI恢復預設
-        
-        
         for i in  0...3{
             quizImageViews[i].image = #imageLiteral(resourceName: "問號")
             answerTextFields[i].text = ""
@@ -237,10 +252,8 @@ class GuessNumberTableViewController: UITableViewController {
         hintTextView.text = ""
         
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
-        
-        
+    
         //設定四位數
-        
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
@@ -249,19 +262,38 @@ class GuessNumberTableViewController: UITableViewController {
         
     }
     
+    deinit {
+        
+        print("Somebody helps me! I'm gonna get killed!!! at : \(Date())")
+    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let emitterLayer = CAEmitterLayer()
+        
+        emitterLayer.emitterPosition = CGPoint(x: 320, y: 320)
+        
+        let cell = CAEmitterCell()
+        cell.birthRate = 100
+        cell.lifetime = 10
+        cell.velocity = 100
+        cell.scale = 0.1
+        
+        cell.emissionRange = CGFloat.pi * 2.0
+        cell.contents = UIImage(named: "RadialGradient.png")!.cgImage
+        
+        emitterLayer.emitterCells = [cell]
+        
+        view.layer.addSublayer(emitterLayer)
+        
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
             initGame()
         
-        
-        
-        
-        
-        
-        
+        print("self: \(self)")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -274,71 +306,6 @@ class GuessNumberTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
-    
-    //    override func numberOfSections(in tableView: UITableView) -> Int {
-    //        // #warning Incomplete implementation, return the number of sections
-    //        return 0
-    //    }
-    //
-    //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        // #warning Incomplete implementation, return the number of rows
-    //        return 0
-    //    }
-    
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }
