@@ -18,14 +18,15 @@ class GuessNumberTableViewController: UITableViewController {
     
     @IBOutlet weak var lastGuessLabel: UILabel!
     @IBOutlet weak var guessCountLabel: UILabel!
-    @IBOutlet var quizImageViews: [UIImageView]!
+//    @IBOutlet var quizImageViews: [UIImageView]!
+    @IBOutlet var quizLabels: [UILabel]!
     @IBOutlet var answerTextFields: [UITextField]!
     @IBOutlet weak var guessButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var checkFormatLabel: UILabel!
     @IBOutlet weak var restartButton: UIButton!
-
-
+    
+    
     @IBAction func clearText(_ sender: UITextField) {
         sender.selectAll(self)
     }
@@ -35,6 +36,9 @@ class GuessNumberTableViewController: UITableViewController {
         view.endEditing(true)
     }
     
+    @IBAction func showFirework(_ sender: Any) {
+        firework()
+    }
     //連續輸入
     @IBAction func jumpToNextTextField(_ sender: UITextField) {
         
@@ -78,7 +82,7 @@ class GuessNumberTableViewController: UITableViewController {
             
             
             guessText.append(answerTextFields[j].text!)
-
+            
             
             for i in 0...quizNumbers.count-1{
                 
@@ -92,9 +96,9 @@ class GuessNumberTableViewController: UITableViewController {
                 
                 
             }
-         
+            
             answerTextFields[j].text = ""
-
+            
         }
         
         
@@ -106,16 +110,16 @@ class GuessNumberTableViewController: UITableViewController {
         lastGuessLabel.isHidden = false
         UIView.animate(withDuration: 0.5) {
             self.lastGuessLabel.alpha = 1
-
+            
         }
         
         hintTextView.text = "\n" + guessHistoryText
         guessHistoryText = result + guessHistoryText
-
-
+        
+        
         
         var text = "\(numberOfAs)A\(numberOfBs)B"
-
+        
         
         //假如贏了
         if numberOfAs == 4 {
@@ -125,7 +129,7 @@ class GuessNumberTableViewController: UITableViewController {
             if let controller = storyboard?.instantiateViewController(withIdentifier: "win") as? WinViewController
             {
                 controller.guessCount = guessCount
-//                show(controller, sender: nil)
+                //                show(controller, sender: nil)
                 
                 let imageView = UIImageView(image: UIImage(named: "firework"))
                 self.view.addSubview(imageView)
@@ -169,14 +173,17 @@ class GuessNumberTableViewController: UITableViewController {
         restartButton.isHidden = false
         
         for i in 0...quizNumbers.count-1{
-            let imageName = "數字\(quizNumbers[i])"
-            quizImageViews[i].image = UIImage(named: imageName)
+            quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
+            quizLabels[i].text = quizNumbers[i]
         }
     }
     
     ////重新開始
     @IBAction func restart(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = mainStoryBoard.instantiateInitialViewController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = controller
     }
     
     @IBOutlet weak var hintTextView: UITextView!
@@ -217,30 +224,11 @@ class GuessNumberTableViewController: UITableViewController {
     
     func initGame(){
         
-        
-//        let emitterLayer = CAEmitterLayer()
-//        
-//        emitterLayer.emitterPosition = CGPoint(x: 320, y: 320)
-//        
-//        let cell = CAEmitterCell()
-//        cell.birthRate = 100
-//        cell.lifetime = 10
-//        cell.velocity = 100
-//        cell.scale = 0.1
-//        
-//        cell.emissionRange = CGFloat.pi * 2.0
-//        cell.contents = UIImage(named: "RadialGradient.png")!.cgImage
-//        
-//        emitterLayer.emitterCells = [cell]
-//        
-//        view.layer.addSublayer(emitterLayer)
-        
-//        //資料恢復預設
-//        quizNumbers.removeAll()
-//
+        //        //資料恢復預設
+        //        quizNumbers.removeAll()
         //UI恢復預設
         for i in  0...3{
-            quizImageViews[i].image = #imageLiteral(resourceName: "問號")
+            quizLabels[i].text = "?"
             answerTextFields[i].text = ""
         }
         checkFormatLabel.isHidden = true
@@ -252,7 +240,7 @@ class GuessNumberTableViewController: UITableViewController {
         hintTextView.text = ""
         
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
-    
+        
         //設定四位數
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
@@ -262,50 +250,91 @@ class GuessNumberTableViewController: UITableViewController {
         
     }
     
-    deinit {
-        
-        print("Somebody helps me! I'm gonna get killed!!! at : \(Date())")
-    }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let emitterLayer = CAEmitterLayer()
-        
-        emitterLayer.emitterPosition = CGPoint(x: 320, y: 320)
-        
-        let cell = CAEmitterCell()
-        cell.birthRate = 100
-        cell.lifetime = 10
-        cell.velocity = 100
-        cell.scale = 0.1
-        
-        cell.emissionRange = CGFloat.pi * 2.0
-        cell.contents = UIImage(named: "RadialGradient.png")!.cgImage
-        
-        emitterLayer.emitterCells = [cell]
-        
-        view.layer.addSublayer(emitterLayer)
-        
         self.navigationItem.setHidesBackButton(true, animated: false)
         
-            initGame()
+        initGame()
         
         print("self: \(self)")
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+ 
+    func firework(){
+        
+        var cellsForFirework = [CAEmitterCell]()
+        
+        let cellRect = CAEmitterCell()
+        let cellHeart = CAEmitterCell()
+        let cellStar = CAEmitterCell()
+        
+        cellsForFirework.append(cellRect)
+        cellsForFirework.append(cellStar)
+        cellsForFirework.append(cellHeart)
+        
+        for cell in cellsForFirework {
+            cell.birthRate = 4500
+            cell.lifetime = 2
+            cell.velocity = 100
+            cell.scale = 0
+            cell.scaleSpeed = 0.1
+            cell.yAcceleration = 30
+            cell.color = #colorLiteral(red: 1, green: 0.8302680122, blue: 0.3005099826, alpha: 1)
+            cell.greenRange = 20
+            cell.spin = CGFloat.pi
+            cell.spinRange = CGFloat.pi * 3/4
+            cell.emissionRange = CGFloat.pi
+            cell.alphaSpeed = -1 / cell.lifetime
+
+            cell.beginTime = CACurrentMediaTime()
+            cell.timeOffset = 1
+        }
+        
+        cellStar.contents = #imageLiteral(resourceName: "flake_star").cgImage
+        cellHeart.contents = #imageLiteral(resourceName: "flake_heart").cgImage
+        cellRect.contents = #imageLiteral(resourceName: "flake_rectangle").cgImage
+        
+        let emitterLayer = Emitter()
+        
+        let randomDistribution = GKRandomDistribution(lowestValue: 1, highestValue: 4)
+        let randomX = Double(randomDistribution.nextInt()) / 5
+        let randomY = Double(randomDistribution.nextInt()) / 5
+        
+        emitterLayer.emitterPosition = CGPoint(x: self.view.frame.width * CGFloat(randomX) , y: self.view.frame.height * CGFloat(randomY))
+        
+        print(emitterLayer.emitterPosition)
+        emitterLayer.emitterCells = cellsForFirework
+        emitterLayer.renderMode = kCAEmitterLayerOldestLast
+        view.layer.addSublayer(emitterLayer)
+        
+    }
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
 }
+
+class Emitter: CAEmitterLayer{
+    
+    override init() {
+        super.init()
+        print("A caemitterLayer is created!")
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        
+        print("A caemitterLayer is destroyed!")
+        
+        
+    }
+}
+

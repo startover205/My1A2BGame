@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		93E77829D47411480CDF5502 /* Pods_My1A2BGameUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0D5F088E656F4E268961C3 /* Pods_My1A2BGameUITests.framework */; };
 		C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C014619E20BE6BD20023EEB6 /* AppDelegate.swift */; };
 		C01461A120BE6BD20023EEB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461A020BE6BD20023EEB6 /* ViewController.swift */; };
 		C01461A420BE6BD20023EEB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A220BE6BD20023EEB6 /* Main.storyboard */; };
@@ -17,25 +16,7 @@
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 		C02F3DA020F45771001E4C1B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02F3D9F20F45771001E4C1B /* TableViewController.swift */; };
 		E6EA2FC522339ECDACABD265 /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
-		F8D25772A3A649201E050993 /* Pods_My1A2BGameTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFAD157B0B00C01EB96E1762 /* Pods_My1A2BGameTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C01461B020BE6BD30023EEB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C014619320BE6BD20023EEB6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C014619A20BE6BD20023EEB6;
-			remoteInfo = My1A2BGame;
-		};
-		C01461BB20BE6BD30023EEB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C014619320BE6BD20023EEB6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C014619A20BE6BD20023EEB6;
-			remoteInfo = My1A2BGame;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		237A18DEBF209DB359C2F93C /* Pods-My1A2BGameUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameUITests/Pods-My1A2BGameUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -50,8 +31,6 @@
 		C01461A520BE6BD30023EEB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C01461A820BE6BD30023EEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C01461AA20BE6BD30023EEB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C01461AF20BE6BD30023EEB6 /* My1A2BGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C01461BA20BE6BD30023EEB6 /* My1A2BGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberTableViewController.swift; sourceTree = "<group>"; };
 		C02B46DD20BF8BCA0097197F /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C02F3D9F20F45771001E4C1B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -68,22 +47,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6EA2FC522339ECDACABD265 /* Pods_My1A2BGame.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C01461AC20BE6BD30023EEB6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8D25772A3A649201E050993 /* Pods_My1A2BGameTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C01461B720BE6BD30023EEB6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93E77829D47411480CDF5502 /* Pods_My1A2BGameUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				C014619B20BE6BD20023EEB6 /* My1A2BGame.app */,
-				C01461AF20BE6BD30023EEB6 /* My1A2BGameTests.xctest */,
-				C01461BA20BE6BD30023EEB6 /* My1A2BGameUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,44 +131,6 @@
 			productReference = C014619B20BE6BD20023EEB6 /* My1A2BGame.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C01461AE20BE6BD30023EEB6 /* My1A2BGameTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C01461C620BE6BD30023EEB6 /* Build configuration list for PBXNativeTarget "My1A2BGameTests" */;
-			buildPhases = (
-				CFDDAAB45A05E1A4C57F194B /* [CP] Check Pods Manifest.lock */,
-				C01461AB20BE6BD30023EEB6 /* Sources */,
-				C01461AC20BE6BD30023EEB6 /* Frameworks */,
-				C01461AD20BE6BD30023EEB6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C01461B120BE6BD30023EEB6 /* PBXTargetDependency */,
-			);
-			name = My1A2BGameTests;
-			productName = My1A2BGameTests;
-			productReference = C01461AF20BE6BD30023EEB6 /* My1A2BGameTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C01461B920BE6BD30023EEB6 /* My1A2BGameUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C01461C920BE6BD30023EEB6 /* Build configuration list for PBXNativeTarget "My1A2BGameUITests" */;
-			buildPhases = (
-				E4BFA50B66A983E6002DC081 /* [CP] Check Pods Manifest.lock */,
-				C01461B620BE6BD30023EEB6 /* Sources */,
-				C01461B720BE6BD30023EEB6 /* Frameworks */,
-				C01461B820BE6BD30023EEB6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C01461BC20BE6BD30023EEB6 /* PBXTargetDependency */,
-			);
-			name = My1A2BGameUITests;
-			productName = My1A2BGameUITests;
-			productReference = C01461BA20BE6BD30023EEB6 /* My1A2BGameUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,14 +143,6 @@
 				TargetAttributes = {
 					C014619A20BE6BD20023EEB6 = {
 						CreatedOnToolsVersion = 9.3.1;
-					};
-					C01461AE20BE6BD30023EEB6 = {
-						CreatedOnToolsVersion = 9.3.1;
-						TestTargetID = C014619A20BE6BD20023EEB6;
-					};
-					C01461B920BE6BD30023EEB6 = {
-						CreatedOnToolsVersion = 9.3.1;
-						TestTargetID = C014619A20BE6BD20023EEB6;
 					};
 				};
 			};
@@ -245,8 +160,6 @@
 			projectRoot = "";
 			targets = (
 				C014619A20BE6BD20023EEB6 /* My1A2BGame */,
-				C01461AE20BE6BD30023EEB6 /* My1A2BGameTests */,
-				C01461B920BE6BD30023EEB6 /* My1A2BGameUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -259,20 +172,6 @@
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */,
 				C01461A420BE6BD20023EEB6 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C01461AD20BE6BD30023EEB6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C01461B820BE6BD30023EEB6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,42 +196,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CFDDAAB45A05E1A4C57F194B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-My1A2BGameTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E4BFA50B66A983E6002DC081 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-My1A2BGameUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -348,34 +211,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C01461AB20BE6BD30023EEB6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C01461B620BE6BD30023EEB6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C01461B120BE6BD30023EEB6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C014619A20BE6BD20023EEB6 /* My1A2BGame */;
-			targetProxy = C01461B020BE6BD30023EEB6 /* PBXContainerItemProxy */;
-		};
-		C01461BC20BE6BD30023EEB6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C014619A20BE6BD20023EEB6 /* My1A2BGame */;
-			targetProxy = C01461BB20BE6BD30023EEB6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C01461A220BE6BD20023EEB6 /* Main.storyboard */ = {
@@ -552,88 +388,6 @@
 			};
 			name = Release;
 		};
-		C01461C720BE6BD30023EEB6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = My1A2BGameTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mingtayang.My1A2BGameTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My1A2BGame.app/My1A2BGame";
-			};
-			name = Debug;
-		};
-		C01461C820BE6BD30023EEB6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FED992AD8D99E6385D411354 /* Pods-My1A2BGameTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = My1A2BGameTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mingtayang.My1A2BGameTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My1A2BGame.app/My1A2BGame";
-			};
-			name = Release;
-		};
-		C01461CA20BE6BD30023EEB6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BF1E3E6EA4430D225BA48FA /* Pods-My1A2BGameUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = My1A2BGameUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mingtayang.My1A2BGameUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = My1A2BGame;
-			};
-			name = Debug;
-		};
-		C01461CB20BE6BD30023EEB6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 237A18DEBF209DB359C2F93C /* Pods-My1A2BGameUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = My1A2BGameUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mingtayang.My1A2BGameUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = My1A2BGame;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -651,24 +405,6 @@
 			buildConfigurations = (
 				C01461C420BE6BD30023EEB6 /* Debug */,
 				C01461C520BE6BD30023EEB6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C01461C620BE6BD30023EEB6 /* Build configuration list for PBXNativeTarget "My1A2BGameTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C01461C720BE6BD30023EEB6 /* Debug */,
-				C01461C820BE6BD30023EEB6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C01461C920BE6BD30023EEB6 /* Build configuration list for PBXNativeTarget "My1A2BGameUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C01461CA20BE6BD30023EEB6 /* Debug */,
-				C01461CB20BE6BD30023EEB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
