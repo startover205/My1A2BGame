@@ -30,7 +30,7 @@
 "aEd-zO-6cZ.text" = "😘";
 
 /* Class = "UITextView"; text = "       1A2B 是一個簡單的益智遊戲。\n       電腦會準備一組數字不重複的四位數，玩家必須猜出是哪一組四位數。\n       每當玩家輸入四位數字，電腦會根據玩家的猜測提供提示，舉例來說：1A2B，1A代表有一個數字正確、位置也正確，2B代表有兩個數字正確、但是位置不正確。        依據電腦的提示，跟朋友比比誰能花最少次數猜出答案吧！"; ObjectID = "eus-9c-sFz"; */
-"eus-9c-sFz.text" = "       1A2B is a simple game to enjoy.\n       The Computer will prepare a non-repeating four-digit nubmer. The player needs to find that very number.\n       The computer will provide hints according to the number provided by the player. For example: \"1A2B\" means that there is one correct digit in its correct place while there are two correct digits in wrong places.\n       Try to guess the right number, compete with your friends, and enjoy!";
+/* "eus-9c-sFz.text" = "       1A2B is a simple game to enjoy.\n       The Computer will prepare a non-repeating four-digit nubmer. The player needs to find that very number.\n       The computer will provide hints according to the number provided by the player. For example: \"1A2B\" means that there is one correct digit in its correct place while there are two correct digits in wrong places.\n       Try to guess the right number, compete with your friends, and enjoy!"; */
 
 /* Class = "UILabel"; text = "?"; ObjectID = "jG2-BO-uXN"; */
 "jG2-BO-uXN.text" = "?";
