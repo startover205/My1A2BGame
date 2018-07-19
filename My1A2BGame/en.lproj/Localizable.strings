@@ -1,0 +1,18 @@
+/*
+ Localizable.strings
+ My1A2BGame
+ 
+ Created by Ming-Ta Yang on 2018/7/18.
+ Copyright © 2018年 Ming-Ta Yang. All rights reserved.
+ */
+
+
+"還可以猜" = "You can still guess";
+"次" = "times";
+"恭喜贏了" = "Congrats!";
+"不要灰心，再試試看" = "Don't give up! Give it another try!";
+"zh-TW" = "en-US";
+"語音提示功能已開啟" = "Voice-prompts feature is on";
+"確定" = "OK";
+"共猜了" = "You guessed";
+"遊戲說明" = "     1A2B is a simple game to enjoy.\n     The computer will prepare a non-repeating four-digit nubmer. The player needs to find that very number.\n     The computer will provide hints according to the number inputted by the player. For example: \"1A2B\" means that there is one correct digit in its correct place while there are two correct digits in wrong places.\n     Try to guess the right number, compete with your friends, and enjoy!";

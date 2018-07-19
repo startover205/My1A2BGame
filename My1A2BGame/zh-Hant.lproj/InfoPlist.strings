@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  My1A2BGame
+
+  Created by Ming-Ta Yang on 2018/7/18.
+  Copyright © 2018年 Ming-Ta Yang. All rights reserved.
+*/
+
+"CFBundleDisplayName" = "猜數字!";

@@ -1,0 +1,62 @@
+
+/* Class = "UILabel"; text = "请检查输入格式！需要0到9不重复的四位数"; ObjectID = "3ND-DD-vu4"; */
+"3ND-DD-vu4.text" = "请检查输入格式！需要0到9不重复的四位数";
+
+/* Class = "UILabel"; text = "请再接再厉！！"; ObjectID = "49P-u1-8GB"; */
+"49P-u1-8GB.text" = "请再接再厉！！";
+
+/* Class = "UIButton"; normalTitle = "投降😱"; ObjectID = "56D-WB-7Ah"; */
+"56D-WB-7Ah.normalTitle" = "投降😱";
+
+/* Class = "UILabel"; text = "4A0B！！赢了！！"; ObjectID = "5JP-Bp-SdK"; */
+"5JP-Bp-SdK.text" = "4A0B！！赢了！！";
+
+/* Class = "UIButton"; normalTitle = "猜!🤓"; ObjectID = "A6A-rZ-j64"; */
+"A6A-rZ-j64.normalTitle" = "猜!🤓";
+
+/* Class = "UINavigationItem"; title = "游戏说明"; ObjectID = "KfL-d8-XtU"; */
+"KfL-d8-XtU.title" = "游戏说明";
+
+/* Class = "UILabel"; text = "?"; ObjectID = "O86-fw-beZ"; */
+"O86-fw-beZ.text" = "?";
+
+/* Class = "UILabel"; text = "?"; ObjectID = "QGf-1K-SAt"; */
+"QGf-1K-SAt.text" = "?";
+
+/* Class = "UIButton"; normalTitle = "重新开始😤"; ObjectID = "Z2n-yZ-M8U"; */
+"Z2n-yZ-M8U.normalTitle" = "重新开始😤";
+
+/* Class = "UILabel"; text = "😘"; ObjectID = "aEd-zO-6cZ"; */
+"aEd-zO-6cZ.text" = "😘";
+
+/* Class = "UITextView"; text = " 1A2B 是一个简单的益智游戏。\n 电脑会准备一组数字不重复的四位数，玩家必须猜出是哪一组四位数。\n 每当玩家输入四位数字，电脑会根据玩家的猜测提供提示，举例来说：1A2B，1A代表有一个数字正确、位置也正确，2B代表有两个数字正确、但是位置不正确。  依据电脑的提示，跟朋友比比谁能花最少次数猜出答案吧！"; ObjectID = "eus-9c-sFz"; */
+"eus-9c-sFz.text" = "        1A2B 是一个简单的益智游戏。\n        电脑会准备一组数字不重复的四位数，玩家必须猜出是哪一组四位数。\n        每当玩家输入四位数字，电脑会根据玩家的猜测提供提示，举例来说：1A2B，1A代表有一个数字正确、位置也正确，2B代表有两个数字正确、但是位置不正确。\n        依据电脑的提示，跟朋友比比谁能花最少次数猜出答案吧！";
+
+/* Class = "UILabel"; text = "?"; ObjectID = "jG2-BO-uXN"; */
+"jG2-BO-uXN.text" = "?";
+
+/* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "p3D-i8-hQ1"; */
+"p3D-i8-hQ1.title" = "返回";
+
+/* Class = "UILabel"; text = "😢"; ObjectID = "p4r-pf-iXz"; */
+"p4r-pf-iXz.text" = "😢";
+
+/* Class = "UILabel"; text = "输...输了？"; ObjectID = "pnV-dJ-LCL"; */
+"pnV-dJ-LCL.text" = "输...输了？";
+
+/* Class = "UINavigationItem"; title = "1A2B"; ObjectID = "sdu-hz-xNl"; */
+"sdu-hz-xNl.title" = "1A2B";
+
+/* Class = "UILabel"; text = "还剩 16 次"; ObjectID = "tbN-dj-bwZ"; */
+"tbN-dj-bwZ.text" = "还剩 16 次";
+
+/* Class = "UILabel"; text = "1234 1A2B"; ObjectID = "uFi-sk-oXB"; */
+"uFi-sk-oXB.text" = "1234 1A2B";
+
+/* Class = "UILabel"; text = "?"; ObjectID = "yTA-6N-zHg"; */
+"yTA-6N-zHg.text" = "?";
+
+/* Class = "UILabel"; text = "共猜了 X 次"; ObjectID = "zRO-VU-LeK"; */
+"zRO-VU-LeK.text" = "共猜了 X 次";
+
+

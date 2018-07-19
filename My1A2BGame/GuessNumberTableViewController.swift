@@ -11,35 +11,49 @@ import GameKit
 import AVKit
 
 class GuessNumberTableViewController: UITableViewController {
-    
+
+    @IBOutlet weak var voiceSwitch: UISwitch!
     var quizNumbers = [String]()
     var guessCount = 0
     var guessHistoryText = ""
+    let synthesizer = AVSpeechSynthesizer()
+
     
     @IBOutlet weak var lastGuessLabel: UILabel!
     @IBOutlet weak var guessCountLabel: UILabel!
-//    @IBOutlet var quizImageViews: [UIImageView]!
     @IBOutlet var quizLabels: [UILabel]!
     @IBOutlet var answerTextFields: [UITextField]!
     @IBOutlet weak var guessButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var checkFormatLabel: UILabel!
     @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var hintTextView: UITextView!
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initGame()
+        
+        loadUserDefaults()
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     
-    @IBAction func clearText(_ sender: UITextField) {
+    @IBAction func selectText(_ sender: UITextField) {
         sender.selectAll(self)
     }
     
-    //收鍵盤
     @IBAction func dismissKeyboard(_ sender: Any) {
         view.endEditing(true)
     }
     
-    @IBAction func showFirework(_ sender: Any) {
-        firework()
-    }
-    //連續輸入
+    //for continuous inputs
     @IBAction func jumpToNextTextField(_ sender: UITextField) {
         
         guard sender.text?.count == 1 else {
@@ -55,34 +69,31 @@ class GuessNumberTableViewController: UITableViewController {
     }
     
     
-    //////猜！
-    @IBAction func guess(_ sender: Any) {
+    @IBAction func guessBtnPressed(_ sender: Any) {
         
-        //檢查輸入格式
+        //check format
         guard checkFormat() else{
-            checkFormatLabel.isHidden = false;            checkFormatLabel.isHidden = false
             checkFormatLabel.isHidden = false
-            
             
             return
             
         }
-        
         checkFormatLabel.isHidden = true
         
-        //次數-1
+        //guessCount -1
         guessCount -= 1
-        guessCountLabel.text = "還可以猜 \(guessCount) 次"
+//        guessCountLabel.text = "還可以猜 \(guessCount) 次"
+        guessCountLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(guessCount) " + NSLocalizedString("次", comment: "")
         
-        //對照AB
+        
+        
+        //try to match numbers
         var numberOfAs = 0
         var numberOfBs = 0
         var guessText = ""
         for j in 0...quizNumbers.count-1{
             
-            
             guessText.append(answerTextFields[j].text!)
-            
             
             for i in 0...quizNumbers.count-1{
                 
@@ -94,99 +105,83 @@ class GuessNumberTableViewController: UITableViewController {
                     }
                 }
                 
-                
             }
-            
             answerTextFields[j].text = ""
-            
         }
         
-        
-        //顯示猜的結果
+        //show result
         let result = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n"
-        
         lastGuessLabel.text = result
         lastGuessLabel.alpha = 0.5
         lastGuessLabel.isHidden = false
         UIView.animate(withDuration: 0.5) {
             self.lastGuessLabel.alpha = 1
-            
         }
-        
         hintTextView.text = "\n" + guessHistoryText
         guessHistoryText = result + guessHistoryText
         
+        var text = "\(numberOfAs)A\(numberOfBs)B" //for speech
         
-        
-        var text = "\(numberOfAs)A\(numberOfBs)B"
-        
-        
-        //假如贏了
+        //win
         if numberOfAs == 4 {
             
             endGame()
             
-            if let controller = storyboard?.instantiateViewController(withIdentifier: "win") as? WinViewController
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "Win") as? WinViewController
             {
                 controller.guessCount = guessCount
-                //                show(controller, sender: nil)
-                
-                let imageView = UIImageView(image: UIImage(named: "firework"))
-                self.view.addSubview(imageView)
+                show(controller, sender: nil)
                 
                 
-                text = "恭喜贏了"
+                text = NSLocalizedString("恭喜贏了", comment: "")
                 
             }
             
             
+            //lose
         }else if guessCount == 0{
             quitButton.sendActions(for: .touchUpInside)
-            text = "GG"
+            text =  NSLocalizedString("不要灰心，再試試看", comment: "")
+
         }
         
-        
+        //speech function
+        if voiceSwitch.isOn{
         let speechUtterance = AVSpeechUtterance(string: text)
-        
-        speechUtterance.voice = AVSpeechSynthesisVoice(language: "zh-TW")
-        
-        let synthesizer = AVSpeechSynthesizer()
-        
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
         synthesizer.speak(speechUtterance)
+        }
         
     }
     
-    /////輸了
-    @IBAction func quit(_ sender: Any) {
-        
+    @IBAction func quitBtnPressed(_ sender: Any) {
         endGame()
-        
     }
     
-    /////結束遊戲
     func endGame()  {
         
+        //toggle UI
         guessButton.isHidden = true
-        
         quitButton.isHidden = true
-        
         restartButton.isHidden = false
+        for textField in answerTextFields {
+            textField.alpha = 0
+        }
         
+        //show answer
         for i in 0...quizNumbers.count-1{
             quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
             quizLabels[i].text = quizNumbers[i]
         }
+        
     }
     
-    ////重新開始
-    @IBAction func restart(_ sender: Any) {
+    @IBAction func restartBtnPressed(_ sender: Any) {
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let controller = mainStoryBoard.instantiateInitialViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = controller
     }
-    
-    @IBOutlet weak var hintTextView: UITextView!
     
     func checkFormat() -> Bool {
         
@@ -215,7 +210,6 @@ class GuessNumberTableViewController: UITableViewController {
                 }
             }
             
-            
         }
         
         return true
@@ -224,117 +218,65 @@ class GuessNumberTableViewController: UITableViewController {
     
     func initGame(){
         
-        //        //資料恢復預設
-        //        quizNumbers.removeAll()
-        //UI恢復預設
-        for i in  0...3{
-            quizLabels[i].text = "?"
-            answerTextFields[i].text = ""
-        }
-        checkFormatLabel.isHidden = true
-        guessCount = 16
-        guessCountLabel.text = "還可以猜 \(guessCount) 次"
-        quitButton.isHidden = false
-        guessButton.isHidden = false
-        restartButton.isHidden = true
-        hintTextView.text = ""
+        //set data
+        guessCount = 12
+        guessCountLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(guessCount) " + NSLocalizedString("次", comment: "")
         
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
-        //設定四位數
+        //set answers
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
         quizNumbers.append(String(shuffledDistribution.nextInt()))
-        
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    @IBAction func changeVoicePromptsSwitchState(_ sender: UISwitch) {
         
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        //save userDefault
+        let userDefaults = UserDefaults.standard
         
-        initGame()
+            userDefaults.set(sender.isOn, forKey: "VoicePromptsSwitch")
         
-        print("self: \(self)")
-    }
- 
-    func firework(){
-        
-        var cellsForFirework = [CAEmitterCell]()
-        
-        let cellRect = CAEmitterCell()
-        let cellHeart = CAEmitterCell()
-        let cellStar = CAEmitterCell()
-        
-        cellsForFirework.append(cellRect)
-        cellsForFirework.append(cellStar)
-        cellsForFirework.append(cellHeart)
-        
-        for cell in cellsForFirework {
-            cell.birthRate = 4500
-            cell.lifetime = 2
-            cell.velocity = 100
-            cell.scale = 0
-            cell.scaleSpeed = 0.1
-            cell.yAcceleration = 30
-            cell.color = #colorLiteral(red: 1, green: 0.8302680122, blue: 0.3005099826, alpha: 1)
-            cell.greenRange = 20
-            cell.spin = CGFloat.pi
-            cell.spinRange = CGFloat.pi * 3/4
-            cell.emissionRange = CGFloat.pi
-            cell.alphaSpeed = -1 / cell.lifetime
-
-            cell.beginTime = CACurrentMediaTime()
-            cell.timeOffset = 1
+        //hint for switch function
+        if sender.isOn {
+            let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: nil, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: NSLocalizedString("確定", comment: ""), style: .default, handler: nil)
+            
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
         }
-        
-        cellStar.contents = #imageLiteral(resourceName: "flake_star").cgImage
-        cellHeart.contents = #imageLiteral(resourceName: "flake_heart").cgImage
-        cellRect.contents = #imageLiteral(resourceName: "flake_rectangle").cgImage
-        
-        let emitterLayer = Emitter()
-        
-        let randomDistribution = GKRandomDistribution(lowestValue: 1, highestValue: 4)
-        let randomX = Double(randomDistribution.nextInt()) / 5
-        let randomY = Double(randomDistribution.nextInt()) / 5
-        
-        emitterLayer.emitterPosition = CGPoint(x: self.view.frame.width * CGFloat(randomX) , y: self.view.frame.height * CGFloat(randomY))
-        
-        print(emitterLayer.emitterPosition)
-        emitterLayer.emitterCells = cellsForFirework
-        emitterLayer.renderMode = kCAEmitterLayerOldestLast
-        view.layer.addSublayer(emitterLayer)
-        
-    }
-  
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       
     }
     
+    func loadUserDefaults(){
+        
+        let userDefaults = UserDefaults.standard
+        
+        let isVoicePromptsOn = userDefaults.bool(forKey: "VoicePromptsSwitch")
+        
+        voiceSwitch.isOn = isVoicePromptsOn
+        
+    }
     
     
 }
 
-class Emitter: CAEmitterLayer{
+extension GuessNumberTableViewController: UITextFieldDelegate {
     
-    override init() {
-        super.init()
-        print("A caemitterLayer is created!")
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let maxLength = 1
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
-    deinit {
-        
-        print("A caemitterLayer is destroyed!")
-        
-        
-    }
 }
 
