@@ -9,18 +9,25 @@
 import UIKit
 import GameKit
 import AVKit
+import GoogleMobileAds
 
 class GuessNumberTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var voiceSwitch: UISwitch!
-    var quizNumbers = [String]()
-    var guessCount = 0
-    var guessHistoryText = ""
-    let synthesizer = AVSpeechSynthesizer()
-
+    
+    private var quizNumbers = [String]()
+    private var guessCount = 0
+    private var availableGuess = Constants.maxPlayChances {
+        didSet{
+            updateAvailableGuessLabel()
+        }
+    }
+    private var guessHistoryText = ""
+    private lazy var synthesizer = AVSpeechSynthesizer()
+    private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
     @IBOutlet weak var lastGuessLabel: UILabel!
-    @IBOutlet weak var guessCountLabel: UILabel!
+    @IBOutlet weak var availableGuessLabel: UILabel!
     @IBOutlet var quizLabels: [UILabel]!
     @IBOutlet var answerTextFields: [UITextField]!
     @IBOutlet weak var guessButton: UIButton!
@@ -28,22 +35,15 @@ class GuessNumberTableViewController: UITableViewController {
     @IBOutlet weak var checkFormatLabel: UILabel!
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var hintTextView: UITextView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initGame()
+        //        initGame()
+        initCheatGame()
         
         loadUserDefaults()
-        
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     @IBAction func selectText(_ sender: UITextField) {
         sender.selectAll(self)
@@ -64,12 +64,15 @@ class GuessNumberTableViewController: UITableViewController {
             sender.resignFirstResponder()
             return
         }
-        
         answerTextFields[sender.tag+1].becomeFirstResponder()
     }
     
-    
     @IBAction func guessBtnPressed(_ sender: Any) {
+        
+        guard availableGuess > 0 else {
+            showRewardAdAlert()
+            return
+        }
         
         //check format
         guard checkFormat() else{
@@ -80,12 +83,11 @@ class GuessNumberTableViewController: UITableViewController {
         }
         checkFormatLabel.isHidden = true
         
-        //guessCount -1
-        guessCount -= 1
-//        guessCountLabel.text = "還可以猜 \(guessCount) 次"
-        guessCountLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(guessCount) " + NSLocalizedString("次", comment: "")
+        //startCounting
+        _ = startPlayTime
         
-        
+        guessCount += 1
+        availableGuess -= 1
         
         //try to match numbers
         var numberOfAs = 0
@@ -130,36 +132,44 @@ class GuessNumberTableViewController: UITableViewController {
             if let controller = storyboard?.instantiateViewController(withIdentifier: "Win") as? WinViewController
             {
                 controller.guessCount = guessCount
+                controller.spentTime = CACurrentMediaTime() - self.startPlayTime
                 show(controller, sender: nil)
-                
                 
                 text = NSLocalizedString("恭喜贏了", comment: "")
                 
             }
             
-            
             //lose
-        }else if guessCount == 0{
-            quitButton.sendActions(for: .touchUpInside)
-            text =  NSLocalizedString("不要灰心，再試試看", comment: "")
-
+        }else if availableGuess == 0{
+            if GADRewardBasedVideoAd.sharedInstance().isReady {
+                showRewardAdAlert()
+            } else {
+                quitButton.sendActions(for: .touchUpInside)
+            }
         }
         
         //speech function
         if voiceSwitch.isOn{
-        let speechUtterance = AVSpeechUtterance(string: text)
-        speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
-        synthesizer.speak(speechUtterance)
+            let speechUtterance = AVSpeechUtterance(string: text)
+            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
+            synthesizer.speak(speechUtterance)
         }
         
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
+        if voiceSwitch.isOn{
+            let text =  NSLocalizedString("不要灰心，再試試看", comment: "")
+            let speechUtterance = AVSpeechUtterance(string: text)
+            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
+            synthesizer.speak(speechUtterance)
+        }
         endGame()
+        
+        
     }
     
     func endGame()  {
-        
         //toggle UI
         guessButton.isHidden = true
         quitButton.isHidden = true
@@ -219,8 +229,7 @@ class GuessNumberTableViewController: UITableViewController {
     func initGame(){
         
         //set data
-        guessCount = 12
-        guessCountLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(guessCount) " + NSLocalizedString("次", comment: "")
+        availableGuess = Constants.maxPlayChances
         
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
@@ -232,13 +241,23 @@ class GuessNumberTableViewController: UITableViewController {
         
     }
     
+    func initCheatGame(){
+        //set data
+        availableGuess = Constants.maxPlayChances
+        
+        //set answers
+        quizNumbers.append("1")
+        quizNumbers.append("2")
+        quizNumbers.append("3")
+        quizNumbers.append("4")
+    }
     
     @IBAction func changeVoicePromptsSwitchState(_ sender: UISwitch) {
         
         //save userDefault
         let userDefaults = UserDefaults.standard
         
-            userDefaults.set(sender.isOn, forKey: "VoicePromptsSwitch")
+        userDefaults.set(sender.isOn, forKey: "VoicePromptsSwitch")
         
         //hint for switch function
         if sender.isOn {
@@ -249,7 +268,7 @@ class GuessNumberTableViewController: UITableViewController {
             alertController.addAction(okAction)
             present(alertController, animated: true, completion: nil)
         }
-       
+        
     }
     
     func loadUserDefaults(){
@@ -261,10 +280,9 @@ class GuessNumberTableViewController: UITableViewController {
         voiceSwitch.isOn = isVoicePromptsOn
         
     }
-    
-    
 }
 
+// MARK: - UITextFieldDelegate
 extension GuessNumberTableViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -274,9 +292,45 @@ extension GuessNumberTableViewController: UITextFieldDelegate {
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         return newString.length <= maxLength
-        
     }
-    
-    
 }
 
+// MARK: - Ad Related
+extension GuessNumberTableViewController {
+    func showRewardAdAlert(){
+        let alert = AlertAdController(title: "您用完次數了...".localized, message: "是否要觀看廣告？觀看廣告能讓您增加\(Constants.adGrantChances)次機會".localized, countDownTime: Constants.adHintTime, adHandler: {
+            self.showAd()
+        }){
+            self.quitButton.sendActions(for: .touchUpInside)
+        }
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showAd(){
+        if GADRewardBasedVideoAd.sharedInstance().isReady {
+            NotificationCenter.default.addObserver(self, selector: #selector(adDidReward), name: .adDidReward, object: nil)
+            GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
+        } else {
+            let alert = UIAlertController(title: "廣告還沒有讀取好，請稍候試試".localized, message: "", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "確定".localized, style: .default)
+            
+            alert.addAction(ok)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @objc
+    func adDidReward(){
+        NotificationCenter.default.removeObserver(self, name: .adDidReward, object: nil)
+        availableGuess += Constants.adGrantChances
+    }
+}
+
+// MARK: - Private
+private extension GuessNumberTableViewController {
+    func updateAvailableGuessLabel(){
+        availableGuessLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(availableGuess) " + NSLocalizedString("次", comment: "")
+    }
+}
