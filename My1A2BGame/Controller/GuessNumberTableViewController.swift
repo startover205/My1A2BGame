@@ -14,6 +14,15 @@ import GoogleMobileAds
 class GuessNumberTableViewController: UITableViewController {
     
     @IBOutlet weak var voiceSwitch: UISwitch!
+    @IBOutlet weak var lastGuessLabel: UILabel!
+    @IBOutlet weak var availableGuessLabel: UILabel!
+    @IBOutlet var quizLabels: [UILabel]!
+    @IBOutlet var answerTextFields: [UITextField]!
+    @IBOutlet weak var guessButton: UIButton!
+    @IBOutlet weak var quitButton: UIButton!
+    @IBOutlet weak var checkFormatLabel: UILabel!
+    @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var hintTextView: UITextView!
     
     private var quizNumbers = [String]()
     private var guessCount = 0
@@ -25,16 +34,6 @@ class GuessNumberTableViewController: UITableViewController {
     private var guessHistoryText = ""
     private lazy var synthesizer = AVSpeechSynthesizer()
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
-    
-    @IBOutlet weak var lastGuessLabel: UILabel!
-    @IBOutlet weak var availableGuessLabel: UILabel!
-    @IBOutlet var quizLabels: [UILabel]!
-    @IBOutlet var answerTextFields: [UITextField]!
-    @IBOutlet weak var guessButton: UIButton!
-    @IBOutlet weak var quitButton: UIButton!
-    @IBOutlet weak var checkFormatLabel: UILabel!
-    @IBOutlet weak var restartButton: UIButton!
-    @IBOutlet weak var hintTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,18 +67,14 @@ class GuessNumberTableViewController: UITableViewController {
     }
     
     @IBAction func guessBtnPressed(_ sender: Any) {
-        
         guard availableGuess > 0 else {
             showRewardAdAlert()
             return
         }
         
-        //check format
-        guard checkFormat() else{
+        guard isFormatCorrect() else{
             checkFormatLabel.isHidden = false
-            
             return
-            
         }
         checkFormatLabel.isHidden = true
         
@@ -136,11 +131,9 @@ class GuessNumberTableViewController: UITableViewController {
                 show(controller, sender: nil)
                 
                 text = NSLocalizedString("恭喜贏了", comment: "")
-                
             }
-            
-            //lose
-        }else if availableGuess == 0{
+        //lose
+        } else if availableGuess == 0 {
             if GADRewardBasedVideoAd.sharedInstance().isReady {
                 showRewardAdAlert()
             } else {
@@ -149,41 +142,21 @@ class GuessNumberTableViewController: UITableViewController {
         }
         
         //speech function
-        if voiceSwitch.isOn{
+        if voiceSwitch.isOn {
             let speechUtterance = AVSpeechUtterance(string: text)
             speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
             synthesizer.speak(speechUtterance)
         }
-        
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
         if voiceSwitch.isOn{
-            let text =  NSLocalizedString("不要灰心，再試試看", comment: "")
+            let text = NSLocalizedString("不要灰心，再試試看", comment: "")
             let speechUtterance = AVSpeechUtterance(string: text)
             speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
             synthesizer.speak(speechUtterance)
         }
         endGame()
-        
-        
-    }
-    
-    func endGame()  {
-        //toggle UI
-        guessButton.isHidden = true
-        quitButton.isHidden = true
-        restartButton.isHidden = false
-        for textField in answerTextFields {
-            textField.alpha = 0
-        }
-        
-        //show answer
-        for i in 0...quizNumbers.count-1{
-            quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
-            quizLabels[i].text = quizNumbers[i]
-        }
-        
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
@@ -193,92 +166,12 @@ class GuessNumberTableViewController: UITableViewController {
         appDelegate.window?.rootViewController = controller
     }
     
-    func checkFormat() -> Bool {
-        
-        for i in 0...quizNumbers.count-1 {
-            if answerTextFields[i].text == nil{
-                return false
-            }
-            
-            if answerTextFields[i].text?.count != 1{
-                
-                return false
-            }
-            
-            if Int(answerTextFields[i].text!) == nil{
-                
-                return false
-            }
-            
-        }
-        
-        for i in 0...quizNumbers.count-2 {
-            
-            for j in i+1...quizNumbers.count-1{
-                if answerTextFields[i].text == answerTextFields[j].text, i != j{
-                    return false
-                }
-            }
-            
-        }
-        
-        return true
-        
-    }
-    
-    func initGame(){
-        
-        //set data
-        availableGuess = Constants.maxPlayChances
-        
-        let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
-        
-        //set answers
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        
-    }
-    
-    func initCheatGame(){
-        //set data
-        availableGuess = Constants.maxPlayChances
-        
-        //set answers
-        quizNumbers.append("1")
-        quizNumbers.append("2")
-        quizNumbers.append("3")
-        quizNumbers.append("4")
-    }
-    
     @IBAction func changeVoicePromptsSwitchState(_ sender: UISwitch) {
         
-        //save userDefault
-        let userDefaults = UserDefaults.standard
-        
-        userDefaults.set(sender.isOn, forKey: "VoicePromptsSwitch")
-        
-        //hint for switch function
+        saveUserDefaults()
         if sender.isOn {
-            let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: nil, preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: NSLocalizedString("確定", comment: ""), style: .default, handler: nil)
-            
-            alertController.addAction(okAction)
-            present(alertController, animated: true, completion: nil)
+           showVoicePromptHint()
         }
-        
-    }
-    
-    func loadUserDefaults(){
-        
-        let userDefaults = UserDefaults.standard
-        
-        let isVoicePromptsOn = userDefaults.bool(forKey: "VoicePromptsSwitch")
-        
-        voiceSwitch.isOn = isVoicePromptsOn
-        
     }
 }
 
@@ -332,5 +225,82 @@ extension GuessNumberTableViewController {
 private extension GuessNumberTableViewController {
     func updateAvailableGuessLabel(){
         availableGuessLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(availableGuess) " + NSLocalizedString("次", comment: "")
+    }
+    
+    func loadUserDefaults(){
+        voiceSwitch.isOn = UserDefaults.standard.bool(forKey: UserDefaults.Key.voicePromptsSwitch)
+    }
+    
+    func saveUserDefaults(){
+        UserDefaults.standard.set(voiceSwitch.isOn, forKey: UserDefaults.Key.voicePromptsSwitch)
+    }
+    
+    func showVoicePromptHint(){
+        let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: nil, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: NSLocalizedString("確定", comment: ""), style: .default, handler: nil)
+        
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func isFormatCorrect() -> Bool {
+        
+        for i in 0..<quizNumbers.count {
+            guard let answerText = answerTextFields[i].text , answerText.count == 1, Int(answerText) != nil else{
+                return false
+            }
+        }
+        
+        for i in 0...quizNumbers.count-2 {
+            for j in i+1...quizNumbers.count-1{
+                if answerTextFields[i].text == answerTextFields[j].text, i != j{
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    func initGame(){
+        
+        //set data
+        availableGuess = Constants.maxPlayChances
+        
+        let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
+        
+        //set answers
+        quizNumbers.append(String(shuffledDistribution.nextInt()))
+        quizNumbers.append(String(shuffledDistribution.nextInt()))
+        quizNumbers.append(String(shuffledDistribution.nextInt()))
+        quizNumbers.append(String(shuffledDistribution.nextInt()))
+        
+    }
+    
+    func initCheatGame(){
+        //set data
+        availableGuess = Constants.maxPlayChances
+        
+        //set answers
+        quizNumbers.append("1")
+        quizNumbers.append("2")
+        quizNumbers.append("3")
+        quizNumbers.append("4")
+    }
+    
+    func endGame()  {
+        //toggle UI
+        guessButton.isHidden = true
+        quitButton.isHidden = true
+        restartButton.isHidden = false
+        for textField in answerTextFields {
+            textField.alpha = 0
+        }
+        
+        //show answer
+        for i in 0...quizNumbers.count-1{
+            quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
+            quizLabels[i].text = quizNumbers[i]
+        }
     }
 }

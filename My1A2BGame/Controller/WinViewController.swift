@@ -25,25 +25,14 @@ class WinViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private lazy var prepareEmoji: Void = {
-        self.emojiLabel.transform = CGAffineTransform(translationX: 0, y:-view.frame.height)
-        return
+    private lazy var _prepareEmoji: Void = {
+        prepareEmoji()
     }()
-    private lazy var emojiAnimation: Void = {
-        UIView.animate(withDuration: 4, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3, options: [.curveEaseOut], animations: {
-            
-            self.emojiLabel.transform = CGAffineTransform(translationX: 0, y: 0)
-            
-        })
-        return
+    private lazy var _emojiAnimation: Void = {
+        emojiAnimation()
     }()
-    private lazy var fireworkAnimation: Void = {
-        for i in 0...20 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
-                self.showFirework()
-            }
-        }
-        return
+    private lazy var _fireworkAnimation: Void = {
+        fireworkAnimation()
     }()
     
     override func viewDidLoad() {
@@ -53,19 +42,14 @@ class WinViewController: UIViewController {
         
         newRecordStackView.alpha = breakNewRecord() ? 1 : 0
         
-        _ = prepareEmoji
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        _ = _prepareEmoji
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        _ = emojiAnimation
-        _ = fireworkAnimation
+        _ = _emojiAnimation
+        _ = _fireworkAnimation
     }
     
     @IBAction func confirmBtnPressed(_ sender: Any) {
@@ -175,10 +159,9 @@ extension WinViewController {
         emitterLayer.renderMode = kCAEmitterLayerOldestLast
         view.layer.insertSublayer(emitterLayer, at: 0)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            emitterLayer.removeFromSuperlayer()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak emitterLayer] in
+            emitterLayer?.removeFromSuperlayer()
         }
-        
     }
     
     func breakNewRecord() -> Bool {
@@ -188,6 +171,23 @@ extension WinViewController {
         } else {
             let lastPlace = coreDataManager.fetchAllObjects().last
             return Int16(guessCount) < (lastPlace?.guessTimes)!
+        }
+    }
+    func prepareEmoji(){
+        self.emojiLabel.transform = CGAffineTransform(translationX: 0, y:-view.frame.height)
+    }
+    func emojiAnimation(){
+        UIView.animate(withDuration: 4, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3, options: [.curveEaseOut], animations: {
+            
+            self.emojiLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+            
+        })
+    }
+    func fireworkAnimation(){
+        for i in 0...20 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) { [weak self] in
+                self?.showFirework()
+            }
         }
     }
 }
