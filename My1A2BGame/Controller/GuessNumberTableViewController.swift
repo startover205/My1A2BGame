@@ -23,6 +23,7 @@ class GuessNumberTableViewController: UITableViewController {
     @IBOutlet weak var checkFormatLabel: UILabel!
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var hintTextView: UITextView!
+    @IBOutlet var fadeOutElements: [UIView]!
     
     private var quizNumbers = [String]()
     private var guessCount = 0
@@ -34,14 +35,29 @@ class GuessNumberTableViewController: UITableViewController {
     private var guessHistoryText = ""
     private lazy var synthesizer = AVSpeechSynthesizer()
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
+    private lazy var _fadeOut: Void = {
+        fadeOut()
+    }()
+    private lazy var _fadeIn: Void = {
+        fadeIn()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fadeOutElements.forEach { (view) in
+            view.alpha = 0
+        }
         
         //        initGame()
         initCheatGame()
         
         loadUserDefaults()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        _ = _fadeIn
     }
     
     @IBAction func selectText(_ sender: UITextField) {
@@ -160,6 +176,7 @@ class GuessNumberTableViewController: UITableViewController {
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
+        _ = _fadeOut
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let controller = mainStoryBoard.instantiateInitialViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -223,6 +240,20 @@ extension GuessNumberTableViewController {
 
 // MARK: - Private
 private extension GuessNumberTableViewController {
+    func fadeOut(){
+        UIView.animate(withDuration: 1) {
+            self.fadeOutElements.forEach({ (view) in
+                view.alpha = 0
+            })
+        }
+    }
+    func fadeIn(){
+        UIView.animate(withDuration: 1) {
+            self.fadeOutElements.forEach({ (view) in
+                view.alpha = 1
+            })
+        }
+    }
     func updateAvailableGuessLabel(){
         availableGuessLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(availableGuess) " + NSLocalizedString("次", comment: "")
     }
