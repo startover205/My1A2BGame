@@ -231,7 +231,7 @@
                         <barButtonItem key="backBarButtonItem" title="返回" id="p3D-i8-hQ1"/>
                         <barButtonItem key="leftBarButtonItem" id="Afn-fo-3uG">
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="IQQ-Xa-r9P">
-                                <rect key="frame" x="16" y="9.5" width="51" height="31"/>
+                                <rect key="frame" x="16" y="6.5" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="changeVoicePromptsSwitchState:" destination="ewl-rv-ptG" eventType="valueChanged" id="gIQ-m6-Y06"/>
