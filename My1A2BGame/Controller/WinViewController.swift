@@ -52,8 +52,45 @@ class WinViewController: UIViewController {
         _ = _fireworkAnimation
     }
     
+    @IBAction func shareBtnPressed(_ sender: Any) {
+        presentShareAlert()
+    }
+    
     @IBAction func confirmBtnPressed(_ sender: Any) {
+        addRecordToCoreData()
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension WinViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        let oldString = textField.text! as NSString
+        let newString = oldString.replacingCharacters(in: range, with: string)
+        
+        confirmBtn.isEnabled = !newString.isEmpty
+        
+        return true
+    }
+}
+
+// MARK: - Private
+extension WinViewController {
+    func presentShareAlert(){
+        var activityItems: [Any] = ["我在「1A2B Fun!」裡只花\(guessCount)次就猜贏了！快來挑戰我！".localized]
+        activityItems.append(Constants.appStoreDownloadUrl)
+        
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
+            activityItems.append(screenShotImage)
+        }
+        UIGraphicsEndImageContext()
+        
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil) //(物件陣列，指定的app?)
+        present(controller, animated: true, completion: nil)
+    }
+    func addRecordToCoreData(){
         if coreDataManager.totalCount == 10{
             let oldWinner = coreDataManager.fetchAllObjects().last!
             coreDataManager.delete(object: oldWinner)
@@ -86,23 +123,6 @@ class WinViewController: UIViewController {
             }
         }
     }
-}
-
-// MARK: - UITextFieldDelegate
-extension WinViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let oldString = textField.text! as NSString
-        let newString = oldString.replacingCharacters(in: range, with: string)
-        
-        confirmBtn.isEnabled = !newString.isEmpty
-        
-        return true
-    }
-}
-
-// MARK: - Private
-extension WinViewController {
     func showResult(){
         guessCountLabel.text = NSLocalizedString("共猜了", comment: "") + " \(guessCount) " + NSLocalizedString("次", comment: "")
     }

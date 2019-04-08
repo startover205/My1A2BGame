@@ -63,6 +63,11 @@ extension AppDelegate: GADRewardBasedVideoAdDelegate {
         GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
                                                     withAdUnitID: Constants.rewardAdId)
     }
+    
+    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
+        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
+                                                    withAdUnitID: Constants.rewardAdId)
+    }
 }
 
 

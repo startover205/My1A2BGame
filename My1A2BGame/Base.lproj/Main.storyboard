@@ -448,6 +448,13 @@
                             <outletCollection property="gestureRecognizers" destination="FEa-zZ-zwp" appends="YES" id="39l-Ah-QhW"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="Gxo-Hu-Gbr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="lJ2-9c-9Hd">
+                            <connections>
+                                <action selector="shareBtnPressed:" destination="q0t-jl-cUG" id="yh2-Ih-bPr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="confirmBtn" destination="PTF-LL-UwS" id="mrp-NF-Qzd"/>
                         <outlet property="emojiLabel" destination="aEd-zO-6cZ" id="HD0-E8-1QR"/>
@@ -463,7 +470,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5105.625" y="843.75"/>
+            <point key="canvasLocation" x="5263" y="888"/>
         </scene>
         <!--遊戲說明-->
         <scene sceneID="20N-GY-rWE">
@@ -689,7 +696,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.92941176470588238" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XQe-m6-mvF" firstAttribute="bottom" secondItem="Lqn-hA-qIu" secondAttribute="bottom" id="30Q-SN-ZFa"/>
                             <constraint firstItem="d84-DB-akz" firstAttribute="top" secondItem="Lqn-hA-qIu" secondAttribute="top" id="9k5-Tw-kY4"/>

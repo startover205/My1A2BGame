@@ -154,6 +154,7 @@ class GuessNumberTableViewController: UITableViewController {
                 showRewardAdAlert()
             } else {
                 quitButton.sendActions(for: .touchUpInside)
+                return
             }
         }
         
@@ -163,6 +164,7 @@ class GuessNumberTableViewController: UITableViewController {
             speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
             synthesizer.speak(speechUtterance)
         }
+        
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
@@ -267,7 +269,7 @@ private extension GuessNumberTableViewController {
     }
     
     func showVoicePromptHint(){
-        let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: "Siri會將猜測結果報告給您".localized, preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: NSLocalizedString("確定", comment: ""), style: .default, handler: nil)
         
