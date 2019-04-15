@@ -52,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         SKPaymentQueue.default().remove(StoreObserver.shared)
+        
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

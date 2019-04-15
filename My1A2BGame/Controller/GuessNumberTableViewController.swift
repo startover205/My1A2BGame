@@ -188,6 +188,10 @@ class GuessNumberTableViewController: UITableViewController {
             showVoicePromptHint()
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // MARK: - UITextFieldDelegate

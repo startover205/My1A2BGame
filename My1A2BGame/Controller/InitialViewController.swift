@@ -18,18 +18,17 @@ class InitialViewController: UIViewController {
         
         if isBottomAdRemoved(){
             adBannerHeightConstraint.constant = 0
-            return
-        }
-        
-        IAP.bottomAdHightConstraint = adBannerHeightConstraint
-
+        } else {
+            IAP.bottomAdHightConstraint = adBannerHeightConstraint
+            
             adBannerView.rootViewController = self
             adBannerView.adUnitID = Constants.bottomAdId
-        
-        if AppDelegate.internetAvailable(){
-            adBannerView.load(GADRequest())
-        } else {
-            NotificationCenter.default.addObserver(self, selector: #selector(tryToLoadBottomAd), name: NSNotification.Name.reachabilityChanged, object: nil)
+            
+            if AppDelegate.internetAvailable(){
+                adBannerView.load(GADRequest())
+            } else {
+                NotificationCenter.default.addObserver(self, selector: #selector(tryToLoadBottomAd), name: NSNotification.Name.reachabilityChanged, object: nil)
+            }
         }
     }
     
