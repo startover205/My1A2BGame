@@ -1,0 +1,142 @@
+//
+//  StoreObserver.swift
+//  My1A2BGame
+//
+//  Created by Ming-Ta Yang on 2019/4/12.
+//  Copyright © 2019 Ming-Ta Yang. All rights reserved.
+//
+
+import Foundation
+import StoreKit
+
+class StoreObserver: NSObject, SKPaymentTransactionObserver {
+    
+    static let shared = StoreObserver()
+    weak var delegate: StoreObserverDelegate?
+    var hasRestorableContent = false
+    
+    private override init() {
+        super.init()
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue,updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            
+            switch transaction.transactionState {
+            case .purchased :
+                
+                let productIdentifier = transaction.payment.productIdentifier
+                
+                handlePurchase(productIdentifier: productIdentifier)
+                
+                SKPaymentQueue.default().finishTransaction(transaction)
+                delegate?.didPuarchaseIAP(productIdenifer: productIdentifier)
+                
+            case .failed :
+                
+                SKPaymentQueue.default().finishTransaction(transaction)
+                
+                guard let skError = transaction.error as? SKError, skError.code != .paymentCancelled else { return }
+                
+                let message = skError.localizedDescription
+                
+                ErrorManager.saveError(description: message)
+
+                let alert = UIAlertController(title: "Purchase failed", message: message, preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+                
+                alert.addAction(ok)
+                
+                presentAlertOnRootController(alertController: alert, animated: true)
+            case .restored:
+                hasRestorableContent = true
+                 let productIdentifier = transaction.payment.productIdentifier
+                
+                 handlePurchase(productIdentifier: productIdentifier)
+                SKPaymentQueue.default().finishTransaction(transaction)
+            default:
+                break
+            }
+        }
+    }
+    
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        
+        guard hasRestorableContent else {
+            let alert = UIAlertController(title: "No Restorable Products".localized, message: nil, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            
+            alert.addAction(ok)
+            
+            presentAlertOnRootController(alertController: alert, animated: true)
+            return
+        }
+        
+        let alert = UIAlertController(title: "Restore Purchase Completed".localized, message: "Certain content will only be available after restarting the app.".localized, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+        
+        alert.addAction(ok)
+        
+        presentAlertOnRootController(alertController: alert, animated: true) {
+            self.delegate?.didRestoreIAP()
+        }
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+       
+        if let error = error as? SKError, error.code != .paymentCancelled {
+            let alert = UIAlertController(title: "Restore Purchase Failed ".localized, message: error.localizedDescription, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            
+            alert.addAction(ok)
+            
+            presentAlertOnRootController(alertController: alert, animated: true)
+        }
+    }
+}
+
+// MARK: - Private
+private extension StoreObserver {
+    func handlePurchase(productIdentifier: String){
+        
+        guard let product = IAP(rawValue: productIdentifier) else {
+            
+            ErrorManager.saveError(description: "\(#function)-invalid productionIdentifier")
+            
+            let alert = UIAlertController(title: "Error".localized, message: "Wrong productIdentifier, please contact Apple for refund if payment is complete or send a bug report".localized, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            
+            alert.addAction(ok)
+            
+            presentAlertOnRootController(alertController: alert, animated: true)
+            
+            return
+        }
+        
+        IAP.didPurchase(product: product)
+    }
+    
+    func presentAlertOnRootController(alertController: UIAlertController, animated: Bool, completion: (()->())? = nil){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController?.present(alertController, animated: animated, completion: completion)
+    }
+}
+
+protocol StoreObserverDelegate: class {
+    func didPuarchaseIAP(productIdenifer: String)
+    func didRestoreIAP()
+}
+
+extension SKProduct {
+    var localPrice: String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = self.priceLocale
+        return formatter.string(from: self.price)
+    }
+}

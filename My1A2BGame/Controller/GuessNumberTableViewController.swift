@@ -84,7 +84,7 @@ class GuessNumberTableViewController: UITableViewController {
     
     @IBAction func guessBtnPressed(_ sender: Any) {
         guard availableGuess > 0 else {
-            showRewardAdAlert()
+            outOfChances()
             return
         }
         
@@ -148,14 +148,9 @@ class GuessNumberTableViewController: UITableViewController {
                 
                 text = NSLocalizedString("恭喜贏了", comment: "")
             }
-        //lose
+            //lose
         } else if availableGuess == 0 {
-            if GADRewardBasedVideoAd.sharedInstance().isReady {
-                showRewardAdAlert()
-            } else {
-                quitButton.sendActions(for: .touchUpInside)
-                return
-            }
+            outOfChances()
         }
         
         //speech function
@@ -179,17 +174,18 @@ class GuessNumberTableViewController: UITableViewController {
     
     @IBAction func restartBtnPressed(_ sender: Any) {
         _ = _fadeOut
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = mainStoryBoard.instantiateInitialViewController()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = controller
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: "GuessViewController") else {
+            assertionFailure()
+            return
+        }
+        self.navigationController?.setViewControllers([controller], animated: false)
     }
     
     @IBAction func changeVoicePromptsSwitchState(_ sender: UISwitch) {
         
         saveUserDefaults()
         if sender.isOn {
-           showVoicePromptHint()
+            showVoicePromptHint()
         }
     }
 }
@@ -210,8 +206,13 @@ extension GuessNumberTableViewController: UITextFieldDelegate {
 // MARK: - Ad Related
 extension GuessNumberTableViewController {
     func showRewardAdAlert(){
-        let alert = AlertAdController(title: "您用完次數了...".localized, message: "是否要觀看廣告？觀看廣告能讓您增加\(Constants.adGrantChances)次機會".localized, countDownTime: Constants.adHintTime, adHandler: {
-            self.showAd()
+        guard AppDelegate.internetAvailable() else {
+            return
+        }
+        
+        let alert = AlertAdController(title: NSLocalizedString("您用完次數了...", comment: "2nd"), message:
+            NSLocalizedString("是否要觀看廣告？觀看廣告能讓您增加\(Constants.adGrantChances)次機會", comment: "2nd"), countDownTime: Constants.adHintTime, adHandler: {
+                self.showAd()
         }){
             self.quitButton.sendActions(for: .touchUpInside)
         }
@@ -223,9 +224,9 @@ extension GuessNumberTableViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(adDidReward), name: .adDidReward, object: nil)
             GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
         } else {
-            let alert = UIAlertController(title: "廣告還沒有讀取好，請稍候試試".localized, message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("廣告還沒有讀取好，請稍候試試", comment: "2nd"), message: "", preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: "確定".localized, style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("確定", comment: "2nd"), style: .default)
             
             alert.addAction(ok)
             
@@ -242,6 +243,14 @@ extension GuessNumberTableViewController {
 
 // MARK: - Private
 private extension GuessNumberTableViewController {
+    func outOfChances(){
+        if GADRewardBasedVideoAd.sharedInstance().isReady, AppDelegate.internetAvailable() {
+            showRewardAdAlert()
+        } else {
+            quitButton.sendActions(for: .touchUpInside)
+            return
+        }
+    }
     func fadeOut(){
         UIView.animate(withDuration: 1) {
             self.fadeOutElements.forEach({ (view) in
@@ -269,7 +278,7 @@ private extension GuessNumberTableViewController {
     }
     
     func showVoicePromptHint(){
-        let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: "Siri會將猜測結果報告給您".localized, preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: NSLocalizedString("Siri會將猜測結果報告給您", comment: "2nd"), preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: NSLocalizedString("確定", comment: ""), style: .default, handler: nil)
         

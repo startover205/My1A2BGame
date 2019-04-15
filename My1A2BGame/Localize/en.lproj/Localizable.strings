@@ -16,3 +16,27 @@
 "確定" = "OK";
 "共猜了" = "You guessed";
 "遊戲說明" = "     1A2B is a simple game to enjoy.\n     The computer will prepare a non-repeating four-digit nubmer (first digit could be 0). The player needs to find that very number.\n     The computer will provide hints according to the number inputted by the player. For example: \"1A2B\" means that there is one correct digit in its correct place while there are two correct digits in wrong places.\n     Try to guess the right number, compete with your friends, and enjoy!";
+
+/* 2nd */
+"Siri會將猜測結果報告給您" = "Siri will speak out the result for you.";
+
+/* 2nd */
+"對不起，請重新再試一次" = "Sorry. Please try agin.";
+
+/* 2nd */
+"廣告還沒有讀取好，請稍候試試" = "The ad is still loading. Please try again later.";
+
+/* 2nd */
+"您用完次數了..." = "You are out of chances...";
+
+/* 2nd */
+"我在「1A2B Fun!」裡只花\(guessCount)次就猜贏了！快來挑戰我！" = "I won \"1A2B Fun!\" with guessing only \(guessCount) times! Come challenge me!";
+
+/* 2nd */
+"是否要觀看廣告？觀看廣告能讓您增加\(Constants.adGrantChances)次機會" = "Do you want to watch a reward ad? Watching a reward ad will grant you \(Constants.adGrantChances) chances!";
+
+/* 2nd */
+"紀錄失敗" = "Failed to make a record.";
+
+/* 2nd */
+"紀錄完成！" = "Record complete!";

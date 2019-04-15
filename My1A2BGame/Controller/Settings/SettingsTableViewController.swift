@@ -52,7 +52,8 @@ class SettingsTableViewController: UITableViewController {
         messageBody.append("\n\n\n\n\n")
         messageBody.append("System version: ")
         messageBody.append(deviece.systemName)
-        messageBody.append(" " + deviece.systemVersion)
+        messageBody.append(" " + deviece.systemVersion + "\n")
+        messageBody.append(ErrorManager.loadErrorMessage())
         let composeVC = MFMailComposeViewController()
         
         composeVC.mailComposeDelegate = self

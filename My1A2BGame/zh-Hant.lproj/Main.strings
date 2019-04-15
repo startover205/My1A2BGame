@@ -5,14 +5,32 @@
 /* Class = "UILabel"; text = "請再接再厲！！"; ObjectID = "49P-u1-8GB"; */
 "49P-u1-8GB.text" = "請再接再厲！！";
 
+/* Class = "UILabel"; text = "恭喜您破紀錄，請輸入您的大名"; ObjectID = "4KC-af-cqv"; */
+"4KC-af-cqv.text" = "恭喜您破紀錄，請輸入您的大名";
+
+/* Class = "UILabel"; text = "Remove Ads"; ObjectID = "4Q0-CL-heG"; */
+"4Q0-CL-heG.text" = "移除底部廣告";
+
 /* Class = "UIButton"; normalTitle = "投降😱"; ObjectID = "56D-WB-7Ah"; */
 "56D-WB-7Ah.normalTitle" = "投降😱";
 
 /* Class = "UILabel"; text = "4A0B！！贏了！！"; ObjectID = "5JP-Bp-SdK"; */
 "5JP-Bp-SdK.text" = "4A0B！！贏了！！";
 
+/* Class = "UILabel"; text = "In-App Purchase"; ObjectID = "7wM-BD-mSU"; */
+"7wM-BD-mSU.text" = "App內購買";
+
+/* Class = "UILabel"; text = "The reward ad will only show if an ad is loaded completely. "; ObjectID = "86H-J5-iKs"; */
+"86H-J5-iKs.text" = "獎勵廣告只會在廣告讀取完成時出現";
+
 /* Class = "UIButton"; normalTitle = "猜!🤓"; ObjectID = "A6A-rZ-j64"; */
 "A6A-rZ-j64.normalTitle" = "猜!🤓";
+
+/* Class = "UITabBarItem"; title = "Extra"; ObjectID = "CWC-FR-Fnk"; */
+"CWC-FR-Fnk.title" = "額外";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "E2x-Cl-fx5"; */
+"E2x-Cl-fx5.text" = "姓名";
 
 /* Class = "UINavigationItem"; title = "遊戲說明"; ObjectID = "KfL-d8-XtU"; */
 "KfL-d8-XtU.title" = "遊戲說明";
@@ -20,8 +38,20 @@
 /* Class = "UILabel"; text = "?"; ObjectID = "O86-fw-beZ"; */
 "O86-fw-beZ.text" = "?";
 
+/* Class = "UIButton"; normalTitle = "確認"; ObjectID = "PTF-LL-UwS"; */
+"PTF-LL-UwS.normalTitle" = "確認";
+
 /* Class = "UILabel"; text = "?"; ObjectID = "QGf-1K-SAt"; */
 "QGf-1K-SAt.text" = "?";
+
+/* Class = "UILabel"; text = "名字"; ObjectID = "TME-tz-v7L"; */
+"TME-tz-v7L.text" = "名字";
+
+/* Class = "UILabel"; text = "Restore Purchase"; ObjectID = "TNz-w5-FMA"; */
+"TNz-w5-FMA.text" = "恢復購買";
+
+/* Class = "UILabel"; text = "次數"; ObjectID = "Y5e-Us-4Dm"; */
+"Y5e-Us-4Dm.text" = "次數";
 
 /* Class = "UIButton"; normalTitle = "重新開始😤"; ObjectID = "Z2n-yZ-M8U"; */
 "Z2n-yZ-M8U.normalTitle" = "重新開始😤";
@@ -29,11 +59,35 @@
 /* Class = "UILabel"; text = "😘"; ObjectID = "aEd-zO-6cZ"; */
 "aEd-zO-6cZ.text" = "😘";
 
+/* Class = "UILabel"; text = "99:99:99"; ObjectID = "cAu-m8-3Ac"; */
+"cAu-m8-3Ac.text" = "99:99:99";
+
+/* Class = "UILabel"; text = "Rate the App"; ObjectID = "cp8-Nm-8Ib"; */
+"cp8-Nm-8Ib.text" = "幫App評分";
+
 /* Class = "UITextView"; text = "       1A2B 是一個簡單的益智遊戲。\n       電腦會準備一組數字不重複的四位數，玩家必須猜出是哪一組四位數。\n       每當玩家輸入四位數字，電腦會根據玩家的猜測提供提示，舉例來說：1A2B，1A代表有一個數字正確、位置也正確，2B代表有兩個數字正確、但是位置不正確。        依據電腦的提示，跟朋友比比誰能花最少次數猜出答案吧！"; ObjectID = "eus-9c-sFz"; */
-/*"eus-9c-sFz.text" = "       1A2B 是一個簡單的益智遊戲。\n       電腦會準備一組數字不重複的四位數，玩家必須猜出是哪一組四位數。\n       每當玩家輸入四位數字，電腦會根據玩家的猜測提供提示，舉例來說：1A2B，1A代表有一個數字正確、位置也正確，2B代表有兩個數字正確、但是位置不正確。        依據電腦的提示，跟朋友比比誰能花最少次數猜出答案吧！"; */
+"eus-9c-sFz.text" = "       1A2B 是一個簡單的益智遊戲。\n       電腦會準備一組數字不重複的四位數，玩家必須猜出是哪一組四位數。\n       每當玩家輸入四位數字，電腦會根據玩家的猜測提供提示，舉例來說：1A2B，1A代表有一個數字正確、位置也正確，2B代表有兩個數字正確、但是位置不正確。        依據電腦的提示，跟朋友比比誰能花最少次數猜出答案吧！";
+
+/* Class = "UITabBarItem"; title = "遊戲"; ObjectID = "fOM-AV-Cn0"; */
+"fOM-AV-Cn0.title" = "遊戲";
+
+/* Class = "UINavigationItem"; title = "Top 10"; ObjectID = "fVb-2i-psM"; */
+"fVb-2i-psM.title" = "Top 10";
+
+/* Class = "UITabBarItem"; title = "排名"; ObjectID = "gty-aA-xTu"; */
+"gty-aA-xTu.title" = "排名";
+
+/* Class = "UILabel"; text = "How come sometimes there's no reward ad when we are out of guess chances?"; ObjectID = "hQS-0L-j0A"; */
+"hQS-0L-j0A.text" = "會什麼猜的次數沒有時，有時有獎勵廣告可看、有時沒有？";
 
 /* Class = "UILabel"; text = "?"; ObjectID = "jG2-BO-uXN"; */
 "jG2-BO-uXN.text" = "?";
+
+/* Class = "UILabel"; text = "Bug Report or FeedBack"; ObjectID = "n8h-76-Rzy"; */
+"n8h-76-Rzy.text" = "問題回報及建議";
+
+/* Class = "UILabel"; text = "99"; ObjectID = "o0Z-GM-rcc"; */
+"o0Z-GM-rcc.text" = "99";
 
 /* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "p3D-i8-hQ1"; */
 "p3D-i8-hQ1.title" = "返回";
@@ -44,11 +98,20 @@
 /* Class = "UILabel"; text = "輸...輸了？"; ObjectID = "pnV-dJ-LCL"; */
 "pnV-dJ-LCL.text" = "輸...輸了？";
 
+/* Class = "UILabel"; text = "Q & A"; ObjectID = "qdz-rC-63K"; */
+"qdz-rC-63K.text" = "Q & A";
+
 /* Class = "UINavigationItem"; title = "1A2B"; ObjectID = "sdu-hz-xNl"; */
 "sdu-hz-xNl.title" = "1A2B";
 
-/* Class = "UILabel"; text = "還剩 16 次"; ObjectID = "tbN-dj-bwZ"; */
-"tbN-dj-bwZ.text" = "還剩 16 次";
+/* Class = "UINavigationItem"; title = "Extra"; ObjectID = "sps-aX-FlC"; */
+"sps-aX-FlC.title" = "額外";
+
+/* Class = "UILabel"; text = "還剩 12 次"; ObjectID = "tbN-dj-bwZ"; */
+"tbN-dj-bwZ.text" = "還剩 12 次";
+
+/* Class = "UILabel"; text = "遊戲時間"; ObjectID = "uBu-cm-ciS"; */
+"uBu-cm-ciS.text" = "遊戲時間";
 
 /* Class = "UILabel"; text = "1234 1A2B"; ObjectID = "uFi-sk-oXB"; */
 "uFi-sk-oXB.text" = "1234 1A2B";
@@ -56,5 +119,5 @@
 /* Class = "UILabel"; text = "?"; ObjectID = "yTA-6N-zHg"; */
 "yTA-6N-zHg.text" = "?";
 
-/* Class = "UILabel"; text = "共猜了 X 次"; ObjectID = "zRO-VU-LeK"; */
-"zRO-VU-LeK.text" = "共猜了 X 次";
+/* Class = "UILabel"; text = "共猜了 12 次"; ObjectID = "zRO-VU-LeK"; */
+"zRO-VU-LeK.text" = "共猜了 12 次";

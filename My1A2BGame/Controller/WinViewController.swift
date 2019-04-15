@@ -77,7 +77,9 @@ extension WinViewController: UITextFieldDelegate {
 // MARK: - Private
 extension WinViewController {
     func presentShareAlert(){
-        var activityItems: [Any] = ["我在「1A2B Fun!」裡只花\(guessCount)次就猜贏了！快來挑戰我！".localized]
+        // FIXME: - Description
+
+        var activityItems: [Any] = [NSLocalizedString("我在「1A2B Fun!」裡只花\(guessCount)次就猜贏了！快來挑戰我！", comment: "2nd")]
         activityItems.append(Constants.appStoreDownloadUrl)
         
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
@@ -103,9 +105,9 @@ extension WinViewController {
         
         coreDataManager.saveContext { (success) in
             if success {
-                let alert = UIAlertController(title: "紀錄完成！".localized, message: nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("紀錄完成！", comment: "2nd"), message: nil, preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: "確定".localized, style: .default, handler: { (_) in
+                let ok = UIAlertAction(title: NSLocalizedString("確定", comment: "2nd"), style: .default, handler: { (_) in
                     self.navigationController?.popViewController(animated: true)
                 })
                 
@@ -113,9 +115,9 @@ extension WinViewController {
                 
                 self.present(alert, animated: true)
             } else {
-                let alert = UIAlertController(title: "紀錄失敗".localized, message: "對不起，請重新再試一次。".localized, preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("紀錄失敗", comment: "2nd"), message:                   NSLocalizedString("對不起，請重新再試一次", comment: "2nd"), preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: "確定".localized, style: .default)
+                let ok = UIAlertAction(title: NSLocalizedString("確定", comment: "2nd"), style: .default)
                 
                 alert.addAction(ok)
                 

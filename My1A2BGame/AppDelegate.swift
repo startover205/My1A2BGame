@@ -13,17 +13,19 @@ import GoogleMobileAds
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+    var reachability = Reachability.forInternetConnection()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        SKPaymentQueue.default().add(StoreObserver.shared)
         
-        GADRewardBasedVideoAd.sharedInstance().delegate = self
-        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
-                                                    withAdUnitID: Constants.rewardAdId)
+        setUpAd()
         
+        tryToLoadRewardAd()
+        
+        reachability?.startNotifier()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(tryToLoadRewardAd), name: NSNotification.Name.reachabilityChanged, object: nil)
         
         return true
     }
@@ -49,25 +51,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        SKPaymentQueue.default().remove(StoreObserver.shared)
     }
 }
 
-// MARK: - Private
+// MARK: - GADRewardBasedVideoAdDelegate
 extension AppDelegate: GADRewardBasedVideoAdDelegate {
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
         NotificationCenter.default.post(name: .adDidReward, object: nil)
     }
     
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
-                                                    withAdUnitID: Constants.rewardAdId)
+        tryToLoadRewardAd()
     }
     
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
-        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
-                                                    withAdUnitID: Constants.rewardAdId)
+        tryToLoadRewardAd()
     }
 }
 
+// MARK: - Static function
+extension AppDelegate {
+    static func internetAvailable() -> Bool {
+        let serverReach = Reachability.forInternetConnection()
+        return serverReach?.currentReachabilityStatus() != NotReachable
+    }
+}
 
+// MARK: - Private
+private extension AppDelegate {
+    func setUpAd(){
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADRewardBasedVideoAd.sharedInstance().delegate = self
+    }
+    
+    @objc
+    func tryToLoadRewardAd(){
+        
+        if AppDelegate.internetAvailable() {
+            GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
+                                                        withAdUnitID: Constants.rewardAdId)
+        }
+    }
+}
