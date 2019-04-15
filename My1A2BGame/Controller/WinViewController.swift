@@ -77,8 +77,6 @@ extension WinViewController: UITextFieldDelegate {
 // MARK: - Private
 extension WinViewController {
     func presentShareAlert(){
-        // FIXME: - Description
-
         var activityItems: [Any] = [NSLocalizedString("我在「1A2B Fun!」裡只花\(guessCount)次就猜贏了！快來挑戰我！", comment: "2nd")]
         activityItems.append(Constants.appStoreDownloadUrl)
         
@@ -89,7 +87,7 @@ extension WinViewController {
         }
         UIGraphicsEndImageContext()
         
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil) //(物件陣列，指定的app?)
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         present(controller, animated: true, completion: nil)
     }
     func addRecordToCoreData(){

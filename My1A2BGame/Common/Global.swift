@@ -10,4 +10,3 @@ import Foundation
 
 var coreDataManager = CoreDataManager<Winner>(entityName: "Winner", sortDescriptors: [NSSortDescriptor(key: "guessTimes", ascending: true), NSSortDescriptor(key: "spentTime", ascending: true), NSSortDescriptor(key: "date", ascending: true)])
 
-

@@ -12,6 +12,7 @@ import MessageUI
 class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var feedBackCell: UITableViewCell!
     @IBOutlet weak var reviewCell: UITableViewCell!
+    @IBOutlet weak var tellFriendsCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,28 @@ class SettingsTableViewController: UITableViewController {
             presentEmailVC()
         case reviewCell:
             openAppStoreReview()
+        case tellFriendsCell:
+            presentShareAlert()
         default:
             break
         }
+    }
+}
+
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}
+
+// MARK: - Private
+private extension SettingsTableViewController {
+    func presentShareAlert(){
+        var activityItems: [Any] = ["來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！"]
+        activityItems.append(Constants.appStoreDownloadUrl)
+        
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        present(controller, animated: true, completion: nil)
     }
     
     private func presentEmailVC(){
@@ -72,11 +92,5 @@ class SettingsTableViewController: UITableViewController {
         } else {
             UIApplication.shared.openURL(writeReviewURL)
         }
-    }
-}
-
-extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
     }
 }
