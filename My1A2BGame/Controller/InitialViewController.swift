@@ -32,6 +32,10 @@ class InitialViewController: UIViewController {
         }
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.all
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

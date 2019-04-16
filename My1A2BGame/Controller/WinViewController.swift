@@ -19,6 +19,7 @@ class WinViewController: UIViewController {
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var confirmBtn: UIButton!
     @IBOutlet weak var newRecordStackView: UIStackView!
+    @IBOutlet weak var shareBarBtnItem: UIBarButtonItem!
     @IBAction func dismissKeyboard(_ sender: UITextField) {
     }
     @IBAction func didTapScreen(_ sender: Any) {
@@ -90,6 +91,9 @@ extension WinViewController {
         UIGraphicsEndImageContext()
         
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        if UIDevice().model == "iPad" {
+            controller.popoverPresentationController?.barButtonItem = shareBarBtnItem
+        }
         present(controller, animated: true, completion: nil)
     }
     func addRecordToCoreData(){

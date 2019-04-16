@@ -47,6 +47,10 @@ private extension SettingsTableViewController {
         activityItems.append(Constants.appStoreDownloadUrl)
         
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        if UIDevice().model == "iPad" {
+            controller.popoverPresentationController?.sourceView = tellFriendsCell
+            controller.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 22, width: 56, height: 0)
+        }
         present(controller, animated: true, completion: nil)
     }
     
