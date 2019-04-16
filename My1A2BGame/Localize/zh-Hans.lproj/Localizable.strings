@@ -15,7 +15,7 @@
 "語音提示功能已開啟" = "语音提示功能已开启";
 "確定" = "确定";
 "共猜了" = "共猜了";
-"遊戲說明" = "        1A2B 是一个简单的益智游戏。\n        电脑会准备一组数字不重复的四位数(第一位数可以是0)，玩家必须猜出是哪一组四位数。\n        每当玩家输入四位数字，电脑会根据玩家的猜测提供提示，举例来说：1A2B，1A代表有一个数字正确、位置也正确，2B代表有两个数字正确、但是位置不正确。\n        依据电脑的提示，跟朋友比比谁能花最少次数猜出答案吧！";
+"遊戲說明" = "       1A2B 是一个简单的益智游戏。\n       计算机会准备一组数字不重复的四位数(第一位数可以是0)，玩家必须猜出是哪一组四位数。\n       每当玩家输入四位数字，计算机会根据玩家的猜测提供提示，举例来说：1A2B，1A代表有一个数字正确、位置也正确，2B代表有两个数字正确、但是位置不正确。        依据计算机的提示，跟朋友比比谁能花最少次数猜出答案吧！";
 
 
 /* 2nd */
@@ -41,3 +41,67 @@
 
 /* 2nd */
 "紀錄完成！" = "纪录完成！";
+
+/* 3rd */
+"Certain content will only be available after restarting the app." = "部分内容会在App重启后生效";
+
+/* 3rd */
+"Confirm" = "确定";
+
+/* 3rd */
+"Currently No Product Available" = "目前没有可购买的商品";
+
+/* 3rd */
+"Error" = "错误";
+
+/* 3rd */
+"No Restorable Products" = "没有可以恢复的商品";
+
+/* 3rd */
+"Restore Purchase Completed" = "恢复购买已完成";
+
+/* 3rd */
+"Restore Purchase Failed" = "恢复购买失败 ";
+
+/* 3rd */
+"Wrong productIdentifier, please contact Apple for refund if payment is complete or send a bug report" = "错误的商品代码，如果已扣款完成，请执行退款动作或提出错误回报";
+
+/* 4th */
+"Purchase not available" = "无法使用购买功能";
+
+/* 4th */
+"Sorry, it seems purchase is not avaiable on this device or within this app" = "对不起，此App或此装置的购买功能受限制、无法购买";
+
+/* 5th */
+"Purchase Failed" = "交易失败";
+
+/* 6th */
+"No email function available." = "无法使用邮件功能";
+
+/* 6th */
+"We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的评论功能来回报";
+
+/* 6th */
+"Maybe later" = "稍后再说";
+
+/* 6th */
+"Here we go!" = "立即评论";
+
+/* 7th */
+"No, thank you" = "不用了，谢谢";
+
+/* 8th */
+"我在「1A2B Fun!」裡只花" = "我在“1A2B Fun!”里只花";
+
+/* 8th */
+"是否要觀看廣告？觀看廣告能讓您增加" = "是否要观看奖励广告？观看奖励广告能让您增加";
+
+/* 8th */
+"次就猜贏了！快來挑戰我！" = "次就猜赢了！快来挑战我！";
+
+/* 8th */
+"次機會" = "次机会";
+
+/* 9th */
+"來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！" = "来玩“1A2B Fun!”吧！不需花大量时间，就能享受动脑的乐趣！";
+

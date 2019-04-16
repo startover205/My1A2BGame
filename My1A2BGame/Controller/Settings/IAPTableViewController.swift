@@ -68,9 +68,9 @@ extension IAPTableViewController: SKProductsRequestDelegate {
         activityIndicator?.removeFromSuperview()
         
         if objects.isEmpty {
-            let alert = UIAlertController(title: "Currently No Product Available".localized, message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Currently No Product Available", comment: "3nd"), message: nil, preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
             alert.addAction(ok)
             
@@ -121,9 +121,9 @@ private extension IAPTableViewController {
             productRequest.start()
             
         } else {
-            let alert = UIAlertController(title: "Purchase not available", message: "Sorry, it seems purchase is not avaiable on this device or within this app".localized, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not avaiable on this device or within this app", comment: "4th"), preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
             alert.addAction(ok)
             

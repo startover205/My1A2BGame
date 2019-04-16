@@ -8,9 +8,6 @@
 /* Class = "UILabel"; text = "恭喜您破纪录，请输入您的大名"; ObjectID = "4KC-af-cqv"; */
 "4KC-af-cqv.text" = "恭喜您破纪录，请输入您的大名";
 
-/* Class = "UILabel"; text = "Remove Ads"; ObjectID = "4Q0-CL-heG"; */
-"4Q0-CL-heG.text" = "移除底部广告";
-
 /* Class = "UIButton"; normalTitle = "投降😱"; ObjectID = "56D-WB-7Ah"; */
 "56D-WB-7Ah.normalTitle" = "投降😱";
 
@@ -50,6 +47,9 @@
 /* Class = "UILabel"; text = "Restore Purchase"; ObjectID = "TNz-w5-FMA"; */
 "TNz-w5-FMA.text" = "恢复购买";
 
+/* Class = "UILabel"; text = "Tell Friends"; ObjectID = "WBQ-AE-nwJ"; */
+"WBQ-AE-nwJ.text" = "推荐给朋友";
+
 /* Class = "UILabel"; text = "次数"; ObjectID = "Y5e-Us-4Dm"; */
 "Y5e-Us-4Dm.text" = "次数";
 
@@ -73,6 +73,9 @@
 
 /* Class = "UINavigationItem"; title = "Top 10"; ObjectID = "fVb-2i-psM"; */
 "fVb-2i-psM.title" = "Top 10";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "gMu-ru-GJc"; */
+"gMu-ru-GJc.text" = "价格";
 
 /* Class = "UITabBarItem"; title = "排名"; ObjectID = "gty-aA-xTu"; */
 "gty-aA-xTu.title" = "排名";
@@ -103,6 +106,9 @@
 
 /* Class = "UINavigationItem"; title = "1A2B"; ObjectID = "sdu-hz-xNl"; */
 "sdu-hz-xNl.title" = "1A2B";
+
+/* Class = "UIBarButtonItem"; title = "Restore"; ObjectID = "sev-wD-Rnu"; */
+"sev-wD-Rnu.title" = "恢复购买";
 
 /* Class = "UINavigationItem"; title = "Extra"; ObjectID = "sps-aX-FlC"; */
 "sps-aX-FlC.title" = "额外";

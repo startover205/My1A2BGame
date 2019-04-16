@@ -23,7 +23,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JOe-RM-3eM">
-                                    <rect key="frame" x="23" y="23" width="274" height="125"/>
+                                    <rect key="frame" x="23" y="8" width="274" height="125"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JSJ-2O-6sR">
                                             <rect key="frame" x="0.0" y="0.0" width="46" height="125"/>
@@ -132,7 +132,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SQy-RK-zGu">
-                                    <rect key="frame" x="71" y="233.5" width="178" height="46"/>
+                                    <rect key="frame" x="71" y="216.5" width="178" height="46"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6A-rZ-j64">
                                             <rect key="frame" x="0.0" y="0.0" width="69" height="46"/>
@@ -156,13 +156,13 @@
                                     </subviews>
                                 </stackView>
                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請檢查輸入格式！需要0到9不重複的四位數" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ND-DD-vu4">
-                                    <rect key="frame" x="20" y="160" width="280" height="41"/>
+                                    <rect key="frame" x="20" y="141" width="280" height="41"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2n-yZ-M8U">
-                                    <rect key="frame" x="87" y="233.5" width="146" height="46"/>
+                                    <rect key="frame" x="87" y="216.5" width="146" height="46"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <state key="normal" title="重新開始😤"/>
                                     <connections>
@@ -170,7 +170,7 @@
                                     </connections>
                                 </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls1-7D-jZF">
-                                    <rect key="frame" x="8" y="283" width="304" height="119"/>
+                                    <rect key="frame" x="8" y="268.5" width="304" height="133.5"/>
                                     <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.80498488079722219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -181,13 +181,13 @@
                                     </userDefinedRuntimeAttributes>
                                 </textView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="還剩 12 次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbN-dj-bwZ">
-                                    <rect key="frame" x="110.5" y="204" width="99.5" height="26.5"/>
+                                    <rect key="frame" x="110.5" y="186" width="99.5" height="26.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1A2B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFi-sk-oXB">
-                                    <rect key="frame" x="16" y="291" width="288" height="27"/>
+                                    <rect key="frame" x="16" y="276.5" width="288" height="27"/>
                                     <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                     <nil key="textColor"/>
@@ -202,22 +202,21 @@
                             <color key="backgroundColor" red="1" green="0.80068777660000001" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="tbN-dj-bwZ" firstAttribute="top" secondItem="3ND-DD-vu4" secondAttribute="bottom" constant="3" id="0j0-YZ-MwE"/>
-                                <constraint firstItem="Z2n-yZ-M8U" firstAttribute="top" secondItem="tbN-dj-bwZ" secondAttribute="bottom" constant="3" id="2K1-Td-WsF"/>
+                                <constraint firstItem="tbN-dj-bwZ" firstAttribute="top" secondItem="3ND-DD-vu4" secondAttribute="bottom" constant="4" id="0j0-YZ-MwE"/>
+                                <constraint firstItem="Z2n-yZ-M8U" firstAttribute="top" secondItem="tbN-dj-bwZ" secondAttribute="bottom" constant="4" id="2K1-Td-WsF"/>
                                 <constraint firstItem="TXa-rs-Rme" firstAttribute="trailing" secondItem="3ND-DD-vu4" secondAttribute="trailing" constant="20" id="4oS-6o-64i"/>
-                                <constraint firstItem="3ND-DD-vu4" firstAttribute="top" secondItem="JOe-RM-3eM" secondAttribute="bottom" constant="12" id="8cj-JT-FUX"/>
-                                <constraint firstItem="JOe-RM-3eM" firstAttribute="top" secondItem="TXa-rs-Rme" secondAttribute="top" constant="23" id="J6I-zQ-dDA"/>
+                                <constraint firstItem="3ND-DD-vu4" firstAttribute="top" secondItem="JOe-RM-3eM" secondAttribute="bottom" constant="8" id="8cj-JT-FUX"/>
+                                <constraint firstItem="JOe-RM-3eM" firstAttribute="top" secondItem="TXa-rs-Rme" secondAttribute="top" constant="8" id="J6I-zQ-dDA"/>
                                 <constraint firstItem="SQy-RK-zGu" firstAttribute="centerX" secondItem="eS2-hv-WSN" secondAttribute="centerX" id="KAW-EK-6iE"/>
                                 <constraint firstItem="TXa-rs-Rme" firstAttribute="trailing" secondItem="Ls1-7D-jZF" secondAttribute="trailing" constant="8" id="KDP-G6-EZT"/>
                                 <constraint firstItem="uFi-sk-oXB" firstAttribute="top" secondItem="Ls1-7D-jZF" secondAttribute="top" constant="8" id="L59-5u-aiA"/>
                                 <constraint firstItem="JOe-RM-3eM" firstAttribute="centerX" secondItem="eS2-hv-WSN" secondAttribute="centerX" id="LEv-D8-p2d"/>
-                                <constraint firstItem="3ND-DD-vu4" firstAttribute="top" secondItem="JOe-RM-3eM" secondAttribute="bottom" constant="12" id="LvG-4h-CxA"/>
                                 <constraint firstItem="uFi-sk-oXB" firstAttribute="leading" secondItem="Ls1-7D-jZF" secondAttribute="leading" constant="8" id="MeE-5d-cac"/>
-                                <constraint firstItem="SQy-RK-zGu" firstAttribute="top" secondItem="tbN-dj-bwZ" secondAttribute="bottom" constant="3" id="ZIE-Sc-4dQ"/>
+                                <constraint firstItem="SQy-RK-zGu" firstAttribute="top" secondItem="tbN-dj-bwZ" secondAttribute="bottom" constant="4" id="ZIE-Sc-4dQ"/>
                                 <constraint firstItem="tbN-dj-bwZ" firstAttribute="centerX" secondItem="eS2-hv-WSN" secondAttribute="centerX" id="ZJj-L3-fUm"/>
                                 <constraint firstItem="TXa-rs-Rme" firstAttribute="bottom" secondItem="Ls1-7D-jZF" secondAttribute="bottom" constant="8" id="iaZ-2u-aWp"/>
                                 <constraint firstItem="Z2n-yZ-M8U" firstAttribute="centerX" secondItem="eS2-hv-WSN" secondAttribute="centerX" id="m1d-qs-Dca"/>
-                                <constraint firstItem="Ls1-7D-jZF" firstAttribute="top" secondItem="tbN-dj-bwZ" secondAttribute="bottom" constant="52.3333333333334" id="p1A-Bm-S5c"/>
+                                <constraint firstItem="Ls1-7D-jZF" firstAttribute="top" secondItem="tbN-dj-bwZ" secondAttribute="bottom" constant="56" id="p1A-Bm-S5c"/>
                                 <constraint firstItem="Ls1-7D-jZF" firstAttribute="leading" secondItem="TXa-rs-Rme" secondAttribute="leading" constant="8" id="taa-NA-Ky8"/>
                                 <constraint firstItem="Ls1-7D-jZF" firstAttribute="trailing" secondItem="uFi-sk-oXB" secondAttribute="trailing" constant="8" id="wSZ-Ir-qPq"/>
                                 <constraint firstItem="3ND-DD-vu4" firstAttribute="leading" secondItem="TXa-rs-Rme" secondAttribute="leading" constant="20" id="x4l-vW-xIc"/>
@@ -236,7 +235,7 @@
                         <barButtonItem key="backBarButtonItem" title="返回" id="p3D-i8-hQ1"/>
                         <barButtonItem key="leftBarButtonItem" id="Afn-fo-3uG">
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="IQQ-Xa-r9P">
-                                <rect key="frame" x="16" y="6.5" width="51" height="31"/>
+                                <rect key="frame" x="16" y="9.5" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="changeVoicePromptsSwitchState:" destination="ewl-rv-ptG" eventType="valueChanged" id="gIQ-m6-Y06"/>
@@ -296,7 +295,7 @@
                 <navigationController id="lFW-Lm-uzV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="排名" image="baseline_format_list_numbered_black_24pt" id="gty-aA-xTu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="77G-Mu-hxg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -361,7 +360,7 @@
                     <tabBarItem key="tabBarItem" title="遊戲" image="baseline_1A2B_24px" id="fOM-AV-Cn0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ILH-LE-YaM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

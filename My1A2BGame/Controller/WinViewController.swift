@@ -77,7 +77,9 @@ extension WinViewController: UITextFieldDelegate {
 // MARK: - Private
 extension WinViewController {
     func presentShareAlert(){
-        var activityItems: [Any] = [NSLocalizedString("我在「1A2B Fun!」裡只花\(guessCount)次就猜贏了！快來挑戰我！", comment: "2nd")]
+        var activityItems: [Any] = [NSLocalizedString("我在「1A2B Fun!」裡只花", comment: "8th") +
+            "\(guessCount)" +
+            NSLocalizedString("次就猜贏了！快來挑戰我！", comment: "8th")]
         activityItems.append(Constants.appStoreDownloadUrl)
         
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)

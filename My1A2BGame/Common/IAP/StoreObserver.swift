@@ -41,10 +41,10 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
                 let message = skError.localizedDescription
                 
                 ErrorManager.saveError(description: message)
-
-                let alert = UIAlertController(title: "Purchase failed", message: message, preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+                let alert = UIAlertController(title: NSLocalizedString("Purchase Failed", comment: "5th"), message: message, preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
                 
                 alert.addAction(ok)
                 
@@ -64,9 +64,9 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         
         guard hasRestorableContent else {
-            let alert = UIAlertController(title: "No Restorable Products".localized, message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("No Restorable Products", comment: "3nd"), message: nil, preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
             alert.addAction(ok)
             
@@ -74,9 +74,9 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
             return
         }
         
-        let alert = UIAlertController(title: "Restore Purchase Completed".localized, message: "Certain content will only be available after restarting the app.".localized, preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Restore Purchase Completed", comment: "3nd"), message: NSLocalizedString("Certain content will only be available after restarting the app.", comment: "3nd"), preferredStyle: .alert)
         
-        let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+        let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
         
         alert.addAction(ok)
         
@@ -88,9 +88,9 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
        
         if let error = error as? SKError, error.code != .paymentCancelled {
-            let alert = UIAlertController(title: "Restore Purchase Failed ".localized, message: error.localizedDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Restore Purchase Failed", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
             alert.addAction(ok)
             
@@ -107,9 +107,9 @@ private extension StoreObserver {
             
             ErrorManager.saveError(description: "\(#function)-invalid productionIdentifier")
             
-            let alert = UIAlertController(title: "Error".localized, message: "Wrong productIdentifier, please contact Apple for refund if payment is complete or send a bug report".localized, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Wrong productIdentifier, please contact Apple for refund if payment is complete or send a bug report", comment: "3nd"), preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: "Confirm".localized, style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
             alert.addAction(ok)
             

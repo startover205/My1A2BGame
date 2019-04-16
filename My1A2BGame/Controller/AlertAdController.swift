@@ -21,8 +21,9 @@ class AlertAdController: UIViewController {
     private var adHandler: AdHandler?
     private var cancelHandler: CancelHandler?
     private var countDownTime = 5.0
-    private var head: String
+    private var titleString: String
     private var message: String?
+    private var cancelMessage: String
     
     private weak var adCountDownTimer: Timer?
     private weak var progressCountDownTimer: Timer?
@@ -38,10 +39,11 @@ class AlertAdController: UIViewController {
         shakeAdIcon()
     }()
     
-    init(title: String, message: String? = nil, countDownTime: Double, adHandler: AdHandler? = nil, cancelHandler: CancelHandler? = nil) {
+    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: AdHandler? = nil, cancelHandler: CancelHandler? = nil) {
         
-        self.head = title
+        self.titleString = title
         self.message = message
+        self.cancelMessage = cancelMessage
         self.countDownTime = countDownTime
         self.adHandler = adHandler
         self.cancelHandler = cancelHandler
@@ -59,6 +61,9 @@ class AlertAdController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         cancelBtn.alpha = 0
+        cancelBtn.setTitle(cancelMessage, for: .normal)
+        titleLabel.text = titleString
+        messageLabel.text = message
     }
     
     override func viewDidAppear(_ animated: Bool) {

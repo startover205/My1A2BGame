@@ -215,7 +215,7 @@ extension GuessNumberTableViewController {
         }
         
         let alert = AlertAdController(title: NSLocalizedString("您用完次數了...", comment: "2nd"), message:
-            NSLocalizedString("是否要觀看廣告？觀看廣告能讓您增加\(Constants.adGrantChances)次機會", comment: "2nd"), countDownTime: Constants.adHintTime, adHandler: {
+            NSLocalizedString("是否要觀看廣告？觀看廣告能讓您增加", comment: "8th") + "\(Constants.adGrantChances)" + NSLocalizedString("次機會", comment: "8th"), cancelMessage: NSLocalizedString("No, thank you", comment: "7th"), countDownTime: Constants.adHintTime, adHandler: {
                 self.showAd()
         }){
             self.quitButton.sendActions(for: .touchUpInside)

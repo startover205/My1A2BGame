@@ -43,7 +43,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 // MARK: - Private
 private extension SettingsTableViewController {
     func presentShareAlert(){
-        var activityItems: [Any] = ["來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！"]
+        var activityItems: [Any] = [NSLocalizedString("來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！", comment: "9th")]
         activityItems.append(Constants.appStoreDownloadUrl)
         
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
@@ -52,13 +52,13 @@ private extension SettingsTableViewController {
     
     private func presentEmailVC(){
         guard MFMailComposeViewController.canSendMail() else {
-            let alert = UIAlertController(title: NSLocalizedString("No email function available.", comment: ""), message: NSLocalizedString("We're sorry. Please leave a review in the AppStore instead.", comment: ""), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("No email function available.", comment: "6th"), message: NSLocalizedString("We're sorry. Please leave a review in the AppStore instead.", comment: "6th"), preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: NSLocalizedString("Here we go!", comment: ""), style: .default) { (_) in
+            let ok = UIAlertAction(title: NSLocalizedString("Here we go!", comment: "6th"), style: .default) { (_) in
                 self.openAppStoreReview()
             }
             
-            let cancel = UIAlertAction(title: NSLocalizedString("Maybe later", comment: ""), style: .cancel)
+            let cancel = UIAlertAction(title: NSLocalizedString("Maybe later", comment: "6th"), style: .cancel)
             
             alert.addAction(ok)
             alert.addAction(cancel)

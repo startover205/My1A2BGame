@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  My1A2BGame
-
-  Created by Ming-Ta Yang on 2018/7/18.
-  Copyright © 2018年 Ming-Ta Yang. All rights reserved.
-*/
+/*
+ Localizable.strings
+ My1A2BGame
+ 
+ Created by Ming-Ta Yang on 2018/7/18.
+ Copyright © 2018年 Ming-Ta Yang. All rights reserved.
+ */
 
 
 "還可以猜" = "還可以猜";
@@ -40,3 +40,67 @@
 
 /* 2nd */
 "紀錄完成！" = "紀錄完成！";
+
+/* 3rd */
+"Certain content will only be available after restarting the app." = "部分內容會在App重啟後生效";
+
+/* 3rd */
+"Confirm" = "確定";
+
+/* 3rd */
+"Currently No Product Available" = "目前沒有可購買的商品";
+
+/* 3rd */
+"Error" = "錯誤";
+
+/* 3rd */
+"No Restorable Products" = "沒有可以恢復的商品";
+
+/* 3rd */
+"Restore Purchase Completed" = "恢復購買已完成";
+
+/* 3rd */
+"Restore Purchase Failed" = "恢復購買失敗 ";
+
+/* 3rd */
+"Wrong productIdentifier, please contact Apple for refund if payment is complete or send a bug report" = "錯誤的商品代碼，如果已扣款完成，請執行退款動作或提出錯誤回報";
+
+/* 4th */
+"Purchase not available" = "無法使用購買功能";
+
+/* 4th */
+"Sorry, it seems purchase is not avaiable on this device or within this app" = "對不起，此App或此裝置的購買功能受限制、無法購買";
+
+/* 5th */
+"Purchase Failed" = "交易失敗";
+
+/* 6th */
+"No email function available." = "無法使用郵件功能";
+
+/* 6th */
+"We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的評論功能來回報";
+
+/* 6th */
+"Maybe later" = "稍後再說";
+
+/* 6th */
+"Here we go!" = "立即評論";
+
+/* 7th */
+"No, thank you" = "不用了，謝謝";
+
+/* 8th */
+"我在「1A2B Fun!」裡只花" = "我在「1A2B Fun!」裡只花";
+
+/* 8th */
+"是否要觀看廣告？觀看廣告能讓您增加" = "是否要觀看獎勵廣告？觀看獎勵廣告能讓您增加";
+
+/* 8th */
+"次就猜贏了！快來挑戰我！" = "次就猜贏了！快來挑戰我！";
+
+/* 8th */
+"次機會" = "次機會";
+
+/* 9th */
+"來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！" = "來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！";
+

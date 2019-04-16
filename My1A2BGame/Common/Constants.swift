@@ -9,9 +9,9 @@
 import Foundation
 
 enum Constants {
-    static let maxPlayChances = 1
+    static let maxPlayChances = 2
     static let adHintTime = 5.0
-    static let adGrantChances = 1
+    static let adGrantChances = 2
     static let rewardAdId = "ca-app-pub-3940256099942544/1712485313"
     static let bottomAdId = "ca-app-pub-3940256099942544/2934735716"
     static let appStoreReviewUrl = "https://itunes.apple.com/app/id1459347669?action=write-review"
