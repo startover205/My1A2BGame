@@ -36,10 +36,6 @@ class InitialViewController: UIViewController {
         return UIInterfaceOrientationMask.all
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     @objc
     func tryToLoadBottomAd(){
         if AppDelegate.internetAvailable() {
