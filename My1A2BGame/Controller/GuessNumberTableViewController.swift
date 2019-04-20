@@ -49,8 +49,8 @@ class GuessNumberTableViewController: UITableViewController {
             view.alpha = 0
         }
         
-        //        initGame()
-        initCheatGame()
+                initGame()
+//        initCheatGame()
         
         loadUserDefaults()
     }

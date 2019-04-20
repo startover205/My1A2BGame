@@ -8,6 +8,7 @@
 
 import UIKit
 import GameKit
+import StoreKit
 
 class WinViewController: UIViewController {
     
@@ -44,6 +45,10 @@ class WinViewController: UIViewController {
         newRecordStackView.alpha = breakNewRecord() ? 1 : 0
         
         _ = _prepareEmoji
+        
+        if #available(iOS 10.3, *) {
+            tryToAskForReview()
+        } 
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -213,6 +218,31 @@ extension WinViewController {
         for i in 0...20 {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) { [weak self] in
                 self?.showFirework()
+            }
+        }
+    }
+    @available(iOS 10.3, *)
+    func tryToAskForReview(){
+        
+        var count = UserDefaults.standard.integer(forKey: UserDefaults.Key.processCompletedCount)
+        count += 1
+        UserDefaults.standard.set(count, forKey: UserDefaults.Key.processCompletedCount)
+        
+        let infoDictionaryKey = kCFBundleVersionKey as String
+        guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String else {
+            assertionFailure("Expected to find a bundle version in the info dictionary")
+            return
+        }
+        
+        let lastVersionPromptedForReview = UserDefaults.standard.string(forKey: UserDefaults.Key.lastVersionPromptedForReview)
+        
+        if count >= 3 && currentVersion != lastVersionPromptedForReview {
+            let twoSecondsFromNow = DispatchTime.now() + 2.0
+            DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) { [navigationController] in
+                if navigationController?.topViewController is WinViewController {
+                    SKStoreReviewController.requestReview()
+                    UserDefaults.standard.set(currentVersion, forKey: UserDefaults.Key.lastVersionPromptedForReview)
+                }
             }
         }
     }

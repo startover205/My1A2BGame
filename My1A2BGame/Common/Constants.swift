@@ -9,9 +9,9 @@
 import Foundation
 
 enum Constants {
-    static let maxPlayChances = 2
+    static let maxPlayChances = 10
     static let adHintTime = 5.0
-    static let adGrantChances = 2
+    static let adGrantChances = 5
     static let rewardAdId = "ca-app-pub-3940256099942544/1712485313"
     static let bottomAdId = "ca-app-pub-3940256099942544/2934735716"
     static let appStoreReviewUrl = "https://itunes.apple.com/app/id1459347669?action=write-review"
@@ -21,6 +21,8 @@ enum Constants {
 extension UserDefaults {
     enum Key {
         static let voicePromptsSwitch = "VoicePromptsSwitch"
-        static let remove_bottom_ad = "remove_bottom_ad8"
+        static let remove_bottom_ad = "remove_bottom_ad"
+        static let processCompletedCount = "processCompletedCount"
+        static let lastVersionPromptedForReview = "lastVersionPromptedForReview"
     }
 }

@@ -77,8 +77,6 @@ class CoreDataManager<T: NSManagedObject>: NSObject, NSFetchedResultsControllerD
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
-    // FIXME: - Confirm that it's OK to do so.
-
     private lazy var url = dbFilePathURL.appendingPathComponent(dbFilename + ".sqlite")
     
     private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = { //被第一呼叫->第二
