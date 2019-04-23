@@ -149,6 +149,7 @@
 				C07575FD224A00FE007A1F9E /* Controller */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
+				C0ED62682264364300892A80 /* IAP */,
 				C075760D224B0C89007A1F9E /* Common */,
 				C07575FE224A012E007A1F9E /* Localize */,
 				C01461AA20BE6BD30023EEB6 /* Info.plist */,
@@ -190,11 +191,9 @@
 			isa = PBXGroup;
 			children = (
 				C085BE7B2257566F00320563 /* CustomTransitionTabBarController.swift */,
-				C0ED62682264364300892A80 /* IAP */,
 				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
 				C075760E224C7A7D007A1F9E /* Global.swift */,
 				C085BE692254974700320563 /* Constants.swift */,
-				C0ED626922648B9700892A80 /* IAP.swift */,
 				C0ED62642260416300892A80 /* ErrorManager.swift */,
 				C075760B224B0C81007A1F9E /* String+Localization.swift */,
 				C085BE6E2255127300320563 /* Notification+Name.swift */,
@@ -240,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				C0ED626622608FFD00892A80 /* StoreObserver.swift */,
+				C0ED626922648B9700892A80 /* IAP.swift */,
 			);
 			path = IAP;
 			sourceTree = "<group>";

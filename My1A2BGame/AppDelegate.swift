@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         tryToLoadRewardAd()
         
-        reachability?.startNotifier()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(tryToLoadRewardAd), name: NSNotification.Name.reachabilityChanged, object: nil)
+        
+        reachability?.startNotifier()
         
         return true
     }
