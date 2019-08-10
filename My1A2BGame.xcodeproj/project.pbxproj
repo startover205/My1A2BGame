@@ -12,6 +12,7 @@
 		C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01461A520BE6BD30023EEB6 /* Assets.xcassets */; };
 		C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */; };
 		C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */; };
+		C016F33322FEB26300918B8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C016F33522FEB26300918B8D /* InfoPlist.strings */; };
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 		C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C655A20FD849A0062FFE8 /* LoseViewController.swift */; };
 		C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033873B2100200A00DF4969 /* InstructionViewController.swift */; };
@@ -52,8 +53,11 @@
 		C01461A320BE6BD20023EEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C01461A520BE6BD30023EEB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C01461A820BE6BD30023EEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C01461AA20BE6BD30023EEB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberTableViewController.swift; sourceTree = "<group>"; };
+		C016F32F22FEB0B900918B8D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C016F33422FEB26300918B8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C016F33622FEB26900918B8D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C016F33722FEB26B00918B8D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C02B46DD20BF8BCA0097197F /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C02C655A20FD849A0062FFE8 /* LoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
 		C033873B2100200A00DF4969 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
@@ -152,8 +156,8 @@
 				C0ED62682264364300892A80 /* IAP */,
 				C075760D224B0C89007A1F9E /* Common */,
 				C07575FE224A012E007A1F9E /* Localize */,
-				C01461AA20BE6BD30023EEB6 /* Info.plist */,
 				C07575FF224A015E007A1F9E /* Model.xcdatamodeld */,
+				C016F32F22FEB0B900918B8D /* Info.plist */,
 			);
 			path = My1A2BGame;
 			sourceTree = "<group>";
@@ -175,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				C0ED627C2265B47E00892A80 /* Localizable.strings */,
+				C016F33522FEB26300918B8D /* InfoPlist.strings */,
 			);
 			path = Localize;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
+				C016F33322FEB26300918B8D /* InfoPlist.strings in Resources */,
 				C0ED626D2265B00100892A80 /* AlertAdController.xib in Resources */,
 				C0ED627A2265B47E00892A80 /* Localizable.strings in Resources */,
 				C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */,
@@ -430,6 +436,16 @@
 				C05AD22420FF8E7900347DA0 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C016F33522FEB26300918B8D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C016F33422FEB26300918B8D /* en */,
+				C016F33622FEB26900918B8D /* zh-Hant */,
+				C016F33722FEB26B00918B8D /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		C0ED626F2265B00100892A80 /* AlertAdController.xib */ = {

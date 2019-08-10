@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  My1A2BGame
+
+  Created by Ming-Ta Yang on 2019/8/10.
+  Copyright © 2019 Ming-Ta Yang. All rights reserved.
+*/
+
+NSPhotoLibraryAddUsageDescription = "將您的戰績保留下來。";
