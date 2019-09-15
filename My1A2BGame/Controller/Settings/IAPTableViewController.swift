@@ -121,7 +121,7 @@ private extension IAPTableViewController {
             productRequest.start()
             
         } else {
-            let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not avaiable on this device or within this app", comment: "4th"), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not available on this device or within this app", comment: "4th"), preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
