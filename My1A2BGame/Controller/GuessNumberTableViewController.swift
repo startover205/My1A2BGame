@@ -17,7 +17,7 @@ class GuessNumberTableViewController: UITableViewController {
     @IBOutlet weak var lastGuessLabel: UILabel!
     @IBOutlet weak var availableGuessLabel: UILabel!
     @IBOutlet var quizLabels: [UILabel]!
-    @IBOutlet var answerTextFields: [UITextField]!
+//    @IBOutlet var answerTextFields: [UITextField]!
     @IBOutlet weak var guessButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var checkFormatLabel: UILabel!
@@ -45,6 +45,8 @@ class GuessNumberTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.delegate = self
+        
         fadeOutElements.forEach { (view) in
             view.alpha = 0
         }
@@ -69,107 +71,70 @@ class GuessNumberTableViewController: UITableViewController {
     }
     
     //for continuous inputs
-    @IBAction func jumpToNextTextField(_ sender: UITextField) {
+//    @IBAction func jumpToNextTextField(_ sender: UITextField) {
+//
+//        guard sender.text?.count == 1 else {
+//            return
+//        }
+//
+//        guard sender.tag != answerTextFields.count-1 else {
+//            sender.resignFirstResponder()
+//            return
+//        }
+//        answerTextFields[sender.tag+1].becomeFirstResponder()
+//    }
+    
+    func newGuessBtnPressed(){
+        let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nav\(String(describing: GuessPadViewController.self))") as! UINavigationController
+        nav.modalPresentationStyle = .formSheet
+//        nav.modalTransitionStyle = .crossDissolve
         
-        guard sender.text?.count == 1 else {
-            return
-        }
+        let controller = nav.topViewController as! GuessPadViewController
+        controller.delegate = self
         
-        guard sender.tag != answerTextFields.count-1 else {
-            sender.resignFirstResponder()
-            return
-        }
-        answerTextFields[sender.tag+1].becomeFirstResponder()
+//        UIView.animate(withDuration: 0.25, delay: 0, options: .allowUserInteraction, animations: {
+            self.present(nav, animated: true, completion: nil)
+//        }, completion: nil)
     }
     
     @IBAction func guessBtnPressed(_ sender: Any) {
+      
         guard availableGuess > 0 else {
             outOfChances()
             return
         }
         
-        guard isFormatCorrect() else{
-            checkFormatLabel.isHidden = false
-            return
-        }
-        checkFormatLabel.isHidden = true
+        newGuessBtnPressed()
+        return
         
-        //startCounting
-        _ = startPlayTime
-        
-        guessCount += 1
-        availableGuess -= 1
-        
-        //try to match numbers
-        var numberOfAs = 0
-        var numberOfBs = 0
-        var guessText = ""
-        for j in 0...quizNumbers.count-1{
-            
-            guessText.append(answerTextFields[j].text!)
-            
-            for i in 0...quizNumbers.count-1{
-                
-                if answerTextFields[j].text! == quizNumbers[i]{
-                    if i == j{
-                        numberOfAs += 1
-                    }else{
-                        numberOfBs += 1
-                    }
-                }
-                
-            }
-            answerTextFields[j].text = ""
-        }
-        
-        //show result
-        let result = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n"
-        lastGuessLabel.text = result
-        lastGuessLabel.alpha = 0.5
-        lastGuessLabel.isHidden = false
-        UIView.animate(withDuration: 0.5) {
-            self.lastGuessLabel.alpha = 1
-        }
-        hintTextView.text = "\n" + guessHistoryText
-        guessHistoryText = result + guessHistoryText
-        
-        var text = "\(numberOfAs)A\(numberOfBs)B" //for speech
-        
-        //win
-        if numberOfAs == 4 {
-            
-            endGame()
-            
-            if let controller = storyboard?.instantiateViewController(withIdentifier: "Win") as? WinViewController
-            {
-                controller.guessCount = guessCount
-                controller.spentTime = CACurrentMediaTime() - self.startPlayTime
-                show(controller, sender: nil)
-                
-                text = NSLocalizedString("恭喜贏了", comment: "")
-            }
-            //lose
-        } else if availableGuess == 0 {
-            outOfChances()
-        }
-        
-        //speech function
-        if voiceSwitch.isOn {
-            let speechUtterance = AVSpeechUtterance(string: text)
-            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
-            synthesizer.speak(speechUtterance)
-        }
-        
+//
+//        guard isFormatCorrect() else{
+//            checkFormatLabel.isHidden = false
+//            return
+//        }
+//        checkFormatLabel.isHidden = true
+//
+
+//
+//        tryToMatchNumbers(anserTexts: <#T##[String]#>)
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
-        if voiceSwitch.isOn{
+        AlertManager.shared.showActionAlert(.giveUp) {
+            self.showLoseVCAndEndGame()
+        }
+       
+    }
+    
+    func showLoseVCAndEndGame(){
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+        navigationController?.pushViewController(controller, animated: true)
+        if self.voiceSwitch.isOn{
             let text = NSLocalizedString("不要灰心，再試試看", comment: "")
             let speechUtterance = AVSpeechUtterance(string: text)
             speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
-            synthesizer.speak(speechUtterance)
+            self.synthesizer.speak(speechUtterance)
         }
-        endGame()
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
@@ -190,18 +155,25 @@ class GuessNumberTableViewController: UITableViewController {
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension GuessNumberTableViewController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let maxLength = 1
-        let currentString: NSString = textField.text! as NSString
-        let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
-        return newString.length <= maxLength
+// MARK: - GuessPadDelegate
+extension GuessNumberTableViewController: GuessPadDelegate{
+    func padDidFinishEntering(numberTexts: [String]) {
+        tryToMatchNumbers(anserTexts: numberTexts)
     }
 }
+
+//// MARK: - UITextFieldDelegate
+//extension GuessNumberTableViewController: UITextFieldDelegate {
+//
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//        let maxLength = 1
+//        let currentString: NSString = textField.text! as NSString
+//        let newString: NSString =
+//            currentString.replacingCharacters(in: range, with: string) as NSString
+//        return newString.length <= maxLength
+//    }
+//}
 
 // MARK: - Ad Related
 extension GuessNumberTableViewController {
@@ -214,7 +186,7 @@ extension GuessNumberTableViewController {
             NSLocalizedString("是否要觀看廣告？觀看廣告能讓您增加", comment: "8th") + "\(Constants.adGrantChances)" + NSLocalizedString("次機會", comment: "8th"), cancelMessage: NSLocalizedString("No, thank you", comment: "7th"), countDownTime: Constants.adHintTime, adHandler: {
                 self.showAd()
         }){
-            self.quitButton.sendActions(for: .touchUpInside)
+            self.showLoseVCAndEndGame()
         }
         present(alert, animated: true, completion: nil)
     }
@@ -241,13 +213,87 @@ extension GuessNumberTableViewController {
     }
 }
 
+// MARK: - Description
+extension GuessNumberTableViewController: UINavigationControllerDelegate{
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController is LoseViewController || viewController is WinViewController {
+            self.endGame()
+        }
+    }
+}
+
 // MARK: - Private
 private extension GuessNumberTableViewController {
+    func tryToMatchNumbers(anserTexts: [String]){
+        //startCounting
+        _ = startPlayTime
+        
+        guessCount += 1
+        availableGuess -= 1
+        
+        //try to match numbers
+        var numberOfAs = 0
+        var numberOfBs = 0
+        var guessText = ""
+        for j in 0...quizNumbers.count-1{
+            
+            guessText.append(anserTexts[j])
+            
+            for i in 0...quizNumbers.count-1{
+                
+                if anserTexts[j] == quizNumbers[i]{
+                    if i == j{
+                        numberOfAs += 1
+                    }else{
+                        numberOfBs += 1
+                    }
+                }
+                
+            }
+//            answerTextFields[j].text = ""
+        }
+        
+        //show result
+        let result = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n"
+        lastGuessLabel.text = result
+        lastGuessLabel.alpha = 0.5
+        lastGuessLabel.isHidden = false
+        UIView.animate(withDuration: 0.5) {
+            self.lastGuessLabel.alpha = 1
+        }
+        hintTextView.text = "\n" + guessHistoryText
+        guessHistoryText = result + guessHistoryText
+        
+        var text = "\(numberOfAs)A\(numberOfBs)B" //for speech
+        
+        //win
+        if numberOfAs == 4 {
+            
+            if let controller = storyboard?.instantiateViewController(withIdentifier: String(describing: WinViewController.self)) as? WinViewController
+            {
+                controller.guessCount = guessCount
+                controller.spentTime = CACurrentMediaTime() - self.startPlayTime
+                show(controller, sender: nil)
+                
+                text = NSLocalizedString("恭喜贏了", comment: "")
+            }
+            //lose
+        } else if availableGuess == 0 {
+            outOfChances()
+        }
+        
+        //speech function
+        if voiceSwitch.isOn {
+            let speechUtterance = AVSpeechUtterance(string: text)
+            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
+            synthesizer.speak(speechUtterance)
+        }
+    }
     func outOfChances(){
         if GADRewardBasedVideoAd.sharedInstance().isReady, AppDelegate.internetAvailable() {
             showRewardAdAlert()
         } else {
-            quitButton.sendActions(for: .touchUpInside)
+            showLoseVCAndEndGame()
             return
         }
     }
@@ -267,6 +313,7 @@ private extension GuessNumberTableViewController {
     }
     func updateAvailableGuessLabel(){
         availableGuessLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(availableGuess) " + NSLocalizedString("次", comment: "")
+        availableGuessLabel.textColor = availableGuess <= 3 ? .red : .darkGray
     }
     
     func loadUserDefaults(){
@@ -286,23 +333,22 @@ private extension GuessNumberTableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func isFormatCorrect() -> Bool {
-        
-        for i in 0..<quizNumbers.count {
-            guard let answerText = answerTextFields[i].text , answerText.count == 1, Int(answerText) != nil else{
-                return false
-            }
-        }
-        
-        for i in 0...quizNumbers.count-2 {
-            for j in i+1...quizNumbers.count-1{
-                if answerTextFields[i].text == answerTextFields[j].text, i != j{
-                    return false
-                }
-            }
-        }
-        return true
-    }
+//    func isFormatCorrect() -> Bool {
+//        for i in 0..<quizNumbers.count {
+//            guard let answerText = answerTextFields[i].text , answerText.count == 1, Int(answerText) != nil else{
+//                return false
+//            }
+//        }
+//
+//        for i in 0...quizNumbers.count-2 {
+//            for j in i+1...quizNumbers.count-1{
+//                if answerTextFields[i].text == answerTextFields[j].text, i != j{
+//                    return false
+//                }
+//            }
+//        }
+//        return true
+//    }
     
     func initGame(){
         
@@ -335,9 +381,9 @@ private extension GuessNumberTableViewController {
         guessButton.isHidden = true
         quitButton.isHidden = true
         restartButton.isHidden = false
-        for textField in answerTextFields {
-            textField.alpha = 0
-        }
+//        for textField in answerTextFields {
+//            textField.alpha = 0
+//        }
         
         //show answer
         for i in 0...quizNumbers.count-1{
@@ -346,3 +392,15 @@ private extension GuessNumberTableViewController {
         }
     }
 }
+
+//extension UINavigationController {
+//    public func pushViewController(viewController: UIViewController,
+//                                   animated: Bool,
+//                                   completion: (() -> Void)?) {
+//        CATransaction.begin()
+//        CATransaction.setCompletionBlock(completion)
+//        pushViewController(viewController, animated: animated)
+//        CATransaction.commit()
+//    }
+//
+//}

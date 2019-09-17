@@ -16,6 +16,9 @@
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 		C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C655A20FD849A0062FFE8 /* LoseViewController.swift */; };
 		C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033873B2100200A00DF4969 /* InstructionViewController.swift */; };
+		C03AF2D1232E33AB0032F9DA /* GuessPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */; };
+		C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */; };
+		C03AF2D6233121210032F9DA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D5233121210032F9DA /* AlertManager.swift */; };
 		C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07575FF224A015E007A1F9E /* Model.xcdatamodeld */; };
 		C0757605224A14F7007A1F9E /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757604224A14F7007A1F9E /* RankTableViewCell.swift */; };
 		C0757607224A1542007A1F9E /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757606224A1542007A1F9E /* RankViewController.swift */; };
@@ -63,6 +66,9 @@
 		C033873B2100200A00DF4969 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C034834220FED5D8000CC121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		C034834420FED5DF000CC121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessPadViewController.swift; sourceTree = "<group>"; };
+		C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
+		C03AF2D5233121210032F9DA /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		C05AD22420FF8E7900347DA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C0757600224A015E007A1F9E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C0757604224A14F7007A1F9E /* RankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 		C014619D20BE6BD20023EEB6 /* My1A2BGame */ = {
 			isa = PBXGroup;
 			children = (
+				C03AF2D42331211B0032F9DA /* Manager */,
 				C01461A220BE6BD20023EEB6 /* Main.storyboard */,
 				C014619E20BE6BD20023EEB6 /* AppDelegate.swift */,
 				C075760A224A1C35007A1F9E /* API */,
@@ -162,6 +169,14 @@
 			path = My1A2BGame;
 			sourceTree = "<group>";
 		};
+		C03AF2D42331211B0032F9DA /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C03AF2D5233121210032F9DA /* AlertManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		C07575FD224A00FE007A1F9E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +186,8 @@
 				C085BE74225701D000320563 /* Settings */,
 				C0757612224CA5A0007A1F9E /* Game */,
 				C0757613224CA5B2007A1F9E /* Rank */,
+				C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */,
+				C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -397,9 +414,11 @@
 				C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */,
 				C085BE7C2257566F00320563 /* CustomTransitionTabBarController.swift in Sources */,
 				C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */,
+				C03AF2D6233121210032F9DA /* AlertManager.swift in Sources */,
 				C085BE78225701D000320563 /* QuestionsTableViewController.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0ED626322602ACF00892A80 /* IAPTableViewCell.swift in Sources */,
+				C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
@@ -407,6 +426,7 @@
 				C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */,
 				C0757609224A1C32007A1F9E /* CoreDataManager.swift in Sources */,
 				C075762922535FAC007A1F9E /* AlertAdController.swift in Sources */,
+				C03AF2D1232E33AB0032F9DA /* GuessPadViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
 				C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */,
 				C0ED6261225EC6C000892A80 /* IAPTableViewController.swift in Sources */,

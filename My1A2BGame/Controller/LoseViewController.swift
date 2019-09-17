@@ -20,10 +20,13 @@ class LoseViewController: UIViewController {
         emojiAnimation()
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        _ = _rainAnimation
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        _ = _rainAnimation
         _ = _emojiAnimation
     }
 }
