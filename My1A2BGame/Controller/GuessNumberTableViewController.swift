@@ -12,6 +12,12 @@ import AVKit
 import GoogleMobileAds
 
 class GuessNumberTableViewController: UITableViewController {
+    private lazy var digitCount = {
+        return quizLabels.count
+    }()
+    private lazy var isAdvancedVersion = {
+        return digitCount == 5
+    }()
     
     @IBOutlet weak var voiceSwitch: UISwitch!
     @IBOutlet weak var lastGuessLabel: UILabel!
@@ -42,6 +48,22 @@ class GuessNumberTableViewController: UITableViewController {
         fadeIn()
     }()
     
+    lazy var navNumberPadVC: UINavigationController = {
+        let nav = storyboard?.instantiateViewController(withIdentifier: "nav\(String(describing: GuessPadViewController.self))") as! UINavigationController
+        nav.modalPresentationStyle = .formSheet
+        let controller = nav.topViewController as! GuessPadViewController
+        controller.delegate = self
+        return nav
+    }()
+    
+    lazy var navAdvancedNumberPadVC: UINavigationController = {
+        let nav = storyboard?.instantiateViewController(withIdentifier: "navAdvanced\(String(describing: GuessPadViewController.self))") as! UINavigationController
+        nav.modalPresentationStyle = .formSheet
+        let controller = nav.topViewController as! GuessPadViewController
+        controller.delegate = self
+        return nav
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,12 +76,13 @@ class GuessNumberTableViewController: UITableViewController {
                 initGame()
 //        initCheatGame()
         
-        loadUserDefaults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         _ = _fadeIn
+        
+        loadUserDefaults()
     }
     
     @IBAction func selectText(_ sender: UITextField) {
@@ -84,19 +107,6 @@ class GuessNumberTableViewController: UITableViewController {
 //        answerTextFields[sender.tag+1].becomeFirstResponder()
 //    }
     
-    func newGuessBtnPressed(){
-        let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nav\(String(describing: GuessPadViewController.self))") as! UINavigationController
-        nav.modalPresentationStyle = .formSheet
-//        nav.modalTransitionStyle = .crossDissolve
-        
-        let controller = nav.topViewController as! GuessPadViewController
-        controller.delegate = self
-        
-//        UIView.animate(withDuration: 0.25, delay: 0, options: .allowUserInteraction, animations: {
-            self.present(nav, animated: true, completion: nil)
-//        }, completion: nil)
-    }
-    
     @IBAction func guessBtnPressed(_ sender: Any) {
       
         guard availableGuess > 0 else {
@@ -104,7 +114,11 @@ class GuessNumberTableViewController: UITableViewController {
             return
         }
         
-        newGuessBtnPressed()
+        if digitCount == 5{
+            self.present(navAdvancedNumberPadVC, animated: true, completion: nil)
+        } else {
+            self.present(navNumberPadVC, animated: true, completion: nil)
+        }
         return
         
 //
@@ -123,20 +137,8 @@ class GuessNumberTableViewController: UITableViewController {
         AlertManager.shared.showActionAlert(.giveUp) {
             self.showLoseVCAndEndGame()
         }
-       
     }
-    
-    func showLoseVCAndEndGame(){
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
-        navigationController?.pushViewController(controller, animated: true)
-        if self.voiceSwitch.isOn{
-            let text = NSLocalizedString("不要灰心，再試試看", comment: "")
-            let speechUtterance = AVSpeechUtterance(string: text)
-            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
-            self.synthesizer.speak(speechUtterance)
-        }
-    }
-    
+
     @IBAction func restartBtnPressed(_ sender: Any) {
         _ = _fadeOut
         guard let controller = storyboard?.instantiateViewController(withIdentifier: "GuessViewController") else {
@@ -158,7 +160,7 @@ class GuessNumberTableViewController: UITableViewController {
 // MARK: - GuessPadDelegate
 extension GuessNumberTableViewController: GuessPadDelegate{
     func padDidFinishEntering(numberTexts: [String]) {
-        tryToMatchNumbers(anserTexts: numberTexts)
+        tryToMatchNumbers(answerTexts: numberTexts)
     }
 }
 
@@ -177,6 +179,7 @@ extension GuessNumberTableViewController: GuessPadDelegate{
 
 // MARK: - Ad Related
 extension GuessNumberTableViewController {
+    
     func showRewardAdAlert(){
         guard AppDelegate.internetAvailable() else {
             return
@@ -224,7 +227,8 @@ extension GuessNumberTableViewController: UINavigationControllerDelegate{
 
 // MARK: - Private
 private extension GuessNumberTableViewController {
-    func tryToMatchNumbers(anserTexts: [String]){
+    
+    func tryToMatchNumbers(answerTexts: [String]){
         //startCounting
         _ = startPlayTime
         
@@ -235,22 +239,20 @@ private extension GuessNumberTableViewController {
         var numberOfAs = 0
         var numberOfBs = 0
         var guessText = ""
-        for j in 0...quizNumbers.count-1{
+        for j in 0..<digitCount{
             
-            guessText.append(anserTexts[j])
+            guessText.append(answerTexts[j])
             
-            for i in 0...quizNumbers.count-1{
+            for i in 0..<digitCount{
                 
-                if anserTexts[j] == quizNumbers[i]{
+                if answerTexts[j] == quizNumbers[i]{
                     if i == j{
                         numberOfAs += 1
                     }else{
                         numberOfBs += 1
                     }
                 }
-                
             }
-//            answerTextFields[j].text = ""
         }
         
         //show result
@@ -267,13 +269,14 @@ private extension GuessNumberTableViewController {
         var text = "\(numberOfAs)A\(numberOfBs)B" //for speech
         
         //win
-        if numberOfAs == 4 {
+        if numberOfAs == digitCount {
             
             if let controller = storyboard?.instantiateViewController(withIdentifier: String(describing: WinViewController.self)) as? WinViewController
             {
                 controller.guessCount = guessCount
                 controller.spentTime = CACurrentMediaTime() - self.startPlayTime
                 show(controller, sender: nil)
+                controller.view.backgroundColor = self.view.backgroundColor
                 
                 text = NSLocalizedString("恭喜贏了", comment: "")
             }
@@ -294,7 +297,18 @@ private extension GuessNumberTableViewController {
             showRewardAdAlert()
         } else {
             showLoseVCAndEndGame()
-            return
+        }
+    }
+    
+    func showLoseVCAndEndGame(){
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+        controller.view.backgroundColor = self.view.backgroundColor
+        navigationController?.pushViewController(controller, animated: true)
+        if self.voiceSwitch.isOn{
+            let text = NSLocalizedString("不要灰心，再試試看", comment: "")
+            let speechUtterance = AVSpeechUtterance(string: text)
+            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
+            self.synthesizer.speak(speechUtterance)
         }
     }
     func fadeOut(){
@@ -353,16 +367,14 @@ private extension GuessNumberTableViewController {
     func initGame(){
         
         //set data
-        availableGuess = Constants.maxPlayChances
+        availableGuess = isAdvancedVersion ? Constants.maxPlayChancesAdvanced : Constants.maxPlayChances
         
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
         //set answers
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        quizNumbers.append(String(shuffledDistribution.nextInt()))
-        
+        for _ in 0..<digitCount {
+            quizNumbers.append(String(shuffledDistribution.nextInt()))
+        }
     }
     
     func initCheatGame(){
@@ -370,10 +382,9 @@ private extension GuessNumberTableViewController {
         availableGuess = Constants.maxPlayChances
         
         //set answers
-        quizNumbers.append("1")
-        quizNumbers.append("2")
-        quizNumbers.append("3")
-        quizNumbers.append("4")
+        for i in 0..<digitCount {
+            quizNumbers.append(String(i+1))
+        }
     }
     
     func endGame()  {
@@ -386,21 +397,10 @@ private extension GuessNumberTableViewController {
 //        }
         
         //show answer
-        for i in 0...quizNumbers.count-1{
+        for i in 0..<digitCount{
             quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
             quizLabels[i].text = quizNumbers[i]
         }
     }
 }
 
-//extension UINavigationController {
-//    public func pushViewController(viewController: UIViewController,
-//                                   animated: Bool,
-//                                   completion: (() -> Void)?) {
-//        CATransaction.begin()
-//        CATransaction.setCompletionBlock(completion)
-//        pushViewController(viewController, animated: animated)
-//        CATransaction.commit()
-//    }
-//
-//}

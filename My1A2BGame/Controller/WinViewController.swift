@@ -14,7 +14,9 @@ class WinViewController: UIViewController {
     
     var guessCount = 0
     var spentTime = 99999.9
+    var isAdvancedVersion = false
     
+    @IBOutlet weak var winLabel: UILabel!
     @IBOutlet weak var guessCountLabel: UILabel!
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var nameLabel: UITextField!
@@ -45,6 +47,10 @@ class WinViewController: UIViewController {
         newRecordStackView.alpha = breakNewRecord() ? 1 : 0
         
         _ = _prepareEmoji
+        
+        if isAdvancedVersion {
+            winLabel.text =  NSLocalizedString("5A0B！！贏了！！", comment: "")
+        }
         
         if #available(iOS 10.3, *) {
             tryToAskForReview()

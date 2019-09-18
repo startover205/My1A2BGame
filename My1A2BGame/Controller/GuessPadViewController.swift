@@ -16,10 +16,7 @@ class GuessPadViewController: UIViewController {
     
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     
-    @IBOutlet weak var firstDigitLabel: UILabel!
-    @IBOutlet weak var secondDigitLabel: UILabel!
-    @IBOutlet weak var thirdDigitLabel: UILabel!
-    @IBOutlet weak var fourthDigitLabel: UILabel!
+    @IBOutlet var digitLabels: [UILabel]!
     
     @IBOutlet weak var oneButton: UIButton!
     @IBOutlet weak var twoButton: UIButton!
@@ -37,10 +34,13 @@ class GuessPadViewController: UIViewController {
     var currentDigit = 0
     weak var delegate: GuessPadDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         clearAllText()
+        enableAllButton()
+
+        currentDigit = 0
     }
     @IBAction func clearBtnPressed(_ sender: Any) {
         clearAllText()
@@ -50,21 +50,8 @@ class GuessPadViewController: UIViewController {
     }
     @IBAction func deleteBtnPressed(_ sender: Any) {
         if currentDigit > 0 {
-            switch currentDigit {
-            case 1:
-                enableNumberBtn(text: firstDigitLabel.text)
-                firstDigitLabel.text = ""
-            case 2:
-                enableNumberBtn(text: secondDigitLabel.text)
-                secondDigitLabel.text = ""
-            case 3:
-                enableNumberBtn(text: thirdDigitLabel.text)
-                thirdDigitLabel.text = ""
-            default:
-                assertionFailure()
-                enableNumberBtn(text: firstDigitLabel.text)
-                firstDigitLabel.text = ""
-            }
+            enableNumberBtn(text: digitLabels[currentDigit-1].text)
+            digitLabels[currentDigit-1].text = ""
             
             currentDigit -= 1
         }
@@ -73,26 +60,15 @@ class GuessPadViewController: UIViewController {
     
     @IBAction func numberBtnPressed(_ sender: UIButton) {
         
-        switch currentDigit {
-        case 0:
-            firstDigitLabel.text = sender.titleLabel!.text
-        case 1:
-            secondDigitLabel.text = sender.titleLabel!.text
-        case 2:
-            thirdDigitLabel.text = sender.titleLabel!.text
-        case 3:
-            fourthDigitLabel.text = sender.titleLabel!.text
-            
-            guess()
-            return
-        default:
-            assertionFailure()
-            firstDigitLabel.text = sender.titleLabel!.text
-        }
+        digitLabels[currentDigit].text = sender.titleLabel!.text
         
         sender.isEnabled = false
         
         currentDigit += 1
+        
+        if currentDigit == digitLabels.count {
+            guess()
+        }
     }
     @IBAction func cancelBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -104,7 +80,11 @@ private extension GuessPadViewController {
     func guess(){
         
         dismiss(animated: true) {
-               self.delegate?.padDidFinishEntering(numberTexts: [self.firstDigitLabel.text!, self.secondDigitLabel.text!, self.thirdDigitLabel.text!, self.fourthDigitLabel.text!])
+            var texts = [String]()
+            for label in self.digitLabels {
+                texts.append(label.text!)
+            }
+               self.delegate?.padDidFinishEntering(numberTexts: texts)
         }
     }
     func enableNumberBtn(text: String?){
@@ -150,9 +130,8 @@ private extension GuessPadViewController {
         nineButton.isEnabled = true
     }
     func clearAllText(){
-        firstDigitLabel.text = ""
-        secondDigitLabel.text = ""
-        thirdDigitLabel.text = ""
-        fourthDigitLabel.text = ""
+        for label in digitLabels {
+            label.text = ""
+        }
     }
 }
