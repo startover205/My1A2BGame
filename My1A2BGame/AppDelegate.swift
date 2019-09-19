@@ -27,7 +27,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         reachability?.startNotifier()
         
+//        #if DEBUG
+//        fakeRecord()
+//        #endif
+        
         return true
+    }
+    
+    func fakeRecord(){
+        let names = ["Emma", "Sam", "Judy", "John", "Joe", "Joey", "Emily", "Tim"]
+        let guessTimes = [4, 5, 8, 9, 12, 4, 6, 8]
+        let spentTimes = [124, 173, 100, 245, 192, 52, 493, 291]
+        
+        for i in 0..<names.count {
+            let user = winnerCoreDataManager.createObject()
+            user.name = names[i]
+            user.guessTimes = Int16(guessTimes[i])
+            user.spentTime = Double(spentTimes[i])
+            user.date = Date()
+        }
+        
+        winnerCoreDataManager.saveContext(completion: nil)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

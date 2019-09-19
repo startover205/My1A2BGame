@@ -1,0 +1,9 @@
+/* Class = "UIButton"; normalTitle = "No, thank you"; ObjectID = "enG-hU-vcg"; */
+"enG-hU-vcg.normalTitle" = "不用了，謝謝";
+
+/* Class = "UILabel"; text = "Do you want to watch a reward ad? Reward ads can grant you 5 chances!"; ObjectID = "Gbn-Tb-P10"; */
+"Gbn-Tb-P10.text" = "是否要觀看獎勵廣告？觀看獎勵廣告能讓您增加 5 次機會！";
+
+/* Class = "UILabel"; text = "You Are Out Of Chances..."; ObjectID = "o6G-WZ-I25"; */
+"o6G-WZ-I25.text" = "您用完次數了...";
+

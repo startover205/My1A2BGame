@@ -23,7 +23,7 @@ class CoreDataManager<T: NSManagedObject>: NSObject, NSFetchedResultsControllerD
     private var saveDoneHandler: SaveDoneHandler?
     
     // Custom
-    init(momdFilename: String = "Model", //資料模型(xcdatamodeld)的檔名
+    init(momdFilename: String, //資料模型(xcdatamodeld)的檔名
         dbFilename: String? = nil, //資料庫的檔名，如果是nil就與資料模型同名
         dbFilePathURL: URL? = nil, //資料庫的檔案放置路徑，如果是nil就放在documents目錄
         entityName: String, //資料型別名稱

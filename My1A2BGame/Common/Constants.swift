@@ -10,7 +10,7 @@ import Foundation
 
 enum Constants {
     static let maxPlayChances = 10
-    static let maxPlayChancesAdvanced = 20
+    static let maxPlayChancesAdvanced = 15
 
     static let adHintTime = 5.0
     static let adGrantChances = 5

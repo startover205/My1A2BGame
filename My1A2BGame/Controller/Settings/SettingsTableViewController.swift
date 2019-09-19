@@ -43,14 +43,12 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 // MARK: - Private
 private extension SettingsTableViewController {
     func presentShareAlert(){
-        var activityItems: [Any] = [NSLocalizedString("來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！", comment: "9th")]
+        var activityItems: [Any] = [NSLocalizedString("Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!", comment: "9th")]
         activityItems.append(Constants.appStoreDownloadUrl)
         
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        if UIDevice().model == "iPad" {
             controller.popoverPresentationController?.sourceView = tellFriendsCell
             controller.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 22, width: 56, height: 0)
-        }
         present(controller, animated: true, completion: nil)
     }
     

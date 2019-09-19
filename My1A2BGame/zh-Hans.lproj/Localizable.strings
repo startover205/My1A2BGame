@@ -1,0 +1,123 @@
+/* No comment provided by engineer. */
+"     1A2B is a simple game to enjoy.\n     The computer will prepare a non-repeating four-digit nubmer (first digit could be 0). The player needs to find that very number.\n     The computer will provide hints according to the number inputted by the player. For example: \"1A2B\" means that there is one correct digit in its correct place while there are two correct digits in wrong places.\n     Try to guess the right number, compete with your friends, and enjoy!" = "       1A2B 是一个简单的益智游戏。\n       计算机会准备一组数字不重复的四位数，玩家必须猜出是哪一组四位数。\n       每当玩家输入四位数字，计算机会根据玩家的猜测提供提示，举例来说：1A2B，1A代表有一个数字正确、位置也正确，2B代表有两个数字正确、但是位置不正确。        依据计算机的提示，跟朋友比比谁能花最少次数猜出答案吧！";
+
+/* No comment provided by engineer. */
+"4A0B!! You won!!" = "4A0B！！赢了！！";
+
+/* No comment provided by engineer. */
+"5A0B!! You won!!" = "5A0B！！赢了！！";
+
+/* No comment provided by engineer. */
+"Are you sure you want to give up?" = "您确定要投降吗？";
+
+/* 2nd */
+"Cancel" = "取消";
+
+/* 3nd */
+"Certain content will only be available after restarting the app." = "部分内容会在App重启后生效。";
+
+/* 9th */
+"Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!" = "来玩“1A2B Fun!”吧！不需花大量时间，就能享受动脑的乐趣！";
+
+/* 3nd */
+"Confirm" = "确认";
+
+/* No comment provided by engineer. */
+"Congrats! You won!" = "恭喜赢了";
+
+/* 3nd */
+"Currently No Product Available" = "目前没有可购买的商品";
+
+/* No comment provided by engineer. */
+"Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!" = "是否要观看奖励广告？观看奖励广告能让您增加 %d 次机会！";
+
+/* No comment provided by engineer. */
+"Don't give up! Give it another try!" = "不要灰心，再试试看！";
+
+/* 2nd */
+"Done" = "完成";
+
+/* No comment provided by engineer. */
+"en-US" = "zh-CN";
+
+/* 3nd */
+"Error" = "错误";
+
+/* 2nd */
+"Failed to Make a Record." = "无法纪录";
+
+/* 5th */
+"Failed to Purchase" = "无法购买";
+
+/* 3nd */
+"Failed to Restore Purchase" = "无法恢复购买";
+
+/* 2nd */
+"Give Up!" = "投降";
+
+/* No comment provided by engineer. */
+"Helper Area" = "小帮手";
+
+/* 6th */
+"Here we go!" = "立即评论";
+
+/* 8th */
+"I won 1A2B Fun! with guessing only %d times! Come challenge me!" = "我在“1A2B Fun!”里只花 %d 次就猜赢了！快来挑战我！";
+
+/* 6th */
+"Maybe later" = "稍后再说";
+
+/* 6th */
+"No email function available." = "未在装置上找到电子邮件功能";
+
+/* 3nd */
+"No Restorable Products" = "没有可以恢复的商品";
+
+/* 7th */
+"No, thank you" = "不用了，谢谢";
+
+/* 2nd */
+"OK" = "确定";
+
+/* 4th */
+"Purchase not available" = "无法购买";
+
+/* 2nd */
+"Record Complete!" = "纪录完成！";
+
+/* 2nd */
+"Siri will speak out the result for you." = "Siri会将猜测结果报告给您。";
+
+/* 4th */
+"Sorry, it seems purchase is not available on this device or within this app" = "很抱歉，您的装置似乎不支持App内购买或被设定限制无法购买。";
+
+/* 2nd */
+"Sorry. Please try agin." = "对不起，请重新再试一次";
+
+/* 3nd */
+"Successfully Restored Purchase" = "成功恢复购买";
+
+/* 2nd */
+"The ad is still loading. Please try again later." = "广告还没有读取好，请稍候试试。";
+
+/* 3nd */
+"Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report" = "未知产品标识符，如果扣款已成功，请联系 Apple 寻求退款或是送出错误回报。";
+
+/* No comment provided by engineer. */
+"Voice-Prompts Feature is On" = "语音提示功能已开启";
+
+/* 6th */
+"We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的评论功能来回报";
+
+/* 2nd */
+"You Are Out Of Chances..." = "您用完次数了...";
+
+/* No comment provided by engineer. */
+"You can filter out numbers however you want in this area." = "您可以在此过滤数字、协助思考。";
+
+/* No comment provided by engineer. */
+"You can still guess %d times" = "还可以猜 %d 次";
+
+/* No comment provided by engineer. */
+"You guessed %d times" = "共猜了 %d 次";
+

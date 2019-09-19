@@ -16,6 +16,11 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        #if DEBUG
+//        adBannerHeightConstraint.constant = 0
+//        return
+//        #endif
+        
         if isBottomAdRemoved(){
             adBannerHeightConstraint.constant = 0
         } else {

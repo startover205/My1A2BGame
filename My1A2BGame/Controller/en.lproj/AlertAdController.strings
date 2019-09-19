@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Do you want to watch a reward ad? Reward ads can grant you 5 chances!"; ObjectID = "Gbn-Tb-P10"; */
+"Gbn-Tb-P10.text" = "Do you want to watch a reward ad? Reward ads can grant you 5 chances!";
+
+/* Class = "UIButton"; normalTitle = "No, thank you"; ObjectID = "enG-hU-vcg"; */
+"enG-hU-vcg.normalTitle" = "No, thank you";
+
+/* Class = "UILabel"; text = "You Are Out Of Chances..."; ObjectID = "o6G-WZ-I25"; */
+"o6G-WZ-I25.text" = "You Are Out Of Chances...";

@@ -28,14 +28,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxd-Gy-Ido">
                     <rect key="frame" x="52.5" y="213" width="270" height="241"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您用完次數了..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6G-WZ-I25">
-                            <rect key="frame" x="75" y="16" width="120" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Are Out Of Chances..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6G-WZ-I25">
+                            <rect key="frame" x="31" y="16" width="208" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否要觀看廣告？觀看廣告能讓您增加5次機會" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-Tb-P10">
-                            <rect key="frame" x="27" y="44.5" width="216" height="30.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to watch a reward ad? Reward ads can grant you 5 chances!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-Tb-P10">
+                            <rect key="frame" x="29" y="44.5" width="212" height="30.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -85,7 +85,7 @@
                         <constraint firstAttribute="height" constant="48" id="Iv8-fK-lUj"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                    <state key="normal" title="不用了，謝謝"/>
+                    <state key="normal" title="No, thank you"/>
                     <connections>
                         <action selector="cancelBtnPressed:" destination="-1" eventType="touchUpInside" id="fKJ-nC-fIU"/>
                     </connections>

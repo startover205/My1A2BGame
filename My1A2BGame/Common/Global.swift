@@ -8,5 +8,12 @@
 
 import Foundation
 
-var coreDataManager = CoreDataManager<Winner>(entityName: "Winner", sortDescriptors: [NSSortDescriptor(key: "guessTimes", ascending: true), NSSortDescriptor(key: "spentTime", ascending: true), NSSortDescriptor(key: "date", ascending: true)])
+var winnerCoreDataManager: CoreDataManager = CoreDataManager<Winner>(momdFilename: "Model", entityName: "Winner", sortDescriptors: [NSSortDescriptor(key: "guessTimes", ascending: true), NSSortDescriptor(key: "spentTime", ascending: true), NSSortDescriptor(key: "date", ascending: true)])
 
+var advancedWinnerCoreDataManager: CoreDataManager = CoreDataManager<AdvancedWinner>(momdFilename: "ModelAdvanced", entityName: "AdvancedWinner", sortDescriptors: [NSSortDescriptor(key: "guessTimes", ascending: true), NSSortDescriptor(key: "spentTime", ascending: true), NSSortDescriptor(key: "date", ascending: true)])
+
+func print(_ items: Any...) {
+    #if DEBUG
+    Swift.print(items[0])
+    #endif
+}

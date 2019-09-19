@@ -9,6 +9,7 @@
 import UIKit
 import GameKit
 import StoreKit
+import CoreData
 
 class WinViewController: UIViewController {
     
@@ -44,13 +45,15 @@ class WinViewController: UIViewController {
         
         showResult()
         
-        newRecordStackView.alpha = breakNewRecord() ? 1 : 0
+        if isAdvancedVersion{
+            newRecordStackView.alpha = breakNewRecordAdvanced() ? 1 : 0
+            winLabel.text =  NSLocalizedString("5A0B!! You won!!", comment: "")
+        } else {
+            newRecordStackView.alpha = breakNewRecord() ? 1 : 0
+            winLabel.text =  NSLocalizedString("4A0B!! You won!!", comment: "")
+        }
         
         _ = _prepareEmoji
-        
-        if isAdvancedVersion {
-            winLabel.text =  NSLocalizedString("5A0B！！贏了！！", comment: "")
-        }
         
         if #available(iOS 10.3, *) {
             tryToAskForReview()
@@ -69,7 +72,7 @@ class WinViewController: UIViewController {
     }
     
     @IBAction func confirmBtnPressed(_ sender: Any) {
-        addRecordToCoreData()
+        isAdvancedVersion ? addRecordToAdvancedWinnerCoreData() : addRecordToWinnerCoreData()
     }
 }
 
@@ -86,28 +89,30 @@ extension WinViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Private
-extension WinViewController {
-    func presentShareAlert(){
-        var activityItems: [Any] = [NSLocalizedString("我在「1A2B Fun!」裡只花", comment: "8th") +
-            "\(guessCount)" +
-            NSLocalizedString("次就猜贏了！快來挑戰我！", comment: "8th")]
-        activityItems.append(Constants.appStoreDownloadUrl)
+// MARK: - Core Data
+private extension WinViewController {
+    func breakNewRecord() -> Bool {
+        let coreDataManager = winnerCoreDataManager
         
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
-            activityItems.append(screenShotImage)
+        if coreDataManager.totalCount < 10 {
+            return true
+        } else {
+            let lastPlace = coreDataManager.fetchAllObjects().last
+            return Int16(guessCount) < (lastPlace?.guessTimes)!
         }
-        UIGraphicsEndImageContext()
-        
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        if UIDevice().model == "iPad" {
-            controller.popoverPresentationController?.barButtonItem = shareBarBtnItem
-        }
-        present(controller, animated: true, completion: nil)
     }
-    func addRecordToCoreData(){
+    func breakNewRecordAdvanced() -> Bool {
+        let coreDataManager = advancedWinnerCoreDataManager
+        
+        if coreDataManager.totalCount < 10 {
+            return true
+        } else {
+            let lastPlace = coreDataManager.fetchAllObjects().last
+            return Int16(guessCount) < (lastPlace?.guessTimes)!
+        }
+    }
+    func addRecordToAdvancedWinnerCoreData(){
+        let coreDataManager = advancedWinnerCoreDataManager
         if coreDataManager.totalCount == 10{
             let oldWinner = coreDataManager.fetchAllObjects().last!
             coreDataManager.delete(object: oldWinner)
@@ -120,9 +125,9 @@ extension WinViewController {
         
         coreDataManager.saveContext { (success) in
             if success {
-                let alert = UIAlertController(title: NSLocalizedString("紀錄完成！", comment: "2nd"), message: nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("Record Complete!", comment: "2nd"), message: nil, preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: NSLocalizedString("確定", comment: "2nd"), style: .default, handler: { (_) in
+                let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default, handler: { (_) in
                     self.navigationController?.popViewController(animated: true)
                 })
                 
@@ -130,9 +135,9 @@ extension WinViewController {
                 
                 self.present(alert, animated: true)
             } else {
-                let alert = UIAlertController(title: NSLocalizedString("紀錄失敗", comment: "2nd"), message:                   NSLocalizedString("對不起，請重新再試一次", comment: "2nd"), preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("Failed to Make a Record.", comment: "2nd"), message: NSLocalizedString("Sorry. Please try agin.", comment: "2nd"), preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: NSLocalizedString("確定", comment: "2nd"), style: .default)
+                let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default)
                 
                 alert.addAction(ok)
                 
@@ -140,8 +145,64 @@ extension WinViewController {
             }
         }
     }
+    func addRecordToWinnerCoreData(){
+        let coreDataManager = winnerCoreDataManager
+        if coreDataManager.totalCount == 10{
+            let oldWinner = coreDataManager.fetchAllObjects().last!
+            coreDataManager.delete(object: oldWinner)
+        }
+        
+        let newWinner = coreDataManager.createObject()
+        newWinner.name = nameLabel.text
+        newWinner.guessTimes = Int16(guessCount)
+        newWinner.spentTime = spentTime
+        
+        coreDataManager.saveContext { (success) in
+            if success {
+                let alert = UIAlertController(title: NSLocalizedString("Record Complete!", comment: "2nd"), message: nil, preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default, handler: { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+                
+                alert.addAction(ok)
+                
+                self.present(alert, animated: true)
+            } else {
+                let alert = UIAlertController(title: NSLocalizedString("Failed to Make a Record.", comment: "2nd"), message:                   NSLocalizedString("Sorry. Please try agin.", comment: "2nd"), preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default)
+                
+                alert.addAction(ok)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+// MARK: - Private
+private extension WinViewController {
+    func presentShareAlert(){
+        let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
+        var activityItems: [Any] = [String.localizedStringWithFormat(format, guessCount)]
+        activityItems.append(Constants.appStoreDownloadUrl)
+        
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
+            activityItems.append(screenShotImage)
+        }
+        UIGraphicsEndImageContext()
+        
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        controller.popoverPresentationController?.barButtonItem = shareBarBtnItem
+        present(controller, animated: true, completion: nil)
+    }
+  
     func showResult(){
-        guessCountLabel.text = NSLocalizedString("共猜了", comment: "") + " \(guessCount) " + NSLocalizedString("次", comment: "")
+        let format = NSLocalizedString("You guessed %d times", comment: "")
+        guessCountLabel.text = String.localizedStringWithFormat(format, guessCount)
     }
     
     func showFirework(){
@@ -201,15 +262,6 @@ extension WinViewController {
         }
     }
     
-    func breakNewRecord() -> Bool {
-        
-        if coreDataManager.totalCount < 10 {
-            return true
-        } else {
-            let lastPlace = coreDataManager.fetchAllObjects().last
-            return Int16(guessCount) < (lastPlace?.guessTimes)!
-        }
-    }
     func prepareEmoji(){
         self.emojiLabel.transform = CGAffineTransform(translationX: 0, y:-view.frame.height)
     }

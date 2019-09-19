@@ -12,13 +12,13 @@
 		C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01461A520BE6BD30023EEB6 /* Assets.xcassets */; };
 		C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */; };
 		C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */; };
-		C016F33322FEB26300918B8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C016F33522FEB26300918B8D /* InfoPlist.strings */; };
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 		C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C655A20FD849A0062FFE8 /* LoseViewController.swift */; };
 		C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033873B2100200A00DF4969 /* InstructionViewController.swift */; };
 		C03AF2D1232E33AB0032F9DA /* GuessPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */; };
 		C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */; };
 		C03AF2D6233121210032F9DA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D5233121210032F9DA /* AlertManager.swift */; };
+		C03AF2D92331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D72331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld */; };
 		C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07575FF224A015E007A1F9E /* Model.xcdatamodeld */; };
 		C0757605224A14F7007A1F9E /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757604224A14F7007A1F9E /* RankTableViewCell.swift */; };
 		C0757607224A1542007A1F9E /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757606224A1542007A1F9E /* RankViewController.swift */; };
@@ -33,6 +33,10 @@
 		C085BE78225701D000320563 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE76225701D000320563 /* QuestionsTableViewController.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C085BE7C2257566F00320563 /* CustomTransitionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE7B2257566F00320563 /* CustomTransitionTabBarController.swift */; };
+		C08F2FB22332168000320990 /* HelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08F2FB12332168000320990 /* HelperButton.swift */; };
+		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
+		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
+		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
 		C0CB93AB225C90F400278B08 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB93A9225C90F400278B08 /* Reachability.m */; };
 		C0ED625F225DF63500892A80 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0ED625E225DF63500892A80 /* StoreKit.framework */; };
 		C0ED6261225EC6C000892A80 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED6260225EC6C000892A80 /* IAPTableViewController.swift */; };
@@ -41,7 +45,6 @@
 		C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626622608FFD00892A80 /* StoreObserver.swift */; };
 		C0ED626A22648B9700892A80 /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626922648B9700892A80 /* IAP.swift */; };
 		C0ED626D2265B00100892A80 /* AlertAdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0ED626F2265B00100892A80 /* AlertAdController.xib */; };
-		C0ED627A2265B47E00892A80 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0ED627C2265B47E00892A80 /* Localizable.strings */; };
 		DF35789FEE4E03F7F56F3F0B /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,18 +61,13 @@
 		C01461A820BE6BD30023EEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberTableViewController.swift; sourceTree = "<group>"; };
 		C016F32F22FEB0B900918B8D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C016F33422FEB26300918B8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C016F33622FEB26900918B8D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		C016F33722FEB26B00918B8D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C02B46DD20BF8BCA0097197F /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C02C655A20FD849A0062FFE8 /* LoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
 		C033873B2100200A00DF4969 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
-		C034834220FED5D8000CC121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		C034834420FED5DF000CC121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessPadViewController.swift; sourceTree = "<group>"; };
 		C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		C03AF2D5233121210032F9DA /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		C05AD22420FF8E7900347DA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C03AF2D82331D7DB0032F9DA /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C0757600224A015E007A1F9E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C0757604224A14F7007A1F9E /* RankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
 		C0757606224A1542007A1F9E /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
@@ -84,8 +82,19 @@
 		C085BE76225701D000320563 /* QuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewController.swift; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C085BE7B2257566F00320563 /* CustomTransitionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransitionTabBarController.swift; sourceTree = "<group>"; };
-		C085BE86225C34EB00320563 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		C085BE8A225C350E00320563 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		C08F2FB12332168000320990 /* HelperButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButton.swift; sourceTree = "<group>"; };
+		C0A9E28C2333E289007F45B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C0A9E2932333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
+		C0A9E2942333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C0A9E2962333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C0A9E2972333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
+		C0A9E2982333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		C0A9E29C2333E3C3007F45B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		C0A9E29E2333E3CC007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		C0A9E29F2333E3CD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My1A2BGame-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0CB93A9225C90F400278B08 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		C0CB93AA225C90F400278B08 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -95,11 +104,7 @@
 		C0ED62642260416300892A80 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		C0ED626622608FFD00892A80 /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
-		C0ED626C2265A59900892A80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		C0ED62772265B0FC00892A80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertAdController.xib; sourceTree = "<group>"; };
-		C0ED627B2265B47E00892A80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C0ED627D2265B48200892A80 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		C0ED627E2265B48300892A80 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9FAF4D352E36CA927CDC21C /* Pods-My1A2BGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame.release.xcconfig"; sourceTree = "<group>"; };
 		FED992AD8D99E6385D411354 /* Pods-My1A2BGameTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +140,7 @@
 		C014619220BE6BD20023EEB6 = {
 			isa = PBXGroup;
 			children = (
+				C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */,
 				C014619D20BE6BD20023EEB6 /* My1A2BGame */,
 				C014619C20BE6BD20023EEB6 /* Products */,
 				9C196D9CBE09E93AFDAA4377 /* Pods */,
@@ -162,9 +168,11 @@
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C0ED62682264364300892A80 /* IAP */,
 				C075760D224B0C89007A1F9E /* Common */,
-				C07575FE224A012E007A1F9E /* Localize */,
 				C07575FF224A015E007A1F9E /* Model.xcdatamodeld */,
+				C03AF2D72331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld */,
 				C016F32F22FEB0B900918B8D /* Info.plist */,
+				C0A9E2902333E29C007F45B9 /* Localizable.strings */,
+				C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */,
 			);
 			path = My1A2BGame;
 			sourceTree = "<group>";
@@ -188,17 +196,9 @@
 				C0757613224CA5B2007A1F9E /* Rank */,
 				C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */,
 				C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */,
+				C08F2FB12332168000320990 /* HelperButton.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		C07575FE224A012E007A1F9E /* Localize */ = {
-			isa = PBXGroup;
-			children = (
-				C0ED627C2265B47E00892A80 /* Localizable.strings */,
-				C016F33522FEB26300918B8D /* InfoPlist.strings */,
-			);
-			path = Localize;
 			sourceTree = "<group>";
 		};
 		C075760A224A1C35007A1F9E /* API */ = {
@@ -325,10 +325,10 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
-				"zh-Hant",
 				"zh-Hans",
+				en,
+				"zh-Hant",
 			);
 			mainGroup = C014619220BE6BD20023EEB6;
 			productRefGroup = C014619C20BE6BD20023EEB6 /* Products */;
@@ -346,11 +346,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
-				C016F33322FEB26300918B8D /* InfoPlist.strings in Resources */,
+				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
 				C0ED626D2265B00100892A80 /* AlertAdController.xib in Resources */,
-				C0ED627A2265B47E00892A80 /* Localizable.strings in Resources */,
 				C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */,
 				C01461A420BE6BD20023EEB6 /* Main.storyboard in Resources */,
+				C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */,
+				C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,12 +411,14 @@
 				C0757605224A14F7007A1F9E /* RankTableViewCell.swift in Sources */,
 				C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */,
 				C085BE77225701D000320563 /* SettingsTableViewController.swift in Sources */,
+				C03AF2D92331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */,
 				C085BE7C2257566F00320563 /* CustomTransitionTabBarController.swift in Sources */,
 				C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */,
 				C03AF2D6233121210032F9DA /* AlertManager.swift in Sources */,
 				C085BE78225701D000320563 /* QuestionsTableViewController.swift in Sources */,
+				C08F2FB22332168000320990 /* HelperButton.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0ED626322602ACF00892A80 /* IAPTableViewCell.swift in Sources */,
 				C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */,
@@ -440,9 +443,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				C01461A320BE6BD20023EEB6 /* Base */,
-				C085BE86225C34EB00320563 /* zh-Hans */,
-				C085BE8A225C350E00320563 /* zh-Hant */,
-				C0ED626C2265A59900892A80 /* en */,
+				C0A9E28C2333E289007F45B9 /* en */,
+				C0A9E2942333E29C007F45B9 /* zh-Hant */,
+				C0A9E2982333E2AD007F45B9 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -451,39 +454,46 @@
 			isa = PBXVariantGroup;
 			children = (
 				C01461A820BE6BD30023EEB6 /* Base */,
-				C034834220FED5D8000CC121 /* zh-Hant */,
-				C034834420FED5DF000CC121 /* zh-Hans */,
-				C05AD22420FF8E7900347DA0 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		C016F33522FEB26300918B8D /* InfoPlist.strings */ = {
+		C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C016F33422FEB26300918B8D /* en */,
-				C016F33622FEB26900918B8D /* zh-Hant */,
-				C016F33722FEB26B00918B8D /* zh-Hans */,
+				C0A9E28E2333E29C007F45B9 /* zh-Hant */,
+				C0A9E2952333E2AD007F45B9 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C0A9E2902333E29C007F45B9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0A9E2912333E29C007F45B9 /* zh-Hant */,
+				C0A9E2962333E2AD007F45B9 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0A9E29C2333E3C3007F45B9 /* en */,
+				C0A9E29E2333E3CC007F45B9 /* zh-Hant */,
+				C0A9E29F2333E3CD007F45B9 /* zh-Hans */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 		C0ED626F2265B00100892A80 /* AlertAdController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C0ED62772265B0FC00892A80 /* Base */,
+				C0A9E2932333E29C007F45B9 /* zh-Hant */,
+				C0A9E2972333E2AD007F45B9 /* zh-Hans */,
 			);
 			name = AlertAdController.xib;
-			sourceTree = "<group>";
-		};
-		C0ED627C2265B47E00892A80 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0ED627B2265B47E00892A80 /* en */,
-				C0ED627D2265B48200892A80 /* zh-Hant */,
-				C0ED627E2265B48300892A80 /* zh-Hans */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -679,6 +689,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		C03AF2D72331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C03AF2D82331D7DB0032F9DA /* ModelAdvanced.xcdatamodel */,
+			);
+			currentVersion = C03AF2D82331D7DB0032F9DA /* ModelAdvanced.xcdatamodel */;
+			path = ModelAdvanced.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		C07575FF224A015E007A1F9E /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

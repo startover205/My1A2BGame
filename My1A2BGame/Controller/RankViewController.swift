@@ -7,20 +7,38 @@
 //
 
 import UIKit
+import CoreData
+
+protocol User {
+    var date: Date? { get set }
+    var guessTimes: Int16 { get set }
+    var name: String? { get set }
+    var spentTime: Double { get set }
+}
+
+extension Winner: User {
+}
+extension AdvancedWinner: User {
+}
 
 class RankViewController: UIViewController {
 
+    @IBOutlet weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var objects = [Winner]()
+    var objects = [User]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    var isAdvancedVersion: Bool {
+        return gameTypeSegmentedControl.selectedSegmentIndex == 1
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        refresh()
+    }
+    
+    @IBAction func didChangeScope(_ sender: Any) {
         refresh()
     }
 }
@@ -50,7 +68,7 @@ extension RankViewController: UITableViewDelegate {
         }
         
         let winner = objects[indexPath.row]
-        cell.nameLabel.text = winner.name!
+        cell.nameLabel.text = winner.name
         cell.timesLabel.text = "\(winner.guessTimes)"
         cell.spentTimeLabel.text = getTimeString(with: winner.spentTime)
         return cell
@@ -59,8 +77,15 @@ extension RankViewController: UITableViewDelegate {
 
 private extension RankViewController {
     func refresh() {
- 
-        objects = coreDataManager.fetchAllObjects()
+        
+        view.backgroundColor = isAdvancedVersion ? #colorLiteral(red: 1, green: 0.7990580201, blue: 0.8013046384, alpha: 1) : #colorLiteral(red: 1, green: 0.7982204556, blue: 0.8463259339, alpha: 1)
+        
+        if isAdvancedVersion{
+            objects = advancedWinnerCoreDataManager.fetchAllObjects()
+        } else {
+            objects = winnerCoreDataManager.fetchAllObjects()
+        }
+        
         tableView.reloadData()
     }
     

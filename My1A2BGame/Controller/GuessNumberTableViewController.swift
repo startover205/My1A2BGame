@@ -23,13 +23,15 @@ class GuessNumberTableViewController: UITableViewController {
     @IBOutlet weak var lastGuessLabel: UILabel!
     @IBOutlet weak var availableGuessLabel: UILabel!
     @IBOutlet var quizLabels: [UILabel]!
-//    @IBOutlet var answerTextFields: [UITextField]!
     @IBOutlet weak var guessButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var checkFormatLabel: UILabel!
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var hintTextView: UITextView!
     @IBOutlet var fadeOutElements: [UIView]!
+    
+    @IBOutlet weak var helperView: UIView!
+    @IBOutlet var helperNumberButtons: [HelperButton]!
     
     private var quizNumbers = [String]()
     private var guessCount = 0
@@ -75,7 +77,6 @@ class GuessNumberTableViewController: UITableViewController {
         
                 initGame()
 //        initCheatGame()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,27 +86,34 @@ class GuessNumberTableViewController: UITableViewController {
         loadUserDefaults()
     }
     
-    @IBAction func selectText(_ sender: UITextField) {
-        sender.selectAll(self)
+    @IBAction func helperBtnPressed(_ sender: Any) {
+        if helperView.isHidden {
+            self.helperView.isHidden = false
+            self.helperView.transform = .init(translationX: 0, y: -150)
+            UIView.animate(withDuration: 0.25) {
+                self.helperView.transform = .identity
+            }
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.helperView.transform = .init(translationX: 0, y: -150)
+            }) { (_) in
+                self.helperView.isHidden = true
+            }
+        }
     }
     
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        view.endEditing(true)
+    @IBAction func helperInfoBtnPressed(_ sender: Any) {
+        AlertManager.shared.showConfirmAlert(.helperInfo)
+    }
+    @IBAction func helperNumberBtnPressed(_ sender: HelperButton) {
+        sender.toggleColor()
     }
     
-    //for continuous inputs
-//    @IBAction func jumpToNextTextField(_ sender: UITextField) {
-//
-//        guard sender.text?.count == 1 else {
-//            return
-//        }
-//
-//        guard sender.tag != answerTextFields.count-1 else {
-//            sender.resignFirstResponder()
-//            return
-//        }
-//        answerTextFields[sender.tag+1].becomeFirstResponder()
-//    }
+    @IBAction func helperResetBtnPressed(_ sender: Any) {
+        helperNumberButtons.forEach { (button) in
+            button.reset()
+        }
+    }
     
     @IBAction func guessBtnPressed(_ sender: Any) {
       
@@ -120,17 +128,6 @@ class GuessNumberTableViewController: UITableViewController {
             self.present(navNumberPadVC, animated: true, completion: nil)
         }
         return
-        
-//
-//        guard isFormatCorrect() else{
-//            checkFormatLabel.isHidden = false
-//            return
-//        }
-//        checkFormatLabel.isHidden = true
-//
-
-//
-//        tryToMatchNumbers(anserTexts: <#T##[String]#>)
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
@@ -141,7 +138,8 @@ class GuessNumberTableViewController: UITableViewController {
 
     @IBAction func restartBtnPressed(_ sender: Any) {
         _ = _fadeOut
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: "GuessViewController") else {
+        let identifier = isAdvancedVersion ? "GuessAdvancedViewController" : "GuessViewController"
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: identifier) else {
             assertionFailure()
             return
         }
@@ -164,19 +162,6 @@ extension GuessNumberTableViewController: GuessPadDelegate{
     }
 }
 
-//// MARK: - UITextFieldDelegate
-//extension GuessNumberTableViewController: UITextFieldDelegate {
-//
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//
-//        let maxLength = 1
-//        let currentString: NSString = textField.text! as NSString
-//        let newString: NSString =
-//            currentString.replacingCharacters(in: range, with: string) as NSString
-//        return newString.length <= maxLength
-//    }
-//}
-
 // MARK: - Ad Related
 extension GuessNumberTableViewController {
     
@@ -185,8 +170,9 @@ extension GuessNumberTableViewController {
             return
         }
         
-        let alert = AlertAdController(title: NSLocalizedString("您用完次數了...", comment: "2nd"), message:
-            NSLocalizedString("是否要觀看廣告？觀看廣告能讓您增加", comment: "8th") + "\(Constants.adGrantChances)" + NSLocalizedString("次機會", comment: "8th"), cancelMessage: NSLocalizedString("No, thank you", comment: "7th"), countDownTime: Constants.adHintTime, adHandler: {
+        let format = NSLocalizedString("Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!", comment: "")
+        let alert = AlertAdController(title: NSLocalizedString("You Are Out Of Chances...", comment: "2nd"), message:
+            String.localizedStringWithFormat(format, Constants.adGrantChances), cancelMessage: NSLocalizedString("No, thank you", comment: "7th"), countDownTime: Constants.adHintTime, adHandler: {
                 self.showAd()
         }){
             self.showLoseVCAndEndGame()
@@ -199,9 +185,9 @@ extension GuessNumberTableViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(adDidReward), name: .adDidReward, object: nil)
             GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
         } else {
-            let alert = UIAlertController(title: NSLocalizedString("廣告還沒有讀取好，請稍候試試", comment: "2nd"), message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("The ad is still loading. Please try again later.", comment: "2nd"), message: "", preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: NSLocalizedString("確定", comment: "2nd"), style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default)
             
             alert.addAction(ok)
             
@@ -276,9 +262,10 @@ private extension GuessNumberTableViewController {
                 controller.guessCount = guessCount
                 controller.spentTime = CACurrentMediaTime() - self.startPlayTime
                 show(controller, sender: nil)
+                controller.isAdvancedVersion = isAdvancedVersion
                 controller.view.backgroundColor = self.view.backgroundColor
                 
-                text = NSLocalizedString("恭喜贏了", comment: "")
+                text = NSLocalizedString("Congrats! You won!", comment: "")
             }
             //lose
         } else if availableGuess == 0 {
@@ -288,7 +275,7 @@ private extension GuessNumberTableViewController {
         //speech function
         if voiceSwitch.isOn {
             let speechUtterance = AVSpeechUtterance(string: text)
-            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
+            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("en-US", comment: ""))
             synthesizer.speak(speechUtterance)
         }
     }
@@ -305,9 +292,9 @@ private extension GuessNumberTableViewController {
         controller.view.backgroundColor = self.view.backgroundColor
         navigationController?.pushViewController(controller, animated: true)
         if self.voiceSwitch.isOn{
-            let text = NSLocalizedString("不要灰心，再試試看", comment: "")
+            let text = NSLocalizedString("Don't give up! Give it another try!", comment: "")
             let speechUtterance = AVSpeechUtterance(string: text)
-            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("zh-TW", comment: ""))
+            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("en-US", comment: ""))
             self.synthesizer.speak(speechUtterance)
         }
     }
@@ -326,7 +313,8 @@ private extension GuessNumberTableViewController {
         }
     }
     func updateAvailableGuessLabel(){
-        availableGuessLabel.text = NSLocalizedString("還可以猜", comment: "") + " \(availableGuess) " + NSLocalizedString("次", comment: "")
+        let format = NSLocalizedString("You can still guess %d times", comment: "")
+        availableGuessLabel.text = String.localizedStringWithFormat(format, availableGuess)
         availableGuessLabel.textColor = availableGuess <= 3 ? .red : .darkGray
     }
     
@@ -339,30 +327,13 @@ private extension GuessNumberTableViewController {
     }
     
     func showVoicePromptHint(){
-        let alertController = UIAlertController(title: NSLocalizedString("語音提示功能已開啟", comment: ""), message: NSLocalizedString("Siri會將猜測結果報告給您", comment: "2nd"), preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""), message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"), preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: NSLocalizedString("確定", comment: ""), style: .default, handler: nil)
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
         
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-    
-//    func isFormatCorrect() -> Bool {
-//        for i in 0..<quizNumbers.count {
-//            guard let answerText = answerTextFields[i].text , answerText.count == 1, Int(answerText) != nil else{
-//                return false
-//            }
-//        }
-//
-//        for i in 0...quizNumbers.count-2 {
-//            for j in i+1...quizNumbers.count-1{
-//                if answerTextFields[i].text == answerTextFields[j].text, i != j{
-//                    return false
-//                }
-//            }
-//        }
-//        return true
-//    }
     
     func initGame(){
         
@@ -379,8 +350,9 @@ private extension GuessNumberTableViewController {
     
     func initCheatGame(){
         //set data
-        availableGuess = Constants.maxPlayChances
-        
+        availableGuess = isAdvancedVersion ? Constants.maxPlayChancesAdvanced : Constants.maxPlayChances
+//        availableGuess = 1
+
         //set answers
         for i in 0..<digitCount {
             quizNumbers.append(String(i+1))
@@ -392,9 +364,7 @@ private extension GuessNumberTableViewController {
         guessButton.isHidden = true
         quitButton.isHidden = true
         restartButton.isHidden = false
-//        for textField in answerTextFields {
-//            textField.alpha = 0
-//        }
+        helperView.isHidden = true
         
         //show answer
         for i in 0..<digitCount{
