@@ -1,17 +1,17 @@
 //
-//  GuessNumberTableViewController.swift
+//  GussNumberViewController.swift
 //  My1A2BGame
 //
-//  Created by Ming-Ta Yang on 2018/5/30.
-//  Copyright © 2018年 Ming-Ta Yang. All rights reserved.
+//  Created by Ming-Ta Yang on 2019/10/7.
+//  Copyright © 2019 Ming-Ta Yang. All rights reserved.
 //
 
 import UIKit
 import GameKit
 import AVKit
 import GoogleMobileAds
-
-class GuessNumberTableViewController: UITableViewController {
+class GuessNumberViewController: UIViewController {
+    
     private lazy var digitCount = {
         return quizLabels.count
     }()
@@ -49,10 +49,8 @@ class GuessNumberTableViewController: UITableViewController {
         fadeIn()
     }()
 //    private lazy var addLongPressOnHelperView: Void = {
-//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressInHelperView(_:)))
-//        longPress.minimumPressDuration = 0.2
-//          helperView.addGestureRecognizer(longPress)
-//      }()
+//        helperView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressInHelperView(_:))))
+//    }()
     
     lazy var navNumberPadVC: UINavigationController = {
         let nav = storyboard?.instantiateViewController(withIdentifier: "nav\(String(describing: GuessPadViewController.self))") as! UINavigationController
@@ -79,8 +77,8 @@ class GuessNumberTableViewController: UITableViewController {
             view.alpha = 0
         }
         
-                initGame()
-//        initCheatGame()
+        initGame()
+        //        initCheatGame()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +105,7 @@ class GuessNumberTableViewController: UITableViewController {
         
 //        _ = addLongPressOnHelperView
     }
-  
+    
     @IBAction func helperInfoBtnPressed(_ sender: Any) {
         AlertManager.shared.showConfirmAlert(.helperInfo)
     }
@@ -122,7 +120,7 @@ class GuessNumberTableViewController: UITableViewController {
     }
     
     @IBAction func guessBtnPressed(_ sender: Any) {
-      
+        
         guard availableGuess > 0 else {
             outOfChances()
             return
@@ -141,7 +139,7 @@ class GuessNumberTableViewController: UITableViewController {
             self.showLoseVCAndEndGame()
         }
     }
-
+    
     @IBAction func restartBtnPressed(_ sender: Any) {
         _ = _fadeOut
         let identifier = isAdvancedVersion ? "GuessAdvancedViewController" : "GuessViewController"
@@ -157,20 +155,19 @@ class GuessNumberTableViewController: UITableViewController {
         saveUserDefaults()
         if sender.isOn {
             showVoicePromptHint()
-            _ = synthesizer
         }
     }
 }
 
 // MARK: - GuessPadDelegate
-extension GuessNumberTableViewController: GuessPadDelegate{
+extension GuessNumberViewController: GuessPadDelegate{
     func padDidFinishEntering(numberTexts: [String]) {
         tryToMatchNumbers(answerTexts: numberTexts)
     }
 }
 
 // MARK: - Ad Related
-extension GuessNumberTableViewController {
+extension GuessNumberViewController {
     
     func showRewardAdAlert(){
         guard AppDelegate.internetAvailable() else {
@@ -210,7 +207,7 @@ extension GuessNumberTableViewController {
 }
 
 // MARK: - Description
-extension GuessNumberTableViewController: UINavigationControllerDelegate{
+extension GuessNumberViewController: UINavigationControllerDelegate{
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController is LoseViewController || viewController is WinViewController {
             self.endGame()
@@ -219,7 +216,7 @@ extension GuessNumberTableViewController: UINavigationControllerDelegate{
 }
 
 // MARK: - Private
-private extension GuessNumberTableViewController {
+private extension GuessNumberViewController {
     
     func tryToMatchNumbers(answerTexts: [String]){
         //startCounting
@@ -331,9 +328,6 @@ private extension GuessNumberTableViewController {
     
     func loadUserDefaults(){
         voiceSwitch.isOn = UserDefaults.standard.bool(forKey: UserDefaults.Key.voicePromptsSwitch)
-        if voiceSwitch.isOn {
-            _ = synthesizer
-        }
     }
     
     func saveUserDefaults(){
@@ -365,8 +359,8 @@ private extension GuessNumberTableViewController {
     func initCheatGame(){
         //set data
         availableGuess = isAdvancedVersion ? Constants.maxPlayChancesAdvanced : Constants.maxPlayChances
-//        availableGuess = 1
-
+        //        availableGuess = 1
+        
         //set answers
         for i in 0..<digitCount {
             quizNumbers.append(String(i+1))
@@ -388,13 +382,12 @@ private extension GuessNumberTableViewController {
     }
     
     // MARK: - Helper
-//      @objc
-//      func didLongPressInHelperView(_ sender: UILongPressGestureRecognizer) {
-//          let location = sender.location(in: sender.view)
+//    @objc
+//    func didLongPressInHelperView(_ sender: UILongPressGestureRecognizer) {
+//        let location = sender.location(in: sender.view)
 //
-//          if sender.state == .ended, let button = helperView.hitTest(location, with: nil) as? HelperButton {
-//              button.jumpColor()
-//          }
-//      }
+//        if sender.state == .ended, let button = helperView.hitTest(location, with: nil) as? HelperButton {
+//            button.jumpColor()
+//        }
+//    }
 }
-

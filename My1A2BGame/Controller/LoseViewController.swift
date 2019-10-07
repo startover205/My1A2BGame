@@ -55,7 +55,7 @@ private extension LoseViewController {
         let rect = CGRect(x: 0, y: 0, width: self.view.frame.width , height: 20)
         emitterLayer.frame = rect
         emitterLayer.emitterSize = rect.size
-        emitterLayer.emitterShape = kCAEmitterLayerLine
+        emitterLayer.emitterShape = CAEmitterLayerEmitterShape.line
         emitterLayer.emitterPosition = CGPoint(x: rect.width / 2 , y: rect.height / 2)
         
         emitterLayer.emitterCells = [cell]

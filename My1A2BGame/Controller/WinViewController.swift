@@ -135,7 +135,7 @@ private extension WinViewController {
                 
                 self.present(alert, animated: true)
             } else {
-                let alert = UIAlertController(title: NSLocalizedString("Failed to Make a Record.", comment: "2nd"), message: NSLocalizedString("Sorry. Please try agin.", comment: "2nd"), preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: NSLocalizedString("Sorry. Please try agin.", comment: "2nd"), preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default)
                 
@@ -169,7 +169,7 @@ private extension WinViewController {
                 
                 self.present(alert, animated: true)
             } else {
-                let alert = UIAlertController(title: NSLocalizedString("Failed to Make a Record.", comment: "2nd"), message:                   NSLocalizedString("Sorry. Please try agin.", comment: "2nd"), preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message:                   NSLocalizedString("Sorry. Please try agin.", comment: "2nd"), preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default)
                 
@@ -254,7 +254,7 @@ private extension WinViewController {
         emitterLayer.emitterPosition = CGPoint(x: self.view.frame.width * CGFloat(randomX) , y: self.view.frame.height * CGFloat(randomY))
         
         emitterLayer.emitterCells = cellsForFirework
-        emitterLayer.renderMode = kCAEmitterLayerOldestLast
+        emitterLayer.renderMode = CAEmitterLayerRenderMode.oldestLast
         view.layer.insertSublayer(emitterLayer, at: 0)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak emitterLayer] in

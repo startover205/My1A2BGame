@@ -32,6 +32,7 @@ class GuessPadViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     
     var currentDigit = 0
+    var canTap = true
     weak var delegate: GuessPadDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,12 +42,16 @@ class GuessPadViewController: UIViewController {
         enableAllButton()
 
         currentDigit = 0
+        
+        canTap = true
     }
     @IBAction func clearBtnPressed(_ sender: Any) {
         clearAllText()
         enableAllButton()
         
         currentDigit = 0
+        
+        canTap = true
     }
     @IBAction func deleteBtnPressed(_ sender: Any) {
         if currentDigit > 0 {
@@ -55,10 +60,10 @@ class GuessPadViewController: UIViewController {
             
             currentDigit -= 1
         }
-        
     }
     
     @IBAction func numberBtnPressed(_ sender: UIButton) {
+        guard canTap else { return }
         
         digitLabels[currentDigit].text = sender.titleLabel!.text
         
@@ -67,9 +72,11 @@ class GuessPadViewController: UIViewController {
         currentDigit += 1
         
         if currentDigit == digitLabels.count {
+            canTap = false
             guess()
         }
     }
+    
     @IBAction func cancelBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -78,7 +85,6 @@ class GuessPadViewController: UIViewController {
 // MARK: - Private
 private extension GuessPadViewController {
     func guess(){
-        
         dismiss(animated: true) {
             var texts = [String]()
             for label in self.digitLabels {

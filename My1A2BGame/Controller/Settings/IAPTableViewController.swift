@@ -103,7 +103,11 @@ private extension IAPTableViewController {
         
         productIdList = IAP.getAvailableProductsId()
         
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let activityIndicator:  UIActivityIndicatorView
+        if #available(iOS 13.0, *) {
+            activityIndicator = UIActivityIndicatorView(style: .large)
+        } else {
+            activityIndicator = UIActivityIndicatorView(style: .gray)        }
         self.activityIndicator = activityIndicator
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
@@ -122,7 +126,7 @@ private extension IAPTableViewController {
             productRequest.start()
             
         } else {
-            let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not available on this device or within this app", comment: "4th"), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not available on this device or within this app.", comment: "4th"), preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             

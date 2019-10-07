@@ -44,7 +44,7 @@
 "Error" = "錯誤";
 
 /* 2nd */
-"Failed to Make a Record." = "無法紀錄";
+"Failed to Make a Record" = "無法紀錄";
 
 /* 5th */
 "Failed to Purchase" = "無法購買";
@@ -68,7 +68,7 @@
 "Maybe later" = "稍後再說";
 
 /* 6th */
-"No email function available." = "未在裝置上找到電子郵件功能";
+"No Email Function Available" = "未在裝置上找到電子郵件功能";
 
 /* 3nd */
 "No Restorable Products" = "沒有可以恢復的商品";
@@ -89,10 +89,10 @@
 "Siri will speak out the result for you." = "Siri會將猜測結果報告給您。";
 
 /* 4th */
-"Sorry, it seems purchase is not available on this device or within this app" = "很抱歉，您的裝置似乎不支援App內購買或被設定限制無法購買。";
+"Sorry, it seems purchase is not available on this device or within this app." = "很抱歉，您的裝置似乎不支援App內購買或被設定限制無法購買。";
 
 /* 2nd */
-"Sorry. Please try agin." = "對不起，請重新再試一次";
+"Sorry. Please try agin." = "對不起，請重新再試一次。";
 
 /* 3nd */
 "Successfully Restored Purchase" = "成功恢復購買";
@@ -101,13 +101,13 @@
 "The ad is still loading. Please try again later." = "廣告還沒有讀取好，請稍候試試。";
 
 /* 3nd */
-"Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report" = "未知產品識別碼，如果扣款已成功，請聯繫 Apple 尋求退款或是送出錯誤回報。";
+"Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report." = "未知產品識別碼，如果扣款已成功，請聯繫 Apple 尋求退款或是送出錯誤回報。";
 
 /* No comment provided by engineer. */
 "Voice-Prompts Feature is On" = "語音提示功能已開啟";
 
 /* 6th */
-"We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的評論功能來回報";
+"We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的評論功能來回報。";
 
 /* 2nd */
 "You Are Out Of Chances..." = "您用完次數了...";

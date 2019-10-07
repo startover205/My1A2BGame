@@ -22,7 +22,7 @@ class HelperButton: UIButton {
     var filterColor: UIColor {
         switch filterState {
         case .first:
-            return #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+            return #colorLiteral(red: 0.5176470588, green: 0.5176470588, blue: 0.537254902, alpha: 1)
         case .second:
             return #colorLiteral(red: 0, green: 0.4392156863, blue: 0.9607843137, alpha: 1)
         case .third:

@@ -54,7 +54,7 @@ private extension SettingsTableViewController {
     
     private func presentEmailVC(){
         guard MFMailComposeViewController.canSendMail() else {
-            let alert = UIAlertController(title: NSLocalizedString("No email function available.", comment: "6th"), message: NSLocalizedString("We're sorry. Please leave a review in the AppStore instead.", comment: "6th"), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("No Email Function Available", comment: "6th"), message: NSLocalizedString("We're sorry. Please leave a review in the AppStore instead.", comment: "6th"), preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Here we go!", comment: "6th"), style: .default) { (_) in
                 self.openAppStoreReview()
@@ -90,9 +90,14 @@ private extension SettingsTableViewController {
         guard let writeReviewURL = URL(string: Constants.appStoreReviewUrl)
             else { fatalError("Expected a valid URL") }
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(writeReviewURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         } else {
             UIApplication.shared.openURL(writeReviewURL)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

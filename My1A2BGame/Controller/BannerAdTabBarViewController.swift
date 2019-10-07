@@ -17,7 +17,7 @@ class BannerAdTabBarViewController: UITabBarController {
             let bannerHeight = AdControl.setBannerAd(onTopOf: tabBar, rootController: self)
             newSafeArea.bottom += bannerHeight
             
-            for child in childViewControllers {
+            for child in children {
                 child.additionalSafeAreaInsets = newSafeArea
             }
         }

@@ -107,7 +107,7 @@ private extension StoreObserver {
             
             ErrorManager.saveError(description: "\(#function)-invalid productionIdentifier")
             
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report", comment: "3nd"), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", comment: "3nd"), preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             

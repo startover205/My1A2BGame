@@ -14,6 +14,7 @@
 		C01461CD20BE770C0023EEB6 /* GuessNumberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
+		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 		C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C655A20FD849A0062FFE8 /* LoseViewController.swift */; };
 		C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033873B2100200A00DF4969 /* InstructionViewController.swift */; };
@@ -65,6 +66,7 @@
 		C016F32F22FEB0B900918B8D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
+		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
 		C02B46DD20BF8BCA0097197F /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C02C655A20FD849A0062FFE8 /* LoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
 		C033873B2100200A00DF4969 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				C01461CC20BE770C0023EEB6 /* GuessNumberTableViewController.swift */,
+				C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */,
 				C02B46DD20BF8BCA0097197F /* WinViewController.swift */,
 				C02C655A20FD849A0062FFE8 /* LoseViewController.swift */,
 				C033873B2100200A00DF4969 /* InstructionViewController.swift */,
@@ -317,7 +320,7 @@
 				TargetAttributes = {
 					C014619A20BE6BD20023EEB6 = {
 						CreatedOnToolsVersion = 9.3.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1100;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -441,6 +444,7 @@
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
 				C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */,
 				C0ED6261225EC6C000892A80 /* IAPTableViewController.swift in Sources */,
+				C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,7 +649,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "My1A2BGame/Common/My1A2BGame-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -672,7 +676,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "My1A2BGame/Common/My1A2BGame-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
