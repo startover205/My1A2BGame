@@ -10,501 +10,6 @@
     </dependencies>
     <scenes>
         <!--1A2B-->
-        <scene sceneID="STA-TG-56r">
-            <objects>
-                <tableViewController id="ewl-rv-ptG" customClass="GuessNumberTableViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="glB-bi-EZa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="MainBackground"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="eS2-hv-WSN">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JOe-RM-3eM">
-                                    <rect key="frame" x="70" y="52" width="274" height="134"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O86-fw-beZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="46" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="80"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGf-1K-SAt">
-                                            <rect key="frame" x="76" y="0.0" width="46" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="80"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTA-6N-zHg">
-                                            <rect key="frame" x="152" y="0.0" width="46" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="80"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jG2-BO-uXN">
-                                            <rect key="frame" x="228" y="0.0" width="46" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="80"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls1-7D-jZF">
-                                    <rect key="frame" x="20" y="224" width="374" height="518"/>
-                                    <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </textView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBA-Ss-5gC">
-                                    <rect key="frame" x="20" y="194" width="132.33333333333334" height="54"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXZ-J8-qF2">
-                                            <rect key="frame" x="7.9999999999999929" y="8" width="116.33333333333331" height="18"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="kXZ-J8-qF2" secondAttribute="bottom" constant="28" id="DHe-ms-im0"/>
-                                        <constraint firstItem="kXZ-J8-qF2" firstAttribute="leading" secondItem="xBA-Ss-5gC" secondAttribute="leading" constant="8" id="Nku-FL-7Le"/>
-                                        <constraint firstAttribute="trailing" secondItem="kXZ-J8-qF2" secondAttribute="trailing" constant="8" id="qUP-2g-7PR"/>
-                                        <constraint firstItem="kXZ-J8-qF2" firstAttribute="top" secondItem="xBA-Ss-5gC" secondAttribute="top" constant="8" id="shy-C9-j5z"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
-                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1A2B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFi-sk-oXB">
-                                    <rect key="frame" x="28" y="232" width="358" height="27"/>
-                                    <color key="backgroundColor" name="MainBackgroundOffsetOffset"/>
-                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can still guess 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbN-dj-bwZ">
-                                    <rect key="frame" x="171" y="200" width="223" height="20.333333333333343"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SQy-RK-zGu">
-                                    <rect key="frame" x="20" y="750" width="374" height="104"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6A-rZ-j64">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
-                                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="9en-3v-7Cc"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <state key="normal" title="Guess!🤓">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="guessBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="rqN-fv-rQQ"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56D-WB-7Ah">
-                                            <rect key="frame" x="0.0" y="56" width="374" height="48"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <state key="normal" title="Surrender😱">
-                                                <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="quitBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="a2n-kN-gMy"/>
-                                            </connections>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2n-yZ-M8U">
-                                            <rect key="frame" x="0.0" y="104" width="374" height="104"/>
-                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <state key="normal" title="Restart😤">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="restartBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="tJf-8Z-Jhk"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="56D-WB-7Ah" firstAttribute="width" secondItem="A6A-rZ-j64" secondAttribute="width" id="C0W-1o-P23"/>
-                                        <constraint firstItem="56D-WB-7Ah" firstAttribute="height" secondItem="A6A-rZ-j64" secondAttribute="height" id="XZf-8g-HVa"/>
-                                        <constraint firstItem="Z2n-yZ-M8U" firstAttribute="height" secondItem="A6A-rZ-j64" secondAttribute="height" multiplier="2" constant="8" id="uRD-Wf-tpj"/>
-                                        <constraint firstItem="Z2n-yZ-M8U" firstAttribute="width" secondItem="A6A-rZ-j64" secondAttribute="width" id="zI9-Si-nMk"/>
-                                    </constraints>
-                                </stackView>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4P-bp-KDo">
-                                    <rect key="frame" x="20" y="52" width="374" height="134"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-DY-fbW">
-                                            <rect key="frame" x="7.9999999999999964" y="4" width="55.666666666666657" height="18"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iFf-U0-tXU">
-                                            <rect key="frame" x="8" y="30" width="358" height="96"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JgD-cW-zgN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGM-ma-YWK" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="23J-HR-StB"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="1">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="Awm-DR-xpk"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNd-rw-WBy" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="61" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="bsQ-5h-Wb4"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="2">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="qmG-ar-Ob0"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKO-ki-v4K" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="122" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="7Wp-TA-jug"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="3">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="RIw-OE-7Mi"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZb-fT-jcM" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="183" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="jB4-Of-xqY"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="4">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="lAO-FL-bLG"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcE-eK-WKA" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="244" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="UKi-Dg-QeA"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="5">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="chS-X2-EH3"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cae-G7-Kbz">
-                                                            <rect key="frame" x="305" y="0.0" width="53" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="QHg-iu-a4d"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <action selector="helperInfoBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="joZ-6o-vtY"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zqQ-z7-C1z">
-                                                    <rect key="frame" x="0.0" y="52" width="358" height="44"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyo-WZ-d3E" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="926-2A-X2z"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="6">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="R4y-Od-BqN"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYx-W3-mlE" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="61" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="Fjx-XD-JlV"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="7">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="RgL-b6-KjA"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xh-jz-igd" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="122" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="huA-Qm-rbo"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="8">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="jQk-jO-Xy9"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dE-o1-lSb" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="183" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="v1o-lp-2Fc"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="9">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="tbx-Un-7Ed"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6b-NU-7wI" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="244" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="jMc-to-WaT"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="0">
-                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="eaZ-lm-Y8q"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wT5-Uo-yqh">
-                                                            <rect key="frame" x="305" y="0.0" width="53" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="aGG-o5-Ppe"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <state key="normal" title="RESET"/>
-                                                            <connections>
-                                                                <action selector="helperResetBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="deo-VT-jds"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="iFf-U0-tXU" secondAttribute="bottom" constant="8" id="0lJ-P1-uo2"/>
-                                        <constraint firstItem="Hdx-DY-fbW" firstAttribute="top" secondItem="y4P-bp-KDo" secondAttribute="top" constant="4" id="1Pp-ij-yWN"/>
-                                        <constraint firstItem="iFf-U0-tXU" firstAttribute="top" secondItem="Hdx-DY-fbW" secondAttribute="bottom" constant="8" id="21s-2N-XRF"/>
-                                        <constraint firstAttribute="trailing" secondItem="iFf-U0-tXU" secondAttribute="trailing" constant="8" id="beA-Pl-Qzx"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hdx-DY-fbW" secondAttribute="trailing" constant="8" id="wOL-of-UEO"/>
-                                        <constraint firstItem="iFf-U0-tXU" firstAttribute="leading" secondItem="y4P-bp-KDo" secondAttribute="leading" constant="8" id="yHD-V2-cJ6"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" name="MainBackground"/>
-                            <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstItem="tbN-dj-bwZ" firstAttribute="trailing" secondItem="Ls1-7D-jZF" secondAttribute="trailing" id="281-Mj-jPu"/>
-                                <constraint firstItem="y4P-bp-KDo" firstAttribute="leading" secondItem="Ls1-7D-jZF" secondAttribute="leading" id="481-fe-hJY"/>
-                                <constraint firstItem="xBA-Ss-5gC" firstAttribute="leading" secondItem="Ls1-7D-jZF" secondAttribute="leading" id="4B8-gF-t7M"/>
-                                <constraint firstItem="A6A-rZ-j64" firstAttribute="leading" secondItem="TXa-rs-Rme" secondAttribute="leading" constant="20" id="4zg-Zy-hRq"/>
-                                <constraint firstItem="y4P-bp-KDo" firstAttribute="top" secondItem="TXa-rs-Rme" secondAttribute="top" constant="8" id="7Um-V9-hYi"/>
-                                <constraint firstItem="y4P-bp-KDo" firstAttribute="trailing" secondItem="Ls1-7D-jZF" secondAttribute="trailing" id="8fn-Cb-0sk"/>
-                                <constraint firstItem="tbN-dj-bwZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xBA-Ss-5gC" secondAttribute="trailing" constant="8" id="9Ek-9W-ZtA"/>
-                                <constraint firstItem="JOe-RM-3eM" firstAttribute="top" secondItem="TXa-rs-Rme" secondAttribute="top" constant="8" id="J6I-zQ-dDA"/>
-                                <constraint firstItem="TXa-rs-Rme" firstAttribute="trailing" secondItem="Ls1-7D-jZF" secondAttribute="trailing" constant="20" id="KDP-G6-EZT"/>
-                                <constraint firstItem="JOe-RM-3eM" firstAttribute="centerX" secondItem="eS2-hv-WSN" secondAttribute="centerX" id="LEv-D8-p2d"/>
-                                <constraint firstItem="uFi-sk-oXB" firstAttribute="leading" secondItem="Ls1-7D-jZF" secondAttribute="leading" constant="8" id="MeE-5d-cac"/>
-                                <constraint firstItem="Ls1-7D-jZF" firstAttribute="top" secondItem="xBA-Ss-5gC" secondAttribute="bottom" constant="-24" id="NMm-bl-hHN"/>
-                                <constraint firstItem="SQy-RK-zGu" firstAttribute="top" secondItem="Ls1-7D-jZF" secondAttribute="bottom" constant="8" id="OLR-iX-vF5"/>
-                                <constraint firstItem="Ls1-7D-jZF" firstAttribute="top" secondItem="uFi-sk-oXB" secondAttribute="top" constant="-8" id="RTf-1q-X9o"/>
-                                <constraint firstItem="TXa-rs-Rme" firstAttribute="bottom" secondItem="SQy-RK-zGu" secondAttribute="bottom" constant="8" id="TeX-Hr-H5x"/>
-                                <constraint firstItem="TXa-rs-Rme" firstAttribute="trailing" secondItem="A6A-rZ-j64" secondAttribute="trailing" constant="20" id="bng-9u-RbB"/>
-                                <constraint firstItem="tbN-dj-bwZ" firstAttribute="firstBaseline" secondItem="kXZ-J8-qF2" secondAttribute="firstBaseline" id="cUF-du-4tQ"/>
-                                <constraint firstItem="xBA-Ss-5gC" firstAttribute="top" secondItem="y4P-bp-KDo" secondAttribute="bottom" constant="8" id="dPZ-rS-Ea7"/>
-                                <constraint firstItem="Hdx-DY-fbW" firstAttribute="leading" secondItem="kXZ-J8-qF2" secondAttribute="leading" id="lnB-cY-3iQ"/>
-                                <constraint firstItem="xBA-Ss-5gC" firstAttribute="top" secondItem="JOe-RM-3eM" secondAttribute="bottom" constant="8" id="rik-kJ-EV3"/>
-                                <constraint firstItem="Ls1-7D-jZF" firstAttribute="leading" secondItem="TXa-rs-Rme" secondAttribute="leading" constant="20" id="taa-NA-Ky8"/>
-                                <constraint firstItem="Ls1-7D-jZF" firstAttribute="trailing" secondItem="uFi-sk-oXB" secondAttribute="trailing" constant="8" id="wSZ-Ir-qPq"/>
-                            </constraints>
-                            <viewLayoutGuide key="safeArea" id="TXa-rs-Rme"/>
-                        </view>
-                        <connections>
-                            <outlet property="dataSource" destination="ewl-rv-ptG" id="Oxf-33-Qnn"/>
-                            <outlet property="delegate" destination="ewl-rv-ptG" id="6dZ-AY-PvC"/>
-                        </connections>
-                    </tableView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="1A2B" id="sdu-hz-xNl">
-                        <barButtonItem key="leftBarButtonItem" id="Afn-fo-3uG">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="IQQ-Xa-r9P">
-                                <rect key="frame" x="20" y="6.6666666666666679" width="51" height="31.000000000000004"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="changeVoicePromptsSwitchState:" destination="ewl-rv-ptG" eventType="valueChanged" id="gIQ-m6-Y06"/>
-                                </connections>
-                            </switch>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="icon_questionMark" id="zxq-TA-aMN">
-                                <connections>
-                                    <segue destination="kmD-1j-SKs" kind="show" id="lty-5h-JE0"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="compose" id="7HA-4r-6ga">
-                                <connections>
-                                    <action selector="helperBtnPressed:" destination="ewl-rv-ptG" id="AHD-Pm-BDK"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="availableGuessLabel" destination="tbN-dj-bwZ" id="Z16-Ad-vq5"/>
-                        <outlet property="guessButton" destination="A6A-rZ-j64" id="Wmv-4q-oZR"/>
-                        <outlet property="helperView" destination="y4P-bp-KDo" id="Gfy-Bv-gVc"/>
-                        <outlet property="hintTextView" destination="Ls1-7D-jZF" id="g3Y-1S-nw8"/>
-                        <outlet property="lastGuessLabel" destination="uFi-sk-oXB" id="dxa-DT-44y"/>
-                        <outlet property="quitButton" destination="56D-WB-7Ah" id="0S5-7w-zbx"/>
-                        <outlet property="restartButton" destination="Z2n-yZ-M8U" id="KBI-LW-IgY"/>
-                        <outlet property="voiceSwitch" destination="IQQ-Xa-r9P" id="4SS-E8-8nd"/>
-                        <outletCollection property="fadeOutElements" destination="A6A-rZ-j64" collectionClass="NSMutableArray" id="cKT-yJ-l94"/>
-                        <outletCollection property="fadeOutElements" destination="uFi-sk-oXB" collectionClass="NSMutableArray" id="C5j-EI-hfj"/>
-                        <outletCollection property="fadeOutElements" destination="56D-WB-7Ah" collectionClass="NSMutableArray" id="M3x-GR-zw2"/>
-                        <outletCollection property="fadeOutElements" destination="tbN-dj-bwZ" collectionClass="NSMutableArray" id="IZZ-gs-NTS"/>
-                        <outletCollection property="fadeOutElements" destination="Z2n-yZ-M8U" collectionClass="NSMutableArray" id="QaN-Dq-VEG"/>
-                        <outletCollection property="quizLabels" destination="O86-fw-beZ" collectionClass="NSMutableArray" id="iSE-sJ-DZa"/>
-                        <outletCollection property="fadeOutElements" destination="O86-fw-beZ" collectionClass="NSMutableArray" id="f6M-uy-bJL"/>
-                        <outletCollection property="fadeOutElements" destination="QGf-1K-SAt" collectionClass="NSMutableArray" id="Txf-2w-O7V"/>
-                        <outletCollection property="quizLabels" destination="QGf-1K-SAt" collectionClass="NSMutableArray" id="rGy-4S-Poo"/>
-                        <outletCollection property="fadeOutElements" destination="yTA-6N-zHg" collectionClass="NSMutableArray" id="aaW-Y3-dYT"/>
-                        <outletCollection property="quizLabels" destination="yTA-6N-zHg" collectionClass="NSMutableArray" id="iPC-vZ-qpD"/>
-                        <outletCollection property="fadeOutElements" destination="jG2-BO-uXN" collectionClass="NSMutableArray" id="NzN-p5-F99"/>
-                        <outletCollection property="quizLabels" destination="jG2-BO-uXN" collectionClass="NSMutableArray" id="8X9-Eq-ZuB"/>
-                        <outletCollection property="helperNumberButtons" destination="CNd-rw-WBy" collectionClass="NSMutableArray" id="VPH-7S-2HP"/>
-                        <outletCollection property="helperNumberButtons" destination="SKO-ki-v4K" collectionClass="NSMutableArray" id="Ubs-6Q-8La"/>
-                        <outletCollection property="helperNumberButtons" destination="dZb-fT-jcM" collectionClass="NSMutableArray" id="F3u-fW-2AE"/>
-                        <outletCollection property="helperNumberButtons" destination="DcE-eK-WKA" collectionClass="NSMutableArray" id="XM0-UT-CRR"/>
-                        <outletCollection property="helperNumberButtons" destination="RGM-ma-YWK" collectionClass="NSMutableArray" id="j3t-z4-Equ"/>
-                        <outletCollection property="helperNumberButtons" destination="vyo-WZ-d3E" collectionClass="NSMutableArray" id="Jfv-tL-Udf"/>
-                        <outletCollection property="helperNumberButtons" destination="cYx-W3-mlE" collectionClass="NSMutableArray" id="ENA-7F-aa8"/>
-                        <outletCollection property="helperNumberButtons" destination="3xh-jz-igd" collectionClass="NSMutableArray" id="g6B-9L-UHq"/>
-                        <outletCollection property="helperNumberButtons" destination="6dE-o1-lSb" collectionClass="NSMutableArray" id="rK9-aq-ldf"/>
-                        <outletCollection property="helperNumberButtons" destination="V6b-NU-7wI" collectionClass="NSMutableArray" id="Ere-ZS-ftd"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zke-ro-Bfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="amr-RE-U7X"/>
-            </objects>
-            <point key="canvasLocation" x="5925" y="-15"/>
-        </scene>
-        <!--1A2B-->
         <scene sceneID="ZM7-dR-cXN">
             <objects>
                 <viewController storyboardIdentifier="GuessViewController" id="2sO-bZ-7ec" customClass="GuessNumberViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
@@ -611,7 +116,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="guessBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="4QE-AW-HkB"/>
                                             <action selector="guessBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="fPK-pw-TVc"/>
                                         </connections>
                                     </button>
@@ -622,7 +126,6 @@
                                             <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="quitBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="1JN-gc-hE1"/>
                                             <action selector="quitBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="wlj-Oo-can"/>
                                         </connections>
                                     </button>
@@ -640,7 +143,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="restartBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="5Tt-60-EMF"/>
-                                            <action selector="restartBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="iyW-Ph-Xcq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -682,7 +184,6 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="WSX-Fi-aiy"/>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="X2G-Be-TFx"/>
                                                         </connections>
                                                     </button>
@@ -702,7 +203,6 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="JEM-ha-iO2"/>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="xEi-KP-mlx"/>
                                                         </connections>
                                                     </button>
@@ -723,7 +223,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="QhQ-Uc-aY5"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="w2V-ZH-M3P"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAw-Dx-Xas" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -743,7 +242,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="SO1-Gt-Y9y"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="ag0-IQ-mYE"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anq-6F-5vM" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -763,7 +261,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="bDI-kY-rBm"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="nDl-1L-lMx"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt1-qH-buD">
@@ -772,7 +269,6 @@
                                                             <constraint firstAttribute="height" constant="44" id="R5d-jm-94v"/>
                                                         </constraints>
                                                         <connections>
-                                                            <action selector="helperInfoBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="2Lj-QO-Uxx"/>
                                                             <action selector="helperInfoBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="awW-Zy-cjV"/>
                                                         </connections>
                                                     </button>
@@ -797,7 +293,6 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="dsl-v0-laa"/>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="e19-MA-fWv"/>
                                                         </connections>
                                                     </button>
@@ -818,7 +313,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="Fcr-3E-A9o"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="Qsz-2n-Zaa"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDi-2d-lXP" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -837,7 +331,6 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="hPD-78-Uad"/>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="sDx-NJ-D97"/>
                                                         </connections>
                                                     </button>
@@ -858,7 +351,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="X0e-Oe-jRh"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="bf5-XZ-8nN"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cE-rd-Zxw" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -877,7 +369,6 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="WtN-Bp-83I"/>
                                                             <action selector="helperNumberBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="tbR-dQ-ns1"/>
                                                         </connections>
                                                     </button>
@@ -889,7 +380,6 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="RESET"/>
                                                         <connections>
-                                                            <action selector="helperResetBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="0pZ-E2-3qJ"/>
                                                             <action selector="helperResetBtnPressed:" destination="2sO-bZ-7ec" eventType="touchUpInside" id="sMw-U0-H7w"/>
                                                         </connections>
                                                     </button>
@@ -947,7 +437,6 @@
                                 <rect key="frame" x="20" y="6.6666666666666679" width="51" height="31.000000000000004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="changeVoicePromptsSwitchState:" destination="ewl-rv-ptG" eventType="valueChanged" id="Dxo-qW-WTa"/>
                                     <action selector="changeVoicePromptsSwitchState:" destination="2sO-bZ-7ec" eventType="valueChanged" id="m9K-gO-JeJ"/>
                                 </connections>
                             </switch>
@@ -1306,7 +795,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BH3-2H-f0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8337.68115942029" y="774.77678571428567"/>
+            <point key="canvasLocation" x="7428" y="775"/>
         </scene>
         <!--Rank-->
         <scene sceneID="leN-vG-6vJ">
@@ -1494,7 +983,7 @@ Please enter your name.</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="9557.971014492754" y="774.77678571428567"/>
+            <point key="canvasLocation" x="8648" y="775"/>
         </scene>
         <!--Instruction View Controller-->
         <scene sceneID="20N-GY-rWE">
@@ -1536,7 +1025,7 @@ Please enter your name.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0m-J5-TcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6923.188405797102" y="64.955357142857139"/>
+            <point key="canvasLocation" x="5309" y="844"/>
         </scene>
         <!--Banner Ad Tab Bar View Controller-->
         <scene sceneID="ydm-BA-Npb">
@@ -1710,47 +1199,6 @@ Please enter your name.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FhR-uL-xUm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4314.375" y="1747.5"/>
-        </scene>
-        <!--Initial View Controller-->
-        <scene sceneID="es1-vb-SY6">
-            <objects>
-                <viewController id="mZM-sB-a4Z" customClass="InitialViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rkm-WV-nOG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d84-DB-akz">
-                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
-                                <color key="backgroundColor" name="MainBackground"/>
-                            </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQe-m6-mvF" customClass="GADBannerView">
-                                <rect key="frame" x="47" y="812" width="320" height="50"/>
-                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="DTs-sa-FhW"/>
-                                    <constraint firstAttribute="width" constant="320" id="PFP-JE-X8U"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" name="MainBackground"/>
-                        <constraints>
-                            <constraint firstItem="XQe-m6-mvF" firstAttribute="bottom" secondItem="Lqn-hA-qIu" secondAttribute="bottom" id="30Q-SN-ZFa"/>
-                            <constraint firstItem="d84-DB-akz" firstAttribute="top" secondItem="Lqn-hA-qIu" secondAttribute="top" id="9k5-Tw-kY4"/>
-                            <constraint firstItem="XQe-m6-mvF" firstAttribute="centerX" secondItem="rkm-WV-nOG" secondAttribute="centerX" id="I0N-gu-AoI"/>
-                            <constraint firstItem="XQe-m6-mvF" firstAttribute="top" secondItem="d84-DB-akz" secondAttribute="bottom" id="PRa-uC-dRy"/>
-                            <constraint firstItem="d84-DB-akz" firstAttribute="leading" secondItem="Lqn-hA-qIu" secondAttribute="leading" id="SLq-l8-N5P"/>
-                            <constraint firstItem="d84-DB-akz" firstAttribute="trailing" secondItem="Lqn-hA-qIu" secondAttribute="trailing" id="yRz-Kl-F9T"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Lqn-hA-qIu"/>
-                    </view>
-                    <connections>
-                        <outlet property="adBannerHeightConstraint" destination="DTs-sa-FhW" id="QpO-li-k88"/>
-                        <outlet property="adBannerView" destination="XQe-m6-mvF" id="5dc-He-86p"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xST-sW-CQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1228" y="844"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xCG-wj-RIr">
@@ -2117,502 +1565,7 @@ Please enter your name.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYB-mf-Emr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7426.0869565217399" y="774.77678571428567"/>
-        </scene>
-        <!--1A2B Advanced-->
-        <scene sceneID="NAL-jM-1Zs">
-            <objects>
-                <tableViewController id="uFm-3x-RCw" customClass="GuessNumberTableViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DOg-6e-Kjh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="MainBackground"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="YtZ-UT-Dev">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1161"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="aOV-5u-JfN">
-                                    <rect key="frame" x="60.333333333333343" y="52" width="293.33333333333326" height="134"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFj-LX-6tw">
-                                            <rect key="frame" x="0.0" y="0.0" width="34.666666666666664" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="60"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFo-I6-AGN">
-                                            <rect key="frame" x="64.666666666666657" y="0.0" width="34.666666666666657" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="60"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUt-BM-3hJ">
-                                            <rect key="frame" x="129.33333333333331" y="0.0" width="34.666666666666657" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="60"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8V-hW-eK6">
-                                            <rect key="frame" x="194" y="0.0" width="34.666666666666657" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="60"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOe-VL-ATY">
-                                            <rect key="frame" x="258.66666666666669" y="0.0" width="34.666666666666686" height="134"/>
-                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="60"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tZ-dJ-Dm6">
-                                    <rect key="frame" x="20" y="52" width="374" height="134"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jop-ex-oBn">
-                                            <rect key="frame" x="7.9999999999999964" y="4" width="55.666666666666657" height="18"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6EY-Dw-XTu">
-                                            <rect key="frame" x="8" y="30" width="358" height="96"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bWs-FT-IEI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8o-oc-10N" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="pFu-Eh-RGZ"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="1">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="L9G-6T-63n"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mV-uq-jw7" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="61" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="oEZ-ch-mfm"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="2">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="eup-JF-3D6"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3I-qo-diw" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="122" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="Nub-w8-RmF"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="3">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="7RP-z6-iKw"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qq-uy-uK0" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="183" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="QNa-tM-DwR"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="4">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="HaN-TK-71G"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4b-89-9qU" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="244" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="sNv-cy-LKx"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="5">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="7Z1-uU-1Hh"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swc-Tj-B2e">
-                                                            <rect key="frame" x="305" y="0.0" width="53" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="vei-Qc-hdu"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <action selector="helperInfoBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="Z4m-y6-Cqi"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="thU-Jz-74o">
-                                                    <rect key="frame" x="0.0" y="52" width="358" height="44"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGc-1Q-Tmx" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="BA4-Le-7aK"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="6">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="nok-SV-gnD"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Do4-gd-Elx" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="61" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="dVc-07-Anx"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="7">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="j6j-9B-sso"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wb1-ia-wps" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="122" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="JZ7-Et-Mpi"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="8">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="oRs-xX-kQg"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ve0-8L-f7V" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="183" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="R2I-Eb-a6p"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="9">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="Af9-dU-iz3"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54b-uK-JfK" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
-                                                            <rect key="frame" x="244" y="0.0" width="53" height="44"/>
-                                                            <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="xgb-Hi-xse"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <state key="normal" title="0">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="4"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="emA-H6-agt"/>
-                                                                <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="fXk-M2-wMV"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tej-QP-PZD">
-                                                            <rect key="frame" x="305" y="0.0" width="53" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="Z2C-on-Fa7"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <state key="normal" title="RESET"/>
-                                                            <connections>
-                                                                <action selector="helperResetBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="xKg-Fj-dBD"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jop-ex-oBn" secondAttribute="trailing" constant="8" id="DI3-cI-9XD"/>
-                                        <constraint firstAttribute="trailing" secondItem="6EY-Dw-XTu" secondAttribute="trailing" constant="8" id="GLM-bM-1VP"/>
-                                        <constraint firstAttribute="bottom" secondItem="6EY-Dw-XTu" secondAttribute="bottom" constant="8" id="LqB-B1-Mmt"/>
-                                        <constraint firstItem="Jop-ex-oBn" firstAttribute="top" secondItem="1tZ-dJ-Dm6" secondAttribute="top" constant="4" id="NaJ-Lt-ZW7"/>
-                                        <constraint firstItem="6EY-Dw-XTu" firstAttribute="leading" secondItem="1tZ-dJ-Dm6" secondAttribute="leading" constant="8" id="khh-ow-1UQ"/>
-                                        <constraint firstItem="6EY-Dw-XTu" firstAttribute="top" secondItem="Jop-ex-oBn" secondAttribute="bottom" constant="8" id="rxO-1Y-0ZK"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wqf-ab-Y0l">
-                                    <rect key="frame" x="20" y="224" width="374" height="783"/>
-                                    <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </textView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YqP-Fo-m86">
-                                    <rect key="frame" x="20" y="194" width="132.33333333333334" height="54"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuC-hB-zc8">
-                                            <rect key="frame" x="7.9999999999999929" y="8" width="116.33333333333331" height="18"/>
-                                            <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                    <constraints>
-                                        <constraint firstItem="IuC-hB-zc8" firstAttribute="leading" secondItem="YqP-Fo-m86" secondAttribute="leading" constant="8" id="7Pv-p9-bSd"/>
-                                        <constraint firstItem="IuC-hB-zc8" firstAttribute="top" secondItem="YqP-Fo-m86" secondAttribute="top" constant="8" id="Cfb-lg-kBJ"/>
-                                        <constraint firstAttribute="trailing" secondItem="IuC-hB-zc8" secondAttribute="trailing" constant="8" id="aiy-KR-pHt"/>
-                                        <constraint firstAttribute="bottom" secondItem="IuC-hB-zc8" secondAttribute="bottom" constant="28" id="ssK-bU-qiR"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
-                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1A2B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85X-X1-u5p">
-                                    <rect key="frame" x="28" y="232" width="358" height="27"/>
-                                    <color key="backgroundColor" name="MainBackgroundOffsetOffset"/>
-                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can still guess 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPz-kS-zAF">
-                                    <rect key="frame" x="171" y="200" width="223" height="20.333333333333343"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wq7-fQ-a49">
-                                    <rect key="frame" x="20" y="1015" width="374" height="104"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oS3-fo-E9s">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
-                                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="p5g-ZV-Kdx"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <state key="normal" title="Guess!🤓">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="guessBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="4Ns-FE-wEu"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMN-EJ-Wmi">
-                                            <rect key="frame" x="0.0" y="56" width="374" height="48"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <state key="normal" title="Surrender😱">
-                                                <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="quitBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="Lap-Dm-CNu"/>
-                                            </connections>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6my-bL-5Zc">
-                                            <rect key="frame" x="0.0" y="104" width="374" height="104"/>
-                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <state key="normal" title="Restart😤">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="restartBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="LjJ-CH-OUr"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="GMN-EJ-Wmi" firstAttribute="width" secondItem="oS3-fo-E9s" secondAttribute="width" id="Wg4-cU-IG5"/>
-                                        <constraint firstItem="6my-bL-5Zc" firstAttribute="height" secondItem="oS3-fo-E9s" secondAttribute="height" multiplier="2" constant="8" id="fhn-GO-hpN"/>
-                                        <constraint firstItem="6my-bL-5Zc" firstAttribute="width" secondItem="oS3-fo-E9s" secondAttribute="width" id="iXM-mq-2Lk"/>
-                                        <constraint firstItem="GMN-EJ-Wmi" firstAttribute="height" secondItem="oS3-fo-E9s" secondAttribute="height" id="sdd-r8-Vmc"/>
-                                    </constraints>
-                                </stackView>
-                            </subviews>
-                            <color key="backgroundColor" name="MainBackground"/>
-                            <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstItem="pPz-kS-zAF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YqP-Fo-m86" secondAttribute="trailing" constant="8" id="1n3-pd-Qfo"/>
-                                <constraint firstItem="pPz-kS-zAF" firstAttribute="trailing" secondItem="Wqf-ab-Y0l" secondAttribute="trailing" id="4Pu-67-VO3"/>
-                                <constraint firstItem="oS3-fo-E9s" firstAttribute="leading" secondItem="QIL-Ne-elf" secondAttribute="leading" constant="20" id="63e-lt-kLW"/>
-                                <constraint firstItem="QIL-Ne-elf" firstAttribute="trailing" secondItem="Wqf-ab-Y0l" secondAttribute="trailing" constant="20" id="6JK-tS-uDr"/>
-                                <constraint firstItem="Wqf-ab-Y0l" firstAttribute="trailing" secondItem="85X-X1-u5p" secondAttribute="trailing" constant="8" id="AYF-ng-yuG"/>
-                                <constraint firstItem="aOV-5u-JfN" firstAttribute="centerX" secondItem="YtZ-UT-Dev" secondAttribute="centerX" id="Fll-R0-umq"/>
-                                <constraint firstItem="Wq7-fQ-a49" firstAttribute="top" secondItem="Wqf-ab-Y0l" secondAttribute="bottom" constant="8" id="JZv-M6-yG4"/>
-                                <constraint firstItem="Wqf-ab-Y0l" firstAttribute="top" secondItem="85X-X1-u5p" secondAttribute="top" constant="-8" id="Kvt-Mh-Lcl"/>
-                                <constraint firstItem="1tZ-dJ-Dm6" firstAttribute="trailing" secondItem="Wqf-ab-Y0l" secondAttribute="trailing" id="Mwl-6x-7iE"/>
-                                <constraint firstItem="QIL-Ne-elf" firstAttribute="bottom" secondItem="Wq7-fQ-a49" secondAttribute="bottom" constant="8" id="RT6-Rh-RlN"/>
-                                <constraint firstItem="Jop-ex-oBn" firstAttribute="leading" secondItem="IuC-hB-zc8" secondAttribute="leading" id="ULX-ac-uXD"/>
-                                <constraint firstItem="YqP-Fo-m86" firstAttribute="leading" secondItem="Wqf-ab-Y0l" secondAttribute="leading" id="Uli-yv-ld8"/>
-                                <constraint firstItem="pPz-kS-zAF" firstAttribute="firstBaseline" secondItem="IuC-hB-zc8" secondAttribute="firstBaseline" id="Vrx-4J-diW"/>
-                                <constraint firstItem="YqP-Fo-m86" firstAttribute="top" secondItem="1tZ-dJ-Dm6" secondAttribute="bottom" constant="8" id="cul-4F-j57"/>
-                                <constraint firstItem="1tZ-dJ-Dm6" firstAttribute="leading" secondItem="Wqf-ab-Y0l" secondAttribute="leading" id="eBW-UG-tha"/>
-                                <constraint firstItem="QIL-Ne-elf" firstAttribute="trailing" secondItem="oS3-fo-E9s" secondAttribute="trailing" constant="20" id="fMc-Mz-bs7"/>
-                                <constraint firstItem="Wqf-ab-Y0l" firstAttribute="leading" secondItem="QIL-Ne-elf" secondAttribute="leading" constant="20" id="hh6-W3-j8f"/>
-                                <constraint firstItem="1tZ-dJ-Dm6" firstAttribute="top" secondItem="QIL-Ne-elf" secondAttribute="top" constant="8" id="hkk-0u-CjN"/>
-                                <constraint firstItem="Wqf-ab-Y0l" firstAttribute="top" secondItem="YqP-Fo-m86" secondAttribute="bottom" constant="-24" id="jcp-6R-hZU"/>
-                                <constraint firstItem="YqP-Fo-m86" firstAttribute="top" secondItem="aOV-5u-JfN" secondAttribute="bottom" constant="8" id="lWR-Yc-6s3"/>
-                                <constraint firstItem="85X-X1-u5p" firstAttribute="leading" secondItem="Wqf-ab-Y0l" secondAttribute="leading" constant="8" id="mVP-8N-k2w"/>
-                                <constraint firstItem="aOV-5u-JfN" firstAttribute="top" secondItem="QIL-Ne-elf" secondAttribute="top" constant="8" id="qfw-2s-vhV"/>
-                            </constraints>
-                            <viewLayoutGuide key="safeArea" id="QIL-Ne-elf"/>
-                        </view>
-                        <connections>
-                            <outlet property="dataSource" destination="uFm-3x-RCw" id="48v-kv-mUc"/>
-                            <outlet property="delegate" destination="uFm-3x-RCw" id="J4D-OR-nFA"/>
-                        </connections>
-                    </tableView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="1A2B Advanced" id="fZE-kV-q3n">
-                        <barButtonItem key="leftBarButtonItem" id="nRg-kw-gT0">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="JUv-8g-vcG">
-                                <rect key="frame" x="20" y="6.6666666666666679" width="51" height="31.000000000000004"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="changeVoicePromptsSwitchState:" destination="uFm-3x-RCw" eventType="valueChanged" id="Ujd-dI-3eZ"/>
-                                </connections>
-                            </switch>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="hAx-Ax-9yG">
-                            <connections>
-                                <action selector="helperBtnPressed:" destination="uFm-3x-RCw" id="Hkc-bw-5ES"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="availableGuessLabel" destination="pPz-kS-zAF" id="vp7-eh-MYh"/>
-                        <outlet property="guessButton" destination="oS3-fo-E9s" id="H2G-Jc-1fa"/>
-                        <outlet property="helperView" destination="1tZ-dJ-Dm6" id="oMM-a6-EJ4"/>
-                        <outlet property="hintTextView" destination="Wqf-ab-Y0l" id="MQE-gz-JZx"/>
-                        <outlet property="lastGuessLabel" destination="85X-X1-u5p" id="ZVM-tL-13i"/>
-                        <outlet property="quitButton" destination="GMN-EJ-Wmi" id="UAA-As-wvh"/>
-                        <outlet property="restartButton" destination="6my-bL-5Zc" id="qKO-0a-H3J"/>
-                        <outlet property="voiceSwitch" destination="JUv-8g-vcG" id="raX-Q2-ptq"/>
-                        <outletCollection property="fadeOutElements" destination="oS3-fo-E9s" collectionClass="NSMutableArray" id="nzB-vW-Dmq"/>
-                        <outletCollection property="fadeOutElements" destination="85X-X1-u5p" collectionClass="NSMutableArray" id="7vd-tK-26A"/>
-                        <outletCollection property="fadeOutElements" destination="GMN-EJ-Wmi" collectionClass="NSMutableArray" id="GX2-0F-Rfw"/>
-                        <outletCollection property="fadeOutElements" destination="pPz-kS-zAF" collectionClass="NSMutableArray" id="GZx-s9-re0"/>
-                        <outletCollection property="fadeOutElements" destination="6my-bL-5Zc" collectionClass="NSMutableArray" id="rAV-DV-VWC"/>
-                        <outletCollection property="quizLabels" destination="LFj-LX-6tw" collectionClass="NSMutableArray" id="Akr-fT-EyQ"/>
-                        <outletCollection property="fadeOutElements" destination="LFj-LX-6tw" collectionClass="NSMutableArray" id="Cbc-wE-apN"/>
-                        <outletCollection property="quizLabels" destination="sFo-I6-AGN" collectionClass="NSMutableArray" id="VYu-qP-WPV"/>
-                        <outletCollection property="fadeOutElements" destination="sFo-I6-AGN" collectionClass="NSMutableArray" id="aDH-Bz-2hU"/>
-                        <outletCollection property="quizLabels" destination="CUt-BM-3hJ" collectionClass="NSMutableArray" id="WHc-SH-X6R"/>
-                        <outletCollection property="fadeOutElements" destination="CUt-BM-3hJ" collectionClass="NSMutableArray" id="zBO-Ux-PJ9"/>
-                        <outletCollection property="fadeOutElements" destination="V8V-hW-eK6" collectionClass="NSMutableArray" id="gtJ-im-i0H"/>
-                        <outletCollection property="quizLabels" destination="V8V-hW-eK6" collectionClass="NSMutableArray" id="NTw-O2-owp"/>
-                        <outletCollection property="quizLabels" destination="MOe-VL-ATY" collectionClass="NSMutableArray" id="a8y-Jn-oMv"/>
-                        <outletCollection property="helperNumberButtons" destination="B4b-89-9qU" collectionClass="NSMutableArray" id="7gm-YL-7HP"/>
-                        <outletCollection property="helperNumberButtons" destination="3Qq-uy-uK0" collectionClass="NSMutableArray" id="4SM-nP-eyW"/>
-                        <outletCollection property="helperNumberButtons" destination="d3I-qo-diw" collectionClass="NSMutableArray" id="sBh-ag-UPI"/>
-                        <outletCollection property="helperNumberButtons" destination="2mV-uq-jw7" collectionClass="NSMutableArray" id="Hxj-iO-4vu"/>
-                        <outletCollection property="helperNumberButtons" destination="A8o-oc-10N" collectionClass="NSMutableArray" id="Hnz-6Q-OfR"/>
-                        <outletCollection property="helperNumberButtons" destination="54b-uK-JfK" collectionClass="NSMutableArray" id="wVg-iy-VAz"/>
-                        <outletCollection property="helperNumberButtons" destination="ve0-8L-f7V" collectionClass="NSMutableArray" id="pch-4s-c7F"/>
-                        <outletCollection property="helperNumberButtons" destination="wb1-ia-wps" collectionClass="NSMutableArray" id="nNV-Hu-QA6"/>
-                        <outletCollection property="helperNumberButtons" destination="Do4-gd-Elx" collectionClass="NSMutableArray" id="wvO-Jt-bv2"/>
-                        <outletCollection property="helperNumberButtons" destination="yGc-1Q-Tmx" collectionClass="NSMutableArray" id="a2y-db-qwl"/>
-                        <outletCollection property="fadeOutElements" destination="MOe-VL-ATY" collectionClass="NSMutableArray" id="P7Q-C3-mV5"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iwD-uL-ur5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6141" y="816"/>
+            <point key="canvasLocation" x="6516" y="775"/>
         </scene>
         <!--Advanced-->
         <scene sceneID="0Xo-LH-kbU">
@@ -3057,7 +2010,6 @@ Please enter your name.</string>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="E2x-Ve-ury"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="eb5-zU-qrc"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIL-6u-GQt" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -3076,7 +2028,6 @@ Please enter your name.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="Pcp-yv-ueX"/>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="czB-xg-s4U"/>
                                                         </connections>
                                                     </button>
@@ -3097,7 +2048,6 @@ Please enter your name.</string>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="PAg-gF-Ibf"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="gUC-se-Pmx"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HlN-fA-515" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -3116,7 +2066,6 @@ Please enter your name.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="Eql-VT-CiB"/>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="pf4-ql-Btu"/>
                                                         </connections>
                                                     </button>
@@ -3136,7 +2085,6 @@ Please enter your name.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="N8l-Ub-rTx"/>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="Vta-ny-ehU"/>
                                                         </connections>
                                                     </button>
@@ -3147,7 +2095,6 @@ Please enter your name.</string>
                                                         </constraints>
                                                         <connections>
                                                             <action selector="helperInfoBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="ZB4-vl-HMI"/>
-                                                            <action selector="helperInfoBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="ocB-hn-xHT"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -3172,7 +2119,6 @@ Please enter your name.</string>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="O3e-4F-Cex"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="fdF-jr-dsd"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LEc-b5-Wi6" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -3191,7 +2137,6 @@ Please enter your name.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="Qhl-WU-xlN"/>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="UGq-QG-QGQ"/>
                                                         </connections>
                                                     </button>
@@ -3212,7 +2157,6 @@ Please enter your name.</string>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="7iE-X4-bFE"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="osn-hd-D0t"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfN-eg-FwJ" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
@@ -3231,7 +2175,6 @@ Please enter your name.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="NP6-Mx-94r"/>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="brr-rX-ODZ"/>
                                                         </connections>
                                                     </button>
@@ -3251,9 +2194,7 @@ Please enter your name.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="Bxu-Ug-sHp"/>
                                                             <action selector="helperNumberBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="fxF-kQ-56m"/>
-                                                            <action selector="helperNumberBtnPressed:" destination="ewl-rv-ptG" eventType="touchUpInside" id="sOD-4l-DtH"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIM-Qt-nCp">
@@ -3265,7 +2206,6 @@ Please enter your name.</string>
                                                         <state key="normal" title="RESET"/>
                                                         <connections>
                                                             <action selector="helperResetBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="8Pl-Ld-Fs1"/>
-                                                            <action selector="helperResetBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="ftV-yL-iFT"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -3358,7 +2298,6 @@ Please enter your name.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="guessBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="aPQ-7Q-RgN"/>
                                             <action selector="guessBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="sYP-PY-VkB"/>
                                         </connections>
                                     </button>
@@ -3370,7 +2309,6 @@ Please enter your name.</string>
                                         </state>
                                         <connections>
                                             <action selector="quitBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="6yA-jM-nxJ"/>
-                                            <action selector="quitBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="6yN-fy-8hZ"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ys-a1-iiB">
@@ -3386,7 +2324,6 @@ Please enter your name.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="restartBtnPressed:" destination="uFm-3x-RCw" eventType="touchUpInside" id="OQq-ia-yvt"/>
                                             <action selector="restartBtnPressed:" destination="iZr-cb-DEV" eventType="touchUpInside" id="xWA-j8-F72"/>
                                         </connections>
                                     </button>
@@ -3433,7 +2370,6 @@ Please enter your name.</string>
                                 <rect key="frame" x="20" y="6.6666666666666679" width="51" height="31.000000000000004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="changeVoicePromptsSwitchState:" destination="uFm-3x-RCw" eventType="valueChanged" id="Wfq-M3-Mp9"/>
                                     <action selector="changeVoicePromptsSwitchState:" destination="iZr-cb-DEV" eventType="valueChanged" id="hPA-qa-uuD"/>
                                 </connections>
                             </switch>
@@ -3500,7 +2436,4 @@ Please enter your name.</string>
             <color red="1" green="0.91268532276153569" blue="0.34513992071151733" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="asS-MI-E75"/>
-    </inferredMetricsTieBreakers>
 </document>

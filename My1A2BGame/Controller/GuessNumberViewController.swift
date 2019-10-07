@@ -91,13 +91,13 @@ class GuessNumberViewController: UIViewController {
     @IBAction func helperBtnPressed(_ sender: Any) {
         if helperView.isHidden {
             self.helperView.isHidden = false
-            self.helperView.transform = .init(translationX: 0, y: -150)
+            self.helperView.transform = .init(translationX: 0, y: -300)
             UIView.animate(withDuration: 0.25) {
                 self.helperView.transform = .identity
             }
         } else {
             UIView.animate(withDuration: 0.25, animations: {
-                self.helperView.transform = .init(translationX: 0, y: -150)
+                self.helperView.transform = .init(translationX: 0, y: -300)
             }) { (_) in
                 self.helperView.isHidden = true
             }
