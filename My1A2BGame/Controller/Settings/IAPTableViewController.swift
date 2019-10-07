@@ -23,7 +23,7 @@ class IAPTableViewController: UITableViewController {
         
         StoreObserver.shared.delegate = self
         
-         restorePurchaeBtn.isEnabled = SKPaymentQueue.canMakePayments()
+        restorePurchaeBtn.isEnabled = SKPaymentQueue.canMakePayments()
         
         refresh()
     }
@@ -63,23 +63,24 @@ class IAPTableViewController: UITableViewController {
 extension IAPTableViewController: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         objects = response.products
-        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-
-        activityIndicator?.removeFromSuperview()
         
-        if objects.isEmpty {
-            let alert = UIAlertController(title: NSLocalizedString("Currently No Product Available", comment: "3nd"), message: nil, preferredStyle: .alert)
+        DispatchQueue.main.async {
+            self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
+            self.activityIndicator?.removeFromSuperview()
             
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-            
-            alert.addAction(ok)
-            
-            self.present(alert, animated: true, completion: nil)
+            if self.objects.isEmpty {
+                let alert = UIAlertController(title: NSLocalizedString("Currently No Product Available", comment: "3nd"), message: nil, preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                
+                alert.addAction(ok)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         
-        #if DEBUG
+        
         print("invalidProductIdentifiers: \(response.invalidProductIdentifiers.description)")
-        #endif
     }
 }
 

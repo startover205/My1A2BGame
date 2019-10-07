@@ -9,19 +9,54 @@
 import UIKit
 
 class HelperButton: UIButton {
-    
-    var isFiltered = false
-    
-    let filteredColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-    let defilteredColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-
-    func reset(){
-        isFiltered = false
-        backgroundColor = defilteredColor
+    enum FilterState {
+        case first
+        case second
+        case third
     }
+    
+    let defaultState: FilterState = .first
+    
+    lazy var filterState: FilterState = defaultState
+    
+    var filterColor: UIColor {
+        switch filterState {
+        case .first:
+            return #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+        case .second:
+            return #colorLiteral(red: 0, green: 0.4392156863, blue: 0.9607843137, alpha: 1)
+        case .third:
+            return #colorLiteral(red: 0.9607843137, green: 0.7607843137, blue: 0, alpha: 1)
+        }
+    }
+    
+    func reset(){
+        filterState = defaultState
+        backgroundColor = filterColor
+    }
+    
     func toggleColor(){
-        isFiltered = !isFiltered
-        backgroundColor = isFiltered ? filteredColor: defilteredColor
+        switch filterState {
+               case .first:
+                filterState = .second
+               case .second:
+                filterState = .third
+               case .third:
+                filterState = .first
+               }
+        backgroundColor = filterColor
+    }
+    
+    func jumpColor(){
+        switch filterState {
+                      case .first:
+                       filterState = .third
+                      case .second:
+                       filterState = .first
+                      case .third:
+                       filterState = .second
+                      }
+               backgroundColor = filterColor
     }
 }
 

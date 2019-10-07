@@ -49,6 +49,9 @@ class GuessNumberTableViewController: UITableViewController {
     private lazy var _fadeIn: Void = {
         fadeIn()
     }()
+    private lazy var addLongPressOnHelperView: Void = {
+          helperView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressInHelperView(_:))))
+      }()
     
     lazy var navNumberPadVC: UINavigationController = {
         let nav = storyboard?.instantiateViewController(withIdentifier: "nav\(String(describing: GuessPadViewController.self))") as! UINavigationController
@@ -100,8 +103,10 @@ class GuessNumberTableViewController: UITableViewController {
                 self.helperView.isHidden = true
             }
         }
+        
+        _ = addLongPressOnHelperView
     }
-    
+  
     @IBAction func helperInfoBtnPressed(_ sender: Any) {
         AlertManager.shared.showConfirmAlert(.helperInfo)
     }
@@ -315,7 +320,11 @@ private extension GuessNumberTableViewController {
     func updateAvailableGuessLabel(){
         let format = NSLocalizedString("You can still guess %d times", comment: "")
         availableGuessLabel.text = String.localizedStringWithFormat(format, availableGuess)
-        availableGuessLabel.textColor = availableGuess <= 3 ? .red : .darkGray
+        if #available(iOS 13.0, *) {
+            availableGuessLabel.textColor = availableGuess <= 3 ? UIColor.systemRed : UIColor.label
+        } else {
+            availableGuessLabel.textColor = availableGuess <= 3 ? UIColor.systemRed : UIColor.darkGray
+        }
     }
     
     func loadUserDefaults(){
@@ -372,5 +381,16 @@ private extension GuessNumberTableViewController {
             quizLabels[i].text = quizNumbers[i]
         }
     }
+    
+    // MARK: - Helper
+      @objc
+      func didLongPressInHelperView(_ sender: UILongPressGestureRecognizer) {
+          let location = sender.location(in: sender.view)
+          
+          if sender.state == .ended, let button = helperView.hitTest(location, with: nil) as? HelperButton {
+              button.jumpColor()
+          }
+      }
+      
 }
 

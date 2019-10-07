@@ -78,7 +78,7 @@ extension RankViewController: UITableViewDelegate {
 private extension RankViewController {
     func refresh() {
         
-        view.backgroundColor = isAdvancedVersion ? #colorLiteral(red: 1, green: 0.7990580201, blue: 0.8013046384, alpha: 1) : #colorLiteral(red: 1, green: 0.7982204556, blue: 0.8463259339, alpha: 1)
+//        view.backgroundColor = isAdvancedVersion ? #colorLiteral(red: 1, green: 0.7990580201, blue: 0.8013046384, alpha: 1) : #colorLiteral(red: 1, green: 0.7982204556, blue: 0.8463259339, alpha: 1)
         
         if isAdvancedVersion{
             objects = advancedWinnerCoreDataManager.fetchAllObjects()
