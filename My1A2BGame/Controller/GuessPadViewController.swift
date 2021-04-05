@@ -30,21 +30,60 @@ class GuessPadViewController: UIViewController {
     @IBOutlet weak var zeroButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
+    var buttons = [UIButton]()
     
     var currentDigit = 0
     var canTap = true
     weak var delegate: GuessPadDelegate?
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        resetPanel()
+        
+        // 自動縮小字體、避免數字被截斷
+        buttons.append(oneButton)
+        buttons.append(twoButton)
+        buttons.append(threeButton)
+        buttons.append(fourButton)
+        buttons.append(fiveButton)
+        buttons.append(sixButton)
+        buttons.append(sevenButton)
+        buttons.append(eightButton)
+        buttons.append(nineButton)
+        buttons.append(zeroButton)
+        buttons.append(deleteButton)
+        buttons.append(clearButton)
+        
+        buttons.forEach {
+            $0.titleLabel?.minimumScaleFactor = 0.5
+
+            $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        }
+        
+        
+        digitLabels.forEach {
+            $0.minimumScaleFactor = 0.5
+
+            $0.adjustsFontSizeToFitWidth = true
+        }
+    }
+    
+    func resetPanel() {
         clearAllText()
         enableAllButton()
-
+        
         currentDigit = 0
         
         canTap = true
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        resetPanel()
+    }
+    
     @IBAction func clearBtnPressed(_ sender: Any) {
         clearAllText()
         enableAllButton()
@@ -85,12 +124,14 @@ class GuessPadViewController: UIViewController {
 // MARK: - Private
 private extension GuessPadViewController {
     func guess(){
+        var texts = [String]()
+        for label in self.digitLabels {
+            texts.append(label.text!)
+        }
+           self.delegate?.padDidFinishEntering(numberTexts: texts)
+        
         dismiss(animated: true) {
-            var texts = [String]()
-            for label in self.digitLabels {
-                texts.append(label.text!)
-            }
-               self.delegate?.padDidFinishEntering(numberTexts: texts)
+
         }
     }
     func enableNumberBtn(text: String?){

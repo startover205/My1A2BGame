@@ -8,8 +8,8 @@
 
 import UIKit
 import GameKit
-import AVKit
 import GoogleMobileAds
+
 class GuessNumberViewController: UIViewController {
     
     private lazy var digitCount = {
@@ -48,9 +48,6 @@ class GuessNumberViewController: UIViewController {
     private lazy var _fadeIn: Void = {
         fadeIn()
     }()
-//    private lazy var addLongPressOnHelperView: Void = {
-//        helperView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressInHelperView(_:))))
-//    }()
     
     lazy var navNumberPadVC: UINavigationController = {
         let nav = storyboard?.instantiateViewController(withIdentifier: "nav\(String(describing: GuessPadViewController.self))") as! UINavigationController
@@ -102,8 +99,6 @@ class GuessNumberViewController: UIViewController {
                 self.helperView.isHidden = true
             }
         }
-        
-//        _ = addLongPressOnHelperView
     }
     
     @IBAction func helperInfoBtnPressed(_ sender: Any) {
@@ -256,7 +251,7 @@ private extension GuessNumberViewController {
         hintTextView.text = "\n" + guessHistoryText
         guessHistoryText = result + guessHistoryText
         
-        var text = "\(numberOfAs)A\(numberOfBs)B" //for speech
+        var text = "\(numberOfAs) A, \(numberOfBs) B" //for speech
         
         //win
         if numberOfAs == digitCount {
@@ -279,7 +274,6 @@ private extension GuessNumberViewController {
         //speech function
         if voiceSwitch.isOn {
             let speechUtterance = AVSpeechUtterance(string: text)
-            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("en-US", comment: ""))
             synthesizer.speak(speechUtterance)
         }
     }
