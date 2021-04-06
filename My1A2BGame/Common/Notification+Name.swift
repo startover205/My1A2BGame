@@ -9,5 +9,5 @@
 import Foundation
 
 extension NSNotification.Name {
-    static let adDidReward = NSNotification.Name("adDidReward")
+//    static let adDidReward = NSNotification.Name("adDidReward")
 }

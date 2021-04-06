@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		C01461A420BE6BD20023EEB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A220BE6BD20023EEB6 /* Main.storyboard */; };
 		C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01461A520BE6BD30023EEB6 /* Assets.xcassets */; };
 		C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */; };
+		C0196E94261BFA6E007D936C /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E93261BFA6E007D936C /* AlertAdCountdownControlller.swift */; };
+		C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
@@ -73,6 +75,8 @@
 		C01461A520BE6BD30023EEB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C01461A820BE6BD30023EEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C016F32F22FEB0B900918B8D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0196E93261BFA6E007D936C /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
+		C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdManager.swift; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 		C014619D20BE6BD20023EEB6 /* My1A2BGame */ = {
 			isa = PBXGroup;
 			children = (
+				C0196E97261C0D97007D936C /* Services */,
 				C03AF2D42331211B0032F9DA /* Manager */,
 				C01461A220BE6BD20023EEB6 /* Main.storyboard */,
 				C014619E20BE6BD20023EEB6 /* AppDelegate.swift */,
@@ -201,6 +206,14 @@
 				C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */,
 			);
 			path = My1A2BGame;
+			sourceTree = "<group>";
+		};
+		C0196E97261C0D97007D936C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C03AF2D42331211B0032F9DA /* Manager */ = {
@@ -223,6 +236,7 @@
 				C0259F08234AC7F000FE1F6A /* AdControl.swift */,
 				C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */,
 				C075762722535FAC007A1F9E /* AlertAdController.swift */,
+				C0196E93261BFA6E007D936C /* AlertAdCountdownControlller.swift */,
 				C0ED626F2265B00100892A80 /* AlertAdController.xib */,
 			);
 			path = Controller;
@@ -429,19 +443,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		80B9F8DD66409876B3CD960E /* [CP] Check Pods Manifest.lock */ = {
@@ -489,6 +500,7 @@
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
+				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
 				C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */,
 				C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */,
 				C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */,
@@ -499,6 +511,7 @@
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
 				C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */,
 				C0ED6261225EC6C000892A80 /* IAPTableViewController.swift in Sources */,
+				C0196E94261BFA6E007D936C /* AlertAdCountdownControlller.swift in Sources */,
 				C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,7 +720,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = WN2BCRJWNR;
 				INFOPLIST_FILE = My1A2BGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -715,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samsapplab.1a2bfun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -734,7 +747,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = WN2BCRJWNR;
 				INFOPLIST_FILE = My1A2BGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -742,7 +755,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samsapplab.1a2bfun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

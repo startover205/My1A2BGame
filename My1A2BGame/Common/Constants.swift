@@ -9,11 +9,20 @@
 import Foundation
 
 enum Constants {
+    #if DEBUG
+    static let maxPlayChances = 1
+    static let maxPlayChancesAdvanced = 1
+    static let adGrantChances = 1
+
+    #else
     static let maxPlayChances = 10
     static let maxPlayChancesAdvanced = 15
+    static let adGrantChances = 5
+
+    #endif
 
     static let adHintTime = 5.0
-    static let adGrantChances = 5
+    
     #if DEBUG
     static let rewardAdId = "ca-app-pub-3940256099942544/1712485313" //for test
     static let bottomAdId = "ca-app-pub-3940256099942544/2934735716" //for test

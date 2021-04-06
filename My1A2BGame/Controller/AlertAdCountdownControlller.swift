@@ -8,8 +8,8 @@
 
 import UIKit
 
-/// 時間到才能按取消
-class AlertAdController: UIViewController {
+/// 時間到自動消失
+class AlertAdCountdownController: UIViewController {
     
     @IBOutlet weak var countDownProgressView: UIProgressView!
     @IBOutlet weak var cancelBtn: UIButton!
@@ -17,10 +17,9 @@ class AlertAdController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
-    typealias AdHandler = ()->()
-    typealias CancelHandler = ()->()
-    private var adHandler: AdHandler?
-    private var cancelHandler: CancelHandler?
+    typealias Handler = ()->()
+    private var adHandler: Handler?
+    private var cancelHandler: Handler?
     private var countDownTime = 5.0
     private var titleString: String
     private var message: String?
@@ -40,7 +39,7 @@ class AlertAdController: UIViewController {
         shakeAdIcon()
     }()
     
-    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: AdHandler? = nil, cancelHandler: CancelHandler? = nil) {
+    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: Handler? = nil, cancelHandler: Handler? = nil) {
         
         self.titleString = title
         self.message = message
@@ -61,10 +60,13 @@ class AlertAdController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cancelBtn.alpha = 0
+//        cancelBtn.alpha = 0
         cancelBtn.setTitle(cancelMessage, for: .normal)
         titleLabel.text = titleString
         messageLabel.text = message
+        
+        self.cancelBtn.alpha = 1
+        self.addButtonBorder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,28 +87,29 @@ class AlertAdController: UIViewController {
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        cancelHandler?()
+        self.dismiss(animated: true) {
+            self.cancelHandler?()
+        }
     }
 }
 
 // MARK: - Private
-private extension AlertAdController {
+private extension AlertAdCountdownController {
     
     func startCounting(){
-        
         adCountDownTimer = Timer.scheduledTimer(timeInterval: countDownTime, target: self, selector: #selector(adDidCountDown), userInfo: nil, repeats: false)
         
         progressCountDownTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(progressDidCountDown), userInfo: nil, repeats: true)
     }
     
+    /// 計時結束
     @objc
     func adDidCountDown(){
-        UIView.animate(withDuration: 0.25) {
-            self.cancelBtn.alpha = 1
-        }
-        self.addButtonBorder()
         adCountDownTimer?.invalidate()
+
+        self.presentingViewController?.dismiss(animated: true) {
+            self.cancelHandler?()
+        }
     }
     
     @objc

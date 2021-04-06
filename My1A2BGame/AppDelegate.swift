@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import StoreKit
 import GoogleMobileAds
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,17 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SKPaymentQueue.default().add(StoreObserver.shared)
         
-        setUpAd()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
-        tryToLoadRewardAd()
+        GoogleRewardAdManager.shared.begin()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(tryToLoadRewardAd), name: NSNotification.Name.reachabilityChanged, object: nil)
-        
-        reachability?.startNotifier()
-        
-//        #if DEBUG
-//        fakeRecord()
-//        #endif
+        //        #if DEBUG
+        //        fakeRecord()
+        //        #endif
         
         return true
     }
@@ -75,42 +73,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-// MARK: - GADRewardBasedVideoAdDelegate
-extension AppDelegate: GADRewardBasedVideoAdDelegate {
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
-        NotificationCenter.default.post(name: .adDidReward, object: nil)
-    }
-    
-    func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        tryToLoadRewardAd()
-    }
-    
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
-        tryToLoadRewardAd()
-    }
-}
-
-// MARK: - Static function
-extension AppDelegate {
-    static func internetAvailable() -> Bool {
-        let serverReach = Reachability.forInternetConnection()
-        return serverReach?.currentReachabilityStatus() != NotReachable
-    }
-}
-
-// MARK: - Private
-private extension AppDelegate {
-    func setUpAd(){
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        GADRewardBasedVideoAd.sharedInstance().delegate = self
-    }
-    
-    @objc
-    func tryToLoadRewardAd(){
-        
-        if AppDelegate.internetAvailable() {
-            GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
-                                                        withAdUnitID: Constants.rewardAdId)
-        }
-    }
-}

@@ -40,7 +40,7 @@ class GuessNumberViewController: UIViewController {
         }
     }
     private var guessHistoryText = ""
-    private lazy var synthesizer = AVSpeechSynthesizer()
+    private let synthesizer = AVSpeechSynthesizer()
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     private lazy var _fadeOut: Void = {
         fadeOut()
@@ -115,9 +115,12 @@ class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func guessBtnPressed(_ sender: Any) {
-        
         guard availableGuess > 0 else {
-            outOfChances()
+            if let ad = GoogleRewardAdManager.shared.rewardAd {
+                showRewardAdAlert(ad: ad)
+            } else {
+                showLoseVCAndEndGame()
+            }
             return
         }
         
@@ -163,40 +166,26 @@ extension GuessNumberViewController: GuessPadDelegate{
 
 // MARK: - Ad Related
 extension GuessNumberViewController {
-    
-    func showRewardAdAlert(){
-        guard AppDelegate.internetAvailable() else {
-            return
-        }
-        
+    /// 顯示 alert，詢問使用者是否要看廣告來增加次數
+    func showRewardAdAlert(ad: GADRewardedAd){
         let format = NSLocalizedString("Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!", comment: "")
-        let alert = AlertAdController(title: NSLocalizedString("You Are Out Of Chances...", comment: "2nd"), message:
+        let alert = AlertAdCountdownController(title: NSLocalizedString("You Are Out Of Chances...", comment: "2nd"), message:
             String.localizedStringWithFormat(format, Constants.adGrantChances), cancelMessage: NSLocalizedString("No, thank you", comment: "7th"), countDownTime: Constants.adHintTime, adHandler: {
-                self.showAd()
+                
+                ad.present(fromRootViewController: self) { [weak self] in
+                    _ = ad // 保留 ref，才不會因為 reload 新廣告導致 callback 沒被呼叫
+
+    //                print("使用者看完影片 獎勵數量: \(ad.adReward.amount)")
+                    self?.grantAdReward()
+                }
+                
         }){
             self.showLoseVCAndEndGame()
         }
         present(alert, animated: true, completion: nil)
     }
     
-    func showAd(){
-        if GADRewardBasedVideoAd.sharedInstance().isReady {
-            NotificationCenter.default.addObserver(self, selector: #selector(adDidReward), name: .adDidReward, object: nil)
-            GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
-        } else {
-            let alert = UIAlertController(title: NSLocalizedString("The ad is still loading. Please try again later.", comment: "2nd"), message: "", preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default)
-            
-            alert.addAction(ok)
-            
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    @objc
-    func adDidReward(){
-        NotificationCenter.default.removeObserver(self, name: .adDidReward, object: nil)
+    func grantAdReward(){
         availableGuess += Constants.adGrantChances
     }
 }
@@ -266,22 +255,15 @@ private extension GuessNumberViewController {
                 
                 text = NSLocalizedString("Congrats! You won!", comment: "")
             }
-            //lose
-        } else if availableGuess == 0 {
-            outOfChances()
+            // 如果沒次數，且沒廣告，則直接結束
+        } else if availableGuess == 0, GoogleRewardAdManager.shared.rewardAd == nil {
+            showLoseVCAndEndGame()
         }
         
         //speech function
         if voiceSwitch.isOn {
             let speechUtterance = AVSpeechUtterance(string: text)
             synthesizer.speak(speechUtterance)
-        }
-    }
-    func outOfChances(){
-        if GADRewardBasedVideoAd.sharedInstance().isReady, AppDelegate.internetAvailable() {
-            showRewardAdAlert()
-        } else {
-            showLoseVCAndEndGame()
         }
     }
     
@@ -374,14 +356,4 @@ private extension GuessNumberViewController {
             quizLabels[i].text = quizNumbers[i]
         }
     }
-    
-    // MARK: - Helper
-//    @objc
-//    func didLongPressInHelperView(_ sender: UILongPressGestureRecognizer) {
-//        let location = sender.location(in: sender.view)
-//
-//        if sender.state == .ended, let button = helperView.hitTest(location, with: nil) as? HelperButton {
-//            button.jumpColor()
-//        }
-//    }
 }
