@@ -97,9 +97,6 @@
 /* 3nd */
 "Successfully Restored Purchase" = "成功恢复购买";
 
-/* 2nd */
-"The ad is still loading. Please try again later." = "广告还没有读取好，请稍候试试。";
-
 /* 3nd */
 "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report." = "未知产品标识符，如果扣款已成功，请联系 Apple 寻求退款或是送出错误回报。";
 

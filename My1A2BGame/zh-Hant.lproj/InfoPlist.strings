@@ -1,3 +1,6 @@
 /* Privacy - Photo Library Additions Usage Description */
 "NSPhotoLibraryAddUsageDescription" = "將您的戰績保留下來。";
 
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "您可以啟用使用者活動追蹤，廣告供應商會為您提供客製化廣告。";
+

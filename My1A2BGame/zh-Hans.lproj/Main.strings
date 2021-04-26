@@ -7,20 +7,11 @@
 /* Class = "UILabel"; text = "?"; ObjectID = "0Sn-Em-PwS"; */
 "0Sn-Em-PwS.text" = "?";
 
-/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "2Db-gv-nBd"; */
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "2Db-gv-nBd"; */
 "2Db-gv-nBd.normalTitle" = "重置";
-
-/* Class = "UIButton"; normalTitle = "2"; ObjectID = "2mV-uq-jw7"; */
-"2mV-uq-jw7.normalTitle" = "2";
 
 /* Class = "UIButton"; normalTitle = "5"; ObjectID = "3dZ-5x-rbh"; */
 "3dZ-5x-rbh.normalTitle" = "5";
-
-/* Class = "UIButton"; normalTitle = "4"; ObjectID = "3Qq-uy-uK0"; */
-"3Qq-uy-uK0.normalTitle" = "4";
-
-/* Class = "UIButton"; normalTitle = "8"; ObjectID = "3xh-jz-igd"; */
-"3xh-jz-igd.normalTitle" = "8";
 
 /* Class = "UIButton"; normalTitle = "Restart😤"; ObjectID = "3Ys-a1-iiB"; */
 "3Ys-a1-iiB.normalTitle" = "重新开始😤";
@@ -33,12 +24,6 @@
 
 /* Class = "UILabel"; text = "4A0B!! You won!!"; ObjectID = "5JP-Bp-SdK"; */
 "5JP-Bp-SdK.text" = "4A0B！！赢了！！";
-
-/* Class = "UIButton"; normalTitle = "9"; ObjectID = "6dE-o1-lSb"; */
-"6dE-o1-lSb.normalTitle" = "9";
-
-/* Class = "UIButton"; normalTitle = "Restart😤"; ObjectID = "6my-bL-5Zc"; */
-"6my-bL-5Zc.normalTitle" = "重新开始😤";
 
 /* Class = "UILabel"; text = "In-App Purchase"; ObjectID = "7wM-BD-mSU"; */
 "7wM-BD-mSU.text" = "App内购买";
@@ -58,17 +43,8 @@
 /* Class = "UILabel"; text = "Don't give up yet!!"; ObjectID = "49P-u1-8GB"; */
 "49P-u1-8GB.text" = "请再接再厉！！";
 
-/* Class = "UIButton"; normalTitle = "0"; ObjectID = "54b-uK-JfK"; */
-"54b-uK-JfK.normalTitle" = "0";
-
-/* Class = "UIButton"; normalTitle = "Surrender😱"; ObjectID = "56D-WB-7Ah"; */
-"56D-WB-7Ah.normalTitle" = "投降😱";
-
 /* Class = "UIButton"; normalTitle = "8"; ObjectID = "76D-OP-i6a"; */
 "76D-OP-i6a.normalTitle" = "8";
-
-/* Class = "UILabel"; text = "1234 1A2B"; ObjectID = "85X-X1-u5p"; */
-"85X-X1-u5p.text" = "1234 1A2B";
 
 /* Class = "UILabel"; text = "The reward ad will only show if an ad is loaded completely."; ObjectID = "86H-J5-iKs"; */
 "86H-J5-iKs.text" = "奖励广告只会在广告读取完成时出现。";
@@ -78,12 +54,6 @@
 
 /* Class = "UILabel"; text = "?"; ObjectID = "a4T-1o-9VC"; */
 "a4T-1o-9VC.text" = "?";
-
-/* Class = "UIButton"; normalTitle = "Guess!🤓"; ObjectID = "A6A-rZ-j64"; */
-"A6A-rZ-j64.normalTitle" = "猜!🤓";
-
-/* Class = "UIButton"; normalTitle = "1"; ObjectID = "A8o-oc-10N"; */
-"A8o-oc-10N.normalTitle" = "1";
 
 /* Class = "UIButton"; normalTitle = "1"; ObjectID = "AaT-xw-1T8"; */
 "AaT-xw-1T8.normalTitle" = "1";
@@ -96,9 +66,6 @@
 
 /* Class = "UILabel"; text = "You can still guess 12 times"; ObjectID = "avR-el-Tm4"; */
 "avR-el-Tm4.text" = "还剩 12 次";
-
-/* Class = "UIButton"; normalTitle = "5"; ObjectID = "B4b-89-9qU"; */
-"B4b-89-9qU.normalTitle" = "5";
 
 /* Class = "UIButton"; normalTitle = "8"; ObjectID = "bDi-2d-lXP"; */
 "bDi-2d-lXP.normalTitle" = "8";
@@ -118,41 +85,20 @@
 /* Class = "UIButton"; normalTitle = "2"; ObjectID = "CK1-M5-oMU"; */
 "CK1-M5-oMU.normalTitle" = "2";
 
-/* Class = "UIButton"; normalTitle = "2"; ObjectID = "CNd-rw-WBy"; */
-"CNd-rw-WBy.normalTitle" = "2";
-
 /* Class = "UILabel"; text = "Rate the App"; ObjectID = "cp8-Nm-8Ib"; */
 "cp8-Nm-8Ib.text" = "帮App评分";
-
-/* Class = "UILabel"; text = "?"; ObjectID = "CUt-BM-3hJ"; */
-"CUt-BM-3hJ.text" = "?";
-
-/* Class = "UIButton"; normalTitle = "7"; ObjectID = "cYx-W3-mlE"; */
-"cYx-W3-mlE.normalTitle" = "7";
-
-/* Class = "UIButton"; normalTitle = "3"; ObjectID = "d3I-qo-diw"; */
-"d3I-qo-diw.normalTitle" = "3";
 
 /* Class = "UINavigationItem"; title = "Enter Numbers"; ObjectID = "d3z-Cj-hbD"; */
 "d3z-Cj-hbD.title" = "输入数字";
 
-/* Class = "UIButton"; normalTitle = "5"; ObjectID = "DcE-eK-WKA"; */
-"DcE-eK-WKA.normalTitle" = "5";
-
 /* Class = "UILabel"; text = "1234 1A2B"; ObjectID = "dN8-cC-4PX"; */
 "dN8-cC-4PX.text" = "1234 1A2B";
-
-/* Class = "UIButton"; normalTitle = "7"; ObjectID = "Do4-gd-Elx"; */
-"Do4-gd-Elx.normalTitle" = "7";
 
 /* Class = "UIButton"; normalTitle = "7"; ObjectID = "Dwd-Rh-Mb5"; */
 "Dwd-Rh-Mb5.normalTitle" = "7";
 
 /* Class = "UILabel"; text = "GUESS HISTORY"; ObjectID = "dyv-fX-dcH"; */
 "dyv-fX-dcH.text" = "猜测纪录";
-
-/* Class = "UIButton"; normalTitle = "4"; ObjectID = "dZb-fT-jcM"; */
-"dZb-fT-jcM.normalTitle" = "4";
 
 /* Class = "UILabel"; text = "?"; ObjectID = "dzf-pX-Y7f"; */
 "dzf-pX-Y7f.text" = "?";
@@ -190,14 +136,8 @@
 /* Class = "UINavigationItem"; title = "Top 10"; ObjectID = "fVb-2i-psM"; */
 "fVb-2i-psM.title" = "Top 10";
 
-/* Class = "UINavigationItem"; title = "1A2B Advanced"; ObjectID = "fZE-kV-q3n"; */
-"fZE-kV-q3n.title" = "1A2B 进阶";
-
 /* Class = "UILabel"; text = "?"; ObjectID = "Gix-Es-pAs"; */
 "Gix-Es-pAs.text" = "?";
-
-/* Class = "UIButton"; normalTitle = "Surrender😱"; ObjectID = "GMN-EJ-Wmi"; */
-"GMN-EJ-Wmi.normalTitle" = "投降😱";
 
 /* Class = "UILabel"; text = "Price"; ObjectID = "gMu-ru-GJc"; */
 "gMu-ru-GJc.text" = "价格";
@@ -217,9 +157,6 @@
 /* Class = "UILabel"; text = "0"; ObjectID = "Hdd-q9-4TI"; */
 "Hdd-q9-4TI.text" = "0";
 
-/* Class = "UILabel"; text = "HELPER"; ObjectID = "Hdx-DY-fbW"; */
-"Hdx-DY-fbW.text" = "小帮手";
-
 /* Class = "UIButton"; normalTitle = "Guess!🤓"; ObjectID = "HIn-FH-kP0"; */
 "HIn-FH-kP0.normalTitle" = "猜!🤓";
 
@@ -238,20 +175,11 @@
 /* Class = "UITabBarItem"; title = "Advanced"; ObjectID = "iqb-H0-j4L"; */
 "iqb-H0-j4L.title" = "进阶";
 
-/* Class = "UILabel"; text = "GUESS HISTORY"; ObjectID = "IuC-hB-zc8"; */
-"IuC-hB-zc8.text" = "猜测纪录";
-
 /* Class = "UIButton"; normalTitle = "0"; ObjectID = "IYw-4d-qiM"; */
 "IYw-4d-qiM.normalTitle" = "0";
 
 /* Class = "UIButton"; normalTitle = "7"; ObjectID = "JF6-uO-2iG"; */
 "JF6-uO-2iG.normalTitle" = "7";
-
-/* Class = "UILabel"; text = "?"; ObjectID = "jG2-BO-uXN"; */
-"jG2-BO-uXN.text" = "?";
-
-/* Class = "UILabel"; text = "HELPER"; ObjectID = "Jop-ex-oBn"; */
-"Jop-ex-oBn.text" = "小帮手";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "JoW-Fy-jPB"; */
 "JoW-Fy-jPB.text" = "0";
@@ -259,14 +187,8 @@
 /* Class = "UINavigationItem"; title = "1A2B"; ObjectID = "jPu-69-l0a"; */
 "jPu-69-l0a.title" = "1A2B";
 
-/* Class = "UILabel"; text = "GUESS HISTORY"; ObjectID = "kXZ-J8-qF2"; */
-"kXZ-J8-qF2.text" = "猜测纪录";
-
 /* Class = "UIButton"; normalTitle = "7"; ObjectID = "LEc-b5-Wi6"; */
 "LEc-b5-Wi6.normalTitle" = "7";
-
-/* Class = "UILabel"; text = "?"; ObjectID = "LFj-LX-6tw"; */
-"LFj-LX-6tw.text" = "?";
 
 /* Class = "UILabel"; text = "?"; ObjectID = "Liw-qK-Red"; */
 "Liw-qK-Red.text" = "?";
@@ -286,9 +208,6 @@
 /* Class = "UILabel"; text = "0"; ObjectID = "MJZ-3G-cjA"; */
 "MJZ-3G-cjA.text" = "0";
 
-/* Class = "UILabel"; text = "?"; ObjectID = "MOe-VL-ATY"; */
-"MOe-VL-ATY.text" = "?";
-
 /* Class = "UILabel"; text = "Bug Report or FeedBack"; ObjectID = "n8h-76-Rzy"; */
 "n8h-76-Rzy.text" = "问题回报及建议";
 
@@ -301,9 +220,6 @@
 /* Class = "UIButton"; normalTitle = "CLEAR"; ObjectID = "O2I-5T-J6b"; */
 "O2I-5T-J6b.normalTitle" = "清除";
 
-/* Class = "UILabel"; text = "?"; ObjectID = "O86-fw-beZ"; */
-"O86-fw-beZ.text" = "?";
-
 /* Class = "UIButton"; normalTitle = "3"; ObjectID = "Oka-eP-ZZT"; */
 "Oka-eP-ZZT.normalTitle" = "3";
 
@@ -313,20 +229,14 @@
 /* Class = "UIButton"; normalTitle = "6"; ObjectID = "Oo7-dM-aFU"; */
 "Oo7-dM-aFU.normalTitle" = "6";
 
-/* Class = "UIButton"; normalTitle = "Guess!🤓"; ObjectID = "oS3-fo-E9s"; */
-"oS3-fo-E9s.normalTitle" = "猜!🤓";
-
 /* Class = "UILabel"; text = "😢"; ObjectID = "p4r-pf-iXz"; */
 "p4r-pf-iXz.text" = "😢";
 
-/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "PIM-Qt-nCp"; */
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "PIM-Qt-nCp"; */
 "PIM-Qt-nCp.normalTitle" = "重置";
 
 /* Class = "UILabel"; text = "You lost..."; ObjectID = "pnV-dJ-LCL"; */
 "pnV-dJ-LCL.text" = "输...输了？";
-
-/* Class = "UILabel"; text = "You can still guess 12 times"; ObjectID = "pPz-kS-zAF"; */
-"pPz-kS-zAF.text" = "还剩 12 次";
 
 /* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "PTF-LL-UwS"; */
 "PTF-LL-UwS.normalTitle" = "确认";
@@ -340,17 +250,11 @@
 /* Class = "UILabel"; text = "Q & A"; ObjectID = "qdz-rC-63K"; */
 "qdz-rC-63K.text" = "Q & A";
 
-/* Class = "UILabel"; text = "?"; ObjectID = "QGf-1K-SAt"; */
-"QGf-1K-SAt.text" = "?";
-
 /* Class = "UIButton"; normalTitle = "5"; ObjectID = "QOR-fc-8ad"; */
 "QOR-fc-8ad.normalTitle" = "5";
 
 /* Class = "UIButton"; normalTitle = "2"; ObjectID = "QqI-aj-vmC"; */
 "QqI-aj-vmC.normalTitle" = "2";
-
-/* Class = "UIButton"; normalTitle = "1"; ObjectID = "RGM-ma-YWK"; */
-"RGM-ma-YWK.normalTitle" = "1";
 
 /* Class = "UIButton"; normalTitle = "Guess!🤓"; ObjectID = "rH4-BG-UhO"; */
 "rH4-BG-UhO.normalTitle" = "猜!🤓";
@@ -361,17 +265,8 @@
 /* Class = "UILabel"; text = "HELPER"; ObjectID = "sCL-5B-YYt"; */
 "sCL-5B-YYt.text" = "小帮手";
 
-/* Class = "UINavigationItem"; title = "1A2B"; ObjectID = "sdu-hz-xNl"; */
-"sdu-hz-xNl.title" = "1A2B";
-
 /* Class = "UIBarButtonItem"; title = "Restore"; ObjectID = "sev-wD-Rnu"; */
 "sev-wD-Rnu.title" = "恢复购买";
-
-/* Class = "UILabel"; text = "?"; ObjectID = "sFo-I6-AGN"; */
-"sFo-I6-AGN.text" = "?";
-
-/* Class = "UIButton"; normalTitle = "3"; ObjectID = "SKO-ki-v4K"; */
-"SKO-ki-v4K.normalTitle" = "3";
 
 /* Class = "UILabel"; text = "?"; ObjectID = "SLb-fZ-Vf5"; */
 "SLb-fZ-Vf5.text" = "?";
@@ -384,12 +279,6 @@
 
 /* Class = "UINavigationItem"; title = "Enter Numbers"; ObjectID = "Szy-nw-ONA"; */
 "Szy-nw-ONA.title" = "输入数字";
-
-/* Class = "UILabel"; text = "You can still guess 12 times"; ObjectID = "tbN-dj-bwZ"; */
-"tbN-dj-bwZ.text" = "还剩 12 次";
-
-/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "tej-QP-PZD"; */
-"tej-QP-PZD.normalTitle" = "重置";
 
 /* Class = "UIButton"; normalTitle = "3"; ObjectID = "teY-tV-GBJ"; */
 "teY-tV-GBJ.normalTitle" = "3";
@@ -412,9 +301,6 @@
 /* Class = "UILabel"; text = "SPENT TIME"; ObjectID = "uBu-cm-ciS"; */
 "uBu-cm-ciS.text" = "游戏时间";
 
-/* Class = "UILabel"; text = "1234 1A2B"; ObjectID = "uFi-sk-oXB"; */
-"uFi-sk-oXB.text" = "1234 1A2B";
-
 /* Class = "UIButton"; normalTitle = "Surrender😱"; ObjectID = "uLE-TA-jH8"; */
 "uLE-TA-jH8.normalTitle" = "投降😱";
 
@@ -427,17 +313,8 @@
 /* Class = "UIButton"; normalTitle = "7"; ObjectID = "uTF-JL-bSh"; */
 "uTF-JL-bSh.normalTitle" = "7";
 
-/* Class = "UIButton"; normalTitle = "0"; ObjectID = "V6b-NU-7wI"; */
-"V6b-NU-7wI.normalTitle" = "0";
-
-/* Class = "UILabel"; text = "?"; ObjectID = "V8V-hW-eK6"; */
-"V8V-hW-eK6.text" = "?";
-
 /* Class = "UIButton"; normalTitle = "5"; ObjectID = "vby-zM-swO"; */
 "vby-zM-swO.normalTitle" = "5";
-
-/* Class = "UIButton"; normalTitle = "9"; ObjectID = "ve0-8L-f7V"; */
-"ve0-8L-f7V.normalTitle" = "9";
 
 /* Class = "UIButton"; normalTitle = "9"; ObjectID = "vfN-eg-FwJ"; */
 "vfN-eg-FwJ.normalTitle" = "9";
@@ -448,20 +325,11 @@
 /* Class = "UIButton"; normalTitle = "9"; ObjectID = "Vis-fh-uy0"; */
 "Vis-fh-uy0.normalTitle" = "9";
 
-/* Class = "UIButton"; normalTitle = "6"; ObjectID = "vyo-WZ-d3E"; */
-"vyo-WZ-d3E.normalTitle" = "6";
-
-/* Class = "UIButton"; normalTitle = "8"; ObjectID = "wb1-ia-wps"; */
-"wb1-ia-wps.normalTitle" = "8";
-
 /* Class = "UILabel"; text = "Tell Friends"; ObjectID = "WBQ-AE-nwJ"; */
 "WBQ-AE-nwJ.text" = "推荐给朋友";
 
 /* Class = "UIButton"; normalTitle = "8"; ObjectID = "Wn1-X5-dIs"; */
 "Wn1-X5-dIs.normalTitle" = "8";
-
-/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "wT5-Uo-yqh"; */
-"wT5-Uo-yqh.normalTitle" = "重置";
 
 /* Class = "UILabel"; text = "_"; ObjectID = "x3E-LK-BQJ"; */
 "x3E-LK-BQJ.text" = "_";
@@ -475,20 +343,11 @@
 /* Class = "UILabel"; text = "GUESSES"; ObjectID = "Y5e-Us-4Dm"; */
 "Y5e-Us-4Dm.text" = "猜测次数";
 
-/* Class = "UIButton"; normalTitle = "6"; ObjectID = "yGc-1Q-Tmx"; */
-"yGc-1Q-Tmx.normalTitle" = "6";
-
 /* Class = "UILabel"; text = "?"; ObjectID = "yrZ-cz-D9O"; */
 "yrZ-cz-D9O.text" = "?";
 
-/* Class = "UILabel"; text = "?"; ObjectID = "yTA-6N-zHg"; */
-"yTA-6N-zHg.text" = "?";
-
 /* Class = "UILabel"; text = "_"; ObjectID = "YyP-kf-8Uq"; */
 "YyP-kf-8Uq.text" = "_";
-
-/* Class = "UIButton"; normalTitle = "Restart😤"; ObjectID = "Z2n-yZ-M8U"; */
-"Z2n-yZ-M8U.normalTitle" = "重新开始😤";
 
 /* Class = "UIButton"; normalTitle = "1"; ObjectID = "zAM-lO-Hog"; */
 "zAM-lO-Hog.normalTitle" = "1";
