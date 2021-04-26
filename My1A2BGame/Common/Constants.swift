@@ -10,7 +10,7 @@ import Foundation
 
 enum Constants {
     #if DEBUG
-    static let maxPlayChances = 1
+    static let maxPlayChances = 10
     static let maxPlayChancesAdvanced = 1
     static let adGrantChances = 1
 

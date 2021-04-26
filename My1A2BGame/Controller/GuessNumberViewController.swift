@@ -65,6 +65,9 @@ class GuessNumberViewController: UIViewController {
         return nav
     }()
     
+    // 觸覺回饋
+    var feedbackGenerator: UINotificationFeedbackGenerator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -129,6 +132,10 @@ class GuessNumberViewController: UIViewController {
         } else {
             self.present(navNumberPadVC, animated: true, completion: nil)
         }
+        
+        feedbackGenerator = .init()
+        feedbackGenerator?.prepare()
+        
         return
     }
     
@@ -244,6 +251,8 @@ private extension GuessNumberViewController {
         
         //win
         if numberOfAs == digitCount {
+            feedbackGenerator?.notificationOccurred(.success)
+            feedbackGenerator = nil
             
             if let controller = storyboard?.instantiateViewController(withIdentifier: String(describing: WinViewController.self)) as? WinViewController
             {
@@ -255,9 +264,14 @@ private extension GuessNumberViewController {
                 
                 text = NSLocalizedString("Congrats! You won!", comment: "")
             }
+        } else {
+            feedbackGenerator?.notificationOccurred(.error)
+            feedbackGenerator = nil
+            
             // 如果沒次數，且沒廣告，則直接結束
-        } else if availableGuess == 0, GoogleRewardAdManager.shared.rewardAd == nil {
-            showLoseVCAndEndGame()
+            if availableGuess == 0, GoogleRewardAdManager.shared.rewardAd == nil {
+                showLoseVCAndEndGame()
+            }
         }
         
         //speech function
