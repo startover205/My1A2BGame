@@ -23,6 +23,7 @@
 		C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */; };
 		C03AF2D6233121210032F9DA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D5233121210032F9DA /* AlertManager.swift */; };
 		C03AF2D92331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D72331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld */; };
+		C05E6E5F2636AB8400CF87E0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C05E6E5E2636AB8400CF87E0 /* .gitignore */; };
 		C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07575FF224A015E007A1F9E /* Model.xcdatamodeld */; };
 		C0757605224A14F7007A1F9E /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757604224A14F7007A1F9E /* RankTableViewCell.swift */; };
 		C0757607224A1542007A1F9E /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757606224A1542007A1F9E /* RankViewController.swift */; };
@@ -87,6 +88,7 @@
 		C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		C03AF2D5233121210032F9DA /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		C03AF2D82331D7DB0032F9DA /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
+		C05E6E5E2636AB8400CF87E0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C0757600224A015E007A1F9E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C0757604224A14F7007A1F9E /* RankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
 		C0757606224A1542007A1F9E /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		C014619220BE6BD20023EEB6 = {
 			isa = PBXGroup;
 			children = (
+				C05E6E5E2636AB8400CF87E0 /* .gitignore */,
 				C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */,
 				C014619D20BE6BD20023EEB6 /* My1A2BGame */,
 				C07D1A6123BCDAEE00197857 /* My1A2BGameTests */,
@@ -418,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C05E6E5F2636AB8400CF87E0 /* .gitignore in Resources */,
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
 				C0ED626D2265B00100892A80 /* AlertAdController.xib in Resources */,
@@ -720,7 +724,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = WN2BCRJWNR;
 				INFOPLIST_FILE = My1A2BGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -747,7 +751,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = WN2BCRJWNR;
 				INFOPLIST_FILE = My1A2BGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

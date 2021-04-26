@@ -8,16 +8,13 @@
 
 import GoogleMobileAds
 
-
 class GoogleRewardAdManager: NSObject {
     static let shared = GoogleRewardAdManager()
     private override init() {}
     
     private let reachability = Reachability.forInternetConnection()
     
-    private var internetAvailable: Bool {
-        Reachability.forInternetConnection().currentReachabilityStatus() != NotReachable
-    }
+    private var internetAvailable: Bool { reachability?.currentReachabilityStatus() ?? NotReachable != NotReachable }
     
     /// 避免多次 load 廣告
     private let retrieveLock = NSLock()
