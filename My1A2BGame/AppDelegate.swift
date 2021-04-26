@@ -9,6 +9,8 @@
 import UIKit
 import StoreKit
 import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 
 @UIApplicationMain
@@ -21,9 +23,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SKPaymentQueue.default().add(StoreObserver.shared)
         
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        
-        GoogleRewardAdManager.shared.begin()
+        // 設定廣告
+        if #available(iOS 14, *) {
+            // requestIDFA
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                
+                // setup ad
+                GADMobileAds.sharedInstance().start(completionHandler: nil)
+                
+                GoogleRewardAdManager.shared.begin()
+                
+            })
+        } else {
+            GADMobileAds.sharedInstance().start(completionHandler: nil)
+            
+            GoogleRewardAdManager.shared.begin()
+        }
         
         //        #if DEBUG
         //        fakeRecord()
