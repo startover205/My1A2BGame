@@ -48,6 +48,21 @@ class GuessNumberViewControllerTests: XCTestCase {
         }
     }
     
+    func test_viewWillAppear_voiceSwitchStatusAccordingToUserDefaultSetting() {
+        let vc = makeSUT()
+        UserDefaults.standard.setValue(true, forKey: UserDefaults.Key.voicePromptsSwitch)
+        
+        vc.viewWillAppear(false)
+        
+        XCTAssertEqual(vc.voiceSwitch.isOn, true)
+
+        UserDefaults.standard.setValue(false, forKey: UserDefaults.Key.voicePromptsSwitch)
+        
+        vc.viewWillAppear(false)
+
+        XCTAssertEqual(vc.voiceSwitch.isOn, false)
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
