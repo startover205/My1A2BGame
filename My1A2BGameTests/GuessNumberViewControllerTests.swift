@@ -31,13 +31,11 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_initGame_availableGuessLabelIsShowingMaxPlayChancesAndLabelColor() {
         let vc = makeSUT()
-        
-        XCTAssertEqual(vc.availableGuessLabel.textColor, UIColor.label)
-        
         let format = NSLocalizedString("You can still guess %d times", comment: "")
         let text = String.localizedStringWithFormat(format, Constants.maxPlayChances)
         
         XCTAssertEqual(vc.availableGuessLabel.text, text)
+        XCTAssertEqual(vc.availableGuessLabel.textColor, UIColor.label)
     }
     
     func test_viewWillAppear_fadeOutElmentsAreVisible() {
