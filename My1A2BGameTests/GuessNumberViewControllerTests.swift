@@ -28,7 +28,6 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         navigation.setViewControllers([vc], animated: false)
 
-
         vc.loadViewIfNeeded()
         
         XCTAssertTrue(vc.navigationController?.delegate === vc)
