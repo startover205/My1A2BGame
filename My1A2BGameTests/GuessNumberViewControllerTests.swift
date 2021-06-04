@@ -11,11 +11,7 @@ import XCTest
 
 class GuessNumberViewControllerTests: XCTestCase {
     func test_viewDidLoad_fadeOutElmentsAreOpaque() {
-        let vc = makeSUT()
-
-        vc.loadViewIfNeeded()
-        
-        vc.fadeOutElements.forEach {
+        makeSUT().fadeOutElements.forEach {
             XCTAssertTrue($0.alpha == 0)
         }
     }
@@ -35,8 +31,6 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_initGame_availableGuessLabelIsShowingMaxPlayChancesAndLabelColor() {
         let vc = makeSUT()
-        
-        vc.loadViewIfNeeded()
         
         XCTAssertEqual(vc.availableGuessLabel.textColor, UIColor.label)
         
