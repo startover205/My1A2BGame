@@ -11,9 +11,7 @@ import XCTest
 
 class GuessNumberViewControllerTests: XCTestCase {
     func test_viewDidLoad_fadeOutElmentsAreOpaque() {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let vc = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        let vc = makeSUT()
 
         vc.loadViewIfNeeded()
         
@@ -26,9 +24,7 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         let navigation = UINavigationController()
         
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let vc = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        let vc = makeSUT()
         
         navigation.setViewControllers([vc], animated: false)
 
@@ -36,5 +32,13 @@ class GuessNumberViewControllerTests: XCTestCase {
         vc.loadViewIfNeeded()
         
         XCTAssertTrue(vc.navigationController?.delegate === vc)
+    }
+    
+    // MARK: - Helpers
+    func makeSUT() -> GuessNumberViewController {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let vc = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        return vc
     }
 }
