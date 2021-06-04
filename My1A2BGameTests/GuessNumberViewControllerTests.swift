@@ -10,7 +10,7 @@ import XCTest
 @testable import My1A2BGame
 
 class GuessNumberViewControllerTests: XCTestCase {
-    func test_load_fadeOutElmentsAreOpaque() {
+    func test_viewDidLoad_fadeOutElmentsAreOpaque() {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         let vc = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
@@ -22,7 +22,7 @@ class GuessNumberViewControllerTests: XCTestCase {
         }
     }
     
-    func test_load_navigiationControllerDelegateIsSelf() {
+    func test_viewDidLoad_navigiationControllerDelegateIsSelf() {
         
         let navigation = UINavigationController()
         
