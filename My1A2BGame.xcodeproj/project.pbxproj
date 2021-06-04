@@ -18,6 +18,7 @@
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 		C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C655A20FD849A0062FFE8 /* LoseViewController.swift */; };
+		C032E6FB266A2CAC002B8D02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A220BE6BD20023EEB6 /* Main.storyboard */; };
 		C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033873B2100200A00DF4969 /* InstructionViewController.swift */; };
 		C03AF2D1232E33AB0032F9DA /* GuessPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */; };
 		C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */; };
@@ -44,6 +45,7 @@
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
 		C0CB93AB225C90F400278B08 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB93A9225C90F400278B08 /* Reachability.m */; };
+		C0D65EC92666208C0053CDAE /* GuessNumberViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */; };
 		C0ED625F225DF63500892A80 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0ED625E225DF63500892A80 /* StoreKit.framework */; };
 		C0ED6261225EC6C000892A80 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED6260225EC6C000892A80 /* IAPTableViewController.swift */; };
 		C0ED626322602ACF00892A80 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626222602ACF00892A80 /* IAPTableViewCell.swift */; };
@@ -121,6 +123,7 @@
 		C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My1A2BGame-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0CB93A9225C90F400278B08 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		C0CB93AA225C90F400278B08 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewControllerTests.swift; sourceTree = "<group>"; };
 		C0ED625E225DF63500892A80 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C0ED6260225EC6C000892A80 /* IAPTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
 		C0ED626222602ACF00892A80 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				C07D1A6223BCDAEE00197857 /* My1A2BGameTests.swift */,
+				C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
@@ -436,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C032E6FB266A2CAC002B8D02 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +529,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0D65EC92666208C0053CDAE /* GuessNumberViewControllerTests.swift in Sources */,
 				C07D1A6323BCDAEE00197857 /* My1A2BGameTests.swift in Sources */,
 				C07D1A6A23BCDB9500197857 /* HelperButton.swift in Sources */,
 			);
