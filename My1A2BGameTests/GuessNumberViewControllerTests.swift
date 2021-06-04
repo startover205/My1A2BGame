@@ -21,4 +21,20 @@ class GuessNumberViewControllerTests: XCTestCase {
             XCTAssertTrue($0.alpha == 0)
         }
     }
+    
+    func test_load_navigiationControllerDelegateIsSelf() {
+        
+        let navigation = UINavigationController()
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let vc = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        
+        navigation.setViewControllers([vc], animated: false)
+
+
+        vc.loadViewIfNeeded()
+        
+        XCTAssertTrue(vc.navigationController?.delegate === vc)
+    }
 }
