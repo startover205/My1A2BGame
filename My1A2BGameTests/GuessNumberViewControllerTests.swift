@@ -46,6 +46,16 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertEqual(vc.availableGuessLabel.text, text)
     }
     
+    func test_viewWillAppear_fadeOutElmentsAreVisible() {
+        let vc = makeSUT()
+
+        vc.viewWillAppear(false)
+        
+        vc.fadeOutElements.forEach {
+            XCTAssertEqual($0.alpha, 1)
+        }
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
