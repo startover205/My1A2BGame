@@ -24,7 +24,7 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         let navigation = UINavigationController()
         
-        let vc = makeSUT()
+        let vc = makeSUT(loadView: false)
         
         navigation.setViewControllers([vc], animated: false)
 
@@ -48,10 +48,13 @@ class GuessNumberViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    func makeSUT() -> GuessNumberViewController {
+    func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         let vc = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        if loadView {
+            vc.loadViewIfNeeded()
+        }
         return vc
     }
 }
