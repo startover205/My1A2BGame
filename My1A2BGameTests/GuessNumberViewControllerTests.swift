@@ -123,6 +123,17 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.bool(forKey: userDefaultKey), sut.voiceSwitch.isOn)
     }
     
+    func test_matchNumbers_presentWinVCWhenCorrect() {
+        let sut = makeSUT()
+        let answers = sut.quizNumbers
+        
+        sut.tryToMatchNumbers(answerTexts: answers)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertTrue(sut.presentedViewController is WinViewController || sut.presentedViewController?.navigationController?.viewControllers.first! is WinViewController)
+        }
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
