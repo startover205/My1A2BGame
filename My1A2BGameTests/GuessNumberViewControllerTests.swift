@@ -20,57 +20,57 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         let navigation = UINavigationController()
         
-        let vc = makeSUT(loadView: false)
+        let sut = makeSUT(loadView: false)
         
-        navigation.setViewControllers([vc], animated: false)
+        navigation.setViewControllers([sut], animated: false)
 
-        vc.loadViewIfNeeded()
+        sut.loadViewIfNeeded()
         
-        XCTAssertTrue(vc.navigationController?.delegate === vc)
+        XCTAssertTrue(sut.navigationController?.delegate === sut)
     }
     
     func test_initGame_availableGuessLabelIsShowingMaxPlayChancesAndLabelColor() {
-        let vc = makeSUT()
+        let sut = makeSUT()
         let format = NSLocalizedString("You can still guess %d times", comment: "")
         let text = String.localizedStringWithFormat(format, Constants.maxPlayChances)
         
-        XCTAssertEqual(vc.availableGuessLabel.text, text)
-        XCTAssertEqual(vc.availableGuessLabel.textColor, UIColor.label)
+        XCTAssertEqual(sut.availableGuessLabel.text, text)
+        XCTAssertEqual(sut.availableGuessLabel.textColor, UIColor.label)
     }
     
     func test_viewWillAppear_fadeOutElmentsAreVisible() {
-        let vc = makeSUT()
+        let sut = makeSUT()
 
-        vc.viewWillAppear(false)
+        sut.viewWillAppear(false)
         
-        vc.fadeOutElements.forEach {
+        sut.fadeOutElements.forEach {
             XCTAssertEqual($0.alpha, 1)
         }
     }
     
     func test_viewWillAppear_voiceSwitchStatusAccordingToUserDefaultSetting() {
-        let vc = makeSUT()
+        let sut = makeSUT()
         UserDefaults.standard.setValue(true, forKey: UserDefaults.Key.voicePromptsSwitch)
         
-        vc.viewWillAppear(false)
+        sut.viewWillAppear(false)
         
-        XCTAssertEqual(vc.voiceSwitch.isOn, true)
+        XCTAssertEqual(sut.voiceSwitch.isOn, true)
 
         UserDefaults.standard.setValue(false, forKey: UserDefaults.Key.voicePromptsSwitch)
         
-        vc.viewWillAppear(false)
+        sut.viewWillAppear(false)
 
-        XCTAssertEqual(vc.voiceSwitch.isOn, false)
+        XCTAssertEqual(sut.voiceSwitch.isOn, false)
     }
     
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        let vc = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        let sut = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
         if loadView {
-            vc.loadViewIfNeeded()
+            sut.loadViewIfNeeded()
         }
-        return vc
+        return sut
     }
 }
