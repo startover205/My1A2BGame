@@ -9,17 +9,17 @@
 import UIKit
 
 public class HelperButton: UIButton {
-    enum FilterState {
+    private enum FilterState {
         case first
         case second
         case third
     }
     
-    let defaultState: FilterState = .first
+    private let defaultState: FilterState = .first
     
-    lazy var filterState: FilterState = defaultState
+    private lazy var filterState: FilterState = defaultState
     
-    var filterColor: UIColor {
+    private var filterColor: UIColor {
         switch filterState {
         case .first:
             return #colorLiteral(red: 0.5176470588, green: 0.5176470588, blue: 0.537254902, alpha: 1)
@@ -70,9 +70,4 @@ public class HelperButton: UIButton {
                       }
                backgroundColor = filterColor
     }
-}
-
-// MARK: - Private
-private extension HelperButton {
-    
 }
