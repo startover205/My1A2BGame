@@ -34,7 +34,7 @@ class GuessNumberViewController: UIViewController {
     
     private var quizNumbers = [String]()
     private var guessCount = 0
-    private var availableGuess = Constants.maxPlayChances {
+    var availableGuess = Constants.maxPlayChances {
         didSet{
             updateAvailableGuessLabel()
         }
