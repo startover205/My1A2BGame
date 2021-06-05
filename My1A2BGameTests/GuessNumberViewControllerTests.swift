@@ -147,7 +147,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_matchNumbers_doesNotPresentLoseVCWhenIncorrectWithAnotherChance() {
         let sut = makeSUT()
-        let answers = sut.quizNumbers
+        let answers = ["-1", "-1", "-1", "-1"]
         let navigation = UINavigationController()
         navigation.setViewControllers([sut], animated: false)
         
