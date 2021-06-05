@@ -123,6 +123,14 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.bool(forKey: userDefaultKey), sut.voiceSwitch.isOn)
     }
     
+    func test_initGame_availableGuessIsAtMax() {
+        let sut = makeSUT()
+        
+        sut.initGame()
+        
+        XCTAssertEqual(sut.availableGuess, Constants.maxPlayChances)
+    }
+    
     func test_matchNumbers_presentWinVCWhenCorrect() {
         let sut = makeSUT()
         let answers = sut.quizNumbers
