@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GuessPadDelegate: class {
+protocol GuessPadDelegate: AnyObject {
     func padDidFinishEntering(numberTexts: [String])
 }
 

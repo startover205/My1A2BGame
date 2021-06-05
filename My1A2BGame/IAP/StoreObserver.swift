@@ -127,7 +127,7 @@ private extension StoreObserver {
     }
 }
 
-protocol StoreObserverDelegate: class {
+protocol StoreObserverDelegate: AnyObject {
     func didPuarchaseIAP(productIdenifer: String)
     func didRestoreIAP()
 }
