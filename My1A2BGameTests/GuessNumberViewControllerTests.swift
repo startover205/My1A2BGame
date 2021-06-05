@@ -97,6 +97,17 @@ class GuessNumberViewControllerTests: XCTestCase {
         }
     }
     
+    func test_guessBtnPressed_presentNumberPanel() {
+        let sut = makeSUT()
+        
+        sut.availableGuess = 10
+        sut.guessBtnPressed(sut)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertTrue(sut.presentedViewController is GuessPadViewController || sut.presentedViewController?.navigationController?.viewControllers.first! is GuessPadViewController)
+        }
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
