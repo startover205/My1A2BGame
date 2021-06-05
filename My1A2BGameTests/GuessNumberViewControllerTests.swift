@@ -71,6 +71,22 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.helperView.isHidden)
     }
     
+    func test_helperBtnPressed_toggleHelperViewDisplay() {
+        let sut = makeSUT()
+        
+        sut.helperBtnPressed(sut)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            XCTAssertEqual(sut.helperView.isHidden, false)
+            
+            sut.helperBtnPressed(sut)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                XCTAssertEqual(sut.helperView.isHidden, true)
+            }
+        }
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
