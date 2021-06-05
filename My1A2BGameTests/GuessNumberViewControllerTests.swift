@@ -76,15 +76,19 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         sut.helperBtnPressed(sut)
         
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
+        let exp = expectation(description: "wait for animation to finish")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             XCTAssertEqual(sut.helperView.isHidden, false)
             
             sut.helperBtnPressed(sut)
             
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 XCTAssertEqual(sut.helperView.isHidden, true)
+                exp.fulfill()
             }
         }
+        
+        wait(for: [exp], timeout: 5.0)
     }
     
     func test_restart_fadeOutElementsAreOpaque() {
@@ -99,13 +103,19 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_guessBtnPressed_presentNumberPanel() {
         let sut = makeSUT()
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.makeKeyAndVisible()
+        window.rootViewController = sut
         
         sut.availableGuess = 10
         sut.guessBtnPressed(sut)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertTrue(sut.presentedViewController is GuessPadViewController || sut.presentedViewController?.navigationController?.viewControllers.first! is GuessPadViewController)
+        let exp = expectation(description: "wait for animation to finish")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            XCTAssertTrue((sut.presentedViewController as? UINavigationController)?.topViewController is GuessPadViewController)
+            exp.fulfill()
         }
+        wait(for: [exp], timeout: 5.0)
     }
     
     func test_voicePromptSwitchToggle_boundToUserDefaultsValue() {
@@ -134,12 +144,19 @@ class GuessNumberViewControllerTests: XCTestCase {
     func test_matchNumbers_presentWinVCWhenCorrect() {
         let sut = makeSUT()
         let answers = sut.quizNumbers
+        let navigation = UINavigationController()
+        navigation.setViewControllers([sut], animated: false)
         
+        sut.initGame()
         sut.tryToMatchNumbers(answerTexts: answers)
         
+        let exp = expectation(description: "wait until presentation complete")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertTrue(sut.presentedViewController is WinViewController || sut.presentedViewController?.navigationController?.viewControllers.first! is WinViewController)
+            XCTAssertTrue(navigation.topViewController is WinViewController)
+            exp.fulfill()
         }
+        
+        wait(for: [exp], timeout: 2)
     }
     
     // MARK: - Helpers
