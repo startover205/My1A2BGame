@@ -32,7 +32,7 @@ class GuessNumberViewController: UIViewController {
     @IBOutlet weak var helperView: UIView!
     @IBOutlet var helperNumberButtons: [HelperButton]!
     
-    private var quizNumbers = [String]()
+    var quizNumbers = [String]()
     private var guessCount = 0
     var availableGuess = Constants.maxPlayChances {
         didSet{
@@ -207,7 +207,7 @@ extension GuessNumberViewController: UINavigationControllerDelegate{
 }
 
 // MARK: - Private
-private extension GuessNumberViewController {
+extension GuessNumberViewController {
     
     func tryToMatchNumbers(answerTexts: [String]){
         //startCounting
