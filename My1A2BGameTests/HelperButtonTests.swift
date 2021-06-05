@@ -20,4 +20,21 @@ class HelperButtonTests: XCTestCase {
         
         XCTAssertEqual(sut.backgroundColor, defaultColor)
     }
+    
+    func test_toggleColor_changeThreeBackgroundColorsCyclically() {
+        let sut = HelperButton()
+        var buttonColors = [UIColor]()
+        buttonColors.append(sut.backgroundColor!)
+        sut.toggleColor()
+        buttonColors.append(sut.backgroundColor!)
+        sut.toggleColor()
+        buttonColors.append(sut.backgroundColor!)
+        
+        sut.toggleColor()
+        XCTAssertEqual(sut.backgroundColor, buttonColors[0])
+        sut.toggleColor()
+        XCTAssertEqual(sut.backgroundColor, buttonColors[1])
+        sut.toggleColor()
+        XCTAssertEqual(sut.backgroundColor, buttonColors[2])
+    }
 }
