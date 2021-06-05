@@ -1,5 +1,5 @@
 //
-//  HelperViewTests.swift
+//  HelperButtonTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/6/5.
@@ -9,7 +9,7 @@
 import XCTest
 import My1A2BGame
 
-class HelperViewTests: XCTestCase {
+class HelperButtonTests: XCTestCase {
     func test_reset_restoreDefaultBackgroundColor() {
         let sut = HelperButton()
         let defaultColor = sut.backgroundColor
