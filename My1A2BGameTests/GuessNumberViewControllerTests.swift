@@ -108,6 +108,21 @@ class GuessNumberViewControllerTests: XCTestCase {
         }
     }
     
+    func test_voicePromptSwitchToggle_boundToUserDefaultsValue() {
+        let sut = makeSUT()
+        let userDefaultKey = UserDefaults.Key.voicePromptsSwitch
+        UserDefaults.standard.set(true, forKey: userDefaultKey)
+        
+        sut.voiceSwitch.isOn = false
+        sut.changeVoicePromptsSwitchState(UISwitch())
+        
+        XCTAssertEqual(UserDefaults.standard.bool(forKey: userDefaultKey), sut.voiceSwitch.isOn)
+        
+        sut.voiceSwitch.isOn = true
+        sut.changeVoicePromptsSwitchState(UISwitch())
+        XCTAssertEqual(UserDefaults.standard.bool(forKey: userDefaultKey), sut.voiceSwitch.isOn)
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
