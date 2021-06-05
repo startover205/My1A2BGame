@@ -174,6 +174,18 @@ class GuessNumberViewControllerTests: XCTestCase {
         }, after: 1.0)
     }
     
+    func test_changeAvailableGuess_updateAvailableGuessLabelAccordingly() {
+        let sut = makeSUT()
+        
+        sut.availableGuess = 2
+        
+        XCTAssertEqual(sut.availableGuessLabel.text?.contains(sut.availableGuess.description), true)
+        
+        sut.availableGuess = 5
+        
+        XCTAssertEqual(sut.availableGuessLabel.text?.contains(sut.availableGuess.description), true)
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
