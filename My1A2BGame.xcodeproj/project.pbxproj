@@ -19,6 +19,7 @@
 		C02B46DE20BF8BCA0097197F /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B46DD20BF8BCA0097197F /* WinViewController.swift */; };
 		C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C655A20FD849A0062FFE8 /* LoseViewController.swift */; };
 		C032E6FB266A2CAC002B8D02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A220BE6BD20023EEB6 /* Main.storyboard */; };
+		C032E6FD266B7134002B8D02 /* HelperViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E6FC266B7134002B8D02 /* HelperViewTests.swift */; };
 		C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033873B2100200A00DF4969 /* InstructionViewController.swift */; };
 		C03AF2D1232E33AB0032F9DA /* GuessPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */; };
 		C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */; };
@@ -85,6 +86,7 @@
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
 		C02B46DD20BF8BCA0097197F /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C02C655A20FD849A0062FFE8 /* LoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
+		C032E6FC266B7134002B8D02 /* HelperViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewTests.swift; sourceTree = "<group>"; };
 		C033873B2100200A00DF4969 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessPadViewController.swift; sourceTree = "<group>"; };
 		C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			children = (
 				C07D1A6223BCDAEE00197857 /* My1A2BGameTests.swift */,
 				C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */,
+				C032E6FC266B7134002B8D02 /* HelperViewTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
@@ -531,6 +534,7 @@
 			files = (
 				C0D65EC92666208C0053CDAE /* GuessNumberViewControllerTests.swift in Sources */,
 				C07D1A6323BCDAEE00197857 /* My1A2BGameTests.swift in Sources */,
+				C032E6FD266B7134002B8D02 /* HelperViewTests.swift in Sources */,
 				C07D1A6A23BCDB9500197857 /* HelperButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
