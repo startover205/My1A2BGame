@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HelperButton: UIButton {
+public class HelperButton: UIButton {
     enum FilterState {
         case first
         case second
@@ -30,12 +30,24 @@ class HelperButton: UIButton {
         }
     }
     
-    func reset(){
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = filterColor
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        self.backgroundColor = filterColor
+    }
+    
+    public func reset() {
         filterState = defaultState
         backgroundColor = filterColor
     }
     
-    func toggleColor(){
+    public func toggleColor() {
         switch filterState {
                case .first:
                 filterState = .second
@@ -47,7 +59,7 @@ class HelperButton: UIButton {
         backgroundColor = filterColor
     }
     
-    func jumpColor(){
+    public func jumpColor() {
         switch filterState {
                       case .first:
                        filterState = .third

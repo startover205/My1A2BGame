@@ -7,6 +7,17 @@
 //
 
 import XCTest
+import My1A2BGame
 
 class HelperViewTests: XCTestCase {
+    func test_reset_restoreDefaultBackgroundColor() {
+        let sut = HelperButton()
+        let defaultColor = sut.backgroundColor
+        let newColor: UIColor = defaultColor == .red ? .blue : .red
+        sut.backgroundColor = newColor
+        
+        sut.reset()
+        
+        XCTAssertEqual(sut.backgroundColor, defaultColor)
+    }
 }
