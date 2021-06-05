@@ -20,6 +20,7 @@
 		C02C655B20FD849A0062FFE8 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C655A20FD849A0062FFE8 /* LoseViewController.swift */; };
 		C032E6FB266A2CAC002B8D02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A220BE6BD20023EEB6 /* Main.storyboard */; };
 		C032E6FD266B7134002B8D02 /* HelperViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E6FC266B7134002B8D02 /* HelperViewTests.swift */; };
+		C032E6FE266B7231002B8D02 /* HelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08F2FB12332168000320990 /* HelperButton.swift */; };
 		C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033873B2100200A00DF4969 /* InstructionViewController.swift */; };
 		C03AF2D1232E33AB0032F9DA /* GuessPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */; };
 		C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */; };
@@ -33,15 +34,12 @@
 		C075760C224B0C81007A1F9E /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760B224B0C81007A1F9E /* String+Localization.swift */; };
 		C075760F224C7A7D007A1F9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760E224C7A7D007A1F9E /* Global.swift */; };
 		C075762922535FAC007A1F9E /* AlertAdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075762722535FAC007A1F9E /* AlertAdController.swift */; };
-		C07D1A6323BCDAEE00197857 /* My1A2BGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07D1A6223BCDAEE00197857 /* My1A2BGameTests.swift */; };
-		C07D1A6A23BCDB9500197857 /* HelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08F2FB12332168000320990 /* HelperButton.swift */; };
 		C085BE6A2254974700320563 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* Constants.swift */; };
 		C085BE6F2255127300320563 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE6E2255127300320563 /* Notification+Name.swift */; };
 		C085BE77225701D000320563 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE75225701D000320563 /* SettingsTableViewController.swift */; };
 		C085BE78225701D000320563 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE76225701D000320563 /* QuestionsTableViewController.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C085BE7C2257566F00320563 /* CustomTransitionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE7B2257566F00320563 /* CustomTransitionTabBarController.swift */; };
-		C08F2FB22332168000320990 /* HelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08F2FB12332168000320990 /* HelperButton.swift */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
@@ -101,7 +99,6 @@
 		C075760E224C7A7D007A1F9E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		C075762722535FAC007A1F9E /* AlertAdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdController.swift; sourceTree = "<group>"; };
 		C07D1A6023BCDAEE00197857 /* My1A2BGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C07D1A6223BCDAEE00197857 /* My1A2BGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My1A2BGameTests.swift; sourceTree = "<group>"; };
 		C07D1A6423BCDAEE00197857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C085BE692254974700320563 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C085BE6E2255127300320563 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
@@ -298,7 +295,6 @@
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
 			isa = PBXGroup;
 			children = (
-				C07D1A6223BCDAEE00197857 /* My1A2BGameTests.swift */,
 				C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */,
 				C032E6FC266B7134002B8D02 /* HelperViewTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
@@ -505,7 +501,6 @@
 				C033873C2100200A00DF4969 /* InstructionViewController.swift in Sources */,
 				C03AF2D6233121210032F9DA /* AlertManager.swift in Sources */,
 				C085BE78225701D000320563 /* QuestionsTableViewController.swift in Sources */,
-				C08F2FB22332168000320990 /* HelperButton.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0ED626322602ACF00892A80 /* IAPTableViewCell.swift in Sources */,
 				C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */,
@@ -522,6 +517,7 @@
 				C03AF2D1232E33AB0032F9DA /* GuessPadViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
 				C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */,
+				C032E6FE266B7231002B8D02 /* HelperButton.swift in Sources */,
 				C0ED6261225EC6C000892A80 /* IAPTableViewController.swift in Sources */,
 				C0196E94261BFA6E007D936C /* AlertAdCountdownControlller.swift in Sources */,
 				C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */,
@@ -533,9 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D65EC92666208C0053CDAE /* GuessNumberViewControllerTests.swift in Sources */,
-				C07D1A6323BCDAEE00197857 /* My1A2BGameTests.swift in Sources */,
 				C032E6FD266B7134002B8D02 /* HelperViewTests.swift in Sources */,
-				C07D1A6A23BCDB9500197857 /* HelperButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
