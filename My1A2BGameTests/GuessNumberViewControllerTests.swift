@@ -76,19 +76,12 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         sut.helperBtnPressed(sut)
         
-        let exp = expectation(description: "wait for animation to finish")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            XCTAssertEqual(sut.helperView.isHidden, false)
-            
-            sut.helperBtnPressed(sut)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                XCTAssertEqual(sut.helperView.isHidden, true)
-                exp.fulfill()
-            }
-        }
+        XCTAssertEqual(sut.helperView.isHidden, false)
         
-        wait(for: [exp], timeout: 5.0)
+        sut.helperBtnPressed(sut)
+        expect({
+            XCTAssertEqual(sut.helperView.isHidden, true)
+        }, after: 1.0)
     }
     
     func test_restart_fadeOutElementsAreOpaque() {
@@ -110,12 +103,9 @@ class GuessNumberViewControllerTests: XCTestCase {
         sut.availableGuess = 10
         sut.guessBtnPressed(sut)
         
-        let exp = expectation(description: "wait for animation to finish")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        expect({
             XCTAssertTrue((sut.presentedViewController as? UINavigationController)?.topViewController is GuessPadViewController)
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 5.0)
+        }, after: 2.0)
     }
     
     func test_voicePromptSwitchToggle_boundToUserDefaultsValue() {
@@ -150,13 +140,9 @@ class GuessNumberViewControllerTests: XCTestCase {
         sut.initGame()
         sut.tryToMatchNumbers(answerTexts: answers)
         
-        let exp = expectation(description: "wait until presentation complete")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        expect({
             XCTAssertTrue(navigation.topViewController is WinViewController)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 2)
+        }, after: 1.0)
     }
     
     // MARK: - Helpers
@@ -168,5 +154,15 @@ class GuessNumberViewControllerTests: XCTestCase {
             sut.loadViewIfNeeded()
         }
         return sut
+    }
+    
+    func expect(_ completion: @escaping () -> Void, after seconds: TimeInterval) {
+        let exp = expectation(description: "wait until presentation/animation complete")
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: seconds + 1.0)
     }
 }
