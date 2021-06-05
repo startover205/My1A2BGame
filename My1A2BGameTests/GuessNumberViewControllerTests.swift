@@ -159,6 +159,21 @@ class GuessNumberViewControllerTests: XCTestCase {
         }, after: 1.0)
     }
     
+    func test_matchNumbers_presentLoseVCWhenIncorrectWithOneLastChance() {
+        let sut = makeSUT()
+        let answers = ["-1", "-1", "-1", "-1"]
+        let navigation = UINavigationController()
+        navigation.setViewControllers([sut], animated: false)
+        sut.initGame()
+        sut.availableGuess = 1
+        
+        sut.tryToMatchNumbers(answerTexts: answers)
+        
+        expect({
+            XCTAssertTrue(navigation.topViewController is LoseViewController)
+        }, after: 1.0)
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
