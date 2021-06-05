@@ -63,6 +63,14 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.voiceSwitch.isOn, false)
     }
     
+    func test_viewDidLoad_helperViewHidden() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.helperView.isHidden)
+    }
+    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
