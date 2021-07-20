@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        fakeRecord()
         //        #endif
         
+        window = UIWindow()
         configureWindow()
         
         return true
@@ -77,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
         
         tabVC.setViewControllers([basicGameNav, advancedGameNav, rankNav, moreNav], animated: false)
-        window = UIWindow()
+//        window = UIWindow()
         window?.rootViewController = tabVC
         
         window?.makeKeyAndVisible()
