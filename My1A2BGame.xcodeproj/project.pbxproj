@@ -13,6 +13,7 @@
 		C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */; };
 		C0196E94261BFA6E007D936C /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E93261BFA6E007D936C /* AlertAdCountdownControlller.swift */; };
 		C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */; };
+		C01BC5BA26A6A15F00FA0636 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
@@ -87,6 +88,7 @@
 		C016F32F22FEB0B900918B8D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0196E93261BFA6E007D936C /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
 		C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdManager.swift; sourceTree = "<group>"; };
+		C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */,
+				C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
 				C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
@@ -599,6 +602,7 @@
 				C0D65EC92666208C0053CDAE /* GuessNumberViewControllerTests.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
 				C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */,
+				C01BC5BA26A6A15F00FA0636 /* MastermindEvaluatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
