@@ -14,6 +14,7 @@
 		C0196E94261BFA6E007D936C /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E93261BFA6E007D936C /* AlertAdCountdownControlller.swift */; };
 		C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */; };
 		C01BC5BA26A6A15F00FA0636 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */; };
+		C01BC5BC26A6B65A00FA0636 /* MastermindEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
@@ -88,6 +89,7 @@
 		C0196E93261BFA6E007D936C /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
 		C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdManager.swift; sourceTree = "<group>"; };
 		C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
+		C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluator.swift; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		C01BC5BD26A6B66200FA0636 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		C03AF2D42331211B0032F9DA /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				C0757608224A1C32007A1F9E /* CoreDataManager.swift */,
+				C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -314,8 +325,8 @@
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
 			isa = PBXGroup;
 			children = (
+				C01BC5BD26A6B66200FA0636 /* API */,
 				C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */,
-				C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
 				C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
@@ -545,6 +556,7 @@
 				C0757605224A14F7007A1F9E /* RankTableViewCell.swift in Sources */,
 				C085BE77225701D000320563 /* SettingsTableViewController.swift in Sources */,
 				C03AF2D92331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld in Sources */,
+				C01BC5BC26A6B65A00FA0636 /* MastermindEvaluator.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */,
 				C085BE7C2257566F00320563 /* CustomTransitionTabBarController.swift in Sources */,
