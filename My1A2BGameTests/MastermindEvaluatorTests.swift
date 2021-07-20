@@ -22,18 +22,13 @@ public final class MastermindEvaluator {
 
 
 class MastermindEvaluatorTests: XCTestCase {
-    func test_evaluate_throwsLengthMismatchErrorOnMismatchLengthInputs() {
+    func test_evaluate_throwsErrorOnMismatchLengthInputs() {
         let guess = [1, 2, 3, 4]
         let answer = [1, 2, 3, 4, 5]
 
-        var capturedError: Error?
-        do {
-            _ = try MastermindEvaluator.evaluate(guess, with: answer)
-        } catch {
-            capturedError = error
-        }
-
-        XCTAssertEqual(capturedError as NSError?, lengthMismatch())
+        XCTAssertThrowsError(
+            try MastermindEvaluator.evaluate(guess, with: answer)
+        )
     }
     
     func test_evaluate_returnsZeroMisplacedCountOnCorrectGuess() throws {
