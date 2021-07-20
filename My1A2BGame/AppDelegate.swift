@@ -44,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        fakeRecord()
         //        #endif
         
+        configureWindow()
+        
         return true
     }
     
@@ -65,6 +67,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         SKPaymentQueue.default().remove(StoreObserver.shared)
+    }
+    
+    func configureWindow() {
+        let tabVC = UITabBarController()
+        let basicGameNav = UINavigationController(rootViewController: makeBasicVC())
+        let advancedGameNav = UINavigationController(rootViewController: makeAdvancedVC())
+        let rankNav = UINavigationController(rootViewController: makeRankVC())
+        let moreNav = UINavigationController(rootViewController: makeMoreVC())
+        
+        tabVC.setViewControllers([basicGameNav, advancedGameNav, rankNav, moreNav], animated: false)
+        window = UIWindow()
+        window?.rootViewController = tabVC
+        
+        window?.makeKeyAndVisible()
+    }
+    
+    private func makeBasicVC() -> UIViewController {
+        let vc = UIStoryboard(name: "Main", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController")
+        vc.title = "Basic"
+        return vc
+    }
+    
+    private func makeAdvancedVC() -> UIViewController {
+        let vc = UIStoryboard(name: "Main", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessAdvancedViewController")
+        vc.title = "Advanced"
+        return vc
+    }
+    
+    private func makeRankVC() -> UIViewController {
+        let vc = UIStoryboard(name: "Main", bundle: .init(for: RankViewController.self)).instantiateViewController(withIdentifier: "RankViewController")
+        vc.title = "Rank"
+        return vc
+    }
+    
+    private func makeMoreVC() -> UIViewController {
+        let vc = UIStoryboard(name: "Main", bundle: .init(for: SettingsTableViewController.self)).instantiateViewController(withIdentifier: "SettingsTableViewController")
+        vc.title = "More"
+        return vc
     }
 }
 
