@@ -100,6 +100,21 @@ class MastermindEvaluatorTests: XCTestCase {
         }
     }
     
+    func test_evaluate_returnsExpectedCountsOnPartiallyCorrectGuesses() throws {
+        let guesses = [[1, 2, 3, 4], [3, 5, 6, 7, 2],  [3, 5, 6, 7, 2]]
+        let answers = [[5, 4, 7, 0], [1, 8, 6, 9, 0],  [5, 7, 6, 8, 0]]
+        let expectedCorrectCounts = [0, 1, 1]
+        let expectedMisplacedCounts = [1, 0, 2]
+        
+        try guesses.enumerated().forEach { index, guess in
+            let answer = answers[index]
+            
+            let (correctCount, misplacedCount) = try MastermindEvaluator.evaluate(guess, with: answer)
+            XCTAssertEqual(correctCount, expectedCorrectCounts[index])
+            XCTAssertEqual(misplacedCount, expectedMisplacedCounts[index])
+        }
+    }
+    
     // MARK: - Helpers
     
     private func lengthMismatch() -> NSError {
