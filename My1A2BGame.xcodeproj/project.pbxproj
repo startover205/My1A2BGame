@@ -27,7 +27,6 @@
 		C03AF2D3232F1FAA0032F9DA /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */; };
 		C03AF2D6233121210032F9DA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D5233121210032F9DA /* AlertManager.swift */; };
 		C03AF2D92331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C03AF2D72331D7DB0032F9DA /* ModelAdvanced.xcdatamodeld */; };
-		C04C9E21268D8655002BBDDC /* GameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0362D0E268D601B00E6299B /* GameUITests.swift */; };
 		C05E6E5F2636AB8400CF87E0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C05E6E5E2636AB8400CF87E0 /* .gitignore */; };
 		C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07575FF224A015E007A1F9E /* Model.xcdatamodeld */; };
 		C0757605224A14F7007A1F9E /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757604224A14F7007A1F9E /* RankTableViewCell.swift */; };
@@ -97,13 +96,11 @@
 		C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButtonTests.swift; sourceTree = "<group>"; };
 		C033873B2100200A00DF4969 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C0362D0C268C169200E6299B /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
-		C0362D0E268D601B00E6299B /* GameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUITests.swift; sourceTree = "<group>"; };
 		C03AF2D0232E33AB0032F9DA /* GuessPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessPadViewController.swift; sourceTree = "<group>"; };
 		C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		C03AF2D5233121210032F9DA /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		C03AF2D82331D7DB0032F9DA /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C04C9E17268D864D002BBDDC /* My1A2BGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C04C9E1B268D864D002BBDDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C05E6E5E2636AB8400CF87E0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C0757600224A015E007A1F9E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C0757604224A14F7007A1F9E /* RankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
@@ -197,7 +194,6 @@
 				C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */,
 				C014619D20BE6BD20023EEB6 /* My1A2BGame */,
 				C07D1A6123BCDAEE00197857 /* My1A2BGameTests */,
-				C04C9E18268D864D002BBDDC /* My1A2BGameUITests */,
 				C014619C20BE6BD20023EEB6 /* Products */,
 				9C196D9CBE09E93AFDAA4377 /* Pods */,
 				C1ACF5BC0592EF53CC18CB7A /* Frameworks */,
@@ -250,15 +246,6 @@
 				C03AF2D5233121210032F9DA /* AlertManager.swift */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		C04C9E18268D864D002BBDDC /* My1A2BGameUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C0362D0E268D601B00E6299B /* GameUITests.swift */,
-				C04C9E1B268D864D002BBDDC /* Info.plist */,
-			);
-			path = My1A2BGameUITests;
 			sourceTree = "<group>";
 		};
 		C07575FD224A00FE007A1F9E /* Controller */ = {
@@ -591,7 +578,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C04C9E21268D8655002BBDDC /* GameUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
