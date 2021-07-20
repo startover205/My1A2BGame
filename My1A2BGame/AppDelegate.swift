@@ -78,7 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
         
         tabVC.setViewControllers([basicGameNav, advancedGameNav, rankNav, moreNav], animated: false)
-//        window = UIWindow()
         window?.rootViewController = tabVC
         
         window?.makeKeyAndVisible()

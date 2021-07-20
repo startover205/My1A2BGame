@@ -20,4 +20,18 @@ class AppDelegateTests: XCTestCase {
         XCTAssertTrue(window.isKeyWindow)
         XCTAssertFalse(window.isHidden)
     }
+    
+    func test_configureWindow_configuresRootViewController() {
+        let window = UIWindow()
+        let appDelegate = AppDelegate()
+        appDelegate.window = window
+        
+        appDelegate.configureWindow()
+        
+        let tab = window.rootViewController as! UITabBarController
+        XCTAssertEqual(tab.viewControllers?.count, 4)
+        ["Basic", "Advanced", "Rank", "More"].enumerated().forEach { index, title in
+            XCTAssertEqual(tab.viewControllers?[index].title, title)
+        }
+    }
 }
