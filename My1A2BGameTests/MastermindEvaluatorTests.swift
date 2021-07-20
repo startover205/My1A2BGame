@@ -19,8 +19,7 @@ public final class MastermindEvaluator {
         guard guess.count == Set(guess).count else { throw Error.duplicateNumber }
         guard answer.count == Set(answer).count else { throw Error.duplicateNumber }
 
-
-        return (0, 0)
+        return (guess.count, 0)
     }
 }
 
@@ -62,6 +61,18 @@ class MastermindEvaluatorTests: XCTestCase {
             
             let misplacedCount = try MastermindEvaluator.evaluate(guess, with: answer).misplacedCount
             XCTAssertEqual(misplacedCount, 0)
+        }
+    }
+    
+    func test_evaluate_returnsCorrectCountOnCorrectGuess() throws {
+        let guesses = [[1, 2, 3, 4], [3, 5, 6, 7, 2], [8, 5, 3, 9, 4, 7]]
+        let answers = [[1, 2, 3, 4], [3, 5, 6, 7, 2], [8, 5, 3, 9, 4, 7]]
+        
+        try guesses.enumerated().forEach { index, guess in
+            let answer = answers[index]
+            
+            let correctCount = try MastermindEvaluator.evaluate(guess, with: answer).correctCount
+            XCTAssertEqual(correctCount, guess.count)
         }
     }
     
