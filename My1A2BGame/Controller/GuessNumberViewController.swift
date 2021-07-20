@@ -10,6 +10,10 @@ import UIKit
 import GameKit
 import GoogleMobileAds
 
+protocol AdProvider {
+    var rewardAd: GADRewardedAd? { get }
+}
+
 class GuessNumberViewController: UIViewController {
     
     private lazy var digitCount = {
@@ -18,6 +22,8 @@ class GuessNumberViewController: UIViewController {
     private lazy var isAdvancedVersion = {
         return digitCount == 5
     }()
+    
+    var adProvider: AdProvider?
     
     @IBOutlet weak var voiceSwitch: UISwitch!
     @IBOutlet weak var lastGuessLabel: UILabel!
@@ -119,7 +125,7 @@ class GuessNumberViewController: UIViewController {
     
     @IBAction func guessBtnPressed(_ sender: Any) {
         guard availableGuess > 0 else {
-            if let ad = GoogleRewardAdManager.shared.rewardAd {
+            if let ad = adProvider?.rewardAd {
                 showRewardAdAlert(ad: ad)
             } else {
                 showLoseVCAndEndGame()
@@ -269,7 +275,7 @@ extension GuessNumberViewController {
             feedbackGenerator = nil
             
             // 如果沒次數，且沒廣告，則直接結束
-            if availableGuess == 0, GoogleRewardAdManager.shared.rewardAd == nil {
+            if availableGuess == 0, adProvider?.rewardAd == nil {
                 showLoseVCAndEndGame()
             }
         }

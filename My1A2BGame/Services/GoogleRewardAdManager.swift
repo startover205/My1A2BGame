@@ -85,3 +85,5 @@ extension GoogleRewardAdManager: GADFullScreenContentDelegate {
         //        Self.tryToLoadRewardAd()
     }
 }
+
+extension GoogleRewardAdManager: AdProvider { }
