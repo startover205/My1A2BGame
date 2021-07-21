@@ -24,6 +24,7 @@ class GuessNumberViewController: UIViewController {
     }()
     
     var adProvider: AdProvider?
+    var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     
     @IBOutlet weak var voiceSwitch: UISwitch!
     @IBOutlet weak var lastGuessLabel: UILabel!
@@ -223,27 +224,16 @@ extension GuessNumberViewController {
         availableGuess -= 1
         
         //try to match numbers
-        var numberOfAs = 0
-        var numberOfBs = 0
-        var guessText = ""
-        for j in 0..<digitCount{
-            
-            guessText.append(answerTexts[j])
-            
-            for i in 0..<digitCount{
-                
-                if answerTexts[j] == quizNumbers[i]{
-                    if i == j{
-                        numberOfAs += 1
-                    }else{
-                        numberOfBs += 1
-                    }
-                }
-            }
-        }
+        let answer = quizNumbers.compactMap(Int.init)
+        let guess = answerTexts.compactMap(Int.init)
         
+        guard let evaluate = evaluate else { return }
+        
+        let (correctCount, misplacedCount) = try! evaluate(guess, answer)
+
         //show result
-        let result = "\(guessText)          \(numberOfAs)A\(numberOfBs)B\n"
+        let guessText = quizNumbers.joined()
+        let result = "\(guessText)          \(correctCount)A\(misplacedCount)B\n"
         lastGuessLabel.text = result
         lastGuessLabel.alpha = 0.5
         lastGuessLabel.isHidden = false
@@ -253,10 +243,10 @@ extension GuessNumberViewController {
         hintTextView.text = "\n" + guessHistoryText
         guessHistoryText = result + guessHistoryText
         
-        var text = "\(numberOfAs) A, \(numberOfBs) B" //for speech
+        var text = "\(correctCount) A, \(misplacedCount) B" //for speech
         
         //win
-        if numberOfAs == digitCount {
+        if correctCount == digitCount {
             feedbackGenerator?.notificationOccurred(.success)
             feedbackGenerator = nil
             
@@ -347,6 +337,7 @@ extension GuessNumberViewController {
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
         //set answers
+        quizNumbers.removeAll()
         for _ in 0..<digitCount {
             quizNumbers.append(String(shuffledDistribution.nextInt()))
         }

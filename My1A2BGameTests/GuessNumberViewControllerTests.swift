@@ -133,11 +133,11 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_matchNumbers_presentWinVCWhenCorrect() {
         let sut = makeSUT()
-        let answers = sut.quizNumbers
         let navigation = UINavigationController()
         navigation.setViewControllers([sut], animated: false)
         
         sut.initGame()
+        let answers = sut.quizNumbers
         sut.tryToMatchNumbers(answerTexts: answers)
         
         expect({
@@ -147,7 +147,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_matchNumbers_doesNotPresentLoseVCWhenIncorrectWithAnotherChance() {
         let sut = makeSUT()
-        let answers = ["-1", "-1", "-1", "-1"]
+        let answers = ["-1", "2", "3", "4"]
         let navigation = UINavigationController()
         navigation.setViewControllers([sut], animated: false)
         
@@ -161,7 +161,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_matchNumbers_presentLoseVCWhenIncorrectWithOneLastChance() {
         let sut = makeSUT()
-        let answers = ["-1", "-1", "-1", "-1"]
+        let answers = ["-1", "2", "3", "4"]
         let navigation = UINavigationController()
         navigation.setViewControllers([sut], animated: false)
         sut.initGame()
@@ -191,6 +191,7 @@ class GuessNumberViewControllerTests: XCTestCase {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         let sut = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        sut.evaluate = MastermindEvaluator.evaluate(_:with:)
         if loadView {
             sut.loadViewIfNeeded()
         }
