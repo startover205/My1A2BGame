@@ -147,11 +147,12 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_matchNumbers_doesNotPresentLoseVCWhenIncorrectWithAnotherChance() {
         let sut = makeSUT()
-        let answers = ["-1", "2", "3", "4"]
         let navigation = UINavigationController()
         navigation.setViewControllers([sut], animated: false)
         
         sut.initGame()
+        
+        let answers = Array(sut.quizNumbers.reversed())
         sut.tryToMatchNumbers(answerTexts: answers)
         
         expect({
@@ -161,12 +162,13 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_matchNumbers_presentLoseVCWhenIncorrectWithOneLastChance() {
         let sut = makeSUT()
-        let answers = ["-1", "2", "3", "4"]
         let navigation = UINavigationController()
         navigation.setViewControllers([sut], animated: false)
+        
         sut.initGame()
         sut.availableGuess = 1
-        
+
+        let answers = Array(sut.quizNumbers.reversed())
         sut.tryToMatchNumbers(answerTexts: answers)
         
         expect({
