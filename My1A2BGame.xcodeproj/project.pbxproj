@@ -15,6 +15,7 @@
 		C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */; };
 		C01BC5BA26A6A15F00FA0636 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */; };
 		C01BC5BC26A6B65A00FA0636 /* MastermindEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */; };
+		C01BC5D226A9A60100FA0636 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5D126A9A60100FA0636 /* Game.storyboard */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
@@ -90,6 +91,7 @@
 		C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdManager.swift; sourceTree = "<group>"; };
 		C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluator.swift; sourceTree = "<group>"; };
+		C01BC5D126A9A60100FA0636 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		C01BC5C526A84B1300FA0636 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C01BC5D126A9A60100FA0636 /* Game.storyboard */,
 				C08F2FB12332168000320990 /* HelperButton.swift */,
 				C03AF2D2232F1FAA0032F9DA /* KeyboardButton.swift */,
 			);
@@ -562,6 +565,7 @@
 				C05E6E5F2636AB8400CF87E0 /* .gitignore in Resources */,
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
+				C01BC5D226A9A60100FA0636 /* Game.storyboard in Resources */,
 				C0ED626D2265B00100892A80 /* AlertAdController.xib in Resources */,
 				C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */,
 				C01461A420BE6BD20023EEB6 /* Main.storyboard in Resources */,

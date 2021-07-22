@@ -278,7 +278,7 @@ extension GuessNumberViewController {
     }
     
     func showLoseVCAndEndGame(){
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+        let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
         controller.view.backgroundColor = self.view.backgroundColor
         navigationController?.pushViewController(controller, animated: true)
         if self.voiceSwitch.isOn{

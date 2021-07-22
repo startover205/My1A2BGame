@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeBasicVC() -> UIViewController {
-        let vc = UIStoryboard(name: "Main", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        let vc = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
         vc.title = "Basic"
         vc.adProvider = GoogleRewardAdManager.shared
         vc.evaluate = MastermindEvaluator.evaluate(_:with:)
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeAdvancedVC() -> UIViewController {
-        let vc = UIStoryboard(name: "Main", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessAdvancedViewController") as! GuessNumberViewController
+        let vc = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessAdvancedViewController") as! GuessNumberViewController
         vc.title = "Advanced"
         vc.adProvider = GoogleRewardAdManager.shared
         vc.evaluate = MastermindEvaluator.evaluate(_:with:)
