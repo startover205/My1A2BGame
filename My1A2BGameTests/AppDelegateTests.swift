@@ -25,13 +25,18 @@ class AppDelegateTests: XCTestCase {
         let window = UIWindow()
         let appDelegate = AppDelegate()
         appDelegate.window = window
+        let tabItemTitles = ["Basic", "Advanced", "Rank", "More"]
+        let tabItemImageNames = ["baseline_1A2B_24px", "advanced_24px", "baseline_format_list_numbered_black_24pt", "baseline_settings_black_24pt"]
         
         appDelegate.configureWindow()
         
         let tab = window.rootViewController as! UITabBarController
-        XCTAssertEqual(tab.viewControllers?.count, 4)
-        ["Basic", "Advanced", "Rank", "More"].enumerated().forEach { index, title in
-            XCTAssertEqual(tab.viewControllers?[index].title, title)
+        XCTAssertEqual(tab.viewControllers?.count, 4, "expect correct tab count")
+        
+        tab.tabBar.items!.enumerated().forEach { index, item in
+            
+            XCTAssertEqual(item.title, tabItemTitles[index], "expect correct tab title")
+            XCTAssertEqual(item.image?.pngData(), UIImage(named: tabItemImageNames[index])?.pngData(), "expect correct tab image")
         }
     }
 }

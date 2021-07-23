@@ -71,6 +71,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureWindow() {
+        window?.rootViewController = makeTabController()
+        
+        window?.makeKeyAndVisible()
+    }
+    
+    func makeTabController() -> UITabBarController {
         let tabVC = UITabBarController()
         let basicGameNav = UINavigationController(rootViewController: makeBasicVC())
         let advancedGameNav = UINavigationController(rootViewController: makeAdvancedVC())
@@ -78,9 +84,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
         
         tabVC.setViewControllers([basicGameNav, advancedGameNav, rankNav, moreNav], animated: false)
-        window?.rootViewController = tabVC
-        
-        window?.makeKeyAndVisible()
+        tabVC.tabBar.items![0].image = UIImage(named: "baseline_1A2B_24px")
+        tabVC.tabBar.items![1].image = UIImage(named: "advanced_24px")
+        tabVC.tabBar.items![2].image = UIImage(named: "baseline_format_list_numbered_black_24pt")
+        tabVC.tabBar.items![3].image = UIImage(named: "baseline_settings_black_24pt")
+        return tabVC
     }
     
     private func makeBasicVC() -> UIViewController {
