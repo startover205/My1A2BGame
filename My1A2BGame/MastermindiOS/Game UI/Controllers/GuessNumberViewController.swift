@@ -14,22 +14,31 @@ protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
-public class GuessNumberViewController: UIViewController {
+public struct GameVersion {
+    var digitCount: Int
     
-    private lazy var digitCount = {
-        return quizLabels.count
-    }()
+    public static let basic = GameVersion(digitCount: 4)
+    public static let advanced = GameVersion(digitCount: 5)
+}
+
+
+public class GuessNumberViewController: UIViewController {
+
+    public var gameVersion: GameVersion = .basic
+    
+    private var digitCount: Int { gameVersion.digitCount }
+    
     private lazy var isAdvancedVersion = {
-        return digitCount == 5
+        return gameVersion.digitCount == 5
     }()
     
     var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     
+    @IBOutlet weak var quizLabelContainer: UIStackView!
     @IBOutlet private(set) public weak var voiceSwitch: UISwitch!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
-    @IBOutlet private(set) public var quizLabels: [UILabel]!
     @IBOutlet private(set) public weak var guessButton: UIButton!
     @IBOutlet private(set) public weak var quitButton: UIButton!
     @IBOutlet private(set) public weak var restartButton: UIButton!
@@ -39,6 +48,7 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet weak var helperView: UIView!
     @IBOutlet var helperNumberButtons: [HelperButton]!
     
+    private(set) public var quizLabels = [UILabel]()
     var quizNumbers = [String]()
     private var guessCount = 0
     var availableGuess = Constants.maxPlayChances {
@@ -78,6 +88,8 @@ public class GuessNumberViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureQuizLabels()
+        
         navigationController?.delegate = self
         
         fadeOutElements.forEach { (view) in
@@ -86,6 +98,24 @@ public class GuessNumberViewController: UIViewController {
         
         initGame()
         //        initCheatGame()
+    }
+    
+    private func makeQuizeLabel() -> UILabel {
+        let label = UILabel()
+        label.text = "?"
+        label.textColor = .systemRed
+        label.font = .init(name: "Arial Rounded MT Bold", size: 80)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }
+    
+    private func configureQuizLabels() {
+        for _ in 0 ..< digitCount {
+            let label = makeQuizeLabel()
+            quizLabelContainer.addArrangedSubview(label)
+            quizLabels.append(label)
+        }
+        quizLabelContainer.layoutIfNeeded()
     }
     
     public override func viewWillAppear(_ animated: Bool) {

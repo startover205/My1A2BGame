@@ -11,13 +11,13 @@ import My1A2BGame
 
 class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func test_gameStart_basic() {
-        let sut = makeSUT(advanced: false)
+        let sut = makeSUT(gameVersion: .basic)
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_dark")
     }
     func test_gameStart_advanced() {
-        let sut = makeSUT(advanced: true)
+        let sut = makeSUT(gameVersion: .advanced)
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_ADVANCED_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_ADVANCED_dark")
@@ -25,8 +25,9 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    func makeSUT(advanced: Bool) -> UIViewController {
-        let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(identifier: advanced ? "GuessAdvancedViewController" : "GuessViewController") as! GuessNumberViewController
+    func makeSUT(gameVersion: GameVersion) -> UIViewController {
+        let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(identifier: "GuessViewController") as! GuessNumberViewController
+        controller.gameVersion = gameVersion
         controller.loadViewIfNeeded()
         controller.availableGuessLabel.isHidden = true
         return controller
