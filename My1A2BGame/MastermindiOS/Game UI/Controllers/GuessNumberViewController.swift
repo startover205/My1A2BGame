@@ -14,7 +14,7 @@ protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
-class GuessNumberViewController: UIViewController {
+public class GuessNumberViewController: UIViewController {
     
     private lazy var digitCount = {
         return quizLabels.count
@@ -75,7 +75,7 @@ class GuessNumberViewController: UIViewController {
     // 觸覺回饋
     var feedbackGenerator: UINotificationFeedbackGenerator?
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.delegate = self
@@ -88,7 +88,7 @@ class GuessNumberViewController: UIViewController {
         //        initCheatGame()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         _ = _fadeIn
         
@@ -206,7 +206,7 @@ extension GuessNumberViewController {
 
 // MARK: - Description
 extension GuessNumberViewController: UINavigationControllerDelegate{
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController is LoseViewController || viewController is WinViewController {
             self.endGame()
         }
