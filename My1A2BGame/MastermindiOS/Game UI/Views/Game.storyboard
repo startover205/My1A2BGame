@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ixz-Qa-Qso">
-                                <rect key="frame" x="61" y="96" width="292.5" height="130.5"/>
+                                <rect key="frame" x="61" y="52" width="292.5" height="130.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXy-mi-t8g">
                                         <rect key="frame" x="0.0" y="0.0" width="34.5" height="130.5"/>
@@ -54,7 +54,7 @@
                                 </subviews>
                             </stackView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PHQ-1X-yhK">
-                                <rect key="frame" x="20" y="96" width="374" height="130.5"/>
+                                <rect key="frame" x="20" y="52" width="374" height="130.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8A-rJ-d4E">
                                         <rect key="frame" x="8" y="4" width="45.5" height="14.5"/>
@@ -303,7 +303,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhY-wI-6lt">
-                                <rect key="frame" x="20" y="261" width="374" height="481"/>
+                                <rect key="frame" x="20" y="217" width="374" height="525"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -314,7 +314,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ry-98-8c6">
-                                <rect key="frame" x="20" y="234.5" width="111.5" height="50.5"/>
+                                <rect key="frame" x="20" y="190.5" width="111.5" height="50.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpe-ZA-LIH">
                                         <rect key="frame" x="8" y="8" width="95.5" height="14.5"/>
@@ -338,7 +338,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1A2B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MB9-cg-4pY">
-                                <rect key="frame" x="28" y="269" width="358" height="27"/>
+                                <rect key="frame" x="28" y="225" width="358" height="27"/>
                                 <color key="backgroundColor" name="MainBackgroundOffsetOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <nil key="highlightedColor"/>
@@ -349,7 +349,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can still guess 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XuP-bc-ciH">
-                                <rect key="frame" x="172" y="238" width="222" height="20.5"/>
+                                <rect key="frame" x="172" y="194" width="222" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -497,7 +497,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Xno-IJ-0VX">
-                                <rect key="frame" x="70" y="96" width="274" height="130.5"/>
+                                <rect key="frame" x="70" y="52" width="274" height="130.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oze-1M-5qF">
                                         <rect key="frame" x="0.0" y="0.0" width="46" height="130.5"/>
@@ -526,7 +526,7 @@
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJE-CA-5hz">
-                                <rect key="frame" x="20" y="261" width="374" height="481"/>
+                                <rect key="frame" x="20" y="217" width="374" height="525"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -537,7 +537,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFO-fp-XsH">
-                                <rect key="frame" x="20" y="234.5" width="111.5" height="50.5"/>
+                                <rect key="frame" x="20" y="190.5" width="111.5" height="50.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubX-Jh-EGN">
                                         <rect key="frame" x="8" y="8" width="95.5" height="14.5"/>
@@ -560,7 +560,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1A2B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okh-FP-api">
-                                <rect key="frame" x="28" y="269" width="358" height="27"/>
+                                <rect key="frame" x="28" y="225" width="358" height="27"/>
                                 <color key="backgroundColor" name="MainBackgroundOffsetOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -572,7 +572,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can still guess 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9q-7b-vCB">
-                                <rect key="frame" x="172" y="238" width="222" height="20.5"/>
+                                <rect key="frame" x="172" y="194" width="222" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -634,7 +634,7 @@
                                 </constraints>
                             </stackView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyL-Dg-isP">
-                                <rect key="frame" x="20" y="96" width="374" height="130.5"/>
+                                <rect key="frame" x="20" y="52" width="374" height="130.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWl-dq-2Oc">
                                         <rect key="frame" x="8" y="4" width="45.5" height="14.5"/>
@@ -970,14 +970,13 @@
         <!--Instruction View Controller-->
         <scene sceneID="Jw2-sG-991">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PpX-db-QKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="iTx-Eq-N44" customClass="InstructionViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CWE-HY-tSa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGh-8Y-eJ5">
-                                <rect key="frame" x="20" y="108" width="374" height="734"/>
+                                <rect key="frame" x="20" y="20" width="374" height="768"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
                                 <string key="text">       1A2B 是一個簡單的益智遊戲。
        電腦會準備一組數字不重複的四位數，玩家必須猜出是哪一組四位數。
@@ -1006,6 +1005,7 @@
                         <outlet property="instructionTextView" destination="ZGh-8Y-eJ5" id="hvt-48-97v"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PpX-db-QKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6218.840579710145" y="843.75"/>
         </scene>
@@ -1838,42 +1838,6 @@ Please enter your name.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h12-lh-iIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6516" y="1565"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="F9M-8Y-dNd">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="be4-Qu-Dbd" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rC5-Yn-v68">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="1LR-p9-Cos" kind="relationship" relationship="rootViewController" id="0h4-Zv-qqY"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LNh-tB-4uF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3353.6231884057975" y="199.55357142857142"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="lPP-Gs-nUe">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Yi-On-yUQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Kq-NM-sdj">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="MiD-FP-WUV" kind="relationship" relationship="rootViewController" id="pCI-s1-DLE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dTn-wA-4uX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3353.6231884057975" y="900.66964285714278"/>
         </scene>
     </scenes>
     <resources>

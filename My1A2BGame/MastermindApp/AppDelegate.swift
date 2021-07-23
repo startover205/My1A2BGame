@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeRankVC() -> UIViewController {
-        let vc = UIStoryboard(name: "Main", bundle: .init(for: RankViewController.self)).instantiateViewController(withIdentifier: "RankViewController")
+        let vc = UIStoryboard(name: "Rank", bundle: .init(for: RankViewController.self)).instantiateViewController(withIdentifier: "RankViewController")
         vc.title = "Rank"
         return vc
     }

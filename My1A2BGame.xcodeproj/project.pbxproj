@@ -16,6 +16,7 @@
 		C01BC5BA26A6A15F00FA0636 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */; };
 		C01BC5BC26A6B65A00FA0636 /* MastermindEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */; };
 		C01BC5D226A9A60100FA0636 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5D126A9A60100FA0636 /* Game.storyboard */; };
+		C01BC5DA26AAC7D900FA0636 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5D926AAC7D900FA0636 /* Rank.storyboard */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
@@ -92,6 +93,7 @@
 		C01BC5B926A6A15F00FA0636 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluator.swift; sourceTree = "<group>"; };
 		C01BC5D126A9A60100FA0636 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		C01BC5D926AAC7D900FA0636 /* Rank.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 		C01BC5C626A84B5600FA0636 /* Rank UI */ = {
 			isa = PBXGroup;
 			children = (
+				C01BC5D826AAC7C900FA0636 /* Views */,
 				C01BC5CF26A84C6500FA0636 /* Controllers */,
 			);
 			path = "Rank UI";
@@ -423,6 +426,14 @@
 				C0ED626922648B9700892A80 /* IAP.swift */,
 			);
 			path = "In-App Purchase";
+			sourceTree = "<group>";
+		};
+		C01BC5D826AAC7C900FA0636 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C01BC5D926AAC7D900FA0636 /* Rank.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
@@ -562,6 +573,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C01BC5DA26AAC7D900FA0636 /* Rank.storyboard in Resources */,
 				C05E6E5F2636AB8400CF87E0 /* .gitignore in Resources */,
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
