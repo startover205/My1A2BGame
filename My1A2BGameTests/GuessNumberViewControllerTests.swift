@@ -23,7 +23,7 @@ class GuessNumberViewControllerTests: XCTestCase {
         let sut = makeSUT(loadView: false)
         
         navigation.setViewControllers([sut], animated: false)
-
+        
         sut.loadViewIfNeeded()
         
         XCTAssertTrue(sut.navigationController?.delegate === sut)
@@ -40,7 +40,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func test_viewWillAppear_fadeOutElmentsAreVisible() {
         let sut = makeSUT()
-
+        
         sut.viewWillAppear(false)
         
         sut.fadeOutElements.forEach {
@@ -55,11 +55,11 @@ class GuessNumberViewControllerTests: XCTestCase {
         sut.viewWillAppear(false)
         
         XCTAssertEqual(sut.voiceSwitch.isOn, true)
-
+        
         UserDefaults.standard.setValue(false, forKey: UserDefaults.Key.voicePromptsSwitch)
         
         sut.viewWillAppear(false)
-
+        
         XCTAssertEqual(sut.voiceSwitch.isOn, false)
     }
     
@@ -79,9 +79,11 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.helperView.isHidden, false)
         
         sut.helperBtnPressed(sut)
-        expect({
+        
+        assert({
             XCTAssertEqual(sut.helperView.isHidden, true)
         }, after: 1.0)
+        
     }
     
     func test_restart_fadeOutElementsAreOpaque() {
@@ -103,9 +105,8 @@ class GuessNumberViewControllerTests: XCTestCase {
         sut.availableGuess = 10
         sut.guessBtnPressed(sut)
         
-        expect({
-            XCTAssertTrue((sut.presentedViewController as? UINavigationController)?.topViewController is GuessPadViewController)
-        }, after: 2.0)
+        triggerRunLoopToSkipNavigationAnimation()
+        XCTAssertTrue((sut.presentedViewController as? UINavigationController)?.topViewController is GuessPadViewController)
     }
     
     func test_voicePromptSwitchToggle_boundToUserDefaultsValue() {
@@ -140,9 +141,8 @@ class GuessNumberViewControllerTests: XCTestCase {
         let answers = sut.quizNumbers
         sut.tryToMatchNumbers(answerTexts: answers)
         
-        expect({
-            XCTAssertTrue(navigation.topViewController is WinViewController)
-        }, after: 1.0)
+        triggerRunLoopToSkipNavigationAnimation()
+        XCTAssertTrue(navigation.topViewController is WinViewController)
     }
     
     func test_matchNumbers_doesNotPresentLoseVCWhenIncorrectWithAnotherChance() {
@@ -155,9 +155,8 @@ class GuessNumberViewControllerTests: XCTestCase {
         let answers = Array(sut.quizNumbers.reversed())
         sut.tryToMatchNumbers(answerTexts: answers)
         
-        expect({
-            XCTAssertFalse(navigation.topViewController is LoseViewController)
-        }, after: 1.0)
+        triggerRunLoopToSkipNavigationAnimation()
+        XCTAssertFalse(navigation.topViewController is LoseViewController)
     }
     
     func test_matchNumbers_presentLoseVCWhenIncorrectWithOneLastChance() {
@@ -167,13 +166,12 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         sut.initGame()
         sut.availableGuess = 1
-
+        
         let answers = Array(sut.quizNumbers.reversed())
         sut.tryToMatchNumbers(answerTexts: answers)
         
-        expect({
-            XCTAssertTrue(navigation.topViewController is LoseViewController)
-        }, after: 1.0)
+        triggerRunLoopToSkipNavigationAnimation()
+        XCTAssertTrue(navigation.topViewController is LoseViewController)
     }
     
     func test_changeAvailableGuess_updateAvailableGuessLabelAccordingly() {
@@ -191,7 +189,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self))
-
+        
         let sut = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
         sut.evaluate = MastermindEvaluator.evaluate(_:with:)
         if loadView {
@@ -200,8 +198,12 @@ class GuessNumberViewControllerTests: XCTestCase {
         return sut
     }
     
-    func expect(_ completion: @escaping () -> Void, after seconds: TimeInterval) {
-        let exp = expectation(description: "wait until presentation/animation complete")
+    func triggerRunLoopToSkipNavigationAnimation() {
+        RunLoop.current.run(until: Date())
+    }
+    
+    func assert(_ completion: @escaping () -> Void, after seconds: TimeInterval) {
+        let exp = expectation(description: "wait until animation complete")
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             completion()
             exp.fulfill()
