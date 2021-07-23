@@ -17,6 +17,7 @@
 		C01BC5BC26A6B65A00FA0636 /* MastermindEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */; };
 		C01BC5D226A9A60100FA0636 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5D126A9A60100FA0636 /* Game.storyboard */; };
 		C01BC5DA26AAC7D900FA0636 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5D926AAC7D900FA0636 /* Rank.storyboard */; };
+		C01BC5DD26AAC9E100FA0636 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5DC26AAC9E100FA0636 /* More.storyboard */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
@@ -94,6 +95,7 @@
 		C01BC5BB26A6B65A00FA0636 /* MastermindEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluator.swift; sourceTree = "<group>"; };
 		C01BC5D126A9A60100FA0636 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		C01BC5D926AAC7D900FA0636 /* Rank.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
+		C01BC5DC26AAC9E100FA0636 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				C01BC5CE26A84C4800FA0636 /* Controllers */,
+				C01BC5DB26AAC9CE00FA0636 /* Views */,
 			);
 			path = "More UI";
 			sourceTree = "<group>";
@@ -432,6 +435,14 @@
 			isa = PBXGroup;
 			children = (
 				C01BC5D926AAC7D900FA0636 /* Rank.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C01BC5DB26AAC9CE00FA0636 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C01BC5DC26AAC9E100FA0636 /* More.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -583,6 +594,7 @@
 				C01461A420BE6BD20023EEB6 /* Main.storyboard in Resources */,
 				C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */,
 				C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */,
+				C01BC5DD26AAC9E100FA0636 /* More.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

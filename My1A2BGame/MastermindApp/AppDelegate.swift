@@ -114,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeMoreVC() -> UIViewController {
-        let vc = UIStoryboard(name: "Main", bundle: .init(for: SettingsTableViewController.self)).instantiateViewController(withIdentifier: "SettingsTableViewController")
+        let vc = UIStoryboard(name: "More", bundle: .init(for: SettingsTableViewController.self)).instantiateViewController(withIdentifier: "SettingsTableViewController")
         vc.title = "More"
         return vc
     }
