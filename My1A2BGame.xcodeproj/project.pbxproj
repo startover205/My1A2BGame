@@ -17,6 +17,13 @@
 		C01BC5D226A9A60100FA0636 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5D126A9A60100FA0636 /* Game.storyboard */; };
 		C01BC5DA26AAC7D900FA0636 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5D926AAC7D900FA0636 /* Rank.storyboard */; };
 		C01BC5DD26AAC9E100FA0636 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5DC26AAC9E100FA0636 /* More.storyboard */; };
+		C01BC5E126AAECE100FA0636 /* GuessNumberViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5E026AAECE100FA0636 /* GuessNumberViewControllerSnapshotTests.swift */; };
+		C01BC5E426AAEE0800FA0636 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5E226AAEE0800FA0636 /* UIViewController+Snapshot.swift */; };
+		C01BC5E526AAEE0800FA0636 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BC5E326AAEE0800FA0636 /* XCTestCase+Snapshot.swift */; };
+		C01BC5EA26AAF01E00FA0636 /* GAME_START_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5E826AAF01E00FA0636 /* GAME_START_dark.png */; };
+		C01BC5EB26AAF01E00FA0636 /* GAME_START_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5E926AAF01E00FA0636 /* GAME_START_light.png */; };
+		C01BC5EE26AAF9D000FA0636 /* GAME_START_ADVANCED_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5EC26AAF9D000FA0636 /* GAME_START_ADVANCED_light.png */; };
+		C01BC5EF26AAF9D000FA0636 /* GAME_START_ADVANCED_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C01BC5ED26AAF9D000FA0636 /* GAME_START_ADVANCED_dark.png */; };
 		C0259F07234AC72B00FE1F6A /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C0259F0B234AD5C500FE1F6A /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */; };
@@ -94,6 +101,13 @@
 		C01BC5D126A9A60100FA0636 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		C01BC5D926AAC7D900FA0636 /* Rank.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
 		C01BC5DC26AAC9E100FA0636 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		C01BC5E026AAECE100FA0636 /* GuessNumberViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		C01BC5E226AAEE0800FA0636 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
+		C01BC5E326AAEE0800FA0636 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
+		C01BC5E826AAF01E00FA0636 /* GAME_START_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_dark.png; sourceTree = "<group>"; };
+		C01BC5E926AAF01E00FA0636 /* GAME_START_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_light.png; sourceTree = "<group>"; };
+		C01BC5EC26AAF9D000FA0636 /* GAME_START_ADVANCED_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_ADVANCED_light.png; sourceTree = "<group>"; };
+		C01BC5ED26AAF9D000FA0636 /* GAME_START_ADVANCED_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_ADVANCED_dark.png; sourceTree = "<group>"; };
 		C0259F06234AC72B00FE1F6A /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C0259F0A234AD5C500FE1F6A /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
@@ -273,9 +287,9 @@
 			isa = PBXGroup;
 			children = (
 				C01BC5C926A84BBF00FA0636 /* Shared UI */,
-				C01BC5C726A84B5B00FA0636 /* More UI */,
-				C01BC5C626A84B5600FA0636 /* Rank UI */,
 				C01BC5C326A84B0600FA0636 /* Game UI */,
+				C01BC5C626A84B5600FA0636 /* Rank UI */,
+				C01BC5C726A84B5B00FA0636 /* More UI */,
 			);
 			path = MastermindiOS;
 			sourceTree = "<group>";
@@ -441,9 +455,48 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C01BC5DE26AAECB600FA0636 /* MastermindiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				C01BC5E626AAEE1C00FA0636 /* Helpers */,
+				C01BC5DF26AAECC400FA0636 /* Game UI */,
+			);
+			path = MastermindiOSTests;
+			sourceTree = "<group>";
+		};
+		C01BC5DF26AAECC400FA0636 /* Game UI */ = {
+			isa = PBXGroup;
+			children = (
+				C01BC5E726AAEF8F00FA0636 /* snapshots */,
+				C01BC5E026AAECE100FA0636 /* GuessNumberViewControllerSnapshotTests.swift */,
+			);
+			path = "Game UI";
+			sourceTree = "<group>";
+		};
+		C01BC5E626AAEE1C00FA0636 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C01BC5E226AAEE0800FA0636 /* UIViewController+Snapshot.swift */,
+				C01BC5E326AAEE0800FA0636 /* XCTestCase+Snapshot.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C01BC5E726AAEF8F00FA0636 /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				C01BC5E826AAF01E00FA0636 /* GAME_START_dark.png */,
+				C01BC5E926AAF01E00FA0636 /* GAME_START_light.png */,
+				C01BC5ED26AAF9D000FA0636 /* GAME_START_ADVANCED_dark.png */,
+				C01BC5EC26AAF9D000FA0636 /* GAME_START_ADVANCED_light.png */,
+			);
+			path = snapshots;
+			sourceTree = "<group>";
+		};
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
 			isa = PBXGroup;
 			children = (
+				C01BC5DE26AAECB600FA0636 /* MastermindiOSTests */,
 				C01BC5BD26A6B66200FA0636 /* API */,
 				C0D65EC82666208C0053CDAE /* GuessNumberViewControllerTests.swift */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
@@ -602,6 +655,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C01BC5EF26AAF9D000FA0636 /* GAME_START_ADVANCED_dark.png in Resources */,
+				C01BC5EA26AAF01E00FA0636 /* GAME_START_dark.png in Resources */,
+				C01BC5EB26AAF01E00FA0636 /* GAME_START_light.png in Resources */,
+				C01BC5EE26AAF9D000FA0636 /* GAME_START_ADVANCED_light.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,8 +756,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D65EC92666208C0053CDAE /* GuessNumberViewControllerTests.swift in Sources */,
+				C01BC5E526AAEE0800FA0636 /* XCTestCase+Snapshot.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
 				C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */,
+				C01BC5E126AAECE100FA0636 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
+				C01BC5E426AAEE0800FA0636 /* UIViewController+Snapshot.swift in Sources */,
 				C01BC5BA26A6A15F00FA0636 /* MastermindEvaluatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

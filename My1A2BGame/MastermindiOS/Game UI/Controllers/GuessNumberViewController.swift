@@ -26,15 +26,15 @@ public class GuessNumberViewController: UIViewController {
     var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     
-    @IBOutlet weak var voiceSwitch: UISwitch!
-    @IBOutlet weak var lastGuessLabel: UILabel!
-    @IBOutlet weak var availableGuessLabel: UILabel!
-    @IBOutlet var quizLabels: [UILabel]!
-    @IBOutlet weak var guessButton: UIButton!
-    @IBOutlet weak var quitButton: UIButton!
-    @IBOutlet weak var restartButton: UIButton!
-    @IBOutlet weak var hintTextView: UITextView!
-    @IBOutlet var fadeOutElements: [UIView]!
+    @IBOutlet private(set) public weak var voiceSwitch: UISwitch!
+    @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
+    @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
+    @IBOutlet private(set) public var quizLabels: [UILabel]!
+    @IBOutlet private(set) public weak var guessButton: UIButton!
+    @IBOutlet private(set) public weak var quitButton: UIButton!
+    @IBOutlet private(set) public weak var restartButton: UIButton!
+    @IBOutlet private(set) public weak var hintTextView: UITextView!
+    @IBOutlet private(set) public var fadeOutElements: [UIView]!
     
     @IBOutlet weak var helperView: UIView!
     @IBOutlet var helperNumberButtons: [HelperButton]!
