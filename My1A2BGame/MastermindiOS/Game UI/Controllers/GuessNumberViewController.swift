@@ -88,6 +88,8 @@ public class GuessNumberViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        lastGuessLabel.text = ""
+        
         configureQuizLabels()
         
         navigationController?.delegate = self
@@ -204,7 +206,7 @@ public class GuessNumberViewController: UIViewController {
 // MARK: - GuessPadDelegate
 extension GuessNumberViewController: GuessPadDelegate{
     func padDidFinishEntering(numberTexts: [String]) {
-        tryToMatchNumbers(answerTexts: numberTexts)
+        tryToMatchNumbers(guessTexts: numberTexts, answerTexts: quizNumbers)
     }
 }
 
@@ -246,7 +248,7 @@ extension GuessNumberViewController: UINavigationControllerDelegate{
 // MARK: - Private
 extension GuessNumberViewController {
     
-    func tryToMatchNumbers(answerTexts: [String]){
+    func tryToMatchNumbers(guessTexts: [String], answerTexts: [String]){
         //startCounting
         _ = startPlayTime
         
@@ -254,15 +256,15 @@ extension GuessNumberViewController {
         availableGuess -= 1
         
         //try to match numbers
-        let answer = quizNumbers.compactMap(Int.init)
-        let guess = answerTexts.compactMap(Int.init)
+        let answer = answerTexts.compactMap(Int.init)
+        let guess = guessTexts.compactMap(Int.init)
         
         guard let evaluate = evaluate else { return }
         
         let (correctCount, misplacedCount) = try! evaluate(guess, answer)
 
         //show result
-        let guessText = quizNumbers.joined()
+        let guessText = guessTexts.joined()
         let result = "\(guessText)          \(correctCount)A\(misplacedCount)B\n"
         lastGuessLabel.text = result
         lastGuessLabel.alpha = 0.5

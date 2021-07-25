@@ -138,8 +138,9 @@ class GuessNumberViewControllerTests: XCTestCase {
         navigation.setViewControllers([sut], animated: false)
         
         sut.initGame()
-        let answers = sut.quizNumbers
-        sut.tryToMatchNumbers(answerTexts: answers)
+        let answer = sut.quizNumbers
+        let guess = answer
+        sut.tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
         
         triggerRunLoopToSkipNavigationAnimation()
         XCTAssertTrue(navigation.topViewController is WinViewController)
@@ -152,8 +153,9 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         sut.initGame()
         
-        let answers = Array(sut.quizNumbers.reversed())
-        sut.tryToMatchNumbers(answerTexts: answers)
+        let answer = sut.quizNumbers
+        let guess = Array(sut.quizNumbers.reversed())
+        sut.tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
         
         triggerRunLoopToSkipNavigationAnimation()
         XCTAssertFalse(navigation.topViewController is LoseViewController)
@@ -167,8 +169,9 @@ class GuessNumberViewControllerTests: XCTestCase {
         sut.initGame()
         sut.availableGuess = 1
         
-        let answers = Array(sut.quizNumbers.reversed())
-        sut.tryToMatchNumbers(answerTexts: answers)
+        let answer = sut.quizNumbers
+        let guess = Array(sut.quizNumbers.reversed())
+        sut.tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
         
         triggerRunLoopToSkipNavigationAnimation()
         XCTAssertTrue(navigation.topViewController is LoseViewController)
@@ -184,6 +187,22 @@ class GuessNumberViewControllerTests: XCTestCase {
         sut.availableGuess = 5
         
         XCTAssertEqual(sut.availableGuessLabel.text?.contains(sut.availableGuess.description), true)
+    }
+    
+    func test_tryToMatchNumbers_rendersResult() {
+        let sut = makeSUT()
+        let answer = ["1", "2", "3", "4"]
+        let guess1 = ["5", "2", "3", "4"]
+        let guess2 = ["5", "6", "3", "4"]
+        let resultView = sut.lastGuessLabel
+        
+        XCTAssertEqual(resultView?.text, "", "expected no text after loading")
+        
+        sut.tryToMatchNumbers(guessTexts: guess1, answerTexts: answer)
+        XCTAssertEqual(resultView?.text, "5234          3A0B\n", "expected latest result after matching")
+        
+        sut.tryToMatchNumbers(guessTexts: guess2, answerTexts: answer)
+        XCTAssertEqual(resultView?.text, "5634          2A0B\n", "expected latest result after matching")
     }
     
     // MARK: - Helpers
