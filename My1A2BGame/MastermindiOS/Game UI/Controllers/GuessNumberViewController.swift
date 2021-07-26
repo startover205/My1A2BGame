@@ -14,11 +14,27 @@ protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
-public struct GameVersion {
-    var digitCount: Int
+public enum GameVersion {
+    case basic
+    case advanced
     
-    public static let basic = GameVersion(digitCount: 4)
-    public static let advanced = GameVersion(digitCount: 5)
+    var digitCount: Int {
+        switch self {
+        case .basic:
+            return 4
+        case .advanced:
+            return 5
+        }
+    }
+    
+    public var title: String {
+        switch self {
+        case .basic:
+            return "Basic"
+        case .advanced:
+            return "Advanced"
+        }
+    }
 }
 
 
