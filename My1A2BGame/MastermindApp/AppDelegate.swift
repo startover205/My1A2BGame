@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc.title = "Basic"
         vc.adProvider = GoogleRewardAdManager.shared
         vc.evaluate = MastermindEvaluator.evaluate(_:with:)
-        vc.gameVersion = .basic
+        vc.gameVersion = BasicGame()
 
         return vc
     }
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc.title = "Advanced"
         vc.adProvider = GoogleRewardAdManager.shared
         vc.evaluate = MastermindEvaluator.evaluate(_:with:)
-        vc.gameVersion = .advanced
+        vc.gameVersion = AdvancedGame()
         
         return vc
     }

@@ -11,13 +11,13 @@ import My1A2BGame
 
 class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func test_gameStart_basic() {
-        let sut = makeSUT(gameVersion: .basic)
+        let sut = makeSUT(gameVersion: BasicGame())
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_dark")
     }
     func test_gameStart_advanced() {
-        let sut = makeSUT(gameVersion: .advanced)
+        let sut = makeSUT(gameVersion: AdvancedGame())
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_ADVANCED_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_ADVANCED_dark")

@@ -14,33 +14,30 @@ protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
-public enum GameVersion {
-    case basic
-    case advanced
-    
-    var digitCount: Int {
-        switch self {
-        case .basic:
-            return 4
-        case .advanced:
-            return 5
-        }
-    }
-    
-    public var title: String {
-        switch self {
-        case .basic:
-            return "Basic"
-        case .advanced:
-            return "Advanced"
-        }
-    }
+public protocol GameVersion {
+    var digitCount: Int { get }
+    var title: String { get }
 }
 
+public struct BasicGame: GameVersion {
+    public let digitCount: Int = 4
+    
+    public let title: String = "Basic"
+    
+    public init() {}
+}
+
+public struct AdvancedGame: GameVersion {
+    public let digitCount: Int = 5
+    
+    public let title: String = "Advacned"
+    
+    public init() {}
+}
 
 public class GuessNumberViewController: UIViewController {
 
-    public var gameVersion: GameVersion = .basic
+    public var gameVersion: GameVersion!
     
     private var digitCount: Int { gameVersion.digitCount }
     
