@@ -10,19 +10,14 @@ import XCTest
 import My1A2BGame
 
 class GameUIIntegrationTests: XCTestCase {
-    func test_gameView_hasTitleForBasicGame() {
-        let sut = makeSUT(gameVersion: .basic)
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(sut.title, basicGameTitle)
-    }
-    func test_gameView_hasTitleForAdvancedGame() {
-        let sut = makeSUT(gameVersion: .advanced)
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(sut.title, advancedGameTitle)
+    func test_gameView_hasTitle() {
+        GameVersion.allCases.forEach { gameVersion in
+            let sut = makeSUT(gameVersion: gameVersion)
+            
+            sut.loadViewIfNeeded()
+            
+            XCTAssertEqual(sut.title, gameVersion.title)
+        }
     }
 
     // MARK: Helpers
