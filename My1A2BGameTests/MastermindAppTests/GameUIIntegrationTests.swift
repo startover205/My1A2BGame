@@ -17,6 +17,22 @@ class GameUIIntegrationTests: XCTestCase {
         
         XCTAssertEqual(sut.title, gameVersion.title)
     }
+    
+    func test_viewComponents_fadeInOnAppear() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        sut.fadeInCompoenents.forEach {
+            XCTAssertTrue($0.alpha == 0)
+        }
+        
+        sut.simulateViewAppear()
+        
+        sut.fadeInCompoenents.forEach {
+            XCTAssertTrue($0.alpha != 0)
+        }
+    }
 
     // MARK: Helpers
     
@@ -40,4 +56,12 @@ class GameUIIntegrationTests: XCTestCase {
         let title: String = "a title"
     }
 
+}
+
+private extension GuessNumberViewController {
+    var fadeInCompoenents: [UIView] { fadeOutElements }
+    
+    func simulateViewAppear() {
+        self.viewWillAppear(false)
+    }
 }
