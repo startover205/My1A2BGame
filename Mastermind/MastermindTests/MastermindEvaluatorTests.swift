@@ -1,13 +1,12 @@
 //
 //  MastermindEvaluatorTests.swift
-//  My1A2BGameTests
+//  MastermindEvaluatorTests
 //
-//  Created by Ming-Ta Yang on 2021/7/20.
-//  Copyright © 2021 Ming-Ta Yang. All rights reserved.
+//  Created by Ming-Ta Yang on 2021/7/31.
 //
 
 import XCTest
-import My1A2BGame
+import Mastermind
 
 class MastermindEvaluatorTests: XCTestCase {
     func test_evaluate_throwsErrorOnMismatchLengthInputs() {

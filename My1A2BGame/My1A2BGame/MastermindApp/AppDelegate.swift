@@ -11,6 +11,7 @@ import StoreKit
 import GoogleMobileAds
 import AppTrackingTransparency
 import AdSupport
+import Mastermind
 
 
 @UIApplicationMain

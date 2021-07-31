@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mastermind
 
 public final class GameUIComposer {
     public static func makeGameUI(gameVersion: GameVersion) -> GuessNumberViewController {
