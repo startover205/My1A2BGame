@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>You guessed %d times</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@times@</string>
+		<key>times</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>You guessed %d time</string>
+			<key>other</key>
+			<string>You guessed %d times</string>
+		</dict>
+	</dict>
 	<key>I won 1A2B Fun! with guessing only %d times! Come challenge me!</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -12,8 +28,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>I won &quot;1A2B Fun!&quot; with guessing only %d time! Come challenge me!</string>
 			<key>other</key>
-			<string>我在“1A2B Fun!”里只花 %d 次就猜赢了！快来挑战我！</string>
+			<string>I won &quot;1A2B Fun!&quot; with guessing only %d times! Come challenge me!</string>
 		</dict>
 	</dict>
 	<key>You can still guess %d times</key>
@@ -26,22 +44,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d chance left</string>
 			<key>other</key>
-			<string>还可以猜 %d 次</string>
-		</dict>
-	</dict>
-	<key>You guessed %d times</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@times@</string>
-		<key>times</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>other</key>
-			<string>共猜了 %d 次</string>
+			<string>%d chances left</string>
 		</dict>
 	</dict>
 </dict>
