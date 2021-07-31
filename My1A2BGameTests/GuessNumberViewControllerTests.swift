@@ -207,11 +207,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self))
-        
-        let sut = storyboard.instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
-        sut.gameVersion = BasicGame()
-        sut.evaluate = MastermindEvaluator.evaluate(_:with:)
+        let sut = GameUIComposer.makeGameUI(gameVersion: BasicGame())
         if loadView {
             sut.loadViewIfNeeded()
         }
