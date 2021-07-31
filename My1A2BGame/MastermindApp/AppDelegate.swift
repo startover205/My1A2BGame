@@ -92,23 +92,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeBasicVC() -> UIViewController {
-        let vc = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
-        vc.title = "Basic"
-        vc.adProvider = GoogleRewardAdManager.shared
-        vc.evaluate = MastermindEvaluator.evaluate(_:with:)
-        vc.gameVersion = BasicGame()
+        let controller = GameUIComposer.makeGameUI(gameVersion: BasicGame())
+        controller.adProvider = GoogleRewardAdManager.shared
 
-        return vc
+        return controller
     }
     
     private func makeAdvancedVC() -> UIViewController {
-        let vc = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
-        vc.title = "Advanced"
-        vc.adProvider = GoogleRewardAdManager.shared
-        vc.evaluate = MastermindEvaluator.evaluate(_:with:)
-        vc.gameVersion = AdvancedGame()
-        
-        return vc
+        let controller = GameUIComposer.makeGameUI(gameVersion: AdvancedGame())
+        controller.adProvider = GoogleRewardAdManager.shared
+
+        return controller
     }
     
     private func makeRankVC() -> UIViewController {
