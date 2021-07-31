@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Mastermind/Mastermind.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:My1A2BGame.xcodeproj">
    </FileRef>
    <FileRef
