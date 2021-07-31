@@ -8,15 +8,16 @@
 
 import UIKit
 
-protocol GuessPadDelegate: AnyObject {
+public protocol GuessPadDelegate: AnyObject {
     func padDidFinishEntering(numberTexts: [String])
 }
 
-class GuessPadViewController: UIViewController {
+public class GuessPadViewController: UIViewController {
     
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     
-    @IBOutlet var digitLabels: [UILabel]!
+    private(set) var digitLabels = [UILabel]()
+    @IBOutlet weak var digitContainer: UIStackView!
     
     @IBOutlet weak var oneButton: UIButton!
     @IBOutlet weak var twoButton: UIButton!
@@ -34,10 +35,13 @@ class GuessPadViewController: UIViewController {
     
     var currentDigit = 0
     var canTap = true
+    var digitCount: Int!
     weak var delegate: GuessPadDelegate?
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureDigigCount()
         
         resetPanel()
         
@@ -69,6 +73,40 @@ class GuessPadViewController: UIViewController {
         }
     }
     
+    private func configureDigigCount() {
+        for _ in 0..<digitCount {
+            let digitViewContainer = UIStackView()
+            digitViewContainer.alignment = .center
+            digitViewContainer.distribution = .fill
+            digitViewContainer.axis = .vertical
+            digitViewContainer.spacing = -20
+            
+            let digitLabel = makeDigitLabel()
+            digitLabels.append(digitLabel)
+            digitViewContainer.addArrangedSubview(digitLabel)
+            digitViewContainer.addArrangedSubview(makeUnderscoreLabel())
+            
+            
+            digitContainer.addArrangedSubview(digitViewContainer)
+        }
+    }
+    
+    private func makeDigitLabel() -> UILabel {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 50)
+        label.text = "0"
+        label.sizeToFit()
+        return label
+    }
+    
+    private func makeUnderscoreLabel() -> UILabel {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 50)
+        label.text = "_"
+        label.sizeToFit()
+        return label
+    }
+    
     func resetPanel() {
         clearAllText()
         enableAllButton()
@@ -78,7 +116,7 @@ class GuessPadViewController: UIViewController {
         canTap = true
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         resetPanel()

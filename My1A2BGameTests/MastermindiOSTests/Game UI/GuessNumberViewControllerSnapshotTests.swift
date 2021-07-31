@@ -16,6 +16,7 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_dark")
     }
+    
     func test_gameStart_advanced() {
         let sut = makeSUT(gameVersion: AdvancedGame())
         

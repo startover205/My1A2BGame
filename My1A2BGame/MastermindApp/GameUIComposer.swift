@@ -13,6 +13,20 @@ public final class GameUIComposer {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
         controller.gameVersion = gameVersion
         controller.title = gameVersion.title
+        controller.inputVC = {
+            let nav = UINavigationController()
+            nav.setViewControllers([makeInputPadUI(digitCount: gameVersion.digitCount)], animated: false)
+            return nav
+        }()
+        controller.evaluate = MastermindEvaluator.evaluate(_:with:)
+
+        
+        return controller
+    }
+    
+    public static func makeInputPadUI(digitCount: Int) -> GuessPadViewController {
+        let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessPadViewController.self)).instantiateViewController(withIdentifier: "GuessPadViewController") as! GuessPadViewController
+        controller.digitCount = digitCount
         
         return controller
     }

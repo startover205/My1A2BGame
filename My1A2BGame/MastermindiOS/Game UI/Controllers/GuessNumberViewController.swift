@@ -17,6 +17,7 @@ protocol AdProvider {
 public protocol GameVersion {
     var digitCount: Int { get }
     var title: String { get }
+    var maxGuessCount: Int { get }
 }
 
 public struct BasicGame: GameVersion {
@@ -24,13 +25,17 @@ public struct BasicGame: GameVersion {
     
     public let title: String = "Basic"
     
+    public var maxGuessCount: Int = 10
+    
     public init() {}
 }
 
 public struct AdvancedGame: GameVersion {
     public let digitCount: Int = 5
     
-    public let title: String = "Advacned"
+    public let title: String = "Advanced"
+    
+    public var maxGuessCount: Int = 15
     
     public init() {}
 }
@@ -79,22 +84,8 @@ public class GuessNumberViewController: UIViewController {
         fadeIn()
     }()
     
-    lazy var navNumberPadVC: UINavigationController = {
-        let nav = storyboard?.instantiateViewController(withIdentifier: "nav\(String(describing: GuessPadViewController.self))") as! UINavigationController
-        nav.modalPresentationStyle = .formSheet
-        let controller = nav.topViewController as! GuessPadViewController
-        controller.delegate = self
-        return nav
-    }()
-    
-    lazy var navAdvancedNumberPadVC: UINavigationController = {
-        let nav = storyboard?.instantiateViewController(withIdentifier: "navAdvanced\(String(describing: GuessPadViewController.self))") as! UINavigationController
-        nav.modalPresentationStyle = .formSheet
-        let controller = nav.topViewController as! GuessPadViewController
-        controller.delegate = self
-        return nav
-    }()
-    
+    public var inputVC: UINavigationController!
+
     // 觸覺回饋
     var feedbackGenerator: UINotificationFeedbackGenerator?
     
@@ -179,16 +170,21 @@ public class GuessNumberViewController: UIViewController {
             return
         }
         
-        if digitCount == 5{
-            self.present(navAdvancedNumberPadVC, animated: true, completion: nil)
-        } else {
-            self.present(navNumberPadVC, animated: true, completion: nil)
-        }
-        
         feedbackGenerator = .init()
         feedbackGenerator?.prepare()
         
+        showNumberPad { [weak self] result in
+            guard let self = self else { return }
+            if let guess = try? result.get() {
+                self.tryToMatchNumbers(guessTexts: guess, answerTexts: self.quizNumbers)
+            }
+        }
+        
         return
+    }
+    
+    func showNumberPad(completion: @escaping (Result<[String], Error>) -> ()) {
+        self.present(inputVC, animated: true, completion: nil)
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
@@ -218,7 +214,7 @@ public class GuessNumberViewController: UIViewController {
 
 // MARK: - GuessPadDelegate
 extension GuessNumberViewController: GuessPadDelegate{
-    func padDidFinishEntering(numberTexts: [String]) {
+    public func padDidFinishEntering(numberTexts: [String]) {
         tryToMatchNumbers(guessTexts: numberTexts, answerTexts: quizNumbers)
     }
 }
@@ -258,7 +254,6 @@ extension GuessNumberViewController: UINavigationControllerDelegate{
     }
 }
 
-// MARK: - Private
 extension GuessNumberViewController {
     
     func tryToMatchNumbers(guessTexts: [String], answerTexts: [String]){

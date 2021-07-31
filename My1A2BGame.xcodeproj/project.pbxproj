@@ -55,6 +55,11 @@
 		C085BE78225701D000320563 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE76225701D000320563 /* QuestionsTableViewController.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C085BE7C2257566F00320563 /* CustomTransitionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE7B2257566F00320563 /* CustomTransitionTabBarController.swift */; };
+		C089712426B43B840074D9C1 /* GuessPadViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089712326B43B840074D9C1 /* GuessPadViewControllerSnapshotTests.swift */; };
+		C089712826B4BB020074D9C1 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C089712526B4BB020074D9C1 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png */; };
+		C089712926B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C089712626B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */; };
+		C089712A26B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C089712726B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png */; };
+		C089712C26B4D3470074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C089712B26B4D3470074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
@@ -146,6 +151,11 @@
 		C085BE76225701D000320563 /* QuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewController.swift; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C085BE7B2257566F00320563 /* CustomTransitionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransitionTabBarController.swift; sourceTree = "<group>"; };
+		C089712326B43B840074D9C1 /* GuessPadViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessPadViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		C089712526B4BB020074D9C1 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png; sourceTree = "<group>"; };
+		C089712626B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_INPUT_PAD_FOUR_DIGIT_light.png; sourceTree = "<group>"; };
+		C089712726B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png; sourceTree = "<group>"; };
+		C089712B26B4D3470074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_INPUT_PAD_FOUR_DIGIT_light.png; sourceTree = "<group>"; };
 		C08F2FB12332168000320990 /* HelperButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButton.swift; sourceTree = "<group>"; };
 		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -489,6 +499,7 @@
 			children = (
 				C01BC5E726AAEF8F00FA0636 /* snapshots */,
 				C01BC5E026AAECE100FA0636 /* GuessNumberViewControllerSnapshotTests.swift */,
+				C089712326B43B840074D9C1 /* GuessPadViewControllerSnapshotTests.swift */,
 			);
 			path = "Game UI";
 			sourceTree = "<group>";
@@ -505,6 +516,10 @@
 		C01BC5E726AAEF8F00FA0636 /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				C089712526B4BB020074D9C1 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png */,
+				C089712726B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png */,
+				C089712626B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */,
+				C089712B26B4D3470074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */,
 				C01BC5E826AAF01E00FA0636 /* GAME_START_dark.png */,
 				C01BC5E926AAF01E00FA0636 /* GAME_START_light.png */,
 				C01BC5ED26AAF9D000FA0636 /* GAME_START_ADVANCED_dark.png */,
@@ -689,7 +704,11 @@
 				C01BC5EF26AAF9D000FA0636 /* GAME_START_ADVANCED_dark.png in Resources */,
 				C01BC5EA26AAF01E00FA0636 /* GAME_START_dark.png in Resources */,
 				C01BC5EB26AAF01E00FA0636 /* GAME_START_light.png in Resources */,
+				C089712C26B4D3470074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png in Resources */,
+				C089712926B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png in Resources */,
 				C01BC5EE26AAF9D000FA0636 /* GAME_START_ADVANCED_light.png in Resources */,
+				C089712A26B4BB020074D9C1 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */,
+				C089712826B4BB020074D9C1 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +816,7 @@
 				C01BC5E126AAECE100FA0636 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
 				C01BC5E426AAEE0800FA0636 /* UIViewController+Snapshot.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
+				C089712426B43B840074D9C1 /* GuessPadViewControllerSnapshotTests.swift in Sources */,
 				C01BC5BA26A6A15F00FA0636 /* MastermindEvaluatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
