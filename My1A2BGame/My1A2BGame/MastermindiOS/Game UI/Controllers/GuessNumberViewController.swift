@@ -9,6 +9,7 @@
 import UIKit
 import GameKit
 import GoogleMobileAds
+import MastermindiOS
 
 protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }

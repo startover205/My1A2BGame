@@ -35,7 +35,7 @@ public class GuessPadViewController: UIViewController {
     var currentDigit = 0
     var canTap = true
     public var digitCount: Int = 4
-    weak var delegate: GuessPadDelegate?
+    public weak var delegate: GuessPadDelegate?
     
     public override func viewDidLoad() {
         super.viewDidLoad()

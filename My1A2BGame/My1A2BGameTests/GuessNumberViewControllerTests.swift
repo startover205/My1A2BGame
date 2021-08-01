@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import My1A2BGame
+import MastermindiOS
 
 class GuessNumberViewControllerTests: XCTestCase {
     func test_viewDidLoad_fadeOutElmentsAreOpaque() {

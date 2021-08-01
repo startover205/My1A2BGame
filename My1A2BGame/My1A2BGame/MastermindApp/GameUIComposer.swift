@@ -8,6 +8,7 @@
 
 import UIKit
 import Mastermind
+import MastermindiOS
 
 public final class GameUIComposer {
     public static func makeGameUI(gameVersion: GameVersion) -> GuessNumberViewController {

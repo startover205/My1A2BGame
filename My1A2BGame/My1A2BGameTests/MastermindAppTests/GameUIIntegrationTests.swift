@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import My1A2BGame
+import MastermindiOS
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
