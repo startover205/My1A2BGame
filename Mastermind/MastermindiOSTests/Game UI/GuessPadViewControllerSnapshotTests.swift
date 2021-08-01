@@ -43,6 +43,51 @@ class GuessPadViewControllerSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "ONE_INPUT_PAD_FIVE_DIGIT_dark")
     }
     
+    func test_twoInputWithFourDigit() {
+        let sut = makeSUT(digitCount: 4)
+        
+        sut.pressNumberOne()
+        sut.pressNumberTwo()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "TWO_INPUT_PAD_FOUR_DIGIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "TWO_INPUT_PAD_FOUR_DIGIT_dark")
+    }
+    
+    func test_twoInputWithFiveDigit() {
+        let sut = makeSUT(digitCount: 5)
+        
+        sut.pressNumberOne()
+        sut.pressNumberTwo()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "TWO_INPUT_PAD_FIVE_DIGIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "TWO_INPUT_PAD_FIVE_DIGIT_dark")
+    }
+    
+    func test_fullInputWithFourDigit() {
+        let sut = makeSUT(digitCount: 4)
+        
+        sut.pressNumberOne()
+        sut.pressNumberTwo()
+        sut.pressNumberThree()
+        sut.pressNumberFour()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FULL_INPUT_PAD_FOUR_DIGIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FULL_INPUT_PAD_FOUR_DIGIT_dark")
+    }
+    
+    func test_fullInputWithFiveDigit() {
+        let sut = makeSUT(digitCount: 5)
+        
+        sut.pressNumberOne()
+        sut.pressNumberTwo()
+        sut.pressNumberThree()
+        sut.pressNumberFour()
+        sut.pressNumberFive()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FULL_INPUT_PAD_FIVE_DIGIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FULL_INPUT_PAD_FIVE_DIGIT_dark")
+    }
+    
     // MARK: - Helpers
     
     func makeSUT(digitCount: Int) -> GuessPadViewController {
@@ -56,7 +101,13 @@ class GuessPadViewControllerSnapshotTests: XCTestCase {
 }
 
 private extension GuessPadViewController {
-    func pressNumberOne() {
-        oneButton.simulateTap()
-    }
+    func pressNumberOne() { oneButton.simulateTap() }
+    
+    func pressNumberTwo() { twoButton.simulateTap() }
+    
+    func pressNumberThree() { threeButton.simulateTap() }
+    
+    func pressNumberFour() { fourButton.simulateTap() }
+    
+    func pressNumberFive() { fiveButton.simulateTap() }
 }

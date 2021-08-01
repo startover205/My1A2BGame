@@ -16,7 +16,6 @@ public class GuessPadViewController: UIViewController {
     
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     
-    private(set) var digitLabels = [UILabel]()
     @IBOutlet private(set) public weak var digitContainer: UIStackView!
     @IBOutlet private(set) public weak var oneButton: UIButton!
     @IBOutlet private(set) public weak var twoButton: UIButton!
@@ -30,7 +29,9 @@ public class GuessPadViewController: UIViewController {
     @IBOutlet private(set) public weak var zeroButton: UIButton!
     @IBOutlet private(set) public weak var deleteButton: UIButton!
     @IBOutlet private(set) public weak var clearButton: UIButton!
-    var buttons = [UIButton]()
+    private var digitLabels = [UILabel]()
+    private var digitButtons = [UIButton]()
+    private var allButtons = [UIButton]()
     
     var currentDigit = 0
     var canTap = true
@@ -40,39 +41,44 @@ public class GuessPadViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureDigigCount()
+        configureDigitView()
+        
+        configureButtons()
         
         resetPanel()
+    }
+    
+    private func configureButtons() {
+        digitButtons.append(oneButton)
+        digitButtons.append(twoButton)
+        digitButtons.append(threeButton)
+        digitButtons.append(fourButton)
+        digitButtons.append(fiveButton)
+        digitButtons.append(sixButton)
+        digitButtons.append(sevenButton)
+        digitButtons.append(eightButton)
+        digitButtons.append(nineButton)
+        digitButtons.append(zeroButton)
         
-        // 自動縮小字體、避免數字被截斷
-        buttons.append(oneButton)
-        buttons.append(twoButton)
-        buttons.append(threeButton)
-        buttons.append(fourButton)
-        buttons.append(fiveButton)
-        buttons.append(sixButton)
-        buttons.append(sevenButton)
-        buttons.append(eightButton)
-        buttons.append(nineButton)
-        buttons.append(zeroButton)
-        buttons.append(deleteButton)
-        buttons.append(clearButton)
-        
-        buttons.forEach {
-            $0.titleLabel?.minimumScaleFactor = 0.5
-
-            $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        digitButtons.forEach {
+            $0.layer.shadowOffset = .init(width: 0, height: 2)
+            $0.layer.shadowRadius = 0
+            $0.layer.shadowOpacity = 0.4
         }
         
+        allButtons.append(contentsOf: digitButtons)
+        allButtons.append(deleteButton)
+        allButtons.append(clearButton)
         
-        digitLabels.forEach {
-            $0.minimumScaleFactor = 0.5
-
-            $0.adjustsFontSizeToFitWidth = true
+        allButtons.forEach {
+            $0.layer.cornerRadius = 4
+            
+            $0.titleLabel?.minimumScaleFactor = 0.5
+            $0.titleLabel?.adjustsFontSizeToFitWidth = true
         }
     }
     
-    private func configureDigigCount() {
+    private func configureDigitView() {
         for _ in 0..<digitCount {
             let digitViewContainer = UIStackView()
             digitViewContainer.alignment = .center
@@ -85,7 +91,6 @@ public class GuessPadViewController: UIViewController {
             digitViewContainer.addArrangedSubview(digitLabel)
             digitViewContainer.addArrangedSubview(makeUnderscoreLabel())
             
-            
             digitContainer.addArrangedSubview(digitViewContainer)
         }
     }
@@ -97,6 +102,8 @@ public class GuessPadViewController: UIViewController {
         label.widthAnchor.constraint(equalToConstant: 32).isActive = true
         label.heightAnchor.constraint(equalToConstant: 64).isActive = true
         label.text = "0"
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
         label.sizeToFit()
         return label
     }
@@ -105,6 +112,8 @@ public class GuessPadViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 50)
         label.text = "_"
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
         label.sizeToFit()
         return label
     }
