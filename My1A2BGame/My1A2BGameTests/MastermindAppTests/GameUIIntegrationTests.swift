@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import My1A2BGame
+@testable import My1A2BGame
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
@@ -35,27 +35,21 @@ class GameUIIntegrationTests: XCTestCase {
         }
     }
     
-//    func test_availableGuess_rendersWithEachGuess() {
-//        let (sut, _) = makeSUT(gameVersion: GameVersionSpy(maxGuessCount: 3))
-//
-//        sut.loadViewIfNeeded()
-//        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3))
-//
-//
-//        sut.simulateTapOnGuessButton()
-//        sut.simulateUserCancelGuess()
-//        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect available guess no change if use canel guess")
-//
-//        sut.simulateTapOnGuessButton()
-//        sut.simulateUserCompleteGuess()
-//        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2))
-//
-//        sut.simulateUserInitiatedGuess()
-//        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1))
-//
-//        sut.simulateUserInitiatedGuess()
-//        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0))
-//    }
+    func test_availableGuess_rendersWithEachGuess() {
+        let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 3))
+
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect max guess count once view is loaded")
+
+        sut.simulateUserInitiatedGuess()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2), "expect guess count minus 1 after user guess")
+
+        sut.simulateUserInitiatedGuess()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1), "expect guess count minus 1 after user guess")
+
+        sut.simulateUserInitiatedGuess()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
+    }
 
     // MARK: Helpers
     
@@ -72,7 +66,7 @@ class GameUIIntegrationTests: XCTestCase {
     private var advancedGameTitle: String { "Advanced" }
     
     private final class GameVersionMock: GameVersion {
-        let digitCount: Int = Int.random(in: 3...6)
+        let digitCount: Int = 4
         
         let title: String = "a title"
         
@@ -83,13 +77,23 @@ class GameUIIntegrationTests: XCTestCase {
         }
     }
     
-    private func guessMessageFor(guessCount: Int) -> String { "" }
+    private func guessMessageFor(guessCount: Int) -> String {
+        let chanceString = guessCount == 1 ? "chance" : "chances"
+        
+        return "\(guessCount) \(chanceString) left" }
 }
 
 private extension GuessNumberViewController {
     func simulateViewAppear() { viewWillAppear(false) }
     
-    func simulateUserInitiatedGuess() { guessButton.simulateTap() }
+    func simulateUserInitiatedGuess() {
+        guessButton.sendActions(for: .touchUpInside)
+        
+        let answer = quizNumbers
+        
+       let inputVC =  (inputVC.topViewController as! GuessPadViewController)
+        inputVC.delegate?.padDidFinishEntering(numberTexts: answer.reversed())
+    }
     
     var fadeInCompoenents: [UIView] { fadeOutElements }
     

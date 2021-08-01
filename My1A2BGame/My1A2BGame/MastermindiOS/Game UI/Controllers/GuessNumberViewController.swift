@@ -84,7 +84,12 @@ public class GuessNumberViewController: UIViewController {
         fadeIn()
     }()
     
-    public var inputVC: UINavigationController!
+    public var inputVC: UINavigationController! {
+        didSet {
+            let guessPad = inputVC.topViewController as! GuessPadViewController
+            guessPad.delegate = self
+        }
+    }
 
     // 觸覺回饋
     var feedbackGenerator: UINotificationFeedbackGenerator?
@@ -173,18 +178,9 @@ public class GuessNumberViewController: UIViewController {
         feedbackGenerator = .init()
         feedbackGenerator?.prepare()
         
-        showNumberPad { [weak self] result in
-            guard let self = self else { return }
-            if let guess = try? result.get() {
-                self.tryToMatchNumbers(guessTexts: guess, answerTexts: self.quizNumbers)
-            }
-        }
-        
-        return
-    }
-    
-    func showNumberPad(completion: @escaping (Result<[String], Error>) -> ()) {
         self.present(inputVC, animated: true, completion: nil)
+
+        return
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
@@ -372,7 +368,7 @@ extension GuessNumberViewController {
     func initGame(){
         
         //set data
-        availableGuess = isAdvancedVersion ? Constants.maxPlayChancesAdvanced : Constants.maxPlayChances
+        availableGuess = gameVersion.maxGuessCount
         
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
