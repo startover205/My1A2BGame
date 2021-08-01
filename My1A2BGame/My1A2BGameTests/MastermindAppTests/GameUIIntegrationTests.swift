@@ -11,7 +11,8 @@ import My1A2BGame
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
-        let (sut, gameVersion) = makeSUT()
+        let gameVersion = GameVersionMock()
+        let sut = makeSUT(gameVersion: gameVersion)
         
         sut.loadViewIfNeeded()
         
@@ -19,7 +20,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_viewComponents_fadeInOnAppear() {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -58,21 +59,19 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = GameVersionSpy(), file: StaticString = #filePath, line: UInt = #line) -> (GuessNumberViewController, GameVersion) {
-        let gameVersion = GameVersionSpy()
+    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
         let sut = GameUIComposer.makeGameUI(gameVersion: gameVersion)
         
-        trackForMemoryLeaks(gameVersion, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, gameVersion)
+        return sut
     }
     
     private var basicGameTitle: String { "Basic" }
     
     private var advancedGameTitle: String { "Advanced" }
     
-    private final class GameVersionSpy: GameVersion {
+    private final class GameVersionMock: GameVersion {
         let digitCount: Int = Int.random(in: 3...6)
         
         let title: String = "a title"
