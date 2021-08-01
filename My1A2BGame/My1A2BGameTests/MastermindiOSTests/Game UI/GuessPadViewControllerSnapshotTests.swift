@@ -25,11 +25,35 @@ class GuessPadViewControllerSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "EMPTY_INPUT_PAD_FIVE_DIGIT_dark")
     }
     
+    func test_oneInputWithFourDigit() {
+        let sut = makeSUT(digitCount: 4)
+        
+        sut.pressNumberOne()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "ONE_INPUT_PAD_FOUR_DIGIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "ONE_INPUT_PAD_FOUR_DIGIT_dark")
+    }
+    
+    func test_oneInputWithFiveDigit() {
+        let sut = makeSUT(digitCount: 5)
+        
+        sut.pressNumberOne()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "ONE_INPUT_PAD_FIVE_DIGIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "ONE_INPUT_PAD_FIVE_DIGIT_dark")
+    }
+    
     // MARK: - Helpers
     
-    func makeSUT(digitCount: Int) -> UIViewController {
+    func makeSUT(digitCount: Int) -> GuessPadViewController {
         let controller = GameUIComposer.makeInputPadUI(digitCount: digitCount)
         controller.loadViewIfNeeded()
         return controller
+    }
+}
+
+private extension GuessPadViewController {
+    func pressNumberOne() {
+        oneButton.sendActions(for: .touchUpInside)
     }
 }

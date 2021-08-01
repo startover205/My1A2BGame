@@ -681,7 +681,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="acj-p3-aSA">
-                                <rect key="frame" x="40" y="96" width="334" height="424"/>
+                                <rect key="frame" x="40" y="211" width="334" height="237"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="S2g-lv-ZDv"/>
@@ -689,10 +689,10 @@
                         <constraints>
                             <constraint firstItem="S2g-lv-ZDv" firstAttribute="trailing" secondItem="acj-p3-aSA" secondAttribute="trailing" constant="40" id="4TK-M3-6Br"/>
                             <constraint firstItem="acj-p3-aSA" firstAttribute="leading" secondItem="S2g-lv-ZDv" secondAttribute="leading" constant="40" id="HzR-Hh-D3h"/>
-                            <constraint firstItem="acj-p3-aSA" firstAttribute="top" secondItem="S2g-lv-ZDv" secondAttribute="top" constant="8" id="Lf4-H6-2EJ"/>
+                            <constraint firstItem="acj-p3-aSA" firstAttribute="top" secondItem="KLi-ql-Srl" secondAttribute="top" multiplier="0.4" id="Iwy-2V-NaR"/>
                             <constraint firstAttribute="bottom" secondItem="KLi-ql-Srl" secondAttribute="bottom" id="PkU-HW-JQI"/>
                             <constraint firstItem="KLi-ql-Srl" firstAttribute="leading" secondItem="S2g-lv-ZDv" secondAttribute="leading" id="RLO-RC-ra4"/>
-                            <constraint firstItem="KLi-ql-Srl" firstAttribute="top" secondItem="acj-p3-aSA" secondAttribute="bottom" constant="8" id="RXz-53-rJA"/>
+                            <constraint firstItem="KLi-ql-Srl" firstAttribute="top" secondItem="acj-p3-aSA" secondAttribute="bottom" constant="80" id="RXz-53-rJA"/>
                             <constraint firstItem="S2g-lv-ZDv" firstAttribute="trailing" secondItem="KLi-ql-Srl" secondAttribute="trailing" id="VG6-6u-iFI"/>
                             <constraint firstItem="VOe-Mm-ZvE" firstAttribute="bottom" secondItem="S2g-lv-ZDv" secondAttribute="bottom" constant="-8" id="ob5-7r-9Dv"/>
                         </constraints>

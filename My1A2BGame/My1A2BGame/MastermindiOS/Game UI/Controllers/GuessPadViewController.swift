@@ -17,20 +17,19 @@ public class GuessPadViewController: UIViewController {
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     
     private(set) var digitLabels = [UILabel]()
-    @IBOutlet weak var digitContainer: UIStackView!
-    
-    @IBOutlet weak var oneButton: UIButton!
-    @IBOutlet weak var twoButton: UIButton!
-    @IBOutlet weak var threeButton: UIButton!
-    @IBOutlet weak var fourButton: UIButton!
-    @IBOutlet weak var fiveButton: UIButton!
-    @IBOutlet weak var sixButton: UIButton!
-    @IBOutlet weak var sevenButton: UIButton!
-    @IBOutlet weak var eightButton: UIButton!
-    @IBOutlet weak var nineButton: UIButton!
-    @IBOutlet weak var zeroButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet private(set) public weak var digitContainer: UIStackView!
+    @IBOutlet private(set) public weak var oneButton: UIButton!
+    @IBOutlet private(set) public weak var twoButton: UIButton!
+    @IBOutlet private(set) public weak var threeButton: UIButton!
+    @IBOutlet private(set) public weak var fourButton: UIButton!
+    @IBOutlet private(set) public weak var fiveButton: UIButton!
+    @IBOutlet private(set) public weak var sixButton: UIButton!
+    @IBOutlet private(set) public weak var sevenButton: UIButton!
+    @IBOutlet private(set) public weak var eightButton: UIButton!
+    @IBOutlet private(set) public weak var nineButton: UIButton!
+    @IBOutlet private(set) public weak var zeroButton: UIButton!
+    @IBOutlet private(set) public weak var deleteButton: UIButton!
+    @IBOutlet private(set) public weak var clearButton: UIButton!
     var buttons = [UIButton]()
     
     var currentDigit = 0
@@ -79,7 +78,7 @@ public class GuessPadViewController: UIViewController {
             digitViewContainer.alignment = .center
             digitViewContainer.distribution = .fill
             digitViewContainer.axis = .vertical
-            digitViewContainer.spacing = -20
+            digitViewContainer.spacing = -32
             
             let digitLabel = makeDigitLabel()
             digitLabels.append(digitLabel)
@@ -94,6 +93,9 @@ public class GuessPadViewController: UIViewController {
     private func makeDigitLabel() -> UILabel {
         let label = UILabel()
         label.font = .systemFont(ofSize: 50)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 64).isActive = true
         label.text = "0"
         label.sizeToFit()
         return label
