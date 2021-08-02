@@ -79,9 +79,9 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     private func guessMessageFor(guessCount: Int) -> String {
-        let chanceString = guessCount == 1 ? "chance" : "chances"
-        
-        return "\(guessCount) \(chanceString) left" }
+        let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .init(for: GuessNumberViewController.self), value: "", comment: "")
+        return String.localizedStringWithFormat(format, guessCount)
+    }
 }
 
 private extension GuessNumberViewController {
