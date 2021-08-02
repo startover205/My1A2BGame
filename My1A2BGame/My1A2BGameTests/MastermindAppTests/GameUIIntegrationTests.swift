@@ -42,13 +42,13 @@ class GameUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect max guess count once view is loaded")
 
-        sut.simulateUserInitiatedGuess()
+        sut.simulateUserInitiatedWrongGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2), "expect guess count minus 1 after user guess")
 
-        sut.simulateUserInitiatedGuess()
+        sut.simulateUserInitiatedWrongGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1), "expect guess count minus 1 after user guess")
 
-        sut.simulateUserInitiatedGuess()
+        sut.simulateUserInitiatedWrongGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
     }
 
@@ -87,7 +87,7 @@ class GameUIIntegrationTests: XCTestCase {
 private extension GuessNumberViewController {
     func simulateViewAppear() { viewWillAppear(false) }
     
-    func simulateUserInitiatedGuess() {
+    func simulateUserInitiatedWrongGuess() {
         guessButton.sendActions(for: .touchUpInside)
         
         let answer = quizNumbers
