@@ -15,11 +15,9 @@ public final class GameUIComposer {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
         controller.gameVersion = gameVersion
         controller.title = gameVersion.title
-        controller.inputVC = {
-            let nav = UINavigationController()
-            nav.setViewControllers([makeInputPadUI(digitCount: gameVersion.digitCount)], animated: false)
-            return nav
-        }()
+        let inputVC = makeInputPadUI(digitCount: gameVersion.digitCount)
+        inputVC.delegate = controller
+        controller.inputVC = inputVC
         controller.evaluate = MastermindEvaluator.evaluate(_:with:)
 
         

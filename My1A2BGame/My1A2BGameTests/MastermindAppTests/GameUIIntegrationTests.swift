@@ -92,7 +92,6 @@ private extension GuessNumberViewController {
         
         let answer = quizNumbers
         
-       let inputVC =  (inputVC.topViewController as! GuessPadViewController)
         inputVC.delegate?.padDidFinishEntering(numberTexts: answer.reversed())
     }
     

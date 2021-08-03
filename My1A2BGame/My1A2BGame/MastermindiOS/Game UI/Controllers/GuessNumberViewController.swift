@@ -79,12 +79,7 @@ public class GuessNumberViewController: UIViewController {
     private let synthesizer = AVSpeechSynthesizer()
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
-    public var inputVC: UINavigationController! {
-        didSet {
-            let guessPad = inputVC.topViewController as! GuessPadViewController
-            guessPad.delegate = self
-        }
-    }
+    public var inputVC: GuessPadViewController!
 
     // 觸覺回饋
     var feedbackGenerator: UINotificationFeedbackGenerator?
@@ -173,9 +168,13 @@ public class GuessNumberViewController: UIViewController {
         feedbackGenerator = .init()
         feedbackGenerator?.prepare()
         
-        self.present(inputVC, animated: true, completion: nil)
-
-        return
+        presentInputVC()
+    }
+    
+    private func presentInputVC() {
+        let nav = UINavigationController()
+        nav.setViewControllers([inputVC], animated: false)
+        self.present(nav, animated: true)
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
