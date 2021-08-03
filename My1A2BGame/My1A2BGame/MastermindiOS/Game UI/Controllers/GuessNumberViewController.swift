@@ -78,12 +78,6 @@ public class GuessNumberViewController: UIViewController {
     private var guessHistoryText = ""
     private let synthesizer = AVSpeechSynthesizer()
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
-    private lazy var _fadeOut: Void = {
-        fadeOut()
-    }()
-    private lazy var _fadeIn: Void = {
-        fadeIn()
-    }()
     
     public var inputVC: UINavigationController! {
         didSet {
@@ -132,7 +126,7 @@ public class GuessNumberViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        _ = _fadeIn
+        fadeIn()
         
         loadUserDefaults()
     }
@@ -191,7 +185,7 @@ public class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
-        _ = _fadeOut
+        fadeOut()
         let identifier = isAdvancedVersion ? "GuessAdvancedViewController" : "GuessViewController"
         guard let controller = storyboard?.instantiateViewController(withIdentifier: identifier) else {
             assertionFailure()
