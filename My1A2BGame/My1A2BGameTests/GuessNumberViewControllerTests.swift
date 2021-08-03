@@ -11,11 +11,6 @@ import XCTest
 import MastermindiOS
 
 class GuessNumberViewControllerTests: XCTestCase {
-    func test_viewDidLoad_fadeOutElmentsAreOpaque() {
-        makeSUT().fadeOutElements.forEach {
-            XCTAssertTrue($0.alpha == 0)
-        }
-    }
     
     func test_viewDidLoad_navigiationControllerDelegateIsSelf() {
         
@@ -37,16 +32,6 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         XCTAssertEqual(sut.availableGuessLabel.text, text)
         XCTAssertEqual(sut.availableGuessLabel.textColor, UIColor.label)
-    }
-    
-    func test_viewWillAppear_fadeOutElmentsAreVisible() {
-        let sut = makeSUT()
-        
-        sut.viewWillAppear(false)
-        
-        sut.fadeOutElements.forEach {
-            XCTAssertEqual($0.alpha, 1)
-        }
     }
     
     func test_viewWillAppear_voiceSwitchStatusAccordingToUserDefaultSetting() {
@@ -85,16 +70,6 @@ class GuessNumberViewControllerTests: XCTestCase {
             XCTAssertEqual(sut.helperView.isHidden, true)
         }, after: 0.01)
         
-    }
-    
-    func test_restart_fadeOutElementsAreOpaque() {
-        let sut = makeSUT()
-        
-        sut.restartBtnPressed(sut)
-        
-        sut.fadeOutElements.forEach {
-            XCTAssertEqual($0.alpha, 0)
-        }
     }
     
     func test_guessBtnPressed_presentNumberPanel() {
