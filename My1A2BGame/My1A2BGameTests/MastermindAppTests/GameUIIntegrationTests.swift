@@ -36,22 +36,6 @@ class GameUIIntegrationTests: XCTestCase {
         }
     }
     
-    func test_availableGuess_rendersWithEachGuess() {
-        let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 3))
-
-        sut.loadViewIfNeeded()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect max guess count once view is loaded")
-
-        sut.simulateUserInitiatedWrongGuess()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2), "expect guess count minus 1 after user guess")
-
-        sut.simulateUserInitiatedWrongGuess()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1), "expect guess count minus 1 after user guess")
-
-        sut.simulateUserInitiatedWrongGuess()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
-    }
-    
     func test_voicePrompt_canToggleFromView() {
         let userDefaults = UserDefaults()
         let sut = makeSUT(userDefaults: userDefaults)
@@ -68,6 +52,22 @@ class GameUIIntegrationTests: XCTestCase {
         anotherSut.simulateViewAppear()
         
         XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off matching the user preferance")
+    }
+    
+    func test_availableGuess_rendersWithEachGuess() {
+        let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 3))
+
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect max guess count once view is loaded")
+
+        sut.simulateUserInitiatedWrongGuess()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2), "expect guess count minus 1 after user guess")
+
+        sut.simulateUserInitiatedWrongGuess()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1), "expect guess count minus 1 after user guess")
+
+        sut.simulateUserInitiatedWrongGuess()
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
     }
     
     func test_restart_resetGameView() {
