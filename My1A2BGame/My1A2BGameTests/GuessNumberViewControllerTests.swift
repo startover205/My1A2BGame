@@ -68,7 +68,7 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         assert({
             XCTAssertEqual(sut.helperView.isHidden, true)
-        }, after: 0.01)
+        }, after: 0.5)
         
     }
     
