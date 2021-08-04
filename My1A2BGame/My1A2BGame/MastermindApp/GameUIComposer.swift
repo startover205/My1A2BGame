@@ -11,9 +11,10 @@ import Mastermind
 import MastermindiOS
 
 public final class GameUIComposer {
-    public static func makeGameUI(gameVersion: GameVersion) -> GuessNumberViewController {
+    public static func makeGameUI(gameVersion: GameVersion, userDefaults: UserDefaults) -> GuessNumberViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
         controller.gameVersion = gameVersion
+        controller.userDefaults = userDefaults
         controller.title = gameVersion.title
         let inputVC = makeInputPadUI(digitCount: gameVersion.digitCount)
         inputVC.delegate = controller

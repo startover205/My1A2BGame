@@ -183,7 +183,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
-        let sut = GameUIComposer.makeGameUI(gameVersion: BasicGame())
+        let sut = GameUIComposer.makeGameUI(gameVersion: BasicGame(), userDefaults: UserDefaults.standard)
         if loadView {
             sut.loadViewIfNeeded()
         }

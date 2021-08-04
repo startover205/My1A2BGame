@@ -37,7 +37,7 @@ enum Constants {
 
 extension UserDefaults {
     enum Key {
-        static let voicePromptsSwitch = "VoicePromptsSwitch"
+        static let voicePromptsSwitch = "VOICE_PROMPT"
         static let remove_bottom_ad = "remove_bottom_ad"
         static let processCompletedCount = "processCompletedCount"
         static let lastVersionPromptedForReview = "lastVersionPromptedForReview"

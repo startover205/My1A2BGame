@@ -52,6 +52,25 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
     }
     
+    func test_voicePrompt_canToggleFromView() {
+        let userDefaults = UserDefaults()
+        let sut = makeSUT(userDefaults: userDefaults)
+        let anotherSut = makeSUT(userDefaults: userDefaults)
+        
+        userDefaults.setVoicePromptOn()
+        sut.loadViewIfNeeded()
+        sut.simulateViewAppear()
+        
+        XCTAssertTrue(sut.voicePromptOn, "expect voice switch is on matching the user preferance")
+        
+        sut.simulateToggleVoicePrompt()
+        anotherSut.loadViewIfNeeded()
+        anotherSut.simulateViewAppear()
+        
+        XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off matching the user preferance")
+    }
+    
+    
     func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
         let window = UIWindow()
         let nav = NavigationSpy()
@@ -81,8 +100,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.makeGameUI(gameVersion: gameVersion)
+    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaults(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.makeGameUI(gameVersion: gameVersion, userDefaults: userDefaults)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -138,4 +157,15 @@ private extension GuessNumberViewController {
     var fadeInCompoenents: [UIView] { fadeOutElements }
     
     var availableGuessMessage: String? { availableGuessLabel.text }
+    
+    var voicePromptOn: Bool { voiceSwitch.isOn }
+    
+    func simulateToggleVoicePrompt() {
+        voiceSwitch.isOn = !voiceSwitch.isOn
+        voiceSwitch.sendActions(for: .valueChanged)
+    }
+}
+
+private extension UserDefaults {
+    func setVoicePromptOn() { setValue(true, forKey: "VOICE_PROMPT") }
 }

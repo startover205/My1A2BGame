@@ -93,14 +93,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeBasicVC() -> UIViewController {
-        let controller = GameUIComposer.makeGameUI(gameVersion: BasicGame())
+        let controller = GameUIComposer.makeGameUI(gameVersion: BasicGame(), userDefaults: .standard)
         controller.adProvider = GoogleRewardAdManager.shared
 
         return controller
     }
     
     private func makeAdvancedVC() -> UIViewController {
-        let controller = GameUIComposer.makeGameUI(gameVersion: AdvancedGame())
+        let controller = GameUIComposer.makeGameUI(gameVersion: AdvancedGame(), userDefaults: .standard)
         controller.adProvider = GoogleRewardAdManager.shared
 
         return controller

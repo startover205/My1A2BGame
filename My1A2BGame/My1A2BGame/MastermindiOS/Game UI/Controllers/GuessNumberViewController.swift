@@ -53,6 +53,7 @@ public class GuessNumberViewController: UIViewController {
     
     var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
+    var userDefaults: UserDefaults?
     
     @IBOutlet weak var quizLabelContainer: UIStackView!
     @IBOutlet private(set) public weak var voiceSwitch: UISwitch!
@@ -343,11 +344,11 @@ extension GuessNumberViewController {
     }
     
     func loadUserDefaults(){
-        voiceSwitch.isOn = UserDefaults.standard.bool(forKey: UserDefaults.Key.voicePromptsSwitch)
+        voiceSwitch.isOn = userDefaults?.bool(forKey: UserDefaults.Key.voicePromptsSwitch) ?? false
     }
     
     func saveUserDefaults(){
-        UserDefaults.standard.set(voiceSwitch.isOn, forKey: UserDefaults.Key.voicePromptsSwitch)
+        userDefaults?.set(voiceSwitch.isOn, forKey: UserDefaults.Key.voicePromptsSwitch)
     }
     
     func showVoicePromptHint(){
