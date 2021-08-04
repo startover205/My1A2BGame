@@ -12,30 +12,6 @@ import MastermindiOS
 
 class GuessNumberViewControllerTests: XCTestCase {
     
-    func test_initGame_availableGuessLabelIsShowingMaxPlayChancesAndLabelColor() {
-        let sut = makeSUT()
-        let format = NSLocalizedString("You can still guess %d times", comment: "")
-        let text = String.localizedStringWithFormat(format, Constants.maxPlayChances)
-        
-        XCTAssertEqual(sut.availableGuessLabel.text, text)
-        XCTAssertEqual(sut.availableGuessLabel.textColor, UIColor.label)
-    }
-    
-    func test_viewWillAppear_voiceSwitchStatusAccordingToUserDefaultSetting() {
-        let sut = makeSUT()
-        UserDefaults.standard.setValue(true, forKey: UserDefaults.Key.voicePromptsSwitch)
-        
-        sut.viewWillAppear(false)
-        
-        XCTAssertEqual(sut.voiceSwitch.isOn, true)
-        
-        UserDefaults.standard.setValue(false, forKey: UserDefaults.Key.voicePromptsSwitch)
-        
-        sut.viewWillAppear(false)
-        
-        XCTAssertEqual(sut.voiceSwitch.isOn, false)
-    }
-    
     func test_viewDidLoad_helperViewHidden() {
         let sut = makeSUT()
         
@@ -57,42 +33,6 @@ class GuessNumberViewControllerTests: XCTestCase {
             XCTAssertEqual(sut.helperView.isHidden, true)
         }, after: 0.5)
         
-    }
-    
-    func test_guessBtnPressed_presentNumberPanel() {
-        let sut = makeSUT()
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.makeKeyAndVisible()
-        window.rootViewController = sut
-        
-        sut.availableGuess = 10
-        sut.guessBtnPressed(sut)
-        
-        triggerRunLoopToSkipNavigationAnimation()
-        XCTAssertTrue((sut.presentedViewController as? UINavigationController)?.topViewController is GuessPadViewController)
-    }
-    
-    func test_voicePromptSwitchToggle_boundToUserDefaultsValue() {
-        let sut = makeSUT()
-        let userDefaultKey = UserDefaults.Key.voicePromptsSwitch
-        UserDefaults.standard.set(true, forKey: userDefaultKey)
-        
-        sut.voiceSwitch.isOn = false
-        sut.changeVoicePromptsSwitchState(UISwitch())
-        
-        XCTAssertEqual(UserDefaults.standard.bool(forKey: userDefaultKey), sut.voiceSwitch.isOn)
-        
-        sut.voiceSwitch.isOn = true
-        sut.changeVoicePromptsSwitchState(UISwitch())
-        XCTAssertEqual(UserDefaults.standard.bool(forKey: userDefaultKey), sut.voiceSwitch.isOn)
-    }
-    
-    func test_initGame_availableGuessIsAtMax() {
-        let sut = makeSUT()
-        
-        sut.initGame()
-        
-        XCTAssertEqual(sut.availableGuess, Constants.maxPlayChances)
     }
     
     func test_matchNumbers_presentWinVCWhenCorrect() {
@@ -138,18 +78,6 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         triggerRunLoopToSkipNavigationAnimation()
         XCTAssertTrue(navigation.topViewController is LoseViewController)
-    }
-    
-    func test_changeAvailableGuess_updateAvailableGuessLabelAccordingly() {
-        let sut = makeSUT()
-        
-        sut.availableGuess = 2
-        
-        XCTAssertEqual(sut.availableGuessLabel.text?.contains(sut.availableGuess.description), true)
-        
-        sut.availableGuess = 5
-        
-        XCTAssertEqual(sut.availableGuessLabel.text?.contains(sut.availableGuess.description), true)
     }
     
     func test_tryToMatchNumbers_rendersResult() {
