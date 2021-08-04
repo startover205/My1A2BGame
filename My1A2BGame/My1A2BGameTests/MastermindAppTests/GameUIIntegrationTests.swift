@@ -54,6 +54,22 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off matching the user preferance")
     }
     
+    func test_guess_rendersResult() {
+        let sut = makeSUT()
+        let answer = ["1", "2", "3", "4"]
+        let guess1 = ["5", "2", "3", "4"]
+        let guess2 = ["5", "6", "3", "4"]
+        
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(sut.resultMessage, "", "expected no text after loading")
+        
+        sut.simulateGuessWith(answer: answer, guess: guess1)
+        XCTAssertEqual(sut.resultMessage, "5234          3A0B\n", "expected latest result after matching")
+        
+        sut.simulateGuessWith(answer: answer, guess: guess2)
+        XCTAssertEqual(sut.resultMessage, "5634          2A0B\n", "expected latest result after matching")
+    }
+    
     func test_availableGuess_rendersWithEachGuess() {
         let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 3))
 
@@ -190,6 +206,10 @@ private extension GuessNumberViewController {
         return guess
     }
     
+    func simulateGuessWith(answer: [String], guess: [String]) {
+        tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
+    }
+    
     func simulateTapHelperButton() {
         helperBtnPressed(self)
     }
@@ -197,6 +217,8 @@ private extension GuessNumberViewController {
     var fadeInCompoenents: [UIView] { fadeOutElements }
     
     var availableGuessMessage: String? { availableGuessLabel.text }
+    
+    var resultMessage: String? { lastGuessLabel.text }
     
     var voicePromptOn: Bool { voiceSwitch.isOn }
     
