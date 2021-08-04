@@ -51,6 +51,33 @@ class GameUIIntegrationTests: XCTestCase {
         sut.simulateUserInitiatedWrongGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
     }
+    
+    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
+        let window = UIWindow()
+        let nav = NavigationSpy()
+        let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 1))
+        nav.setViewControllers([sut], animated: false)
+        nav.delegate = sut
+        
+        window.rootViewController = nav
+        window.makeKeyAndVisible()
+        nav.pushCapturedControllerWithoutAnimation()
+
+        sut.loadViewIfNeeded()
+        let answer = sut.quizNumbers
+        let placeholders = ["?", "?", "?", "?"]
+
+        XCTAssertEqual(sut.quizLabels.map { $0.text }, placeholders, "expect showing placeholders after game start")
+
+        sut.simulateUserInitiatedWrongGuess()
+        XCTAssertEqual(sut.quizLabels.map { $0.text }, placeholders, "expect showing placeholders before showing the result controller")
+
+        nav.pushCapturedControllerWithoutAnimation()
+        XCTAssertEqual(sut.quizLabels.map { $0.text }, answer, "expect showing answer after showing the result controller")
+        
+        // remove retain on sut
+        nav.setViewControllers([], animated: false)
+    }
 
     // MARK: Helpers
     
@@ -81,6 +108,19 @@ class GameUIIntegrationTests: XCTestCase {
     private func guessMessageFor(guessCount: Int) -> String {
         let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .init(for: GuessNumberViewController.self), value: "", comment: "")
         return String.localizedStringWithFormat(format, guessCount)
+    }
+    
+    private class NavigationSpy: UINavigationController {
+        var capturedPush: (vc: UIViewController, animated: Bool)?
+        
+        override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+            capturedPush = (viewController, animated)
+        }
+        
+        func pushCapturedControllerWithoutAnimation() {
+            guard let vc = capturedPush?.vc else { return }
+            super.pushViewController(vc, animated: false)
+        }
     }
 }
 
