@@ -194,16 +194,13 @@ class GameUIIntegrationTests: XCTestCase {
 private extension GuessNumberViewController {
     func simulateViewAppear() { viewWillAppear(false) }
     
-    @discardableResult
-    func simulateUserInitiatedWrongGuess() -> [String] {
+    func simulateUserInitiatedWrongGuess() {
         guessButton.sendActions(for: .touchUpInside)
         
         let answer = quizNumbers
         let guess: [String] = answer.reversed()
         
         inputVC.delegate?.padDidFinishEntering(numberTexts: guess)
-        
-        return guess
     }
     
     func simulateGuessWith(answer: [String], guess: [String]) {
