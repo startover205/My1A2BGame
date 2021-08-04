@@ -80,22 +80,6 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertTrue(navigation.topViewController is LoseViewController)
     }
     
-    func test_tryToMatchNumbers_rendersResult() {
-        let sut = makeSUT()
-        let answer = ["1", "2", "3", "4"]
-        let guess1 = ["5", "2", "3", "4"]
-        let guess2 = ["5", "6", "3", "4"]
-        let resultView = sut.lastGuessLabel
-        
-        XCTAssertEqual(resultView?.text, "", "expected no text after loading")
-        
-        sut.tryToMatchNumbers(guessTexts: guess1, answerTexts: answer)
-        XCTAssertEqual(resultView?.text, "5234          3A0B\n", "expected latest result after matching")
-        
-        sut.tryToMatchNumbers(guessTexts: guess2, answerTexts: answer)
-        XCTAssertEqual(resultView?.text, "5634          2A0B\n", "expected latest result after matching")
-    }
-    
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
         let sut = GameUIComposer.makeGameUI(gameVersion: BasicGame(), userDefaults: UserDefaults.standard)
