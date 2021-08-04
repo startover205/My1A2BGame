@@ -12,19 +12,6 @@ import MastermindiOS
 
 class GuessNumberViewControllerTests: XCTestCase {
     
-    func test_viewDidLoad_navigiationControllerDelegateIsSelf() {
-        
-        let navigation = UINavigationController()
-        
-        let sut = makeSUT(loadView: false)
-        
-        navigation.setViewControllers([sut], animated: false)
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertTrue(sut.navigationController?.delegate === sut)
-    }
-    
     func test_initGame_availableGuessLabelIsShowingMaxPlayChancesAndLabelColor() {
         let sut = makeSUT()
         let format = NSLocalizedString("You can still guess %d times", comment: "")

@@ -70,32 +70,23 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off matching the user preferance")
     }
     
-    
-    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
-        let window = UIWindow()
-        let nav = NavigationSpy()
-        let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 1))
-        nav.setViewControllers([sut], animated: false)
-        nav.delegate = sut
+    func test_restart_resetGameView() {
+        let gameVersion = GameVersionMock(maxGuessCount: 1)
+        let sut = makeSUT(gameVersion: gameVersion)
         
-        window.rootViewController = nav
-        window.makeKeyAndVisible()
-        nav.pushCapturedControllerWithoutAnimation()
-
         sut.loadViewIfNeeded()
-        let answer = sut.quizNumbers
-        let placeholders = ["?", "?", "?", "?"]
+        assertThatViewIsInitialState(sut)
 
-        XCTAssertEqual(sut.quizLabels.map { $0.text }, placeholders, "expect showing placeholders after game start")
-
+        sut.simulateTapHelperButton()
+        XCTAssertFalse(sut.helperView.isHidden, "expect helper view to show after helper button pressed")
         sut.simulateUserInitiatedWrongGuess()
-        XCTAssertEqual(sut.quizLabels.map { $0.text }, placeholders, "expect showing placeholders before showing the result controller")
-
-        nav.pushCapturedControllerWithoutAnimation()
-        XCTAssertEqual(sut.quizLabels.map { $0.text }, answer, "expect showing answer after showing the result controller")
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: sut.availableGuess), "expect guess count minus 1 after user guess")
         
-        // remove retain on sut
-        nav.setViewControllers([], animated: false)
+        sut.simulateRestartGame()
+        assertThatViewIsInitialState(sut)
+        
+        sut.simulateUserInitiatedWrongGuess()
+        XCTAssertEqual(sut.hintTextView.text, "\n", "expect empty hint text view on first guess")
     }
     
 //    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
@@ -139,6 +130,8 @@ class GameUIIntegrationTests: XCTestCase {
     
     private var advancedGameTitle: String { "Advanced" }
     
+    private func answerPlaceholder(for gameVersion: GameVersion) -> [String] { Array(repeating: "?", count: gameVersion.digitCount) }
+    
     private final class GameVersionMock: GameVersion {
         let digitCount: Int = 4
         
@@ -154,6 +147,18 @@ class GameUIIntegrationTests: XCTestCase {
     private func guessMessageFor(guessCount: Int) -> String {
         let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .init(for: GuessNumberViewController.self), value: "", comment: "")
         return String.localizedStringWithFormat(format, guessCount)
+    }
+    
+    private func assertThatViewIsInitialState(_ sut: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
+        let maxGuessCount = sut.gameVersion.maxGuessCount
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: maxGuessCount), "expect max guess count once view is loaded", file: file, line: line)
+        XCTAssertTrue(sut.helperView.isHidden, "expect helper view to be hidden", file: file, line: line)
+        XCTAssertEqual(sut.quizLabels.map { $0.text }, answerPlaceholder(for: sut.gameVersion), "expect quiz labels showing the placeholders", file: file, line: line)
+        XCTAssertEqual(sut.lastGuessLabel.text?.isEmpty, true, "expect last guess view to be empty", file: file, line: line)
+        XCTAssertTrue(sut.hintTextView.text.isEmpty, "expect hint view to be empty", file: file, line: line)
+        XCTAssertTrue(sut.restartButton.isHidden, "expect restart button to be hidden", file: file, line: line)
+        XCTAssertFalse(sut.guessButton.isHidden, "expect guess button to be visible", file: file, line: line)
+        XCTAssertFalse(sut.quitButton.isHidden, "expect quit button to be visible", file: file, line: line)
     }
     
     private class NavigationSpy: UINavigationController {
@@ -173,12 +178,20 @@ class GameUIIntegrationTests: XCTestCase {
 private extension GuessNumberViewController {
     func simulateViewAppear() { viewWillAppear(false) }
     
-    func simulateUserInitiatedWrongGuess() {
+    @discardableResult
+    func simulateUserInitiatedWrongGuess() -> [String] {
         guessButton.sendActions(for: .touchUpInside)
         
         let answer = quizNumbers
+        let guess: [String] = answer.reversed()
         
-        inputVC.delegate?.padDidFinishEntering(numberTexts: answer.reversed())
+        inputVC.delegate?.padDidFinishEntering(numberTexts: guess)
+        
+        return guess
+    }
+    
+    func simulateTapHelperButton() {
+        helperBtnPressed(self)
     }
     
     var fadeInCompoenents: [UIView] { fadeOutElements }
@@ -190,6 +203,15 @@ private extension GuessNumberViewController {
     func simulateToggleVoicePrompt() {
         voiceSwitch.isOn = !voiceSwitch.isOn
         voiceSwitch.sendActions(for: .valueChanged)
+    }
+    
+    func simulateUserGiveUp() {
+        showLoseVCAndEndGame()
+        RunLoop.current.run(until: Date())
+    }
+    
+    func simulateRestartGame() {
+        restartButton.sendActions(for: .touchUpInside)
     }
 }
 

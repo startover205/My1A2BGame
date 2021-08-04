@@ -92,7 +92,7 @@ public class GuessNumberViewController: UIViewController {
         
         configureQuizLabels()
         
-        navigationController?.delegate = self
+//        navigationController?.delegate = self
         
         fadeOutElements.forEach { (view) in
             view.alpha = 0
@@ -102,18 +102,22 @@ public class GuessNumberViewController: UIViewController {
         //        initCheatGame()
     }
     
-    private func makeQuizeLabel() -> UILabel {
+    private func makeQuizLabel() -> UILabel {
         let label = UILabel()
-        label.text = "?"
-        label.textColor = .systemRed
+        resetQuizLabel(label)
         label.font = .init(name: "Arial Rounded MT Bold", size: 80)
         label.adjustsFontSizeToFitWidth = true
         return label
     }
     
+    private func resetQuizLabel(_ label: UILabel) {
+        label.text = "?"
+        label.textColor = .systemRed
+    }
+    
     private func configureQuizLabels() {
         for _ in 0 ..< digitCount {
-            let label = makeQuizeLabel()
+            let label = makeQuizLabel()
             quizLabelContainer.addArrangedSubview(label)
             quizLabels.append(label)
         }
@@ -186,12 +190,23 @@ public class GuessNumberViewController: UIViewController {
     
     @IBAction func restartBtnPressed(_ sender: Any) {
         fadeOut()
-        let identifier = isAdvancedVersion ? "GuessAdvancedViewController" : "GuessViewController"
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: identifier) else {
-            assertionFailure()
-            return
-        }
-        self.navigationController?.setViewControllers([controller], animated: false)
+        
+        restartGame()
+        
+        fadeIn()
+    }
+    
+    private func restartGame() {
+        initGame()
+        
+        lastGuessLabel.text?.removeAll()
+        hintTextView.text.removeAll()
+        helperView.isHidden = true
+        quizLabels.forEach(resetQuizLabel)
+        
+        guessButton.isHidden = false
+        quitButton.isHidden = false
+        restartButton.isHidden = true
     }
     
     @IBAction func changeVoicePromptsSwitchState(_ sender: UISwitch) {
@@ -237,13 +252,13 @@ extension GuessNumberViewController {
 }
 
 // MARK: - Description
-extension GuessNumberViewController: UINavigationControllerDelegate{
-    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        if viewController is LoseViewController || viewController is WinViewController {
-            self.endGame()
-        }
-    }
-}
+//extension GuessNumberViewController: UINavigationControllerDelegate{
+//    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+//        if viewController is LoseViewController || viewController is WinViewController {
+//            self.endGame()
+//        }
+//    }
+//}
 
 extension GuessNumberViewController {
     
@@ -312,6 +327,8 @@ extension GuessNumberViewController {
         let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
         controller.view.backgroundColor = self.view.backgroundColor
         navigationController?.pushViewController(controller, animated: true)
+        self.endGame()
+
         if self.voiceSwitch.isOn{
             let text = NSLocalizedString("Don't give up! Give it another try!", comment: "")
             let speechUtterance = AVSpeechUtterance(string: text)
@@ -364,6 +381,7 @@ extension GuessNumberViewController {
         
         //set data
         availableGuess = gameVersion.maxGuessCount
+        guessHistoryText = ""
         
         let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
