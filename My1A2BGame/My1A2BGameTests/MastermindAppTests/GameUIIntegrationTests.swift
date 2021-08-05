@@ -38,8 +38,9 @@ class GameUIIntegrationTests: XCTestCase {
     
     func test_voicePrompt_canToggleFromView() {
         let userDefaults = UserDefaults()
-        let sut = makeSUT(userDefaults: userDefaults)
-        let anotherSut = makeSUT(userDefaults: userDefaults)
+        let sut = makeSUT()
+        sut.voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
+        let anotherSut = makeSUT()
         
         userDefaults.setVoicePromptOn()
         sut.loadViewIfNeeded()
@@ -217,11 +218,12 @@ private extension GuessNumberViewController {
     
     var resultMessage: String? { lastGuessLabel.text }
     
-    var voicePromptOn: Bool { voiceSwitch.isOn }
+    var voicePromptOn: Bool { voicePromptViewController?.view.isOn ?? false }
     
     func simulateToggleVoicePrompt() {
-        voiceSwitch.isOn = !voiceSwitch.isOn
-        voiceSwitch.sendActions(for: .valueChanged)
+        guard let voiceView = voicePromptViewController?.view else { return }
+        voiceView.isOn = !voiceView.isOn
+        voiceView.sendActions(for: .valueChanged)
     }
     
     func simulateUserGiveUp() {

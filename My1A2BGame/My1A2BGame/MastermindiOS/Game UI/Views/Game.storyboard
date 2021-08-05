@@ -409,15 +409,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="1A2B" id="HfB-f3-AzG">
-                        <barButtonItem key="leftBarButtonItem" id="b5N-du-XMj">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ke1-7a-ATY">
-                                <rect key="frame" x="20" y="6.5" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="changeVoicePromptsSwitchState:" destination="1LR-p9-Cos" eventType="valueChanged" id="jw1-O9-Qfz"/>
-                                </connections>
-                            </switch>
-                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="icon_questionMark" id="Euf-zh-jmo">
                                 <connections>
@@ -440,7 +431,6 @@
                         <outlet property="quitButton" destination="vZM-Pv-aGF" id="YLE-FC-kOs"/>
                         <outlet property="quizLabelContainer" destination="Xno-IJ-0VX" id="jJ5-zt-N9j"/>
                         <outlet property="restartButton" destination="8EC-R7-AJS" id="J6b-Ee-ibX"/>
-                        <outlet property="voiceSwitch" destination="Ke1-7a-ATY" id="qz6-BI-fzS"/>
                         <outletCollection property="fadeOutElements" destination="6rO-wd-Ywo" collectionClass="NSMutableArray" id="Vjc-lZ-EaC"/>
                         <outletCollection property="fadeOutElements" destination="m9q-7b-vCB" collectionClass="NSMutableArray" id="4wG-FK-ulu"/>
                         <outletCollection property="fadeOutElements" destination="Xno-IJ-0VX" collectionClass="NSMutableArray" id="mpe-nY-bpo"/>

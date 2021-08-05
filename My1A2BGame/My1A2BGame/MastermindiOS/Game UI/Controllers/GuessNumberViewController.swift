@@ -53,10 +53,9 @@ public class GuessNumberViewController: UIViewController {
     
     var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
-    var userDefaults: UserDefaults?
+    var voicePromptViewController: VoicePromptViewController?
     
     @IBOutlet weak var quizLabelContainer: UIStackView!
-    @IBOutlet private(set) public weak var voiceSwitch: UISwitch!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
     @IBOutlet private(set) public weak var guessButton: UIButton!
@@ -77,7 +76,6 @@ public class GuessNumberViewController: UIViewController {
         }
     }
     private var guessHistoryText = ""
-    private let synthesizer = AVSpeechSynthesizer()
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
     public var inputVC: GuessPadViewController!
@@ -87,6 +85,13 @@ public class GuessNumberViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let voicePromptViewController = voicePromptViewController {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)
+            voicePromptViewController.onToggleSwitch = { [weak self] isOn in
+                if isOn { self?.showVoicePromptHint() }
+            }
+        }
         
         lastGuessLabel.text = ""
         
@@ -126,9 +131,8 @@ public class GuessNumberViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fadeIn()
         
-        loadUserDefaults()
+        fadeIn()
     }
     
     @IBAction func helperBtnPressed(_ sender: Any) {
@@ -207,14 +211,6 @@ public class GuessNumberViewController: UIViewController {
         guessButton.isHidden = false
         quitButton.isHidden = false
         restartButton.isHidden = true
-    }
-    
-    @IBAction func changeVoicePromptsSwitchState(_ sender: UISwitch) {
-        
-        saveUserDefaults()
-        if sender.isOn {
-            showVoicePromptHint()
-        }
     }
 }
 
@@ -317,10 +313,7 @@ extension GuessNumberViewController {
         }
         
         //speech function
-        if voiceSwitch.isOn {
-            let speechUtterance = AVSpeechUtterance(string: text)
-            synthesizer.speak(speechUtterance)
-        }
+        voicePromptViewController?.playVoicePromptIfEnabled(message: text)
     }
     
     func showLoseVCAndEndGame(){
@@ -329,12 +322,7 @@ extension GuessNumberViewController {
         navigationController?.pushViewController(controller, animated: true)
         self.endGame()
 
-        if self.voiceSwitch.isOn{
-            let text = NSLocalizedString("Don't give up! Give it another try!", comment: "")
-            let speechUtterance = AVSpeechUtterance(string: text)
-            speechUtterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("en-US", comment: ""))
-            self.synthesizer.speak(speechUtterance)
-        }
+        voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))
     }
     func fadeOut(){
         UIView.animate(withDuration: 1) {
@@ -360,15 +348,7 @@ extension GuessNumberViewController {
         }
     }
     
-    func loadUserDefaults(){
-        voiceSwitch.isOn = userDefaults?.bool(forKey: UserDefaults.Key.voicePromptsSwitch) ?? false
-    }
-    
-    func saveUserDefaults(){
-        userDefaults?.set(voiceSwitch.isOn, forKey: UserDefaults.Key.voicePromptsSwitch)
-    }
-    
-    func showVoicePromptHint(){
+    private func showVoicePromptHint() {
         let alertController = UIAlertController(title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""), message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"), preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
