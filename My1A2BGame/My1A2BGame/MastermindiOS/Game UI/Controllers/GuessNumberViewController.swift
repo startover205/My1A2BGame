@@ -86,11 +86,8 @@ public class GuessNumberViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let voicePromptViewController = voicePromptViewController {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)
-            voicePromptViewController.onToggleSwitch = { [weak self] isOn in
-                if isOn { self?.showVoicePromptHint() }
-            }
+        if let voicePromptView = voicePromptViewController?.view {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptView)
         }
         
         lastGuessLabel.text = ""
@@ -348,7 +345,7 @@ extension GuessNumberViewController {
         }
     }
     
-    private func showVoicePromptHint() {
+    func showVoicePromptHint() {
         let alertController = UIAlertController(title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""), message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"), preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)

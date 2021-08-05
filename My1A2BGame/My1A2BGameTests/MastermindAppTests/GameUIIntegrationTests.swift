@@ -136,7 +136,7 @@ class GameUIIntegrationTests: XCTestCase {
     // MARK: Helpers
     
     private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaults(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.makeGameUI(gameVersion: gameVersion, userDefaults: userDefaults)
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

@@ -11,18 +11,25 @@ import Mastermind
 import MastermindiOS
 
 public final class GameUIComposer {
-    public static func makeGameUI(gameVersion: GameVersion, userDefaults: UserDefaults) -> GuessNumberViewController {
-        let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
-        controller.gameVersion = gameVersion
-        controller.voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
-        controller.title = gameVersion.title
+    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults) -> GuessNumberViewController {
+        let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         let inputVC = makeInputPadUI(digitCount: gameVersion.digitCount)
-        inputVC.delegate = controller
-        controller.inputVC = inputVC
-        controller.evaluate = MastermindEvaluator.evaluate(_:with:)
 
+        let gameViewController = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        gameViewController.title = gameVersion.title
+        gameViewController.gameVersion = gameVersion
         
-        return controller
+        gameViewController.voicePromptViewController = voicePromptViewController
+        voicePromptViewController.onToggleSwitch = { [weak gameViewController] isOn in
+            if isOn { gameViewController?.showVoicePromptHint() }
+            }
+    
+        inputVC.delegate = gameViewController
+        gameViewController.inputVC = inputVC
+        
+        gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
+        
+        return gameViewController
     }
     
     public static func makeInputPadUI(digitCount: Int) -> GuessPadViewController {
