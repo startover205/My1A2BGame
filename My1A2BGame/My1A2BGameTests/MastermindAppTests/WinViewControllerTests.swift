@@ -1,0 +1,49 @@
+//
+//  WinViewControllerTests.swift
+//  My1A2BGameTests
+//
+//  Created by Ming-Ta Yang on 2021/8/5.
+//  Copyright © 2021 Ming-Ta Yang. All rights reserved.
+//
+
+import XCTest
+import My1A2BGame
+
+class WinViewControllerTests: XCTestCase {
+    
+    func test_viewDidLoad_rendersGuessCount_guess1() {
+        let sut = makeSUT(guessCount: 1)
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.guessCountMessage, "You guessed 1 time")
+    }
+    
+    func test_viewDidLoad_rendersGuessCount_guess2() {
+        let sut = makeSUT(guessCount: 2)
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.guessCountMessage, "You guessed 2 times")
+    }
+    
+    // MARK: Helpers
+    
+    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, isAdvancedVersion: Bool = false, file: StaticString = #filePath, line: UInt = #line) -> WinViewController {
+        let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
+        let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
+        sut.guessCount = guessCount
+        sut.spentTime = spentTime
+        sut.isAdvancedVersion = isAdvancedVersion
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return sut
+    }
+
+
+}
+
+private extension WinViewController {
+    var guessCountMessage: String? { guessCountLabel.text }
+}

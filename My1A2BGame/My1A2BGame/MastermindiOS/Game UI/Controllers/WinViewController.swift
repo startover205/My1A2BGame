@@ -11,19 +11,19 @@ import GameKit
 import StoreKit
 import CoreData
 
-class WinViewController: UIViewController {
+public class WinViewController: UIViewController {
     
-    var guessCount = 0
-    var spentTime = 99999.9
-    var isAdvancedVersion = false
+    public var guessCount = 0
+    public var spentTime = 99999.9
+    public var isAdvancedVersion = false
     
-    @IBOutlet weak var winLabel: UILabel!
-    @IBOutlet weak var guessCountLabel: UILabel!
-    @IBOutlet weak var emojiLabel: UILabel!
-    @IBOutlet weak var nameLabel: UITextField!
-    @IBOutlet weak var confirmBtn: UIButton!
-    @IBOutlet weak var newRecordStackView: UIStackView!
-    @IBOutlet weak var shareBarBtnItem: UIBarButtonItem!
+    @IBOutlet private(set) public weak var winLabel: UILabel!
+    @IBOutlet private(set) public weak var guessCountLabel: UILabel!
+    @IBOutlet private(set) public weak var emojiLabel: UILabel!
+    @IBOutlet private(set) public weak var nameLabel: UITextField!
+    @IBOutlet private(set) public weak var confirmBtn: UIButton!
+    @IBOutlet private(set) public weak var newRecordStackView: UIStackView!
+    @IBOutlet private(set) public weak var shareBarBtnItem: UIBarButtonItem!
     @IBAction func dismissKeyboard(_ sender: UITextField) {
     }
     @IBAction func didTapScreen(_ sender: Any) {
@@ -40,7 +40,14 @@ class WinViewController: UIViewController {
         fireworkAnimation()
     }()
     
-    override func viewDidLoad() {
+    public convenience init(guessCount: Int, spentTime: TimeInterval, isAdvancedVersion: Bool) {
+        self.init()
+        self.guessCount = guessCount
+        self.spentTime = spentTime
+        self.isAdvancedVersion = isAdvancedVersion
+    }
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         showResult()
@@ -60,7 +67,7 @@ class WinViewController: UIViewController {
         } 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         _ = _emojiAnimation
@@ -78,7 +85,7 @@ class WinViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 extension WinViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let oldString = textField.text! as NSString
         let newString = oldString.replacingCharacters(in: range, with: string)
