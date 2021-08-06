@@ -8,7 +8,7 @@
 
 import CoreData
 
-typealias SaveDoneHandler = (_ success: Bool) -> Void
+public typealias SaveDoneHandler = (_ success: Bool) -> Void
 
 class CoreDataManager<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
     

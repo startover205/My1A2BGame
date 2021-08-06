@@ -295,6 +295,8 @@ extension GuessNumberViewController {
                 controller.spentTime = CACurrentMediaTime() - self.startPlayTime
                 show(controller, sender: nil)
                 controller.isAdvancedVersion = isAdvancedVersion
+                controller.advancedWinnerStore = advancedWinnerCoreDataManager
+                controller.winnerStore = winnerCoreDataManager
                 controller.view.backgroundColor = self.view.backgroundColor
                 
                 text = NSLocalizedString("Congrats! You won!", comment: "")

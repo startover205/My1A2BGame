@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let spentTimes = [124, 173, 100, 245, 192, 52, 493, 291]
         
         for i in 0..<names.count {
-            let user = winnerCoreDataManager.createObject()
+            let user: Winner = winnerCoreDataManager.createObject()
             user.name = names[i]
             user.guessTimes = Int16(guessTimes[i])
             user.spentTime = Double(spentTimes[i])
