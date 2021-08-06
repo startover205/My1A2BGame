@@ -19,6 +19,8 @@ public final class GameUIComposer {
         gameViewController.title = gameVersion.title
         gameViewController.gameVersion = gameVersion
         
+        gameViewController.winViewController = makeWinViewController(isAdvancedVersion: gameVersion.digitCount == 5, advancedWinnerStore: advancedWinnerCoreDataManager, winnerStore: winnerCoreDataManager, userDefaults: userDefaults)
+        
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [weak gameViewController] isOn in
             if isOn { gameViewController?.showVoicePromptHint() }
@@ -37,5 +39,15 @@ public final class GameUIComposer {
         controller.digitCount = digitCount
         
         return controller
+    }
+    
+    public static func makeWinViewController(isAdvancedVersion: Bool, advancedWinnerStore: AdvancedWinnerStore, winnerStore: WinnerStore, userDefaults: UserDefaults) -> WinViewController {
+        let winController = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self)).instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
+        winController.isAdvancedVersion = isAdvancedVersion
+        winController.advancedWinnerStore =  advancedWinnerStore
+        winController.winnerStore = winnerStore
+        winController.userDefaults = userDefaults
+        
+        return winController
     }
 }

@@ -54,6 +54,7 @@ public class GuessNumberViewController: UIViewController {
     var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
+    var winViewController: WinViewController?
     
     @IBOutlet weak var quizLabelContainer: UIStackView!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
@@ -289,16 +290,12 @@ extension GuessNumberViewController {
             feedbackGenerator?.notificationOccurred(.success)
             feedbackGenerator = nil
             
-            if let controller = storyboard?.instantiateViewController(withIdentifier: String(describing: WinViewController.self)) as? WinViewController
-            {
-                controller.guessCount = guessCount
-                controller.spentTime = CACurrentMediaTime() - self.startPlayTime
-                show(controller, sender: nil)
-                controller.isAdvancedVersion = isAdvancedVersion
-                controller.advancedWinnerStore = advancedWinnerCoreDataManager
-                controller.winnerStore = winnerCoreDataManager
-                controller.userDefaults = .standard
-                controller.view.backgroundColor = self.view.backgroundColor
+            if let winViewController = winViewController {
+                winViewController.guessCount = guessCount
+                winViewController.spentTime = CACurrentMediaTime() - self.startPlayTime
+                show(winViewController, sender: nil)
+              
+                winViewController.view.backgroundColor = self.view.backgroundColor
                 
                 text = NSLocalizedString("Congrats! You won!", comment: "")
             }
