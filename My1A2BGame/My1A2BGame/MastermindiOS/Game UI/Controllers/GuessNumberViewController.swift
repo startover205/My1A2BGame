@@ -297,6 +297,7 @@ extension GuessNumberViewController {
                 controller.isAdvancedVersion = isAdvancedVersion
                 controller.advancedWinnerStore = advancedWinnerCoreDataManager
                 controller.winnerStore = winnerCoreDataManager
+                controller.userDefaults = .standard
                 controller.view.backgroundColor = self.view.backgroundColor
                 
                 text = NSLocalizedString("Congrats! You won!", comment: "")

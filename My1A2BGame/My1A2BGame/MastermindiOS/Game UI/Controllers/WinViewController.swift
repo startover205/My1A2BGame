@@ -141,6 +141,7 @@ public class WinViewController: UIViewController {
 //    public var advancedWinnerCoreDataManager: CoreDataManager<AdvancedWinner>?
     public var winnerStore: WinnerStore?
     public var advancedWinnerStore: AdvancedWinnerStore?
+    public var userDefaults: UserDefaults?
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
@@ -415,9 +416,9 @@ private extension WinViewController {
     @available(iOS 10.3, *)
     func tryToAskForReview(){
         
-        var count = UserDefaults.standard.integer(forKey: UserDefaults.Key.processCompletedCount)
+        var count = userDefaults?.integer(forKey: UserDefaults.Key.processCompletedCount) ?? 0
         count += 1
-        UserDefaults.standard.set(count, forKey: UserDefaults.Key.processCompletedCount)
+        userDefaults?.set(count, forKey: UserDefaults.Key.processCompletedCount)
         
         let infoDictionaryKey = kCFBundleVersionKey as String
         guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String else {
@@ -425,14 +426,14 @@ private extension WinViewController {
             return
         }
         
-        let lastVersionPromptedForReview = UserDefaults.standard.string(forKey: UserDefaults.Key.lastVersionPromptedForReview)
+        let lastVersionPromptedForReview = userDefaults?.string(forKey: UserDefaults.Key.lastVersionPromptedForReview)
         
         if count >= 3 && currentVersion != lastVersionPromptedForReview {
             let twoSecondsFromNow = DispatchTime.now() + 2.0
-            DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) { [navigationController] in
-                if navigationController?.topViewController is WinViewController {
+            DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) { [weak self] in
+                if self?.navigationController?.topViewController is WinViewController {
                     SKStoreReviewController.requestReview()
-                    UserDefaults.standard.set(currentVersion, forKey: UserDefaults.Key.lastVersionPromptedForReview)
+                    self?.userDefaults?.set(currentVersion, forKey: UserDefaults.Key.lastVersionPromptedForReview)
                 }
             }
         }
