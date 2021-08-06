@@ -9,7 +9,7 @@
 import XCTest
 import My1A2BGame
 
-class WinViewControllerTests: XCTestCase {
+class WinViewControllerBasicGameTests: XCTestCase {
     
     func test_viewDidLoad_rendersGuessCount_guess1() {
         let sut = makeSUT(guessCount: 1)
@@ -27,20 +27,12 @@ class WinViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.guessCountMessage, "You guessed 2 times")
     }
     
-    func test_viewDidLoad_rendersWinMessage_basic() {
-        let sut = makeSUT(isAdvancedVersion: false)
+    func test_viewDidLoad_rendersWinMessage() {
+        let sut = makeSUT()
         
         sut.loadViewIfNeeded()
         
         XCTAssertEqual(sut.winMessage, "4A0B!! You won!!")
-    }
-    
-    func test_viewDidLoad_rendersWinMessage_advanced() {
-        let sut = makeSUT(isAdvancedVersion: true)
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(sut.winMessage, "5A0B!! You won!!")
     }
     
     func test_viewDidload_rendersBreakRecordViewsIfBreakRecord() {
@@ -68,14 +60,13 @@ class WinViewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, isAdvancedVersion: Bool = false, store: WinnerStore? = nil, advancedStore: AdvancedWinnerStore? = nil, file: StaticString = #filePath, line: UInt = #line) -> WinViewController {
+    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, file: StaticString = #filePath, line: UInt = #line) -> WinViewController {
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         sut.guessCount = guessCount
         sut.spentTime = spentTime
-        sut.isAdvancedVersion = isAdvancedVersion
+        sut.isAdvancedVersion = false
         sut.winnerStore = store
-        sut.advancedWinnerStore = advancedStore
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
