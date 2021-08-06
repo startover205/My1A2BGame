@@ -36,7 +36,7 @@ public protocol AdvancedWinnerStore {
 }
 
 public class GameWinner {
-    internal init(name: String?, guessTimes: Int16, spentTime: TimeInterval, winner: Winner) {
+    public init(name: String?, guessTimes: Int16, spentTime: TimeInterval, winner: Winner) {
         self.name = name
         self.guessTimes = guessTimes
         self.spentTime = spentTime

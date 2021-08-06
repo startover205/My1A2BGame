@@ -43,25 +43,81 @@ class WinViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.winMessage, "5A0B!! You won!!")
     }
     
+    func test_viewDidload_rendersBreakRecordViewsIfBreakRecord() {
+        let store = PlayerStore()
+        let guessCount = 1
+        let sut = makeSUT(guessCount: guessCount,store: store)
+        
+        store.clearRecords()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.showingBreakRecordView)
+    }
+    
+    func test_viewDidload_doesNotRendersNewRecordViewsIfRecordNotBroken() {
+        let store = PlayerStore()
+        let guessCount = 20
+        let sut = makeSUT(guessCount: guessCount, store: store)
+        let existingTopRecords = Array(repeating: GameWinner(name: nil, guessTimes: 1, spentTime: 0, winner: Winner()), count: 10)
+        
+        store.addRecords(existingTopRecords)
+        sut.loadViewIfNeeded()
+        
+        XCTAssertFalse(sut.showingBreakRecordView)
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, isAdvancedVersion: Bool = false, file: StaticString = #filePath, line: UInt = #line) -> WinViewController {
+    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, isAdvancedVersion: Bool = false, store: WinnerStore? = nil, advancedStore: AdvancedWinnerStore? = nil, file: StaticString = #filePath, line: UInt = #line) -> WinViewController {
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         sut.guessCount = guessCount
         sut.spentTime = spentTime
         sut.isAdvancedVersion = isAdvancedVersion
+        sut.winnerStore = store
+        sut.advancedWinnerStore = advancedStore
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
     }
-
-
+    
+    private final class PlayerStore: WinnerStore {
+        var players = [GameWinner]()
+        
+        var totalCount: Int {
+            players.count
+        }
+        
+        func fetchAllObjects() -> [GameWinner] {
+            players
+        }
+        
+        func createObject() -> GameWinner {
+            GameWinner(name: nil, guessTimes: 1, spentTime: 1, winner: Winner())
+        }
+        
+        func delete(object: GameWinner) {
+            players.removeAll { $0 === object }
+        }
+        
+        func saveContext(completion: SaveDoneHandler?) {
+        }
+        
+        func clearRecords() {
+            players.removeAll()
+        }
+        
+        func addRecords(_ records: [GameWinner]) {
+            players.append(contentsOf: records)
+        }
+    }
 }
 
 private extension WinViewController {
     var guessCountMessage: String? { guessCountLabel.text }
     
     var winMessage: String? { winLabel.text }
+    
+    var showingBreakRecordView: Bool { newRecordStackView.alpha != 0 }
 }
