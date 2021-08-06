@@ -27,6 +27,22 @@ class WinViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.guessCountMessage, "You guessed 2 times")
     }
     
+    func test_viewDidLoad_rendersWinMessage_basic() {
+        let sut = makeSUT(isAdvancedVersion: false)
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.winMessage, "4A0B!! You won!!")
+    }
+    
+    func test_viewDidLoad_rendersWinMessage_advanced() {
+        let sut = makeSUT(isAdvancedVersion: true)
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.winMessage, "5A0B!! You won!!")
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, isAdvancedVersion: Bool = false, file: StaticString = #filePath, line: UInt = #line) -> WinViewController {
@@ -46,4 +62,6 @@ class WinViewControllerTests: XCTestCase {
 
 private extension WinViewController {
     var guessCountMessage: String? { guessCountLabel.text }
+    
+    var winMessage: String? { winLabel.text }
 }
