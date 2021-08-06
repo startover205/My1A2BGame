@@ -14,10 +14,7 @@ public final class GameUIComposer {
     public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         let inputVC = makeInputPadUI(digitCount: gameVersion.digitCount)
-
-        let gameViewController = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
-        gameViewController.title = gameVersion.title
-        gameViewController.gameVersion = gameVersion
+        let gameViewController = makeGameViewController(gameVersion: gameVersion)
         
         gameViewController.winViewController = makeWinViewController(isAdvancedVersion: gameVersion.digitCount == 5, advancedWinnerStore: advancedWinnerCoreDataManager, winnerStore: winnerCoreDataManager, userDefaults: userDefaults)
         
@@ -32,6 +29,13 @@ public final class GameUIComposer {
         gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
         
         return gameViewController
+    }
+    
+    private static func makeGameViewController(gameVersion: GameVersion) -> GuessNumberViewController {
+        let gameController = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+        gameController.title = gameVersion.title
+        gameController.gameVersion = gameVersion
+        return gameController
     }
     
     public static func makeInputPadUI(digitCount: Int) -> GuessPadViewController {
