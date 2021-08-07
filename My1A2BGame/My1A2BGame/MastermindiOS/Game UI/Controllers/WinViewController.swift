@@ -139,7 +139,6 @@ public class WinViewController: UIViewController {
     public var spentTime = 99999.9
     public var isAdvancedVersion = false
     
-//    public var advancedWinnerCoreDataManager: CoreDataManager<AdvancedWinner>?
     public var winnerStore: WinnerStore?
     public var advancedWinnerStore: AdvancedWinnerStore?
     public var userDefaults: UserDefaults?

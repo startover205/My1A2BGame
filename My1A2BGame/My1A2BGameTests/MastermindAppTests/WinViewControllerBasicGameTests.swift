@@ -97,6 +97,23 @@ class WinViewControllerBasicGameTests: XCTestCase {
         XCTAssertEqual(reviewCallCount, 1)
     }
     
+    func test_viewDidAppear_showsEmojiAnimationOnFirstTime() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        var capturedTransform = sut.emojiViewTransform
+        
+        sut.viewDidAppear(true)
+        
+        XCTAssertNotEqual(sut.emojiViewTransform, capturedTransform)
+        
+        capturedTransform = sut.emojiViewTransform
+        sut.viewDidAppear(true)
+        
+        XCTAssertEqual(sut.emojiViewTransform, capturedTransform)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
@@ -157,6 +174,8 @@ private extension WinViewController {
     var winMessage: String? { winLabel.text }
     
     var showingBreakRecordView: Bool { newRecordStackView.alpha != 0 }
+    
+    var emojiViewTransform: CGAffineTransform? { emojiLabel.transform }
 }
 
 private extension UserDefaults {
