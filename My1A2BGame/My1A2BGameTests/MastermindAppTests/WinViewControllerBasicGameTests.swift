@@ -85,9 +85,9 @@ class WinViewControllerBasicGameTests: XCTestCase {
     
     func test_viewDidLoad_asksForReviewWhenUserHasWonThreeTimesAndNotBeenPromptForCurrentVersion() {
         var reviewCallCount = 0
-        let (sut, userDefaults) = makeSUT() { _ in
+        let (sut, userDefaults) = makeSUT(askForReview: { _ in
             reviewCallCount += 1
-        }
+        })
         
         userDefaults.recordUserHasWonThreeTimes()
         userDefaults.recordUserHasAlreadyBeenPromptForReview(for: "any unmatched version")
@@ -114,9 +114,28 @@ class WinViewControllerBasicGameTests: XCTestCase {
         XCTAssertEqual(sut.emojiViewTransform, capturedTransform)
     }
     
+    func test_viewDidAppear_showsFireworkAnimationOnFirstTime() {
+        var fireworkCallCount = 0
+        let (sut, _) = makeSUT(showFireworkAnimation: { _ in
+            fireworkCallCount += 1
+        })
+
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(fireworkCallCount, 0, "expect no call until view appear")
+
+        sut.viewDidAppear(true)
+
+        XCTAssertEqual(fireworkCallCount, 1, "expect 1 call after view appear")
+
+        sut.viewDidAppear(true)
+
+        XCTAssertEqual(fireworkCallCount, 1, "expect no more calls after view already appear once")
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
+    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
         let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
@@ -126,6 +145,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
         sut.winnerStore = store
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview
+        sut.showFireworkAnimation = showFireworkAnimation
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -176,6 +196,8 @@ private extension WinViewController {
     var showingBreakRecordView: Bool { newRecordStackView.alpha != 0 }
     
     var emojiViewTransform: CGAffineTransform? { emojiLabel.transform }
+    
+    var sublayerCount: Int { view.layer.sublayers?.count ?? 0 }
 }
 
 private extension UserDefaults {
