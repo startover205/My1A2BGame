@@ -8,7 +8,6 @@
 
 import UIKit
 import GameKit
-import StoreKit
 import CoreData
 
 public protocol WinnerStore {
@@ -134,6 +133,8 @@ extension CoreDataManager: AdvancedWinnerStore where T == AdvancedWinner {
 
 public class WinViewController: UIViewController {
     
+    public typealias ReviewCompletion = () -> Void
+
     public var guessCount = 0
     public var spentTime = 99999.9
     public var isAdvancedVersion = false
@@ -142,6 +143,7 @@ public class WinViewController: UIViewController {
     public var winnerStore: WinnerStore?
     public var advancedWinnerStore: AdvancedWinnerStore?
     public var userDefaults: UserDefaults?
+    public var askForReview: ((@escaping ReviewCompletion) -> Void)?
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
@@ -413,7 +415,7 @@ private extension WinViewController {
             }
         }
     }
-    @available(iOS 10.3, *)
+    
     func tryToAskForReview(){
         
         var count = userDefaults?.integer(forKey: UserDefaults.Key.processCompletedCount) ?? 0
@@ -429,12 +431,8 @@ private extension WinViewController {
         let lastVersionPromptedForReview = userDefaults?.string(forKey: UserDefaults.Key.lastVersionPromptedForReview)
         
         if count >= 3 && currentVersion != lastVersionPromptedForReview {
-            let twoSecondsFromNow = DispatchTime.now() + 2.0
-            DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) { [weak self] in
-                if self?.navigationController?.topViewController is WinViewController {
-                    SKStoreReviewController.requestReview()
-                    self?.userDefaults?.set(currentVersion, forKey: UserDefaults.Key.lastVersionPromptedForReview)
-                }
+            askForReview? { [weak self] in
+                self?.userDefaults?.set(currentVersion, forKey: UserDefaults.Key.lastVersionPromptedForReview)
             }
         }
     }

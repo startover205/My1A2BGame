@@ -9,6 +9,7 @@
 import UIKit
 import Mastermind
 import MastermindiOS
+import StoreKit
 
 public final class GameUIComposer {
     public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults) -> GuessNumberViewController {
@@ -21,8 +22,8 @@ public final class GameUIComposer {
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [weak gameViewController] isOn in
             if isOn { gameViewController?.showVoicePromptHint() }
-            }
-    
+        }
+        
         inputVC.delegate = gameViewController
         gameViewController.inputVC = inputVC
         
@@ -51,7 +52,12 @@ public final class GameUIComposer {
         winController.advancedWinnerStore =  advancedWinnerStore
         winController.winnerStore = winnerStore
         winController.userDefaults = userDefaults
-        
+        winController.askForReview = { completion in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                SKStoreReviewController.requestReview()
+                completion()
+            }
+        }
         return winController
     }
 }
