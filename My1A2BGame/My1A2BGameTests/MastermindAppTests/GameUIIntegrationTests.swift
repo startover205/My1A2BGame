@@ -37,7 +37,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_voicePrompt_canToggleFromView() {
-        let userDefaults = UserDefaults()
+        let userDefaults = UserDefaultsMock()
         let sut = makeSUT()
         sut.voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         let anotherSut = makeSUT()
@@ -135,7 +135,7 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaults(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
         let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults)
         
         trackForMemoryLeaks(sut, file: file, line: line)
