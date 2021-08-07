@@ -35,7 +35,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
         XCTAssertEqual(sut.winMessage, "4A0B!! You won!!")
     }
     
-    func test_viewDidload_rendersBreakRecordViewsIfBreakRecord() {
+    func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
         let store = PlayerStore()
         let guessCount = 1
         let sut = makeSUT(guessCount: guessCount,store: store)
@@ -46,7 +46,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
         XCTAssertTrue(sut.showingBreakRecordView)
     }
     
-    func test_viewDidload_doesNotRendersNewRecordViewsIfRecordNotBroken() {
+    func test_viewDidLoad_doesNotRendersNewRecordViewsIfRecordNotBroken() {
         let store = PlayerStore()
         let guessCount = 20
         let sut = makeSUT(guessCount: guessCount, store: store)
