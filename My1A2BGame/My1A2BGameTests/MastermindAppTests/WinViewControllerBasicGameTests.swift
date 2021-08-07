@@ -118,18 +118,6 @@ class WinViewControllerBasicGameTests: XCTestCase {
     private func currentAppVersion() -> String {
         Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
-    
-    private final class UserDefaultsMock: UserDefaults {
-        private var values = [String: Any]()
-
-        override func object(forKey defaultName: String) -> Any? {
-            values[defaultName]
-        }
-        
-        override func set(_ value: Any?, forKey defaultName: String) {
-            values[defaultName] = value
-        }
-    }
 }
 
 private final class PlayerStore: WinnerStore {
