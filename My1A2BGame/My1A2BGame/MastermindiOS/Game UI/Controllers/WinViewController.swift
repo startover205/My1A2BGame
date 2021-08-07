@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import GameKit
-import CoreData
 
 public protocol WinnerStore {
     var totalCount: Int { get }
@@ -143,6 +141,7 @@ public class WinViewController: UIViewController {
     public var advancedWinnerStore: AdvancedWinnerStore?
     public var userDefaults: UserDefaults?
     public var askForReview: ((@escaping ReviewCompletion) -> Void)?
+    public var showFireworkAnimation: ((_ on: UIView) -> Void)?
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
@@ -164,7 +163,7 @@ public class WinViewController: UIViewController {
         emojiAnimation()
     }()
     private lazy var _fireworkAnimation: Void = {
-        fireworkAnimation()
+        showFireworkAnimation?(self.view)
     }()
     
     public convenience init(guessCount: Int, spentTime: TimeInterval, isAdvancedVersion: Bool) {
@@ -340,63 +339,6 @@ private extension WinViewController {
         guessCountLabel.text = String.localizedStringWithFormat(format, guessCount)
     }
     
-    func showFirework(){
-        
-        var cellsForFirework = [CAEmitterCell]()
-        
-        let cellRect = CAEmitterCell()
-        let cellHeart = CAEmitterCell()
-        let cellStar = CAEmitterCell()
-        
-        cellsForFirework.append(cellRect)
-        cellsForFirework.append(cellStar)
-        cellsForFirework.append(cellHeart)
-        
-        for cell in cellsForFirework {
-            cell.birthRate = 4500
-            cell.lifetime = 2
-            cell.velocity = 100
-            cell.scale = 0
-            cell.scaleSpeed = 0.2
-            cell.yAcceleration = 30
-            cell.color = #colorLiteral(red: 1, green: 0.8302680122, blue: 0.3005099826, alpha: 1)
-            cell.greenRange = 20
-            cell.spin = CGFloat.pi
-            cell.spinRange = CGFloat.pi * 3/4
-            cell.emissionRange = CGFloat.pi
-            cell.alphaSpeed = -1 / cell.lifetime
-            
-            cell.beginTime = CACurrentMediaTime()
-            cell.timeOffset = 1
-        }
-        
-        cellStar.contents = #imageLiteral(resourceName: "flake_star").cgImage
-        cellHeart.contents = #imageLiteral(resourceName: "flake_heart").cgImage
-        cellRect.contents = #imageLiteral(resourceName: "flake_rectangle").cgImage
-        
-        let emitterLayer = CAEmitterLayer()
-        
-        let randomDistribution = GKRandomDistribution(lowestValue: 1, highestValue: 8)
-        
-        var randomX = Double(randomDistribution.nextInt()) / 9
-        var randomY = Double(randomDistribution.nextInt()) / 9
-        
-        while randomX <= 7/9 , randomX >= 2/9, randomY <= 7/9, randomY >= 2/9 {
-            randomX = Double(randomDistribution.nextInt()) / 9
-            randomY = Double(randomDistribution.nextInt()) / 9
-        }
-        
-        emitterLayer.emitterPosition = CGPoint(x: self.view.frame.width * CGFloat(randomX) , y: self.view.frame.height * CGFloat(randomY))
-        
-        emitterLayer.emitterCells = cellsForFirework
-        emitterLayer.renderMode = CAEmitterLayerRenderMode.oldestLast
-        view.layer.insertSublayer(emitterLayer, at: 0)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak emitterLayer] in
-            emitterLayer?.removeFromSuperlayer()
-        }
-    }
-    
     func prepareEmoji(){
         self.emojiLabel.transform = CGAffineTransform(translationX: 0, y:-view.frame.height)
     }
@@ -406,13 +348,6 @@ private extension WinViewController {
             self.emojiLabel.transform = CGAffineTransform(translationX: 0, y: 0)
             
         })
-    }
-    func fireworkAnimation(){
-        for i in 0...20 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) { [weak self] in
-                self?.showFirework()
-            }
-        }
     }
     
     func tryToAskForReview(){
