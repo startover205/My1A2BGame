@@ -33,29 +33,29 @@ public protocol AdvancedWinnerStore {
 }
 
 public class GameWinner {
-    public init(name: String?, guessTimes: Int16, spentTime: TimeInterval, winner: Winner) {
+    public init(name: String?, guessTimes: Int16, spentTime: TimeInterval, winner: Winner?) {
         self.name = name
         self.guessTimes = guessTimes
         self.spentTime = spentTime
         self._winner = winner
     }
     
-    var name: String? {
+    public var name: String? {
         didSet {
-            _winner.name = name
+            _winner?.name = name
         }
     }
-    var guessTimes: Int16 {
+    public var guessTimes: Int16 {
         didSet {
-            _winner.guessTimes = guessTimes
+            _winner?.guessTimes = guessTimes
         }
     }
-    var spentTime: TimeInterval {
+    public var spentTime: TimeInterval {
         didSet {
-            _winner.spentTime = spentTime
+            _winner?.spentTime = spentTime
         }
     }
-    let _winner: Winner
+    public let _winner: Winner?
 }
 
 public class AdvancedGameWinner {
