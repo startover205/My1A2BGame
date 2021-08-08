@@ -124,25 +124,8 @@ public final class GameUIComposer {
             }
         }
         
-        winController.shareResult = { [weak winController] in
-            guard let winController = winController, let view = winController.view else { return }
-            let guessCount = winController.guessCount
-            
-            let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
-            var activityItems: [Any] = [String.localizedStringWithFormat(format, guessCount)]
-            activityItems.append(Constants.appStoreDownloadUrl)
-            
-            UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
-            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-            if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
-                activityItems.append(screenShotImage)
-            }
-            UIGraphicsEndImageContext()
-            
-            let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-            controller.popoverPresentationController?.barButtonItem = winController.shareBarBtnItem
-            winController.present(controller, animated: true)
-        }
+        let shareViewController = ShareViewController(hostViewController: winController, guessCount: { [unowned winController] in winController.guessCount })
+        winController.shareViewController = shareViewController
         
         return winController
     }

@@ -134,22 +134,28 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_canShareContent() {
-        var shareCallCount = 0
-        let (sut, _) = makeSUT(shareResult: {
-            shareCallCount += 1
-        })
+        let (sut, _) = makeSUT()
+        let hostVC = UIViewControllerSpy()
+        let shareController = ShareViewController(hostViewController: hostVC, guessCount: { [unowned sut] in sut.guessCount })
+        sut.shareViewController = shareController
 
         sut.loadViewIfNeeded()
 
         sut.simulateUserInitiatedShareAction()
         
-        XCTAssertEqual(shareCallCount, 1)
+        XCTAssertEqual(hostVC.presentCallCount, 1)
         
         sut.simulateUserInitiatedShareAction()
         
-        XCTAssertEqual(shareCallCount, 2)
-
-        executeRunLoopToCleanUpReferences()
+        XCTAssertEqual(hostVC.presentCallCount, 2)
+    }
+    
+    private final class UIViewControllerSpy: UIViewController {
+        var presentCallCount = 0
+        
+        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+            presentCallCount += 1
+        }
     }
     
     func test_breakRecord_confirmButtonEnabledOnlyWhenUserEnteredName() {
@@ -190,7 +196,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, shareResult: @escaping () -> Void = {  }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
+    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
         let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
@@ -201,7 +207,6 @@ class WinViewControllerBasicGameTests: XCTestCase {
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview
         sut.showFireworkAnimation = showFireworkAnimation
-        sut.shareResult = shareResult
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -266,7 +271,9 @@ private extension WinViewController {
     var sublayerCount: Int { view.layer.sublayers?.count ?? 0 }
     
     func simulateUserInitiatedShareAction() {
-        _ = shareBarBtnItem.target?.perform(shareBarBtnItem.action, with: nil)
+        guard let button = navigationItem.rightBarButtonItem else { return }
+        
+        _ = button.target?.perform(button.action, with: nil)
     }
     
     func simulateUserEnterPlayerName(name: String?) {

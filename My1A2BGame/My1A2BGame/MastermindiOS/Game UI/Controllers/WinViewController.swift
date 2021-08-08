@@ -8,6 +8,43 @@
 
 import UIKit
 
+public final class ShareViewController {
+    private(set) lazy var view: UIBarButtonItem = {
+        let view = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(share))
+        return view
+    }()
+    
+    private let hostViewController: UIViewController
+    private let guessCount: () -> Int
+    
+    public init(hostViewController: UIViewController, guessCount: @escaping () -> Int) {
+        self.hostViewController = hostViewController
+        self.guessCount = guessCount
+    }
+    
+    @objc func share() {
+        let guessCount = guessCount()
+        
+        let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
+        var activityItems: [Any] = [String.localizedStringWithFormat(format, guessCount)]
+        activityItems.append(Constants.appStoreDownloadUrl)
+        
+        if let snapshotView = hostViewController.view {
+            UIGraphicsBeginImageContextWithOptions(snapshotView.bounds.size, false, UIScreen.main.scale)
+            snapshotView.drawHierarchy(in: snapshotView.bounds, afterScreenUpdates: true)
+            if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
+                activityItems.append(screenShotImage)
+            }
+            UIGraphicsEndImageContext()
+        }
+        
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        controller.popoverPresentationController?.barButtonItem = view
+        hostViewController.present(controller, animated: true)
+    }
+}
+
+
 public protocol WinnerStore {
     var totalCount: Int { get }
     
@@ -142,7 +179,7 @@ public class WinViewController: UIViewController {
     public var userDefaults: UserDefaults?
     public var askForReview: ((@escaping ReviewCompletion) -> Void)?
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
-    public var shareResult: (() -> Void)?
+    public var shareViewController: ShareViewController?
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
@@ -177,6 +214,8 @@ public class WinViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = shareViewController?.view
+        
         showResult()
         
         if isAdvancedVersion{
@@ -199,10 +238,6 @@ public class WinViewController: UIViewController {
         
         _ = _emojiAnimation
         _ = _fireworkAnimation
-    }
-    
-    @IBAction func shareBtnPressed(_ sender: Any) {
-        shareResult?()
     }
     
     @IBAction func confirmBtnPressed(_ sender: Any) {
