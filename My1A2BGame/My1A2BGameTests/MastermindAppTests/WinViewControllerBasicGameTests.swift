@@ -133,9 +133,28 @@ class WinViewControllerBasicGameTests: XCTestCase {
         XCTAssertEqual(fireworkCallCount, 1, "expect no more calls after view already appear once")
     }
     
+    func test_canShareContent() {
+        var shareCallCount = 0
+        let (sut, _) = makeSUT(shareResult: {
+            shareCallCount += 1
+        })
+
+        sut.loadViewIfNeeded()
+
+        sut.simulateUserInitiatedShareAction()
+        
+        XCTAssertEqual(shareCallCount, 1)
+        
+        sut.simulateUserInitiatedShareAction()
+        
+        XCTAssertEqual(shareCallCount, 2)
+
+        executeRunLoopToCleanUpReferences()
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
+    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, shareResult: @escaping () -> Void = {  }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
         let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
@@ -146,6 +165,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview
         sut.showFireworkAnimation = showFireworkAnimation
+        sut.shareResult = shareResult
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -154,6 +174,10 @@ class WinViewControllerBasicGameTests: XCTestCase {
     
     private func currentAppVersion() -> String {
         Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+    }
+    
+    private func executeRunLoopToCleanUpReferences() {
+        RunLoop.current.run(until: Date())
     }
 }
 
@@ -198,6 +222,10 @@ private extension WinViewController {
     var emojiViewTransform: CGAffineTransform? { emojiLabel.transform }
     
     var sublayerCount: Int { view.layer.sublayers?.count ?? 0 }
+    
+    func simulateUserInitiatedShareAction() {
+        _ = shareBarBtnItem.target?.perform(shareBarBtnItem.action, with: nil)
+    }
 }
 
 private extension UserDefaults {
