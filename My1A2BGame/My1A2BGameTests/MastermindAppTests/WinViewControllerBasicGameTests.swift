@@ -36,7 +36,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
-        let store = PlayerStore()
+        let store = PlayerStoreSpy()
         let guessCount = 1
         let (sut, _) = makeSUT(guessCount: guessCount,store: store)
         
@@ -47,7 +47,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_viewDidLoad_doesNotRendersNewRecordViewsIfRecordNotBroken() {
-        let store = PlayerStore()
+        let store = PlayerStoreSpy()
         let guessCount = 20
         let (sut, _) = makeSUT(guessCount: guessCount, store: store)
         let existingTopRecords = Array(repeating: GameWinner(name: nil, guessTimes: 1, spentTime: 0, winner: Winner()), count: 10)
@@ -152,6 +152,11 @@ class WinViewControllerBasicGameTests: XCTestCase {
         executeRunLoopToCleanUpReferences()
     }
     
+//    func test_confirmButoonPressed_addPlayerRecordToStore() {
+//        let store = PlayerStoreSpy(
+//        let (sut, _) = makeSUT()
+//    }
+    
     // MARK: Helpers
     
     private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, shareResult: @escaping () -> Void = {  }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
@@ -181,7 +186,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
 }
 
-private final class PlayerStore: WinnerStore {
+private final class PlayerStoreSpy: WinnerStore {
     var players = [GameWinner]()
     
     var totalCount: Int {
