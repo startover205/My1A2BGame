@@ -106,6 +106,15 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.hintTextView.text, "\n", "expect empty hint text view on first guess")
     }
     
+    func test_deallocation_doesNotRetain() {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaultsMock())
+        
+        trackForMemoryLeaks(sut)
+        trackForMemoryLeaks(sut.voicePromptViewController!)
+        trackForMemoryLeaks(sut.winViewController!)
+        trackForMemoryLeaks(sut.winViewController!.shareViewController!)
+    }
+    
 //    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
 //        let window = UIWindow()
 //        let nav = NavigationSpy()

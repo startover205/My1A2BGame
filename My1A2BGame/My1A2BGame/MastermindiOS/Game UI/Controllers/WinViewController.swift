@@ -14,7 +14,7 @@ public final class ShareViewController {
         return view
     }()
     
-    private let hostViewController: UIViewController
+    private weak var hostViewController: UIViewController?
     private let guessCount: () -> Int
     
     public init(hostViewController: UIViewController, guessCount: @escaping () -> Int) {
@@ -23,6 +23,7 @@ public final class ShareViewController {
     }
     
     @objc func share() {
+        guard let hostViewController = hostViewController else { return }
         let guessCount = guessCount()
         
         let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
