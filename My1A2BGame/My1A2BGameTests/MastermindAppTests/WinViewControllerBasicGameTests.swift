@@ -152,6 +152,22 @@ class WinViewControllerBasicGameTests: XCTestCase {
         executeRunLoopToCleanUpReferences()
     }
     
+    func test_breakRecord_confirmButtonEnabledOnlyWhenUserEnteredName() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertFalse(sut.confirmBtn.isEnabled, "expect confirm button to be not enabled after view did load")
+        
+        sut.simulateUserEnterPlayerName(name: "any name")
+        
+        XCTAssertTrue(sut.confirmBtn.isEnabled, "expect confirm button to be enabled after user entered name")
+        
+        sut.simulateUserEnterPlayerName(name: "")
+        
+        XCTAssertFalse(sut.confirmBtn.isEnabled, "expect confirm button to be not enabled after user clear name input")
+    }
+    
     func test_breakRecord_addPlayerRecordToStore() {
         let store = PlayerStoreSpy()
         let player = GameWinner(name: "a name", guessTimes: 3, spentTime: 4, winner: nil)
@@ -254,7 +270,10 @@ private extension WinViewController {
     }
     
     func simulateUserEnterPlayerName(name: String?) {
-        nameTextField.text = name
+        let oldText = nameTextField.text ?? ""
+        let newText = name ?? ""
+        nameTextField.text = newText
+        _ = nameTextField.delegate?.textField?(nameTextField, shouldChangeCharactersIn: NSRange(oldText) ?? NSRange(), replacementString: newText)
     }
 }
 
