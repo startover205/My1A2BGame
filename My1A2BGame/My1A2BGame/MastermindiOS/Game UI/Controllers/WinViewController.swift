@@ -206,6 +206,7 @@ public class WinViewController: UIViewController {
     }
     
     @IBAction func confirmBtnPressed(_ sender: Any) {
+        guard nameTextField.text?.isEmpty == false else { return }
         isAdvancedVersion ? addRecordToAdvancedWinnerCoreData() : addRecordToWinnerCoreData()
     }
 }

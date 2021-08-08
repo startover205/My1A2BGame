@@ -152,10 +152,25 @@ class WinViewControllerBasicGameTests: XCTestCase {
         executeRunLoopToCleanUpReferences()
     }
     
-//    func test_confirmButoonPressed_addPlayerRecordToStore() {
-//        let store = PlayerStoreSpy(
-//        let (sut, _) = makeSUT()
-//    }
+    func test_breakRecord_addPlayerRecordToStore() {
+        let store = PlayerStoreSpy()
+        let player = GameWinner(name: "a name", guessTimes: 3, spentTime: 4, winner: nil)
+        let (sut, _) = makeSUT(store: store)
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(store.fetchAllObjects().isEmpty, "expect no record added after view load")
+        
+        sut.confirmBtn.sendActions(for: .touchUpInside)
+        
+        XCTAssertTrue(store.fetchAllObjects().isEmpty, "expect no record added when user did not enter player name")
+
+        sut.simulateUserEnterPlayerName(name: player.name)
+        sut.confirmBtn.sendActions(for: .touchUpInside)
+
+        let recordedPlayer = store.fetchAllObjects().first
+        XCTAssertEqual(recordedPlayer?.name, player.name, "expect record added when user entered player name")
+    }
     
     // MARK: Helpers
     
@@ -188,6 +203,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
 
 private final class PlayerStoreSpy: WinnerStore {
     var players = [GameWinner]()
+    var stashedPlayers = [GameWinner]()
     
     var totalCount: Int {
         players.count
@@ -198,7 +214,9 @@ private final class PlayerStoreSpy: WinnerStore {
     }
     
     func createObject() -> GameWinner {
-        GameWinner(name: nil, guessTimes: 1, spentTime: 1, winner: Winner())
+        let player = GameWinner(name: nil, guessTimes: 1, spentTime: 1, winner: nil)
+        stashedPlayers.append(player)
+        return player
     }
     
     func delete(object: GameWinner) {
@@ -206,6 +224,9 @@ private final class PlayerStoreSpy: WinnerStore {
     }
     
     func saveContext(completion: SaveDoneHandler?) {
+        players.append(contentsOf: stashedPlayers)
+        stashedPlayers.removeAll()
+        completion?(true)
     }
     
     func clearRecords() {
@@ -230,6 +251,10 @@ private extension WinViewController {
     
     func simulateUserInitiatedShareAction() {
         _ = shareBarBtnItem.target?.perform(shareBarBtnItem.action, with: nil)
+    }
+    
+    func simulateUserEnterPlayerName(name: String?) {
+        nameTextField.text = name
     }
 }
 
