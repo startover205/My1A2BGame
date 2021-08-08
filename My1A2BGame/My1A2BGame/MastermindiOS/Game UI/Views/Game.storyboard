@@ -852,7 +852,7 @@ Please enter your name.</string>
                         <outlet property="confirmBtn" destination="cyB-GG-hpV" id="Z3K-f2-MeX"/>
                         <outlet property="emojiLabel" destination="Z1c-2s-Wvy" id="V0y-EJ-ndE"/>
                         <outlet property="guessCountLabel" destination="z9F-MU-qs3" id="1Hn-MT-6qS"/>
-                        <outlet property="nameLabel" destination="A5a-ez-VzU" id="3rA-Xd-r6H"/>
+                        <outlet property="nameTextField" destination="A5a-ez-VzU" id="3rA-Xd-r6H"/>
                         <outlet property="newRecordStackView" destination="ufA-We-AgG" id="fEb-RY-il4"/>
                         <outlet property="shareBarBtnItem" destination="tlf-X7-2vY" id="QAf-4O-ufp"/>
                         <outlet property="winLabel" destination="g9I-sB-1N7" id="pem-zh-o7l"/>

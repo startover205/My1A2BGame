@@ -147,7 +147,7 @@ public class WinViewController: UIViewController {
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
     @IBOutlet private(set) public weak var emojiLabel: UILabel!
-    @IBOutlet private(set) public weak var nameLabel: UITextField!
+    @IBOutlet private(set) public weak var nameTextField: UITextField!
     @IBOutlet private(set) public weak var confirmBtn: UIButton!
     @IBOutlet private(set) public weak var newRecordStackView: UIStackView!
     @IBOutlet private(set) public weak var shareBarBtnItem: UIBarButtonItem!
@@ -254,7 +254,7 @@ private extension WinViewController {
         }
         
         let newWinner = coreDataManager.createObject()
-        newWinner.name = nameLabel.text
+        newWinner.name = nameTextField.text
         newWinner.guessTimes = Int16(guessCount)
         newWinner.spentTime = spentTime
         
@@ -288,7 +288,7 @@ private extension WinViewController {
         }
         
         let newWinner = coreDataManager.createObject()
-        newWinner.name = nameLabel.text
+        newWinner.name = nameTextField.text
         newWinner.guessTimes = Int16(guessCount)
         newWinner.spentTime = spentTime
         

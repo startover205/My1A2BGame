@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,14 +13,14 @@
             <objects>
                 <viewController storyboardIdentifier="GuessViewController" id="1LR-p9-Cos" customClass="GuessNumberViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IqV-EN-uR3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xno-IJ-0VX">
-                                <rect key="frame" x="20" y="52" width="374" height="130.5"/>
+                                <rect key="frame" x="20" y="8" width="560" height="130.5"/>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJE-CA-5hz">
-                                <rect key="frame" x="20" y="217" width="374" height="525"/>
+                                <rect key="frame" x="20" y="173" width="560" height="307"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -33,7 +31,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFO-fp-XsH">
-                                <rect key="frame" x="20" y="190.5" width="111.5" height="50.5"/>
+                                <rect key="frame" x="20" y="146.5" width="111.5" height="50.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubX-Jh-EGN">
                                         <rect key="frame" x="8" y="8" width="95.5" height="14.5"/>
@@ -56,7 +54,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1A2B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okh-FP-api">
-                                <rect key="frame" x="28" y="225" width="358" height="27"/>
+                                <rect key="frame" x="28" y="181" width="544" height="27"/>
                                 <color key="backgroundColor" name="MainBackgroundOffsetOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -68,15 +66,15 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can still guess 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9q-7b-vCB">
-                                <rect key="frame" x="172" y="194" width="222" height="20.5"/>
+                                <rect key="frame" x="358" y="150" width="222" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6rO-wd-Ywo">
-                                <rect key="frame" x="20" y="750" width="374" height="104"/>
+                                <rect key="frame" x="20" y="488" width="560" height="104"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1G-TL-Jv9">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="48"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <accessibility key="accessibilityConfiguration" label="guessButton"/>
                                         <constraints>
@@ -96,7 +94,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZM-Pv-aGF">
-                                        <rect key="frame" x="0.0" y="56" width="374" height="48"/>
+                                        <rect key="frame" x="0.0" y="56" width="560" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <state key="normal" title="Surrender😱">
                                             <color key="titleColor" systemColor="secondaryLabelColor"/>
@@ -106,7 +104,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EC-R7-AJS">
-                                        <rect key="frame" x="0.0" y="104" width="374" height="104"/>
+                                        <rect key="frame" x="0.0" y="104" width="560" height="104"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <state key="normal" title="Restart😤">
@@ -130,7 +128,7 @@
                                 </constraints>
                             </stackView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyL-Dg-isP">
-                                <rect key="frame" x="20" y="52" width="374" height="130.5"/>
+                                <rect key="frame" x="20" y="8" width="560" height="130.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWl-dq-2Oc">
                                         <rect key="frame" x="8" y="4" width="45.5" height="14.5"/>
@@ -139,13 +137,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-ri-UOH">
-                                        <rect key="frame" x="8" y="26.5" width="358" height="96"/>
+                                        <rect key="frame" x="8" y="26.5" width="544" height="96"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jVE-Vx-kJ3">
-                                                <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="544" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6K-b7-bVR" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="uf2-Sd-S6m"/>
@@ -164,7 +162,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HkR-8w-lDK" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="61" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="92" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="RVV-2i-pY5"/>
@@ -183,7 +181,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byJ-wZ-FZV" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="122" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="184" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="dZj-cv-JZL"/>
@@ -202,7 +200,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUJ-FV-UAc" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="183" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="276" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="f5F-xx-Mmh"/>
@@ -221,7 +219,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uee-eb-gMB" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="244" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="368" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="ghr-FJ-YMJ"/>
@@ -240,7 +238,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKe-nr-dmF">
-                                                        <rect key="frame" x="305" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="460" y="0.0" width="84" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="ll7-up-iBK"/>
                                                         </constraints>
@@ -251,10 +249,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vn1-kM-flb">
-                                                <rect key="frame" x="0.0" y="52" width="358" height="44"/>
+                                                <rect key="frame" x="0.0" y="52" width="544" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMO-kI-Zqk" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="naS-0W-1Ea"/>
@@ -273,7 +271,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buT-2p-Sx0" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="61" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="92" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="Ieu-sl-rce"/>
@@ -292,7 +290,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvM-4U-Bf1" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="122" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="184" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="VM2-wh-YLI"/>
@@ -311,7 +309,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4h-CX-sfX" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="183" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="276" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="d8m-IW-3J7"/>
@@ -330,7 +328,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fng-TS-14R" customClass="HelperButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="244" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="368" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="hcd-vN-5mf"/>
@@ -349,7 +347,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuU-qQ-9j0">
-                                                        <rect key="frame" x="305" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="460" y="0.0" width="84" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="REf-YA-F2X"/>
                                                         </constraints>
@@ -466,11 +464,11 @@
             <objects>
                 <viewController id="iTx-Eq-N44" customClass="InstructionViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CWE-HY-tSa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGh-8Y-eJ5">
-                                <rect key="frame" x="20" y="20" width="374" height="768"/>
+                                <rect key="frame" x="20" y="20" width="560" height="540"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
                                 <string key="text">       1A2B 是一個簡單的益智遊戲。
        電腦會準備一組數字不重複的四位數，玩家必須猜出是哪一組四位數。
@@ -508,20 +506,20 @@
             <objects>
                 <viewController storyboardIdentifier="GuessPadViewController" id="56w-i7-12e" customClass="GuessPadViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HG4-gb-N9E">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLi-ql-Srl">
-                                <rect key="frame" x="0.0" y="528" width="414" height="368"/>
+                                <rect key="frame" x="0.0" y="266" width="600" height="334"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VOe-Mm-ZvE">
-                                        <rect key="frame" x="8" y="8" width="398" height="318"/>
+                                        <rect key="frame" x="8" y="8" width="584" height="318"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HAP-6Q-713">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmS-mz-CiU" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="1">
@@ -532,7 +530,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wA-gm-R2q" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="2">
@@ -543,7 +541,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mco-o5-zma" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="3">
@@ -556,10 +554,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BJV-nB-LHh">
-                                                <rect key="frame" x="0.0" y="82" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="82" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5f-ut-ll1" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="4">
@@ -570,7 +568,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-cM-Dik" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="5">
@@ -581,7 +579,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZK-sZ-hlC" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="6">
@@ -594,10 +592,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7nX-MC-GFs">
-                                                <rect key="frame" x="0.0" y="164" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="164" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7b8-VM-S7s" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="7">
@@ -608,7 +606,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67D-Jn-2mE" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="8">
@@ -619,7 +617,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAQ-pp-SsL" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="9">
@@ -632,10 +630,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sCS-Bz-yoU">
-                                                <rect key="frame" x="0.0" y="246" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="246" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FA-3R-7KY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="CLEAR">
                                                             <color key="titleColor" systemColor="labelColor"/>
@@ -645,7 +643,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bch-Ly-v3Q" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="0">
@@ -656,7 +654,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="os2-SD-Buf">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="tintColor" systemColor="labelColor"/>
                                                         <state key="normal" image="delete_arrow_48pt">
                                                             <color key="titleColor" systemColor="labelColor"/>
@@ -681,7 +679,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="acj-p3-aSA">
-                                <rect key="frame" x="40" y="211" width="334" height="237"/>
+                                <rect key="frame" x="40" y="106.5" width="520" height="79.5"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="S2g-lv-ZDv"/>
@@ -730,23 +728,23 @@
             <objects>
                 <viewController storyboardIdentifier="LoseViewController" id="4WW-rx-NTq" customClass="LoseViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QGi-yk-DD9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You lost..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsU-38-Kxy">
-                                <rect key="frame" x="146" y="276.5" width="122" height="36"/>
+                                <rect key="frame" x="239" y="177" width="122" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't give up yet!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ly0-Oz-8Vf">
-                                <rect key="frame" x="90.5" y="340.5" width="233" height="36"/>
+                                <rect key="frame" x="183.5" y="241" width="233" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfn-xZ-1R2">
-                                <rect key="frame" x="125.5" y="406.5" width="163" height="180"/>
+                                <rect key="frame" x="218.5" y="307" width="163" height="180"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="150"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -777,23 +775,23 @@
             <objects>
                 <viewController storyboardIdentifier="WinViewController" id="0nf-i4-zt7" customClass="WinViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wvH-PK-7cy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4A0B!! You won!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9I-sB-1N7">
-                                <rect key="frame" x="94.5" y="163" width="225" height="36"/>
+                                <rect key="frame" x="187.5" y="102" width="225" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You guessed 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9F-MU-qs3">
-                                <rect key="frame" x="67" y="276.5" width="280.5" height="36"/>
+                                <rect key="frame" x="160" y="177" width="280.5" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ufA-We-AgG">
-                                <rect key="frame" x="115.5" y="377.5" width="183.5" height="141"/>
+                                <rect key="frame" x="208.5" y="229.5" width="183.5" height="141"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gra-aE-6Lk">
                                         <rect key="frame" x="0.0" y="0.0" width="183.5" height="61"/>
@@ -826,7 +824,7 @@ Please enter your name.</string>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1c-2s-Wvy">
-                                <rect key="frame" x="125.5" y="590" width="163" height="179.5"/>
+                                <rect key="frame" x="218.5" y="360.5" width="163" height="179.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="150"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -862,7 +860,7 @@ Please enter your name.</string>
                         <outlet property="confirmBtn" destination="cyB-GG-hpV" id="Z3K-f2-MeX"/>
                         <outlet property="emojiLabel" destination="Z1c-2s-Wvy" id="V0y-EJ-ndE"/>
                         <outlet property="guessCountLabel" destination="z9F-MU-qs3" id="1Hn-MT-6qS"/>
-                        <outlet property="nameLabel" destination="A5a-ez-VzU" id="3rA-Xd-r6H"/>
+                        <outlet property="nameTextField" destination="A5a-ez-VzU" id="3rA-Xd-r6H"/>
                         <outlet property="newRecordStackView" destination="ufA-We-AgG" id="fEb-RY-il4"/>
                         <outlet property="shareBarBtnItem" destination="tlf-X7-2vY" id="QAf-4O-ufp"/>
                         <outlet property="winLabel" destination="g9I-sB-1N7" id="pem-zh-o7l"/>
@@ -900,20 +898,20 @@ Please enter your name.</string>
             <objects>
                 <viewController storyboardIdentifier="advancedGuessPadViewController" id="Bpb-WW-M8m" customClass="GuessPadViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t6h-xn-Egj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gd-Xz-sO7">
-                                <rect key="frame" x="0.0" y="528" width="414" height="368"/>
+                                <rect key="frame" x="0.0" y="266" width="600" height="334"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vdY-wl-e9s">
-                                        <rect key="frame" x="8" y="8" width="398" height="318"/>
+                                        <rect key="frame" x="8" y="8" width="584" height="318"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3XP-UN-pbp">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6v-tP-kHy" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="1">
@@ -924,7 +922,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMU-Ub-fjc" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="2">
@@ -935,7 +933,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YaV-aS-uRW" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="3">
@@ -948,10 +946,10 @@ Please enter your name.</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y8v-Gx-Ffs">
-                                                <rect key="frame" x="0.0" y="82" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="82" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sle-Qd-j5O" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="4">
@@ -962,7 +960,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89m-16-dNp" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="5">
@@ -973,7 +971,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIp-J6-pWu" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="6">
@@ -986,10 +984,10 @@ Please enter your name.</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BxY-DY-TuK">
-                                                <rect key="frame" x="0.0" y="164" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="164" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxH-s9-hPP" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="7">
@@ -1000,7 +998,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgs-me-IFY" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="8">
@@ -1011,7 +1009,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bo-Sa-QE4" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="9">
@@ -1024,10 +1022,10 @@ Please enter your name.</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2yi-xg-Cvo">
-                                                <rect key="frame" x="0.0" y="246" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="246" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dne-bb-aHp">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="CLEAR">
                                                             <color key="titleColor" systemColor="labelColor"/>
@@ -1037,7 +1035,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAW-6L-dgr" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="0">
@@ -1048,7 +1046,7 @@ Please enter your name.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0Q-qV-XgL">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="tintColor" systemColor="labelColor"/>
                                                         <state key="normal" image="delete_arrow_48pt">
                                                             <color key="titleColor" systemColor="labelColor"/>
@@ -1073,7 +1071,7 @@ Please enter your name.</string>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="bx4-Us-34F">
-                                <rect key="frame" x="60" y="264" width="294" height="100"/>
+                                <rect key="frame" x="60" y="133" width="480" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="lZF-vf-Q6J">
                                         <rect key="frame" x="0.0" y="0.0" width="30.5" height="100"/>
@@ -1097,7 +1095,7 @@ Please enter your name.</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="Whf-LI-xCJ">
-                                        <rect key="frame" x="66" y="0.0" width="30.5" height="100"/>
+                                        <rect key="frame" x="112.5" y="0.0" width="30.5" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw2-Hd-hW3">
                                                 <rect key="frame" x="0.0" y="0.0" width="30.5" height="60"/>
@@ -1118,7 +1116,7 @@ Please enter your name.</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="db8-QR-laN">
-                                        <rect key="frame" x="131.5" y="0.0" width="31" height="100"/>
+                                        <rect key="frame" x="224.5" y="0.0" width="31" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T97-vp-LXE">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="60"/>
@@ -1139,7 +1137,7 @@ Please enter your name.</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="5RR-qw-1HZ">
-                                        <rect key="frame" x="197.5" y="0.0" width="30.5" height="100"/>
+                                        <rect key="frame" x="337" y="0.0" width="30.5" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R8-Ru-BB2">
                                                 <rect key="frame" x="0.0" y="0.0" width="30.5" height="60"/>
@@ -1160,7 +1158,7 @@ Please enter your name.</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="Aof-gW-NdG">
-                                        <rect key="frame" x="263.5" y="0.0" width="30.5" height="100"/>
+                                        <rect key="frame" x="449.5" y="0.0" width="30.5" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwz-qd-bck">
                                                 <rect key="frame" x="0.0" y="0.0" width="30.5" height="60"/>
