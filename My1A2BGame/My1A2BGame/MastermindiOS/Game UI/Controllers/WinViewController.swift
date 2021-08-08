@@ -142,6 +142,7 @@ public class WinViewController: UIViewController {
     public var userDefaults: UserDefaults?
     public var askForReview: ((@escaping ReviewCompletion) -> Void)?
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
+    public var shareResult: (() -> Void)?
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
@@ -201,7 +202,7 @@ public class WinViewController: UIViewController {
     }
     
     @IBAction func shareBtnPressed(_ sender: Any) {
-        presentShareAlert()
+        shareResult?()
     }
     
     @IBAction func confirmBtnPressed(_ sender: Any) {
@@ -317,23 +318,6 @@ private extension WinViewController {
 
 // MARK: - Private
 private extension WinViewController {
-    func presentShareAlert(){
-        let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
-        var activityItems: [Any] = [String.localizedStringWithFormat(format, guessCount)]
-        activityItems.append(Constants.appStoreDownloadUrl)
-        
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
-            activityItems.append(screenShotImage)
-        }
-        UIGraphicsEndImageContext()
-        
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        controller.popoverPresentationController?.barButtonItem = shareBarBtnItem
-        present(controller, animated: true, completion: nil)
-    }
-  
     func showResult(){
         let format = NSLocalizedString("You guessed %d times", comment: "")
         guessCountLabel.text = String.localizedStringWithFormat(format, guessCount)
