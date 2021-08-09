@@ -97,29 +97,29 @@ public class GameWinner {
 }
 
 public class AdvancedGameWinner {
-    internal init(name: String?, guessTimes: Int16, spentTime: TimeInterval, winner: AdvancedWinner) {
+    public init(name: String?, guessTimes: Int16, spentTime: TimeInterval, winner: AdvancedWinner?) {
         self.name = name
         self.guessTimes = guessTimes
         self.spentTime = spentTime
         self._winner = winner
     }
     
-    var name: String? {
+    public var name: String? {
         didSet {
-            _winner.name = name
+            _winner?.name = name
         }
     }
-    var guessTimes: Int16 {
+    public var guessTimes: Int16 {
         didSet {
-            _winner.guessTimes = guessTimes
+            _winner?.guessTimes = guessTimes
         }
     }
-    var spentTime: TimeInterval {
+    public var spentTime: TimeInterval {
         didSet {
-            _winner.spentTime = spentTime
+            _winner?.spentTime = spentTime
         }
     }
-    let _winner: AdvancedWinner
+    let _winner: AdvancedWinner?
 }
 
 extension Winner {
