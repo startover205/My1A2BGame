@@ -1,6 +1,14 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/cocoapods,xcode,swift,swiftpackagemanager
-# Edit at https://www.toptal.com/developers/gitignore?templates=cocoapods,xcode,swift,swiftpackagemanager
+# Created by https://www.toptal.com/developers/gitignore/api/xcode,swift,objective-c,cocoapods,carthage
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift,objective-c,cocoapods,carthage
+
+### Carthage ###
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
@@ -10,9 +18,8 @@
 #           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
 Pods/
 
-### Swift ###
+### Objective-C ###
 # Xcode
-#
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
@@ -43,6 +50,48 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
+# CocoaPods
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+# Pods/
+# Add this line if you want to avoid checking in source code from the Xcode workspace
+# *.xcworkspace
+
+# Carthage
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build/
+
+# fastlane
+# It is recommended to not store the screenshots in the git repo.
+# Instead, use fastlane to re-generate the screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Injection
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
+
+iOSInjectionProject/
+
+### Objective-C Patch ###
+
+### Swift ###
+# Xcode
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+
+
+
+
+
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
@@ -71,11 +120,10 @@ playground.xcworkspace
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
-Carthage/Build/
 
-# Add this lines if you are using Accio dependency management (Deprecated since Xcode 12)
-# Dependencies/
-# .accio/
+# Accio dependency management
+Dependencies/
+.accio/
 
 # fastlane
 # It is recommended to not store the screenshots in the git repo.
@@ -83,21 +131,10 @@ Carthage/Build/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
 
 # Code Injection
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
-
-iOSInjectionProject/
-
-### SwiftPackageManager ###
-Packages
-xcuserdata
-*.xcodeproj
 
 
 ### Xcode ###
@@ -117,4 +154,4 @@ xcuserdata
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.toptal.com/developers/gitignore/api/cocoapods,xcode,swift,swiftpackagemanager
+# End of https://www.toptal.com/developers/gitignore/api/xcode,swift,objective-c,cocoapods,carthage
