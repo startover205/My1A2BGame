@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import AVFAudio
+import AVFoundation
 
 public final class VoicePromptViewController: NSObject {
     private(set) public lazy var view: UISwitch = {
