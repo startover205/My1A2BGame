@@ -138,14 +138,12 @@
 		C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		C07D1A6023BCDAEE00197857 /* My1A2BGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07D1A6423BCDAEE00197857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C07DE37B26C3A35C000CE8C6 /* ModelAdvanced 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ModelAdvanced 2.xcdatamodel"; sourceTree = "<group>"; };
 		C085BE692254974700320563 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C085BE6E2255127300320563 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C088A65026BE7855005FC389 /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
 		C0962A5226BBC2BF002436AB /* WinViewControllerBasicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewControllerBasicGameTests.swift; sourceTree = "<group>"; };
 		C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
-		C09EE8D926C1100300351B07 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0A1F47926B62A1100536D73 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C0A1F47C26B62A1100536D73 /* LoseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
@@ -1091,7 +1089,6 @@
 		C07575FF224A015E007A1F9E /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C09EE8D926C1100300351B07 /* Model 2.xcdatamodel */,
 				C0757600224A015E007A1F9E /* Model.xcdatamodel */,
 			);
 			currentVersion = C0757600224A015E007A1F9E /* Model.xcdatamodel */;
@@ -1102,7 +1099,6 @@
 		C09EE8D626C10F6400351B07 /* ModelAdvanced.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C07DE37B26C3A35C000CE8C6 /* ModelAdvanced 2.xcdatamodel */,
 				C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */,
 			);
 			currentVersion = C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */;
