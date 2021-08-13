@@ -80,23 +80,18 @@ class RecordLoaderTests: XCTestCase {
         }
         
         private(set) var receivedMessages = [Message]()
-        private var countRetrievalError: Error?
-        private var records = [PlayerRecord]()
-        
+        private var retrievalCountResult: Result<Int, Error>?
         func totalCount() throws -> Int {
             receivedMessages.append(.loadCount)
-            if let error = retrievalError {
-                throw error
-            }
-            return records.count
+            return try retrievalCountResult?.get() ?? 0
         }
         
         func completeCountRetrievalWithError(_ error: Error) {
-            retrievalError = error
+            retrievalCountResult = .failure(error)
         }
         
         func completeCountRetrievalWithEmptyStore() {
-            records.removeAll()
+            retrievalCountResult = .success(0)
         }
     }
 }
