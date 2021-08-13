@@ -79,7 +79,7 @@ class LoadRecordsFromStoreUseCaseTests: XCTestCase {
     
     func test_loadRecords_returnsRecordCountOnNonEmptyStore() throws {
         let (sut, store) = makeSUT()
-        let records = [PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 10)]
+        let records = [anyPlayerRecord()]
         
         store.completeRecordsRetrieval(with: records)
         let retrievedRecords = try sut.loadRecords()

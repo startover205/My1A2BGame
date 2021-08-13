@@ -40,6 +40,7 @@
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
+		C09FAB9426C6524F00A15B9E /* RecordStoreTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9326C6524F00A15B9E /* RecordStoreTestHelpers.swift */; };
 		C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */; };
 		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
@@ -101,6 +102,7 @@
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
+		C09FAB9326C6524F00A15B9E /* RecordStoreTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreTestHelpers.swift; sourceTree = "<group>"; };
 		C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptViewController.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */,
+				C09FAB9326C6524F00A15B9E /* RecordStoreTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */,
+				C09FAB9426C6524F00A15B9E /* RecordStoreTestHelpers.swift in Sources */,
 				C04B5B1D26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift in Sources */,
 				C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */,
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,

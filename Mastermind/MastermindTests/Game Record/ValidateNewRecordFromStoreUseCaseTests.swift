@@ -68,9 +68,4 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         
         return (sut, store)
     }
-    
-    private func anyPlayerRecord() -> PlayerRecord {
-        PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 10)
-    }
-    
 }
