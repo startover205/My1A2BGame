@@ -60,6 +60,16 @@ class RecordLoaderTests: XCTestCase {
         XCTAssertEqual(recordCount, 0)
     }
     
+    func test_loadCount_returnsRecordCountOnNonEmptyStore() throws {
+        let (sut, store) = makeSUT()
+        let count = 10
+        
+        store.completeCountRetrievalWithCount(count)
+        let recordCount = try sut.loadCount()
+        
+        XCTAssertEqual(recordCount, count)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
@@ -88,6 +98,10 @@ class RecordLoaderTests: XCTestCase {
         
         func completeCountRetrievalWithError(_ error: Error) {
             retrievalCountResult = .failure(error)
+        }
+        
+        func completeCountRetrievalWithCount(_ count: Int) {
+            retrievalCountResult = .success(count)
         }
         
         func completeCountRetrievalWithEmptyStore() {
