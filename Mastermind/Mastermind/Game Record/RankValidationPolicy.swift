@@ -26,5 +26,15 @@ final class RankValidationPolicy {
         
         return false
     }
+    
+    static func findInvalidRecords(in records: [PlayerRecord]) -> [PlayerRecord]? {
+        if records.count < maxRankPositions { return nil }
+        
+        let sorted = records.sorted {
+            ($0.guessCount, $0.guessTime) < ($1.guessCount, $1.guessTime)
+        }
+        
+        return Array(sorted[maxRankPositions-1..<records.count])
+    }
 }
 

@@ -41,6 +41,10 @@ extension RecordLoader {
         let oldRecords = try store.retrieve()
         if !RankValidationPolicy.validate(record, against: oldRecords) { return }
         
+        if let recordsToBeDeleted = RankValidationPolicy.findInvalidRecords(in: oldRecords) {
+            try store.delete(recordsToBeDeleted)
+        }
+        
         try store.insert(record)
     }
 }

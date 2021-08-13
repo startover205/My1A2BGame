@@ -13,12 +13,14 @@ final class RecordStoreSpy: RecordStore {
         case loadCount
         case loadRecords
         case insert(_ record: PlayerRecord)
+        case delete(_ record: [PlayerRecord])
     }
     
     private(set) var receivedMessages = [Message]()
     private var retrievalCountError: Error?
     private var retrievalRecordsError: Error?
     private var insertionResult: Result<Void, Error>?
+    private var deletionResult: Result<Void, Error>?
     private var records = [PlayerRecord]()
     
     func totalCount() throws -> Int {
@@ -42,6 +44,11 @@ final class RecordStoreSpy: RecordStore {
     func insert(_ record: PlayerRecord) throws {
         receivedMessages.append(.insert(record))
         try insertionResult?.get()
+    }
+    
+    func delete(_ records: [PlayerRecord]) throws {
+        receivedMessages.append(.delete(records))
+        try deletionResult?.get()
     }
     
     func completeCountRetrieval(with error: Error) {
@@ -70,5 +77,9 @@ final class RecordStoreSpy: RecordStore {
     
     func completeInsertion(with error: Error) {
         insertionResult = .failure(error)
+    }
+    
+    func completeDeletion(with error: Error) {
+        deletionResult = .failure(error)
     }
 }
