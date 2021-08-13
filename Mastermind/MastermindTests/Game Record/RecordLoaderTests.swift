@@ -52,7 +52,7 @@ class RecordLoaderTests: XCTestCase {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
         
-        store.completeCountRetrievalWithError(retrievalError)
+        store.completeCountRetrieval(with: retrievalError)
         
         XCTAssertThrowsError(try sut.loadCount())
     }
@@ -70,7 +70,7 @@ class RecordLoaderTests: XCTestCase {
         let (sut, store) = makeSUT()
         let count = 10
         
-        store.completeCountRetrievalWithCount(count)
+        store.completeCountRetrieval(with: count)
         let recordCount = try sut.loadCount()
         
         XCTAssertEqual(recordCount, count)
@@ -88,7 +88,7 @@ class RecordLoaderTests: XCTestCase {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
         
-        store.completeRecordsRetrievalWithError(retrievalError)
+        store.completeRecordsRetrieval(with: retrievalError)
         
         XCTAssertThrowsError(try sut.loadRecords())
     }
@@ -106,7 +106,7 @@ class RecordLoaderTests: XCTestCase {
         let (sut, store) = makeSUT()
         let records = [PlayerRecord()]
         
-        store.completeRecordsRetrievalWithRecords(records)
+        store.completeRecordsRetrieval(with: records)
         let retrievedRecords = try sut.loadRecords()
         
         XCTAssertEqual(retrievedRecords, records)
@@ -146,11 +146,11 @@ class RecordLoaderTests: XCTestCase {
             return try retrievalRecordsResult?.get() ?? []
         }
         
-        func completeCountRetrievalWithError(_ error: Error) {
+        func completeCountRetrieval(with error: Error) {
             retrievalCountResult = .failure(error)
         }
         
-        func completeCountRetrievalWithCount(_ count: Int) {
+        func completeCountRetrieval(with count: Int) {
             retrievalCountResult = .success(count)
         }
         
@@ -158,11 +158,11 @@ class RecordLoaderTests: XCTestCase {
             retrievalCountResult = .success(0)
         }
         
-        func completeRecordsRetrievalWithError(_ error: Error) {
+        func completeRecordsRetrieval(with error: Error) {
             retrievalRecordsResult = .failure(error)
         }
         
-        func completeRecordsRetrievalWithRecords(_ records: [PlayerRecord]) {
+        func completeRecordsRetrieval(with records: [PlayerRecord]) {
             retrievalRecordsResult = .success(records)
         }
         
