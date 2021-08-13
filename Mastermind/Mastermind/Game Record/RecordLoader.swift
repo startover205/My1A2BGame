@@ -45,3 +45,9 @@ extension RecordLoader {
         }
     }
 }
+
+extension RecordLoader {
+    public func insertNewRecord(_ record: PlayerRecord) throws {
+        
+    }
+}
