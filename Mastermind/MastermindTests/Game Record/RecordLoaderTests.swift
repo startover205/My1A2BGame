@@ -8,11 +8,6 @@
 import XCTest
 import Mastermind
 
-protocol RecordStore {
-    func totalCount() throws -> Int
-    
-    func retrieve() throws -> [PlayerRecord]
-}
 
 class RecordLoader {
     let store: RecordStore
