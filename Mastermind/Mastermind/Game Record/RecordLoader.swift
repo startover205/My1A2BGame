@@ -23,6 +23,11 @@ public final class RecordLoader {
     }
     
     public func validateNewRecord(with: PlayerRecord) -> Bool {
+        do {
+            _ = try store.retrieve()
+        } catch {
+            return false
+        }
         return false
     }
 }

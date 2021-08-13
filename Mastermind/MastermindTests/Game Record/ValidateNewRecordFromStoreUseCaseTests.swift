@@ -15,6 +15,15 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
+    func test_validateNewRecord_requestsRecordsRetrieval() {
+        let (sut, store) = makeSUT()
+        let record = PlayerRecord()
+
+        let _ = sut.validateNewRecord(with: record)
+        
+        XCTAssertEqual(store.receivedMessages, [.loadRecords])
+    }
+    
     func test_validateNewRecord_deliversFalseOnRetrievalError() {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
