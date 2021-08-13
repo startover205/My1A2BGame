@@ -46,7 +46,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         XCTAssertTrue(result)
     }
     
-    func test_validateNewRecord_deliversTrueOnRankPlaceAvailable() {
+    func test_validateNewRecord_deliversTrueOnRankPositionAvailable() {
         let (sut, store) = makeSUT()
         let ninePlayerRecords = Array(repeating: anyPlayerRecord(), count: 9)
         let playerRecord = anyPlayerRecord()
@@ -57,7 +57,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         XCTAssertTrue(result)
     }
     
-    func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessCountWhenRankPlaceUnavailable() {
+    func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessCountWhenRankPositionUnavailable() {
          let (sut, store) = makeSUT()
          let oldPlayerRecordWithLowerGrade = PlayerRecord(playerName: "a name", guessCount: 11, guessTime: 1)
          var oldRecords = Array(repeating: anyPlayerRecord(), count: 9)
@@ -70,7 +70,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
          XCTAssertTrue(result)
      }
     
-    func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessTimeWhenRankPlaceUnavailable() {
+    func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessTimeWhenRankPositionUnavailable() {
          let (sut, store) = makeSUT()
          let oldPlayerRecordWithLowerGrade = PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 20)
          var oldRecords = Array(repeating: anyPlayerRecord(), count: 9)
@@ -83,7 +83,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
          XCTAssertTrue(result)
      }
     
-    func test_validateNewRecord_deliversFalseOnLosingToOldRecordsWhenRankPlaceUnavailable() {
+    func test_validateNewRecord_deliversFalseOnLosingToOldRecordsWhenRankPositionUnavailable() {
          let (sut, store) = makeSUT()
          let oldRecords = Array(repeating: PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 10), count: 10)
          let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 11, guessTime: 11)
