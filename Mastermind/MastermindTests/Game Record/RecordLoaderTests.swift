@@ -8,7 +8,7 @@
 import XCTest
 
 protocol RecordStore {
-    
+    func totalCount() throws -> Int
 }
 
 class RecordLoader {
@@ -17,6 +17,10 @@ class RecordLoader {
     init(store: RecordStore) {
         self.store = store
     }
+    
+    func loadCount() throws -> Int {
+        try store.totalCount()
+    }
 }
 
 class RecordLoaderTests: XCTestCase {
@@ -24,6 +28,14 @@ class RecordLoaderTests: XCTestCase {
         let (_, store) = makeSUT()
         
         XCTAssertEqual(store.receivedMessages, [])
+    }
+    
+    func test_loadCount_requestRecordCountRetrieval() throws {
+        let (sut, store) = makeSUT()
+        
+        _ = try sut.loadCount()
+        
+        XCTAssertEqual(store.receivedMessages, [.loadCount])
     }
     
     // MARK: Helpers
@@ -40,10 +52,15 @@ class RecordLoaderTests: XCTestCase {
     
     private final class RecordStoreSpy: RecordStore {
         enum Message: Equatable {
-            
+            case loadCount
         }
         
         private(set) var receivedMessages = [Message]()
+        
+        func totalCount() -> Int {
+            receivedMessages.append(.loadCount)
+            return 0
+        }
     }
 }
 
