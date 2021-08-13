@@ -15,13 +15,15 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_insertNewRecord_requestRecordInsertion() {
+    func test_insertNewRecord_requestRecordInsertionIfRankPositionsAvailable() {
         let (sut, store) = makeSUT()
+        let ninRecords = Array(repeating: anyPlayerRecord(), count: 9)
         let record = anyPlayerRecord()
         
+        store.completeRecordsRetrieval(with: ninRecords)
         try? sut.insertNewRecord(record)
         
-        XCTAssertEqual(store.receivedMessages, [.insert(record)])
+        XCTAssertEqual(store.receivedMessages, [.loadRecords, .insert(record)])
     }
     
     func test_insertNewRecord_failsOnInsertionError() {

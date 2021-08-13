@@ -38,6 +38,9 @@ extension RecordLoader {
 
 extension RecordLoader {
     public func insertNewRecord(_ record: PlayerRecord) throws {
+        let oldRecords = try store.retrieve()
+        if !RankValidationPolicy.validate(record, against: oldRecords) { return }
+        
         try store.insert(record)
     }
 }
