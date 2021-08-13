@@ -35,6 +35,17 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         XCTAssertFalse(result)
     }
     
+    func test_validateNewRecord_deliversTrueOnEmptyStore() {
+        let (sut, store) = makeSUT()
+        let emptyRecords = [PlayerRecord]()
+        let playerRecord = PlayerRecord()
+        
+        store.completeRecordsRetrieval(with: emptyRecords)
+        let result = sut.validateNewRecord(with: playerRecord)
+        
+        XCTAssertTrue(result)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
