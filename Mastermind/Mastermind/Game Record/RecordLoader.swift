@@ -26,19 +26,9 @@ public final class RecordLoader {
 extension RecordLoader {
     public func validateNewRecord(with newRecord: PlayerRecord) -> Bool {
         do {
-            let records = try store.retrieve()
+            let oldRecords = try store.retrieve()
             
-            if records.count < 10 { return true }
-            
-            for oldRecord in records {
-                if  newRecord.guessCount < oldRecord.guessCount {
-                    return true
-                } else if newRecord.guessCount == newRecord.guessCount, newRecord.guessTime < oldRecord.guessTime {
-                    return true
-                }
-            }
-            
-            return false
+            return RankValidationPolicy.validate(newRecord, against: oldRecords)
             
         } catch {
             return false
