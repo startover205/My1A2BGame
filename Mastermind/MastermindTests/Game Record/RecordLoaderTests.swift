@@ -7,6 +7,10 @@
 
 import XCTest
 
+class PlayerRecord {
+    
+}
+
 protocol RecordStore {
     func totalCount() throws -> Int
 }
@@ -38,13 +42,22 @@ class RecordLoaderTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.loadCount])
     }
     
-    func test_loadCount_failsOnRetrievalError() throws {
+    func test_loadCount_failsOnRetrievalError() {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
         
         store.completeCountRetrievalWithError(retrievalError)
         
         XCTAssertThrowsError(try sut.loadCount())
+    }
+    
+    func test_loadCount_returnsZeroOnEmptyStore() throws {
+        let (sut, store) = makeSUT()
+        
+        store.completeCountRetrievalWithEmptyStore()
+        let recordCount = try sut.loadCount()
+        
+        XCTAssertEqual(recordCount, 0)
     }
     
     // MARK: Helpers
@@ -67,18 +80,23 @@ class RecordLoaderTests: XCTestCase {
         }
         
         private(set) var receivedMessages = [Message]()
-        private var retrievalError: Error?
+        private var countRetrievalError: Error?
+        private var records = [PlayerRecord]()
         
         func totalCount() throws -> Int {
             receivedMessages.append(.loadCount)
             if let error = retrievalError {
                 throw error
             }
-            return 0
+            return records.count
         }
         
         func completeCountRetrievalWithError(_ error: Error) {
             retrievalError = error
+        }
+        
+        func completeCountRetrievalWithEmptyStore() {
+            records.removeAll()
         }
     }
 }
