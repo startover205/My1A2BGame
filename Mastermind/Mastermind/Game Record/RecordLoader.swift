@@ -21,4 +21,8 @@ public final class RecordLoader {
     public func loadRecords() throws -> [PlayerRecord] {
         try store.retrieve()
     }
+    
+    public func validateNewRecord(with: PlayerRecord) -> Bool {
+        return false
+    }
 }

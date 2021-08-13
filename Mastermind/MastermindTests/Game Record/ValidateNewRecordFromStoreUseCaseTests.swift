@@ -15,6 +15,17 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
+    func test_validateNewRecord_deliversFalseOnRetrievalError() {
+        let (sut, store) = makeSUT()
+        let retrievalError = anyNSError()
+        let record = PlayerRecord()
+
+        store.completeRecordsRetrieval(with: retrievalError)
+        let result = sut.validateNewRecord(with: record)
+        
+        XCTAssertFalse(result)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
