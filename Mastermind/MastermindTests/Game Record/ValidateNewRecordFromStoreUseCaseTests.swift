@@ -46,6 +46,17 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         XCTAssertTrue(result)
     }
     
+    func test_validateNewRecord_deliversTrueOnRankPlaceAvailable() {
+        let (sut, store) = makeSUT()
+        let ninePlayerRecords = Array(repeating: anyPlayerRecord(), count: 9)
+        let playerRecord = PlayerRecord()
+        
+        store.completeRecordsRetrieval(with: ninePlayerRecords)
+        let result = sut.validateNewRecord(with: playerRecord)
+        
+        XCTAssertTrue(result)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
@@ -56,6 +67,10 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, store)
+    }
+    
+    private func anyPlayerRecord() -> PlayerRecord {
+        PlayerRecord()
     }
     
 }
