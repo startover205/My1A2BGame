@@ -9,22 +9,6 @@ import XCTest
 import Mastermind
 
 
-class RecordLoader {
-    let store: RecordStore
-    
-    init(store: RecordStore) {
-        self.store = store
-    }
-    
-    func loadCount() throws -> Int {
-        try store.totalCount()
-    }
-    
-    func loadRecords() throws -> [PlayerRecord] {
-        try store.retrieve()
-    }
-}
-
 class RecordLoaderTests: XCTestCase {
     func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()
