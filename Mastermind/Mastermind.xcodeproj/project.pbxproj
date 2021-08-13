@@ -34,6 +34,7 @@
 		C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034C54C26B54B2400F6166E /* MastermindEvaluator.swift */; };
 		C04B5B1D26C6094F0056DDA8 /* RecordLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B1C26C6094F0056DDA8 /* RecordLoaderTests.swift */; };
 		C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B1F26C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */; };
 		C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */; };
 		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
@@ -89,6 +90,7 @@
 		C034C54C26B54B2400F6166E /* MastermindEvaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastermindEvaluator.swift; sourceTree = "<group>"; };
 		C04B5B1C26C6094F0056DDA8 /* RecordLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoaderTests.swift; sourceTree = "<group>"; };
 		C04B5B1F26C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRecord.swift; sourceTree = "<group>"; };
 		C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptViewController.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		C04B5B1A26C608B40056DDA8 /* Game Record */ = {
 			isa = PBXGroup;
 			children = (
+				C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */,
 			);
 			path = "Game Record";
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */,
+				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

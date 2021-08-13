@@ -6,10 +6,7 @@
 //
 
 import XCTest
-
-struct PlayerRecord: Equatable {
-    
-}
+import Mastermind
 
 protocol RecordStore {
     func totalCount() throws -> Int
