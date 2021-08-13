@@ -38,6 +38,15 @@ class RecordLoaderTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.loadCount])
     }
     
+    func test_loadCount_failsOnRetrievalError() throws {
+        let (sut, store) = makeSUT()
+        let retrievalError = anyNSError()
+        
+        store.completeCountRetrievalWithError(retrievalError)
+        
+        XCTAssertThrowsError(try sut.loadCount())
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
@@ -50,16 +59,26 @@ class RecordLoaderTests: XCTestCase {
         return (sut, store)
     }
     
+    private func anyNSError() -> NSError { NSError(domain: "any error", code: 0) }
+    
     private final class RecordStoreSpy: RecordStore {
         enum Message: Equatable {
             case loadCount
         }
         
         private(set) var receivedMessages = [Message]()
+        private var retrievalError: Error?
         
-        func totalCount() -> Int {
+        func totalCount() throws -> Int {
             receivedMessages.append(.loadCount)
+            if let error = retrievalError {
+                throw error
+            }
             return 0
+        }
+        
+        func completeCountRetrievalWithError(_ error: Error) {
+            retrievalError = error
         }
     }
 }
