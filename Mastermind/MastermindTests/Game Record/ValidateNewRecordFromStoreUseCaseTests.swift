@@ -17,9 +17,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     
     func test_validateNewRecord_requestsRecordsRetrieval() {
         let (sut, store) = makeSUT()
-        let record = PlayerRecord()
+        let playerRecord = PlayerRecord()
 
-        let _ = sut.validateNewRecord(with: record)
+        let _ = sut.validateNewRecord(with: playerRecord)
         
         XCTAssertEqual(store.receivedMessages, [.loadRecords])
     }
@@ -27,10 +27,10 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     func test_validateNewRecord_deliversFalseOnRetrievalError() {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
-        let record = PlayerRecord()
+        let playerRecord = PlayerRecord()
 
         store.completeRecordsRetrieval(with: retrievalError)
-        let result = sut.validateNewRecord(with: record)
+        let result = sut.validateNewRecord(with: playerRecord)
         
         XCTAssertFalse(result)
     }
