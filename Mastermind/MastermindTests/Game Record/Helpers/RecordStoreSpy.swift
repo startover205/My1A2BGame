@@ -41,6 +41,7 @@ final class RecordStoreSpy: RecordStore {
     
     func insert(_ record: PlayerRecord) throws {
         receivedMessages.append(.insert(record))
+        try insertionResult?.get()
     }
     
     func completeCountRetrieval(with error: Error) {
