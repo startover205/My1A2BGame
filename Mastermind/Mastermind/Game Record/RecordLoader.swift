@@ -21,11 +21,25 @@ public final class RecordLoader {
     public func loadRecords() throws -> [PlayerRecord] {
         try store.retrieve()
     }
-    
-    public func validateNewRecord(with: PlayerRecord) -> Bool {
+}
+
+extension RecordLoader {
+    public func validateNewRecord(with newRecord: PlayerRecord) -> Bool {
         do {
-            let _ = try store.retrieve()
-            return true
+            let records = try store.retrieve()
+            
+            if records.count < 10 { return true }
+            
+            for oldRecord in records {
+                if  newRecord.guessCount < oldRecord.guessCount {
+                    return true
+                } else if newRecord.guessCount == newRecord.guessCount, newRecord.guessTime < oldRecord.guessTime {
+                    return true
+                }
+            }
+            
+            return false
+            
         } catch {
             return false
         }

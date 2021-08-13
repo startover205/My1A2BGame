@@ -83,6 +83,17 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
          XCTAssertTrue(result)
      }
     
+    func test_validateNewRecord_deliversFalseOnLosingToOldRecordsWhenRankPlaceUnavailable() {
+         let (sut, store) = makeSUT()
+         let oldRecords = Array(repeating: PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 10), count: 10)
+         let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 11, guessTime: 11)
+         
+         store.completeRecordsRetrieval(with: oldRecords)
+         let result = sut.validateNewRecord(with: newPlayerRecord)
+         
+         XCTAssertFalse(result)
+     }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
