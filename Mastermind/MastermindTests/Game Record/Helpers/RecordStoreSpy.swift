@@ -15,40 +15,49 @@ final class RecordStoreSpy: RecordStore {
     }
     
     private(set) var receivedMessages = [Message]()
-    private var retrievalCountResult: Result<Int, Error>?
-    private var retrievalRecordsResult: Result<[PlayerRecord], Error>?
+    private var retrievalCountError: Error?
+    private var retrievalRecordsError: Error?
+    private var records = [PlayerRecord]()
     
     func totalCount() throws -> Int {
         receivedMessages.append(.loadCount)
-        return try retrievalCountResult?.get() ?? 0
+        if let error = retrievalCountError {
+            throw error
+        } else {
+            return records.count
+        }
     }
     
     func retrieve() throws -> [PlayerRecord] {
         receivedMessages.append(.loadRecords)
-        return try retrievalRecordsResult?.get() ?? []
+        if let error = retrievalRecordsError {
+            throw error
+        } else {
+            return records
+        }
     }
     
     func completeCountRetrieval(with error: Error) {
-        retrievalCountResult = .failure(error)
+        retrievalCountError = error
     }
     
     func completeCountRetrieval(with count: Int) {
-        retrievalCountResult = .success(count)
+        records = Array(repeating: anyPlayerRecord(), count: count)
     }
     
     func completeCountRetrievalWithEmptyStore() {
-        retrievalCountResult = .success(0)
+        records = []
     }
     
     func completeRecordsRetrieval(with error: Error) {
-        retrievalRecordsResult = .failure(error)
+        retrievalRecordsError = error
     }
     
     func completeRecordsRetrieval(with records: [PlayerRecord]) {
-        retrievalRecordsResult = .success(records)
+        self.records = records
     }
     
     func completeRecordsRetrievalWithEmptyStore() {
-        retrievalRecordsResult = .success([])
+        records = []
     }
 }
