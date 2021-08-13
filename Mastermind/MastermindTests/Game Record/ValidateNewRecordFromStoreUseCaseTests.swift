@@ -17,7 +17,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     
     func test_validateNewRecord_requestsRecordsRetrieval() {
         let (sut, store) = makeSUT()
-        let playerRecord = PlayerRecord()
+        let playerRecord = anyPlayerRecord()
 
         let _ = sut.validateNewRecord(with: playerRecord)
         
@@ -27,7 +27,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     func test_validateNewRecord_deliversFalseOnRetrievalError() {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
-        let playerRecord = PlayerRecord()
+        let playerRecord = anyPlayerRecord()
 
         store.completeRecordsRetrieval(with: retrievalError)
         let result = sut.validateNewRecord(with: playerRecord)
@@ -38,7 +38,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     func test_validateNewRecord_deliversTrueOnEmptyStore() {
         let (sut, store) = makeSUT()
         let emptyRecords = [PlayerRecord]()
-        let playerRecord = PlayerRecord()
+        let playerRecord = anyPlayerRecord()
         
         store.completeRecordsRetrieval(with: emptyRecords)
         let result = sut.validateNewRecord(with: playerRecord)
@@ -49,20 +49,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     func test_validateNewRecord_deliversTrueOnRankPlaceAvailable() {
         let (sut, store) = makeSUT()
         let ninePlayerRecords = Array(repeating: anyPlayerRecord(), count: 9)
-        let playerRecord = PlayerRecord()
+        let playerRecord = anyPlayerRecord()
         
         store.completeRecordsRetrieval(with: ninePlayerRecords)
-        let result = sut.validateNewRecord(with: playerRecord)
-        
-        XCTAssertTrue(result)
-    }
-    
-    func test_validateNewRecord_deliversTrueOnBeatingOldRecordWhenRankPlaceUnavailable() {
-        let (sut, store) = makeSUT()
-        let tenPlayerRecords = Array(repeating: anyPlayerRecord(), count: 10)
-        let playerRecord = PlayerRecord()
-        
-        store.completeRecordsRetrieval(with: tenPlayerRecords)
         let result = sut.validateNewRecord(with: playerRecord)
         
         XCTAssertTrue(result)
@@ -81,7 +70,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     }
     
     private func anyPlayerRecord() -> PlayerRecord {
-        PlayerRecord()
+        PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 10)
     }
     
 }
