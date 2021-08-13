@@ -12,11 +12,13 @@ final class RecordStoreSpy: RecordStore {
     enum Message: Equatable {
         case loadCount
         case loadRecords
+        case insert(_ record: PlayerRecord)
     }
     
     private(set) var receivedMessages = [Message]()
     private var retrievalCountError: Error?
     private var retrievalRecordsError: Error?
+    private var insertionResult: Result<Void, Error>?
     private var records = [PlayerRecord]()
     
     func totalCount() throws -> Int {
@@ -35,6 +37,10 @@ final class RecordStoreSpy: RecordStore {
         } else {
             return records
         }
+    }
+    
+    func insert(_ record: PlayerRecord) throws {
+        receivedMessages.append(.insert(record))
     }
     
     func completeCountRetrieval(with error: Error) {
@@ -59,5 +65,9 @@ final class RecordStoreSpy: RecordStore {
     
     func completeRecordsRetrievalWithEmptyStore() {
         records = []
+    }
+    
+    func completeInsertion(with error: Error) {
+        insertionResult = .failure(error)
     }
 }

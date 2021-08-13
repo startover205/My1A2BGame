@@ -15,6 +15,15 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
+    func test_insertNewRecord_requestRecordInsertion() {
+        let (sut, store) = makeSUT()
+        let record = anyPlayerRecord()
+        
+        try? sut.insertNewRecord(record)
+        
+        XCTAssertEqual(store.receivedMessages, [.insert(record)])
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
