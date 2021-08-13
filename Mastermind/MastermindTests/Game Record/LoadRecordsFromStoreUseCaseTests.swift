@@ -9,7 +9,7 @@ import XCTest
 import Mastermind
 
 
-class RecordLoaderTests: XCTestCase {
+class LoadRecordsFromStoreUseCaseTests: XCTestCase {
     func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()
         
