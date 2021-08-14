@@ -19,7 +19,7 @@ final class RankValidationPolicy {
         for oldRecord in oldRecords {
             if  newRecord.guessCount < oldRecord.guessCount {
                 return true
-            } else if newRecord.guessCount == newRecord.guessCount, newRecord.guessTime < oldRecord.guessTime {
+            } else if newRecord.guessCount == oldRecord.guessCount, newRecord.guessTime < oldRecord.guessTime {
                 return true
             }
         }
