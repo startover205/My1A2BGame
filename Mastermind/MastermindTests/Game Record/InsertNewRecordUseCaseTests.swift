@@ -15,7 +15,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_insertNewRecord_failsOnRetrievalError() {
+    func test_insertNewRecord_hasNoSideEffectsOnRetrievalError() {
         let (sut, store) = makeSUT()
         let record = anyPlayerRecord()
         let retrievalError = anyNSError()
@@ -36,7 +36,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
 
         store.completeRecordsRetrieval(with: oldRecords)
         store.completeDeletion(with: deletionError)
-        try? sut.insertNewRecord(newPlayerRecord)
+        XCTAssertThrowsError(try sut.insertNewRecord(newPlayerRecord))
         
         XCTAssertEqual(store.receivedMessages, [.loadRecords, .delete([oldPlayerRecordWithLowerGrade])])
     }
