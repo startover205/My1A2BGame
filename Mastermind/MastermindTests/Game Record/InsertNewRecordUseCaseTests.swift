@@ -64,6 +64,17 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertThrowsError(try sut.insertNewRecord(record))
     }
     
+    func test_insertNewRecord_successfullyInsertNewReocrd() {
+        let (sut, store) = makeSUT()
+        let record = anyPlayerRecord()
+        let emptyRecords = [PlayerRecord]()
+        
+        store.completeRecordsRetrieval(with: emptyRecords)
+        store.completeInsertionSuccessfully()
+        
+        XCTAssertNoThrow(try sut.insertNewRecord(record))
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {

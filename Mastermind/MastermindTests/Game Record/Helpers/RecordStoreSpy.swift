@@ -79,6 +79,10 @@ final class RecordStoreSpy: RecordStore {
         insertionResult = .failure(error)
     }
     
+    func completeInsertionSuccessfully() {
+        insertionResult = .success(())
+    }
+    
     func completeDeletion(with error: Error) {
         deletionResult = .failure(error)
     }
