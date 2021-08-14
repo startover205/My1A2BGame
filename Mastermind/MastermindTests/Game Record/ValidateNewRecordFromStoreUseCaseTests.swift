@@ -59,10 +59,8 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     
     func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessCountWhenRankPositionUnavailable() {
          let (sut, store) = makeSUT()
-         let oldPlayerRecordWithLowerGrade = PlayerRecord(playerName: "a name", guessCount: 11, guessTime: 1)
-         var oldRecords = Array(repeating: anyPlayerRecord(), count: 9)
-         oldRecords.append(oldPlayerRecordWithLowerGrade)
-         let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 10, guessTime: 10)
+         let (oldRecords, _) = recordsWithOneWorstRecord()
+         let newPlayerRecord = oneOfTheBestRecord()
          
          store.completeRecordsRetrieval(with: oldRecords)
          let result = sut.validateNewRecord(with: newPlayerRecord)
@@ -72,10 +70,8 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     
     func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessTimeWhenRankPositionUnavailable() {
          let (sut, store) = makeSUT()
-         let oldPlayerRecordWithLowerGrade = PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 20)
-         var oldRecords = Array(repeating: anyPlayerRecord(), count: 9)
-         oldRecords.append(oldPlayerRecordWithLowerGrade)
-         let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 10, guessTime: 10)
+         let (oldRecords, _) = recordsWithOneWorstRecord()
+         let newPlayerRecord = oneOfTheBestRecord()
          
          store.completeRecordsRetrieval(with: oldRecords)
          let result = sut.validateNewRecord(with: newPlayerRecord)
@@ -85,8 +81,8 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
     
     func test_validateNewRecord_deliversFalseOnLosingToOldRecordsWhenRankPositionUnavailable() {
          let (sut, store) = makeSUT()
-         let oldRecords = Array(repeating: PlayerRecord(playerName: "a name", guessCount: 10, guessTime: 10), count: 10)
-         let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 11, guessTime: 11)
+         let oldRecords = Array(repeating: oneOfTheBestRecord(), count: 10)
+         let newPlayerRecord = oneWorstRecord()
          
          store.completeRecordsRetrieval(with: oldRecords)
          let result = sut.validateNewRecord(with: newPlayerRecord)

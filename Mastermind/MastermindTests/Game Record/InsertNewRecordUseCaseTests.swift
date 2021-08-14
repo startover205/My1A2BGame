@@ -28,17 +28,15 @@ class InsertNewRecordUseCaseTests: XCTestCase {
     
     func test_insertNewRecord_failsOnDeletionErrorWhenRankPositionUnavailableAndBeatingOldRecords() {
         let (sut, store) = makeSUT()
-        let oldPlayerRecordWithLowerGrade = PlayerRecord(playerName: "a name", guessCount: 100, guessTime: 20)
-        var oldRecords = Array(repeating: anyPlayerRecord(), count: 9)
-        oldRecords.append(oldPlayerRecordWithLowerGrade)
-        let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 9, guessTime: 10)
+        let (oldRecords, worstRecord) = recordsWithOneWorstRecord()
+        let newPlayerRecord = oneOfTheBestRecord()
         let deletionError = anyNSError()
 
         store.completeRecordsRetrieval(with: oldRecords)
         store.completeDeletion(with: deletionError)
         XCTAssertThrowsError(try sut.insertNewRecord(newPlayerRecord))
         
-        XCTAssertEqual(store.receivedMessages, [.loadRecords, .delete([oldPlayerRecordWithLowerGrade])])
+        XCTAssertEqual(store.receivedMessages, [.loadRecords, .delete([worstRecord])])
     }
     
     func test_insertNewRecord_requestRecordInsertionIfRankPositionsAvailable() {
@@ -64,10 +62,8 @@ class InsertNewRecordUseCaseTests: XCTestCase {
     
     func test_insertNewRecord_failsOnDeletionError() {
         let (sut, store) = makeSUT()
-        let oldPlayerRecordWithLowerGrade = PlayerRecord(playerName: "a name", guessCount: 100, guessTime: 20)
-        var oldRecords = Array(repeating: anyPlayerRecord(), count: 9)
-        oldRecords.append(oldPlayerRecordWithLowerGrade)
-        let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 9, guessTime: 10)
+        let (oldRecords, _) = recordsWithOneWorstRecord()
+        let newPlayerRecord = oneOfTheBestRecord()
         let deletionError = anyNSError()
 
         store.completeRecordsRetrieval(with: oldRecords)
