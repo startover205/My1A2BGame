@@ -26,6 +26,17 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.loadRecords])
     }
     
+    func test_insertNewRecord_doesNotInsertRecordWhenRankPositionUnavailableAndNewRecordNotBeatingOldRecords() {
+        let (sut, store) = makeSUT()
+        let oldRecords = Array(repeating: oneOfTheBestRecord(), count: 10)
+        let newPlayerRecord = oneWorstRecord()
+
+        store.completeRecordsRetrieval(with: oldRecords)
+        try? sut.insertNewRecord(newPlayerRecord)
+        
+        XCTAssertEqual(store.receivedMessages, [.loadRecords])
+    }
+    
     func test_insertNewRecord_doesNotInsertRecordOnDeletionErrorWhenRankPositionUnavailableAndBeatingOldRecords() {
         let (sut, store) = makeSUT()
         let (oldRecords, worstRecord) = recordsWithOneWorstRecord()
