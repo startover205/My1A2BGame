@@ -55,9 +55,12 @@ class InsertNewRecordUseCaseTests: XCTestCase {
     func test_insertNewRecord_failsOnInsertionError() {
         let (sut, store) = makeSUT()
         let record = anyPlayerRecord()
+        let emptyRecords = [PlayerRecord]()
         let insertionError = anyNSError()
         
+        store.completeRecordsRetrieval(with: emptyRecords)
         store.completeInsertion(with: insertionError)
+        
         XCTAssertThrowsError(try sut.insertNewRecord(record))
     }
     
