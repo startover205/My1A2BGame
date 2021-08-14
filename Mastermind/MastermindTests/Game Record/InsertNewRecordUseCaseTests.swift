@@ -52,6 +52,30 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.loadRecords, .insert(record)])
     }
     
+    func test_insertNewRecord_failsOnRetrievalError() {
+        let (sut, store) = makeSUT()
+        let record = anyPlayerRecord()
+        let retrievalError = anyNSError()
+        
+        store.completeRecordsRetrieval(with: retrievalError)
+        
+        XCTAssertThrowsError(try sut.insertNewRecord(record))
+    }
+    
+    func test_insertNewRecord_failsOnDeletionError() {
+        let (sut, store) = makeSUT()
+        let oldPlayerRecordWithLowerGrade = PlayerRecord(playerName: "a name", guessCount: 100, guessTime: 20)
+        var oldRecords = Array(repeating: anyPlayerRecord(), count: 9)
+        oldRecords.append(oldPlayerRecordWithLowerGrade)
+        let newPlayerRecord = PlayerRecord(playerName: "another name", guessCount: 9, guessTime: 10)
+        let deletionError = anyNSError()
+
+        store.completeRecordsRetrieval(with: oldRecords)
+        store.completeDeletion(with: deletionError)
+        
+        XCTAssertThrowsError(try sut.insertNewRecord(newPlayerRecord))
+    }
+    
     func test_insertNewRecord_failsOnInsertionError() {
         let (sut, store) = makeSUT()
         let record = anyPlayerRecord()
