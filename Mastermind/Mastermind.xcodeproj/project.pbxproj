@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */; };
+		C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */; };
+		C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */; };
+		C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC3126C7A64600E6AA77 /* Winner.swift */; };
 		C034AA9626B67E7A006AABE6 /* MastermindiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034AA7626B67CEA006AABE6 /* MastermindiOS.framework */; };
 		C034AAA126B6800F006AABE6 /* GuessPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAA026B6800F006AABE6 /* GuessPadViewController.swift */; };
 		C034AAA426B6804A006AABE6 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C034AAA326B6804A006AABE6 /* Game.storyboard */; };
@@ -67,6 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C033BC2A26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
+		C033BC2C26C7A5EC00E6AA77 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWinner.swift; sourceTree = "<group>"; };
+		C033BC3126C7A64600E6AA77 /* Winner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Winner.swift; sourceTree = "<group>"; };
 		C034AA7626B67CEA006AABE6 /* MastermindiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastermindiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C034AA7926B67CEA006AABE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C034AA9126B67E7A006AABE6 /* MastermindiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +157,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C033BC2726C7A5A700E6AA77 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				C033BC2826C7A5BE00E6AA77 /* Core Data */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		C033BC2826C7A5BE00E6AA77 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */,
+				C033BC3126C7A64600E6AA77 /* Winner.swift */,
+				C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */,
+				C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		C034AA7726B67CEA006AABE6 /* MastermindiOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +299,7 @@
 		C04B5B1A26C608B40056DDA8 /* Game Record */ = {
 			isa = PBXGroup;
 			children = (
+				C033BC2726C7A5A700E6AA77 /* Infrastructure */,
 				C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */,
 				C04B5B2326C6221F0056DDA8 /* RecordStore.swift */,
 				C04B5B2526C622480056DDA8 /* RecordLoader.swift */,
@@ -534,11 +562,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,
 				C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
+				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
 				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
+				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
 				C04B5B2626C622480056DDA8 /* RecordLoader.swift in Sources */,
 				C09FAB9826C67CF200A15B9E /* RankValidationPolicy.swift in Sources */,
+				C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,6 +963,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C033BC2A26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodel */,
+			);
+			currentVersion = C033BC2A26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodel */;
+			path = ModelAdvanced.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C033BC2C26C7A5EC00E6AA77 /* Model.xcdatamodel */,
+			);
+			currentVersion = C033BC2C26C7A5EC00E6AA77 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C034C53426B5431300F6166E /* Project object */;
 }
