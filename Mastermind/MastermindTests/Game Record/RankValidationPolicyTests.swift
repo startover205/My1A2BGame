@@ -57,6 +57,43 @@ class RankValidationPolicyTests: XCTestCase {
         XCTAssertTrue(RankValidationPolicy.validate(recordWithLessGuessCountAndLessGuessTime, against: existingGoodRecords), "Expect true when the new record has less guess count even though with greater guess time than the existing records")
     }
     
+    func test_findInvalidRecords_deliversNilWhenExistingRecordCountLessThanMaxRankPositions() {
+        let nineRecords = Array(repeating: anyPlayerRecord(), count: 9)
+        
+        XCTAssertNil(RankValidationPolicy.findInvalidRecords(in: nineRecords))
+    }
+    
+    func test_findInvalidRecords_deliversTheWorstRecordAsTheRecordToBeRemovedWhenExistingRecordCountEqualThanMaxRankPositions() {
+        let guessCount = 10
+        let guessTime = 10.0
+        let nineGoodRecord = Array(repeating: playRecordWith(guessCount: guessCount, guessTime: guessTime), count: 9)
+        let oneBadRecord = playRecordWith(guessCount: guessCount+1, guessTime: guessTime)
+        var allRecords = [PlayerRecord]()
+        allRecords.append(oneBadRecord)
+        allRecords.append(contentsOf: nineGoodRecord)
+        
+        XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords), [oneBadRecord])
+    }
+    
+    func test_findInvalidRecords_deliversTheWorstRecordsAsTheRecordsToBeRemovedWhenExistingRecordCountGreaterThanMaxRankPositions() {
+        let guessCount = 10
+        let guessTime = 10.0
+        let oneGoodRecord = playRecordWith(guessCount: guessCount, guessTime: guessTime)
+        let nineGoodRecord = Array(repeating: oneGoodRecord, count: 9)
+        let oneBadRecord = playRecordWith(guessCount: guessCount+1, guessTime: guessTime)
+        let anotherBadRecord = playRecordWith(guessCount: guessCount+2, guessTime: guessTime)
+        var allRecords = [PlayerRecord]()
+        allRecords.append(contentsOf: nineGoodRecord)
+        allRecords.append(oneGoodRecord)
+        allRecords.append(oneBadRecord)
+        allRecords.append(anotherBadRecord)
+
+        XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords)?.count, 3)
+        XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords)?.contains(oneGoodRecord), true)
+        XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords)?.contains(oneBadRecord), true)
+        XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords)?.contains(anotherBadRecord), true)
+    }
+    
     // MARK: - Helpers
 
     private func playRecordWith(guessCount: Int, guessTime: TimeInterval) -> PlayerRecord {
