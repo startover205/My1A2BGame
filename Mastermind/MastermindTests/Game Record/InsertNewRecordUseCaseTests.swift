@@ -30,7 +30,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         let oldRecords = Array(repeating: oneOfTheBestRecord(), count: 10)
         let newPlayerRecord = oneWorstRecord()
-
+        
         store.completeRecordsRetrieval(with: oldRecords)
         try? sut.insertNewRecord(newPlayerRecord)
         
@@ -42,7 +42,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let (oldRecords, worstRecord) = recordsWithOneWorstRecord()
         let newPlayerRecord = oneOfTheBestRecord()
         let deletionError = anyNSError()
-
+        
         store.completeRecordsRetrieval(with: oldRecords)
         store.completeDeletion(with: deletionError)
         try? sut.insertNewRecord(newPlayerRecord)
@@ -54,7 +54,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         let (oldRecords, worstRecord) = recordsWithOneWorstRecord()
         let newPlayerRecord = oneOfTheBestRecord()
-
+        
         store.completeRecordsRetrieval(with: oldRecords)
         try? sut.insertNewRecord(newPlayerRecord)
         
@@ -77,9 +77,9 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let record = anyPlayerRecord()
         let retrievalError = anyNSError()
         
-        store.completeRecordsRetrieval(with: retrievalError)
-        
-        XCTAssertThrowsError(try sut.insertNewRecord(record))
+        expect(sut, newRecord: record, toCompleteWithError: retrievalError) {
+            store.completeRecordsRetrieval(with: retrievalError)
+        }
     }
     
     func test_insertNewRecord_failsOnDeletionError() {
@@ -87,11 +87,11 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let (oldRecords, _) = recordsWithOneWorstRecord()
         let newPlayerRecord = oneOfTheBestRecord()
         let deletionError = anyNSError()
-
-        store.completeRecordsRetrieval(with: oldRecords)
-        store.completeDeletion(with: deletionError)
         
-        XCTAssertThrowsError(try sut.insertNewRecord(newPlayerRecord))
+        expect(sut, newRecord: newPlayerRecord, toCompleteWithError: deletionError) {
+            store.completeRecordsRetrieval(with: oldRecords)
+            store.completeDeletion(with: deletionError)
+        }
     }
     
     func test_insertNewRecord_failsOnInsertionError() {
@@ -100,10 +100,10 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let emptyRecords = [PlayerRecord]()
         let insertionError = anyNSError()
         
-        store.completeRecordsRetrieval(with: emptyRecords)
-        store.completeInsertion(with: insertionError)
-        
-        XCTAssertThrowsError(try sut.insertNewRecord(record))
+        expect(sut, newRecord: record, toCompleteWithError: insertionError) {
+            store.completeRecordsRetrieval(with: emptyRecords)
+            store.completeInsertion(with: insertionError)
+        }
     }
     
     func test_insertNewRecord_successfullyInsertNewReocrd() {
@@ -111,10 +111,10 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let record = anyPlayerRecord()
         let emptyRecords = [PlayerRecord]()
         
-        store.completeRecordsRetrieval(with: emptyRecords)
-        store.completeInsertionSuccessfully()
-        
-        XCTAssertNoThrow(try sut.insertNewRecord(record))
+        expect(sut, newRecord: record, toCompleteWithError: nil) {
+            store.completeRecordsRetrieval(with: emptyRecords)
+            store.completeInsertionSuccessfully()
+        }
     }
     
     // MARK: Helpers
@@ -127,5 +127,15 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, store)
+    }
+    
+    private func expect(_ sut: RecordLoader, newRecord: PlayerRecord, toCompleteWithError expectedError: NSError?, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        action()
+        
+        do {
+            try sut.insertNewRecord(newRecord)
+        } catch {
+            XCTAssertEqual(error as NSError?, expectedError, file: file, line: line)
+        }
     }
 }
