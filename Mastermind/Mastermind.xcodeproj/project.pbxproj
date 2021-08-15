@@ -42,6 +42,7 @@
 		C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */; };
 		C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2326C6221F0056DDA8 /* RecordStore.swift */; };
 		C04B5B2626C622480056DDA8 /* RecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2526C622480056DDA8 /* RecordLoader.swift */; };
+		C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -111,6 +112,7 @@
 		C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRecord.swift; sourceTree = "<group>"; };
 		C04B5B2326C6221F0056DDA8 /* RecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
 		C04B5B2526C622480056DDA8 /* RecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoader.swift; sourceTree = "<group>"; };
+		C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStoreTests.swift; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */,
 				C09FAB9526C6770500A15B9E /* InsertNewRecordUseCaseTests.swift */,
 				C041383926C76CED00DFBA59 /* RankValidationPolicyTests.swift */,
+				C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */,
 			);
 			path = "Game Record";
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */,
+				C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */,
 				C09FAB9426C6524F00A15B9E /* RecordStoreTestHelpers.swift in Sources */,
 				C09FAB9626C6770500A15B9E /* InsertNewRecordUseCaseTests.swift in Sources */,
 				C04B5B1D26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift in Sources */,
