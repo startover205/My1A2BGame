@@ -51,6 +51,13 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertEqual(secondResult, [record])
     }
     
+    func test_insert_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+        let record = anyPlayerRecord()
+        
+        XCTAssertNoThrow(try sut.insert(record))
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataRecordStore {
