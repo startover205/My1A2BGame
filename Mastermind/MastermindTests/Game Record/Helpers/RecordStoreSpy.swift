@@ -10,7 +10,6 @@ import Mastermind
 
 final class RecordStoreSpy: RecordStore {
     enum Message: Equatable {
-        case loadCount
         case loadRecords
         case insert(_ record: PlayerRecord)
         case delete(_ record: [PlayerRecord])
@@ -22,15 +21,6 @@ final class RecordStoreSpy: RecordStore {
     private var insertionResult: Result<Void, Error>?
     private var deletionResult: Result<Void, Error>?
     private var records = [PlayerRecord]()
-    
-    func totalCount() throws -> Int {
-        receivedMessages.append(.loadCount)
-        if let error = retrievalCountError {
-            throw error
-        } else {
-            return records.count
-        }
-    }
     
     func retrieve() throws -> [PlayerRecord] {
         receivedMessages.append(.loadRecords)

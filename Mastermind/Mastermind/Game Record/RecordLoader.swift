@@ -14,10 +14,6 @@ public final class RecordLoader {
         self.store = store
     }
     
-    public func loadCount() throws -> Int {
-        try store.totalCount()
-    }
-    
     public func loadRecords() throws -> [PlayerRecord] {
         try store.retrieve()
     }

@@ -8,8 +8,6 @@
 import Foundation
 
 public protocol RecordStore {
-    func totalCount() throws -> Int
-    
     func retrieve() throws -> [PlayerRecord]
     
     func insert(_ record: PlayerRecord) throws

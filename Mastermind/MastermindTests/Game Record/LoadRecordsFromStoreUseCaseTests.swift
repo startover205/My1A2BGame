@@ -15,42 +15,6 @@ class LoadRecordsFromStoreUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_loadCount_requestRecordCountRetrieval() throws {
-        let (sut, store) = makeSUT()
-        
-        _ = try sut.loadCount()
-        
-        XCTAssertEqual(store.receivedMessages, [.loadCount])
-    }
-    
-    func test_loadCount_failsOnRetrievalError() {
-        let (sut, store) = makeSUT()
-        let retrievalError = anyNSError()
-        
-        store.completeCountRetrieval(with: retrievalError)
-        
-        XCTAssertThrowsError(try sut.loadCount())
-    }
-    
-    func test_loadCount_returnsZeroOnEmptyStore() throws {
-        let (sut, store) = makeSUT()
-        
-        store.completeCountRetrievalWithEmptyStore()
-        let recordCount = try sut.loadCount()
-        
-        XCTAssertEqual(recordCount, 0)
-    }
-    
-    func test_loadCount_returnsRecordCountOnNonEmptyStore() throws {
-        let (sut, store) = makeSUT()
-        let count = 10
-        
-        store.completeCountRetrieval(with: count)
-        let recordCount = try sut.loadCount()
-        
-        XCTAssertEqual(recordCount, count)
-    }
-    
     func test_loadRecords_requestRecordsRetrieval() throws {
         let (sut, store) = makeSUT()
         
