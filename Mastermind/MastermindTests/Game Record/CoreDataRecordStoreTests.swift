@@ -18,7 +18,7 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertEqual(result, [])
     }
     
-    func test_retrieve_hasNoSideEffectsOnRetrieval() {
+    func test_retrieve_hasNoSideEffectsOnEmptyStore() {
         let sut = makeSUT()
         
         let firstResult = try? sut.retrieve()
