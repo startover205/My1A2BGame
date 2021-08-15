@@ -38,6 +38,19 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertEqual(result, [record])
     }
     
+    func test_retrieve_hasNoSideEffectsOnNonEmptyStore() {
+        let sut = makeSUT()
+        let record = anyPlayerRecord()
+        
+        try? sut.insert(record)
+        
+        let firstResult = try? sut.retrieve()
+        XCTAssertEqual(firstResult, [record])
+
+        let secondResult = try? sut.retrieve()
+        XCTAssertEqual(secondResult, [record])
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataRecordStore {
