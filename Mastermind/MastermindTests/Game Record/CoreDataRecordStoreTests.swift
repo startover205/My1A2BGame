@@ -8,22 +8,6 @@
 import XCTest
 import Mastermind
 
-final class CoreDataRecordStore: RecordStore {
-    func totalCount() throws -> Int {
-        return 0
-    }
-    
-    func retrieve() throws -> [PlayerRecord] {
-        return []
-    }
-    
-    func insert(_ record: PlayerRecord) throws {
-    }
-    
-    func delete(_ records: [PlayerRecord]) throws {
-    }
-}
-
 class CoreDataRecordStoreTests: XCTestCase {
     
     func test_retrieve_deliversEmptyOnEmptyStore() {
