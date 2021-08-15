@@ -23,7 +23,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         store.completeRecordsRetrieval(with: retrievalError)
         try? sut.insertNewRecord(record)
         
-        XCTAssertEqual(store.receivedMessages, [.loadRecords])
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
     func test_insertNewRecord_doesNotInsertRecordWhenRankPositionUnavailableAndNewRecordNotBeatingOldRecords() {
@@ -34,7 +34,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         store.completeRecordsRetrieval(with: oldRecords)
         try? sut.insertNewRecord(newPlayerRecord)
         
-        XCTAssertEqual(store.receivedMessages, [.loadRecords])
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
     func test_insertNewRecord_doesNotInsertRecordOnDeletionErrorWhenRankPositionUnavailableAndBeatingOldRecords() {
@@ -47,7 +47,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         store.completeDeletion(with: deletionError)
         try? sut.insertNewRecord(newPlayerRecord)
         
-        XCTAssertEqual(store.receivedMessages, [.loadRecords, .delete([worstRecord])])
+        XCTAssertEqual(store.receivedMessages, [.retrieve, .delete([worstRecord])])
     }
     
     func test_insertNewRecord_requestRecordInsertionIfRankPositionUnavailableAndBeatingOldRecords() {
@@ -58,7 +58,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         store.completeRecordsRetrieval(with: oldRecords)
         try? sut.insertNewRecord(newPlayerRecord)
         
-        XCTAssertEqual(store.receivedMessages, [.loadRecords, .delete([worstRecord]), .insert(newPlayerRecord)])
+        XCTAssertEqual(store.receivedMessages, [.retrieve, .delete([worstRecord]), .insert(newPlayerRecord)])
     }
     
     func test_insertNewRecord_requestRecordInsertionIfRankPositionsAvailable() {
@@ -69,7 +69,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         store.completeRecordsRetrieval(with: ninRecords)
         try? sut.insertNewRecord(record)
         
-        XCTAssertEqual(store.receivedMessages, [.loadRecords, .insert(record)])
+        XCTAssertEqual(store.receivedMessages, [.retrieve, .insert(record)])
     }
     
     func test_insertNewRecord_failsOnRetrievalError() {

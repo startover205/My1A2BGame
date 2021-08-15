@@ -15,38 +15,38 @@ class LoadRecordsFromStoreUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_loadRecords_requestRecordsRetrieval() throws {
+    func test_load_requestRecordsRetrieval() throws {
         let (sut, store) = makeSUT()
         
-        _ = try sut.loadRecords()
+        _ = try sut.load()
         
-        XCTAssertEqual(store.receivedMessages, [.loadRecords])
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_loadRecords_failsOnRetrievalError() {
+    func test_load_failsOnRetrievalError() {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
         
         store.completeRecordsRetrieval(with: retrievalError)
         
-        XCTAssertThrowsError(try sut.loadRecords())
+        XCTAssertThrowsError(try sut.load())
     }
     
-    func test_loadRecords_returnsNoRecordsOnEmptyStore() throws {
+    func test_load_returnsNoRecordsOnEmptyStore() throws {
         let (sut, store) = makeSUT()
         
         store.completeRecordsRetrievalWithEmptyStore()
-        let records = try sut.loadRecords()
+        let records = try sut.load()
         
         XCTAssertEqual(records, [])
     }
     
-    func test_loadRecords_returnsRecordCountOnNonEmptyStore() throws {
+    func test_load_returnsRecordCountOnNonEmptyStore() throws {
         let (sut, store) = makeSUT()
         let records = [anyPlayerRecord()]
         
         store.completeRecordsRetrieval(with: records)
-        let retrievedRecords = try sut.loadRecords()
+        let retrievedRecords = try sut.load()
         
         XCTAssertEqual(retrievedRecords, records)
     }

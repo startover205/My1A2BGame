@@ -14,7 +14,7 @@ public final class RecordLoader {
         self.store = store
     }
     
-    public func loadRecords() throws -> [PlayerRecord] {
+    public func load() throws -> [PlayerRecord] {
         try store.retrieve()
     }
 }
