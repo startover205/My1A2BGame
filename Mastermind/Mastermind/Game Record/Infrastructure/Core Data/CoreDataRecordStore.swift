@@ -7,20 +7,6 @@
 
 import CoreData
 
-public struct LocalPlayerRecord: Equatable {
-    public let playerName: String
-    public let guessCount: Int
-    public let guessTime: TimeInterval
-    public let timestamp: Date
-    
-    public init(playerName: String, guessCount: Int, guessTime: TimeInterval, timestamp: Date) {
-        self.playerName = playerName
-        self.guessCount = guessCount
-        self.guessTime = guessTime
-        self.timestamp = timestamp
-    }
-}
-
 public final class CoreDataRecordStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
