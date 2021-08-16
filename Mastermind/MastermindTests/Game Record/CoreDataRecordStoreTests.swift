@@ -69,18 +69,27 @@ class CoreDataRecordStoreTests: XCTestCase {
     
     func test_delete_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
-        let records = anyPlayerRecords()
+        let records = anyPlayerRecords().local
         
-        XCTAssertNoThrow(try sut.delete(records.local))
+        XCTAssertNoThrow(try sut.delete(records))
     }
     
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
-        let records = anyPlayerRecords()
+        let records = anyPlayerRecords().local
         
-        try! sut.delete(records.local)
+        try! sut.delete(records)
         
         XCTAssertEqual(try? sut.retrieve(), [])
+    }
+    
+    func test_delete_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
+        let existingRecord = anyPlayerRecord().local
+        
+        try! sut.insert(existingRecord)
+        
+        XCTAssertNoThrow(try sut.delete([existingRecord]))
     }
     
     // MARK: Helpers
