@@ -67,6 +67,13 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertNoThrow(try sut.insert(record))
     }
     
+    func test_delete_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+        let records = anyPlayerRecords()
+        
+        XCTAssertNoThrow(try sut.delete(records.local))
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataRecordStore {
