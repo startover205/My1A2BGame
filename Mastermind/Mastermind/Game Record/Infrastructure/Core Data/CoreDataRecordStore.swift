@@ -79,5 +79,13 @@ extension CoreDataRecordStore: RecordStore {
     }
     
     public func delete(_ records: [LocalPlayerRecord]) throws {
+        try performSync { context in
+            Result {
+                let request = NSFetchRequest<Winner>(entityName: Winner.entity().name!)
+                request.predicate = NSPredicate(format: "date IN %@", records.map(\.timestamp))
+                request.returnsObjectsAsFaults = false
+                _ = try context.fetch(request).map(context.delete).map(context.save)
+            }
+        }
     }
 }

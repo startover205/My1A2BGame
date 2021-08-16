@@ -92,6 +92,23 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertNoThrow(try sut.delete([existingRecord]))
     }
     
+    func test_delete_deliversDeleteRecordsWithMatchingTimestamp() {
+        let sut = makeSUT()
+        let firstRecord = LocalPlayerRecord(playerName: "same name", guessCount: 1, guessTime: 1, timestamp: Date())
+        let secondRecord = LocalPlayerRecord(playerName: "same name", guessCount: 1, guessTime: 1, timestamp: Date().addingTimeInterval(1))
+        let thirdRecord = LocalPlayerRecord(playerName: "same name", guessCount: 1, guessTime: 1, timestamp: Date().addingTimeInterval(2))
+        
+        try! sut.insert(firstRecord)
+        try! sut.insert(secondRecord)
+        try! sut.insert(thirdRecord)
+        
+        try! sut.delete([firstRecord, thirdRecord])
+        
+        let result = try! sut.retrieve()
+        
+        XCTAssertEqual(result, [secondRecord])
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataRecordStore {
