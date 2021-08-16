@@ -60,6 +60,16 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertThrowsError(try sut.retrieve())
     }
     
+    func test_retrieve_hasNoSideEffectsOnFailure() {
+        let stub = NSManagedObjectContext.alwaysFailingFetchStub()
+        stub.startIntercepting()
+        
+        let sut = makeSUT()
+        
+        XCTAssertThrowsError(try sut.retrieve())
+        XCTAssertThrowsError(try sut.retrieve())
+    }
+    
     func test_insert_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
         let record = anyPlayerRecord().local
