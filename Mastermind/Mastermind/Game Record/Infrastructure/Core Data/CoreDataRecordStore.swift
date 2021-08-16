@@ -60,6 +60,9 @@ extension CoreDataRecordStore: RecordStore {
                 winner.date = record.timestamp
                 
                 try context.save()
+            }.mapError {
+                context.rollback()
+                return $0
             }
         }
     }
