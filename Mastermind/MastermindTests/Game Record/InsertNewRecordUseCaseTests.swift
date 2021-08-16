@@ -21,18 +21,18 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let retrievalError = anyNSError()
         
         store.completeRecordsRetrieval(with: retrievalError)
-        try? sut.insertNewRecord(record)
+        try? sut.insertNewRecord(record.model)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
     func test_insertNewRecord_doesNotInsertRecordWhenRankPositionUnavailableAndNewRecordNotBeatingOldRecords() {
         let (sut, store) = makeSUT()
-        let oldRecords = Array(repeating: oneOfTheBestRecord(), count: 10)
+        let oldRecords = Array(repeating: oneOfTheBestRecord().local, count: 10)
         let newPlayerRecord = oneWorstRecord()
         
         store.completeRecordsRetrieval(with: oldRecords)
-        try? sut.insertNewRecord(newPlayerRecord)
+        try? sut.insertNewRecord(newPlayerRecord.model)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -45,7 +45,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         
         store.completeRecordsRetrieval(with: oldRecords)
         store.completeDeletion(with: deletionError)
-        try? sut.insertNewRecord(newPlayerRecord)
+        try? sut.insertNewRecord(newPlayerRecord.model)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve, .delete([worstRecord])])
     }
@@ -56,20 +56,20 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let newPlayerRecord = oneOfTheBestRecord()
         
         store.completeRecordsRetrieval(with: oldRecords)
-        try? sut.insertNewRecord(newPlayerRecord)
+        try? sut.insertNewRecord(newPlayerRecord.model)
         
-        XCTAssertEqual(store.receivedMessages, [.retrieve, .delete([worstRecord]), .insert(newPlayerRecord)])
+        XCTAssertEqual(store.receivedMessages, [.retrieve, .delete([worstRecord]), .insert(newPlayerRecord.local)])
     }
     
     func test_insertNewRecord_requestRecordInsertionIfRankPositionsAvailable() {
         let (sut, store) = makeSUT()
-        let ninRecords = Array(repeating: anyPlayerRecord(), count: 9)
+        let nineExistingRecords = Array(repeating: anyPlayerRecord().local, count: 9)
         let record = anyPlayerRecord()
         
-        store.completeRecordsRetrieval(with: ninRecords)
-        try? sut.insertNewRecord(record)
+        store.completeRecordsRetrieval(with: nineExistingRecords)
+        try? sut.insertNewRecord(record.model)
         
-        XCTAssertEqual(store.receivedMessages, [.retrieve, .insert(record)])
+        XCTAssertEqual(store.receivedMessages, [.retrieve, .insert(record.local)])
     }
     
     func test_insertNewRecord_failsOnRetrievalError() {
@@ -77,7 +77,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let record = anyPlayerRecord()
         let retrievalError = anyNSError()
         
-        expect(sut, newRecord: record, toCompleteWithError: retrievalError) {
+        expect(sut, newRecord: record.model, toCompleteWithError: retrievalError) {
             store.completeRecordsRetrieval(with: retrievalError)
         }
     }
@@ -88,7 +88,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         let newPlayerRecord = oneOfTheBestRecord()
         let deletionError = anyNSError()
         
-        expect(sut, newRecord: newPlayerRecord, toCompleteWithError: deletionError) {
+        expect(sut, newRecord: newPlayerRecord.model, toCompleteWithError: deletionError) {
             store.completeRecordsRetrieval(with: oldRecords)
             store.completeDeletion(with: deletionError)
         }
@@ -97,10 +97,10 @@ class InsertNewRecordUseCaseTests: XCTestCase {
     func test_insertNewRecord_failsOnInsertionError() {
         let (sut, store) = makeSUT()
         let record = anyPlayerRecord()
-        let emptyRecords = [PlayerRecord]()
+        let emptyRecords = [LocalPlayerRecord]()
         let insertionError = anyNSError()
         
-        expect(sut, newRecord: record, toCompleteWithError: insertionError) {
+        expect(sut, newRecord: record.model, toCompleteWithError: insertionError) {
             store.completeRecordsRetrieval(with: emptyRecords)
             store.completeInsertion(with: insertionError)
         }
@@ -109,9 +109,9 @@ class InsertNewRecordUseCaseTests: XCTestCase {
     func test_insertNewRecord_successfullyInsertNewReocrd() {
         let (sut, store) = makeSUT()
         let record = anyPlayerRecord()
-        let emptyRecords = [PlayerRecord]()
+        let emptyRecords = [LocalPlayerRecord]()
         
-        expect(sut, newRecord: record, toCompleteWithError: nil) {
+        expect(sut, newRecord: record.model, toCompleteWithError: nil) {
             store.completeRecordsRetrieval(with: emptyRecords)
             store.completeInsertionSuccessfully()
         }

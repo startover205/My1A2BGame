@@ -8,9 +8,9 @@
 import Foundation
 
 public protocol RecordStore {
-    func retrieve() throws -> [PlayerRecord]
+    func retrieve() throws -> [LocalPlayerRecord]
     
-    func insert(_ record: PlayerRecord) throws
+    func insert(_ record: LocalPlayerRecord) throws
     
-    func delete(_ records: [PlayerRecord]) throws
+    func delete(_ records: [LocalPlayerRecord]) throws
 }

@@ -58,7 +58,7 @@ class RankValidationPolicyTests: XCTestCase {
     }
     
     func test_findInvalidRecords_deliversNilWhenExistingRecordCountLessThanMaxRankPositions() {
-        let nineRecords = Array(repeating: anyPlayerRecord(), count: 9)
+        let nineRecords = Array(repeating: anyPlayerRecord().local, count: 9)
         
         XCTAssertNil(RankValidationPolicy.findInvalidRecords(in: nineRecords))
     }
@@ -68,7 +68,7 @@ class RankValidationPolicyTests: XCTestCase {
         let guessTime = 10.0
         let nineGoodRecord = Array(repeating: playRecordWith(guessCount: guessCount, guessTime: guessTime), count: 9)
         let oneBadRecord = playRecordWith(guessCount: guessCount+1, guessTime: guessTime)
-        var allRecords = [PlayerRecord]()
+        var allRecords = [LocalPlayerRecord]()
         allRecords.append(oneBadRecord)
         allRecords.append(contentsOf: nineGoodRecord)
         
@@ -82,12 +82,12 @@ class RankValidationPolicyTests: XCTestCase {
         let nineGoodRecord = Array(repeating: oneGoodRecord, count: 9)
         let oneBadRecord = playRecordWith(guessCount: guessCount+1, guessTime: guessTime)
         let anotherBadRecord = playRecordWith(guessCount: guessCount+2, guessTime: guessTime)
-        var allRecords = [PlayerRecord]()
+        var allRecords = [LocalPlayerRecord]()
         allRecords.append(contentsOf: nineGoodRecord)
         allRecords.append(oneGoodRecord)
         allRecords.append(oneBadRecord)
         allRecords.append(anotherBadRecord)
-
+        
         XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords)?.count, 3)
         XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords)?.contains(oneGoodRecord), true)
         XCTAssertEqual(RankValidationPolicy.findInvalidRecords(in: allRecords)?.contains(oneBadRecord), true)
@@ -95,8 +95,8 @@ class RankValidationPolicyTests: XCTestCase {
     }
     
     // MARK: - Helpers
-
-    private func playRecordWith(guessCount: Int, guessTime: TimeInterval) -> PlayerRecord {
+    
+    private func playRecordWith(guessCount: Int, guessTime: TimeInterval) -> LocalPlayerRecord {
         .init(playerName: "a name", guessCount: guessCount, guessTime: guessTime, timestamp: Date())
     }
 }

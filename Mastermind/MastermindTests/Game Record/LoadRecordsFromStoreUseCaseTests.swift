@@ -43,12 +43,12 @@ class LoadRecordsFromStoreUseCaseTests: XCTestCase {
     
     func test_load_returnsRecordCountOnNonEmptyStore() throws {
         let (sut, store) = makeSUT()
-        let records = [anyPlayerRecord()]
+        let records = anyPlayerRecords()
         
-        store.completeRecordsRetrieval(with: records)
+        store.completeRecordsRetrieval(with: records.local)
         let retrievedRecords = try sut.load()
         
-        XCTAssertEqual(retrievedRecords, records)
+        XCTAssertEqual(retrievedRecords, records.model)
     }
     
     // MARK: Helpers

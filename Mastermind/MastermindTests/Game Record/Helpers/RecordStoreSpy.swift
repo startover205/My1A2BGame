@@ -11,18 +11,17 @@ import Mastermind
 final class RecordStoreSpy: RecordStore {
     enum Message: Equatable {
         case retrieve
-        case insert(_ record: PlayerRecord)
-        case delete(_ record: [PlayerRecord])
+        case insert(_ record: LocalPlayerRecord)
+        case delete(_ record: [LocalPlayerRecord])
     }
     
     private(set) var receivedMessages = [Message]()
-    private var retrievalCountError: Error?
     private var retrievalRecordsError: Error?
     private var insertionResult: Result<Void, Error>?
     private var deletionResult: Result<Void, Error>?
-    private var records = [PlayerRecord]()
+    private var records = [LocalPlayerRecord]()
     
-    func retrieve() throws -> [PlayerRecord] {
+    func retrieve() throws -> [LocalPlayerRecord] {
         receivedMessages.append(.retrieve)
         if let error = retrievalRecordsError {
             throw error
@@ -31,33 +30,21 @@ final class RecordStoreSpy: RecordStore {
         }
     }
     
-    func insert(_ record: PlayerRecord) throws {
+    func insert(_ record: LocalPlayerRecord) throws {
         receivedMessages.append(.insert(record))
         try insertionResult?.get()
     }
     
-    func delete(_ records: [PlayerRecord]) throws {
+    func delete(_ records: [LocalPlayerRecord]) throws {
         receivedMessages.append(.delete(records))
         try deletionResult?.get()
-    }
-    
-    func completeCountRetrieval(with error: Error) {
-        retrievalCountError = error
-    }
-    
-    func completeCountRetrieval(with count: Int) {
-        records = Array(repeating: anyPlayerRecord(), count: count)
-    }
-    
-    func completeCountRetrievalWithEmptyStore() {
-        records = []
     }
     
     func completeRecordsRetrieval(with error: Error) {
         retrievalRecordsError = error
     }
     
-    func completeRecordsRetrieval(with records: [PlayerRecord]) {
+    func completeRecordsRetrieval(with records: [LocalPlayerRecord]) {
         self.records = records
     }
     

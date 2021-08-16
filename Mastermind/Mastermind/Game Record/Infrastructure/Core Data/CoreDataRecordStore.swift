@@ -7,6 +7,20 @@
 
 import CoreData
 
+public struct LocalPlayerRecord: Equatable {
+    public let playerName: String
+    public let guessCount: Int
+    public let guessTime: TimeInterval
+    public let timestamp: Date
+    
+    public init(playerName: String, guessCount: Int, guessTime: TimeInterval, timestamp: Date) {
+        self.playerName = playerName
+        self.guessCount = guessCount
+        self.guessTime = guessTime
+        self.timestamp = timestamp
+    }
+}
+
 public final class CoreDataRecordStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
@@ -42,19 +56,19 @@ extension CoreDataRecordStore: RecordStore {
         return 0
     }
     
-    public func retrieve() throws -> [PlayerRecord] {
+    public func retrieve() throws -> [LocalPlayerRecord] {
         try performSync { context in
             Result {
                 let request = NSFetchRequest<Winner>(entityName: Winner.entity().name!)
                 request.returnsObjectsAsFaults = false
                 return try context.fetch(request).map {
-                    PlayerRecord(playerName: $0.name ?? "", guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date ?? Date())
+                    LocalPlayerRecord(playerName: $0.name ?? "", guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date ?? Date())
                 }
             }
         }
     }
     
-    public func insert(_ record: PlayerRecord) throws {
+    public func insert(_ record: LocalPlayerRecord) throws {
         try performSync { context in
             Result {
                 let winner = Winner(context: context)
@@ -68,6 +82,6 @@ extension CoreDataRecordStore: RecordStore {
         }
     }
     
-    public func delete(_ records: [PlayerRecord]) throws {
+    public func delete(_ records: [LocalPlayerRecord]) throws {
     }
 }

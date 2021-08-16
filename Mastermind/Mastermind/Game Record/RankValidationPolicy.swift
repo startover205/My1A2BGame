@@ -12,7 +12,7 @@ final class RankValidationPolicy {
     
     private static var maxRankPositions: Int { 10 }
     
-    static func validate(_ newRecord: PlayerRecord, against oldRecords: [PlayerRecord]) -> Bool {
+    static func validate(_ newRecord: LocalPlayerRecord, against oldRecords: [LocalPlayerRecord]) -> Bool {
         
         if oldRecords.count < maxRankPositions { return true }
         
@@ -27,7 +27,7 @@ final class RankValidationPolicy {
         return false
     }
     
-    static func findInvalidRecords(in records: [PlayerRecord]) -> [PlayerRecord]? {
+    static func findInvalidRecords(in records: [LocalPlayerRecord]) -> [LocalPlayerRecord]? {
         if records.count < maxRankPositions { return nil }
         
         let sorted = records.sorted {

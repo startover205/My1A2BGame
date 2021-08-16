@@ -30,7 +30,7 @@ class CoreDataRecordStoreTests: XCTestCase {
     
     func test_retrieve_deliversFoundValueOnNonEmptyStore() {
         let sut = makeSUT()
-        let record = anyPlayerRecord()
+        let record = anyPlayerRecord().local
         
         try? sut.insert(record)
         
@@ -40,7 +40,7 @@ class CoreDataRecordStoreTests: XCTestCase {
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyStore() {
         let sut = makeSUT()
-        let record = anyPlayerRecord()
+        let record = anyPlayerRecord().local
         
         try? sut.insert(record)
         
@@ -53,14 +53,14 @@ class CoreDataRecordStoreTests: XCTestCase {
     
     func test_insert_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
-        let record = anyPlayerRecord()
+        let record = anyPlayerRecord().local
         
         XCTAssertNoThrow(try sut.insert(record))
     }
     
     func test_insert_deliversNoErrorOnNonEmptyCache() {
         let sut = makeSUT()
-        let record = anyPlayerRecord()
+        let record = anyPlayerRecord().local
         
         try! sut.insert(record)
         
