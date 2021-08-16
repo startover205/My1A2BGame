@@ -74,6 +74,9 @@ extension CoreDataRecordStore: RecordStore {
                 request.predicate = NSPredicate(format: "date IN %@", records.map(\.timestamp))
                 request.returnsObjectsAsFaults = false
                 _ = try context.fetch(request).map(context.delete).map(context.save)
+            }.mapError {
+                context.rollback()
+                return $0
             }
         }
     }
