@@ -43,6 +43,7 @@
 		C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2326C6221F0056DDA8 /* RecordStore.swift */; };
 		C04B5B2626C622480056DDA8 /* RecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2526C622480056DDA8 /* RecordLoader.swift */; };
 		C04DA16026CA4DBC00E6C6B8 /* LocalPlayerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */; };
+		C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */; };
 		C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */; };
 		C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */; };
 		C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */; };
@@ -116,6 +117,7 @@
 		C04B5B2326C6221F0056DDA8 /* RecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
 		C04B5B2526C622480056DDA8 /* RecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoader.swift; sourceTree = "<group>"; };
 		C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayerRecord.swift; sourceTree = "<group>"; };
+		C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Stub.swift"; sourceTree = "<group>"; };
 		C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStoreTests.swift; sourceTree = "<group>"; };
 		C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStore.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */,
+				C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */,
 				C09FAB9326C6524F00A15B9E /* RecordStoreTestHelpers.swift */,
 			);
 			path = Helpers;
@@ -602,6 +605,7 @@
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */,
 				C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */,
+				C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */,
 				C041383A26C76CED00DFBA59 /* RankValidationPolicyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
