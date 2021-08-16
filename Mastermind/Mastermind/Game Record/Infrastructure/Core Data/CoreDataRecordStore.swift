@@ -52,10 +52,6 @@ public final class CoreDataRecordStore {
 }
 
 extension CoreDataRecordStore: RecordStore {
-    public func totalCount() throws -> Int {
-        return 0
-    }
-    
     public func retrieve() throws -> [LocalPlayerRecord] {
         try performSync { context in
             Result {
