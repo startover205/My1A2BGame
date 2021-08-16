@@ -149,6 +149,18 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertEqual(result, [secondRecord])
     }
     
+    func test_delete_deliverFailureOnDeletionError() {
+        let stub = NSManagedObjectContext.alwaysFailingSaveStub()
+        let sut = makeSUT()
+        let record = anyPlayerRecord().local
+        
+        try! sut.insert(record)
+        
+        stub.startIntercepting()
+        
+        XCTAssertThrowsError(try sut.delete([record]))
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataRecordStore {
