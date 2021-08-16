@@ -48,7 +48,7 @@ extension CoreDataRecordStore: RecordStore {
                 let request = NSFetchRequest<Winner>(entityName: Winner.entity().name!)
                 request.returnsObjectsAsFaults = false
                 return try context.fetch(request).map {
-                    PlayerRecord(playerName: $0.name ?? "", guessCount: Int($0.guessTimes), guessTime: $0.spentTime)
+                    PlayerRecord(playerName: $0.name ?? "", guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date ?? Date())
                 }
             }
         }
@@ -61,7 +61,7 @@ extension CoreDataRecordStore: RecordStore {
                 winner.name = record.playerName
                 winner.guessTimes = Int16(record.guessCount)
                 winner.spentTime = record.guessTime
-                winner.date = Date()
+                winner.date = record.timestamp
                 
                 try context.save()
             }

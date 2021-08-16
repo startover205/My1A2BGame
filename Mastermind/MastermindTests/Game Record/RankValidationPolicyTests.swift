@@ -97,7 +97,6 @@ class RankValidationPolicyTests: XCTestCase {
     // MARK: - Helpers
 
     private func playRecordWith(guessCount: Int, guessTime: TimeInterval) -> PlayerRecord {
-        .init(playerName: "a name", guessCount: guessCount, guessTime: guessTime)
+        .init(playerName: "a name", guessCount: guessCount, guessTime: guessTime, timestamp: Date())
     }
-
 }
