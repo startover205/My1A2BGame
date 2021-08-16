@@ -86,6 +86,16 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertNoThrow(try sut.insert(record))
     }
     
+    func test_insert_deliverFailureOnInsertionError() {
+        let stub = NSManagedObjectContext.alwaysFailingSaveStub()
+        stub.startIntercepting()
+        let record = anyPlayerRecord().local
+        
+        let sut = makeSUT()
+        
+        XCTAssertThrowsError(try sut.insert(record))
+    }
+    
     func test_delete_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
         let records = anyPlayerRecords().local
