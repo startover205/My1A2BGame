@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 @objc(AdvancedWinner)
-class AdvancedWinner: NSManagedObject {
-    @NSManaged var date: Date?
-    @NSManaged var guessTimes: Int16
-    @NSManaged var name: String?
-    @NSManaged var spentTime: Double
+public class AdvancedWinner: NSManagedObject {
+    @NSManaged public var date: Date?
+    @NSManaged public var guessTimes: Int16
+    @NSManaged public var name: String?
+    @NSManaged public var spentTime: Double
 }

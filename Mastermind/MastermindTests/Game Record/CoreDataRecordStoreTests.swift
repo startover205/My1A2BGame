@@ -177,10 +177,10 @@ class CoreDataRecordStoreTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataRecordStore {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> RecordStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")
         let modelName = "Model"
-        let sut = try! CoreDataRecordStore(storeURL: storeURL, modelName: modelName)
+        let sut = try! CoreDataRecordStore<Winner>(storeURL: storeURL, modelName: modelName)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

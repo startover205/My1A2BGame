@@ -7,7 +7,18 @@
 
 import CoreData
 
-public final class CoreDataRecordStore {
+public protocol ManagedRecord: NSManagedObject {
+    var name: String? { get set }
+    var guessTimes: Int16 { get set }
+    var spentTime: Double { get set }
+    var date: Date? { get set }
+}
+
+extension Winner: ManagedRecord { }
+
+extension AdvancedWinner: ManagedRecord { }
+
+public final class CoreDataRecordStore<T: ManagedRecord> {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
 
@@ -41,7 +52,7 @@ extension CoreDataRecordStore: RecordStore {
     public func retrieve() throws -> [LocalPlayerRecord] {
         try performSync { context in
             Result {
-                let request = NSFetchRequest<Winner>(entityName: Winner.entity().name!)
+                let request = NSFetchRequest<T>(entityName: T.entity().name!)
                 request.returnsObjectsAsFaults = false
                 return try context.fetch(request).map {
                     LocalPlayerRecord(playerName: $0.name ?? "", guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date ?? Date())
@@ -53,11 +64,11 @@ extension CoreDataRecordStore: RecordStore {
     public func insert(_ record: LocalPlayerRecord) throws {
         try performSync { context in
             Result {
-                let winner = Winner(context: context)
-                winner.name = record.playerName
-                winner.guessTimes = Int16(record.guessCount)
-                winner.spentTime = record.guessTime
-                winner.date = record.timestamp
+                let playerRecord = NSManagedObject(entity: T.entity(), insertInto: context) as! T
+                playerRecord.name = record.playerName
+                playerRecord.guessTimes = Int16(record.guessCount)
+                playerRecord.spentTime = record.guessTime
+                playerRecord.date = record.timestamp
                 
                 try context.save()
             }.mapError {
@@ -70,7 +81,7 @@ extension CoreDataRecordStore: RecordStore {
     public func delete(_ records: [LocalPlayerRecord]) throws {
         try performSync { context in
             Result {
-                let request = NSFetchRequest<Winner>(entityName: Winner.entity().name!)
+                let request = NSFetchRequest<T>(entityName: T.entity().name!)
                 request.predicate = NSPredicate(format: "date IN %@", records.map(\.timestamp))
                 request.returnsObjectsAsFaults = false
                 _ = try context.fetch(request).map(context.delete).map(context.save)
