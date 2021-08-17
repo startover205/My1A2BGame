@@ -29,10 +29,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let retrievalError = anyNSError()
         let playerRecord = anyPlayerRecord()
         
-        store.completeRecordsRetrieval(with: retrievalError)
-        let result = sut.validate(score: playerRecord.model.score)
-        
-        XCTAssertFalse(result)
+        expect(sut, playerRecord.model.score, toCompleteWith: false) {
+            store.completeRecordsRetrieval(with: retrievalError)
+        }
     }
     
     func test_validateNewRecord_deliversTrueOnEmptyStore() {
@@ -40,10 +39,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let emptyRecords = [LocalPlayerRecord]()
         let playerRecord = anyPlayerRecord()
         
-        store.completeRecordsRetrieval(with: emptyRecords)
-        let result = sut.validate(score: playerRecord.model.score)
-        
-        XCTAssertTrue(result)
+        expect(sut, playerRecord.model.score, toCompleteWith: true) {
+            store.completeRecordsRetrieval(with: emptyRecords)
+        }
     }
     
     func test_validateNewRecord_deliversTrueOnRankPositionAvailable() {
@@ -51,10 +49,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let ninePlayerRecords = Array(repeating: anyPlayerRecord().local, count: 9)
         let playerRecord = anyPlayerRecord()
         
-        store.completeRecordsRetrieval(with: ninePlayerRecords)
-        let result = sut.validate(score: playerRecord.model.score)
-        
-        XCTAssertTrue(result)
+        expect(sut, playerRecord.model.score, toCompleteWith: true) {
+            store.completeRecordsRetrieval(with: ninePlayerRecords)
+        }
     }
     
     func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessCountWhenRankPositionUnavailable() {
@@ -62,10 +59,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let (oldRecords, _) = recordsWithOneWorstRecord()
         let newPlayerRecord = oneOfTheBestRecord()
         
-        store.completeRecordsRetrieval(with: oldRecords)
-        let result = sut.validate(score: newPlayerRecord.model.score)
-        
-        XCTAssertTrue(result)
+        expect(sut, newPlayerRecord.model.score, toCompleteWith: true) {
+            store.completeRecordsRetrieval(with: oldRecords)
+        }
     }
     
     func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessTimeWhenRankPositionUnavailable() {
@@ -73,10 +69,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let (oldRecords, _) = recordsWithOneWorstRecord()
         let newPlayerRecord = oneOfTheBestRecord()
         
-        store.completeRecordsRetrieval(with: oldRecords)
-        let result = sut.validate(score: newPlayerRecord.model.score)
-        
-        XCTAssertTrue(result)
+        expect(sut, newPlayerRecord.model.score, toCompleteWith: true) {
+            store.completeRecordsRetrieval(with: oldRecords)
+        }
     }
     
     func test_validateNewRecord_deliversFalseOnLosingToOldRecordsWhenRankPositionUnavailable() {
@@ -84,10 +79,9 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let oldRecords = Array(repeating: oneOfTheBestRecord().local, count: 10)
         let newPlayerRecord = oneWorstRecord()
         
-        store.completeRecordsRetrieval(with: oldRecords)
-        let result = sut.validate(score: newPlayerRecord.model.score)
-        
-        XCTAssertFalse(result)
+        expect(sut, newPlayerRecord.model.score, toCompleteWith: false) {
+            store.completeRecordsRetrieval(with: oldRecords)
+        }
     }
     
     // MARK: Helpers
@@ -100,6 +94,14 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, store)
+    }
+    
+    private func expect(_ sut: LocalRecordLoader, _ score: Score, toCompleteWith expectedResult: Bool, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        action()
+        
+        let receivedResult = sut.validate(score: score)
+        
+        XCTAssertEqual(receivedResult, expectedResult, file: file, line: line)
     }
 }
 
