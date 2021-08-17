@@ -54,6 +54,7 @@
 		C09FAB9626C6770500A15B9E /* InsertNewRecordUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9526C6770500A15B9E /* InsertNewRecordUseCaseTests.swift */; };
 		C09FAB9826C67CF200A15B9E /* RankValidationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9726C67CF200A15B9E /* RankValidationPolicy.swift */; };
 		C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */; };
+		C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3077F26CB462100C79D5B /* ManagedRecord.swift */; };
 		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 /* End PBXBuildFile section */
@@ -128,6 +129,7 @@
 		C09FAB9526C6770500A15B9E /* InsertNewRecordUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertNewRecordUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB9726C67CF200A15B9E /* RankValidationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankValidationPolicy.swift; sourceTree = "<group>"; };
 		C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptViewController.swift; sourceTree = "<group>"; };
+		C0A3077F26CB462100C79D5B /* ManagedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRecord.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				C033BC3126C7A64600E6AA77 /* Winner.swift */,
 				C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */,
 				C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */,
+				C0A3077F26CB462100C79D5B /* ManagedRecord.swift */,
 				C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */,
 				C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */,
 			);
@@ -578,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */,
+				C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */,
 				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,
 				C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
