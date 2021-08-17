@@ -119,9 +119,9 @@ class InsertNewRecordUseCaseTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordLoader, RecordStoreSpy) {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LocalRecordLoader, RecordStoreSpy) {
         let store = RecordStoreSpy()
-        let sut = RecordLoader(store: store)
+        let sut = LocalRecordLoader(store: store)
         
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -129,7 +129,7 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         return (sut, store)
     }
     
-    private func expect(_ sut: RecordLoader, newRecord: PlayerRecord, toCompleteWithError expectedError: NSError?, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: LocalRecordLoader, newRecord: PlayerRecord, toCompleteWithError expectedError: NSError?, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         action()
         
         do {

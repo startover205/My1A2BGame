@@ -41,7 +41,7 @@
 		C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B1F26C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */; };
 		C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2326C6221F0056DDA8 /* RecordStore.swift */; };
-		C04B5B2626C622480056DDA8 /* RecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2526C622480056DDA8 /* RecordLoader.swift */; };
+		C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2526C622480056DDA8 /* LocalRecordLoader.swift */; };
 		C04DA16026CA4DBC00E6C6B8 /* LocalPlayerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */; };
 		C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */; };
 		C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */; };
@@ -55,6 +55,7 @@
 		C09FAB9826C67CF200A15B9E /* RankValidationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9726C67CF200A15B9E /* RankValidationPolicy.swift */; };
 		C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */; };
 		C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3077F26CB462100C79D5B /* ManagedRecord.swift */; };
+		C0A3078226CB5BD200C79D5B /* RecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3078126CB5BD200C79D5B /* RecordLoader.swift */; };
 		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 /* End PBXBuildFile section */
@@ -116,7 +117,7 @@
 		C04B5B1F26C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRecord.swift; sourceTree = "<group>"; };
 		C04B5B2326C6221F0056DDA8 /* RecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
-		C04B5B2526C622480056DDA8 /* RecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoader.swift; sourceTree = "<group>"; };
+		C04B5B2526C622480056DDA8 /* LocalRecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecordLoader.swift; sourceTree = "<group>"; };
 		C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayerRecord.swift; sourceTree = "<group>"; };
 		C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Stub.swift"; sourceTree = "<group>"; };
 		C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStoreTests.swift; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 		C09FAB9726C67CF200A15B9E /* RankValidationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankValidationPolicy.swift; sourceTree = "<group>"; };
 		C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptViewController.swift; sourceTree = "<group>"; };
 		C0A3077F26CB462100C79D5B /* ManagedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRecord.swift; sourceTree = "<group>"; };
+		C0A3078126CB5BD200C79D5B /* RecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoader.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -317,7 +319,8 @@
 				C033BC2726C7A5A700E6AA77 /* Infrastructure */,
 				C04B5B2126C621C80056DDA8 /* PlayerRecord.swift */,
 				C04B5B2326C6221F0056DDA8 /* RecordStore.swift */,
-				C04B5B2526C622480056DDA8 /* RecordLoader.swift */,
+				C0A3078126CB5BD200C79D5B /* RecordLoader.swift */,
+				C04B5B2526C622480056DDA8 /* LocalRecordLoader.swift */,
 				C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */,
 				C09FAB9726C67CF200A15B9E /* RankValidationPolicy.swift */,
 			);
@@ -588,9 +591,10 @@
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
 				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
 				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
-				C04B5B2626C622480056DDA8 /* RecordLoader.swift in Sources */,
+				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
 				C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */,
 				C04DA16026CA4DBC00E6C6B8 /* LocalPlayerRecord.swift in Sources */,
+				C0A3078226CB5BD200C79D5B /* RecordLoader.swift in Sources */,
 				C09FAB9826C67CF200A15B9E /* RankValidationPolicy.swift in Sources */,
 				C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */,
 			);
