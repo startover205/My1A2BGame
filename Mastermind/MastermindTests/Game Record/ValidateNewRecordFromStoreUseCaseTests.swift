@@ -15,66 +15,70 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_validateNewRecord_requestsRecordsRetrieval() {
+    func test_validate_requestsRecordsRetrieval() {
         let (sut, store) = makeSUT()
-        let playerRecord = anyPlayerRecord()
-        
-        let _ = sut.validate(score: playerRecord.model.score)
+        let score = anyScore()
+
+        let _ = sut.validate(score: score)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_validateNewRecord_deliversFalseOnRetrievalError() {
+    func test_validate_deliversFalseOnRetrievalError() {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
-        let playerRecord = anyPlayerRecord()
-        
-        expect(sut, playerRecord.model.score, toCompleteWith: false) {
+        let score = anyScore()
+
+        expect(sut, score, toCompleteWith: false) {
             store.completeRecordsRetrieval(with: retrievalError)
         }
     }
     
-    func test_validateNewRecord_deliversTrueOnEmptyStore() {
+    func test_validate_deliversTrueOnEmptyStore() {
         let (sut, store) = makeSUT()
         let emptyRecords = [LocalPlayerRecord]()
-        let playerRecord = anyPlayerRecord()
-        
-        expect(sut, playerRecord.model.score, toCompleteWith: true) {
+        let score = anyScore()
+
+        expect(sut, score, toCompleteWith: true) {
             store.completeRecordsRetrieval(with: emptyRecords)
         }
     }
     
-    func test_validateNewRecord_deliversTrueOnRankPositionAvailable() {
+    func test_validate_deliversTrueOnRankPositionAvailable() {
         let (sut, store) = makeSUT()
         let ninePlayerRecords = Array(repeating: anyPlayerRecord().local, count: 9)
-        let playerRecord = anyPlayerRecord()
+        let score = anyScore()
         
-        expect(sut, playerRecord.model.score, toCompleteWith: true) {
+        expect(sut, score, toCompleteWith: true) {
             store.completeRecordsRetrieval(with: ninePlayerRecords)
         }
     }
     
-    func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessCountWhenRankPositionUnavailable() {
+    func test_validate_deliversTrueOnBeatingOldRecordWithGuessCountWhenRankPositionUnavailable() {
         let (sut, store) = makeSUT()
-        let (oldRecords, _) = recordsWithOneWorstRecord()
-        let newPlayerRecord = oneOfTheBestRecord()
+        let guessCount = 2
+        let guessTime = 10.0
+        let oldRecords = Array(repeating: LocalPlayerRecord(playerName: "a name", guessCount: guessCount, guessTime: guessTime, timestamp: Date()), count: 10)
+        let score = (guessCount-1, guessTime)
         
-        expect(sut, newPlayerRecord.model.score, toCompleteWith: true) {
+        expect(sut, score, toCompleteWith: true) {
             store.completeRecordsRetrieval(with: oldRecords)
         }
     }
     
-    func test_validateNewRecord_deliversTrueOnBeatingOldRecordWithGuessTimeWhenRankPositionUnavailable() {
+    func test_validate_deliversTrueOnBeatingOldRecordWithGuessTimeWhenRankPositionUnavailable() {
         let (sut, store) = makeSUT()
-        let (oldRecords, _) = recordsWithOneWorstRecord()
-        let newPlayerRecord = oneOfTheBestRecord()
-        
-        expect(sut, newPlayerRecord.model.score, toCompleteWith: true) {
+        let guessCount = 2
+        let guessTime = 10.0
+        let oldRecords = Array(repeating: LocalPlayerRecord(playerName: "a name", guessCount: guessCount, guessTime: guessTime, timestamp: Date()), count: 10)
+        let score = (guessCount, guessTime-1)
+
+        expect(sut, score, toCompleteWith: true) {
             store.completeRecordsRetrieval(with: oldRecords)
         }
     }
     
-    func test_validateNewRecord_deliversFalseOnLosingToOldRecordsWhenRankPositionUnavailable() {
+    func test_validate_deliversFalseOnLosingToOldRecordsWhenRankPositionUnavailable() {
         let (sut, store) = makeSUT()
         let oldRecords = Array(repeating: oneOfTheBestRecord().local, count: 10)
         let newPlayerRecord = oneWorstRecord()
@@ -103,6 +107,8 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         
         XCTAssertEqual(receivedResult, expectedResult, file: file, line: line)
     }
+    
+    private func anyScore() -> Score { (2, 5.0) }
 }
 
 private extension PlayerRecord {
