@@ -46,13 +46,6 @@ public class WinViewController: UIViewController {
         showFireworkAnimation?(self.view)
     }()
     
-    public convenience init(guessCount: Int, spentTime: TimeInterval, isAdvancedVersion: Bool) {
-        self.init()
-        self.guessCount = guessCount
-        self.spentTime = spentTime
-        self.isAdvancedVersion = isAdvancedVersion
-    }
-    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
