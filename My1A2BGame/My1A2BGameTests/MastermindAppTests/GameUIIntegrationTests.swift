@@ -204,7 +204,7 @@ class GameUIIntegrationTests: XCTestCase {
     private class RecordLoaderFake: RecordLoader {
         func load() throws -> [PlayerRecord] { [] }
         
-        func validateNewRecord(with newRecord: PlayerRecord) -> Bool { false }
+        func validate(score: Score) -> Bool { false }
         
         func insertNewRecord(_ record: PlayerRecord) throws { }
     }

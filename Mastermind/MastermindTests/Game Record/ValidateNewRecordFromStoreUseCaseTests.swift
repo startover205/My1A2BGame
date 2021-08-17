@@ -19,7 +19,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         let playerRecord = anyPlayerRecord()
         
-        let _ = sut.validateNewRecord(with: playerRecord.model)
+        let _ = sut.validate(score: playerRecord.model.score)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -30,7 +30,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let playerRecord = anyPlayerRecord()
         
         store.completeRecordsRetrieval(with: retrievalError)
-        let result = sut.validateNewRecord(with: playerRecord.model)
+        let result = sut.validate(score: playerRecord.model.score)
         
         XCTAssertFalse(result)
     }
@@ -41,7 +41,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let playerRecord = anyPlayerRecord()
         
         store.completeRecordsRetrieval(with: emptyRecords)
-        let result = sut.validateNewRecord(with: playerRecord.model)
+        let result = sut.validate(score: playerRecord.model.score)
         
         XCTAssertTrue(result)
     }
@@ -52,7 +52,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let playerRecord = anyPlayerRecord()
         
         store.completeRecordsRetrieval(with: ninePlayerRecords)
-        let result = sut.validateNewRecord(with: playerRecord.model)
+        let result = sut.validate(score: playerRecord.model.score)
         
         XCTAssertTrue(result)
     }
@@ -63,7 +63,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let newPlayerRecord = oneOfTheBestRecord()
         
         store.completeRecordsRetrieval(with: oldRecords)
-        let result = sut.validateNewRecord(with: newPlayerRecord.model)
+        let result = sut.validate(score: newPlayerRecord.model.score)
         
         XCTAssertTrue(result)
     }
@@ -74,7 +74,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let newPlayerRecord = oneOfTheBestRecord()
         
         store.completeRecordsRetrieval(with: oldRecords)
-        let result = sut.validateNewRecord(with: newPlayerRecord.model)
+        let result = sut.validate(score: newPlayerRecord.model.score)
         
         XCTAssertTrue(result)
     }
@@ -85,7 +85,7 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         let newPlayerRecord = oneWorstRecord()
         
         store.completeRecordsRetrieval(with: oldRecords)
-        let result = sut.validateNewRecord(with: newPlayerRecord.model)
+        let result = sut.validate(score: newPlayerRecord.model.score)
         
         XCTAssertFalse(result)
     }
@@ -101,4 +101,8 @@ class ValidateNewRecordFromStoreUseCaseTests: XCTestCase {
         
         return (sut, store)
     }
+}
+
+private extension PlayerRecord {
+    var score: Score { (guessCount, guessTime) }
 }

@@ -53,7 +53,7 @@ public class WinViewController: UIViewController {
         
         showResult()
         
-        if recordLoader?.validateNewRecord(with: PlayerRecord(playerName: "N/A", guessCount: guessCount, guessTime: spentTime, timestamp: Date())) == true {
+        if recordLoader?.validate(score: (guessCount, spentTime)) == true {
             newRecordStackView.alpha = 1
         } else {
             newRecordStackView.alpha = 0

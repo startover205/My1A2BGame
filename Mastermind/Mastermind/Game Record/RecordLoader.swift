@@ -7,10 +7,12 @@
 
 import Foundation
 
+public typealias Score = (guessCount: Int, guessTime: TimeInterval)
+
 public protocol RecordLoader {
     func load() throws -> [PlayerRecord]
     
-    func validateNewRecord(with newRecord: PlayerRecord) -> Bool
+    func validate(score: Score) -> Bool
     
     func insertNewRecord(_ record: PlayerRecord) throws
 }

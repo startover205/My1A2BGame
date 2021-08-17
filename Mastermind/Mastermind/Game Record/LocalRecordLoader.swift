@@ -20,11 +20,11 @@ public final class LocalRecordLoader: RecordLoader {
 }
 
 extension LocalRecordLoader {
-    public func validateNewRecord(with newRecord: PlayerRecord) -> Bool {
+    public func validate(score: Score) -> Bool {
         do {
             let oldRecords = try store.retrieve()
             
-            return RankValidationPolicy.validate(newRecord.toLocal(), against: oldRecords)
+            return RankValidationPolicy.validate(score, against: oldRecords)
             
         } catch {
             return false
@@ -35,18 +35,19 @@ extension LocalRecordLoader {
 extension LocalRecordLoader {
     public func insertNewRecord(_ record: PlayerRecord) throws {
         let oldRecords = try store.retrieve()
-        let record = record.toLocal()
-        if !RankValidationPolicy.validate(record, against: oldRecords) { return }
+        if !RankValidationPolicy.validate(record.score, against: oldRecords) { return }
         
         if let recordsToBeDeleted = RankValidationPolicy.findInvalidRecords(in: oldRecords) {
             try store.delete(recordsToBeDeleted)
         }
         
-        try store.insert(record)
+        try store.insert(record.toLocal())
     }
 }
 
 private extension PlayerRecord {
+    var score: Score { (guessCount, guessTime) }
+    
     func toLocal() -> LocalPlayerRecord {
         LocalPlayerRecord(playerName: playerName, guessCount: guessCount, guessTime: guessTime, timestamp: timestamp)
     }

@@ -12,20 +12,21 @@ final class RankValidationPolicy {
     
     private static var maxRankPositions: Int { 10 }
     
-    static func validate(_ newRecord: LocalPlayerRecord, against oldRecords: [LocalPlayerRecord]) -> Bool {
+    static func validate(_ score: Score, against records: [LocalPlayerRecord]) -> Bool {
         
-        if oldRecords.count < maxRankPositions { return true }
+        if records.count < maxRankPositions { return true }
         
-        for oldRecord in oldRecords {
-            if  newRecord.guessCount < oldRecord.guessCount {
+        for record in records {
+            if  score.guessCount < record.guessCount {
                 return true
-            } else if newRecord.guessCount == oldRecord.guessCount, newRecord.guessTime < oldRecord.guessTime {
+            } else if score.guessCount == record.guessCount, score.guessTime < record.guessTime {
                 return true
             }
         }
         
         return false
     }
+    
     
     static func findInvalidRecords(in records: [LocalPlayerRecord]) -> [LocalPlayerRecord]? {
         if records.count < maxRankPositions { return nil }

@@ -44,13 +44,7 @@ class WinViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(loader.receivedMessages.count, 1)
-        if case let .validate(record) = loader.receivedMessages.first {
-            XCTAssertEqual(record.guessCount, guessCount)
-            XCTAssertEqual(record.guessTime, guessTime)
-        } else {
-            XCTFail("Expect validate record after view did load")
-        }
+        XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)])
     }
     
     func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
@@ -194,26 +188,15 @@ class WinViewControllerTests: XCTestCase {
         let (sut, loader, _) = makeSUT(guessCount: guessCount, spentTime: guessTime)
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(loader.receivedMessages.count, 1)
-        guard case .validate = loader.receivedMessages.first else {
-            XCTFail("Expect no save message added after view load, got \(loader.receivedMessages) instead")
-            return
-        }
+        XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
         
         sut.confirmBtn.sendActions(for: .touchUpInside)
-        XCTAssertEqual(loader.receivedMessages.count, 1)
-        guard case .validate = loader.receivedMessages.first else {
-            XCTFail("Expect no save message added after view load, got \(loader.receivedMessages) instead")
-            return
-        }
+        XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
 
         sut.simulateUserEnterPlayerName(name: "a name")
         sut.confirmBtn.sendActions(for: .touchUpInside)
         XCTAssertEqual(loader.receivedMessages.count, 2)
-        guard case .validate = loader.receivedMessages.first else {
-            XCTFail()
-            return
-        }
+        XCTAssertEqual(loader.receivedMessages.first, .validate(guessCount, guessTime))
         if case let .save(record) = loader.receivedMessages.last {
             XCTAssertEqual(record.playerName, playerName)
             XCTAssertEqual(record.guessCount, guessCount)
@@ -258,7 +241,7 @@ class WinViewControllerTests: XCTestCase {
     private final class RecordLoaderSpy: RecordLoader {
         enum Message: Equatable {
             case load
-            case validate(_ record: PlayerRecord)
+            case validate(_ guessCount: Int, _ guessTime: TimeInterval)
             case save(_ record: PlayerRecord)
         }
         
@@ -272,11 +255,11 @@ class WinViewControllerTests: XCTestCase {
             return try loadResult?.get() ?? []
         }
         
-        func validateNewRecord(with newRecord: PlayerRecord) -> Bool {
-            receivedMessages.append(.validate(newRecord))
+        func validate(score: Score) -> Bool {
+            receivedMessages.append(.validate(score.guessCount, score.guessTime))
             return validationResult ?? false
         }
-        
+
         func insertNewRecord(_ record: PlayerRecord) throws {
             receivedMessages.append(.save(record))
         }

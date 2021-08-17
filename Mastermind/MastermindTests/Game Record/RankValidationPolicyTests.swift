@@ -12,49 +12,49 @@ class RankValidationPolicyTests: XCTestCase {
     func test_validate_deliversTrueOnRankPositionsAvailable() {
         let guessCount = 10
         let guessTime = 10.0
-        let nineExistingGoodRecords = Array(repeating: playRecordWith(guessCount: guessCount, guessTime: guessTime), count: 9)
-        let badRecord = playRecordWith(guessCount: guessCount+100, guessTime: guessTime+100)
+        let nineExistingGoodRecords = Array(repeating: playerRecordWith(guessCount: guessCount, guessTime: guessTime), count: 9)
+        let badScore = (guessCount + 100, guessTime + 100)
         
-        XCTAssertTrue(RankValidationPolicy.validate(badRecord, against: nineExistingGoodRecords), "Expect true even though the new record is bad since there are rank positions available")
+        XCTAssertTrue(RankValidationPolicy.validate(badScore, against: nineExistingGoodRecords), "Expect true even though the new record is bad since there are rank positions available")
     }
     
     func test_validate_deliversFalseWhenRankPositionsUnavailableAndNewRecordNotBeatingOldRecords() {
         let guessCount = 10
         let guessTime = 10.0
-        let existingGoodRecords = Array(repeating: playRecordWith(guessCount: guessCount, guessTime: guessTime), count: 10)
+        let existingGoodRecords = Array(repeating: playerRecordWith(guessCount: guessCount, guessTime: guessTime), count: 10)
         
-        let recordWithEqualGuessCountEqualGuessTime = playRecordWith(guessCount: guessCount, guessTime: guessTime)
-        XCTAssertFalse(RankValidationPolicy.validate(recordWithEqualGuessCountEqualGuessTime, against: existingGoodRecords), "Expect false when the new record has equal guess count and guess time as the existing records")
+        let scoreWithEqualGuessCountEqualGuessTime = (guessCount, guessTime)
+        XCTAssertFalse(RankValidationPolicy.validate(scoreWithEqualGuessCountEqualGuessTime, against: existingGoodRecords), "Expect false when the new record has equal guess count and guess time as the existing records")
         
-        let recordWithEqualGuessCountButGreaterGuessTime = playRecordWith(guessCount: guessCount, guessTime: guessTime+1)
-        XCTAssertFalse(RankValidationPolicy.validate(recordWithEqualGuessCountButGreaterGuessTime, against: existingGoodRecords), "Expect false when the new record has equal guess count but greater guess time than the existing records")
+        let scoreWithEqualGuessCountButGreaterGuessTime = (guessCount: guessCount, guessTime: guessTime+1)
+        XCTAssertFalse(RankValidationPolicy.validate(scoreWithEqualGuessCountButGreaterGuessTime, against: existingGoodRecords), "Expect false when the new record has equal guess count but greater guess time than the existing records")
         
-        let recordWithGreaterGuessCountButLessGuessTime = playRecordWith(guessCount: guessCount+1, guessTime: guessTime-1)
-        XCTAssertFalse(RankValidationPolicy.validate(recordWithGreaterGuessCountButLessGuessTime, against: existingGoodRecords), "Expect false when the new record has greater guess count even though with less guess time than the existing records")
+        let scoreWithGreaterGuessCountButLessGuessTime = (guessCount: guessCount+1, guessTime: guessTime-1)
+        XCTAssertFalse(RankValidationPolicy.validate(scoreWithGreaterGuessCountButLessGuessTime, against: existingGoodRecords), "Expect false when the new record has greater guess count even though with less guess time than the existing records")
         
-        let recordWithGreaterGuessCountAndEqualGuessTime = playRecordWith(guessCount: guessCount+1, guessTime: guessTime)
-        XCTAssertFalse(RankValidationPolicy.validate(recordWithGreaterGuessCountAndEqualGuessTime, against: existingGoodRecords), "Expect false when the new record has greater guess count and equal guess time as the existing records")
+        let scoreWithGreaterGuessCountAndEqualGuessTime = (guessCount: guessCount+1, guessTime: guessTime)
+        XCTAssertFalse(RankValidationPolicy.validate(scoreWithGreaterGuessCountAndEqualGuessTime, against: existingGoodRecords), "Expect false when the new record has greater guess count and equal guess time as the existing records")
         
-        let recordWithGreaterGuessCountAndGreaterGuessTime = playRecordWith(guessCount: guessCount+1, guessTime: guessTime+1)
-        XCTAssertFalse(RankValidationPolicy.validate(recordWithGreaterGuessCountAndGreaterGuessTime, against: existingGoodRecords), "Expect false when the new record has greater guess count and greater guess time than the existing records")
+        let scoreWithGreaterGuessCountAndGreaterGuessTime = (guessCount: guessCount+1, guessTime: guessTime+1)
+        XCTAssertFalse(RankValidationPolicy.validate(scoreWithGreaterGuessCountAndGreaterGuessTime, against: existingGoodRecords), "Expect false when the new record has greater guess count and greater guess time than the existing records")
     }
     
     func test_validate_deliversTrueWhenRankPositionsUnavailableAndNewRecordBeatingOldRecords() {
         let guessCount = 10
         let guessTime = 10.0
-        let existingGoodRecords = Array(repeating: playRecordWith(guessCount: guessCount, guessTime: guessTime), count: 10)
+        let existingGoodRecords = Array(repeating: playerRecordWith(guessCount: guessCount, guessTime: guessTime), count: 10)
         
-        let recordWithEqualGuessCountButLessGuessTime = playRecordWith(guessCount: guessCount, guessTime: guessTime-1)
-        XCTAssertTrue(RankValidationPolicy.validate(recordWithEqualGuessCountButLessGuessTime, against: existingGoodRecords), "Expect true when the new record has equal guess count but less guess time than the existing records")
+        let scoreWithEqualGuessCountButLessGuessTime = (guessCount: guessCount, guessTime: guessTime-1)
+        XCTAssertTrue(RankValidationPolicy.validate(scoreWithEqualGuessCountButLessGuessTime, against: existingGoodRecords), "Expect true when the new record has equal guess count but less guess time than the existing records")
         
-        let recordWithLessGuessCountButLongerGuessTime = playRecordWith(guessCount: guessCount-1, guessTime: guessTime+1)
-        XCTAssertTrue(RankValidationPolicy.validate(recordWithLessGuessCountButLongerGuessTime, against: existingGoodRecords), "Expect true when the new record has less guess count even though with greater guess time than the existing records")
+        let scoreWithLessGuessCountButLongerGuessTime = (guessCount: guessCount-1, guessTime: guessTime+1)
+        XCTAssertTrue(RankValidationPolicy.validate(scoreWithLessGuessCountButLongerGuessTime, against: existingGoodRecords), "Expect true when the new record has less guess count even though with greater guess time than the existing records")
         
-        let recordWithLessGuessCountAndEqualGuessTime = playRecordWith(guessCount: guessCount-1, guessTime: guessTime)
-        XCTAssertTrue(RankValidationPolicy.validate(recordWithLessGuessCountAndEqualGuessTime, against: existingGoodRecords), "Expect true when the new record has less guess count and equal guess time as the existing records")
+        let scoreWithLessGuessCountAndEqualGuessTime = (guessCount: guessCount-1, guessTime: guessTime)
+        XCTAssertTrue(RankValidationPolicy.validate(scoreWithLessGuessCountAndEqualGuessTime, against: existingGoodRecords), "Expect true when the new record has less guess count and equal guess time as the existing records")
         
-        let recordWithLessGuessCountAndLessGuessTime = playRecordWith(guessCount: guessCount-1, guessTime: guessTime-1)
-        XCTAssertTrue(RankValidationPolicy.validate(recordWithLessGuessCountAndLessGuessTime, against: existingGoodRecords), "Expect true when the new record has less guess count even though with greater guess time than the existing records")
+        let scoreWithLessGuessCountAndLessGuessTime = (guessCount: guessCount-1, guessTime: guessTime-1)
+        XCTAssertTrue(RankValidationPolicy.validate(scoreWithLessGuessCountAndLessGuessTime, against: existingGoodRecords), "Expect true when the new record has less guess count even though with greater guess time than the existing records")
     }
     
     func test_findInvalidRecords_deliversNilWhenExistingRecordCountLessThanMaxRankPositions() {
@@ -66,8 +66,8 @@ class RankValidationPolicyTests: XCTestCase {
     func test_findInvalidRecords_deliversTheWorstRecordAsTheRecordToBeRemovedWhenExistingRecordCountEqualThanMaxRankPositions() {
         let guessCount = 10
         let guessTime = 10.0
-        let nineGoodRecord = Array(repeating: playRecordWith(guessCount: guessCount, guessTime: guessTime), count: 9)
-        let oneBadRecord = playRecordWith(guessCount: guessCount+1, guessTime: guessTime)
+        let nineGoodRecord = Array(repeating: playerRecordWith(guessCount: guessCount, guessTime: guessTime), count: 9)
+        let oneBadRecord = playerRecordWith(guessCount: guessCount+1, guessTime: guessTime)
         var allRecords = [LocalPlayerRecord]()
         allRecords.append(oneBadRecord)
         allRecords.append(contentsOf: nineGoodRecord)
@@ -78,10 +78,10 @@ class RankValidationPolicyTests: XCTestCase {
     func test_findInvalidRecords_deliversTheWorstRecordsAsTheRecordsToBeRemovedWhenExistingRecordCountGreaterThanMaxRankPositions() {
         let guessCount = 10
         let guessTime = 10.0
-        let oneGoodRecord = playRecordWith(guessCount: guessCount, guessTime: guessTime)
+        let oneGoodRecord = playerRecordWith(guessCount: guessCount, guessTime: guessTime)
         let nineGoodRecord = Array(repeating: oneGoodRecord, count: 9)
-        let oneBadRecord = playRecordWith(guessCount: guessCount+1, guessTime: guessTime)
-        let anotherBadRecord = playRecordWith(guessCount: guessCount+2, guessTime: guessTime)
+        let oneBadRecord = playerRecordWith(guessCount: guessCount+1, guessTime: guessTime)
+        let anotherBadRecord = playerRecordWith(guessCount: guessCount+2, guessTime: guessTime)
         var allRecords = [LocalPlayerRecord]()
         allRecords.append(contentsOf: nineGoodRecord)
         allRecords.append(oneGoodRecord)
@@ -96,7 +96,7 @@ class RankValidationPolicyTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func playRecordWith(guessCount: Int, guessTime: TimeInterval) -> LocalPlayerRecord {
+    private func playerRecordWith(guessCount: Int, guessTime: TimeInterval) -> LocalPlayerRecord {
         .init(playerName: "a name", guessCount: guessCount, guessTime: guessTime, timestamp: Date())
     }
 }
