@@ -10,7 +10,7 @@ import XCTest
 import My1A2BGame
 import Mastermind
 
-class WinViewControllerBasicGameTests: XCTestCase {
+class WinViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_rendersGuessCount_guess1() {
         let (sut, _, _) = makeSUT(guessCount: 1)
@@ -28,12 +28,13 @@ class WinViewControllerBasicGameTests: XCTestCase {
         XCTAssertEqual(sut.guessCountMessage, "You guessed 2 times")
     }
     
-    func test_viewDidLoad_rendersWinMessage() {
-        let (sut, _, _) = makeSUT()
+    func test_viewDidLoad_rendersWinMessageAccordingToDigitCount() {
+        let digitCount = 3
+        let (sut, _, _) = makeSUT(digitCount: digitCount)
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.winMessage, "4A0B!! You won!!")
+        XCTAssertEqual(sut.winMessage, winMessageFor(digitCount: digitCount))
     }
     
     func test_viewDidLoad_reqeustLoaderValidatePlayerRecord() {
@@ -224,14 +225,14 @@ class WinViewControllerBasicGameTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
         let loader = RecordLoaderSpy()
         let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
+        sut.digitCount = digitCount
         sut.guessCount = guessCount
         sut.spentTime = spentTime
-        sut.digitCount = 4
         sut.recordLoader = loader
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview
@@ -251,40 +252,42 @@ class WinViewControllerBasicGameTests: XCTestCase {
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
     }
-}
-
-private final class RecordLoaderSpy: RecordLoader {
-    enum Message: Equatable {
-        case load
-        case validate(_ record: PlayerRecord)
-        case save(_ record: PlayerRecord)
-    }
     
-    private var loadResult: Result<[PlayerRecord], Error>?
-    private var validationResult: Bool?
+    private func winMessageFor(digitCount: Int) -> String { "\(digitCount)A0B!! You won!!" }
     
-    private(set) var receivedMessages = [Message]()
-    
-    func load() throws -> [PlayerRecord] {
-        receivedMessages.append(.load)
-        return try loadResult?.get() ?? []
-    }
-    
-    func validateNewRecord(with newRecord: PlayerRecord) -> Bool {
-        receivedMessages.append(.validate(newRecord))
-        return validationResult ?? false
-    }
-    
-    func insertNewRecord(_ record: PlayerRecord) throws {
-        receivedMessages.append(.save(record))
-    }
-    
-    func completeValidation(with result: Bool) {
-        validationResult = result
-    }
-    
-    func completeRetrieval(with records: [PlayerRecord]) {
-        loadResult = .success(records)
+    private final class RecordLoaderSpy: RecordLoader {
+        enum Message: Equatable {
+            case load
+            case validate(_ record: PlayerRecord)
+            case save(_ record: PlayerRecord)
+        }
+        
+        private var loadResult: Result<[PlayerRecord], Error>?
+        private var validationResult: Bool?
+        
+        private(set) var receivedMessages = [Message]()
+        
+        func load() throws -> [PlayerRecord] {
+            receivedMessages.append(.load)
+            return try loadResult?.get() ?? []
+        }
+        
+        func validateNewRecord(with newRecord: PlayerRecord) -> Bool {
+            receivedMessages.append(.validate(newRecord))
+            return validationResult ?? false
+        }
+        
+        func insertNewRecord(_ record: PlayerRecord) throws {
+            receivedMessages.append(.save(record))
+        }
+        
+        func completeValidation(with result: Bool) {
+            validationResult = result
+        }
+        
+        func completeRetrieval(with records: [PlayerRecord]) {
+            loadResult = .success(records)
+        }
     }
 }
 

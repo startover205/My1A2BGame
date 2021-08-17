@@ -35,7 +35,7 @@
 		C085BE6F2255127300320563 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE6E2255127300320563 /* Notification+Name.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088A65026BE7855005FC389 /* UserDefaultsMock.swift */; };
-		C0962A5326BBC2BF002436AB /* WinViewControllerBasicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0962A5226BBC2BF002436AB /* WinViewControllerBasicGameTests.swift */; };
+		C0962A5326BBC2BF002436AB /* WinViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0962A5226BBC2BF002436AB /* WinViewControllerTests.swift */; };
 		C09EE8D826C10F6400351B07 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C09EE8D626C10F6400351B07 /* ModelAdvanced.xcdatamodeld */; };
 		C0A1F49D26B62A1200536D73 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47926B62A1100536D73 /* WinViewController.swift */; };
 		C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */; };
@@ -59,7 +59,6 @@
 		C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F49926B62A1200536D73 /* RankViewController.swift */; };
 		C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F49A26B62A1200536D73 /* RankTableViewCell.swift */; };
 		C0A1F4B326B62A1200536D73 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49C26B62A1200536D73 /* Rank.storyboard */; };
-		C0A3944C26C0BC9D00813165 /* WinViewControllerAdvancedGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3944B26C0BC9D00813165 /* WinViewControllerAdvancedGameTests.swift */; };
 		C0A3944E26C0C67400813165 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3944D26C0C67400813165 /* ShareViewController.swift */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
@@ -142,7 +141,7 @@
 		C085BE6E2255127300320563 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C088A65026BE7855005FC389 /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
-		C0962A5226BBC2BF002436AB /* WinViewControllerBasicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewControllerBasicGameTests.swift; sourceTree = "<group>"; };
+		C0962A5226BBC2BF002436AB /* WinViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewControllerTests.swift; sourceTree = "<group>"; };
 		C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C0A1F47926B62A1100536D73 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
@@ -167,7 +166,6 @@
 		C0A1F49926B62A1200536D73 /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
 		C0A1F49A26B62A1200536D73 /* RankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
 		C0A1F49C26B62A1200536D73 /* Rank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
-		C0A3944B26C0BC9D00813165 /* WinViewControllerAdvancedGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewControllerAdvancedGameTests.swift; sourceTree = "<group>"; };
 		C0A3944D26C0C67400813165 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -236,8 +234,7 @@
 			children = (
 				C0E601A326ADB00A006C8D6D /* Helpers */,
 				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
-				C0962A5226BBC2BF002436AB /* WinViewControllerBasicGameTests.swift */,
-				C0A3944B26C0BC9D00813165 /* WinViewControllerAdvancedGameTests.swift */,
+				C0962A5226BBC2BF002436AB /* WinViewControllerTests.swift */,
 			);
 			path = MastermindAppTests;
 			sourceTree = "<group>";
@@ -761,11 +758,10 @@
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
-				C0962A5326BBC2BF002436AB /* WinViewControllerBasicGameTests.swift in Sources */,
+				C0962A5326BBC2BF002436AB /* WinViewControllerTests.swift in Sources */,
 				C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
 				C034AA6626B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
-				C0A3944C26C0BC9D00813165 /* WinViewControllerAdvancedGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
