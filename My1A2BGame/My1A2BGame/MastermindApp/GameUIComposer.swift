@@ -13,12 +13,12 @@ import StoreKit
 import GameKit
 
 public final class GameUIComposer {
-    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults) -> GuessNumberViewController {
+    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, recordLoader: RecordLoader) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         let inputVC = makeInputPadUI(digitCount: gameVersion.digitCount)
         let gameViewController = makeGameViewController(gameVersion: gameVersion)
         
-        gameViewController.winViewController = makeWinViewController(isAdvancedVersion: gameVersion.digitCount == 5, userDefaults: userDefaults)
+        gameViewController.winViewController = makeWinViewController(digitCount: gameVersion.digitCount, userDefaults: userDefaults, recordLoader: recordLoader)
         
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [weak gameViewController] isOn in
@@ -47,25 +47,10 @@ public final class GameUIComposer {
         return controller
     }
     
-    private static var basicGameStoreURL: URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("Model" + ".sqlite")
-    }
-    private static var advancedGameStoreURL: URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("ModelAdvanced" + ".sqlite")
-    }
-    
-    public static func makeWinViewController(isAdvancedVersion: Bool, userDefaults: UserDefaults) -> WinViewController {
+    public static func makeWinViewController(digitCount: Int, userDefaults: UserDefaults, recordLoader: RecordLoader) -> WinViewController {
         let winController = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self)).instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
-        winController.isAdvancedVersion = isAdvancedVersion
-        
-        let store: RecordStore
-        if isAdvancedVersion {
-            store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
-        } else {
-            store = try! CoreDataRecordStore<Winner>(storeURL: basicGameStoreURL, modelName: "Model")
-        }
-        
-        winController.recordLoader = LocalRecordLoader(store: store)
+        winController.digitCount = digitCount
+        winController.recordLoader = recordLoader
         winController.userDefaults = userDefaults
         winController.askForReview = { completion in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

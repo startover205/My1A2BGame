@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import My1A2BGame
+import Mastermind
 import MastermindiOS
 
 class GameUIIntegrationTests: XCTestCase {
@@ -107,7 +108,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_deallocation_doesNotRetain() {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaultsMock())
+        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaultsMock(), recordLoader: RecordLoaderFake())
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(sut.voicePromptViewController!)
@@ -145,7 +146,7 @@ class GameUIIntegrationTests: XCTestCase {
     // MARK: Helpers
     
     private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults)
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, recordLoader: RecordLoaderFake())
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -198,6 +199,14 @@ class GameUIIntegrationTests: XCTestCase {
             guard let vc = capturedPush?.vc else { return }
             super.pushViewController(vc, animated: false)
         }
+    }
+    
+    private class RecordLoaderFake: RecordLoader {
+        func load() throws -> [PlayerRecord] { [] }
+        
+        func validateNewRecord(with newRecord: PlayerRecord) -> Bool { false }
+        
+        func insertNewRecord(_ record: PlayerRecord) throws { }
     }
 }
 

@@ -15,7 +15,7 @@ public class WinViewController: UIViewController {
 
     public var guessCount = 0
     public var spentTime = 99999.9
-    public var isAdvancedVersion = false
+    public var digitCount = 4
     
     public var recordLoader: RecordLoader?
     public var userDefaults: UserDefaults?
@@ -59,11 +59,8 @@ public class WinViewController: UIViewController {
             newRecordStackView.alpha = 0
         }
         
-        if isAdvancedVersion {
-            winLabel.text =  NSLocalizedString("5A0B!! You won!!", comment: "")
-        } else {
-            winLabel.text =  NSLocalizedString("4A0B!! You won!!", comment: "")
-        }
+        let format = NSLocalizedString("%dA0B!! You won!!", comment: "2nd")
+        winLabel.text = String.localizedStringWithFormat(format, digitCount)
         
         _ = _prepareEmoji
         

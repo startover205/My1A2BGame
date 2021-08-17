@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import My1A2BGame
+import Mastermind
 import MastermindiOS
 
 class GuessNumberViewControllerTests: XCTestCase {
@@ -82,7 +83,7 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard)
+        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, recordLoader: RecordLoaderFake())
         if loadView {
             sut.loadViewIfNeeded()
         }
@@ -101,5 +102,13 @@ class GuessNumberViewControllerTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: seconds + 1.0)
+    }
+    
+    private final class RecordLoaderFake: RecordLoader {
+        func load() throws -> [PlayerRecord] { [] }
+        
+        func validateNewRecord(with newRecord: PlayerRecord) -> Bool { false }
+        
+        func insertNewRecord(_ record: PlayerRecord) throws { }
     }
 }

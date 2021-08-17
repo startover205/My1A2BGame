@@ -231,7 +231,7 @@ class WinViewControllerAdvancedGameTests: XCTestCase {
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         sut.guessCount = guessCount
         sut.spentTime = spentTime
-        sut.isAdvancedVersion = true
+        sut.digitCount = 5
         sut.recordLoader = loader
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview

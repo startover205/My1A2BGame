@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var reachability = Reachability.forInternetConnection()
     
+    private lazy var basicGameStoreURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("Model" + ".sqlite")
+    private lazy var advancedGameStoreURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("ModelAdvanced" + ".sqlite")
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         SKPaymentQueue.default().add(StoreObserver.shared)
@@ -93,14 +96,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeBasicVC() -> UIViewController {
-        let controller = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: .standard)
+        let store = try! CoreDataRecordStore<Winner>(storeURL: advancedGameStoreURL, modelName: "Model")
+        let recordLoader = LocalRecordLoader(store: store)
+        let controller = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: .standard, recordLoader: recordLoader)
         controller.adProvider = GoogleRewardAdManager.shared
 
         return controller
     }
     
     private func makeAdvancedVC() -> UIViewController {
-        let controller = GameUIComposer.gameComposedWith(gameVersion: AdvancedGame(), userDefaults: .standard)
+        let store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
+        let recordLoader = LocalRecordLoader(store: store)
+        let controller = GameUIComposer.gameComposedWith(gameVersion: AdvancedGame(), userDefaults: .standard, recordLoader: recordLoader)
         controller.adProvider = GoogleRewardAdManager.shared
 
         return controller
