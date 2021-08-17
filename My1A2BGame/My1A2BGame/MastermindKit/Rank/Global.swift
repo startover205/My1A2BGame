@@ -6,7 +6,7 @@
 //  Copyright © 2019年 Ming-Ta Yang. All rights reserved.
 //
 
-import Foundation
+import Mastermind
 
 var winnerCoreDataManager: CoreDataManager = CoreDataManager<Winner>(momdFilename: "Model", entityName: "Winner", sortDescriptors: [NSSortDescriptor(key: "guessTimes", ascending: true), NSSortDescriptor(key: "spentTime", ascending: true), NSSortDescriptor(key: "date", ascending: true)])
 

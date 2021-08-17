@@ -8,11 +8,12 @@
 
 import XCTest
 import My1A2BGame
+import Mastermind
 
 class WinViewControllerBasicGameTests: XCTestCase {
     
     func test_viewDidLoad_rendersGuessCount_guess1() {
-        let (sut, _) = makeSUT(guessCount: 1)
+        let (sut, _, _) = makeSUT(guessCount: 1)
         
         sut.loadViewIfNeeded()
         
@@ -20,7 +21,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_viewDidLoad_rendersGuessCount_guess2() {
-        let (sut, _) = makeSUT(guessCount: 2)
+        let (sut, _, _) = makeSUT(guessCount: 2)
         
         sut.loadViewIfNeeded()
         
@@ -28,31 +29,42 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_viewDidLoad_rendersWinMessage() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         
         sut.loadViewIfNeeded()
         
         XCTAssertEqual(sut.winMessage, "4A0B!! You won!!")
     }
     
-    func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
-        let store = PlayerStoreSpy()
-        let guessCount = 1
-        let (sut, _) = makeSUT(guessCount: guessCount,store: store)
+    func test_viewDidLoad_reqeustLoaderValidatePlayerRecord() {
+        let guessCount = 3
+        let guessTime = 10.0
+        let (sut, loader, _) = makeSUT(guessCount: guessCount, spentTime: guessTime)
         
-        store.clearRecords()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(loader.receivedMessages.count, 1)
+        if case let .validate(record) = loader.receivedMessages.first {
+            XCTAssertEqual(record.guessCount, guessCount)
+            XCTAssertEqual(record.guessTime, guessTime)
+        } else {
+            XCTFail("Expect validate record after view did load")
+        }
+    }
+    
+    func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
+        let (sut, loader, _) = makeSUT()
+        
+        loader.completeValidation(with: true)
         sut.loadViewIfNeeded()
         
         XCTAssertTrue(sut.showingBreakRecordView)
     }
     
     func test_viewDidLoad_doesNotRendersNewRecordViewsIfRecordNotBroken() {
-        let store = PlayerStoreSpy()
-        let guessCount = 20
-        let (sut, _) = makeSUT(guessCount: guessCount, store: store)
-        let existingTopRecords = Array(repeating: GameWinner(name: nil, guessTimes: 1, spentTime: 0, winner: Winner()), count: 10)
+        let (sut, loader, _) = makeSUT()
         
-        store.addRecords(existingTopRecords)
+        loader.completeValidation(with: false)
         sut.loadViewIfNeeded()
         
         XCTAssertFalse(sut.showingBreakRecordView)
@@ -60,7 +72,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     
     func test_viewDidLoad_doesNotAskForReviewWhenUserHasNotWonThreeTimes() {
         var reviewCallCount = 0
-        let (sut, _) = makeSUT() { _ in
+        let (sut, _, _) = makeSUT() { _ in
             reviewCallCount += 1
         }
         
@@ -71,7 +83,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     
     func test_viewDidLoad_doesNotAskForReviewWhenUserHasAlreadyBeenPrompt() {
         var reviewCallCount = 0
-        let (sut, userDefaults) = makeSUT() { _ in
+        let (sut, _, userDefaults) = makeSUT() { _ in
             reviewCallCount += 1
         }
         
@@ -85,7 +97,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     
     func test_viewDidLoad_asksForReviewWhenUserHasWonThreeTimesAndNotBeenPromptForCurrentVersion() {
         var reviewCallCount = 0
-        let (sut, userDefaults) = makeSUT(askForReview: { _ in
+        let (sut, _, userDefaults) = makeSUT(askForReview: { _ in
             reviewCallCount += 1
         })
         
@@ -98,7 +110,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_viewDidAppear_showsEmojiAnimationOnFirstTime() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -106,17 +118,17 @@ class WinViewControllerBasicGameTests: XCTestCase {
         
         sut.viewDidAppear(true)
         
-        XCTAssertNotEqual(sut.emojiViewTransform, capturedTransform)
+        XCTAssertNotEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform changed after view did appear")
         
         capturedTransform = sut.emojiViewTransform
         sut.viewDidAppear(true)
         
-        XCTAssertEqual(sut.emojiViewTransform, capturedTransform)
+        XCTAssertEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform does not change when the view appeared the second time")
     }
     
     func test_viewDidAppear_showsFireworkAnimationOnFirstTime() {
         var fireworkCallCount = 0
-        let (sut, _) = makeSUT(showFireworkAnimation: { _ in
+        let (sut, _, _) = makeSUT(showFireworkAnimation: { _ in
             fireworkCallCount += 1
         })
 
@@ -134,7 +146,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_canShareContent() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         let hostVC = UIViewControllerSpy()
         let shareController = ShareViewController(hostViewController: hostVC, guessCount: { [unowned sut] in sut.guessCount })
         sut.shareViewController = shareController
@@ -159,7 +171,7 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_breakRecord_confirmButtonEnabledOnlyWhenUserEnteredName() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -175,42 +187,61 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
     
     func test_breakRecord_addPlayerRecordToStore() {
-        let store = PlayerStoreSpy()
-        let player = GameWinner(name: "a name", guessTimes: 3, spentTime: 4, winner: nil)
-        let (sut, _) = makeSUT(store: store)
+        let guessCount = 2
+        let guessTime = 20.0
+        let playerName = "a name"
+        let (sut, loader, _) = makeSUT(guessCount: guessCount, spentTime: guessTime)
         
         sut.loadViewIfNeeded()
-        
-        XCTAssertTrue(store.fetchAllObjects().isEmpty, "expect no record added after view load")
+        XCTAssertEqual(loader.receivedMessages.count, 1)
+        guard case .validate = loader.receivedMessages.first else {
+            XCTFail("Expect no save message added after view load, got \(loader.receivedMessages) instead")
+            return
+        }
         
         sut.confirmBtn.sendActions(for: .touchUpInside)
-        
-        XCTAssertTrue(store.fetchAllObjects().isEmpty, "expect no record added when user did not enter player name")
+        XCTAssertEqual(loader.receivedMessages.count, 1)
+        guard case .validate = loader.receivedMessages.first else {
+            XCTFail("Expect no save message added after view load, got \(loader.receivedMessages) instead")
+            return
+        }
 
-        sut.simulateUserEnterPlayerName(name: player.name)
+        sut.simulateUserEnterPlayerName(name: "a name")
         sut.confirmBtn.sendActions(for: .touchUpInside)
-
-        let recordedPlayer = store.fetchAllObjects().first
-        XCTAssertEqual(recordedPlayer?.name, player.name, "expect record added when user entered player name")
+        XCTAssertEqual(loader.receivedMessages.count, 2)
+        guard case .validate = loader.receivedMessages.first else {
+            XCTFail()
+            return
+        }
+        if case let .save(record) = loader.receivedMessages.last {
+            XCTAssertEqual(record.playerName, playerName)
+            XCTAssertEqual(record.guessCount, guessCount)
+            XCTAssertEqual(record.guessTime, guessTime)
+        } else {
+            XCTFail("Expect save message when use press confirm button with player name entered, got \(loader.receivedMessages) instead")
+        }
     }
     
     // MARK: Helpers
     
-    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, store: WinnerStore? = nil, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, UserDefaults) {
+    private func makeSUT(guessCount: Int = 1, spentTime: TimeInterval = 60.0, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
+        let loader = RecordLoaderSpy()
         let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         sut.guessCount = guessCount
         sut.spentTime = spentTime
         sut.isAdvancedVersion = false
-        sut.winnerStore = store
+        sut.recordLoader = loader
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview
         sut.showFireworkAnimation = showFireworkAnimation
         
+        trackForMemoryLeaks(userDefaults, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, userDefaults)
+        return (sut, loader, userDefaults)
     }
     
     private func currentAppVersion() -> String {
@@ -222,40 +253,38 @@ class WinViewControllerBasicGameTests: XCTestCase {
     }
 }
 
-private final class PlayerStoreSpy: WinnerStore {
-    var players = [GameWinner]()
-    var stashedPlayers = [GameWinner]()
-    
-    var totalCount: Int {
-        players.count
+private final class RecordLoaderSpy: RecordLoader {
+    enum Message: Equatable {
+        case load
+        case validate(_ record: PlayerRecord)
+        case save(_ record: PlayerRecord)
     }
     
-    func fetchAllObjects() -> [GameWinner] {
-        players
+    private var loadResult: Result<[PlayerRecord], Error>?
+    private var validationResult: Bool?
+    
+    private(set) var receivedMessages = [Message]()
+    
+    func load() throws -> [PlayerRecord] {
+        receivedMessages.append(.load)
+        return try loadResult?.get() ?? []
     }
     
-    func createObject() -> GameWinner {
-        let player = GameWinner(name: nil, guessTimes: 1, spentTime: 1, winner: nil)
-        stashedPlayers.append(player)
-        return player
+    func validateNewRecord(with newRecord: PlayerRecord) -> Bool {
+        receivedMessages.append(.validate(newRecord))
+        return validationResult ?? false
     }
     
-    func delete(object: GameWinner) {
-        players.removeAll { $0 === object }
+    func insertNewRecord(_ record: PlayerRecord) throws {
+        receivedMessages.append(.save(record))
     }
     
-    func saveContext(completion: SaveDoneHandler?) {
-        players.append(contentsOf: stashedPlayers)
-        stashedPlayers.removeAll()
-        completion?(true)
+    func completeValidation(with result: Bool) {
+        validationResult = result
     }
     
-    func clearRecords() {
-        players.removeAll()
-    }
-    
-    func addRecords(_ records: [GameWinner]) {
-        players.append(contentsOf: records)
+    func completeRetrieval(with records: [PlayerRecord]) {
+        loadResult = .success(records)
     }
 }
 

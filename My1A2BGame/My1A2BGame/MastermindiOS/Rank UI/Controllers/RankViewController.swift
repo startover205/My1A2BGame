@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Mastermind
 
 protocol User {
     var date: Date? { get set }
