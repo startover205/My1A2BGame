@@ -16,6 +16,7 @@ public class WinViewController: UIViewController {
     public var guessCount = 0
     public var spentTime = 99999.9
     public var digitCount = 4
+    public var currentDate: () -> Date = Date.init
     
     public var recordLoader: RecordLoader?
     public var userDefaults: UserDefaults?
@@ -79,7 +80,7 @@ public class WinViewController: UIViewController {
     @IBAction func confirmBtnPressed(_ sender: Any) {
         guard let name = nameTextField.text, !name.isEmpty else { return }
         
-        saveRecord(PlayerRecord(playerName: name, guessCount: guessCount, guessTime: spentTime, timestamp: Date()))
+        saveRecord(PlayerRecord(playerName: name, guessCount: guessCount, guessTime: spentTime, timestamp: currentDate()))
     }
 }
 

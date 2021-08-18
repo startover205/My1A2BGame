@@ -67,9 +67,9 @@ class WinViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_doesNotAskForReviewWhenUserHasNotWonThreeTimes() {
         var reviewCallCount = 0
-        let (sut, _, _) = makeSUT() { _ in
+        let (sut, _, _) = makeSUT(askForReview: { _ in
             reviewCallCount += 1
-        }
+        })
         
         sut.loadViewIfNeeded()
         
@@ -78,9 +78,9 @@ class WinViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_doesNotAskForReviewWhenUserHasAlreadyBeenPrompt() {
         var reviewCallCount = 0
-        let (sut, _, userDefaults) = makeSUT() { _ in
+        let (sut, _, userDefaults) = makeSUT(askForReview: { _ in
             reviewCallCount += 1
-        }
+        })
         
         userDefaults.recordUserHasWonThreeTimes()
         userDefaults.recordUserHasAlreadyBeenPromptForReview(for: currentAppVersion())
@@ -182,10 +182,11 @@ class WinViewControllerTests: XCTestCase {
     }
     
     func test_breakRecord_addPlayerRecordToStore() {
+        let playerName = "a name"
         let guessCount = 2
         let guessTime = 20.0
-        let playerName = "a name"
-        let (sut, loader, _) = makeSUT(guessCount: guessCount, spentTime: guessTime)
+        let timestamp = Date()
+        let (sut, loader, _) = makeSUT(guessCount: guessCount, spentTime: guessTime, currentDate: { timestamp })
         
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
@@ -193,22 +194,14 @@ class WinViewControllerTests: XCTestCase {
         sut.confirmBtn.sendActions(for: .touchUpInside)
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
 
-        sut.simulateUserEnterPlayerName(name: "a name")
+        sut.simulateUserEnterPlayerName(name: playerName)
         sut.confirmBtn.sendActions(for: .touchUpInside)
-        XCTAssertEqual(loader.receivedMessages.count, 2)
-        XCTAssertEqual(loader.receivedMessages.first, .validate(guessCount, guessTime))
-        if case let .save(record) = loader.receivedMessages.last {
-            XCTAssertEqual(record.playerName, playerName)
-            XCTAssertEqual(record.guessCount, guessCount)
-            XCTAssertEqual(record.guessTime, guessTime)
-        } else {
-            XCTFail("Expect save message when use press confirm button with player name entered, got \(loader.receivedMessages) instead")
-        }
+        XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime), .save(PlayerRecord(playerName: playerName, guessCount: guessCount, guessTime: guessTime, timestamp: timestamp))], "Expect save message when use press confirm button with player name entered")
     }
     
     // MARK: Helpers
     
-    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
         let loader = RecordLoaderSpy()
         let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
@@ -216,6 +209,7 @@ class WinViewControllerTests: XCTestCase {
         sut.digitCount = digitCount
         sut.guessCount = guessCount
         sut.spentTime = spentTime
+        sut.currentDate = currentDate
         sut.recordLoader = loader
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview
