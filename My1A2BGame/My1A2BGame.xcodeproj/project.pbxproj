@@ -61,6 +61,8 @@
 		C0A1F4B326B62A1200536D73 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49C26B62A1200536D73 /* Rank.storyboard */; };
 		C0A3944E26C0C67400813165 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3944D26C0C67400813165 /* ShareViewController.swift */; };
 		C0A5CC5D26CE272C009ED821 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5CC5C26CE272C009ED821 /* RecordViewController.swift */; };
+		C0A5CC5F26CE32F5009ED821 /* AppReviewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5CC5E26CE32F5009ED821 /* AppReviewHandler.swift */; };
+		C0A5CC6126CE335C009ED821 /* PromptAppReviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5CC6026CE335C009ED821 /* PromptAppReviewControllerTests.swift */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
@@ -169,6 +171,8 @@
 		C0A1F49C26B62A1200536D73 /* Rank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
 		C0A3944D26C0C67400813165 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C0A5CC5C26CE272C009ED821 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		C0A5CC5E26CE32F5009ED821 /* AppReviewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewHandler.swift; sourceTree = "<group>"; };
+		C0A5CC6026CE335C009ED821 /* PromptAppReviewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptAppReviewControllerTests.swift; sourceTree = "<group>"; };
 		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				C0E601A326ADB00A006C8D6D /* Helpers */,
 				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
 				C0962A5226BBC2BF002436AB /* WinViewControllerTests.swift */,
+				C0A5CC6026CE335C009ED821 /* PromptAppReviewControllerTests.swift */,
 			);
 			path = MastermindAppTests;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				C0A1F47926B62A1100536D73 /* WinViewController.swift */,
+				C0A5CC5E26CE32F5009ED821 /* AppReviewHandler.swift */,
 				C0A3944D26C0C67400813165 /* ShareViewController.swift */,
 				C0A5CC5C26CE272C009ED821 /* RecordViewController.swift */,
 				C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */,
@@ -746,6 +752,7 @@
 				C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */,
 				C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */,
 				C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */,
+				C0A5CC5F26CE32F5009ED821 /* AppReviewHandler.swift in Sources */,
 				C0A1F4AC26B62A1200536D73 /* BannerAdTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -760,6 +767,7 @@
 				C034AA6826B66B32006AABE6 /* UIViewController+Snapshot.swift in Sources */,
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				C0A5CC6126CE335C009ED821 /* PromptAppReviewControllerTests.swift in Sources */,
 				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
 				C0962A5326BBC2BF002436AB /* WinViewControllerTests.swift in Sources */,
