@@ -762,111 +762,6 @@
             </objects>
             <point key="canvasLocation" x="8648" y="1565"/>
         </scene>
-        <!--Win View Controller-->
-        <scene sceneID="wS6-fi-PdD">
-            <objects>
-                <viewController storyboardIdentifier="WinViewController" id="0nf-i4-zt7" customClass="WinViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wvH-PK-7cy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4A0B!! You won!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9I-sB-1N7">
-                                <rect key="frame" x="94.5" y="163" width="225" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You guessed 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9F-MU-qs3">
-                                <rect key="frame" x="67" y="276.5" width="280.5" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ufA-We-AgG">
-                                <rect key="frame" x="115.5" y="377.5" width="183.5" height="141"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gra-aE-6Lk">
-                                        <rect key="frame" x="0.0" y="0.0" width="183.5" height="61"/>
-                                        <string key="text">Congradulations!
-You break the record!
-Please enter your name.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A5a-ez-VzU">
-                                        <rect key="frame" x="31.5" y="69" width="120" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="MZD-tg-l7z"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="name"/>
-                                        <connections>
-                                            <action selector="dismissKeyboard:" destination="0nf-i4-zt7" eventType="editingDidEndOnExit" id="2mU-0v-TDc"/>
-                                            <outlet property="delegate" destination="0nf-i4-zt7" id="48h-eh-B6l"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyB-GG-hpV">
-                                        <rect key="frame" x="64" y="111" width="55" height="30"/>
-                                        <state key="normal" title="Confirm"/>
-                                        <connections>
-                                            <action selector="confirmBtnPressed:" destination="0nf-i4-zt7" eventType="touchUpInside" id="9fP-4C-JoL"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1c-2s-Wvy">
-                                <rect key="frame" x="125.5" y="590" width="163" height="179.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="172-Lr-sKb"/>
-                        <color key="backgroundColor" name="MainBackground"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="g9I-sB-1N7" firstAttribute="centerY" secondItem="172-Lr-sKb" secondAttribute="centerY" multiplier="0.4" id="2PP-Od-WZA"/>
-                            <constraint firstItem="z9F-MU-qs3" firstAttribute="centerX" secondItem="wvH-PK-7cy" secondAttribute="centerX" id="2ae-ee-xmT"/>
-                            <constraint firstItem="Z1c-2s-Wvy" firstAttribute="centerY" secondItem="172-Lr-sKb" secondAttribute="centerY" multiplier="1.5" id="7fq-BC-daL"/>
-                            <constraint firstItem="172-Lr-sKb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ufA-We-AgG" secondAttribute="trailing" constant="8" id="FSf-tl-qYD"/>
-                            <constraint firstItem="ufA-We-AgG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="172-Lr-sKb" secondAttribute="leading" constant="8" id="K3Z-6F-Yx7"/>
-                            <constraint firstItem="Z1c-2s-Wvy" firstAttribute="centerX" secondItem="wvH-PK-7cy" secondAttribute="centerX" id="MY7-dl-Tpb"/>
-                            <constraint firstItem="z9F-MU-qs3" firstAttribute="centerY" secondItem="172-Lr-sKb" secondAttribute="centerY" multiplier="0.65" id="RHd-DY-KD8"/>
-                            <constraint firstItem="ufA-We-AgG" firstAttribute="centerY" secondItem="wvH-PK-7cy" secondAttribute="centerY" id="S1B-dW-006"/>
-                            <constraint firstItem="ufA-We-AgG" firstAttribute="centerX" secondItem="wvH-PK-7cy" secondAttribute="centerX" id="lTY-k2-K36"/>
-                            <constraint firstItem="g9I-sB-1N7" firstAttribute="centerX" secondItem="wvH-PK-7cy" secondAttribute="centerX" id="tEk-36-Cs8"/>
-                        </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="hgQ-zs-Ani" appends="YES" id="ZCZ-7C-uqf"/>
-                        </connections>
-                    </view>
-                    <navigationItem key="navigationItem" id="f1Q-ZD-LJy">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="tlf-X7-2vY">
-                            <connections>
-                                <action selector="shareBtnPressed:" destination="0nf-i4-zt7" id="M3D-85-IOB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="confirmBtn" destination="cyB-GG-hpV" id="Z3K-f2-MeX"/>
-                        <outlet property="emojiLabel" destination="Z1c-2s-Wvy" id="V0y-EJ-ndE"/>
-                        <outlet property="guessCountLabel" destination="z9F-MU-qs3" id="1Hn-MT-6qS"/>
-                        <outlet property="nameTextField" destination="A5a-ez-VzU" id="3rA-Xd-r6H"/>
-                        <outlet property="newRecordStackView" destination="ufA-We-AgG" id="fEb-RY-il4"/>
-                        <outlet property="shareBarBtnItem" destination="tlf-X7-2vY" id="QAf-4O-ufp"/>
-                        <outlet property="winLabel" destination="g9I-sB-1N7" id="pem-zh-o7l"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lyV-vq-mRu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="hgQ-zs-Ani">
-                    <connections>
-                        <action selector="didTapScreen:" destination="0nf-i4-zt7" id="17U-dB-Psi"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="10468.115942028986" y="774.77678571428567"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KhK-oe-CM3">
             <objects>
@@ -1234,6 +1129,113 @@ Please enter your name.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h12-lh-iIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6516" y="1565"/>
+        </scene>
+        <!--Win View Controller-->
+        <scene sceneID="PSd-5T-fxJ">
+            <objects>
+                <viewController storyboardIdentifier="WinViewController" id="Lnm-Xa-BhH" customClass="WinViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DPG-ih-i4m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4A0B!! You won!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvh-Pn-65H">
+                                <rect key="frame" x="94.5" y="163" width="225" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You guessed 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg1-ih-mUi">
+                                <rect key="frame" x="67" y="276.5" width="280.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lZn-Ob-EH0">
+                                <rect key="frame" x="115.5" y="377.5" width="183.5" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIb-xY-ita">
+                                        <rect key="frame" x="0.0" y="0.0" width="183.5" height="61"/>
+                                        <string key="text">Congradulations!
+You break the record!
+Please enter your name.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PM1-o2-g7B">
+                                        <rect key="frame" x="31.5" y="69" width="120" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="gnP-Vw-1Qp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                        <connections>
+                                            <action selector="dismissKeyboard:" destination="Lnm-Xa-BhH" eventType="editingDidEndOnExit" id="9tz-m7-9d1"/>
+                                            <outlet property="delegate" destination="Lnm-Xa-BhH" id="2nu-RS-klH"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlF-Cy-HIo">
+                                        <rect key="frame" x="64" y="111" width="55" height="30"/>
+                                        <state key="normal" title="Confirm"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh8-Uu-zLX">
+                                <rect key="frame" x="125.5" y="590" width="163" height="179.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Ft-hn-taF"/>
+                        <color key="backgroundColor" name="MainBackground"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="8Ft-hn-taF" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lZn-Ob-EH0" secondAttribute="trailing" constant="8" id="9SJ-M9-TVG"/>
+                            <constraint firstItem="Dh8-Uu-zLX" firstAttribute="centerX" secondItem="DPG-ih-i4m" secondAttribute="centerX" id="FQ9-I0-bDo"/>
+                            <constraint firstItem="lZn-Ob-EH0" firstAttribute="centerY" secondItem="DPG-ih-i4m" secondAttribute="centerY" id="R3P-2V-lcE"/>
+                            <constraint firstItem="Dh8-Uu-zLX" firstAttribute="centerY" secondItem="8Ft-hn-taF" secondAttribute="centerY" multiplier="1.5" id="aIO-M5-wUc"/>
+                            <constraint firstItem="Fvh-Pn-65H" firstAttribute="centerX" secondItem="DPG-ih-i4m" secondAttribute="centerX" id="gpn-pG-fcb"/>
+                            <constraint firstItem="Fvh-Pn-65H" firstAttribute="centerY" secondItem="8Ft-hn-taF" secondAttribute="centerY" multiplier="0.4" id="iKC-TY-uWb"/>
+                            <constraint firstItem="lZn-Ob-EH0" firstAttribute="centerX" secondItem="DPG-ih-i4m" secondAttribute="centerX" id="iad-YC-EhB"/>
+                            <constraint firstItem="qg1-ih-mUi" firstAttribute="centerX" secondItem="DPG-ih-i4m" secondAttribute="centerX" id="kfs-bQ-88H"/>
+                            <constraint firstItem="qg1-ih-mUi" firstAttribute="centerY" secondItem="8Ft-hn-taF" secondAttribute="centerY" multiplier="0.65" id="yh6-qd-07w"/>
+                            <constraint firstItem="lZn-Ob-EH0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Ft-hn-taF" secondAttribute="leading" constant="8" id="yp4-HE-2kU"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="bdl-ju-rXa" appends="YES" id="aYB-HS-Uz5"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="g9f-oC-ShO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="DfS-k1-KBN">
+                            <connections>
+                                <action selector="shareBtnPressed:" destination="Lnm-Xa-BhH" id="YUV-Bj-Bzy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emojiLabel" destination="Dh8-Uu-zLX" id="1w3-zT-Du3"/>
+                        <outlet property="guessCountLabel" destination="qg1-ih-mUi" id="Xiv-rU-buc"/>
+                        <outlet property="recordViewController" destination="UBt-zw-eJx" id="2IX-F6-P8I"/>
+                        <outlet property="shareBarBtnItem" destination="DfS-k1-KBN" id="54W-5G-So1"/>
+                        <outlet property="winLabel" destination="Fvh-Pn-65H" id="vNG-3X-Ox6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5mc-2z-zw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bdl-ju-rXa">
+                    <connections>
+                        <action selector="didTapScreen:" destination="Lnm-Xa-BhH" id="twY-0l-MKk"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <customObject id="UBt-zw-eJx" customClass="RecordViewController" customModule="My1A2BGame">
+                    <connections>
+                        <outlet property="confirmButton" destination="jlF-Cy-HIo" id="Izz-4Q-21D"/>
+                        <outlet property="containerView" destination="lZn-Ob-EH0" id="Zk6-8p-5CZ"/>
+                        <outlet property="inputTextField" destination="PM1-o2-g7B" id="Rxz-Ty-J78"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="10468.115942028986" y="774.77678571428567"/>
         </scene>
     </scenes>
     <resources>

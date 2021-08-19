@@ -9,6 +9,61 @@
 import UIKit
 import Mastermind
 
+public final class RecordViewController: NSObject, UITextFieldDelegate {
+    @IBOutlet private(set) public weak var confirmButton: UIButton!
+    @IBOutlet private(set) public weak var containerView: UIStackView!
+    @IBOutlet private(set) public weak var inputTextField: UITextField!
+    
+    weak var hostViewController: UIViewController?
+    var guessCount: (() -> Int)!
+    var spentTime: (() -> TimeInterval)!
+    var loader: RecordLoader!
+    var currentDate: (() -> Date)!
+
+    public func configureViews() {
+        confirmButton.addTarget(self, action: #selector(insertRecord), for: .touchUpInside)
+        
+        inputTextField.delegate = self
+        
+        containerView.alpha = loader.validate(score: (guessCount(), spentTime())) ? 1 : 0
+    }
+    
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let oldString = textField.text! as NSString
+        let newString = oldString.replacingCharacters(in: range, with: string)
+        
+        confirmButton.isEnabled = !newString.isEmpty
+        
+        return true
+    }
+    
+    @objc func insertRecord() {
+        guard let name = inputTextField.text, !name.isEmpty else { return }
+        
+        saveRecord(PlayerRecord(playerName: name, guessCount: guessCount(), guessTime: spentTime(), timestamp: currentDate()))
+    }
+    
+    private func saveRecord(_ record: PlayerRecord) {
+        do {
+            try loader.insertNewRecord(record)
+            
+            showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd")) { [weak self] _ in
+                self?.hostViewController?.navigationController?.popViewController(animated: true)
+            }
+        } catch {
+            showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
+        }
+    }
+    
+    private func showAlert(title: String, message: String? = nil, onDismiss: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default, handler: onDismiss)
+        alert.addAction(ok)
+        
+        hostViewController?.present(alert, animated: true, completion: nil)
+    }
+}
+
 public class WinViewController: UIViewController {
     
     public typealias ReviewCompletion = () -> Void
@@ -16,20 +71,16 @@ public class WinViewController: UIViewController {
     public var guessCount = 0
     public var spentTime = 99999.9
     public var digitCount = 4
-    public var currentDate: () -> Date = Date.init
     
-    public var recordLoader: RecordLoader?
     public var userDefaults: UserDefaults?
     public var askForReview: ((@escaping ReviewCompletion) -> Void)?
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
     public var shareViewController: ShareViewController?
+    @IBOutlet private(set) public weak var recordViewController: RecordViewController!
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
     @IBOutlet private(set) public weak var emojiLabel: UILabel!
-    @IBOutlet private(set) public weak var nameTextField: UITextField!
-    @IBOutlet private(set) public weak var confirmBtn: UIButton!
-    @IBOutlet private(set) public weak var newRecordStackView: UIStackView!
     @IBOutlet private(set) public weak var shareBarBtnItem: UIBarButtonItem!
     @IBAction func dismissKeyboard(_ sender: UITextField) {
     }
@@ -53,12 +104,8 @@ public class WinViewController: UIViewController {
         navigationItem.rightBarButtonItem = shareViewController?.view
         
         showResult()
-        
-        if recordLoader?.validate(score: (guessCount, spentTime)) == true {
-            newRecordStackView.alpha = 1
-        } else {
-            newRecordStackView.alpha = 0
-        }
+
+        recordViewController?.configureViews()
         
         let format = NSLocalizedString("%dA0B!! You won!!", comment: "2nd")
         winLabel.text = String.localizedStringWithFormat(format, digitCount)
@@ -75,48 +122,6 @@ public class WinViewController: UIViewController {
         
         _ = _emojiAnimation
         _ = _fireworkAnimation
-    }
-    
-    @IBAction func confirmBtnPressed(_ sender: Any) {
-        guard let name = nameTextField.text, !name.isEmpty else { return }
-        
-        saveRecord(PlayerRecord(playerName: name, guessCount: guessCount, guessTime: spentTime, timestamp: currentDate()))
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension WinViewController: UITextFieldDelegate {
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let oldString = textField.text! as NSString
-        let newString = oldString.replacingCharacters(in: range, with: string)
-        
-        confirmBtn.isEnabled = !newString.isEmpty
-        
-        return true
-    }
-}
-
-// MARK: - Core Data
-private extension WinViewController {
-    func saveRecord(_ record: PlayerRecord) {
-        do {
-            try recordLoader?.insertNewRecord(record)
-            
-            showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd")) { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }
-        } catch {
-            showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
-        }
-    }
-    
-    private func showAlert(title: String, message: String? = nil, onDismiss: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default, handler: onDismiss)
-        alert.addAction(ok)
-        
-        self.present(alert, animated: true, completion: nil)
     }
 }
 

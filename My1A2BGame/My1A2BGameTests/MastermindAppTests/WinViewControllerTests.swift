@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import My1A2BGame
+@testable import My1A2BGame
 import Mastermind
 
 class WinViewControllerTests: XCTestCase {
@@ -170,15 +170,15 @@ class WinViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertFalse(sut.confirmBtn.isEnabled, "expect confirm button to be not enabled after view did load")
+        XCTAssertFalse(sut.confirmButtonEanbled, "expect confirm button to be not enabled after view did load")
         
         sut.simulateUserEnterPlayerName(name: "any name")
         
-        XCTAssertTrue(sut.confirmBtn.isEnabled, "expect confirm button to be enabled after user entered name")
+        XCTAssertTrue(sut.confirmButtonEanbled, "expect confirm button to be enabled after user entered name")
         
         sut.simulateUserEnterPlayerName(name: "")
         
-        XCTAssertFalse(sut.confirmBtn.isEnabled, "expect confirm button to be not enabled after user clear name input")
+        XCTAssertFalse(sut.confirmButtonEanbled, "expect confirm button to be not enabled after user clear name input")
     }
     
     func test_breakRecord_addPlayerRecordToStore() {
@@ -191,11 +191,11 @@ class WinViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
         
-        sut.confirmBtn.sendActions(for: .touchUpInside)
+        sut.simulateUserSendInput()
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
 
         sut.simulateUserEnterPlayerName(name: playerName)
-        sut.confirmBtn.sendActions(for: .touchUpInside)
+        sut.simulateUserSendInput()
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime), .save(PlayerRecord(playerName: playerName, guessCount: guessCount, guessTime: guessTime, timestamp: timestamp))], "Expect save message when use press confirm button with player name entered")
     }
     
@@ -208,12 +208,16 @@ class WinViewControllerTests: XCTestCase {
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         sut.digitCount = digitCount
         sut.guessCount = guessCount
-        sut.spentTime = spentTime
-        sut.currentDate = currentDate
-        sut.recordLoader = loader
         sut.userDefaults = userDefaults
         sut.askForReview = askForReview
         sut.showFireworkAnimation = showFireworkAnimation
+        
+        let recordViewController = sut.recordViewController!
+        recordViewController.hostViewController = sut
+        recordViewController.guessCount = { guessCount }
+        recordViewController.spentTime = { spentTime }
+        recordViewController.currentDate = currentDate
+        recordViewController.loader = loader
         
         trackForMemoryLeaks(userDefaults, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -273,11 +277,13 @@ private extension WinViewController {
     
     var winMessage: String? { winLabel.text }
     
-    var showingBreakRecordView: Bool { newRecordStackView.alpha != 0 }
+    var showingBreakRecordView: Bool { recordViewController!.containerView.alpha != 0 }
     
     var emojiViewTransform: CGAffineTransform? { emojiLabel.transform }
     
     var sublayerCount: Int { view.layer.sublayers?.count ?? 0 }
+    
+    var confirmButtonEanbled: Bool { recordViewController!.confirmButton.isEnabled }
     
     func simulateUserInitiatedShareAction() {
         guard let button = navigationItem.rightBarButtonItem else { return }
@@ -286,11 +292,17 @@ private extension WinViewController {
     }
     
     func simulateUserEnterPlayerName(name: String?) {
-        let oldText = nameTextField.text ?? ""
+        guard let inputTextField = recordViewController?.inputTextField else { return }
+        let oldText = inputTextField.text ?? ""
         let newText = name ?? ""
-        nameTextField.text = newText
-        _ = nameTextField.delegate?.textField?(nameTextField, shouldChangeCharactersIn: NSRange(oldText) ?? NSRange(), replacementString: newText)
+        inputTextField.text = newText
+        _ = inputTextField.delegate?.textField?(inputTextField, shouldChangeCharactersIn: NSRange(oldText) ?? NSRange(), replacementString: newText)
     }
+    
+    func simulateUserSendInput() {
+        recordViewController?.confirmButton.sendActions(for: .touchUpInside)
+    }
+
 }
 
 private extension UserDefaults {
