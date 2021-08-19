@@ -15,18 +15,22 @@ import GameKit
 public final class GameUIComposer {
     public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, recordLoader: RecordLoader) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
-        let inputVC = makeInputPadUI(digitCount: gameVersion.digitCount)
-        let gameViewController = makeGameViewController(gameVersion: gameVersion)
+        
+        let inputVC = makeInputPadUI()
+        inputVC.digitCount = gameVersion.digitCount
+
+        let gameViewController = makeGameViewController()
+        gameViewController.title = gameVersion.title
+        gameViewController.gameVersion = gameVersion
+        gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
         
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [unowned gameViewController] isOn in
             if isOn { gameViewController.showVoicePromptHint() }
         }
         
-        inputVC.delegate = gameViewController
         gameViewController.inputVC = inputVC
-        
-        gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
+        inputVC.delegate = gameViewController
         
         let winViewController = makeWinViewController()
         let recordViewController = winViewController.recordViewController!
@@ -53,20 +57,17 @@ public final class GameUIComposer {
 
         gameViewController.winViewController = winViewController
 
-        
         return gameViewController
     }
     
-    private static func makeGameViewController(gameVersion: GameVersion) -> GuessNumberViewController {
-        let gameController = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
-        gameController.title = gameVersion.title
-        gameController.gameVersion = gameVersion
-        return gameController
+    private static func makeGameViewController() -> GuessNumberViewController {
+        let gameViewController = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
+
+        return gameViewController
     }
     
-    public static func makeInputPadUI(digitCount: Int) -> GuessPadViewController {
+    public static func makeInputPadUI() -> GuessPadViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessPadViewController.self)).instantiateViewController(withIdentifier: "GuessPadViewController") as! GuessPadViewController
-        controller.digitCount = digitCount
         
         return controller
     }
