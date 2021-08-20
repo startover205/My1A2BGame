@@ -286,7 +286,7 @@ private extension WinViewController {
     }
     
     func simulateOnTapScreen() {
-        didTapScreen(self)
+        recordViewController.didTapScreen(self)
     }
     
     func simulateUserTapReturn() {

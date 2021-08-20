@@ -22,11 +22,6 @@ public class WinViewController: UIViewController {
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
     @IBOutlet private(set) public weak var emojiLabel: UILabel!
     @IBOutlet private(set) public weak var shareBarBtnItem: UIBarButtonItem!
-    @IBAction func dismissKeyboard(_ sender: UITextField) {
-    }
-    @IBAction func didTapScreen(_ sender: Any) {
-        view.endEditing(true)
-    }
     
     private var isFirstTimeAppear = true
     

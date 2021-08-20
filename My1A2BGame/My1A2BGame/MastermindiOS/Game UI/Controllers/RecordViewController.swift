@@ -28,6 +28,12 @@ public final class RecordViewController: NSObject, UITextFieldDelegate {
         containerView.alpha = loader.validate(score: (guessCount(), spentTime())) ? 1 : 0
     }
     
+    @IBAction private func dismissKeyboard(_ sender: UITextField) {
+    }
+    @IBAction func didTapScreen(_ sender: Any) {
+        hostViewController?.view.endEditing(true)
+    }
+    
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let oldString = textField.text! as NSString
         let newString = oldString.replacingCharacters(in: range, with: string)

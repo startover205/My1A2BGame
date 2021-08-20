@@ -1170,7 +1170,7 @@ Please enter your name.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                         <connections>
-                                            <action selector="dismissKeyboard:" destination="Lnm-Xa-BhH" eventType="editingDidEndOnExit" id="9tz-m7-9d1"/>
+                                            <action selector="dismissKeyboard:" destination="UBt-zw-eJx" eventType="editingDidEndOnExit" id="TRU-ce-zqN"/>
                                             <outlet property="delegate" destination="Lnm-Xa-BhH" id="2nu-RS-klH"/>
                                         </connections>
                                     </textField>
@@ -1224,7 +1224,7 @@ Please enter your name.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mc-2z-zw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="bdl-ju-rXa">
                     <connections>
-                        <action selector="didTapScreen:" destination="Lnm-Xa-BhH" id="twY-0l-MKk"/>
+                        <action selector="didTapScreen:" destination="UBt-zw-eJx" id="Cbf-4I-cwQ"/>
                     </connections>
                 </tapGestureRecognizer>
                 <customObject id="UBt-zw-eJx" customClass="RecordViewController" customModule="My1A2BGame">
