@@ -54,22 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-//    func fakeRecord(){
-//        let names = ["Emma", "Sam", "Judy", "John", "Joe", "Joey", "Emily", "Tim"]
-//        let guessTimes = [4, 5, 8, 9, 12, 4, 6, 8]
-//        let spentTimes = [124, 173, 100, 245, 192, 52, 493, 291]
-//
-//        for i in 0..<names.count {
-//            let user: Winner = winnerCoreDataManager.createObject()
-//            user.name = names[i]
-//            user.guessTimes = Int16(guessTimes[i])
-//            user.spentTime = Double(spentTimes[i])
-//            user.date = Date()
-//        }
-//
-//        winnerCoreDataManager.saveContext(completion: nil)
-//    }
-    
     func applicationWillTerminate(_ application: UIApplication) {
         SKPaymentQueue.default().remove(StoreObserver.shared)
     }
@@ -80,20 +64,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
     }
     
+    private lazy var appReviewController: AppReviewController? = {
+        guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
+        return AppReviewController(
+            userDefaults: .standard,
+            askForReview: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    SKStoreReviewController.requestReview()
+                }
+            },
+            targetProcessCompletedCount: 3,
+            appVersion: appVersion)
+    }()
+    
     private lazy var basicGameNavigationController = UINavigationController(
         rootViewController: GameUIComposer.gameComposedWith(
             gameVersion: BasicGame(),
             userDefaults: .standard,
             adProvider: GoogleRewardAdManager.shared,
-            onWin: showWinSceneForBasicGame))
+            onWin: { [weak self] in
+                self?.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
+                self?.appReviewController?.markProcessCompleteOneTime()
+                self?.appReviewController?.askForAppReviewIfAppropriate()
+            }))
     
     private lazy var advancedGameNavigationController = UINavigationController(
         rootViewController: GameUIComposer.gameComposedWith(
             gameVersion: AdvancedGame(),
             userDefaults: .standard,
             adProvider: GoogleRewardAdManager.shared,
-            onWin: showWinSceneForAdvancedGame))
-
+            onWin: { [weak self] in
+                self?.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
+                self?.appReviewController?.markProcessCompleteOneTime()
+                self?.appReviewController?.askForAppReviewIfAppropriate()
+            }))
+    
     func makeTabController() -> UITabBarController {
         let tabVC = UITabBarController()
         let rankNav = UINavigationController(rootViewController: makeRankVC())

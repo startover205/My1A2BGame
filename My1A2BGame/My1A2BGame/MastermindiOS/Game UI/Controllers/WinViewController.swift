@@ -10,14 +10,11 @@ import UIKit
 import Mastermind
 
 public class WinViewController: UIViewController {
-    public typealias ReviewCompletion = () -> Void
-
     public var guessCount = 0
     public var guessTime = 99999.9
     public var digitCount = 4
     
     public var userDefaults: UserDefaults?
-    public var askForReview: ((@escaping ReviewCompletion) -> Void)?
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
     public var shareViewController: ShareViewController?
     @IBOutlet private(set) public weak var recordViewController: RecordViewController!
@@ -55,10 +52,6 @@ public class WinViewController: UIViewController {
         winLabel.text = String.localizedStringWithFormat(format, digitCount)
         
         _ = _prepareEmoji
-        
-        if #available(iOS 10.3, *) {
-            tryToAskForReview()
-        } 
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -85,27 +78,6 @@ private extension WinViewController {
             self.emojiLabel.transform = CGAffineTransform(translationX: 0, y: 0)
             
         })
-    }
-    
-    func tryToAskForReview(){
-        
-        var count = userDefaults?.integer(forKey: UserDefaults.Key.processCompletedCount) ?? 0
-        count += 1
-        userDefaults?.set(count, forKey: UserDefaults.Key.processCompletedCount)
-        
-        let infoDictionaryKey = kCFBundleVersionKey as String
-        guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String else {
-            assertionFailure("Expected to find a bundle version in the info dictionary")
-            return
-        }
-        
-        let lastVersionPromptedForReview = userDefaults?.string(forKey: UserDefaults.Key.lastVersionPromptedForReview)
-        
-        if count >= 3 && currentVersion != lastVersionPromptedForReview {
-            askForReview? { [weak self] in
-                self?.userDefaults?.set(currentVersion, forKey: UserDefaults.Key.lastVersionPromptedForReview)
-            }
-        }
     }
 }
 

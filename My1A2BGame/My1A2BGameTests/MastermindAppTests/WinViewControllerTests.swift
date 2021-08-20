@@ -65,45 +65,6 @@ class WinViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.showingBreakRecordView)
     }
     
-    func test_viewDidLoad_doesNotAskForReviewWhenUserHasNotWonThreeTimes() {
-        var reviewCallCount = 0
-        let (sut, _, _) = makeSUT(askForReview: { _ in
-            reviewCallCount += 1
-        })
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(reviewCallCount, 0)
-    }
-    
-    func test_viewDidLoad_doesNotAskForReviewWhenUserHasAlreadyBeenPrompt() {
-        var reviewCallCount = 0
-        let (sut, _, userDefaults) = makeSUT(askForReview: { _ in
-            reviewCallCount += 1
-        })
-        
-        userDefaults.recordUserHasWonThreeTimes()
-        userDefaults.recordUserHasAlreadyBeenPromptForReview(for: currentAppVersion())
-
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(reviewCallCount, 0)
-    }
-    
-    func test_viewDidLoad_asksForReviewWhenUserHasWonThreeTimesAndNotBeenPromptForCurrentVersion() {
-        var reviewCallCount = 0
-        let (sut, _, userDefaults) = makeSUT(askForReview: { _ in
-            reviewCallCount += 1
-        })
-        
-        userDefaults.recordUserHasWonThreeTimes()
-        userDefaults.recordUserHasAlreadyBeenPromptForReview(for: "any unmatched version")
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(reviewCallCount, 1)
-    }
-    
     func test_viewDidAppear_showsEmojiAnimationOnFirstTime() {
         let (sut, _, _) = makeSUT()
         
@@ -201,7 +162,7 @@ class WinViewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, askForReview: @escaping (WinViewController.ReviewCompletion) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
         let loader = RecordLoaderSpy()
         let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
@@ -209,7 +170,6 @@ class WinViewControllerTests: XCTestCase {
         sut.digitCount = digitCount
         sut.guessCount = guessCount
         sut.userDefaults = userDefaults
-        sut.askForReview = askForReview
         sut.showFireworkAnimation = showFireworkAnimation
         
         let recordViewController = sut.recordViewController!

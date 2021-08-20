@@ -25,12 +25,6 @@ public final class WinUIComposer {
         
         winViewController.digitCount = gameVersion.digitCount
         winViewController.userDefaults = userDefaults
-        winViewController.askForReview = { completion in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                SKStoreReviewController.requestReview()
-                completion()
-            }
-        }
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
         
         let shareViewController = ShareViewController(
