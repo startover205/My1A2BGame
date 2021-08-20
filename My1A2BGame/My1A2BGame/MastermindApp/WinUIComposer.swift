@@ -20,7 +20,7 @@ public final class WinUIComposer {
         recordViewController.hostViewController = winViewController
         recordViewController.loader = recordLoader
         recordViewController.guessCount = { [unowned winViewController] in winViewController.guessCount }
-        recordViewController.spentTime = { [unowned winViewController] in winViewController.spentTime }
+        recordViewController.spentTime = { [unowned winViewController] in winViewController.guessTime }
         recordViewController.currentDate = Date.init
         
         winViewController.digitCount = gameVersion.digitCount

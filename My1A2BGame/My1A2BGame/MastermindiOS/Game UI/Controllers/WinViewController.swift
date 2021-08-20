@@ -10,11 +10,10 @@ import UIKit
 import Mastermind
 
 public class WinViewController: UIViewController {
-    
     public typealias ReviewCompletion = () -> Void
 
     public var guessCount = 0
-    public var spentTime = 99999.9
+    public var guessTime = 99999.9
     public var digitCount = 4
     
     public var userDefaults: UserDefaults?
