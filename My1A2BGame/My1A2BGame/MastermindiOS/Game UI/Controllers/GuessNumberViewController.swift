@@ -11,7 +11,7 @@ import GameKit
 import GoogleMobileAds
 import MastermindiOS
 
-protocol AdProvider {
+public protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
@@ -54,7 +54,7 @@ public class GuessNumberViewController: UIViewController {
     var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
-    var winViewController: WinViewController?
+    var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     
     @IBOutlet weak var quizLabelContainer: UIStackView!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
@@ -290,15 +290,9 @@ extension GuessNumberViewController {
             feedbackGenerator?.notificationOccurred(.success)
             feedbackGenerator = nil
             
-            if let winViewController = winViewController {
-                winViewController.guessCount = guessCount
-                winViewController.spentTime = CACurrentMediaTime() - self.startPlayTime
-                show(winViewController, sender: nil)
-              
-                winViewController.view.backgroundColor = self.view.backgroundColor
-                
-                text = NSLocalizedString("Congrats! You won!", comment: "")
-            }
+            text = NSLocalizedString("Congrats! You won!", comment: "")
+            
+            onWin?(guessCount, CACurrentMediaTime() - self.startPlayTime)
         } else {
             feedbackGenerator?.notificationOccurred(.error)
             feedbackGenerator = nil

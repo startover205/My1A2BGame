@@ -10,6 +10,7 @@ import XCTest
 @testable import My1A2BGame
 import Mastermind
 import MastermindiOS
+import GoogleMobileAds
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
@@ -108,12 +109,10 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_deallocation_doesNotRetain() {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaultsMock(), recordLoader: RecordLoaderFake())
+        let sut = makeSUT()
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(sut.voicePromptViewController!)
-        trackForMemoryLeaks(sut.winViewController!)
-        trackForMemoryLeaks(sut.winViewController!.shareViewController!)
     }
     
 //    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
@@ -146,7 +145,7 @@ class GameUIIntegrationTests: XCTestCase {
     // MARK: Helpers
     
     private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, recordLoader: RecordLoaderFake())
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, adProvider: AdProviderFake(), onWin: { _, _ in })
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -201,12 +200,8 @@ class GameUIIntegrationTests: XCTestCase {
         }
     }
     
-    private class RecordLoaderFake: RecordLoader {
-        func load() throws -> [PlayerRecord] { [] }
-        
-        func validate(score: Score) -> Bool { false }
-        
-        func insertNewRecord(_ record: PlayerRecord) throws { }
+    private final class AdProviderFake: AdProvider {
+        var rewardAd: GADRewardedAd?
     }
 }
 

@@ -10,6 +10,7 @@ import XCTest
 @testable import My1A2BGame
 import Mastermind
 import MastermindiOS
+import GoogleMobileAds
 
 class GuessNumberViewControllerTests: XCTestCase {
     
@@ -36,18 +37,17 @@ class GuessNumberViewControllerTests: XCTestCase {
         
     }
     
-    func test_matchNumbers_presentWinVCWhenCorrect() {
-        let sut = makeSUT()
-        let navigation = UINavigationController()
-        navigation.setViewControllers([sut], animated: false)
+    func test_matchNumbers_notifiesHandlerOnWin() {
+        var callCount = 0
+        let sut = makeSUT { _, _ in
+            callCount += 1
+        }
         
         sut.initGame()
-        let answer = sut.quizNumbers
-        let guess = answer
-        sut.tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
         
-        triggerRunLoopToSkipNavigationAnimation()
-        XCTAssertTrue(navigation.topViewController is WinViewController)
+        sut.simulateUserGuessWithCorrectAnswer()
+        
+        XCTAssertEqual(callCount, 1)
     }
     
     func test_matchNumbers_doesNotPresentLoseVCWhenIncorrectWithAnotherChance() {
@@ -61,7 +61,6 @@ class GuessNumberViewControllerTests: XCTestCase {
         let guess = Array(sut.quizNumbers.reversed())
         sut.tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
         
-        triggerRunLoopToSkipNavigationAnimation()
         XCTAssertFalse(navigation.topViewController is LoseViewController)
     }
     
@@ -82,8 +81,8 @@ class GuessNumberViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    func makeSUT(loadView: Bool = true) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, recordLoader: RecordLoaderFake())
+    func makeSUT(loadView: Bool = true, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, adProvider: AdProviderFake(), onWin: onWin)
         if loadView {
             sut.loadViewIfNeeded()
         }
@@ -104,11 +103,15 @@ class GuessNumberViewControllerTests: XCTestCase {
         wait(for: [exp], timeout: seconds + 1.0)
     }
     
-    private final class RecordLoaderFake: RecordLoader {
-        func load() throws -> [PlayerRecord] { [] }
-        
-        func validate(score: Score) -> Bool { false }
+    private final class AdProviderFake: AdProvider {
+        var rewardAd: GADRewardedAd?
+    }
+}
 
-        func insertNewRecord(_ record: PlayerRecord) throws { }
+private extension GuessNumberViewController {
+    func simulateUserGuessWithCorrectAnswer() {
+        let answer = quizNumbers
+        let guess = answer
+        tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
     }
 }
