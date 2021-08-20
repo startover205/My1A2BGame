@@ -1170,6 +1170,7 @@ Please enter your name.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                         <connections>
+                                            <action selector="didChangeInput:" destination="UBt-zw-eJx" eventType="editingChanged" id="eRf-F9-LWY"/>
                                             <action selector="dismissKeyboard:" destination="UBt-zw-eJx" eventType="editingDidEndOnExit" id="TRU-ce-zqN"/>
                                             <outlet property="delegate" destination="Lnm-Xa-BhH" id="2nu-RS-klH"/>
                                         </connections>

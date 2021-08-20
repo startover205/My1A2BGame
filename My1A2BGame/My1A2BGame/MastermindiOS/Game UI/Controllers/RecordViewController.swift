@@ -9,7 +9,7 @@
 import UIKit
 import Mastermind
 
-public final class RecordViewController: NSObject, UITextFieldDelegate {
+public final class RecordViewController: NSObject {
     @IBOutlet private(set) public weak var confirmButton: UIButton!
     @IBOutlet private(set) public weak var containerView: UIStackView!
     @IBOutlet private(set) public weak var inputTextField: UITextField!
@@ -23,8 +23,6 @@ public final class RecordViewController: NSObject, UITextFieldDelegate {
     public func configureViews() {
         confirmButton.addTarget(self, action: #selector(insertRecord), for: .touchUpInside)
         
-        inputTextField.delegate = self
-        
         containerView.alpha = loader.validate(score: (guessCount(), spentTime())) ? 1 : 0
     }
     
@@ -33,14 +31,8 @@ public final class RecordViewController: NSObject, UITextFieldDelegate {
     @IBAction func didTapScreen(_ sender: Any) {
         hostViewController?.view.endEditing(true)
     }
-    
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let oldString = textField.text! as NSString
-        let newString = oldString.replacingCharacters(in: range, with: string)
-        
-        confirmButton.isEnabled = !newString.isEmpty
-        
-        return true
+    @IBAction func didChangeInput(_ sender: UITextField) {
+        confirmButton.isEnabled = sender.text?.isEmpty == false
     }
     
     @objc func insertRecord() {

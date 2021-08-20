@@ -270,11 +270,9 @@ private extension WinViewController {
     }
     
     func simulateUserEnterPlayerName(name: String?) {
-        guard let inputTextField = recordViewController?.inputTextField else { return }
-        let oldText = inputTextField.text ?? ""
-        let newText = name ?? ""
-        inputTextField.text = newText
-        _ = inputTextField.delegate?.textField?(inputTextField, shouldChangeCharactersIn: NSRange(oldText) ?? NSRange(), replacementString: newText)
+        recordViewController.inputTextField.text = name
+        
+        recordViewController.inputTextField.sendActions(for: .editingChanged)
     }
     
     func simulateUserSendInput() {
