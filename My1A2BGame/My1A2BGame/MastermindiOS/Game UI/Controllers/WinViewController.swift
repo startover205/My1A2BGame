@@ -28,15 +28,7 @@ public class WinViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private lazy var _prepareEmoji: Void = {
-        prepareEmoji()
-    }()
-    private lazy var _emojiAnimation: Void = {
-        emojiAnimation()
-    }()
-    private lazy var _fireworkAnimation: Void = {
-        showFireworkAnimation?(self.view)
-    }()
+    private var isFirstTimeAppear = true
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +42,18 @@ public class WinViewController: UIViewController {
         let format = NSLocalizedString("%dA0B!! You won!!", comment: "2nd")
         winLabel.text = String.localizedStringWithFormat(format, digitCount)
         
-        _ = _prepareEmoji
+        prepareEmoji()
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        _ = _emojiAnimation
-        _ = _fireworkAnimation
+        if isFirstTimeAppear {
+            isFirstTimeAppear = false
+            
+            emojiAnimation()
+            showFireworkAnimation?(self.view)
+        }
     }
 }
 
