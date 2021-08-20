@@ -127,14 +127,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func showWinSceneForBasicGame(guessCount: Int, guessTime: TimeInterval) {
         let store = try! CoreDataRecordStore<Winner>(storeURL: basicGameStoreURL, modelName: "Model")
         let recordLoader = LocalRecordLoader(store: store)
-        let winScene = WinUIComposer.winComposedWith(gameVersion: BasicGame(), userDefaults: .standard, recordLoader: recordLoader)
+        let winScene = WinUIComposer.winComposedWith(gameVersion: BasicGame(), recordLoader: recordLoader)
         basicGameNavigationController.pushViewController(winScene, animated: true)
     }
     
     private func showWinSceneForAdvancedGame(guessCount: Int, guessTime: TimeInterval) {
         let store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
         let recordLoader = LocalRecordLoader(store: store)
-        let winScene = WinUIComposer.winComposedWith(gameVersion: AdvancedGame(), userDefaults: .standard, recordLoader: recordLoader)
+        let winScene = WinUIComposer.winComposedWith(gameVersion: AdvancedGame(), recordLoader: recordLoader)
         basicGameNavigationController.pushViewController(winScene, animated: true)
     }
 }

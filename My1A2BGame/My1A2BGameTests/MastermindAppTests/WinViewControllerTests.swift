@@ -13,7 +13,7 @@ import Mastermind
 class WinViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_rendersGuessCount_guess1() {
-        let (sut, _, _) = makeSUT(guessCount: 1)
+        let (sut, _) = makeSUT(guessCount: 1)
         
         sut.loadViewIfNeeded()
         
@@ -21,7 +21,7 @@ class WinViewControllerTests: XCTestCase {
     }
     
     func test_viewDidLoad_rendersGuessCount_guess2() {
-        let (sut, _, _) = makeSUT(guessCount: 2)
+        let (sut, _) = makeSUT(guessCount: 2)
         
         sut.loadViewIfNeeded()
         
@@ -30,7 +30,7 @@ class WinViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_rendersWinMessageAccordingToDigitCount() {
         let digitCount = 3
-        let (sut, _, _) = makeSUT(digitCount: digitCount)
+        let (sut, _) = makeSUT(digitCount: digitCount)
         
         sut.loadViewIfNeeded()
         
@@ -40,7 +40,7 @@ class WinViewControllerTests: XCTestCase {
     func test_viewDidLoad_reqeustLoaderValidatePlayerRecord() {
         let guessCount = 3
         let guessTime = 10.0
-        let (sut, loader, _) = makeSUT(guessCount: guessCount, spentTime: guessTime)
+        let (sut, loader) = makeSUT(guessCount: guessCount, spentTime: guessTime)
         
         sut.loadViewIfNeeded()
         
@@ -48,7 +48,7 @@ class WinViewControllerTests: XCTestCase {
     }
     
     func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
-        let (sut, loader, _) = makeSUT()
+        let (sut, loader) = makeSUT()
         
         loader.completeValidation(with: true)
         sut.loadViewIfNeeded()
@@ -57,7 +57,7 @@ class WinViewControllerTests: XCTestCase {
     }
     
     func test_viewDidLoad_doesNotRendersNewRecordViewsIfRecordNotBroken() {
-        let (sut, loader, _) = makeSUT()
+        let (sut, loader) = makeSUT()
         
         loader.completeValidation(with: false)
         sut.loadViewIfNeeded()
@@ -66,7 +66,7 @@ class WinViewControllerTests: XCTestCase {
     }
     
     func test_viewDidAppear_showsEmojiAnimationOnFirstTime() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -84,7 +84,7 @@ class WinViewControllerTests: XCTestCase {
     
     func test_viewDidAppear_showsFireworkAnimationOnFirstTime() {
         var fireworkCallCount = 0
-        let (sut, _, _) = makeSUT(showFireworkAnimation: { _ in
+        let (sut, _) = makeSUT(showFireworkAnimation: { _ in
             fireworkCallCount += 1
         })
 
@@ -102,7 +102,7 @@ class WinViewControllerTests: XCTestCase {
     }
     
     func test_canShareContent() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _) = makeSUT()
         let hostVC = UIViewControllerSpy()
         let shareController = ShareViewController(hostViewController: hostVC, guessCount: { [unowned sut] in sut.guessCount })
         sut.shareViewController = shareController
@@ -127,7 +127,7 @@ class WinViewControllerTests: XCTestCase {
     }
     
     func test_breakRecord_confirmButtonEnabledOnlyWhenUserEnteredName() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -147,7 +147,7 @@ class WinViewControllerTests: XCTestCase {
         let guessCount = 2
         let guessTime = 20.0
         let timestamp = Date()
-        let (sut, loader, _) = makeSUT(guessCount: guessCount, spentTime: guessTime, currentDate: { timestamp })
+        let (sut, loader) = makeSUT(guessCount: guessCount, spentTime: guessTime, currentDate: { timestamp })
         
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
@@ -162,14 +162,12 @@ class WinViewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy, UserDefaults) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
-        let userDefaults = UserDefaultsMock()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         sut.digitCount = digitCount
         sut.guessCount = guessCount
-        sut.userDefaults = userDefaults
         sut.showFireworkAnimation = showFireworkAnimation
         
         let recordViewController = sut.recordViewController!
@@ -179,11 +177,10 @@ class WinViewControllerTests: XCTestCase {
         recordViewController.currentDate = currentDate
         recordViewController.loader = loader
         
-        trackForMemoryLeaks(userDefaults, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, loader, userDefaults)
+        return (sut, loader)
     }
     
     private func currentAppVersion() -> String {
@@ -261,16 +258,5 @@ private extension WinViewController {
     
     func simulateUserSendInput() {
         recordViewController?.confirmButton.sendActions(for: .touchUpInside)
-    }
-
-}
-
-private extension UserDefaults {
-    func recordUserHasWonThreeTimes() {
-        set(3, forKey: "processCompletedCount")
-    }
-    
-    func recordUserHasAlreadyBeenPromptForReview(for appVersion: String) {
-        set(appVersion, forKey: "lastVersionPromptedForReview")
     }
 }

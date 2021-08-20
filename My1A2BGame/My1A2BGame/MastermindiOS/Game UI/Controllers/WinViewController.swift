@@ -14,7 +14,6 @@ public class WinViewController: UIViewController {
     public var guessTime = 99999.9
     public var digitCount = 4
     
-    public var userDefaults: UserDefaults?
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
     public var shareViewController: ShareViewController?
     @IBOutlet private(set) public weak var recordViewController: RecordViewController!

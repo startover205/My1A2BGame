@@ -13,7 +13,7 @@ import StoreKit
 public final class WinUIComposer {
     private init() {}
     
-    public static func winComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, recordLoader: RecordLoader) -> WinViewController {
+    public static func winComposedWith(gameVersion: GameVersion, recordLoader: RecordLoader) -> WinViewController {
         
         let winViewController = makeWinViewController()
         let recordViewController = winViewController.recordViewController!
@@ -24,7 +24,6 @@ public final class WinUIComposer {
         recordViewController.currentDate = Date.init
         
         winViewController.digitCount = gameVersion.digitCount
-        winViewController.userDefaults = userDefaults
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
         
         let shareViewController = ShareViewController(
