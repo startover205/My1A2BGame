@@ -160,9 +160,24 @@ class WinViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime), .save(PlayerRecord(playerName: playerName, guessCount: guessCount, guessTime: guessTime, timestamp: timestamp))], "Expect save message when use press confirm button with player name entered")
     }
     
+    func test_tapScreen_dismissKeyboard() {
+        let (sut, _) = makeSUT(trackMemoryLeak: false)
+        let window = UIWindow()
+        window.addSubview(sut.view)
+        
+        sut.loadViewIfNeeded()
+        sut.simulateKeyboardShowing()
+        
+        XCTAssertTrue(sut.inputView().isFirstResponder)
+
+        sut.simulateOnTapScreen()
+        
+        XCTAssertFalse(sut.inputView().isFirstResponder)
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
         let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
@@ -177,8 +192,10 @@ class WinViewControllerTests: XCTestCase {
         recordViewController.currentDate = currentDate
         recordViewController.loader = loader
         
-        trackForMemoryLeaks(loader, file: file, line: line)
-        trackForMemoryLeaks(sut, file: file, line: line)
+        if trackMemoryLeak {
+            trackForMemoryLeaks(loader, file: file, line: line)
+            trackForMemoryLeaks(sut, file: file, line: line)
+        }
         
         return (sut, loader)
     }
@@ -242,6 +259,10 @@ private extension WinViewController {
     
     var confirmButtonEanbled: Bool { recordViewController!.confirmButton.isEnabled }
     
+    func inputView() -> UITextField {
+        recordViewController.inputTextField
+    }
+    
     func simulateUserInitiatedShareAction() {
         guard let button = navigationItem.rightBarButtonItem else { return }
         
@@ -258,5 +279,17 @@ private extension WinViewController {
     
     func simulateUserSendInput() {
         recordViewController?.confirmButton.sendActions(for: .touchUpInside)
+    }
+    
+    func simulateKeyboardShowing() {
+        recordViewController.inputTextField.becomeFirstResponder()
+    }
+    
+    func simulateOnTapScreen() {
+        didTapScreen(self)
+    }
+    
+    func simulateUserTapReturn() {
+        recordViewController.inputTextField.sendActions(for: .editingDidEndOnExit)
     }
 }
