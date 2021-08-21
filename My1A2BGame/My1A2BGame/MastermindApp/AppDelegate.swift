@@ -44,10 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GoogleRewardAdManager.shared.begin()
         }
         
-        //        #if DEBUG
-        //        fakeRecord()
-        //        #endif
-        
         window = UIWindow()
         configureWindow()
         
