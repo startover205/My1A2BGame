@@ -21,7 +21,6 @@ public class WinViewController: UIViewController {
     @IBOutlet private(set) public weak var winLabel: UILabel!
     @IBOutlet private(set) public weak var guessCountLabel: UILabel!
     @IBOutlet private(set) public weak var emojiLabel: UILabel!
-    @IBOutlet private(set) public weak var shareBarBtnItem: UIBarButtonItem!
     
     private var isFirstTimeAppear = true
     

@@ -1207,18 +1207,10 @@ Please enter your name.</string>
                             <outletCollection property="gestureRecognizers" destination="bdl-ju-rXa" appends="YES" id="aYB-HS-Uz5"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="g9f-oC-ShO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="DfS-k1-KBN">
-                            <connections>
-                                <action selector="shareBtnPressed:" destination="Lnm-Xa-BhH" id="YUV-Bj-Bzy"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="emojiLabel" destination="Dh8-Uu-zLX" id="1w3-zT-Du3"/>
                         <outlet property="guessCountLabel" destination="qg1-ih-mUi" id="Xiv-rU-buc"/>
                         <outlet property="recordViewController" destination="UBt-zw-eJx" id="2IX-F6-P8I"/>
-                        <outlet property="shareBarBtnItem" destination="DfS-k1-KBN" id="54W-5G-So1"/>
                         <outlet property="winLabel" destination="Fvh-Pn-65H" id="vNG-3X-Ox6"/>
                     </connections>
                 </viewController>
