@@ -8,6 +8,7 @@
 
 import XCTest
 import Mastermind
+import MastermindiOS
 @testable import My1A2BGame
 
 class GameAcceptanceTests: XCTestCase{

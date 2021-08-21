@@ -14,11 +14,11 @@ public final class RecordViewController: NSObject {
     @IBOutlet private(set) public weak var containerView: UIStackView!
     @IBOutlet private(set) public weak var inputTextField: UITextField!
     
-    weak var hostViewController: UIViewController?
-    var guessCount: (() -> Int)!
-    var spentTime: (() -> TimeInterval)!
-    var loader: RecordLoader!
-    var currentDate: (() -> Date)!
+    public weak var hostViewController: UIViewController?
+    public var guessCount: (() -> Int)!
+    public var spentTime: (() -> TimeInterval)!
+    public var loader: RecordLoader!
+    public var currentDate: (() -> Date)!
 
     public func configureViews() {
         confirmButton.addTarget(self, action: #selector(insertRecord), for: .touchUpInside)
@@ -28,10 +28,10 @@ public final class RecordViewController: NSObject {
     
     @IBAction private func dismissKeyboard(_ sender: UITextField) {
     }
-    @IBAction func didTapScreen(_ sender: Any) {
+    @IBAction public func didTapScreen(_ sender: Any) {
         hostViewController?.view.endEditing(true)
     }
-    @IBAction func didChangeInput(_ sender: UITextField) {
+    @IBAction private func didChangeInput(_ sender: UITextField) {
         confirmButton.isEnabled = sender.text?.isEmpty == false
     }
     

@@ -7,8 +7,9 @@
 //
 
 import GameKit
-import Mastermind
 import StoreKit
+import Mastermind
+import MastermindiOS
 
 public final class WinUIComposer {
     private init() {}
@@ -28,14 +29,14 @@ public final class WinUIComposer {
         
         let shareViewController = ShareViewController(
             hostViewController: winViewController,
-            guessCount: { [unowned winViewController] in winViewController.guessCount })
+            guessCount: { [unowned winViewController] in winViewController.guessCount }, appDownloadUrl: Constants.appStoreDownloadUrl)
         winViewController.shareViewController = shareViewController
         
         return winViewController
     }
     
     private static func makeWinViewController() -> WinViewController {
-        let winController = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self)).instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
+        let winController = UIStoryboard(name: "Win", bundle: .init(for: WinViewController.self)).instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         
         return winController
     }

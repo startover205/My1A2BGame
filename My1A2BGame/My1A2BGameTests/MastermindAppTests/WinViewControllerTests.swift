@@ -7,8 +7,8 @@
 //
 
 import XCTest
-@testable import My1A2BGame
 import Mastermind
+import MastermindiOS
 
 class WinViewControllerTests: XCTestCase {
     
@@ -104,7 +104,7 @@ class WinViewControllerTests: XCTestCase {
     func test_canShareContent() {
         let (sut, _) = makeSUT()
         let hostVC = UIViewControllerSpy()
-        let shareController = ShareViewController(hostViewController: hostVC, guessCount: { [unowned sut] in sut.guessCount })
+        let shareController = ShareViewController(hostViewController: hostVC, guessCount: { [unowned sut] in sut.guessCount }, appDownloadUrl: "")
         sut.shareViewController = shareController
 
         sut.loadViewIfNeeded()
@@ -179,7 +179,7 @@ class WinViewControllerTests: XCTestCase {
     
     private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
-        let storyboard = UIStoryboard(name: "Game", bundle: .init(for: WinViewController.self))
+        let storyboard = UIStoryboard(name: "Win", bundle: .init(for: WinViewController.self))
         let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
         sut.digitCount = digitCount
         sut.guessCount = guessCount

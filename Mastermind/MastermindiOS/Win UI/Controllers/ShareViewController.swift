@@ -16,10 +16,12 @@ public final class ShareViewController {
     
     private weak var hostViewController: UIViewController?
     private let guessCount: () -> Int
+    private let appDownloadUrl: String
     
-    public init(hostViewController: UIViewController, guessCount: @escaping () -> Int) {
+    public init(hostViewController: UIViewController, guessCount: @escaping () -> Int, appDownloadUrl: String) {
         self.hostViewController = hostViewController
         self.guessCount = guessCount
+        self.appDownloadUrl = appDownloadUrl
     }
     
     @objc func share() {
@@ -28,7 +30,7 @@ public final class ShareViewController {
         
         let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
         var activityItems: [Any] = [String.localizedStringWithFormat(format, guessCount)]
-        activityItems.append(Constants.appStoreDownloadUrl)
+        activityItems.append(appDownloadUrl)
         
         if let snapshotView = hostViewController.view {
             UIGraphicsBeginImageContextWithOptions(snapshotView.bounds.size, false, UIScreen.main.scale)

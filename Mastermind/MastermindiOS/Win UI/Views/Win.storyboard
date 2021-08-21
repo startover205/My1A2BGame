@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Win View Controller-->
+        <scene sceneID="IIM-7a-gSU">
+            <objects>
+                <viewController storyboardIdentifier="WinViewController" id="uCx-6K-QPm" customClass="WinViewController" customModule="MastermindiOS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8jI-a9-IGE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4A0B!! You won!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7f-ra-JPH">
+                                <rect key="frame" x="94.5" y="163" width="225" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You guessed 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gnr-0A-uas">
+                                <rect key="frame" x="67" y="276.5" width="280.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9cN-8A-PUK">
+                                <rect key="frame" x="115.5" y="377.5" width="183.5" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezt-08-jsj">
+                                        <rect key="frame" x="0.0" y="0.0" width="183.5" height="61"/>
+                                        <string key="text">Congradulations!
+You break the record!
+Please enter your name.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1zD-or-vVV">
+                                        <rect key="frame" x="31.5" y="69" width="120" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="oeN-AS-KBY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                        <connections>
+                                            <action selector="didChangeInput:" destination="POp-O3-uua" eventType="editingChanged" id="Mbk-mc-ECJ"/>
+                                            <action selector="dismissKeyboard:" destination="POp-O3-uua" eventType="editingDidEndOnExit" id="5Vy-ez-dWd"/>
+                                            <outlet property="delegate" destination="uCx-6K-QPm" id="uue-Pq-Gb2"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ral-C3-FW5">
+                                        <rect key="frame" x="64" y="111" width="55" height="30"/>
+                                        <state key="normal" title="Confirm"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAL-2C-n2l">
+                                <rect key="frame" x="125.5" y="590" width="163" height="179.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lfY-QB-nuK"/>
+                        <color key="backgroundColor" name="MainBackground"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="9cN-8A-PUK" firstAttribute="centerY" secondItem="8jI-a9-IGE" secondAttribute="centerY" id="8Wy-01-l7B"/>
+                            <constraint firstItem="fAL-2C-n2l" firstAttribute="centerY" secondItem="lfY-QB-nuK" secondAttribute="centerY" multiplier="1.5" id="9QR-ob-ydZ"/>
+                            <constraint firstItem="E7f-ra-JPH" firstAttribute="centerY" secondItem="lfY-QB-nuK" secondAttribute="centerY" multiplier="0.4" id="HqT-6r-diP"/>
+                            <constraint firstItem="9cN-8A-PUK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lfY-QB-nuK" secondAttribute="leading" constant="8" id="bSJ-Cc-Sna"/>
+                            <constraint firstItem="Gnr-0A-uas" firstAttribute="centerX" secondItem="8jI-a9-IGE" secondAttribute="centerX" id="cAT-Ws-zXf"/>
+                            <constraint firstItem="fAL-2C-n2l" firstAttribute="centerX" secondItem="8jI-a9-IGE" secondAttribute="centerX" id="dzm-zp-1Cb"/>
+                            <constraint firstItem="E7f-ra-JPH" firstAttribute="centerX" secondItem="8jI-a9-IGE" secondAttribute="centerX" id="l9Z-TN-mJK"/>
+                            <constraint firstItem="lfY-QB-nuK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9cN-8A-PUK" secondAttribute="trailing" constant="8" id="q8g-9X-UzG"/>
+                            <constraint firstItem="9cN-8A-PUK" firstAttribute="centerX" secondItem="8jI-a9-IGE" secondAttribute="centerX" id="tbn-s0-xrk"/>
+                            <constraint firstItem="Gnr-0A-uas" firstAttribute="centerY" secondItem="lfY-QB-nuK" secondAttribute="centerY" multiplier="0.65" id="zJG-OJ-1Gt"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="neC-jX-ji1" appends="YES" id="HRA-3i-Rpx"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="emojiLabel" destination="fAL-2C-n2l" id="wZf-Q9-mUr"/>
+                        <outlet property="guessCountLabel" destination="Gnr-0A-uas" id="EHf-hY-PPf"/>
+                        <outlet property="recordViewController" destination="POp-O3-uua" id="UOF-Ig-j09"/>
+                        <outlet property="winLabel" destination="E7f-ra-JPH" id="bo5-gW-enx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="35P-0h-phY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="neC-jX-ji1">
+                    <connections>
+                        <action selector="didTapScreen:" destination="POp-O3-uua" id="YGc-LE-050"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <customObject id="POp-O3-uua" customClass="RecordViewController" customModule="MastermindiOS">
+                    <connections>
+                        <outlet property="confirmButton" destination="ral-C3-FW5" id="uP5-uS-sSo"/>
+                        <outlet property="containerView" destination="9cN-8A-PUK" id="xkK-X0-9Xa"/>
+                        <outlet property="inputTextField" destination="1zD-or-vVV" id="dDu-Oi-BBB"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="5632" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="MainBackground">
+            <color red="1" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
