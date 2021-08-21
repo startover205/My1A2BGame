@@ -82,10 +82,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             gameVersion: BasicGame(),
             userDefaults: .standard,
             adProvider: GoogleRewardAdManager.shared,
-            onWin: { [weak self] in
-                self?.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
-                self?.appReviewController?.markProcessCompleteOneTime()
-                self?.appReviewController?.askForAppReviewIfAppropriate()
+            onWin: { [self] in
+                self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
+                self.appReviewController?.markProcessCompleteOneTime()
+                self.appReviewController?.askForAppReviewIfAppropriate()
             }))
     
     private lazy var advancedGameNavigationController = UINavigationController(
@@ -93,10 +93,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             gameVersion: AdvancedGame(),
             userDefaults: .standard,
             adProvider: GoogleRewardAdManager.shared,
-            onWin: { [weak self] in
-                self?.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
-                self?.appReviewController?.markProcessCompleteOneTime()
-                self?.appReviewController?.askForAppReviewIfAppropriate()
+            onWin: { [self] in
+                self.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
+                self.appReviewController?.markProcessCompleteOneTime()
+                self.appReviewController?.askForAppReviewIfAppropriate()
             }))
     
     func makeTabController() -> UITabBarController {
@@ -128,6 +128,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let store = try! CoreDataRecordStore<Winner>(storeURL: basicGameStoreURL, modelName: "Model")
         let recordLoader = LocalRecordLoader(store: store)
         let winScene = WinUIComposer.winComposedWith(gameVersion: BasicGame(), recordLoader: recordLoader)
+        winScene.guessCount = guessCount
+        winScene.guessTime = guessTime
         basicGameNavigationController.pushViewController(winScene, animated: true)
     }
     
@@ -135,6 +137,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
         let recordLoader = LocalRecordLoader(store: store)
         let winScene = WinUIComposer.winComposedWith(gameVersion: AdvancedGame(), recordLoader: recordLoader)
-        basicGameNavigationController.pushViewController(winScene, animated: true)
+        winScene.guessCount = guessCount
+        winScene.guessTime = guessTime
+        advancedGameNavigationController.pushViewController(winScene, animated: true)
     }
 }

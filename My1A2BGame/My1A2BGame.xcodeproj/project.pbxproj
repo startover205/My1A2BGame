@@ -37,6 +37,7 @@
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088A65026BE7855005FC389 /* UserDefaultsMock.swift */; };
 		C0962A5326BBC2BF002436AB /* WinViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0962A5226BBC2BF002436AB /* WinViewControllerTests.swift */; };
+		C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */; };
 		C09EE8D826C10F6400351B07 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C09EE8D626C10F6400351B07 /* ModelAdvanced.xcdatamodeld */; };
 		C0A1F49D26B62A1200536D73 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47926B62A1100536D73 /* WinViewController.swift */; };
 		C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */; };
@@ -147,6 +148,7 @@
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C088A65026BE7855005FC389 /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
 		C0962A5226BBC2BF002436AB /* WinViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewControllerTests.swift; sourceTree = "<group>"; };
+		C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAcceptanceTests.swift; sourceTree = "<group>"; };
 		C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C0A1F47926B62A1100536D73 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
 				C0962A5226BBC2BF002436AB /* WinViewControllerTests.swift */,
 				C0A5CC6026CE335C009ED821 /* PromptAppReviewControllerTests.swift */,
+				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
 			);
 			path = MastermindAppTests;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 			files = (
 				C0D65EC92666208C0053CDAE /* GuessNumberViewControllerTests.swift in Sources */,
 				C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */,
+				C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */,
 				C034AA6726B66B32006AABE6 /* XCTestCase+Snapshot.swift in Sources */,
 				C034AA6826B66B32006AABE6 /* UIViewController+Snapshot.swift in Sources */,
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,
