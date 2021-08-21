@@ -10,7 +10,7 @@ import UIKit
 
 public final class ShareViewController {
     private(set) lazy var view: UIBarButtonItem = {
-        let view = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(share))
+        let view = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
         return view
     }()
     
