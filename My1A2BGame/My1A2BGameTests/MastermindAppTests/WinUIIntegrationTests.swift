@@ -10,7 +10,7 @@ import XCTest
 import Mastermind
 import MastermindiOS
 
-class WinViewControllerTests: XCTestCase {
+class WinUIIntegrationTests: XCTestCase {
     
     func test_viewDidLoad_rendersGuessCount_guess1() {
         let (sut, _) = makeSUT(guessCount: 1)
