@@ -25,18 +25,17 @@ public final class RecordViewController: NSObject {
     private func bindViews() {
         confirmButton.addTarget(self, action: #selector(insertRecord), for: .touchUpInside)
         
-        recordViewModel?.onChange = { [weak self] viewModel in
-            self?.containerView.alpha = viewModel.breakRecord ? 1 : 0
-            
-            switch viewModel.saveState {
-            case .pending:
-                break
-            case .saved:
+        recordViewModel?.onValidation = { [weak self] breakRecord in
+            self?.containerView.alpha = breakRecord ? 1 : 0
+        }
+        
+        recordViewModel?.onSave = { [weak self] error in
+            if let error = error {
+                self?.showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
+            } else {
                 self?.showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd")) { [weak self] _ in
                     self?.hostViewController?.navigationController?.popViewController(animated: true)
                 }
-            case let .failed(error):
-                self?.showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
             }
         }
     }
