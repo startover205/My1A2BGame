@@ -19,10 +19,13 @@ public final class WinUIComposer {
         let winViewController = makeWinViewController()
         let recordViewController = winViewController.recordViewController!
         recordViewController.hostViewController = winViewController
-        recordViewController.loader = recordLoader
-        recordViewController.guessCount = { [unowned winViewController] in winViewController.guessCount }
-        recordViewController.spentTime = { [unowned winViewController] in winViewController.guessTime }
-        recordViewController.currentDate = Date.init
+        
+        let recordViewModel = RecordViewModel(
+            loader: recordLoader,
+            guessCount: { [unowned winViewController] in winViewController.guessCount },
+            guessTime: { [unowned winViewController] in winViewController.guessTime },
+            currentDate: Date.init)
+        recordViewController.recordViewModel = recordViewModel
         
         winViewController.digitCount = gameVersion.digitCount
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)

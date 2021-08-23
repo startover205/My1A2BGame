@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Mastermind
 
 public final class RecordViewController: NSObject {
     @IBOutlet private(set) public weak var confirmButton: UIButton!
@@ -15,15 +14,31 @@ public final class RecordViewController: NSObject {
     @IBOutlet private(set) public weak var inputTextField: UITextField!
     
     public weak var hostViewController: UIViewController?
-    public var guessCount: (() -> Int)!
-    public var spentTime: (() -> TimeInterval)!
-    public var loader: RecordLoader!
-    public var currentDate: (() -> Date)!
-
+    public var recordViewModel: RecordViewModel?
+    
     public func configureViews() {
+        bindViews()
+        
+        recordViewModel?.validateRecord()
+    }
+    
+    private func bindViews() {
         confirmButton.addTarget(self, action: #selector(insertRecord), for: .touchUpInside)
         
-        containerView.alpha = loader.validate(score: (guessCount(), spentTime())) ? 1 : 0
+        recordViewModel?.onChange = { [weak self] viewModel in
+            self?.containerView.alpha = viewModel.breakRecord ? 1 : 0
+            
+            switch viewModel.saveState {
+            case .pending:
+                break
+            case .saved:
+                self?.showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd")) { [weak self] _ in
+                    self?.hostViewController?.navigationController?.popViewController(animated: true)
+                }
+            case let .failed(error):
+                self?.showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
+            }
+        }
     }
     
     @IBAction private func dismissKeyboard(_ sender: UITextField) {
@@ -38,19 +53,7 @@ public final class RecordViewController: NSObject {
     @objc func insertRecord() {
         guard let name = inputTextField.text, !name.isEmpty else { return }
         
-        saveRecord(PlayerRecord(playerName: name, guessCount: guessCount(), guessTime: spentTime(), timestamp: currentDate()))
-    }
-    
-    private func saveRecord(_ record: PlayerRecord) {
-        do {
-            try loader.insertNewRecord(record)
-            
-            showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd")) { [weak self] _ in
-                self?.hostViewController?.navigationController?.popViewController(animated: true)
-            }
-        } catch {
-            showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
-        }
+        recordViewModel?.insertRecord(playerName: name)
     }
     
     private func showAlert(title: String, message: String? = nil, onDismiss: ((UIAlertAction) -> Void)? = nil) {

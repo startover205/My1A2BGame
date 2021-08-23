@@ -51,6 +51,7 @@
 		C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F126D0D50900AE72F4 /* ShareViewController.swift */; };
 		C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F226D0D50900AE72F4 /* RecordViewController.swift */; };
 		C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C09841F826D0D56200AE72F4 /* Win.storyboard */; };
+		C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420226D33E8600AE72F4 /* RecordViewModel.swift */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -131,6 +132,7 @@
 		C09841F126D0D50900AE72F4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C09841F226D0D50900AE72F4 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		C09841F826D0D56200AE72F4 /* Win.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Win.storyboard; sourceTree = "<group>"; };
+		C098420226D33E8600AE72F4 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				C09841EF26D0D49900AE72F4 /* WinViewController.swift */,
 				C09841F126D0D50900AE72F4 /* ShareViewController.swift */,
 				C09841F226D0D50900AE72F4 /* RecordViewController.swift */,
+				C098420226D33E8600AE72F4 /* RecordViewModel.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
+				C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

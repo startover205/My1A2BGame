@@ -187,10 +187,12 @@ class WinViewControllerTests: XCTestCase {
         
         let recordViewController = sut.recordViewController!
         recordViewController.hostViewController = sut
-        recordViewController.guessCount = { guessCount }
-        recordViewController.spentTime = { spentTime }
-        recordViewController.currentDate = currentDate
-        recordViewController.loader = loader
+        let recordViewModel = RecordViewModel(
+            loader: loader,
+            guessCount: { guessCount },
+            guessTime: { spentTime },
+            currentDate: currentDate)
+        recordViewController.recordViewModel = recordViewModel
         
         if trackMemoryLeak {
             trackForMemoryLeaks(loader, file: file, line: line)
