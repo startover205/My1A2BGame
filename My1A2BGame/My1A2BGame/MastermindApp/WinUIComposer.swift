@@ -14,7 +14,7 @@ import MastermindiOS
 public final class WinUIComposer {
     private init() {}
     
-    public static func winComposedWith(gameVersion: GameVersion, recordLoader: RecordLoader) -> WinViewController {
+    public static func winComposedWith(digitCount: Int, recordLoader: RecordLoader) -> WinViewController {
         
         let winViewController = makeWinViewController()
         let recordViewController = winViewController.recordViewController!
@@ -27,7 +27,7 @@ public final class WinUIComposer {
             currentDate: Date.init)
         recordViewController.recordViewModel = recordViewModel
         
-        winViewController.digitCount = gameVersion.digitCount
+        winViewController.digitCount = digitCount
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
         
         let shareViewController = ShareViewController(
