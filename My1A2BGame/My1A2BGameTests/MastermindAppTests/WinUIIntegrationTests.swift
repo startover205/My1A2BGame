@@ -12,23 +12,22 @@ import MastermindiOS
 
 class WinUIIntegrationTests: XCTestCase {
     
-    func test_viewDidLoad_rendersGuessCount_guess1() {
-        let (sut, _) = makeSUT(guessCount: 1)
+    func test_loadView_rendersGuessCountMessageAccordingToGuessCount() {
+        let guessCount = 1
+        let (sut, _) = makeSUT(guessCount: guessCount)
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.guessCountMessage, "You guessed 1 time")
+        XCTAssertEqual(sut.guessCountMessage, guessCountMessageFor(guessCount: guessCount))
+        
+        let (anotherSut, _) = makeSUT(guessCount: guessCount+1)
+        
+        anotherSut.loadViewIfNeeded()
+        
+        XCTAssertEqual(anotherSut.guessCountMessage, guessCountMessageFor(guessCount: guessCount+1))
     }
     
-    func test_viewDidLoad_rendersGuessCount_guess2() {
-        let (sut, _) = makeSUT(guessCount: 2)
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(sut.guessCountMessage, "You guessed 2 times")
-    }
-    
-    func test_viewDidLoad_rendersWinMessageAccordingToDigitCount() {
+    func test_loadView_rendersWinMessageAccordingToDigitCount() {
         let digitCount = 3
         let (sut, _) = makeSUT(digitCount: digitCount)
         
@@ -37,7 +36,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.winMessage, winMessageFor(digitCount: digitCount))
     }
     
-    func test_viewDidLoad_reqeustLoaderValidatePlayerRecord() {
+    func test_loadView_reqeustLoaderValidatePlayerScore() {
         let guessCount = 3
         let guessTime = 10.0
         let (sut, loader) = makeSUT(guessCount: guessCount, spentTime: guessTime)
@@ -47,7 +46,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)])
     }
     
-    func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
+    func test_loadView_rendersBreakRecordViewsIfBreakRecord() {
         let (sut, loader) = makeSUT()
         
         loader.completeValidation(with: true)
@@ -56,7 +55,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.showingBreakRecordView)
     }
     
-    func test_viewDidLoad_doesNotRendersNewRecordViewsIfRecordNotBroken() {
+    func test_loadView_doesNotRendersNewRecordViewsIfRecordNotBroken() {
         let (sut, loader) = makeSUT()
         
         loader.completeValidation(with: false)
@@ -65,7 +64,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingBreakRecordView)
     }
     
-    func test_viewDidAppear_showsEmojiAnimationOnFirstTime() {
+    func test_emojiAnimation_showsOnTheFirstTimeOnly() {
         let (sut, _) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -82,7 +81,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform does not change when the view appeared the second time")
     }
     
-    func test_viewDidAppear_showsFireworkAnimationOnFirstTime() {
+    func test_fireworkAnimation_showsOnTheFirstTimeOnly() {
         var fireworkCallCount = 0
         let (sut, _) = makeSUT(showFireworkAnimation: { _ in
             fireworkCallCount += 1
@@ -101,7 +100,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(fireworkCallCount, 1, "expect no more calls after view already appear once")
     }
     
-    func test_canShareContent() {
+    func test_tapOnShareView_canShareContent() {
         let (sut, _) = makeSUT()
         let hostVC = UIViewControllerSpy()
         let shareController = ShareViewController(hostViewController: hostVC, guessCount: { [unowned sut] in sut.guessCount }, appDownloadUrl: "")
@@ -117,32 +116,24 @@ class WinUIIntegrationTests: XCTestCase {
         
         XCTAssertEqual(hostVC.presentCallCount, 2)
     }
-    
-    private final class UIViewControllerSpy: UIViewController {
-        var presentCallCount = 0
-        
-        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-            presentCallCount += 1
-        }
-    }
-    
-    func test_breakRecord_confirmButtonEnabledOnlyWhenUserEnteredName() {
+
+    func test_saveRecordButton_enabledOnlyWhenUserEnteredName() {
         let (sut, _) = makeSUT()
         
         sut.loadViewIfNeeded()
         
-        XCTAssertFalse(sut.confirmButtonEanbled, "expect confirm button to be not enabled after view did load")
+        XCTAssertFalse(sut.saveReocrdButtonEanbled, "expect confirm button to be not enabled after view did load")
         
         sut.simulateUserEnterPlayerName(name: "any name")
         
-        XCTAssertTrue(sut.confirmButtonEanbled, "expect confirm button to be enabled after user entered name")
+        XCTAssertTrue(sut.saveReocrdButtonEanbled, "expect confirm button to be enabled after user entered name")
         
         sut.simulateUserEnterPlayerName(name: "")
         
-        XCTAssertFalse(sut.confirmButtonEanbled, "expect confirm button to be not enabled after user clear name input")
+        XCTAssertFalse(sut.saveReocrdButtonEanbled, "expect confirm button to be not enabled after user clear name input")
     }
     
-    func test_breakRecord_addPlayerRecordToStore() {
+    func test_saveRecord_addPlayerRecordToStore() {
         let playerName = "a name"
         let guessCount = 2
         let guessTime = 20.0
@@ -160,7 +151,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime), .save(PlayerRecord(playerName: playerName, guessCount: guessCount, guessTime: guessTime, timestamp: timestamp))], "Expect save message when use press confirm button with player name entered")
     }
     
-    func test_tapScreen_dismissKeyboard() {
+    func test_tapOnScreen_dismissKeyboard() {
         let (sut, _) = makeSUT(trackMemoryLeak: false)
         let window = UIWindow()
         window.addSubview(sut.view)
@@ -212,6 +203,19 @@ class WinUIIntegrationTests: XCTestCase {
     
     private func winMessageFor(digitCount: Int) -> String { "\(digitCount)A0B!! You won!!" }
     
+    private func guessCountMessageFor(guessCount: Int) -> String {
+        let unit = guessCount == 1 ? "time" : "times"
+        return "You guessed \(guessCount) \(unit)"
+    }
+    
+    private final class UIViewControllerSpy: UIViewController {
+        var presentCallCount = 0
+        
+        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+            presentCallCount += 1
+        }
+    }
+    
     private final class RecordLoaderSpy: RecordLoader {
         enum Message: Equatable {
             case load
@@ -259,7 +263,7 @@ private extension WinViewController {
     
     var sublayerCount: Int { view.layer.sublayers?.count ?? 0 }
     
-    var confirmButtonEanbled: Bool { recordViewController!.confirmButton.isEnabled }
+    var saveReocrdButtonEanbled: Bool { recordViewController!.confirmButton.isEnabled }
     
     func inputView() -> UITextField {
         recordViewController.inputTextField
