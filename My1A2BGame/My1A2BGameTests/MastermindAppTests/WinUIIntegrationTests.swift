@@ -9,6 +9,7 @@
 import XCTest
 import Mastermind
 import MastermindiOS
+import My1A2BGame
 
 class WinUIIntegrationTests: XCTestCase {
     
@@ -39,7 +40,7 @@ class WinUIIntegrationTests: XCTestCase {
     func test_loadView_reqeustLoaderValidatePlayerScore() {
         let guessCount = 3
         let guessTime = 10.0
-        let (sut, loader) = makeSUT(guessCount: guessCount, spentTime: guessTime)
+        let (sut, loader) = makeSUT(guessCount: guessCount, guessTime: guessTime)
         
         sut.loadViewIfNeeded()
         
@@ -138,7 +139,7 @@ class WinUIIntegrationTests: XCTestCase {
         let guessCount = 2
         let guessTime = 20.0
         let timestamp = Date()
-        let (sut, loader) = makeSUT(guessCount: guessCount, spentTime: guessTime, currentDate: { timestamp })
+        let (sut, loader) = makeSUT(guessCount: guessCount, guessTime: guessTime, currentDate: { timestamp })
         
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
@@ -168,11 +169,9 @@ class WinUIIntegrationTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, spentTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
-        let storyboard = UIStoryboard(name: "Win", bundle: .init(for: WinViewController.self))
-        let sut = storyboard.instantiateViewController(withIdentifier: "WinViewController") as! WinViewController
-        sut.digitCount = digitCount
+        let sut = WinUIComposer.winComposedWith(digitCount: digitCount, recordLoader: loader)
         sut.guessCount = guessCount
         sut.showFireworkAnimation = showFireworkAnimation
         
@@ -181,7 +180,7 @@ class WinUIIntegrationTests: XCTestCase {
         let recordViewModel = RecordViewModel(
             loader: loader,
             guessCount: { guessCount },
-            guessTime: { spentTime },
+            guessTime: { guessTime },
             currentDate: currentDate)
         recordViewController.recordViewModel = recordViewModel
         
