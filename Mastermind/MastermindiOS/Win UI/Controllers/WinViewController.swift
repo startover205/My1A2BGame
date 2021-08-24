@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Mastermind
 
 public class WinViewController: UIViewController {
     public var guessCount = 0
