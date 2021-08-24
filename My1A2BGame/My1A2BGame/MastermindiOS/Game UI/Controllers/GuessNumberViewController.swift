@@ -102,8 +102,6 @@ public class GuessNumberViewController: UIViewController {
         
         configureQuizLabels()
         
-//        navigationController?.delegate = self
-        
         fadeOutElements.forEach { (view) in
             view.alpha = 0
         }
