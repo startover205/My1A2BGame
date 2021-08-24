@@ -51,6 +51,8 @@ public final class RecordViewController: NSObject {
     @objc func insertRecord() {
         guard let name = inputTextField.text, !name.isEmpty else { return }
         
+        inputTextField.resignFirstResponder()
+        
         recordViewModel?.insertRecord(playerName: name)
     }
     

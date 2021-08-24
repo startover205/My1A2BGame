@@ -134,6 +134,22 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.saveReocrdButtonEanbled, "expect confirm button to be not enabled after user clear name input")
     }
     
+    func test_saveRecordButton_dismissKeyboardOnButtonPressed() {
+        let (sut, _) = makeSUT(trackMemoryLeak: false)
+        let window = UIWindow()
+        window.addSubview(sut.view)
+        
+        sut.loadViewIfNeeded()
+        sut.simulateKeyboardShowing()
+        
+        XCTAssertTrue(sut.isKeyboardShowing, "expect keyboard showing when user start to enter player name")
+        
+        sut.simulateUserEnterPlayerName(name: "any name")
+        sut.simulateUserSendInput()
+        
+        XCTAssertFalse(sut.isKeyboardShowing, "expect keyboard dismiss after user sent out input")
+    }
+    
     func test_saveRecord_requestStoreToSavePlayerRecord() {
         let playerRecord = anyPlayerRecord()
         let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
