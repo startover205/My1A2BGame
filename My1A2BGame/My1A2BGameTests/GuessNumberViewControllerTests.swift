@@ -50,42 +50,29 @@ class GuessNumberViewControllerTests: XCTestCase {
         XCTAssertEqual(callCount, 1)
     }
     
-    func test_matchNumbers_doesNotPresentLoseVCWhenIncorrectWithAnotherChance() {
-        let sut = makeSUT()
-        let navigation = UINavigationController()
-        navigation.setViewControllers([sut], animated: false)
+    func test_matchNumbers_notifiesLoseHandlerWhenUserHasNoMoreChanceLeft() {
+        var onLoseCallCount = 0
+        let sut = makeSUT(onLose: {
+            onLoseCallCount += 1
+        })
+        let answer = sut.quizNumbers
+        let wrongGuess = Array(answer.reversed())
         
         sut.initGame()
+        sut.availableGuess = 2
         
-        let answer = sut.quizNumbers
-        let guess = Array(sut.quizNumbers.reversed())
-        sut.tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
+        sut.tryToMatchNumbers(guessTexts: wrongGuess, answerTexts: answer)
         
-        XCTAssertFalse(navigation.topViewController is LoseViewController)
-    }
-    
-    func test_matchNumbers_presentLoseVCWhenIncorrectWithOneLastChance() {
-        let navigation = UINavigationController()
-        let sut = makeSUT(navigationController: navigation)
-        navigation.setViewControllers([sut], animated: false)
+        XCTAssertEqual(onLoseCallCount, 0, "Expect lose handler not trigger when user has chance")
         
-        sut.initGame()
-        sut.availableGuess = 1
+        sut.tryToMatchNumbers(guessTexts: wrongGuess, answerTexts: answer)
         
-        let answer = sut.quizNumbers
-        let guess = Array(sut.quizNumbers.reversed())
-        sut.tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
-        
-        triggerRunLoopToSkipNavigationAnimation()
-        XCTAssertTrue(navigation.topViewController is LoseViewController)
+        XCTAssertEqual(onLoseCallCount, 1, "Expect lose handler triggered when user has no chance left")
     }
     
     // MARK: - Helpers
-    func makeSUT(loadView: Bool = true, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, navigationController: UINavigationController? = nil) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, adProvider: AdProviderFake(), onWin: onWin, onLose: {
-            let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
-            navigationController?.pushViewController(controller, animated: true)
-        })
+    func makeSUT(loadView: Bool = true, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, adProvider: AdProviderFake(), onWin: onWin, onLose: onLose)
         if loadView {
             sut.loadViewIfNeeded()
         }
