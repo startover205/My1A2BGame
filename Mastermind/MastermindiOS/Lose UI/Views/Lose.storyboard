@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Lose View Controller-->
+        <scene sceneID="oB2-JD-knb">
+            <objects>
+                <viewController storyboardIdentifier="LoseViewController" id="bbu-sa-20D" customClass="LoseViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="REH-t4-2j2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You lost..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ns-5c-0gU">
+                                <rect key="frame" x="146" y="276.5" width="122" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't give up yet!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fq7-E9-TiN">
+                                <rect key="frame" x="90.5" y="340.5" width="233" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBw-Do-vbI">
+                                <rect key="frame" x="125.5" y="406.5" width="163" height="180"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IP4-tA-vdC"/>
+                        <color key="backgroundColor" name="MainBackground"/>
+                        <constraints>
+                            <constraint firstItem="SBw-Do-vbI" firstAttribute="top" secondItem="Fq7-E9-TiN" secondAttribute="bottom" constant="30" id="FAo-xI-gRX"/>
+                            <constraint firstItem="2Ns-5c-0gU" firstAttribute="centerY" secondItem="IP4-tA-vdC" secondAttribute="centerY" multiplier="0.65" id="UGf-ML-uK3"/>
+                            <constraint firstItem="2Ns-5c-0gU" firstAttribute="centerX" secondItem="REH-t4-2j2" secondAttribute="centerX" id="Ze1-FY-ghP"/>
+                            <constraint firstItem="Fq7-E9-TiN" firstAttribute="top" secondItem="2Ns-5c-0gU" secondAttribute="bottom" constant="28" id="fET-LD-j1O"/>
+                            <constraint firstItem="Fq7-E9-TiN" firstAttribute="centerX" secondItem="REH-t4-2j2" secondAttribute="centerX" id="qyE-Zm-756"/>
+                            <constraint firstItem="SBw-Do-vbI" firstAttribute="centerX" secondItem="REH-t4-2j2" secondAttribute="centerX" id="r2d-Bd-dk1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emojiLabel" destination="SBw-Do-vbI" id="PCC-CQ-WFy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8S0-0Y-nkz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5632" y="862"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="MainBackground">
+            <color red="1" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

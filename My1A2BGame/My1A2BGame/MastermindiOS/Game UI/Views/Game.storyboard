@@ -493,52 +493,6 @@
             </objects>
             <point key="canvasLocation" x="4264" y="958"/>
         </scene>
-        <!--Lose View Controller-->
-        <scene sceneID="fkJ-zS-T07">
-            <objects>
-                <viewController storyboardIdentifier="LoseViewController" id="4WW-rx-NTq" customClass="LoseViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QGi-yk-DD9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You lost..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsU-38-Kxy">
-                                <rect key="frame" x="146" y="276.5" width="122" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't give up yet!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ly0-Oz-8Vf">
-                                <rect key="frame" x="90.5" y="340.5" width="233" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfn-xZ-1R2">
-                                <rect key="frame" x="125.5" y="406.5" width="163" height="180"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="jhr-U0-bCs"/>
-                        <color key="backgroundColor" name="MainBackground"/>
-                        <constraints>
-                            <constraint firstItem="QsU-38-Kxy" firstAttribute="centerX" secondItem="QGi-yk-DD9" secondAttribute="centerX" id="3Be-u2-Iyq"/>
-                            <constraint firstItem="Zfn-xZ-1R2" firstAttribute="centerX" secondItem="QGi-yk-DD9" secondAttribute="centerX" id="7xX-lV-dx9"/>
-                            <constraint firstItem="Ly0-Oz-8Vf" firstAttribute="top" secondItem="QsU-38-Kxy" secondAttribute="bottom" constant="28" id="8U5-Ru-sHD"/>
-                            <constraint firstItem="Zfn-xZ-1R2" firstAttribute="top" secondItem="Ly0-Oz-8Vf" secondAttribute="bottom" constant="30" id="JM5-SD-W7m"/>
-                            <constraint firstItem="QsU-38-Kxy" firstAttribute="centerY" secondItem="jhr-U0-bCs" secondAttribute="centerY" multiplier="0.65" id="QGQ-EG-2cb"/>
-                            <constraint firstItem="Ly0-Oz-8Vf" firstAttribute="centerX" secondItem="QGi-yk-DD9" secondAttribute="centerX" id="svG-jy-Ipd"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="emojiLabel" destination="Zfn-xZ-1R2" id="DUo-sh-tGY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T6T-Uf-wYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5632" y="862"/>
-        </scene>
     </scenes>
     <resources>
         <image name="icon_questionMark" width="27" height="27"/>
@@ -565,9 +519,6 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

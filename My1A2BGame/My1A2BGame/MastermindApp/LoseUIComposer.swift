@@ -7,7 +7,7 @@
 //
 
 import SceneKit
-import Mastermind
+import MastermindiOS
 
 public final class LoseUIComposer {
     private init() {}
@@ -50,7 +50,8 @@ public final class LoseUIComposer {
     }
     
     private static func makeLoseViewController() -> LoseViewController {
-        let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self)) as! LoseViewController
+        let bundle = Bundle(for: LoseViewController.self)
+        let controller = UIStoryboard(name: "Lose", bundle: bundle).instantiateViewController(withIdentifier: String(describing: LoseViewController.self)) as! LoseViewController
         
         return controller
     }

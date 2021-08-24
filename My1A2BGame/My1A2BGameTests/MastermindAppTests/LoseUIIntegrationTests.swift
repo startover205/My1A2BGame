@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import MastermindiOS
 import My1A2BGame
 
 class LoseUIIntegrationTests: XCTestCase {

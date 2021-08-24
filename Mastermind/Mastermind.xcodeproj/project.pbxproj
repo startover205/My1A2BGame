@@ -52,6 +52,8 @@
 		C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F226D0D50900AE72F4 /* RecordViewController.swift */; };
 		C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C09841F826D0D56200AE72F4 /* Win.storyboard */; };
 		C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420226D33E8600AE72F4 /* RecordViewModel.swift */; };
+		C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420E26D4C74B00AE72F4 /* LoseViewController.swift */; };
+		C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098421026D4C78000AE72F4 /* Lose.storyboard */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -133,6 +135,8 @@
 		C09841F226D0D50900AE72F4 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		C09841F826D0D56200AE72F4 /* Win.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Win.storyboard; sourceTree = "<group>"; };
 		C098420226D33E8600AE72F4 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
+		C098420E26D4C74B00AE72F4 /* LoseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
+		C098421026D4C78000AE72F4 /* Lose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lose.storyboard; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -207,8 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				C098420626D491BE00AE72F4 /* Win Presentation */,
-				C09841F526D0D53500AE72F4 /* Win UI */,
 				C034AA9E26B67FDA006AABE6 /* Game UI */,
+				C09841F526D0D53500AE72F4 /* Win UI */,
+				C098420B26D4C72F00AE72F4 /* Lose UI */,
 				C034AA7926B67CEA006AABE6 /* Info.plist */,
 			);
 			path = MastermindiOS;
@@ -404,6 +409,31 @@
 			path = "Win Presentation";
 			sourceTree = "<group>";
 		};
+		C098420B26D4C72F00AE72F4 /* Lose UI */ = {
+			isa = PBXGroup;
+			children = (
+				C098420C26D4C73700AE72F4 /* Controllers */,
+				C098420D26D4C73C00AE72F4 /* Views */,
+			);
+			path = "Lose UI";
+			sourceTree = "<group>";
+		};
+		C098420C26D4C73700AE72F4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C098420E26D4C74B00AE72F4 /* LoseViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C098420D26D4C73C00AE72F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C098421026D4C78000AE72F4 /* Lose.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C09FAB8E26C63F5F00A15B9E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +601,7 @@
 			files = (
 				C034AAA426B6804A006AABE6 /* Game.storyboard in Resources */,
 				C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */,
+				C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +652,7 @@
 				C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */,
 				C034AAA126B6800F006AABE6 /* GuessPadViewController.swift in Sources */,
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
+				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
 				C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */,
