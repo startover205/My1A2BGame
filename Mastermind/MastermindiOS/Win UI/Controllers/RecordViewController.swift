@@ -33,9 +33,8 @@ public final class RecordViewController: NSObject {
             if let error = error {
                 self?.showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
             } else {
-                self?.showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd")) { [weak self] _ in
-                    self?.hostViewController?.navigationController?.popViewController(animated: true)
-                }
+                self?.containerView.alpha = 0
+                self?.showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd"))
             }
         }
     }

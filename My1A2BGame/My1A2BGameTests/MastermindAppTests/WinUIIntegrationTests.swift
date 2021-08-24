@@ -53,7 +53,7 @@ class WinUIIntegrationTests: XCTestCase {
         loader.completeValidation(with: true)
         sut.loadViewIfNeeded()
         
-        XCTAssertTrue(sut.showingBreakRecordView)
+        XCTAssertTrue(sut.showingSaveRecordViews)
     }
     
     func test_loadView_doesNotRendersNewRecordViewsIfRecordNotBroken() {
@@ -62,7 +62,7 @@ class WinUIIntegrationTests: XCTestCase {
         loader.completeValidation(with: false)
         sut.loadViewIfNeeded()
         
-        XCTAssertFalse(sut.showingBreakRecordView)
+        XCTAssertFalse(sut.showingSaveRecordViews)
     }
     
     func test_emojiAnimation_showsOnTheFirstTimeOnly() {
@@ -161,21 +161,24 @@ class WinUIIntegrationTests: XCTestCase {
         ], "Expect another save message when user trys to save again")
     }
     
-//    func test_saveRecord_hidesSaveRecordViewsAfterSuccessfullySaveRecord() {
-//        let playerName = "a name"
-//        let (sut, loader) = makeSUT()
-//        
-//        sut.loadViewIfNeeded()
-//        
-//        loader.completeSave(with: anyNSError())
-//        sut.simulateUserEnterPlayerName(name: playerName)
-//        sut.simulateUserSendInput()
-//        XCTAssertFalse(sut.saveRecordViewsVisible())
-//        
-//        loader.completeSaveSuccesfully()
-//        sut.simulateUserSendInput()
-//        XCTAssertTrue(sut.saveRecordViewsVisible())
-//    }
+    func test_saveRecord_hidesSaveRecordViewsAfterSuccessfullySaveRecord() {
+        let playerRecord = anyPlayerRecord()
+        let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
+        
+        loader.completeValidation(with: true)
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.showingSaveRecordViews)
+        
+        sut.simulateUserEnterPlayerName(name: playerRecord.playerName)
+        
+        loader.completeSave(with: anyNSError())
+        sut.simulateUserSendInput()
+        XCTAssertTrue(sut.showingSaveRecordViews)
+        
+        loader.completeSaveSuccesfully()
+        sut.simulateUserSendInput()
+        XCTAssertFalse(sut.showingSaveRecordViews)
+    }
     
     func test_tapOnScreen_dismissKeyboard() {
         let (sut, _) = makeSUT(trackMemoryLeak: false)
@@ -291,7 +294,7 @@ private extension WinViewController {
     
     var winMessage: String? { winLabel.text }
     
-    var showingBreakRecordView: Bool { recordViewController!.containerView.alpha != 0 }
+    var showingSaveRecordViews: Bool { recordViewController!.containerView.alpha != 0 }
     
     var emojiViewTransform: CGAffineTransform? { emojiLabel.transform }
     
@@ -301,10 +304,6 @@ private extension WinViewController {
     
     func inputView() -> UITextField {
         recordViewController.inputTextField
-    }
-    
-    func saveRecordViewsVisible() -> Bool {
-        recordViewController.containerView.alpha != 0
     }
     
     func simulateUserInitiatedShareAction() {
