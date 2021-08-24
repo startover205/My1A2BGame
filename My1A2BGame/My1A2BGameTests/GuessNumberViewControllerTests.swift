@@ -14,26 +14,22 @@ import GoogleMobileAds
 
 class GuessNumberViewControllerTests: XCTestCase {
     
-    func test_viewDidLoad_helperViewHidden() {
-        let sut = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertTrue(sut.helperView.isHidden)
-    }
-    
-    func test_helperBtnPressed_toggleHelperViewDisplay() {
+    func test_helperView_showsByTogglingHelperButton() {
         let sut = makeSUT(animate: { _, _, completion in
             completion?(true)
         })
-        
-        sut.helperBtnPressed(sut)
-        
-        XCTAssertEqual(sut.helperView.isHidden, false)
-        
-        sut.helperBtnPressed(sut)
-        
-        XCTAssertEqual(sut.helperView.isHidden, true)
+
+        sut.loadViewIfNeeded()
+
+        XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden upon view load")
+
+        sut.simulateUserPressHelperButton()
+
+        XCTAssertTrue(sut.showingHelperView, "Expect helper view to be shown when helper button pressed")
+
+        sut.simulateUserPressHelperButton()
+
+        XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
     
     func test_matchNumbers_notifiesHandlerOnWin() {
@@ -88,9 +84,13 @@ class GuessNumberViewControllerTests: XCTestCase {
 }
 
 private extension GuessNumberViewController {
+    var showingHelperView: Bool { !helperView.isHidden }
+    
     func simulateUserGuessWithCorrectAnswer() {
         let answer = quizNumbers
         let guess = answer
         tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
     }
+    
+    func simulateUserPressHelperButton() { helperBtnPressed(self) }
 }
