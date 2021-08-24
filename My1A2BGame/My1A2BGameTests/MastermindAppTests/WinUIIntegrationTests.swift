@@ -188,11 +188,11 @@ class WinUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.simulateKeyboardShowing()
         
-        XCTAssertTrue(sut.inputView().isFirstResponder)
+        XCTAssertTrue(sut.isKeyboardShowing)
 
         sut.simulateOnTapScreen()
         
-        XCTAssertFalse(sut.inputView().isFirstResponder)
+        XCTAssertFalse(sut.isKeyboardShowing)
     }
     
     // MARK: Helpers
@@ -301,6 +301,10 @@ private extension WinViewController {
     var sublayerCount: Int { view.layer.sublayers?.count ?? 0 }
     
     var saveReocrdButtonEanbled: Bool { recordViewController!.confirmButton.isEnabled }
+    
+    var isKeyboardShowing: Bool {
+        inputView().isFirstResponder
+    }
     
     func inputView() -> UITextField {
         recordViewController.inputTextField
