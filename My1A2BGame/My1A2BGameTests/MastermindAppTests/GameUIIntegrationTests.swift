@@ -115,6 +115,58 @@ class GameUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(sut.voicePromptViewController!)
     }
     
+    func test_helperView_showsByTogglingHelperButton() {
+        let sut = makeSUT(animate: { _, _, completion in
+            completion?(true)
+        })
+
+        sut.loadViewIfNeeded()
+
+        XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden upon view load")
+
+        sut.simulateUserPressHelperButton()
+
+        XCTAssertTrue(sut.showingHelperView, "Expect helper view to be shown when helper button pressed")
+
+        sut.simulateUserPressHelperButton()
+
+        XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
+    }
+    
+    func test_matchNumbers_notifiesWinHandlerOnWin() {
+        var onWinCallCount = 0
+        let sut = makeSUT(onWin: { _, _ in
+            onWinCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        sut.initGame()
+        sut.simulateUserGuessWithCorrectAnswer()
+        
+        XCTAssertEqual(onWinCallCount, 1)
+    }
+    
+    func test_matchNumbers_notifiesLoseHandlerWhenUserHasNoMoreChanceLeft() {
+        var onLoseCallCount = 0
+        let sut = makeSUT(onLose: {
+            onLoseCallCount += 1
+        })
+        let answer = sut.quizNumbers
+        let wrongGuess = Array(answer.reversed())
+        
+        sut.loadViewIfNeeded()
+        sut.initGame()
+        sut.availableGuess = 2
+        
+        sut.tryToMatchNumbers(guessTexts: wrongGuess, answerTexts: answer)
+        
+        XCTAssertEqual(onLoseCallCount, 0, "Expect lose handler not trigger when user has chance")
+        
+        sut.tryToMatchNumbers(guessTexts: wrongGuess, answerTexts: answer)
+        
+        XCTAssertEqual(onLoseCallCount, 1, "Expect lose handler triggered when user has no chance left")
+    }
+    
 //    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
 //        let window = UIWindow()
 //        let nav = NavigationSpy()
@@ -144,8 +196,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, adProvider: AdProviderFake(), onWin: { _, _ in }, onLose: {}, animate: { _, _, _ in })
+    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, adProvider: AdProviderFake(), onWin: onWin, onLose: onLose, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -206,6 +258,16 @@ class GameUIIntegrationTests: XCTestCase {
 }
 
 private extension GuessNumberViewController {
+    var fadeInCompoenents: [UIView] { fadeOutElements }
+    
+    var availableGuessMessage: String? { availableGuessLabel.text }
+    
+    var resultMessage: String? { lastGuessLabel.text }
+    
+    var voicePromptOn: Bool { voicePromptViewController?.view.isOn ?? false }
+    
+    var showingHelperView: Bool { !helperView.isHidden }
+    
     func simulateViewAppear() { viewWillAppear(false) }
     
     func simulateUserInitiatedWrongGuess() {
@@ -225,14 +287,6 @@ private extension GuessNumberViewController {
         helperBtnPressed(self)
     }
     
-    var fadeInCompoenents: [UIView] { fadeOutElements }
-    
-    var availableGuessMessage: String? { availableGuessLabel.text }
-    
-    var resultMessage: String? { lastGuessLabel.text }
-    
-    var voicePromptOn: Bool { voicePromptViewController?.view.isOn ?? false }
-    
     func simulateToggleVoicePrompt() {
         guard let voiceView = voicePromptViewController?.view else { return }
         voiceView.isOn = !voiceView.isOn
@@ -244,9 +298,17 @@ private extension GuessNumberViewController {
         RunLoop.current.run(until: Date())
     }
     
+    func simulateUserGuessWithCorrectAnswer() {
+        let answer = quizNumbers
+        let guess = answer
+        tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
+    }
+    
     func simulateRestartGame() {
         restartButton.sendActions(for: .touchUpInside)
     }
+    
+    func simulateUserPressHelperButton() { helperBtnPressed(self) }
 }
 
 private extension UserDefaults {
