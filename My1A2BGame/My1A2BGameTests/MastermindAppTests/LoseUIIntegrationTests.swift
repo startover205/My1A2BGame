@@ -21,6 +21,23 @@ class LoseUIIntegrationTests: XCTestCase {
         XCTAssertEqual(rainAnimationCallCount, 1)
     }
     
+    func test_emojiAnimation_showsOnFirstTimeAppearOnly() {
+        let sut = makeSUT()
+
+        sut.loadViewIfNeeded()
+
+        var capturedTransform = sut.emojiViewTransform
+
+        sut.viewDidAppear(true)
+
+        XCTAssertNotEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform changed after view did appear")
+
+        capturedTransform = sut.emojiViewTransform
+        sut.viewDidAppear(true)
+
+        XCTAssertEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform does not change when the view appeared the second time")
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(rainAnimation: @escaping (_ on: UIView) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> LoseViewController {
@@ -30,5 +47,11 @@ class LoseUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
+    }
+}
+
+private extension LoseViewController {
+    var emojiViewTransform: CGAffineTransform {
+        emojiLabel.transform
     }
 }

@@ -10,13 +10,11 @@ import UIKit
 import SceneKit
 
 public class LoseViewController: UIViewController {
-    @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet private(set) public weak var emojiLabel: UILabel!
     
     public var rainAnimation: ((_ on: UIView) -> Void)?
     
-    private lazy var _emojiAnimation: Void = {
-        emojiAnimation()
-    }()
+    private var isFirstTimeAppear = true
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +24,12 @@ public class LoseViewController: UIViewController {
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        _ = _emojiAnimation
+        
+        if isFirstTimeAppear {
+            isFirstTimeAppear = false
+            
+            emojiAnimation()
+        }
     }
 }
 
