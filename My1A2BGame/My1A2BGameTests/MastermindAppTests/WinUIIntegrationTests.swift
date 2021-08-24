@@ -134,23 +134,48 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.saveReocrdButtonEanbled, "expect confirm button to be not enabled after user clear name input")
     }
     
-    func test_saveRecord_addPlayerRecordToStore() {
-        let playerName = "a name"
-        let guessCount = 2
-        let guessTime = 20.0
-        let timestamp = Date()
-        let (sut, loader) = makeSUT(guessCount: guessCount, guessTime: guessTime, currentDate: { timestamp })
+    func test_saveRecord_requestStoreToSavePlayerRecord() {
+        let playerRecord = anyPlayerRecord()
+        let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
+        XCTAssertEqual(loader.receivedMessages, [.validate(playerRecord.guessCount, playerRecord.guessTime)], "Expect no save message added after view load")
         
         sut.simulateUserSendInput()
-        XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)], "Expect no save message added after view load")
+        XCTAssertEqual(loader.receivedMessages, [.validate(playerRecord.guessCount, playerRecord.guessTime)], "Expect no save message added after view load")
 
-        sut.simulateUserEnterPlayerName(name: playerName)
+        sut.simulateUserEnterPlayerName(name: playerRecord.playerName)
+        loader.completeSave(with: anyNSError())
         sut.simulateUserSendInput()
-        XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime), .save(PlayerRecord(playerName: playerName, guessCount: guessCount, guessTime: guessTime, timestamp: timestamp))], "Expect save message when use press confirm button with player name entered")
+        XCTAssertEqual(loader.receivedMessages, [
+            .validate(playerRecord.guessCount, playerRecord.guessTime),
+                        .save(playerRecord)
+        ], "Expect save message when user presses confirm button with player name entered")
+        
+        loader.completeSaveSuccesfully()
+        sut.simulateUserSendInput()
+        XCTAssertEqual(loader.receivedMessages, [
+                        .validate(playerRecord.guessCount, playerRecord.guessTime),
+                        .save(playerRecord),
+                        .save(playerRecord)
+        ], "Expect another save message when user trys to save again")
     }
+    
+//    func test_saveRecord_hidesSaveRecordViewsAfterSuccessfullySaveRecord() {
+//        let playerName = "a name"
+//        let (sut, loader) = makeSUT()
+//        
+//        sut.loadViewIfNeeded()
+//        
+//        loader.completeSave(with: anyNSError())
+//        sut.simulateUserEnterPlayerName(name: playerName)
+//        sut.simulateUserSendInput()
+//        XCTAssertFalse(sut.saveRecordViewsVisible())
+//        
+//        loader.completeSaveSuccesfully()
+//        sut.simulateUserSendInput()
+//        XCTAssertTrue(sut.saveRecordViewsVisible())
+//    }
     
     func test_tapOnScreen_dismissKeyboard() {
         let (sut, _) = makeSUT(trackMemoryLeak: false)
@@ -224,6 +249,7 @@ class WinUIIntegrationTests: XCTestCase {
         
         private var loadResult: Result<[PlayerRecord], Error>?
         private var validationResult: Bool?
+        private var saveResult: Result<Void, Error>?
         
         private(set) var receivedMessages = [Message]()
         
@@ -239,6 +265,7 @@ class WinUIIntegrationTests: XCTestCase {
 
         func insertNewRecord(_ record: PlayerRecord) throws {
             receivedMessages.append(.save(record))
+            try saveResult?.get()
         }
         
         func completeValidation(with result: Bool) {
@@ -247,6 +274,14 @@ class WinUIIntegrationTests: XCTestCase {
         
         func completeRetrieval(with records: [PlayerRecord]) {
             loadResult = .success(records)
+        }
+        
+        func completeSave(with error: NSError) {
+            saveResult = .failure(error)
+        }
+        
+        func completeSaveSuccesfully() {
+            saveResult = .success(())
         }
     }
 }
@@ -266,6 +301,10 @@ private extension WinViewController {
     
     func inputView() -> UITextField {
         recordViewController.inputTextField
+    }
+    
+    func saveRecordViewsVisible() -> Bool {
+        recordViewController.containerView.alpha != 0
     }
     
     func simulateUserInitiatedShareAction() {
