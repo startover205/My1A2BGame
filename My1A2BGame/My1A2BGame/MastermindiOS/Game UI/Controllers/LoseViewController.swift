@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SceneKit
 
 public class LoseViewController: UIViewController {
     @IBOutlet private(set) public weak var emojiLabel: UILabel!
@@ -39,6 +38,6 @@ private extension LoseViewController {
         UIView.animate(withDuration: 6, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
             self.emojiLabel.transform = CGAffineTransform(translationX: 0, y: 10)
             self.emojiLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 9)
-        }, completion: nil)
+        })
     }
 }
