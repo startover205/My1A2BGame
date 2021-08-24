@@ -533,7 +533,6 @@
                     </view>
                     <connections>
                         <outlet property="emojiLabel" destination="Zfn-xZ-1R2" id="DUo-sh-tGY"/>
-                        <outlet property="rainSCNView" destination="QGi-yk-DD9" id="TeP-dp-RCT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6T-Uf-wYp" userLabel="First Responder" sceneMemberID="firstResponder"/>

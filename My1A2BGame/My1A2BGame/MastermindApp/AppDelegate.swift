@@ -130,12 +130,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func showLoseSceneForBasicGame() {
-        let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+        let controller = LoseUIComposer.loseScene()
         basicGameNavigationController.pushViewController(controller, animated: true)
     }
     
     private func showLoseSceneForAdvancedGame() {
-        let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+        let controller = LoseUIComposer.loseScene()
         advancedGameNavigationController.pushViewController(controller, animated: true)
     }
     
