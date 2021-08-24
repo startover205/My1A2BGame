@@ -206,6 +206,7 @@
 		C034AA7726B67CEA006AABE6 /* MastermindiOS */ = {
 			isa = PBXGroup;
 			children = (
+				C098420626D491BE00AE72F4 /* Win Presentation */,
 				C09841F526D0D53500AE72F4 /* Win UI */,
 				C034AA9E26B67FDA006AABE6 /* Game UI */,
 				C034AA7926B67CEA006AABE6 /* Info.plist */,
@@ -376,7 +377,6 @@
 				C09841EF26D0D49900AE72F4 /* WinViewController.swift */,
 				C09841F126D0D50900AE72F4 /* ShareViewController.swift */,
 				C09841F226D0D50900AE72F4 /* RecordViewController.swift */,
-				C098420226D33E8600AE72F4 /* RecordViewModel.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -394,6 +394,14 @@
 			children = (
 			);
 			path = "Win UI";
+			sourceTree = "<group>";
+		};
+		C098420626D491BE00AE72F4 /* Win Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C098420226D33E8600AE72F4 /* RecordViewModel.swift */,
+			);
+			path = "Win Presentation";
 			sourceTree = "<group>";
 		};
 		C09FAB8E26C63F5F00A15B9E /* Helpers */ = {
