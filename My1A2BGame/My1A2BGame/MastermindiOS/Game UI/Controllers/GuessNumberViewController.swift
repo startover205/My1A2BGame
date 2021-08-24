@@ -55,6 +55,7 @@ public class GuessNumberViewController: UIViewController {
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
+    var onLose: (() -> Void)?
     
     @IBOutlet weak var quizLabelContainer: UIStackView!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
@@ -308,12 +309,11 @@ extension GuessNumberViewController {
     }
     
     func showLoseVCAndEndGame(){
-        let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
-        controller.view.backgroundColor = self.view.backgroundColor
-        navigationController?.pushViewController(controller, animated: true)
         self.endGame()
 
         voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))
+        
+        onLose?()
     }
     func fadeOut(){
         UIView.animate(withDuration: 1) {

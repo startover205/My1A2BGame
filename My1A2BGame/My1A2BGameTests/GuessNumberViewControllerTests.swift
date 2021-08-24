@@ -65,8 +65,8 @@ class GuessNumberViewControllerTests: XCTestCase {
     }
     
     func test_matchNumbers_presentLoseVCWhenIncorrectWithOneLastChance() {
-        let sut = makeSUT()
         let navigation = UINavigationController()
+        let sut = makeSUT(navigationController: navigation)
         navigation.setViewControllers([sut], animated: false)
         
         sut.initGame()
@@ -81,8 +81,11 @@ class GuessNumberViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    func makeSUT(loadView: Bool = true, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, adProvider: AdProviderFake(), onWin: onWin)
+    func makeSUT(loadView: Bool = true, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, navigationController: UINavigationController? = nil) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, adProvider: AdProviderFake(), onWin: onWin, onLose: {
+            let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+            navigationController?.pushViewController(controller, animated: true)
+        })
         if loadView {
             sut.loadViewIfNeeded()
         }

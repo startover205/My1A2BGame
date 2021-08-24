@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
                 self.appReviewController?.markProcessCompleteOneTime()
                 self.appReviewController?.askForAppReviewIfAppropriate()
-            }))
+            }, onLose: showLoseSceneForBasicGame))
     
     private lazy var advancedGameNavigationController = UINavigationController(
         rootViewController: GameUIComposer.gameComposedWith(
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
                 self.appReviewController?.markProcessCompleteOneTime()
                 self.appReviewController?.askForAppReviewIfAppropriate()
-            }))
+            }, onLose: showLoseSceneForAdvancedGame))
     
     func makeTabController() -> UITabBarController {
         let tabVC = UITabBarController()
@@ -127,6 +127,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         winScene.guessCount = guessCount
         winScene.guessTime = guessTime
         basicGameNavigationController.pushViewController(winScene, animated: true)
+    }
+    
+    private func showLoseSceneForBasicGame() {
+        let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+        basicGameNavigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func showLoseSceneForAdvancedGame() {
+        let controller = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: String(describing: LoseViewController.self))
+        advancedGameNavigationController.pushViewController(controller, animated: true)
     }
     
     private func showWinSceneForAdvancedGame(guessCount: Int, guessTime: TimeInterval) {
