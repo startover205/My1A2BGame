@@ -23,7 +23,9 @@ class GuessNumberViewControllerTests: XCTestCase {
     }
     
     func test_helperBtnPressed_toggleHelperViewDisplay() {
-        let sut = makeSUT()
+        let sut = makeSUT(animate: { _, _, completion in
+            completion?(true)
+        })
         
         sut.helperBtnPressed(sut)
         
@@ -31,10 +33,7 @@ class GuessNumberViewControllerTests: XCTestCase {
         
         sut.helperBtnPressed(sut)
         
-        assert({
-            XCTAssertEqual(sut.helperView.isHidden, true)
-        }, after: 0.5)
-        
+        XCTAssertEqual(sut.helperView.isHidden, true)
     }
     
     func test_matchNumbers_notifiesHandlerOnWin() {
@@ -71,8 +70,8 @@ class GuessNumberViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    func makeSUT(loadView: Bool = true, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, adProvider: AdProviderFake(), onWin: onWin, onLose: onLose)
+    func makeSUT(loadView: Bool = true, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: BasicGame(), userDefaults: UserDefaults.standard, adProvider: AdProviderFake(), onWin: onWin, onLose: onLose, animate: animate)
         if loadView {
             sut.loadViewIfNeeded()
         }
@@ -81,16 +80,6 @@ class GuessNumberViewControllerTests: XCTestCase {
     
     func triggerRunLoopToSkipNavigationAnimation() {
         RunLoop.current.run(until: Date())
-    }
-    
-    func assert(_ completion: @escaping () -> Void, after seconds: TimeInterval) {
-        let exp = expectation(description: "wait until animation complete")
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            completion()
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: seconds + 1.0)
     }
     
     private final class AdProviderFake: AdProvider {

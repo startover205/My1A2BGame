@@ -11,6 +11,10 @@ import GameKit
 import GoogleMobileAds
 import MastermindiOS
 
+public typealias Animate = ((_ duration: TimeInterval,
+                             _ animations: @escaping () -> Void,
+                             _ completion: ((Bool) -> Void)?) -> Void)
+
 public protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
@@ -81,7 +85,9 @@ public class GuessNumberViewController: UIViewController {
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
     public var inputVC: GuessPadViewController!
-
+    
+    public var animate: Animate?
+    
     // 觸覺回饋
     var feedbackGenerator: UINotificationFeedbackGenerator?
     
@@ -138,15 +144,18 @@ public class GuessNumberViewController: UIViewController {
         if helperView.isHidden {
             self.helperView.isHidden = false
             self.helperView.transform = .init(translationX: 0, y: -300)
-            UIView.animate(withDuration: 0.25) {
+            
+            animate?(0.25, {
                 self.helperView.transform = .identity
-            }
+            }, nil)
+            
         } else {
-            UIView.animate(withDuration: 0.25, animations: {
+            
+            animate?(0.25, {
                 self.helperView.transform = .init(translationX: 0, y: -300)
-            }) { (_) in
+            }, { _ in
                 self.helperView.isHidden = true
-            }
+            })
         }
     }
     
