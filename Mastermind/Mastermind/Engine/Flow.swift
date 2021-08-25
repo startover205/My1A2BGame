@@ -12,22 +12,22 @@ typealias GuessMatcher<Delegate: FlowDelegate, Secret> = (_ guess: Delegate.Gues
 final class Flow<Delegate: FlowDelegate, Secret> {
     typealias Hint = Delegate.Hint
     typealias Guess = Delegate.Guess
+ 
+    private let maxChanceCount: Int
+    private let secret: Secret
+    private let delegate: Delegate
+    private let matchGuess: GuessMatcher<Delegate, Secret>
     
-    internal init(maxChanceCount: Int, secret: Secret, matchGuess: @escaping GuessMatcher<Delegate, Secret>,  delegate: Delegate) {
+    init(maxChanceCount: Int, secret: Secret, matchGuess: @escaping GuessMatcher<Delegate, Secret>,  delegate: Delegate) {
         self.maxChanceCount = maxChanceCount
         self.secret = secret
         self.delegate = delegate
         self.matchGuess = matchGuess
     }
     
-    func start() {
-        delegateSecretNumberHandling(chancesLeft: maxChanceCount, hint: nil)
-    }
-    
-    var maxChanceCount: Int
-    var secret: Secret
-    var delegate: Delegate
-    let matchGuess: GuessMatcher<Delegate, Secret>
+   func start() {
+       delegateSecretNumberHandling(chancesLeft: maxChanceCount, hint: nil)
+   }
     
     private func delegateSecretNumberHandling(chancesLeft: Int, hint: Hint?) {
         if chancesLeft > 0 {
