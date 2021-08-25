@@ -91,9 +91,9 @@ class FlowTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(maxChanceCount: Int = 0, secretNumber: String = "1234", matchGuess: @escaping GuessMatcher<DelegateSpy> = { _, _ in return  (nil, false) }, file: StaticString = #filePath, line: UInt = #line) -> (Flow<DelegateSpy>, DelegateSpy) {
+    private func makeSUT(maxChanceCount: Int = 0, secret: String = "1234", matchGuess: @escaping GuessMatcher<DelegateSpy> = { _, _ in return  (nil, false) }, file: StaticString = #filePath, line: UInt = #line) -> (Flow<DelegateSpy>, DelegateSpy) {
         let delegate = DelegateSpy()
-        let sut = Flow(maxChanceCount: maxChanceCount, secretNumber: secretNumber, matchGuess: matchGuess, delegate: delegate)
+        let sut = Flow(maxChanceCount: maxChanceCount, secret: secret, matchGuess: matchGuess, delegate: delegate)
         
         trackForMemoryLeaks(delegate, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
