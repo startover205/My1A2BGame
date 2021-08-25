@@ -54,6 +54,8 @@
 		C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420226D33E8600AE72F4 /* RecordViewModel.swift */; };
 		C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420E26D4C74B00AE72F4 /* LoseViewController.swift */; };
 		C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098421026D4C78000AE72F4 /* Lose.storyboard */; };
+		C098421426D5033800AE72F4 /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421326D5033800AE72F4 /* FlowTests.swift */; };
+		C098421A26D6167800AE72F4 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421926D6167700AE72F4 /* Flow.swift */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -137,6 +139,8 @@
 		C098420226D33E8600AE72F4 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		C098420E26D4C74B00AE72F4 /* LoseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
 		C098421026D4C78000AE72F4 /* Lose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lose.storyboard; sourceTree = "<group>"; };
+		C098421326D5033800AE72F4 /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
+		C098421926D6167700AE72F4 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 		C034C53F26B5431300F6166E /* Mastermind */ = {
 			isa = PBXGroup;
 			children = (
+				C098421826D6166C00AE72F4 /* Engine */,
 				C04B5B1A26C608B40056DDA8 /* Game Record */,
 				C034C54126B5431300F6166E /* Info.plist */,
 				C034C54C26B54B2400F6166E /* MastermindEvaluator.swift */,
@@ -434,6 +439,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C098421226D5031A00AE72F4 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				C098421326D5033800AE72F4 /* FlowTests.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		C098421826D6166C00AE72F4 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				C098421926D6167700AE72F4 /* Flow.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
 		C09FAB8E26C63F5F00A15B9E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +468,7 @@
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
+				C098421226D5031A00AE72F4 /* Engine */,
 				C04B5B1E26C609740056DDA8 /* Helpers */,
 				C04B5B1B26C608CE0056DDA8 /* Game Record */,
 				C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */,
@@ -681,6 +703,7 @@
 				C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
+				C098421A26D6167800AE72F4 /* Flow.swift in Sources */,
 				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
 				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
 				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
@@ -701,6 +724,7 @@
 				C09FAB9426C6524F00A15B9E /* RecordStoreTestHelpers.swift in Sources */,
 				C09FAB9626C6770500A15B9E /* InsertNewRecordUseCaseTests.swift in Sources */,
 				C04B5B1D26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift in Sources */,
+				C098421426D5033800AE72F4 /* FlowTests.swift in Sources */,
 				C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */,
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */,
