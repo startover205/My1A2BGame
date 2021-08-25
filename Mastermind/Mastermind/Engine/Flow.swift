@@ -7,13 +7,13 @@
 
 import Foundation
 
-typealias GuessMatcher<Delegate: FlowDelegate> = (_ guess: Delegate.Guess, _ secret: String) -> (hint: Delegate.Hint?, correct: Bool)
+typealias GuessMatcher<Delegate: FlowDelegate, Secret> = (_ guess: Delegate.Guess, _ secret: Secret) -> (hint: Delegate.Hint?, correct: Bool)
 
-final class Flow<Delegate: FlowDelegate> {
+final class Flow<Delegate: FlowDelegate, Secret> {
     typealias Hint = Delegate.Hint
     typealias Guess = Delegate.Guess
     
-    internal init(maxChanceCount: Int, secret: String, matchGuess: @escaping GuessMatcher<Delegate>,  delegate: Delegate) {
+    internal init(maxChanceCount: Int, secret: Secret, matchGuess: @escaping GuessMatcher<Delegate, Secret>,  delegate: Delegate) {
         self.maxChanceCount = maxChanceCount
         self.secret = secret
         self.delegate = delegate
@@ -25,9 +25,9 @@ final class Flow<Delegate: FlowDelegate> {
     }
     
     var maxChanceCount: Int
-    var secret: String
+    var secret: Secret
     var delegate: Delegate
-    let matchGuess: GuessMatcher<Delegate>
+    let matchGuess: GuessMatcher<Delegate, Secret>
     
     private func delegateSecretNumberHandling(chancesLeft: Int, hint: Hint?) {
         if chancesLeft > 0 {
@@ -37,7 +37,7 @@ final class Flow<Delegate: FlowDelegate> {
         }
     }
     
-    private func guess(for secret: String, chancesLeft: Int) -> (Guess) -> Void {
+    private func guess(for secret: Secret, chancesLeft: Int) -> (Guess) -> Void {
         return { [weak self] guess in
             guard let self = self else { return }
             
