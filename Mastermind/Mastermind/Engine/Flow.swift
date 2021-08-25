@@ -7,10 +7,13 @@
 
 import Foundation
 
-typealias GuessMatcher = (_ guess: String, _ secretNumber: String) -> (hint: String?, correct: Bool)
+typealias GuessMatcher<Delegate: FlowDelegate> = (_ guess: Delegate.Guess, _ secretNumber: String) -> (hint: Delegate.Hint?, correct: Bool)
 
-final class Flow {
-    internal init(maxChanceCount: Int, secretNumber: String, matchGuess: @escaping GuessMatcher,  delegate: FlowDelegate) {
+final class Flow<Delegate: FlowDelegate> {
+    typealias Hint = Delegate.Hint
+    typealias Guess = Delegate.Guess
+    
+    internal init(maxChanceCount: Int, secretNumber: String, matchGuess: @escaping GuessMatcher<Delegate>,  delegate: Delegate) {
         self.maxChanceCount = maxChanceCount
         self.secretNumber = secretNumber
         self.delegate = delegate
@@ -23,10 +26,10 @@ final class Flow {
     
     var maxChanceCount: Int
     var secretNumber: String
-    var delegate: FlowDelegate
-    let matchGuess: GuessMatcher
+    var delegate: Delegate
+    let matchGuess: GuessMatcher<Delegate>
     
-    private func delegateSecretNumberHandling(chancesLeft: Int, hint: String?) {
+    private func delegateSecretNumberHandling(chancesLeft: Int, hint: Hint?) {
         if chancesLeft > 0 {
             delegate.acceptGuess(with: hint, completion: guess(for: secretNumber, chancesLeft: chancesLeft))
         } else {
@@ -34,7 +37,7 @@ final class Flow {
         }
     }
     
-    private func guess(for secretNumber: String, chancesLeft: Int) -> (String) -> Void {
+    private func guess(for secretNumber: String, chancesLeft: Int) -> (Guess) -> Void {
         return { [weak self] guess in
             guard let self = self else { return }
             
@@ -50,9 +53,12 @@ final class Flow {
 }
 
 protocol FlowDelegate {
-    func acceptGuess(with hint: String?, completion: @escaping (_ guess: String) -> Void)
-
-    func handleLose(_ hint: String?)
+    associatedtype Hint
+    associatedtype Guess
     
-    func handleWin(_ hint: String?)
+    func acceptGuess(with hint: Hint?, completion: @escaping (_ guess: Guess) -> Void)
+
+    func handleLose(_ hint: Hint?)
+    
+    func handleWin(_ hint: Hint?)
 }
