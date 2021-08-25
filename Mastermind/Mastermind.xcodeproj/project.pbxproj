@@ -56,6 +56,7 @@
 		C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098421026D4C78000AE72F4 /* Lose.storyboard */; };
 		C098421426D5033800AE72F4 /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421326D5033800AE72F4 /* FlowTests.swift */; };
 		C098421A26D6167800AE72F4 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421926D6167700AE72F4 /* Flow.swift */; };
+		C098421C26D619C600AE72F4 /* FlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421B26D619C600AE72F4 /* FlowDelegate.swift */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -141,6 +142,7 @@
 		C098421026D4C78000AE72F4 /* Lose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lose.storyboard; sourceTree = "<group>"; };
 		C098421326D5033800AE72F4 /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
 		C098421926D6167700AE72F4 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
+		C098421B26D619C600AE72F4 /* FlowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDelegate.swift; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				C098421926D6167700AE72F4 /* Flow.swift */,
+				C098421B26D619C600AE72F4 /* FlowDelegate.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C098421C26D619C600AE72F4 /* FlowDelegate.swift in Sources */,
 				C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */,
 				C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */,
 				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,

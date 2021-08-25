@@ -51,14 +51,3 @@ final class Flow<Delegate: FlowDelegate, Secret> {
         }
     }
 }
-
-protocol FlowDelegate {
-    associatedtype Hint
-    associatedtype Guess
-    
-    func acceptGuess(with hint: Hint?, completion: @escaping (_ guess: Guess) -> Void)
-
-    func handleLose(_ hint: Hint?)
-    
-    func handleWin(_ hint: Hint?)
-}
