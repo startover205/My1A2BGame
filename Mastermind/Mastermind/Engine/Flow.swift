@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias GuessMatcher<Delegate: FlowDelegate, Secret> = (_ guess: Delegate.Guess, _ secret: Secret) -> (hint: Delegate.Hint?, correct: Bool)
+public typealias GuessMatcher<Delegate: FlowDelegate, Secret> = (_ guess: Delegate.Guess, _ secret: Secret) -> (hint: Delegate.Hint?, correct: Bool)
 
 final class Flow<Delegate: FlowDelegate, Secret> {
     typealias Hint = Delegate.Hint
