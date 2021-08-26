@@ -5,7 +5,7 @@
 //  Created by Ming-Ta Yang on 2021/8/25.
 //
 
-protocol FlowDelegate {
+public protocol FlowDelegate {
     associatedtype Hint
     associatedtype Guess
     
