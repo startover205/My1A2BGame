@@ -50,6 +50,25 @@ class FlowTests: XCTestCase {
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess(nil)])
     }
 
+    func test_startAndGuess_withTwoChances_requestsMatchWithRightGuessAndSecrett() {
+        let secret = "a secret"
+        let guess = "a guess"
+        var capturedSecret: String?
+        var capturedGuess: String?
+        let (sut, delegate) = makeSUT(maxChanceCount: 3, secret: secret) { guess, secret in
+            capturedSecret = secret
+            capturedGuess = guess
+            return ("a hint", false)
+        }
+
+        sut.start()
+
+        delegate.completions[0](guess)
+
+        XCTAssertEqual(capturedSecret, secret)
+        XCTAssertEqual(capturedGuess, guess)
+    }
+
     func test_startAndGuessTwiceWithWrongAnswer_withThreeChances_requestDelegateToAcceptGuessWithProperHint() {
         let (sut, delegate) = makeSUT(maxChanceCount: 3) { _, _ in
             return ("a hint", false)
