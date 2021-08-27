@@ -84,27 +84,27 @@ class FlowTests: XCTestCase {
 
     func test_startAndGuessTwiceWithWrongAnswer_withTwoChances_requestDelegateToPresentLoseWithProperHint() {
         let (sut, delegate) = makeSUT(maxChanceCount: 2) { _, _ in
-            return ("a hint", false)
+            return ("a hint about why it fails", false)
         }
 
         sut.start()
 
-        delegate.completions[0]("a guess")
-        delegate.completions[1]("another guess")
+        delegate.completions[0]("an incorrect guess")
+        delegate.completions[1]("another incorrect guess")
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint"), .handleLose("a hint")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint about why it fails"), .handleLose("a hint about why it fails")])
     }
 
     func test_startAndGuessWithRighAnswer_withOneChance_requestDelegateToHandleResultWithProperHint() {
         let (sut, delegate) = makeSUT(maxChanceCount: 1) { _, _ in
-            return ("a hint", true)
+            return ("a hint about a success match", true)
         }
 
         sut.start()
 
-        delegate.completions[0]("right guess")
+        delegate.completions[0]("a correct guess")
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleWin("a hint")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleWin("a hint about a success match")])
     }
 
     
