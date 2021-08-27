@@ -57,7 +57,9 @@
 		C098421426D5033800AE72F4 /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421326D5033800AE72F4 /* FlowTests.swift */; };
 		C098421A26D6167800AE72F4 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421926D6167700AE72F4 /* Flow.swift */; };
 		C098421C26D619C600AE72F4 /* FlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421B26D619C600AE72F4 /* FlowDelegate.swift */; };
+		C098422026D61A1000AE72F4 /* ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421F26D61A1000AE72F4 /* ChallengeTests.swift */; };
 		C098422226D7338B00AE72F4 /* DelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098422126D7338B00AE72F4 /* DelegateSpy.swift */; };
+		C098422526D776F600AE72F4 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098422426D776F600AE72F4 /* Challenge.swift */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -144,7 +146,9 @@
 		C098421326D5033800AE72F4 /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
 		C098421926D6167700AE72F4 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		C098421B26D619C600AE72F4 /* FlowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDelegate.swift; sourceTree = "<group>"; };
+		C098421F26D61A1000AE72F4 /* ChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTests.swift; sourceTree = "<group>"; };
 		C098422126D7338B00AE72F4 /* DelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateSpy.swift; sourceTree = "<group>"; };
+		C098422426D776F600AE72F4 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -448,6 +452,7 @@
 			children = (
 				C098422326D7339700AE72F4 /* Helpers */,
 				C098421326D5033800AE72F4 /* FlowTests.swift */,
+				C098421F26D61A1000AE72F4 /* ChallengeTests.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				C098421926D6167700AE72F4 /* Flow.swift */,
+				C098422426D776F600AE72F4 /* Challenge.swift */,
 				C098421B26D619C600AE72F4 /* FlowDelegate.swift */,
 			);
 			path = Engine;
@@ -482,8 +488,8 @@
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
-				C098421226D5031A00AE72F4 /* Engine */,
 				C04B5B1E26C609740056DDA8 /* Helpers */,
+				C098421226D5031A00AE72F4 /* Engine */,
 				C04B5B1B26C608CE0056DDA8 /* Game Record */,
 				C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */,
 				C0EFCBE926B54BD80041A622 /* Info.plist */,
@@ -715,6 +721,7 @@
 				C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */,
 				C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */,
 				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,
+				C098422526D776F600AE72F4 /* Challenge.swift in Sources */,
 				C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
@@ -740,6 +747,7 @@
 				C09FAB9626C6770500A15B9E /* InsertNewRecordUseCaseTests.swift in Sources */,
 				C04B5B1D26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift in Sources */,
 				C098421426D5033800AE72F4 /* FlowTests.swift in Sources */,
+				C098422026D61A1000AE72F4 /* ChallengeTests.swift in Sources */,
 				C098422226D7338B00AE72F4 /* DelegateSpy.swift in Sources */,
 				C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */,
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
