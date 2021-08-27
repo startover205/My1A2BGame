@@ -11,7 +11,7 @@ public protocol FlowDelegate {
     
     func acceptGuess(with hint: Hint?, completion: @escaping (_ guess: Guess) -> Void)
 
-    func handleLose(_ hint: Hint?)
+    func didLose(with hint: Hint?)
     
-    func handleWin(_ hint: Hint?)
+    func didWin(with hint: Hint?)
 }

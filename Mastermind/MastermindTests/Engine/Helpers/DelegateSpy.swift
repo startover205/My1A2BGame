@@ -23,11 +23,11 @@ final class DelegateSpy: FlowDelegate {
         completions.append(completion)
     }
     
-    func handleLose(_ hint: String?) {
+    func didLose(with hint: String?) {
         receivedMessages.append(.handleLose(hint))
     }
     
-    func handleWin(_ hint: String?) {
+    func didWin(with hint: String?) {
         receivedMessages.append(.handleWin(hint))
     }
 }

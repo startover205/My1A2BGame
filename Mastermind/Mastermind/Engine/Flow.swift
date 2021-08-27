@@ -33,7 +33,7 @@ final class Flow<Delegate: FlowDelegate, Secret> {
         if chancesLeft > 0 {
             delegate.acceptGuess(with: hint, completion: guess(for: secret, chancesLeft: chancesLeft))
         } else {
-            delegate.handleLose(hint)
+            delegate.didLose(with: hint)
         }
     }
     
@@ -44,7 +44,7 @@ final class Flow<Delegate: FlowDelegate, Secret> {
             let result = self.matchGuess(guess, secret)
             
             if result.correct {
-                self.delegate.handleWin(result.hint)
+                self.delegate.didWin(with: result.hint)
             } else {
                 self.delegateSecretNumberHandling(chancesLeft: chancesLeft-1, hint: result.hint)
             }
