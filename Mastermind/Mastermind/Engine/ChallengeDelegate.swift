@@ -1,11 +1,11 @@
 //
-//  FlowDelegate.swift
+//  ChallengeDelegate.swift
 //  Mastermind
 //
 //  Created by Ming-Ta Yang on 2021/8/25.
 //
 
-public protocol FlowDelegate {
+public protocol ChallengeDelegate {
     associatedtype Hint
     associatedtype Guess
     

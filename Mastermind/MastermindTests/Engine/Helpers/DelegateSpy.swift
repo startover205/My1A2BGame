@@ -8,7 +8,7 @@
 import Foundation
 import Mastermind
 
-final class DelegateSpy: FlowDelegate {
+final class DelegateSpy: ChallengeDelegate {
     enum Message: Equatable {
         case acceptGuess(_ hint: String?)
         case handleLose(_ hint: String?)
