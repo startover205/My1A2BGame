@@ -24,15 +24,15 @@ class ChallengeTests: XCTestCase {
     }
     
     func test_challenge_withTwoChance_requestDelegateToHandleLoseWithProperHint() {
-        let (sut, delegate) = makeSUT(maxChanceCount: 1, matchGuess:  { _, _ in
+        let (sut, delegate) = makeSUT(maxChanceCount: 2, matchGuess:  { _, _ in
             return ("a hint about why it fails", false)
         })
         self.sut = sut
         
         delegate.completions[0]("an incorrect guess")
-        delegate.completions[0]("another incorrect guess")
+        delegate.completions[1]("another incorrect guess")
          
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleLose("a hint about why it fails"), .handleLose("a hint about why it fails")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint about why it fails"), .handleLose("a hint about why it fails")])
     }
     
     // MARK: Helpers
