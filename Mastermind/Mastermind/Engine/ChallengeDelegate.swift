@@ -16,4 +16,6 @@ public protocol ChallengeDelegate {
     func didWin()
     
     func showHint(_ hint: Hint?)
+    
+    func replenishChance(completion: @escaping (Int) -> Void)
 }

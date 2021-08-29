@@ -30,8 +30,9 @@ class ChallengeTests: XCTestCase {
         self.sut = sut
         
         delegate.completions[0]("an incorrect guess")
+        delegate.completeReplenish(with: 0)
          
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the failing match"), .handleLose])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the failing match"), .replenishChance, .handleLose])
     }
     
     // MARK: Helpers

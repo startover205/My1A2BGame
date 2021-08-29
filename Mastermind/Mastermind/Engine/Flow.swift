@@ -31,7 +31,7 @@ final class Flow<Delegate: ChallengeDelegate, Secret> {
         if chancesLeft > 0 {
             delegate.acceptGuess(completion: guess(for: secret, chancesLeft: chancesLeft))
         } else {
-            delegate.didLose()
+            delegate.replenishChance(completion: didReplenishChance())
         }
     }
     
@@ -48,6 +48,19 @@ final class Flow<Delegate: ChallengeDelegate, Secret> {
             } else {
                 self.delegateSecretNumberHandling(chancesLeft: chancesLeft-1)
             }
+        }
+    }
+    
+    private func didReplenishChance() -> (_ chanceCount: Int) -> Void {
+        return { [weak self] chanceCount in
+            guard let self = self else { return }
+            
+            if chanceCount > 0 {
+                self.delegateSecretNumberHandling(chancesLeft: chanceCount)
+            } else {
+                self.delegate.didLose()
+            }
+            
         }
     }
 }
