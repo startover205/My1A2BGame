@@ -70,6 +70,7 @@
 		C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3077F26CB462100C79D5B /* ManagedRecord.swift */; };
 		C0A3078226CB5BD200C79D5B /* RecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3078126CB5BD200C79D5B /* RecordLoader.swift */; };
 		C0BF9A5E26DB177D006BD7C1 /* GuessMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A5D26DB177D006BD7C1 /* GuessMatcher.swift */; };
+		C0BF9A6126DB5E23006BD7C1 /* FourDigitSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6026DB5E23006BD7C1 /* FourDigitSecret.swift */; };
 		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 /* End PBXBuildFile section */
@@ -160,6 +161,7 @@
 		C0A3077F26CB462100C79D5B /* ManagedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRecord.swift; sourceTree = "<group>"; };
 		C0A3078126CB5BD200C79D5B /* RecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoader.swift; sourceTree = "<group>"; };
 		C0BF9A5D26DB177D006BD7C1 /* GuessMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessMatcher.swift; sourceTree = "<group>"; };
+		C0BF9A6026DB5E23006BD7C1 /* FourDigitSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourDigitSecret.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -488,12 +490,21 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		C0BF9A5F26DB5D7B006BD7C1 /* BasicChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				C0BF9A6026DB5E23006BD7C1 /* FourDigitSecret.swift */,
+			);
+			path = BasicChallenge;
+			sourceTree = "<group>";
+		};
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
 				C04B5B1E26C609740056DDA8 /* Helpers */,
 				C098421226D5031A00AE72F4 /* Engine */,
 				C04B5B1B26C608CE0056DDA8 /* Game Record */,
+				C0BF9A5F26DB5D7B006BD7C1 /* BasicChallenge */,
 				C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */,
 				C0EFCBE926B54BD80041A622 /* Info.plist */,
 			);
@@ -759,6 +770,7 @@
 				C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */,
 				C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */,
 				C041383A26C76CED00DFBA59 /* RankValidationPolicyTests.swift in Sources */,
+				C0BF9A6126DB5E23006BD7C1 /* FourDigitSecret.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
