@@ -18,8 +18,10 @@ struct FourDigitSecret {
 
 class FourDigitSecretTests: XCTestCase {
  
-    func test_init_returnsNilOnRepeatedDigits() {
+    func test_init_returnsNilOnRepeatedInputs() {
         XCTAssertNil(FourDigitSecret(first: 0, second: 0, third: 0, fourth: 0))
+        XCTAssertNil(FourDigitSecret(first: 1, second: 2, third: 3, fourth: 3))
+        XCTAssertNil(FourDigitSecret(first: 9, second: 8, third: 7, fourth: 7))
     }
-    
 }
+
