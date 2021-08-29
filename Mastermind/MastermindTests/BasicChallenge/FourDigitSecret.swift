@@ -27,5 +27,12 @@ class FourDigitSecretTests: XCTestCase {
     func test_init_returnsNilOnNegativeInputs() {
         XCTAssertNil(FourDigitSecret(first: -1, second: 0, third: 1, fourth: 2))
     }
+    
+    func test_init_returnsNilOnNonOneDigitInputs() {
+        XCTAssertNil(FourDigitSecret(first: 10, second: 1, third: 2, fourth: 3))
+        XCTAssertNil(FourDigitSecret(first: 0, second: 11, third: 2, fourth: 3))
+        XCTAssertNil(FourDigitSecret(first: 0, second: 1, third: 22, fourth: 3))
+        XCTAssertNil(FourDigitSecret(first: 0, second: 1, third: 2, fourth: 33))
+    }
 }
 
