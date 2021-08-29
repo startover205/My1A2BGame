@@ -12,27 +12,27 @@ class ChallengeTests: XCTestCase {
     
     private weak var sut: Challenge?
     
-    func test_challenge_withTwoChance_requestDelegateToHandleWinWithProperHint() {
+    func test_startChallenge_winsChallengeWithProperHint() {
         let (sut, delegate) = makeSUT(maxChanceCount: 2, matchGuess:  { _, _ in
-            return ("a hint about a success match", true)
+            return ("a hint about the successful match", true)
         })
         self.sut = sut
         
         delegate.completions[0]("a correct guess")
          
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleWin("a hint about a success match")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleWin("a hint about the successful match")])
     }
     
-    func test_challenge_withTwoChance_requestDelegateToHandleLoseWithProperHint() {
+    func test_startChallenge_losesChallengeWithProperHint() {
         let (sut, delegate) = makeSUT(maxChanceCount: 2, matchGuess:  { _, _ in
-            return ("a hint about why it fails", false)
+            return ("a hint about the failing match", false)
         })
         self.sut = sut
         
         delegate.completions[0]("an incorrect guess")
         delegate.completions[1]("another incorrect guess")
          
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint about why it fails"), .handleLose("a hint about why it fails")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint about the failing match"), .handleLose("a hint about the failing match")])
     }
     
     // MARK: Helpers
