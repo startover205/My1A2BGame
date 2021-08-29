@@ -22,7 +22,7 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        XCTAssertEqual(delegate.receivedMessages, [.handleLose(nil)])
+        XCTAssertEqual(delegate.receivedMessages, [.handleLose])
     }
 
     func test_start_withOneChance_requestDelegateToAcceptGuessWithEmptyHint() {
@@ -30,7 +30,7 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil)])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess])
     }
 
     func test_start_withTwoChances_requestDelegateToAcceptGuessWithEmptyHint() {
@@ -38,7 +38,7 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil)])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess])
     }
 
     func test_startTwice_withTwoChances_requestDelegateToAcceptGuessWithEmptyHintTwice() {
@@ -47,7 +47,7 @@ class FlowTests: XCTestCase {
         sut.start()
         sut.start()
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess(nil)])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .acceptGuess])
     }
 
     func test_startAndGuess_withTwoChances_requestsMatchWithRightGuessAndSecrett() {
@@ -79,7 +79,7 @@ class FlowTests: XCTestCase {
         delegate.completions[0]("a guess")
         delegate.completions[1]("another guess")
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint"), .acceptGuess("a hint")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint"), .acceptGuess, .showHint("a hint"), .acceptGuess])
     }
 
     func test_startAndGuessTwiceWithWrongAnswer_withTwoChances_requestDelegateToPresentLoseWithProperHint() {
@@ -92,19 +92,19 @@ class FlowTests: XCTestCase {
         delegate.completions[0]("an incorrect guess")
         delegate.completions[1]("another incorrect guess")
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint about why it fails"), .handleLose("a hint about why it fails")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about why it fails"), .acceptGuess, .showHint("a hint about why it fails"), .handleLose])
     }
 
     func test_startAndGuessWithRighAnswer_withOneChance_requestDelegateToHandleResultWithProperHint() {
         let (sut, delegate) = makeSUT(maxChanceCount: 1) { _, _ in
-            return ("a hint about a success match", true)
+            return ("a hint about a successful match", true)
         }
 
         sut.start()
 
         delegate.completions[0]("a correct guess")
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleWin("a hint about a success match")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about a successful match"), .handleWin])
     }
 
     

@@ -10,24 +10,29 @@ import Mastermind
 
 final class DelegateSpy: ChallengeDelegate {
     enum Message: Equatable {
-        case acceptGuess(_ hint: String?)
-        case handleLose(_ hint: String?)
-        case handleWin(_ hint: String?)
+        case acceptGuess
+        case handleLose
+        case handleWin
+        case showHint(_ hint: String?)
     }
     
     private(set) var receivedMessages = [Message]()
     var completions = [(String) -> Void]()
     
-    func acceptGuess(with hint: String?, completion: @escaping (String) -> Void) {
-        receivedMessages.append(.acceptGuess(hint))
+    func acceptGuess(completion: @escaping (String) -> Void) {
+        receivedMessages.append(.acceptGuess)
         completions.append(completion)
     }
     
-    func didLose(with hint: String?) {
-        receivedMessages.append(.handleLose(hint))
+    func didLose() {
+        receivedMessages.append(.handleLose)
     }
     
-    func didWin(with hint: String?) {
-        receivedMessages.append(.handleWin(hint))
+    func didWin() {
+        receivedMessages.append(.handleWin)
+    }
+    
+    func showHint(_ hint: String?) {
+        receivedMessages.append(.showHint(hint))
     }
 }

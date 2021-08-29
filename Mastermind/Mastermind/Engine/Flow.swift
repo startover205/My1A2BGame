@@ -24,14 +24,14 @@ final class Flow<Delegate: ChallengeDelegate, Secret> {
     }
     
    func start() {
-       delegateSecretNumberHandling(chancesLeft: maxChanceCount, hint: nil)
+       delegateSecretNumberHandling(chancesLeft: maxChanceCount)
    }
     
-    private func delegateSecretNumberHandling(chancesLeft: Int, hint: Hint?) {
+    private func delegateSecretNumberHandling(chancesLeft: Int) {
         if chancesLeft > 0 {
-            delegate.acceptGuess(with: hint, completion: guess(for: secret, chancesLeft: chancesLeft))
+            delegate.acceptGuess(completion: guess(for: secret, chancesLeft: chancesLeft))
         } else {
-            delegate.didLose(with: hint)
+            delegate.didLose()
         }
     }
     
@@ -41,10 +41,12 @@ final class Flow<Delegate: ChallengeDelegate, Secret> {
             
             let result = self.matchGuess(guess, secret)
             
+            self.delegate.showHint(result.hint)
+            
             if result.correct {
-                self.delegate.didWin(with: result.hint)
+                self.delegate.didWin()
             } else {
-                self.delegateSecretNumberHandling(chancesLeft: chancesLeft-1, hint: result.hint)
+                self.delegateSecretNumberHandling(chancesLeft: chancesLeft-1)
             }
         }
     }

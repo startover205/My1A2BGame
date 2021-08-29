@@ -20,7 +20,7 @@ class ChallengeTests: XCTestCase {
         
         delegate.completions[0]("a correct guess")
          
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleWin("a hint about the successful match")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the successful match"), .handleWin])
     }
     
     func test_startChallenge_losesChallengeWithProperHint() {
@@ -31,7 +31,7 @@ class ChallengeTests: XCTestCase {
         
         delegate.completions[0]("an incorrect guess")
          
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleLose("a hint about the failing match")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the failing match"), .handleLose])
     }
     
     // MARK: Helpers
@@ -45,5 +45,4 @@ class ChallengeTests: XCTestCase {
         
         return (sut, delegate)
     }
-
 }
