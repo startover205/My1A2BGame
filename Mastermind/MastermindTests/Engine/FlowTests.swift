@@ -73,7 +73,7 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completions[0](guess)
+        delegate.completeGuess(with: guess)
 
         XCTAssertEqual(capturedSecret, secret)
         XCTAssertEqual(capturedGuess, guess)
@@ -86,8 +86,8 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completions[0]("a guess")
-        delegate.completions[1]("another guess")
+        delegate.completeGuess(with: "a guess", at: 0)
+        delegate.completeGuess(with: "another guess", at: 1)
 
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint"), .acceptGuess, .showHint("a hint"), .acceptGuess])
     }
@@ -99,8 +99,8 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completions[0]("an incorrect guess")
-        delegate.completions[1]("another incorrect guess")
+        delegate.completeGuess(with: "an incorrect guess", at: 0)
+        delegate.completeGuess(with: "another incorrect guess", at: 1)
         delegate.completeReplenish(with: 0)
 
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about why it fails"), .acceptGuess, .showHint("a hint about why it fails"), .replenishChance, .handleLose])
@@ -113,7 +113,7 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completions[0]("a correct guess")
+        delegate.completeGuess(with: "a correct guess")
 
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about a successful match"), .handleWin])
     }
@@ -125,7 +125,7 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completions[0]("an incorrect guess")
+        delegate.completeGuess(with: "an incorrect guess")
         delegate.completeReplenish(with: 1)
 
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about why it fails"), .replenishChance, .acceptGuess])
@@ -142,11 +142,11 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completions[0]("an incorrect guess")
+        delegate.completeGuess(with: "an incorrect guess", at: 0)
         delegate.completeReplenish(with: 1, at: 0)
-        delegate.completions[1]("an incorrect guess")
+        delegate.completeGuess(with: "an incorrect guess", at: 1)
         delegate.completeReplenish(with: 1, at: 1)
-        delegate.completions[2]("a correct guess")
+        delegate.completeGuess(with: "a correct guess", at: 2)
 
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the failing match"),  .replenishChance, .acceptGuess, .showHint("a hint about the failing match"), .replenishChance, .acceptGuess, .showHint("a hint about the successful match"), .handleWin])
     }

@@ -19,11 +19,11 @@ final class DelegateSpy: ChallengeDelegate {
     
     private(set) var receivedMessages = [Message]()
     private var replenishCompletions = [(Int) -> Void]()
-    var completions = [(String) -> Void]()
+    private var guessCompletions = [(String) -> Void]()
     
     func acceptGuess(completion: @escaping (String) -> Void) {
         receivedMessages.append(.acceptGuess)
-        completions.append(completion)
+        guessCompletions.append(completion)
     }
     
     func didLose() {
@@ -41,6 +41,10 @@ final class DelegateSpy: ChallengeDelegate {
     func replenishChance(completion: @escaping (Int) -> Void) {
         receivedMessages.append(.replenishChance)
         replenishCompletions.append(completion)
+    }
+    
+    func completeGuess(with guess: String, at index: Int = 0) {
+        guessCompletions[index](guess)
     }
     
     func completeReplenish(with chanceCount: Int, at index: Int = 0) {
