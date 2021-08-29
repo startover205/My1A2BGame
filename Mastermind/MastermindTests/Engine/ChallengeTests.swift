@@ -13,7 +13,7 @@ class ChallengeTests: XCTestCase {
     private weak var sut: Challenge?
     
     func test_startChallenge_winsChallengeWithProperHint() {
-        let (sut, delegate) = makeSUT(maxChanceCount: 2, matchGuess:  { _, _ in
+        let (sut, delegate) = makeSUT(maxChanceCount: 1, matchGuess:  { _, _ in
             return ("a hint about the successful match", true)
         })
         self.sut = sut
@@ -24,15 +24,14 @@ class ChallengeTests: XCTestCase {
     }
     
     func test_startChallenge_losesChallengeWithProperHint() {
-        let (sut, delegate) = makeSUT(maxChanceCount: 2, matchGuess:  { _, _ in
+        let (sut, delegate) = makeSUT(maxChanceCount: 1, matchGuess:  { _, _ in
             return ("a hint about the failing match", false)
         })
         self.sut = sut
         
         delegate.completions[0]("an incorrect guess")
-        delegate.completions[1]("another incorrect guess")
          
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .acceptGuess("a hint about the failing match"), .handleLose("a hint about the failing match")])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess(nil), .handleLose("a hint about the failing match")])
     }
     
     // MARK: Helpers
@@ -41,7 +40,6 @@ class ChallengeTests: XCTestCase {
         let delegate = DelegateSpy()
         let sut = Challenge.start(secret: "", maxChanceCount: maxChanceCount, matchGuess: matchGuess, delegate: delegate)
 
-        
         trackForMemoryLeaks(delegate, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
