@@ -8,25 +8,6 @@
 import XCTest
 import Mastermind
 
-final class DigitSecretMatcher {
-    private init() {}
-    
-    static func match(_ guess: FourDigitSecret, with secret: FourDigitSecret) -> (hint: String, correct: Bool) {
-        var correctCount = 0
-        var misplacedCount = 0
-        
-        guess.content.enumerated().forEach { guessIndex, guessDigit in
-            secret.content.enumerated().forEach { answerIndex, answerDigit in
-                if guessDigit == answerDigit {
-                    guessIndex == answerIndex ? (correctCount += 1) : (misplacedCount += 1)
-                }
-            }
-        }
-        
-        return ("\(correctCount)A\(misplacedCount)B", correctCount == secret.content.count)
-    }
-}
-
 class DigitSecretMatcherTests: XCTestCase {
     func test_match_deliversFalseWithProperHintOnMatchingNoBullNoCowMatch() {
         expect(guess: [1, 2, 3, 4], matching: [5, 6, 7, 8], toCompleteWith: (hint: "0A0B", correct: false))
