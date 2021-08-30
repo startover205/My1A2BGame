@@ -12,13 +12,15 @@ public struct FourDigitSecret {
     
     static let digitCount = 4
     
-    public init?(first: Int, second: Int, third: Int, fourth: Int) {
-        content = [first, second, third, fourth]
+    public init?(digits: [Int]) {
+        guard digits.count == Self.digitCount else { return nil }
         
-        guard Set(content).count == Self.digitCount else { return nil }
+        guard Set(digits).count == Self.digitCount else { return nil }
         
-        for digit in content {
+        for digit in digits {
             if digit < 0 || digit > 9 { return nil }
         }
+        
+        content = digits
     }
 }

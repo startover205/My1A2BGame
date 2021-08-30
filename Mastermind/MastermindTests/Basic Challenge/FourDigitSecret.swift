@@ -10,6 +10,14 @@ import Mastermind
 
 class FourDigitSecretTests: XCTestCase {
  
+    func test_init_returnsNilOnMismatchLengthInputs() {
+        XCTAssertNil(makeSUT(digits: [0]))
+        XCTAssertNil(makeSUT(digits: [0, 1]))
+        XCTAssertNil(makeSUT(digits: [0, 1, 2]))
+        XCTAssertNil(makeSUT(digits: [0, 1, 2, 3, 4]))
+        XCTAssertNil(makeSUT(digits: [0, 1, 2, 3, 3]))
+    }
+ 
     func test_init_returnsNilOnRepeatedInputs() {
         XCTAssertNil(makeSUT(digits: [0, 0, 0, 0]))
         XCTAssertNil(makeSUT(digits: [0, 1, 1, 3]))
@@ -41,7 +49,7 @@ class FourDigitSecretTests: XCTestCase {
     // MARK: Helpers
     
     private func makeSUT(digits: [Int], file: StaticString = #filePath, line: UInt = #line) -> FourDigitSecret? {
-        let sut = FourDigitSecret(first: digits[0], second: digits[1], third: digits[2], fourth: digits[3])
+        let sut = FourDigitSecret(digits: digits)
         
         return sut
     }
