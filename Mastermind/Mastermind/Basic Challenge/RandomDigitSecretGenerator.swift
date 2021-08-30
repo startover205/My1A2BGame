@@ -9,6 +9,8 @@ import Foundation
 import GameKit
 
 public final class RandomDigitSecretGenerator {
+    private init() {}
+    
     public static func generate() -> FourDigitSecret {
         var digits = [Int]()
 
