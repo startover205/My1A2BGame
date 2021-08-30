@@ -42,6 +42,14 @@ class DigitSecretMatcherTests: XCTestCase {
         expect(guess: [1, 2, 3, 4], matching: [4, 1, 2, 3], toCompleteWith: (hint: "0A4B", correct: false))
     }
     
+    func test_match_deliversFalseWithProperHintOnMatchingPartialBullsPartialCowsMatch() {
+        expect(guess: [1, 2, 3, 4], matching: [1, 6, 2, 8], toCompleteWith: (hint: "1A1B", correct: false))
+        expect(guess: [1, 2, 3, 4], matching: [1, 6, 2, 3], toCompleteWith: (hint: "1A2B", correct: false))
+        expect(guess: [1, 2, 3, 4], matching: [1, 4, 2, 3], toCompleteWith: (hint: "1A3B", correct: false))
+        expect(guess: [1, 2, 3, 4], matching: [1, 2, 7, 3], toCompleteWith: (hint: "2A1B", correct: false))
+        expect(guess: [1, 2, 3, 4], matching: [1, 2, 4, 3], toCompleteWith: (hint: "2A2B", correct: false))
+    }
+    
     // MARK: - Helpers
 
     private func expect(guess: [Int], matching secret: [Int], toCompleteWith expectedResult: (hint: String, correct: Bool), file: StaticString = #filePath, line: UInt = #line) {
