@@ -350,8 +350,8 @@
 		C034C53F26B5431300F6166E /* Mastermind */ = {
 			isa = PBXGroup;
 			children = (
-				C0BF9A6226DC62F4006BD7C1 /* Basic Challenge */,
 				C098421826D6166C00AE72F4 /* Engine */,
+				C0BF9A6226DC62F4006BD7C1 /* Basic Challenge */,
 				C04B5B1A26C608B40056DDA8 /* Game Record */,
 				C034C54126B5431300F6166E /* Info.plist */,
 				C034C54C26B54B2400F6166E /* MastermindEvaluator.swift */,
@@ -526,8 +526,8 @@
 			children = (
 				C04B5B1E26C609740056DDA8 /* Helpers */,
 				C098421226D5031A00AE72F4 /* Engine */,
-				C04B5B1B26C608CE0056DDA8 /* Game Record */,
 				C0BF9A5F26DB5D7B006BD7C1 /* Basic Challenge */,
+				C04B5B1B26C608CE0056DDA8 /* Game Record */,
 				C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */,
 				C0EFCBE926B54BD80041A622 /* Info.plist */,
 			);
