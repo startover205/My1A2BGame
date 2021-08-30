@@ -14,7 +14,7 @@ class RandomDigitSecretGeneratorTests: XCTestCase {
         var generatedResult = [DigitSecret]()
         
         for _ in 0..<generateCount {
-            generatedResult.append(RandomDigitSecretGenerator.generate())
+            generatedResult.append(RandomDigitSecretGenerator.generate(digitCount: 4))
         }
         
         XCTAssertEqual(Set(generatedResult).count, generateCount, accuracy: 150)
@@ -25,12 +25,21 @@ class RandomDigitSecretGeneratorTests: XCTestCase {
         var generatedResult = [DigitSecret]()
         
         for _ in 0..<generateCount {
-            generatedResult.append(RandomDigitSecretGenerator.generate())
+            generatedResult.append(RandomDigitSecretGenerator.generate(digitCount: 4))
         }
         
         let total = generatedResult.flatMap { $0.content }.reduce(0, +)
         
         XCTAssertEqual(Double(total), idealTotal(iterateCount: generateCount), accuracy: 1000)
+    }
+    
+    func test_generate_generatesDigitSecretAccordingToDigitCount() {
+        let examples = [2, 3, 4, 5, 6]
+        
+        examples.forEach {
+            let digitSecret = RandomDigitSecretGenerator.generate(digitCount: $0)
+            XCTAssertEqual(digitSecret.content.count, $0)
+        }
     }
     
     // MARK: - Helpers

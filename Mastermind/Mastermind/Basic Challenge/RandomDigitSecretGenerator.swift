@@ -11,12 +11,12 @@ import GameKit
 public final class RandomDigitSecretGenerator {
     private init() {}
     
-    public static func generate() -> DigitSecret {
+    public static func generate(digitCount: Int) -> DigitSecret {
         var digits = [Int]()
 
         let distribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
         
-        for _ in 0..<4 {
+        for _ in 0..<digitCount {
             digits.append(distribution.nextInt())
         }
         
