@@ -46,8 +46,8 @@ class DigitSecretMatcherTests: XCTestCase {
     // MARK: - Helpers
 
     private func expect(guess: [Int], matching secret: [Int], toCompleteWith expectedResult: (hint: String, correct: Bool), file: StaticString = #filePath, line: UInt = #line) {
-        let secret = FourDigitSecret(digits: secret)!
-        let guess = FourDigitSecret(digits: guess)!
+        let secret = DigitSecret(digits: secret)!
+        let guess = DigitSecret(digits: guess)!
         
         let result = DigitSecretMatcher.match(guess, with: secret)
         

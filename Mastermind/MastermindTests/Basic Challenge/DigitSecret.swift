@@ -1,5 +1,5 @@
 //
-//  FourDigitSecret.swift
+//  DigitSecret.swift
 //  MastermindTests
 //
 //  Created by Ming-Ta Yang on 2021/8/29.
@@ -8,16 +8,7 @@
 import XCTest
 import Mastermind
 
-class FourDigitSecretTests: XCTestCase {
- 
-    func test_init_returnsNilOnMismatchLengthInputs() {
-        XCTAssertNil(makeSUT(digits: [0]))
-        XCTAssertNil(makeSUT(digits: [0, 1]))
-        XCTAssertNil(makeSUT(digits: [0, 1, 2]))
-        XCTAssertNil(makeSUT(digits: [0, 1, 2, 3, 4]))
-        XCTAssertNil(makeSUT(digits: [0, 1, 2, 3, 3]))
-    }
- 
+class DigitSecretTests: XCTestCase {
     func test_init_returnsNilOnRepeatedInputs() {
         XCTAssertNil(makeSUT(digits: [0, 0, 0, 0]))
         XCTAssertNil(makeSUT(digits: [0, 1, 1, 3]))
@@ -40,6 +31,11 @@ class FourDigitSecretTests: XCTestCase {
     }
     
     func test_init_successfully() {
+        XCTAssertNotNil(makeSUT(digits: [0]))
+        XCTAssertNotNil(makeSUT(digits: [0, 1]))
+        XCTAssertNotNil(makeSUT(digits: [0, 1, 2]))
+        XCTAssertNotNil(makeSUT(digits: [0, 1, 2, 3]))
+        XCTAssertNotNil(makeSUT(digits: [0, 1, 2, 3, 4, 5]))
         XCTAssertNotNil(makeSUT(digits: [0, 1, 2, 3]))
         XCTAssertNotNil(makeSUT(digits: [2, 3, 4, 5]))
         XCTAssertNotNil(makeSUT(digits: [9, 8, 7, 6]))
@@ -48,8 +44,8 @@ class FourDigitSecretTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(digits: [Int], file: StaticString = #filePath, line: UInt = #line) -> FourDigitSecret? {
-        let sut = FourDigitSecret(digits: digits)
+    private func makeSUT(digits: [Int], file: StaticString = #filePath, line: UInt = #line) -> DigitSecret? {
+        let sut = DigitSecret(digits: digits)
         
         return sut
     }

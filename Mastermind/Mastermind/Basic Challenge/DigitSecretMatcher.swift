@@ -10,7 +10,7 @@ import Foundation
 public final class DigitSecretMatcher {
     private init() {}
     
-    public static func match(_ guess: FourDigitSecret, with secret: FourDigitSecret) -> (hint: String, correct: Bool) {
+    public static func match(_ guess: DigitSecret, with secret: DigitSecret) -> (hint: String, correct: Bool) {
         var correctCount = 0
         var misplacedCount = 0
         

@@ -11,7 +11,7 @@ import Mastermind
 class RandomDigitSecretGeneratorTests: XCTestCase {
     func test_generate_returnsDigitSecretRandomly() {
         let generateCount = 1000
-        var generatedResult = [FourDigitSecret]()
+        var generatedResult = [DigitSecret]()
         
         for _ in 0..<generateCount {
             generatedResult.append(RandomDigitSecretGenerator.generate())
@@ -22,7 +22,7 @@ class RandomDigitSecretGeneratorTests: XCTestCase {
 
     func test_generate_returnsDigitSecretRandomlyWithSuffledDistribution() {
         let generateCount = 1000
-        var generatedResult = [FourDigitSecret]()
+        var generatedResult = [DigitSecret]()
         
         for _ in 0..<generateCount {
             generatedResult.append(RandomDigitSecretGenerator.generate())
