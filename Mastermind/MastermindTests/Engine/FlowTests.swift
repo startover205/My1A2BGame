@@ -60,12 +60,12 @@ class FlowTests: XCTestCase {
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .acceptGuess])
     }
 
-    func test_startAndGuess_withTwoChances_requestsMatchWithRightGuessAndSecrett() {
+    func test_startAndGuess_withOneChance_requestsMatchWithRightGuessAndSecret() {
         let secret = "a secret"
         let guess = "a guess"
         var capturedSecret: String?
         var capturedGuess: String?
-        let (sut, delegate) = makeSUT(maxChanceCount: 3, secret: secret) { guess, secret in
+        let (sut, delegate) = makeSUT(maxChanceCount: 1, secret: secret) { guess, secret in
             capturedSecret = secret
             capturedGuess = guess
             return ("a hint", false)
@@ -73,12 +73,24 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completeGuess(with: guess)
+        _ = delegate.completeGuess(with: guess)
 
         XCTAssertEqual(capturedSecret, secret)
         XCTAssertEqual(capturedGuess, guess)
     }
 
+    func test_startAndGuess_withOneChance_deliversProperHint() {
+        let (sut, delegate) = makeSUT(maxChanceCount: 1) { guess, secret in
+            return ("a hint", false)
+        }
+
+        sut.start()
+
+        let hint = delegate.completeGuess(with: "a guess")
+
+        XCTAssertEqual(hint, "a hint")
+    }
+    
     func test_startAndGuessTwiceWithWrongAnswer_withThreeChances_requestDelegateToAcceptGuessWithProperHint() {
         let (sut, delegate) = makeSUT(maxChanceCount: 3) { _, _ in
             return ("a hint", false)
@@ -86,10 +98,10 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completeGuess(with: "a guess", at: 0)
-        delegate.completeGuess(with: "another guess", at: 1)
+        _ = delegate.completeGuess(with: "a guess", at: 0)
+        _ = delegate.completeGuess(with: "another guess", at: 1)
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint"), .acceptGuess, .showHint("a hint"), .acceptGuess])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .acceptGuess, .acceptGuess])
     }
 
     func test_startAndGuessTwiceWithWrongAnswer_withTwoChances_withNoReplenish_requestDelegateToPresentLoseWithProperHint() {
@@ -99,11 +111,11 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completeGuess(with: "an incorrect guess", at: 0)
-        delegate.completeGuess(with: "another incorrect guess", at: 1)
+        _ = delegate.completeGuess(with: "an incorrect guess", at: 0)
+        _ = delegate.completeGuess(with: "another incorrect guess", at: 1)
         delegate.completeReplenish(with: 0)
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about why it fails"), .acceptGuess, .showHint("a hint about why it fails"), .replenishChance, .handleLose])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .acceptGuess, .replenishChance, .handleLose])
     }
 
     func test_startAndGuessWithRighAnswer_withOneChance_requestDelegateToHandleResultWithProperHint() {
@@ -113,9 +125,9 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completeGuess(with: "a correct guess")
+        _ = delegate.completeGuess(with: "a correct guess")
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about a successful match"), .handleWin])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .handleWin])
     }
     
     func test_startAndGuessWithWrongAnswer_withOneChance_withOneReplenishedChance_requestDelegateToAcceptGuessAgainAfterReplenish() {
@@ -125,10 +137,10 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completeGuess(with: "an incorrect guess")
+        _ = delegate.completeGuess(with: "an incorrect guess")
         delegate.completeReplenish(with: 1)
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about why it fails"), .replenishChance, .acceptGuess])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .replenishChance, .acceptGuess])
     }
 
     func test_startAndGuessWithWrongAnswerTwiceAndCorrectAnswerOnThirdTry_withOneChance_withOneReplenishedChanceTwice_requestDelegateToHandleWin() {
@@ -142,13 +154,13 @@ class FlowTests: XCTestCase {
 
         sut.start()
 
-        delegate.completeGuess(with: "an incorrect guess", at: 0)
+        _ = delegate.completeGuess(with: "an incorrect guess", at: 0)
         delegate.completeReplenish(with: 1, at: 0)
-        delegate.completeGuess(with: "an incorrect guess", at: 1)
+        _ = delegate.completeGuess(with: "an incorrect guess", at: 1)
         delegate.completeReplenish(with: 1, at: 1)
-        delegate.completeGuess(with: "a correct guess", at: 2)
+        _ = delegate.completeGuess(with: "a correct guess", at: 2)
 
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the failing match"),  .replenishChance, .acceptGuess, .showHint("a hint about the failing match"), .replenishChance, .acceptGuess, .showHint("a hint about the successful match"), .handleWin])
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess,  .replenishChance, .acceptGuess, .replenishChance, .acceptGuess, .handleWin])
     }
 
     

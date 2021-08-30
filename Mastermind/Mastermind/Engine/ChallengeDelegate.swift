@@ -9,13 +9,11 @@ public protocol ChallengeDelegate {
     associatedtype Hint
     associatedtype Guess
     
-    func acceptGuess(completion: @escaping (_ guess: Guess) -> Void)
+    func acceptGuess(completion: @escaping (_ guess: Guess) -> Hint?)
 
     func didLose()
     
     func didWin()
-    
-    func showHint(_ hint: Hint?)
     
     func replenishChance(completion: @escaping (Int) -> Void)
 }

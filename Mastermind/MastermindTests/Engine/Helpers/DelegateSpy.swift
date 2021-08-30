@@ -13,15 +13,14 @@ final class DelegateSpy: ChallengeDelegate {
         case acceptGuess
         case handleLose
         case handleWin
-        case showHint(_ hint: String?)
         case replenishChance
     }
     
     private(set) var receivedMessages = [Message]()
     private var replenishCompletions = [(Int) -> Void]()
-    private var guessCompletions = [(String) -> Void]()
+    private var guessCompletions = [(String) -> String?]()
     
-    func acceptGuess(completion: @escaping (String) -> Void) {
+    func acceptGuess(completion: @escaping (String) -> String?) {
         receivedMessages.append(.acceptGuess)
         guessCompletions.append(completion)
     }
@@ -34,16 +33,12 @@ final class DelegateSpy: ChallengeDelegate {
         receivedMessages.append(.handleWin)
     }
     
-    func showHint(_ hint: String?) {
-        receivedMessages.append(.showHint(hint))
-    }
-    
     func replenishChance(completion: @escaping (Int) -> Void) {
         receivedMessages.append(.replenishChance)
         replenishCompletions.append(completion)
     }
     
-    func completeGuess(with guess: String, at index: Int = 0) {
+    func completeGuess(with guess: String, at index: Int = 0) -> String? {
         guessCompletions[index](guess)
     }
     

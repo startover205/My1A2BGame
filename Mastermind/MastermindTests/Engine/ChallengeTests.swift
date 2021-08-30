@@ -18,9 +18,10 @@ class ChallengeTests: XCTestCase {
         })
         self.sut = sut
         
-        delegate.completeGuess(with: "a correct guess")
-         
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the successful match"), .handleWin])
+        let hint = delegate.completeGuess(with: "a correct guess")
+        
+        XCTAssertEqual(hint, "a hint about the successful match")
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .handleWin])
     }
     
     func test_startChallenge_losesChallengeWithProperHint() {
@@ -29,17 +30,20 @@ class ChallengeTests: XCTestCase {
         })
         self.sut = sut
         
-        delegate.completeGuess(with: "an incorrect guess")
+        let hint = delegate.completeGuess(with: "an incorrect guess")
+        
+        XCTAssertEqual(hint, "a hint about the failing match")
+        
         delegate.completeReplenish(with: 0)
-         
-        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .showHint("a hint about the failing match"), .replenishChance, .handleLose])
+        
+        XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .replenishChance, .handleLose])
     }
     
     // MARK: Helpers
     
     private func makeSUT(maxChanceCount: Int, matchGuess: @escaping GuessMatcher<DelegateSpy, String>, file: StaticString = #filePath, line: UInt = #line) -> (Challenge, DelegateSpy) {
         let delegate = DelegateSpy()
-        let sut = Challenge.start(secret: "", maxChanceCount: maxChanceCount, matchGuess: matchGuess, delegate: delegate)
+        let sut = Challenge.start(secret: "", maxChanceCount: maxChanceCount, matchGuess: matchGuess as (DelegateSpy.Guess, String) -> (hint: DelegateSpy.Hint?, correct: Bool), delegate: delegate)
 
         trackForMemoryLeaks(delegate, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
