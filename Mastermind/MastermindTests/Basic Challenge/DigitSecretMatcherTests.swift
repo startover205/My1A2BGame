@@ -9,6 +9,13 @@ import XCTest
 import Mastermind
 
 class DigitSecretMatcherTests: XCTestCase {
+    func test_match_deliversFalseWithProperHintOnMatchingGuessWithUnmatchingLength() {
+        expect(guess: [1], matching: [1, 2, 3, 4], toCompleteWith: (hint: "mismatch length", correct: false))
+        expect(guess: [1, 2], matching: [1, 2, 3, 4], toCompleteWith: (hint: "mismatch length", correct: false))
+        expect(guess: [1, 2, 3], matching: [1, 2, 3, 4], toCompleteWith: (hint: "mismatch length", correct: false))
+        expect(guess: [1, 2, 3, 4, 5], matching: [1, 2, 3, 4], toCompleteWith: (hint: "mismatch length", correct: false))
+    }
+    
     func test_match_deliversFalseWithProperHintOnMatchingNoBullNoCowMatch() {
         expect(guess: [1, 2, 3, 4], matching: [5, 6, 7, 8], toCompleteWith: (hint: "0A0B", correct: false))
     }

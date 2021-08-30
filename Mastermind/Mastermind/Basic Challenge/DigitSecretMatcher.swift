@@ -11,6 +11,8 @@ public final class DigitSecretMatcher {
     private init() {}
     
     public static func match(_ guess: DigitSecret, with secret: DigitSecret) -> (hint: String, correct: Bool) {
+        guard guess.content.count == secret.content.count else { return ("mismatch length", false) }
+        
         var correctCount = 0
         var misplacedCount = 0
         
