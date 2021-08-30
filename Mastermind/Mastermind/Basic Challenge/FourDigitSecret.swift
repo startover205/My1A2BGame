@@ -8,7 +8,7 @@
 import Foundation
 
 public struct FourDigitSecret {
-    let content: [Int]
+    public let content: [Int]
     
     static let digitCount = 4
     
