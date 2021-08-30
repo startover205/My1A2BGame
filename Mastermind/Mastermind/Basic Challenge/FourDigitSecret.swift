@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FourDigitSecret {
+public struct FourDigitSecret: Hashable {
     public let content: [Int]
     
     static let digitCount = 4
