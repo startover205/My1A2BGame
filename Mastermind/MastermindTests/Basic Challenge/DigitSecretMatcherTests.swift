@@ -23,7 +23,7 @@ final class DigitSecretMatcher {
             }
         }
         
-        return ("\(correctCount)A\(misplacedCount)B", false)
+        return ("\(correctCount)A\(misplacedCount)B", correctCount == secret.content.count)
     }
 }
 
@@ -54,6 +54,12 @@ class DigitSecretMatcherTests: XCTestCase {
         expect(guess: [1, 2, 3, 4], matching: [1, 6, 7, 8], toCompleteWith: (hint: "1A0B", correct: false))
         expect(guess: [1, 2, 3, 4], matching: [5, 2, 3, 8], toCompleteWith: (hint: "2A0B", correct: false))
         expect(guess: [1, 2, 3, 4], matching: [1, 6, 3, 4], toCompleteWith: (hint: "3A0B", correct: false))
+    }
+    
+    func test_match_deliversTrueWithProperHintOnMatchingFullBullsNoCowMatch() {
+        expect(guess: [1, 2, 3, 4], matching: [1, 2, 3, 4], toCompleteWith: (hint: "4A0B", correct: true))
+        expect(guess: [5, 6, 7, 8], matching: [5, 6, 7, 8], toCompleteWith: (hint: "4A0B", correct: true))
+        expect(guess: [0, 9, 6, 4], matching: [0, 9, 6, 4], toCompleteWith: (hint: "4A0B", correct: true))
     }
     
     // MARK: - Helpers
