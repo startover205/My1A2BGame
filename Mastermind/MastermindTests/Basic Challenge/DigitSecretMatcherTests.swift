@@ -32,8 +32,11 @@ class DigitSecretMatcherTests: XCTestCase {
         expect(guess: [1, 2, 3, 4], matching: [5, 6, 7, 8], toCompleteWith: (hint: "0A0B", correct: false))
     }
     
-    func test_match_deliversFalseWithProperHintOnMatchingNoBullOneCowMatch() {
+    func test_match_deliversFalseWithProperHintOnMatchingNoBullPartialCowsMatch() {
         expect(guess: [1, 2, 3, 4], matching: [5, 1, 7, 8], toCompleteWith: (hint: "0A1B", correct: false))
+        expect(guess: [1, 2, 3, 4], matching: [5, 1, 7, 2], toCompleteWith: (hint: "0A2B", correct: false))
+        expect(guess: [1, 2, 3, 4], matching: [5, 1, 2, 3], toCompleteWith: (hint: "0A3B", correct: false))
+        expect(guess: [1, 2, 3, 4], matching: [4, 1, 2, 3], toCompleteWith: (hint: "0A4B", correct: false))
     }
     
     // MARK: - Helpers
