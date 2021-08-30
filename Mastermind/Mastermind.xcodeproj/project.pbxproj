@@ -493,12 +493,12 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		C0BF9A5F26DB5D7B006BD7C1 /* BasicChallenge */ = {
+		C0BF9A5F26DB5D7B006BD7C1 /* Basic Challenge */ = {
 			isa = PBXGroup;
 			children = (
 				C0BF9A6026DB5E23006BD7C1 /* FourDigitSecret.swift */,
 			);
-			path = BasicChallenge;
+			path = "Basic Challenge";
 			sourceTree = "<group>";
 		};
 		C0BF9A6226DC62F4006BD7C1 /* Basic Challenge */ = {
@@ -515,7 +515,7 @@
 				C04B5B1E26C609740056DDA8 /* Helpers */,
 				C098421226D5031A00AE72F4 /* Engine */,
 				C04B5B1B26C608CE0056DDA8 /* Game Record */,
-				C0BF9A5F26DB5D7B006BD7C1 /* BasicChallenge */,
+				C0BF9A5F26DB5D7B006BD7C1 /* Basic Challenge */,
 				C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */,
 				C0EFCBE926B54BD80041A622 /* Info.plist */,
 			);
