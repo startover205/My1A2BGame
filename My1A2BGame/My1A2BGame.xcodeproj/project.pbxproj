@@ -70,6 +70,7 @@
 		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
 		C0BF9A7626DDC165006BD7C1 /* BasicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */; };
 		C0BF9A7826DDC16C006BD7C1 /* AdvancedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */; };
+		C0BF9A7C26DE05B5006BD7C1 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */; };
 		C0C4CDFC26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDF826B95056007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png */; };
 		C0C4CDFD26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDF926B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png */; };
 		C0C4CDFE26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDFA26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png */; };
@@ -187,6 +188,7 @@
 		C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVersion.swift; sourceTree = "<group>"; };
 		C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGame.swift; sourceTree = "<group>"; };
 		C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedGame.swift; sourceTree = "<group>"; };
+		C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
 		C0C4CDF826B95056007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png; sourceTree = "<group>"; };
 		C0C4CDF926B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png; sourceTree = "<group>"; };
 		C0C4CDFA26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				C0A5CC5E26CE32F5009ED821 /* AppReviewHandler.swift */,
 				C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */,
 				C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */,
+				C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
+				C0BF9A7C26DE05B5006BD7C1 /* HelperViewController.swift in Sources */,
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
