@@ -67,6 +67,9 @@
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
+		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
+		C0BF9A7626DDC165006BD7C1 /* BasicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */; };
+		C0BF9A7826DDC16C006BD7C1 /* AdvancedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */; };
 		C0C4CDFC26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDF826B95056007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png */; };
 		C0C4CDFD26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDF926B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png */; };
 		C0C4CDFE26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDFA26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png */; };
@@ -181,6 +184,9 @@
 		C0A9E29C2333E3C3007F45B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		C0A9E29E2333E3CC007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		C0A9E29F2333E3CD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVersion.swift; sourceTree = "<group>"; };
+		C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGame.swift; sourceTree = "<group>"; };
+		C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedGame.swift; sourceTree = "<group>"; };
 		C0C4CDF826B95056007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png; sourceTree = "<group>"; };
 		C0C4CDF926B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png; sourceTree = "<group>"; };
 		C0C4CDFA26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png; sourceTree = "<group>"; };
@@ -289,6 +295,9 @@
 			children = (
 				C01BC5CD26A84C2700FA0636 /* Rank */,
 				C01BC5BF26A8499E00FA0636 /* Shared */,
+				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
+				C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */,
+				C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */,
 			);
 			path = MastermindKit;
 			sourceTree = "<group>";
@@ -720,6 +729,7 @@
 			files = (
 				C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */,
 				C085BE6F2255127300320563 /* Notification+Name.swift in Sources */,
+				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
 				C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */,
@@ -727,6 +737,7 @@
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
 				C075760C224B0C81007A1F9E /* String+Localization.swift in Sources */,
+				C0BF9A7626DDC165006BD7C1 /* BasicGame.swift in Sources */,
 				C0A1F4A326B62A1200536D73 /* HelperButton.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */,
 				C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */,
@@ -739,6 +750,7 @@
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
+				C0BF9A7826DDC16C006BD7C1 /* AdvancedGame.swift in Sources */,
 				C0757609224A1C32007A1F9E /* CoreDataManager.swift in Sources */,
 				C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */,
 				C0A1F4AE26B62A1200536D73 /* CustomTransitionTabBarController.swift in Sources */,

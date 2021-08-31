@@ -19,32 +19,6 @@ public protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
-public protocol GameVersion {
-    var digitCount: Int { get }
-    var title: String { get }
-    var maxGuessCount: Int { get }
-}
-
-public struct BasicGame: GameVersion {
-    public let digitCount: Int = 4
-    
-    public let title: String = "Basic"
-    
-    public var maxGuessCount: Int = 10
-    
-    public init() {}
-}
-
-public struct AdvancedGame: GameVersion {
-    public let digitCount: Int = 5
-    
-    public let title: String = "Advanced"
-    
-    public var maxGuessCount: Int = 15
-    
-    public init() {}
-}
-
 public class GuessNumberViewController: UIViewController {
 
     public var gameVersion: GameVersion!
