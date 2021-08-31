@@ -23,7 +23,9 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_viewComponents_fadeInOnAppear() {
-        let sut = makeSUT()
+        let sut = makeSUT(animate: { _, animations, _ in
+            animations()
+        })
         
         sut.loadViewIfNeeded()
         

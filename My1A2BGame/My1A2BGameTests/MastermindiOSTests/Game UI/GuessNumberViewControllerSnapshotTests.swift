@@ -48,6 +48,10 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(identifier: "GuessViewController") as! GuessNumberViewController
         controller.gameVersion = gameVersion
         controller.loadViewIfNeeded()
+        controller.animate = { _, animations, completion in
+            animations()
+            completion?(true)
+        }
         return controller
     }
 }

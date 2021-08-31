@@ -215,9 +215,9 @@ extension GuessNumberViewController {
         lastGuessLabel.text = result
         lastGuessLabel.alpha = 0.5
         lastGuessLabel.isHidden = false
-        UIView.animate(withDuration: 0.5) {
-            self.lastGuessLabel.alpha = 1
-        }
+        animate?(0.5, { [weak self] in
+            self?.lastGuessLabel.alpha = 1
+        }, nil)
         hintTextView.text = "\n" + guessHistoryText
         guessHistoryText = result + guessHistoryText
         
@@ -253,18 +253,14 @@ extension GuessNumberViewController {
         onLose?()
     }
     func fadeOut(){
-        UIView.animate(withDuration: 1) {
-            self.fadeOutElements.forEach({ (view) in
-                view.alpha = 0
-            })
-        }
+        animate?(1, { [weak self] in
+            self?.fadeOutElements.forEach { $0.alpha = 0 }
+        }, nil)
     }
     func fadeIn(){
-        UIView.animate(withDuration: 1) {
-            self.fadeOutElements.forEach({ (view) in
-                view.alpha = 1
-            })
-        }
+        animate?(1, { [weak self] in
+            self?.fadeOutElements.forEach { $0.alpha = 1 }
+        }, nil)
     }
     func updateAvailableGuessLabel(){
         let format = NSLocalizedString("You can still guess %d times", comment: "")
