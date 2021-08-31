@@ -19,6 +19,55 @@ public protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
+final class HelperViewController: NSObject {
+    @IBOutlet weak var helperBoardView: UIView!
+    @IBOutlet var helperNumberButtons: [HelperButton]!
+    
+    public var animate: Animate?
+    
+    func configureViews() {
+        helperNumberButtons.forEach {
+            $0.addTarget(self, action: #selector(helperNumberBtnPressed(_:)), for: .touchUpInside)
+        }
+    }
+    
+    @IBAction func helperBtnPressed(_ sender: Any) {
+        if helperBoardView.isHidden {
+            self.helperBoardView.isHidden = false
+            self.helperBoardView.transform = .init(translationX: 0, y: -300)
+            
+            animate?(0.25, {
+                self.helperBoardView.transform = .identity
+            }, nil)
+            
+        } else {
+            
+            animate?(0.25, {
+                self.helperBoardView.transform = .init(translationX: 0, y: -300)
+            }, { _ in
+                self.helperBoardView.isHidden = true
+            })
+        }
+    }
+    
+    @IBAction func helperInfoBtnPressed(_ sender: Any) {
+        AlertManager.shared.showConfirmAlert(.helperInfo)
+    }
+    
+    @IBAction func helperResetBtnPressed(_ sender: Any) {
+        helperNumberButtons.forEach { $0.reset() }
+    }
+    
+    @objc
+    func helperNumberBtnPressed(_ sender: HelperButton) {
+        sender.toggleColor()
+    }
+    
+    func hideView() {
+        helperBoardView.isHidden = true
+    }
+}
+
 public class GuessNumberViewController: UIViewController {
 
     public var gameVersion: GameVersion!
@@ -35,6 +84,7 @@ public class GuessNumberViewController: UIViewController {
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     var onLose: (() -> Void)?
     
+    @IBOutlet var helperViewController: HelperViewController!
     @IBOutlet weak var quizLabelContainer: UIStackView!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
@@ -43,9 +93,6 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var restartButton: UIButton!
     @IBOutlet private(set) public weak var hintTextView: UITextView!
     @IBOutlet private(set) public var fadeOutElements: [UIView]!
-    
-    @IBOutlet weak var helperView: UIView!
-    @IBOutlet var helperNumberButtons: [HelperButton]!
     
     private(set) public var quizLabels = [UILabel]()
     var quizNumbers = [String]()
@@ -71,6 +118,8 @@ public class GuessNumberViewController: UIViewController {
         if let voicePromptView = voicePromptViewController?.view {
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptView)
         }
+        
+        helperViewController?.configureViews()
         
         lastGuessLabel.text = ""
         
@@ -110,38 +159,6 @@ public class GuessNumberViewController: UIViewController {
         super.viewWillAppear(animated)
         
         fadeIn()
-    }
-    
-    @IBAction func helperBtnPressed(_ sender: Any) {
-        if helperView.isHidden {
-            self.helperView.isHidden = false
-            self.helperView.transform = .init(translationX: 0, y: -300)
-            
-            animate?(0.25, {
-                self.helperView.transform = .identity
-            }, nil)
-            
-        } else {
-            
-            animate?(0.25, {
-                self.helperView.transform = .init(translationX: 0, y: -300)
-            }, { _ in
-                self.helperView.isHidden = true
-            })
-        }
-    }
-    
-    @IBAction func helperInfoBtnPressed(_ sender: Any) {
-        AlertManager.shared.showConfirmAlert(.helperInfo)
-    }
-    @IBAction func helperNumberBtnPressed(_ sender: HelperButton) {
-        sender.toggleColor()
-    }
-    
-    @IBAction func helperResetBtnPressed(_ sender: Any) {
-        helperNumberButtons.forEach { (button) in
-            button.reset()
-        }
     }
     
     @IBAction func guessBtnPressed(_ sender: Any) {
@@ -185,12 +202,13 @@ public class GuessNumberViewController: UIViewController {
         
         lastGuessLabel.text?.removeAll()
         hintTextView.text.removeAll()
-        helperView.isHidden = true
         quizLabels.forEach(resetQuizLabel)
         
         guessButton.isHidden = false
         quitButton.isHidden = false
         restartButton.isHidden = true
+        
+        helperViewController?.hideView()
     }
 }
 
@@ -360,7 +378,7 @@ extension GuessNumberViewController {
         guessButton.isHidden = true
         quitButton.isHidden = true
         restartButton.isHidden = false
-        helperView.isHidden = true
+        helperViewController?.hideView()
         
         //show answer
         for i in 0..<digitCount{

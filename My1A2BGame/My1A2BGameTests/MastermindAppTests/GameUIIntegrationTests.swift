@@ -97,7 +97,7 @@ class GameUIIntegrationTests: XCTestCase {
         assertThatViewIsInitialState(sut)
 
         sut.simulateTapHelperButton()
-        XCTAssertFalse(sut.helperView.isHidden, "expect helper view to show after helper button pressed")
+        XCTAssertTrue(sut.showingHelperView, "expect helper view to show after helper button pressed")
         sut.simulateUserInitiatedWrongGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: sut.availableGuess), "expect guess count minus 1 after user guess")
         
@@ -124,11 +124,11 @@ class GameUIIntegrationTests: XCTestCase {
 
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden upon view load")
 
-        sut.simulateUserPressHelperButton()
+        sut.simulateTapHelperButton()
 
         XCTAssertTrue(sut.showingHelperView, "Expect helper view to be shown when helper button pressed")
 
-        sut.simulateUserPressHelperButton()
+        sut.simulateTapHelperButton()
 
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
@@ -230,7 +230,7 @@ class GameUIIntegrationTests: XCTestCase {
     private func assertThatViewIsInitialState(_ sut: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
         let maxGuessCount = sut.gameVersion.maxGuessCount
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: maxGuessCount), "expect max guess count once view is loaded", file: file, line: line)
-        XCTAssertTrue(sut.helperView.isHidden, "expect helper view to be hidden", file: file, line: line)
+        XCTAssertFalse(sut.showingHelperView, "expect helper view to be hidden", file: file, line: line)
         XCTAssertEqual(sut.quizLabels.map { $0.text }, answerPlaceholder(for: sut.gameVersion), "expect quiz labels showing the placeholders", file: file, line: line)
         XCTAssertEqual(sut.lastGuessLabel.text?.isEmpty, true, "expect last guess view to be empty", file: file, line: line)
         XCTAssertTrue(sut.hintTextView.text.isEmpty, "expect hint view to be empty", file: file, line: line)
@@ -266,7 +266,13 @@ private extension GuessNumberViewController {
     
     var voicePromptOn: Bool { voicePromptViewController?.view.isOn ?? false }
     
-    var showingHelperView: Bool { !helperView.isHidden }
+    var showingHelperView: Bool {
+        if let helperView = helperViewController?.helperBoardView {
+            return !helperView.isHidden
+        } else {
+            return false
+        }
+    }
     
     func simulateViewAppear() { viewWillAppear(false) }
     
@@ -284,7 +290,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateTapHelperButton() {
-        helperBtnPressed(self)
+        helperViewController?.helperBtnPressed(self)
     }
     
     func simulateToggleVoicePrompt() {
@@ -307,8 +313,6 @@ private extension GuessNumberViewController {
     func simulateRestartGame() {
         restartButton.sendActions(for: .touchUpInside)
     }
-    
-    func simulateUserPressHelperButton() { helperBtnPressed(self) }
 }
 
 private extension UserDefaults {

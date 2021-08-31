@@ -159,9 +159,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="BDh-Er-Ifh"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HkR-8w-lDK" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="61" y="0.0" width="53" height="44"/>
@@ -178,9 +175,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="YgW-Io-MN0"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byJ-wZ-FZV" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="122" y="0.0" width="53" height="44"/>
@@ -197,9 +191,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="6pR-0w-k00"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUJ-FV-UAc" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="183" y="0.0" width="53" height="44"/>
@@ -216,9 +207,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="zZP-1R-dzk"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uee-eb-gMB" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="244" y="0.0" width="53" height="44"/>
@@ -235,9 +223,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="fqG-ig-9xx"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKe-nr-dmF">
                                                         <rect key="frame" x="305" y="0.0" width="53" height="44"/>
@@ -245,7 +230,7 @@
                                                             <constraint firstAttribute="height" constant="44" id="ll7-up-iBK"/>
                                                         </constraints>
                                                         <connections>
-                                                            <action selector="helperInfoBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="xhV-JF-P4Y"/>
+                                                            <action selector="helperInfoBtnPressed:" destination="686-fz-APB" eventType="touchUpInside" id="Hld-s7-F3a"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -268,9 +253,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="7YO-Zr-viC"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buT-2p-Sx0" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="61" y="0.0" width="53" height="44"/>
@@ -287,9 +269,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="jyI-iE-SZf"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvM-4U-Bf1" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="122" y="0.0" width="53" height="44"/>
@@ -306,9 +285,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="BKW-4d-Rm0"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4h-CX-sfX" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="183" y="0.0" width="53" height="44"/>
@@ -325,9 +301,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="Pze-CW-muv"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fng-TS-14R" customClass="HelperButton" customModule="My1A2BGame" customModuleProvider="target">
                                                         <rect key="frame" x="244" y="0.0" width="53" height="44"/>
@@ -344,9 +317,6 @@
                                                                 <integer key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="helperNumberBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="9XU-s6-kJi"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuU-qQ-9j0">
                                                         <rect key="frame" x="305" y="0.0" width="53" height="44"/>
@@ -356,7 +326,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="RESET"/>
                                                         <connections>
-                                                            <action selector="helperResetBtnPressed:" destination="1LR-p9-Cos" eventType="touchUpInside" id="eZj-oL-vzq"/>
+                                                            <action selector="helperResetBtnPressed:" destination="686-fz-APB" eventType="touchUpInside" id="ChH-bN-nE1"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -417,7 +387,7 @@
                             </barButtonItem>
                             <barButtonItem systemItem="compose" id="C6Q-dg-qQq">
                                 <connections>
-                                    <action selector="helperBtnPressed:" destination="1LR-p9-Cos" id="GUx-hP-Smb"/>
+                                    <action selector="helperBtnPressed:" destination="686-fz-APB" id="s3v-6X-UeV"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -425,7 +395,7 @@
                     <connections>
                         <outlet property="availableGuessLabel" destination="m9q-7b-vCB" id="7W9-Xx-pI5"/>
                         <outlet property="guessButton" destination="v1G-TL-Jv9" id="EPb-Pn-xaI"/>
-                        <outlet property="helperView" destination="kyL-Dg-isP" id="swK-pb-lly"/>
+                        <outlet property="helperViewController" destination="686-fz-APB" id="bCJ-W2-K08"/>
                         <outlet property="hintTextView" destination="MJE-CA-5hz" id="3at-6s-mtg"/>
                         <outlet property="lastGuessLabel" destination="okh-FP-api" id="5SP-Q1-nPb"/>
                         <outlet property="quitButton" destination="vZM-Pv-aGF" id="YLE-FC-kOs"/>
@@ -435,19 +405,17 @@
                         <outletCollection property="fadeOutElements" destination="m9q-7b-vCB" collectionClass="NSMutableArray" id="4wG-FK-ulu"/>
                         <outletCollection property="fadeOutElements" destination="Xno-IJ-0VX" collectionClass="NSMutableArray" id="mpe-nY-bpo"/>
                         <outletCollection property="fadeOutElements" destination="okh-FP-api" collectionClass="NSMutableArray" id="37a-qd-sRI"/>
-                        <outletCollection property="helperNumberButtons" destination="v6K-b7-bVR" collectionClass="NSMutableArray" id="Rfs-W7-rhz"/>
-                        <outletCollection property="helperNumberButtons" destination="HkR-8w-lDK" collectionClass="NSMutableArray" id="EAs-hp-f3c"/>
-                        <outletCollection property="helperNumberButtons" destination="byJ-wZ-FZV" collectionClass="NSMutableArray" id="DuS-hL-rx9"/>
-                        <outletCollection property="helperNumberButtons" destination="IUJ-FV-UAc" collectionClass="NSMutableArray" id="N5s-Uf-dyp"/>
-                        <outletCollection property="helperNumberButtons" destination="Uee-eb-gMB" collectionClass="NSMutableArray" id="4nL-Jm-X57"/>
-                        <outletCollection property="helperNumberButtons" destination="YMO-kI-Zqk" collectionClass="NSMutableArray" id="W3K-SB-7G9"/>
-                        <outletCollection property="helperNumberButtons" destination="buT-2p-Sx0" collectionClass="NSMutableArray" id="Vhu-oM-4vL"/>
-                        <outletCollection property="helperNumberButtons" destination="DvM-4U-Bf1" collectionClass="NSMutableArray" id="Mlu-1Z-A0t"/>
-                        <outletCollection property="helperNumberButtons" destination="d4h-CX-sfX" collectionClass="NSMutableArray" id="fx3-Lw-nzY"/>
-                        <outletCollection property="helperNumberButtons" destination="Fng-TS-14R" collectionClass="NSMutableArray" id="yA7-Te-jIC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7v-sR-zpL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="686-fz-APB" customClass="HelperViewController" customModule="My1A2BGame" customModuleProvider="target">
+                    <connections>
+                        <outlet property="helperBoardView" destination="kyL-Dg-isP" id="bHs-Jc-rMd"/>
+                        <outletCollection property="helperNumberButtons" destination="v6K-b7-bVR" collectionClass="NSMutableArray" id="K9Y-uJ-yK9"/>
+                        <outletCollection property="helperNumberButtons" destination="buT-2p-Sx0" collectionClass="NSMutableArray" id="MlO-Ir-Cqp"/>
+                        <outletCollection property="helperNumberButtons" destination="IUJ-FV-UAc" collectionClass="NSMutableArray" id="y8T-49-3uE"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="4263.768115942029" y="199.55357142857142"/>
         </scene>

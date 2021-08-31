@@ -37,6 +37,8 @@ public final class GameUIComposer {
         gameViewController.onLose = onLose
         gameViewController.animate = animate
         
+        gameViewController.helperViewController?.animate = animate
+        
         return gameViewController
     }
     
