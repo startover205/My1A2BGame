@@ -25,10 +25,6 @@ public class GuessNumberViewController: UIViewController {
     
     private var digitCount: Int { gameVersion.digitCount }
     
-    private lazy var isAdvancedVersion = {
-        return gameVersion.digitCount == 5
-    }()
-    
     var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
@@ -196,15 +192,6 @@ extension GuessNumberViewController {
     }
 }
 
-// MARK: - Description
-//extension GuessNumberViewController: UINavigationControllerDelegate{
-//    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-//        if viewController is LoseViewController || viewController is WinViewController {
-//            self.endGame()
-//        }
-//    }
-//}
-
 extension GuessNumberViewController {
     
     func tryToMatchNumbers(guessTexts: [String], answerTexts: [String]){
@@ -310,17 +297,6 @@ extension GuessNumberViewController {
         quizNumbers.removeAll()
         for _ in 0..<digitCount {
             quizNumbers.append(String(shuffledDistribution.nextInt()))
-        }
-    }
-    
-    func initCheatGame(){
-        //set data
-        availableGuess = isAdvancedVersion ? Constants.maxPlayChancesAdvanced : Constants.maxPlayChances
-        //        availableGuess = 1
-        
-        //set answers
-        for i in 0..<digitCount {
-            quizNumbers.append(String(i+1))
         }
     }
     
