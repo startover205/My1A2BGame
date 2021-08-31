@@ -13,6 +13,7 @@ final class HelperViewController: NSObject {
     @IBOutlet var helperNumberButtons: [HelperButton]!
     
     public var animate: Animate?
+    public var onTapHelperInfo: (() -> Void)?
     
     func configureViews() {
         helperNumberButtons.forEach {
@@ -40,7 +41,7 @@ final class HelperViewController: NSObject {
     }
     
     @IBAction func helperInfoBtnPressed(_ sender: Any) {
-        AlertManager.shared.showConfirmAlert(.helperInfo)
+        onTapHelperInfo?()
     }
     
     @IBAction func helperResetBtnPressed(_ sender: Any) {

@@ -38,6 +38,9 @@ public final class GameUIComposer {
         gameViewController.animate = animate
         
         gameViewController.helperViewController?.animate = animate
+        gameViewController.helperViewController?.onTapHelperInfo = {
+            AlertManager.shared.showConfirmAlert(.helperInfo)
+        }
         
         return gameViewController
     }
