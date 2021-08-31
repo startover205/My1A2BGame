@@ -53,6 +53,7 @@ public class GuessNumberViewController: UIViewController {
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
     public var inputVC: GuessPadViewController!
+    private lazy var inputNavigationController = UINavigationController(rootViewController: inputVC)
     
     public var animate: Animate?
     
@@ -121,13 +122,7 @@ public class GuessNumberViewController: UIViewController {
         feedbackGenerator = .init()
         feedbackGenerator?.prepare()
         
-        presentInputVC()
-    }
-    
-    private func presentInputVC() {
-        let nav = UINavigationController()
-        nav.setViewControllers([inputVC], animated: false)
-        self.present(nav, animated: true)
+        present(inputNavigationController, animated: true)
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
