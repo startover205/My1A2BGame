@@ -276,15 +276,6 @@ extension GuessNumberViewController {
         }
     }
     
-    func showVoicePromptHint() {
-        let alertController = UIAlertController(title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""), message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"), preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
-        
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
     func initGame(){
         
         //set data

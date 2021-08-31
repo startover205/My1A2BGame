@@ -26,7 +26,14 @@ public final class GameUIComposer {
         
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [unowned gameViewController] isOn in
-            if isOn { gameViewController.showVoicePromptHint() }
+            if isOn {
+                let alertController = UIAlertController(title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""), message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"), preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
+                
+                alertController.addAction(okAction)
+                gameViewController.present(alertController, animated: true, completion: nil)
+            }
         }
         
         gameViewController.inputVC = inputVC
