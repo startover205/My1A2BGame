@@ -135,7 +135,6 @@ class GameUIIntegrationTests: XCTestCase {
         })
         
         sut.loadViewIfNeeded()
-        sut.initGame()
         sut.simulateUserGuessWithCorrectAnswer()
         
         XCTAssertEqual(onWinCallCount, 1)
@@ -150,7 +149,6 @@ class GameUIIntegrationTests: XCTestCase {
         let wrongGuess = Array(answer.reversed())
         
         sut.loadViewIfNeeded()
-        sut.initGame()
         sut.availableGuess = 2
         
         sut.tryToMatchNumbers(guessTexts: wrongGuess, answerTexts: answer)

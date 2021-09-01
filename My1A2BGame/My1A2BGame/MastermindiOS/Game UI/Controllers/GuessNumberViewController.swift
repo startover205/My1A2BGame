@@ -71,8 +71,8 @@ public class GuessNumberViewController: UIViewController {
             view.alpha = 0
         }
         
-        initGame()
-        //        initCheatGame()
+        availableGuess = gameVersion.maxGuessCount
+        guessHistoryText = ""
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -200,13 +200,6 @@ extension GuessNumberViewController {
         } else {
             availableGuessLabel.textColor = availableGuess <= 3 ? UIColor.systemRed : UIColor.darkGray
         }
-    }
-    
-    func initGame(){
-        
-        //set data
-        availableGuess = gameVersion.maxGuessCount
-        guessHistoryText = ""
     }
     
     func endGame()  {
