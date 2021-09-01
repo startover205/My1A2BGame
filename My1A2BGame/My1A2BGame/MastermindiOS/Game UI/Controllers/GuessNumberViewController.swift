@@ -18,19 +18,68 @@ public protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
+public final class RewardAdViewController {
+    init(adProvider: AdProvider, adRewardChance: Int, countDownTime: TimeInterval, onGrantReward: @escaping () -> Void, hostViewController: UIViewController? = nil) {
+        self.adProvider = adProvider
+        self.adRewardChance = adRewardChance
+        self.countDownTime = countDownTime
+        self.onGrantReward = onGrantReward
+        self.hostViewController = hostViewController
+    }
+    
+    private let adProvider: AdProvider
+    private let adRewardChance: Int
+    private let countDownTime: TimeInterval
+    private let onGrantReward: () -> Void
+    
+    private weak var hostViewController: UIViewController?
+    
+    func adAvailable() -> Bool { adProvider.rewardAd != nil }
+    
+    func askUserToWatchAd(completion: @escaping (Bool) -> Void) {
+        let format = NSLocalizedString("Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!", comment: "")
+        let message = String.localizedStringWithFormat(format, adRewardChance)
+        let alert = AlertAdCountdownController(
+            title: NSLocalizedString("You Are Out Of Chances...", comment: "2nd"),
+            message: message,
+            cancelMessage: NSLocalizedString("No, thank you", comment: "7th"),
+            countDownTime: countDownTime,
+            adHandler: { [weak self] in
+                completion(true)
+                self?.presentAd()
+            },
+            cancelHandler: {
+                completion(false)
+            })
+    
+        hostViewController?.present(alert, animated: true)
+    }
+    
+    private func presentAd() {
+        guard let ad = adProvider.rewardAd, let hostVC = hostViewController else { return }
+        
+        ad.present(fromRootViewController: hostVC) { [weak self] in
+            // We need to keep the reference of the ad so the callback can be fired correctly.
+            _ = ad
+            
+            self?.onGrantReward()
+        }
+    }
+}
+
 public class GuessNumberViewController: UIViewController {
 
     public var gameVersion: GameVersion!
     
     private var digitCount: Int { gameVersion.digitCount }
     
-    var adProvider: AdProvider?
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     var onLose: (() -> Void)?
     var onRestart: (() -> Void)?
     
+    var adViewController: RewardAdViewController?
     @IBOutlet var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
@@ -88,11 +137,7 @@ public class GuessNumberViewController: UIViewController {
     
     @IBAction func guessBtnPressed(_ sender: Any) {
         guard availableGuess > 0 else {
-            if let ad = adProvider?.rewardAd {
-                showRewardAdAlert(ad: ad)
-            } else {
-                showLoseVCAndEndGame()
-            }
+            handleNoChanceLeft()
             return
         }
         
@@ -100,6 +145,16 @@ public class GuessNumberViewController: UIViewController {
         feedbackGenerator?.prepare()
         
         present(inputNavigationController, animated: true)
+    }
+    
+    private func handleNoChanceLeft() {
+        if adViewController?.adAvailable() == true {
+            adViewController?.askUserToWatchAd { [weak self] success in
+                if !success { self?.showLoseVCAndEndGame() }
+            }
+        } else {
+            showLoseVCAndEndGame()
+        }
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
@@ -122,25 +177,6 @@ extension GuessNumberViewController: GuessPadDelegate{
 
 // MARK: - Ad Related
 extension GuessNumberViewController {
-    /// 顯示 alert，詢問使用者是否要看廣告來增加次數
-    func showRewardAdAlert(ad: GADRewardedAd){
-        let format = NSLocalizedString("Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!", comment: "")
-        let alert = AlertAdCountdownController(title: NSLocalizedString("You Are Out Of Chances...", comment: "2nd"), message:
-            String.localizedStringWithFormat(format, Constants.adGrantChances), cancelMessage: NSLocalizedString("No, thank you", comment: "7th"), countDownTime: Constants.adHintTime, adHandler: {
-                
-                ad.present(fromRootViewController: self) { [weak self] in
-                    _ = ad // 保留 ref，才不會因為 reload 新廣告導致 callback 沒被呼叫
-
-    //                print("使用者看完影片 獎勵數量: \(ad.adReward.amount)")
-                    self?.grantAdReward()
-                }
-                
-        }){
-            self.showLoseVCAndEndGame()
-        }
-        present(alert, animated: true, completion: nil)
-    }
-    
     func grantAdReward(){
         availableGuess += Constants.adGrantChances
     }
@@ -190,8 +226,8 @@ extension GuessNumberViewController {
             feedbackGenerator = nil
             
             // 如果沒次數，且沒廣告，則直接結束
-            if availableGuess == 0, adProvider?.rewardAd == nil {
-                showLoseVCAndEndGame()
+            if availableGuess <= 0 {
+                handleNoChanceLeft()
             }
         }
         

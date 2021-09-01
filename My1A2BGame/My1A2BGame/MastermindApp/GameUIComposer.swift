@@ -42,7 +42,6 @@ public final class GameUIComposer {
         gameViewController.inputVC = inputVC
         inputVC.delegate = gameViewController
         
-        gameViewController.adProvider = adProvider
         gameViewController.onWin = onWin
         gameViewController.onLose = onLose
         gameViewController.onRestart = onRestart
@@ -54,6 +53,17 @@ public final class GameUIComposer {
         }
         
         gameViewController.quizLabelViewController.answer = secret.content
+        
+        let adRewardChance = Constants.adGrantChances
+        let adViewController = RewardAdViewController(
+            adProvider: adProvider,
+            adRewardChance: adRewardChance,
+            countDownTime: 5,
+            onGrantReward: { [unowned gameViewController] in
+                gameViewController.availableGuess += adRewardChance
+            },
+            hostViewController: gameViewController)
+        gameViewController.adViewController = adViewController
         
         return gameViewController
     }
