@@ -19,6 +19,47 @@ public protocol AdProvider {
     var rewardAd: GADRewardedAd? { get }
 }
 
+public final class QuizLabelViewController: NSObject {
+    @IBOutlet weak var quizLabelContainer: UIStackView!
+    
+    public var digitCount: Int!
+    
+    private(set) public var quizLabels = [UILabel]()
+
+    func configureViews() {
+        for _ in 0 ..< digitCount {
+            let label = makeQuizLabel()
+            quizLabelContainer.addArrangedSubview(label)
+            quizLabels.append(label)
+        }
+        resetQuizLabels()
+        
+        quizLabelContainer.layoutIfNeeded()
+    }
+    
+    func resetQuizLabels() {
+        quizLabels.forEach {
+            $0.text = "?"
+            $0.textColor = .systemRed
+        }
+    }
+    
+    func reveal(answer: [String]) {
+        for i in 0..<digitCount{
+            quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
+            quizLabels[i].text = answer[i]
+        }
+    }
+
+    
+    private func makeQuizLabel() -> UILabel {
+        let label = UILabel()
+        label.font = .init(name: "Arial Rounded MT Bold", size: 80)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }
+}
+
 public class GuessNumberViewController: UIViewController {
 
     public var gameVersion: GameVersion!
@@ -32,7 +73,7 @@ public class GuessNumberViewController: UIViewController {
     var onLose: (() -> Void)?
     
     @IBOutlet var helperViewController: HelperViewController!
-    @IBOutlet weak var quizLabelContainer: UIStackView!
+    @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
     @IBOutlet private(set) public weak var guessButton: UIButton!
@@ -41,7 +82,6 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var hintTextView: UITextView!
     @IBOutlet private(set) public var fadeOutElements: [UIView]!
     
-    private(set) public var quizLabels = [UILabel]()
     var quizNumbers = [String]()
     private var guessCount = 0
     var availableGuess = Constants.maxPlayChances {
@@ -71,7 +111,7 @@ public class GuessNumberViewController: UIViewController {
         
         lastGuessLabel.text = ""
         
-        configureQuizLabels()
+        quizLabelViewController.configureViews()
         
         fadeOutElements.forEach { (view) in
             view.alpha = 0
@@ -79,28 +119,6 @@ public class GuessNumberViewController: UIViewController {
         
         initGame()
         //        initCheatGame()
-    }
-    
-    private func makeQuizLabel() -> UILabel {
-        let label = UILabel()
-        resetQuizLabel(label)
-        label.font = .init(name: "Arial Rounded MT Bold", size: 80)
-        label.adjustsFontSizeToFitWidth = true
-        return label
-    }
-    
-    private func resetQuizLabel(_ label: UILabel) {
-        label.text = "?"
-        label.textColor = .systemRed
-    }
-    
-    private func configureQuizLabels() {
-        for _ in 0 ..< digitCount {
-            let label = makeQuizLabel()
-            quizLabelContainer.addArrangedSubview(label)
-            quizLabels.append(label)
-        }
-        quizLabelContainer.layoutIfNeeded()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -144,13 +162,13 @@ public class GuessNumberViewController: UIViewController {
         
         lastGuessLabel.text?.removeAll()
         hintTextView.text.removeAll()
-        quizLabels.forEach(resetQuizLabel)
         
         guessButton.isHidden = false
         quitButton.isHidden = false
         restartButton.isHidden = true
         
         helperViewController?.hideView()
+        quizLabelViewController.resetQuizLabels()
     }
 }
 
@@ -288,11 +306,6 @@ extension GuessNumberViewController {
         quitButton.isHidden = true
         restartButton.isHidden = false
         helperViewController?.hideView()
-        
-        //show answer
-        for i in 0..<digitCount{
-            quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
-            quizLabels[i].text = quizNumbers[i]
-        }
+        quizLabelViewController?.reveal(answer: quizNumbers)
     }
 }

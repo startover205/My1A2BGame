@@ -233,7 +233,7 @@ class GameUIIntegrationTests: XCTestCase {
         let maxGuessCount = sut.gameVersion.maxGuessCount
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: maxGuessCount), "expect max guess count once view is loaded", file: file, line: line)
         XCTAssertFalse(sut.showingHelperView, "expect helper view to be hidden", file: file, line: line)
-        XCTAssertEqual(sut.quizLabels.map { $0.text }, answerPlaceholder(for: sut.gameVersion), "expect quiz labels showing the placeholders", file: file, line: line)
+        XCTAssertEqual(sut.quizLabelViewController?.quizLabels.map { $0.text }, answerPlaceholder(for: sut.gameVersion), "expect quiz labels showing the placeholders", file: file, line: line)
         XCTAssertEqual(sut.lastGuessLabel.text?.isEmpty, true, "expect last guess view to be empty", file: file, line: line)
         XCTAssertTrue(sut.hintTextView.text.isEmpty, "expect hint view to be empty", file: file, line: line)
         XCTAssertTrue(sut.restartButton.isHidden, "expect restart button to be hidden", file: file, line: line)

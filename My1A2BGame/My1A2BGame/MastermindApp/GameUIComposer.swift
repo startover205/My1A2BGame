@@ -49,6 +49,8 @@ public final class GameUIComposer {
             AlertManager.shared.showConfirmAlert(.helperInfo)
         }
         
+        gameViewController.quizLabelViewController.digitCount = gameVersion.digitCount
+        
         return gameViewController
     }
     
