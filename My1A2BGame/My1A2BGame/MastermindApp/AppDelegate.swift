@@ -96,15 +96,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }, onLose: showLoseSceneForAdvancedGame, animate: UIView.animate))
     
     func makeTabController() -> UITabBarController {
+        let tabConfigurations: [(title: String, imageName: String)] = [
+            (BasicGame().title, "baseline_1A2B_24px"),
+            (AdvancedGame().title, "advanced_24px"),
+            ("Rank", "baseline_format_list_numbered_black_24pt"),
+            ("More", "baseline_settings_black_24pt"),
+        ]
         let tabVC = UITabBarController()
         let rankNav = UINavigationController(rootViewController: makeRankVC())
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
-        
+
         tabVC.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
-        tabVC.tabBar.items![0].image = UIImage(named: "baseline_1A2B_24px")
-        tabVC.tabBar.items![1].image = UIImage(named: "advanced_24px")
-        tabVC.tabBar.items![2].image = UIImage(named: "baseline_format_list_numbered_black_24pt")
-        tabVC.tabBar.items![3].image = UIImage(named: "baseline_settings_black_24pt")
+        
+        tabVC.tabBar.items!.enumerated().forEach { index, item in
+            item.title = tabConfigurations[index].title
+            item.image = UIImage(named: tabConfigurations[index].imageName)
+        }
+        
+        startBasicGame()
+        startAdvacnedGame()
         return tabVC
     }
     
