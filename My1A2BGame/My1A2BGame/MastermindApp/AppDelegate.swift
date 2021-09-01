@@ -73,27 +73,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appVersion: appVersion)
     }()
     
-    private lazy var basicGameNavigationController = UINavigationController(
-        rootViewController: GameUIComposer.gameComposedWith(
-            gameVersion: BasicGame(),
-            userDefaults: .standard,
-            adProvider: GoogleRewardAdManager.shared,
-            onWin: { [self] in
-                self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
-                self.appReviewController?.markProcessCompleteOneTime()
-                self.appReviewController?.askForAppReviewIfAppropriate()
-            }, onLose: showLoseSceneForBasicGame, animate: UIView.animate))
+    private lazy var basicGameNavigationController = UINavigationController()
+    private lazy var advancedGameNavigationController = UINavigationController()
+
+    private var basicGameVC: UIViewController {
+        GameUIComposer.gameComposedWith(
+           gameVersion: BasicGame(),
+           userDefaults: .standard,
+           adProvider: GoogleRewardAdManager.shared,
+           onWin: { [self] in
+               self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
+               self.appReviewController?.markProcessCompleteOneTime()
+               self.appReviewController?.askForAppReviewIfAppropriate()
+           },
+           onLose: showLoseSceneForBasicGame,
+           onRestart: startBasicGame,
+           animate: UIView.animate)
+    }
     
-    private lazy var advancedGameNavigationController = UINavigationController(
-        rootViewController: GameUIComposer.gameComposedWith(
-            gameVersion: AdvancedGame(),
-            userDefaults: .standard,
-            adProvider: GoogleRewardAdManager.shared,
-            onWin: { [self] in
-                self.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
-                self.appReviewController?.markProcessCompleteOneTime()
-                self.appReviewController?.askForAppReviewIfAppropriate()
-            }, onLose: showLoseSceneForAdvancedGame, animate: UIView.animate))
+    private var advancedGameVC: UIViewController {
+        GameUIComposer.gameComposedWith(
+           gameVersion: AdvancedGame(),
+           userDefaults: .standard,
+           adProvider: GoogleRewardAdManager.shared,
+           onWin: { [self] in
+               self.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
+               self.appReviewController?.markProcessCompleteOneTime()
+               self.appReviewController?.askForAppReviewIfAppropriate()
+           },
+           onLose: showLoseSceneForAdvancedGame,
+           onRestart: startAdvacnedGame,
+           animate: UIView.animate)
+    }
+    
+    private func startBasicGame() {
+        basicGameNavigationController.setViewControllers([basicGameVC], animated: false)
+    }
+    
+    private func startAdvacnedGame() {
+        advancedGameNavigationController.setViewControllers([advancedGameVC], animated: false)
+    }
+    
     
     func makeTabController() -> UITabBarController {
         let tabConfigurations: [(title: String, imageName: String)] = [

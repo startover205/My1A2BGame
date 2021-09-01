@@ -91,23 +91,16 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
     }
     
-    func test_restart_resetGameView() {
-        let gameVersion = GameVersionMock(maxGuessCount: 1)
-        let sut = makeSUT(gameVersion: gameVersion)
+    func test_restart_notifiesRestartHandler() {
+        var restartCallCount = 0
+        let sut = makeSUT(onRestart: {
+            restartCallCount += 1
+        })
         
         sut.loadViewIfNeeded()
-        assertThatViewIsInitialState(sut)
-
-        sut.simulateTapHelperButton()
-        XCTAssertTrue(sut.showingHelperView, "expect helper view to show after helper button pressed")
-        sut.simulateUserInitiatedWrongGuess()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: sut.availableGuess), "expect guess count minus 1 after user guess")
+        sut.simulateUserRestartGame()
         
-        sut.simulateRestartGame()
-        assertThatViewIsInitialState(sut)
-        
-        sut.simulateUserInitiatedWrongGuess()
-        XCTAssertEqual(sut.hintTextView.text, "\n", "expect empty hint text view on first guess")
+        XCTAssertEqual(restartCallCount, 1)
     }
     
     func test_deallocation_doesNotRetain() {
@@ -198,8 +191,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, adProvider: AdProviderFake(), onWin: onWin, onLose: onLose, animate: animate)
+    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, adProvider: AdProviderFake(), onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -312,7 +305,7 @@ private extension GuessNumberViewController {
         tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
     }
     
-    func simulateRestartGame() {
+    func simulateUserRestartGame() {
         restartButton.sendActions(for: .touchUpInside)
     }
 }

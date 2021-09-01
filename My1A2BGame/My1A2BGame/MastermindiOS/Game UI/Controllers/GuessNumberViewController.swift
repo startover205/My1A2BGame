@@ -30,6 +30,7 @@ public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     var onLose: (() -> Void)?
+    var onRestart: (() -> Void)?
     
     @IBOutlet var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
@@ -109,25 +110,7 @@ public class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
-        fadeOut()
-        
-        restartGame()
-        
-        fadeIn()
-    }
-    
-    private func restartGame() {
-        initGame()
-        
-        lastGuessLabel.text?.removeAll()
-        hintTextView.text.removeAll()
-        
-        guessButton.isHidden = false
-        quitButton.isHidden = false
-        restartButton.isHidden = true
-        
-        helperViewController?.hideView()
-        quizLabelViewController.resetQuizLabels()
+        onRestart?()
     }
 }
 
