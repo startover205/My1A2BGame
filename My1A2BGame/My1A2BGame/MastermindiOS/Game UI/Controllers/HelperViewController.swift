@@ -15,12 +15,6 @@ final class HelperViewController: NSObject {
     public var animate: Animate?
     public var onTapHelperInfo: (() -> Void)?
     
-    func configureViews() {
-        helperNumberButtons.forEach {
-            $0.addTarget(self, action: #selector(helperNumberBtnPressed(_:)), for: .touchUpInside)
-        }
-    }
-    
     @IBAction func helperBtnPressed(_ sender: Any) {
         if helperBoardView.isHidden {
             self.helperBoardView.isHidden = false
@@ -46,11 +40,6 @@ final class HelperViewController: NSObject {
     
     @IBAction func helperResetBtnPressed(_ sender: Any) {
         helperNumberButtons.forEach { $0.reset() }
-    }
-    
-    @objc
-    func helperNumberBtnPressed(_ sender: HelperButton) {
-        sender.toggleColor()
     }
     
     func hideView() {

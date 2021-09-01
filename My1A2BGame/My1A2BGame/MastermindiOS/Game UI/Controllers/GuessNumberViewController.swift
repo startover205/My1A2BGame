@@ -54,8 +54,6 @@ public class GuessNumberViewController: UIViewController {
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptView)
         }
         
-        helperViewController?.configureViews()
-        
         lastGuessLabel.text = ""
         
         quizLabelViewController.configureViews()
