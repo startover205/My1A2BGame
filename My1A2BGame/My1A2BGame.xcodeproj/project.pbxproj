@@ -16,6 +16,7 @@
 		C01A79E526DF096A000A7E7A /* QuizLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */; };
 		C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */; };
 		C01A79E926DF23A0000A7E7A /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E826DF23A0000A7E7A /* AdProvider.swift */; };
+		C01A79EB26DF2703000A7E7A /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EA26DF2703000A7E7A /* Animate.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */; };
 		C034AA5E26B66B32006AABE6 /* GAME_START_ADVANCED_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AA5126B66B32006AABE6 /* GAME_START_ADVANCED_dark.png */; };
@@ -131,6 +132,7 @@
 		C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLabelViewController.swift; sourceTree = "<group>"; };
 		C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewController.swift; sourceTree = "<group>"; };
 		C01A79E826DF23A0000A7E7A /* AdProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
+		C01A79EA26DF2703000A7E7A /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButtonTests.swift; sourceTree = "<group>"; };
 		C034AA5126B66B32006AABE6 /* GAME_START_ADVANCED_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_ADVANCED_dark.png; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				C0A5CC5E26CE32F5009ED821 /* AppReviewHandler.swift */,
 				C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */,
 				C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */,
+				C01A79EA26DF2703000A7E7A /* Animate.swift */,
 				C01A79E826DF23A0000A7E7A /* AdProvider.swift */,
 				C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */,
 				C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */,
@@ -762,6 +765,7 @@
 				C01A79E526DF096A000A7E7A /* QuizLabelViewController.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
+				C01A79EB26DF2703000A7E7A /* Animate.swift in Sources */,
 				C0BF9A7C26DE05B5006BD7C1 /* HelperViewController.swift in Sources */,
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,

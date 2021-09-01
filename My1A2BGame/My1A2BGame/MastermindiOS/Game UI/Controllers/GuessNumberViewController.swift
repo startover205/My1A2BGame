@@ -9,10 +9,6 @@
 import UIKit
 import MastermindiOS
 
-public typealias Animate = ((_ duration: TimeInterval,
-                             _ animations: @escaping () -> Void,
-                             _ completion: ((Bool) -> Void)?) -> Void)
-
 public class GuessNumberViewController: UIViewController {
 
     public var gameVersion: GameVersion!
