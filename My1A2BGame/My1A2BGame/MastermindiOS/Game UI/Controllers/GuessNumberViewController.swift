@@ -7,16 +7,11 @@
 //
 
 import UIKit
-import GoogleMobileAds
 import MastermindiOS
 
 public typealias Animate = ((_ duration: TimeInterval,
                              _ animations: @escaping () -> Void,
                              _ completion: ((Bool) -> Void)?) -> Void)
-
-public protocol AdProvider {
-    var rewardAd: GADRewardedAd? { get }
-}
 
 public class GuessNumberViewController: UIViewController {
 
