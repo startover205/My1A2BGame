@@ -181,16 +181,17 @@ extension GuessNumberViewController {
         
         onLose?()
     }
-    func fadeOut(){
+    
+    func fadeOut() { fadeTo(alpha: 0) }
+    
+    func fadeIn() { fadeTo(alpha: 1) }
+        
+    private func fadeTo(alpha: CGFloat) {
         animate?(1, { [weak self] in
-            self?.fadeOutElements.forEach { $0.alpha = 0 }
+            self?.fadeOutElements.forEach { $0.alpha = alpha }
         }, nil)
     }
-    func fadeIn(){
-        animate?(1, { [weak self] in
-            self?.fadeOutElements.forEach { $0.alpha = 1 }
-        }, nil)
-    }
+    
     func updateAvailableGuessLabel(){
         let format = NSLocalizedString("You can still guess %d times", comment: "")
         availableGuessLabel.text = String.localizedStringWithFormat(format, availableGuess)
