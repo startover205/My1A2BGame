@@ -224,8 +224,8 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: sut.availableGuess), "expect showing available guess count once view is loaded", file: file, line: line)
         XCTAssertFalse(sut.showingHelperView, "expect helper view to be hidden", file: file, line: line)
         XCTAssertEqual(sut.quizLabelViewController?.quizLabels.map { $0.text }, answerPlaceholder(for: sut.digitCount), "expect quiz labels showing the placeholders", file: file, line: line)
-        XCTAssertEqual(sut.lastGuessLabel.text?.isEmpty, true, "expect last guess view to be empty", file: file, line: line)
-        XCTAssertTrue(sut.hintTextView.text.isEmpty, "expect hint view to be empty", file: file, line: line)
+        XCTAssertEqual(sut.hintViewController.hintLabel.text?.isEmpty, true, "expect last guess view to be empty", file: file, line: line)
+        XCTAssertTrue(sut.hintViewController.hintTextView.text.isEmpty, "expect hint view to be empty", file: file, line: line)
         XCTAssertTrue(sut.restartButton.isHidden, "expect restart button to be hidden", file: file, line: line)
         XCTAssertFalse(sut.guessButton.isHidden, "expect guess button to be visible", file: file, line: line)
         XCTAssertFalse(sut.quitButton.isHidden, "expect quit button to be visible", file: file, line: line)
@@ -254,7 +254,7 @@ private extension GuessNumberViewController {
     
     var availableGuessMessage: String? { availableGuessLabel.text }
     
-    var resultMessage: String? { lastGuessLabel.text }
+    var resultMessage: String? { hintViewController.hintLabel.text }
     
     var voicePromptOn: Bool { voicePromptViewController?.view.isOn ?? false }
     

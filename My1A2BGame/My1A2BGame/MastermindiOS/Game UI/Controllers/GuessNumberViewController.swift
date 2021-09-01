@@ -9,6 +9,36 @@
 import UIKit
 import MastermindiOS
 
+public class HintViewController: NSObject {
+    @IBOutlet private(set) public weak var hintLabel: UILabel!
+    @IBOutlet private(set) public weak var hintTextView: UITextView!
+    
+    public var animate: Animate?
+
+    private var oldHint = ""
+    
+    func configureViews() {
+        hintLabel.text = ""
+        hintTextView.text = ""
+    }
+
+    func updateHint(_ hint: String) {
+        hintLabel.text = hint
+        hintTextView.text = "\n" + oldHint
+        
+        oldHint = hint + oldHint
+        
+        flashHintLabel()
+    }
+
+    private func flashHintLabel() {
+        hintLabel.alpha = 0.5
+        animate?(0.5, { [weak self] in
+            self?.hintLabel.alpha = 1
+        }, nil)
+    }
+}
+
 public class GuessNumberViewController: UIViewController {
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
@@ -25,18 +55,16 @@ public class GuessNumberViewController: UIViewController {
     
     @IBOutlet var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
-    @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
+    @IBOutlet private(set) public var hintViewController: HintViewController!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
     @IBOutlet private(set) public weak var guessButton: UIButton!
     @IBOutlet private(set) public weak var quitButton: UIButton!
     @IBOutlet private(set) public weak var restartButton: UIButton!
-    @IBOutlet private(set) public weak var hintTextView: UITextView!
     @IBOutlet private(set) public var fadeOutElements: [UIView]!
     
     public var quizNumbers = [String]()
     private var guessCount = 0
 
-    private var guessHistoryText = ""
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
     public var inputVC: GuessPadViewController!
@@ -54,15 +82,12 @@ public class GuessNumberViewController: UIViewController {
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptView)
         }
         
-        lastGuessLabel.text = ""
-        
+        hintViewController.configureViews()
         quizLabelViewController.configureViews()
         
         fadeOutElements.forEach { (view) in
             view.alpha = 0
         }
-        
-        guessHistoryText = ""
         
         updateAvailableGuessLabel()
     }
@@ -149,14 +174,7 @@ extension GuessNumberViewController {
         //show result
         let guessText = guessTexts.joined()
         let result = "\(guessText)          \(correctCount)A\(misplacedCount)B\n"
-        lastGuessLabel.text = result
-        lastGuessLabel.alpha = 0.5
-        lastGuessLabel.isHidden = false
-        animate?(0.5, { [weak self] in
-            self?.lastGuessLabel.alpha = 1
-        }, nil)
-        hintTextView.text = "\n" + guessHistoryText
-        guessHistoryText = result + guessHistoryText
+        hintViewController.updateHint(result)
         
         var text = "\(correctCount) A, \(misplacedCount) B" //for speech
         

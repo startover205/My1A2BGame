@@ -55,6 +55,8 @@ public final class GameUIComposer {
         
         gameViewController.quizLabelViewController.answer = secret.content
         
+        gameViewController.hintViewController.animate = animate
+        
         let adRewardChance = Constants.adGrantChances
         let adViewController = RewardAdViewController(
             loader: loader,

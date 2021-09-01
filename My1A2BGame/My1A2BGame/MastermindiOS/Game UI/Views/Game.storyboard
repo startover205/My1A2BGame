@@ -396,8 +396,7 @@
                         <outlet property="availableGuessLabel" destination="m9q-7b-vCB" id="7W9-Xx-pI5"/>
                         <outlet property="guessButton" destination="v1G-TL-Jv9" id="EPb-Pn-xaI"/>
                         <outlet property="helperViewController" destination="686-fz-APB" id="bCJ-W2-K08"/>
-                        <outlet property="hintTextView" destination="MJE-CA-5hz" id="3at-6s-mtg"/>
-                        <outlet property="lastGuessLabel" destination="okh-FP-api" id="5SP-Q1-nPb"/>
+                        <outlet property="hintViewController" destination="Nar-IU-og5" id="mfs-De-zGy"/>
                         <outlet property="quitButton" destination="vZM-Pv-aGF" id="YLE-FC-kOs"/>
                         <outlet property="quizLabelViewController" destination="XYD-0Q-4J3" id="DW2-nR-lrS"/>
                         <outlet property="restartButton" destination="8EC-R7-AJS" id="J6b-Ee-ibX"/>
@@ -408,6 +407,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7v-sR-zpL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Nar-IU-og5" customClass="HintViewController" customModule="My1A2BGame" customModuleProvider="target">
+                    <connections>
+                        <outlet property="hintLabel" destination="okh-FP-api" id="Ze5-lp-kqh"/>
+                        <outlet property="hintTextView" destination="MJE-CA-5hz" id="uMU-e7-btK"/>
+                    </connections>
+                </customObject>
                 <customObject id="686-fz-APB" customClass="HelperViewController" customModule="My1A2BGame" customModuleProvider="target">
                     <connections>
                         <outlet property="helperBoardView" destination="kyL-Dg-isP" id="bHs-Jc-rMd"/>
