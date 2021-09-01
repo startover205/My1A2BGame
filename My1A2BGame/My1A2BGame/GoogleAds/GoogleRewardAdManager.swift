@@ -86,4 +86,4 @@ extension GoogleRewardAdManager: GADFullScreenContentDelegate {
     }
 }
 
-extension GoogleRewardAdManager: AdProvider { }
+extension GoogleRewardAdManager: RewardAdLoader { }

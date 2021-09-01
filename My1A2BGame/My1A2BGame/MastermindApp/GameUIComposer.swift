@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, adProvider: AdProvider, onWin: @escaping (_ guessCount: Int, _ guessTime: TimeInterval) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, onWin: @escaping (_ guessCount: Int, _ guessTime: TimeInterval) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -56,7 +56,7 @@ public final class GameUIComposer {
         
         let adRewardChance = Constants.adGrantChances
         let adViewController = RewardAdViewController(
-            adProvider: adProvider,
+            loader: loader,
             adRewardChance: adRewardChance,
             countDownTime: 5,
             onGrantReward: { [unowned gameViewController] in

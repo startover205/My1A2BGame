@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GameUIComposer.gameComposedWith(
            gameVersion: BasicGame(),
            userDefaults: .standard,
-           adProvider: GoogleRewardAdManager.shared,
+           loader: GoogleRewardAdManager.shared,
            onWin: { [self] in
                self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
                self.appReviewController?.markProcessCompleteOneTime()
@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GameUIComposer.gameComposedWith(
            gameVersion: AdvancedGame(),
            userDefaults: .standard,
-           adProvider: GoogleRewardAdManager.shared,
+           loader: GoogleRewardAdManager.shared,
            onWin: { [self] in
                self.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
                self.appReviewController?.markProcessCompleteOneTime()

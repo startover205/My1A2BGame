@@ -1,5 +1,5 @@
 //
-//  AdProvider.swift
+//  RewardAdLoader.swift
 //  My1A2BGame
 //
 //  Created by Ming-Ta Yang on 2021/9/1.
@@ -8,6 +8,6 @@
 
 import GoogleMobileAds
 
-public protocol AdProvider {
+public protocol RewardAdLoader {
     var rewardAd: GADRewardedAd? { get }
 }

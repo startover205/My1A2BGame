@@ -9,22 +9,22 @@
 import UIKit
 
 public final class RewardAdViewController {
-    init(adProvider: AdProvider, adRewardChance: Int, countDownTime: TimeInterval, onGrantReward: @escaping () -> Void, hostViewController: UIViewController? = nil) {
-        self.adProvider = adProvider
+    init(loader: RewardAdLoader, adRewardChance: Int, countDownTime: TimeInterval, onGrantReward: @escaping () -> Void, hostViewController: UIViewController? = nil) {
+        self.loader = loader
         self.adRewardChance = adRewardChance
         self.countDownTime = countDownTime
         self.onGrantReward = onGrantReward
         self.hostViewController = hostViewController
     }
     
-    private let adProvider: AdProvider
+    private let loader: RewardAdLoader
     private let adRewardChance: Int
     private let countDownTime: TimeInterval
     private let onGrantReward: () -> Void
     
     private weak var hostViewController: UIViewController?
     
-    func adAvailable() -> Bool { adProvider.rewardAd != nil }
+    func adAvailable() -> Bool { loader.rewardAd != nil }
     
     func askUserToWatchAd(completion: @escaping (Bool) -> Void) {
         let format = NSLocalizedString("Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!", comment: "")
@@ -46,7 +46,7 @@ public final class RewardAdViewController {
     }
     
     private func presentAd() {
-        guard let ad = adProvider.rewardAd, let hostVC = hostViewController else { return }
+        guard let ad = loader.rewardAd, let hostVC = hostViewController else { return }
         
         ad.present(fromRootViewController: hostVC) { [weak self] in
             // We need to keep the reference of the ad so the callback can be fired correctly.
