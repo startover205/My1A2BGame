@@ -240,6 +240,6 @@ extension GuessNumberViewController {
         quitButton.isHidden = true
         restartButton.isHidden = false
         helperViewController?.hideView()
-        quizLabelViewController?.reveal(answer: quizNumbers)
+        quizLabelViewController.revealAnswer()
     }
 }

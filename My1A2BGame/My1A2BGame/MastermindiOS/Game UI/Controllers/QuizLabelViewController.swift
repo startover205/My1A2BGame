@@ -11,35 +11,35 @@ import UIKit
 public final class QuizLabelViewController: NSObject {
     @IBOutlet weak var quizLabelContainer: UIStackView!
     
-    public var digitCount: Int!
+    public var answer: [Int]!
     
     private(set) public var quizLabels = [UILabel]()
 
     func configureViews() {
-        for _ in 0 ..< digitCount {
+        for _ in 0 ..< answer.count {
             let label = makeQuizLabel()
             quizLabelContainer.addArrangedSubview(label)
             quizLabels.append(label)
         }
-        resetQuizLabels()
+        hideAnswer()
         
         quizLabelContainer.layoutIfNeeded()
     }
     
-    func resetQuizLabels() {
+    func hideAnswer() {
         quizLabels.forEach {
             $0.text = "?"
             $0.textColor = .systemRed
         }
     }
     
-    func reveal(answer: [String]) {
-        for i in 0..<digitCount{
-            quizLabels[i].textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
-            quizLabels[i].text = answer[i]
+    func revealAnswer() {
+        answer.enumerated().forEach { index, digit in
+            let label = quizLabels[index]
+            label.text = digit.description
+            label.textColor = #colorLiteral(red: 0.287477035, green: 0.716722175, blue: 0.8960909247, alpha: 1)
         }
     }
-
     
     private func makeQuizLabel() -> UILabel {
         let label = UILabel()
