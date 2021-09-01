@@ -9,36 +9,6 @@
 import UIKit
 import MastermindiOS
 
-public final class HintViewController: NSObject {
-    @IBOutlet private(set) public weak var hintLabel: UILabel!
-    @IBOutlet private(set) public weak var hintTextView: UITextView!
-    
-    public var animate: Animate?
-
-    private var oldHint = ""
-    
-    func configureViews() {
-        hintLabel.text = ""
-        hintTextView.text = ""
-    }
-
-    func updateHint(_ hint: String) {
-        hintLabel.text = hint
-        hintTextView.text = "\n" + oldHint
-        
-        oldHint = hint + oldHint
-        
-        flashHintLabel()
-    }
-
-    private func flashHintLabel() {
-        hintLabel.alpha = 0.5
-        animate?(0.5, { [weak self] in
-            self?.hintLabel.alpha = 1
-        }, nil)
-    }
-}
-
 public class GuessNumberViewController: UIViewController {
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?

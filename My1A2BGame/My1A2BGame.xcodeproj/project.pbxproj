@@ -17,6 +17,7 @@
 		C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */; };
 		C01A79E926DF23A0000A7E7A /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E826DF23A0000A7E7A /* AdProvider.swift */; };
 		C01A79EB26DF2703000A7E7A /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EA26DF2703000A7E7A /* Animate.swift */; };
+		C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */; };
 		C034AA5E26B66B32006AABE6 /* GAME_START_ADVANCED_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AA5126B66B32006AABE6 /* GAME_START_ADVANCED_dark.png */; };
@@ -133,6 +134,7 @@
 		C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewController.swift; sourceTree = "<group>"; };
 		C01A79E826DF23A0000A7E7A /* AdProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
 		C01A79EA26DF2703000A7E7A /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
+		C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButtonTests.swift; sourceTree = "<group>"; };
 		C034AA5126B66B32006AABE6 /* GAME_START_ADVANCED_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_ADVANCED_dark.png; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				C01A79EA26DF2703000A7E7A /* Animate.swift */,
 				C01A79E826DF23A0000A7E7A /* AdProvider.swift */,
 				C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */,
+				C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */,
 				C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */,
 				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
 			);
@@ -774,6 +777,7 @@
 				C0757609224A1C32007A1F9E /* CoreDataManager.swift in Sources */,
 				C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */,
 				C0A1F4AE26B62A1200536D73 /* CustomTransitionTabBarController.swift in Sources */,
+				C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */,
 				C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */,
