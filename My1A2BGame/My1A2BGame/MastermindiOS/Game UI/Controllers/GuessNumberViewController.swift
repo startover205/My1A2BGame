@@ -192,7 +192,7 @@ extension GuessNumberViewController {
         }, nil)
     }
     
-    func updateAvailableGuessLabel(){
+    func updateAvailableGuessLabel() {
         let format = NSLocalizedString("You can still guess %d times", comment: "")
         availableGuessLabel.text = String.localizedStringWithFormat(format, availableGuess)
         availableGuessLabel.textColor = availableGuess <= 3 ? UIColor.systemRed : labelColor
