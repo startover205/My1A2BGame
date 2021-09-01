@@ -12,6 +12,7 @@ import MastermindiOS
 public class GuessNumberViewController: UIViewController {
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
+    var adViewController: RewardAdViewController?
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     var onLose: (() -> Void)?
     var onRestart: (() -> Void)?
@@ -22,7 +23,6 @@ public class GuessNumberViewController: UIViewController {
         }
     }
     
-    var adViewController: RewardAdViewController?
     @IBOutlet var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
     @IBOutlet private(set) public weak var lastGuessLabel: UILabel!
@@ -98,9 +98,25 @@ public class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
-        AlertManager.shared.showActionAlert(.giveUp) {
-            self.showLoseVCAndEndGame()
+        let alert = UIAlertController(
+            title: NSLocalizedString("Are you sure you want to give up?", comment: ""),
+            message: nil,
+            preferredStyle: .alert)
+        
+        let ok = UIAlertAction(
+            title: NSLocalizedString("Give Up!", comment: "2nd"),
+            style: .destructive) { [weak self] _ in
+            self?.showLoseVCAndEndGame()
         }
+        
+        let cancel = UIAlertAction(
+            title: NSLocalizedString("Cancel", comment: "2nd"),
+            style: .cancel)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
