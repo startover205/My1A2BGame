@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GameKit
 import GoogleMobileAds
 import MastermindiOS
 
