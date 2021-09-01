@@ -23,6 +23,7 @@ public final class GameUIComposer {
         gameViewController.title = gameVersion.title
         gameViewController.gameVersion = gameVersion
         gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
+        gameViewController.availableGuess = gameVersion.maxGuessCount
         
         let secret = RandomDigitSecretGenerator.generate(digitCount: gameVersion.digitCount)
         gameViewController.quizNumbers = secret.content.map(String.init)

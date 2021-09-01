@@ -20,6 +20,11 @@ public class GuessNumberViewController: UIViewController {
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     var onLose: (() -> Void)?
     var onRestart: (() -> Void)?
+    var availableGuess = 0 {
+        didSet {
+            updateAvailableGuessLabel()
+        }
+    }
     
     var adViewController: RewardAdViewController?
     @IBOutlet var helperViewController: HelperViewController!
@@ -34,11 +39,7 @@ public class GuessNumberViewController: UIViewController {
     
     public var quizNumbers = [String]()
     private var guessCount = 0
-    var availableGuess = Constants.maxPlayChances {
-        didSet{
-            updateAvailableGuessLabel()
-        }
-    }
+
     private var guessHistoryText = ""
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
@@ -67,8 +68,9 @@ public class GuessNumberViewController: UIViewController {
             view.alpha = 0
         }
         
-        availableGuess = gameVersion.maxGuessCount
         guessHistoryText = ""
+        
+        updateAvailableGuessLabel()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -190,8 +192,8 @@ extension GuessNumberViewController {
     
     func updateAvailableGuessLabel() {
         let format = NSLocalizedString("You can still guess %d times", comment: "")
-        availableGuessLabel.text = String.localizedStringWithFormat(format, availableGuess)
-        availableGuessLabel.textColor = availableGuess <= 3 ? UIColor.systemRed : labelColor
+        availableGuessLabel?.text = String.localizedStringWithFormat(format, availableGuess)
+        availableGuessLabel?.textColor = availableGuess <= 3 ? UIColor.systemRed : labelColor
     }
     
     private var labelColor: UIColor {
