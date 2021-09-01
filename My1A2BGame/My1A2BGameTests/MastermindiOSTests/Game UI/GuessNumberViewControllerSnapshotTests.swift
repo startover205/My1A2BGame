@@ -46,7 +46,6 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     
     func makeSUT(gameVersion: GameVersion) -> GuessNumberViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(identifier: "GuessViewController") as! GuessNumberViewController
-        controller.gameVersion = gameVersion
         controller.quizLabelViewController.answer = gameVersion.makeSecret()
         controller.availableGuess = gameVersion.maxGuessCount
         controller.loadViewIfNeeded()
@@ -66,9 +65,8 @@ fileprivate extension GuessNumberViewController {
     func  simulateGameWithOneLastChance() {
         let answer = quizNumbers
         let wrongAnswer: [String] = quizNumbers.reversed()
-        let maxChances = gameVersion.maxGuessCount
             
-        for _ in 0..<maxChances-1 {
+        for _ in 0..<availableGuess-1 {
             self.tryToMatchNumbers(guessTexts: wrongAnswer, answerTexts: answer)
         }
     }

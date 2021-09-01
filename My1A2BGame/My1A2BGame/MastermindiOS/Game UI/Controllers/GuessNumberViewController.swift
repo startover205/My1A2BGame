@@ -10,9 +10,6 @@ import UIKit
 import MastermindiOS
 
 public class GuessNumberViewController: UIViewController {
-
-    public var gameVersion: GameVersion!
-    
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
