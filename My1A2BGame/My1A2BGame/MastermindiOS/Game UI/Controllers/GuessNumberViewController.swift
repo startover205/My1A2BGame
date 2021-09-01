@@ -42,7 +42,7 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var hintTextView: UITextView!
     @IBOutlet private(set) public var fadeOutElements: [UIView]!
     
-    var quizNumbers = [String]()
+    public var quizNumbers = [String]()
     private var guessCount = 0
     var availableGuess = Constants.maxPlayChances {
         didSet{
@@ -232,14 +232,6 @@ extension GuessNumberViewController {
         //set data
         availableGuess = gameVersion.maxGuessCount
         guessHistoryText = ""
-        
-        let shuffledDistribution = GKShuffledDistribution(lowestValue: 0, highestValue: 9)
-        
-        //set answers
-        quizNumbers.removeAll()
-        for _ in 0..<digitCount {
-            quizNumbers.append(String(shuffledDistribution.nextInt()))
-        }
     }
     
     func endGame()  {

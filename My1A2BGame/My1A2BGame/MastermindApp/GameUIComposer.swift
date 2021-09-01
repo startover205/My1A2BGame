@@ -24,6 +24,9 @@ public final class GameUIComposer {
         gameViewController.gameVersion = gameVersion
         gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
         
+        let secret = RandomDigitSecretGenerator.generate(digitCount: gameVersion.digitCount)
+        gameViewController.quizNumbers = secret.content.map(String.init)
+        
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [unowned gameViewController] isOn in
             if isOn {
