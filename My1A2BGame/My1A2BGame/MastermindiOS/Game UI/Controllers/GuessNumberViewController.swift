@@ -13,13 +13,12 @@ public class GuessNumberViewController: UIViewController {
 
     public var gameVersion: GameVersion!
     
-    private var digitCount: Int { gameVersion.digitCount }
-    
     var evaluate: ((_ guess: [Int], _ answer: [Int]) throws -> (correctCount: Int, misplacedCount: Int))?
     var voicePromptViewController: VoicePromptViewController?
     var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     var onLose: (() -> Void)?
     var onRestart: (() -> Void)?
+    var digitCount: Int = 0
     var availableGuess = 0 {
         didSet {
             updateAvailableGuessLabel()

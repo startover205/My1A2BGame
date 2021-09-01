@@ -21,7 +21,7 @@ public final class GameUIComposer {
 
         let gameViewController = makeGameViewController()
         gameViewController.title = gameVersion.title
-        gameViewController.gameVersion = gameVersion
+        gameViewController.digitCount = gameVersion.digitCount
         gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
         gameViewController.availableGuess = gameVersion.maxGuessCount
         
