@@ -38,22 +38,4 @@ class HelperButtonTests: XCTestCase {
         sut.simulateTap()
         XCTAssertEqual(sut.backgroundColor, firstColor, "Expect the color changed back to the first color after a whole cycle")
     }
-    
-    func test_jumpColor_changeThreeBackgroundColorsCyclicallyWithOneStepSkip() {
-        let sut = HelperButton()
-        var buttonColors = [UIColor]()
-        buttonColors.append(sut.backgroundColor!)
-        sut.toggleColor()
-        buttonColors.append(sut.backgroundColor!)
-        sut.toggleColor()
-        buttonColors.append(sut.backgroundColor!)
-        
-        sut.reset()
-        sut.jumpColor()
-        XCTAssertEqual(sut.backgroundColor, buttonColors[2])
-        sut.jumpColor()
-        XCTAssertEqual(sut.backgroundColor, buttonColors[1])
-        sut.jumpColor()
-        XCTAssertEqual(sut.backgroundColor, buttonColors[0])
-    }
 }

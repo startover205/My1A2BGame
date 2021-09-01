@@ -64,16 +64,4 @@ public class HelperButton: UIButton {
                }
         backgroundColor = filterColor
     }
-    
-    public func jumpColor() {
-        switch filterState {
-                      case .first:
-                       filterState = .third
-                      case .second:
-                       filterState = .first
-                      case .third:
-                       filterState = .second
-                      }
-               backgroundColor = filterColor
-    }
 }
