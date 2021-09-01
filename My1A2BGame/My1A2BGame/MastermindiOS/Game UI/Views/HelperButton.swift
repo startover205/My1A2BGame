@@ -39,6 +39,7 @@ public class HelperButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
+        configureView()
     }
     
     private func configureView() {
