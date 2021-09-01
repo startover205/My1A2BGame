@@ -22,6 +22,7 @@ class GameNavigationAdapterTests: XCTestCase {
         let (_, nav) = makeSUT()
         
         XCTAssertTrue(nav.capturedPushes.isEmpty)
+        XCTAssertTrue(nav.capturedSets.isEmpty)
     }
     
     // MARK: Helpers
@@ -38,6 +39,11 @@ class GameNavigationAdapterTests: XCTestCase {
     
     private class NavigationSpy: UINavigationController {
         var capturedPushes = [(vc: UIViewController, animated: Bool)]()
+        var capturedSets = [(viewControllers: [UIViewController], animated: Bool)]()
+        
+        override func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+            capturedSets.append((viewControllers, animated))
+        }
         
         override func pushViewController(_ viewController: UIViewController, animated: Bool) {
             capturedPushes.append((viewController, animated))

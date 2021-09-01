@@ -231,19 +231,6 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.quitButton.isHidden, "expect quit button to be visible", file: file, line: line)
     }
     
-    private class NavigationSpy: UINavigationController {
-        var capturedPush: (vc: UIViewController, animated: Bool)?
-        
-        override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-            capturedPush = (viewController, animated)
-        }
-        
-        func pushCapturedControllerWithoutAnimation() {
-            guard let vc = capturedPush?.vc else { return }
-            super.pushViewController(vc, animated: false)
-        }
-    }
-    
     private final class RewardAdLoaderFake: RewardAdLoader {
         var rewardAd: GADRewardedAd?
     }
