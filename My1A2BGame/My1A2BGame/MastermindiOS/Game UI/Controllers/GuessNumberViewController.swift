@@ -9,7 +9,7 @@
 import UIKit
 import MastermindiOS
 
-public class HintViewController: NSObject {
+public final class HintViewController: NSObject {
     @IBOutlet private(set) public weak var hintLabel: UILabel!
     @IBOutlet private(set) public weak var hintTextView: UITextView!
     
