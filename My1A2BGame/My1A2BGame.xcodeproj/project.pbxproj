@@ -18,6 +18,7 @@
 		C01A79E926DF23A0000A7E7A /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E826DF23A0000A7E7A /* AdProvider.swift */; };
 		C01A79EB26DF2703000A7E7A /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EA26DF2703000A7E7A /* Animate.swift */; };
 		C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */; };
+		C01A79F126DF6709000A7E7A /* NavigationAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79F026DF6709000A7E7A /* NavigationAdapterTests.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */; };
 		C034AA5E26B66B32006AABE6 /* GAME_START_ADVANCED_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AA5126B66B32006AABE6 /* GAME_START_ADVANCED_dark.png */; };
@@ -135,6 +136,7 @@
 		C01A79E826DF23A0000A7E7A /* AdProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
 		C01A79EA26DF2703000A7E7A /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
 		C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
+		C01A79F026DF6709000A7E7A /* NavigationAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAdapterTests.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButtonTests.swift; sourceTree = "<group>"; };
 		C034AA5126B66B32006AABE6 /* GAME_START_ADVANCED_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_ADVANCED_dark.png; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
 				C0A5CC6026CE335C009ED821 /* PromptAppReviewControllerTests.swift */,
 				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
+				C01A79F026DF6709000A7E7A /* NavigationAdapterTests.swift */,
 			);
 			path = MastermindAppTests;
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
 				C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */,
+				C01A79F126DF6709000A7E7A /* NavigationAdapterTests.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
 				C034AA6626B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
 				C09841FF26D0DE9100AE72F4 /* WinUIIntegrationTests.swift in Sources */,
