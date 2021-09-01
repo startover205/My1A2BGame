@@ -33,13 +33,18 @@ public class HelperButton: UIButton {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = filterColor
+        configureView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.backgroundColor = filterColor
+    }
+    
+    private func configureView() {
+        backgroundColor = filterColor
+
+        addTarget(self, action: #selector(toggleColor), for: .touchUpInside)
     }
     
     public func reset() {
@@ -47,6 +52,7 @@ public class HelperButton: UIButton {
         backgroundColor = filterColor
     }
     
+    @objc
     public func toggleColor() {
         switch filterState {
                case .first:
