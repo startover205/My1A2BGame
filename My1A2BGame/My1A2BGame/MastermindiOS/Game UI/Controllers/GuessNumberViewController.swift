@@ -121,13 +121,6 @@ extension GuessNumberViewController: GuessPadDelegate{
     }
 }
 
-// MARK: - Ad Related
-extension GuessNumberViewController {
-    func grantAdReward(){
-        availableGuess += Constants.adGrantChances
-    }
-}
-
 extension GuessNumberViewController {
     
     func tryToMatchNumbers(guessTexts: [String], answerTexts: [String]){
