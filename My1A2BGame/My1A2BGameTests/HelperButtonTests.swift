@@ -13,12 +13,12 @@ class HelperButtonTests: XCTestCase {
     func test_reset_restoreDefaultBackgroundColor() {
         let sut = HelperButton()
         let defaultColor = sut.backgroundColor
-        let newColor: UIColor = defaultColor == .red ? .blue : .red
-        sut.backgroundColor = newColor
+        
+        sut.backgroundColor = sut.newBackgroundColor()
         
         sut.reset()
         
-        XCTAssertEqual(sut.backgroundColor, defaultColor)
+        XCTAssertEqual(sut.backgroundColor, defaultColor, "Expect reset to default color after reset")
     }
     
     func test_onTap_changeThreeBackgroundColorsCyclically() {
@@ -38,4 +38,8 @@ class HelperButtonTests: XCTestCase {
         sut.simulateTap()
         XCTAssertEqual(sut.backgroundColor, firstColor, "Expect the color changed back to the first color after a whole cycle")
     }
+}
+
+private extension HelperButton {
+    func newBackgroundColor() -> UIColor { backgroundColor?.withAlphaComponent(0.5) ?? .red }
 }
