@@ -14,6 +14,8 @@ final class GameNavigationAdapter {
     let gameComposer: () -> UIViewController
     let winComposer: () -> UIViewController
     let loseComposer: () -> UIViewController
+    
+    var gameStart = false
 
     init(navigationController: UINavigationController, gameComposer: @escaping () -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController) {
         self.navigationController = navigationController
@@ -23,7 +25,11 @@ final class GameNavigationAdapter {
     }
     
     func acceptGuess() {
-        navigationController.setViewControllers([gameComposer()], animated: false)
+        if !gameStart {
+            gameStart = true
+            
+            navigationController.setViewControllers([gameComposer()], animated: false)
+        }
     }
     
     func didWin() {
@@ -43,12 +49,13 @@ class GameNavigationAdapterTests: XCTestCase {
         XCTAssertTrue(nav.receivedMessages.isEmpty)
     }
     
-    func test_acceptGuess_setsChallengeViewControllerWithoutAnimation() {
+    func test_acceptGuessTwice_setsChallengeViewControllerWithoutAnimationOnce() {
         let challengeController = UIViewController()
         let (sut, nav) = makeSUT(gameComposer: {
             return challengeController
         })
         
+        sut.acceptGuess()
         sut.acceptGuess()
         
         XCTAssertEqual(nav.receivedMessages, [.set(viewControllers: [challengeController], animated: false)])
