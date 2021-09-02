@@ -7,16 +7,23 @@
 //
 
 import XCTest
+import Mastermind
 
 final class GameNavigationAdapter {
     let navigationController: UINavigationController
+    let challengeComposer: () -> UIViewController
     let winComposer: () -> UIViewController
     let loseComposer: () -> UIViewController
 
-    init(navigationController: UINavigationController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController) {
+    init(navigationController: UINavigationController, challengeComposer: @escaping () -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController) {
         self.navigationController = navigationController
+        self.challengeComposer = challengeComposer
         self.winComposer = winComposer
         self.loseComposer = loseComposer
+    }
+    
+    func acceptGuess() {
+        navigationController.setViewControllers([challengeComposer()], animated: false)
     }
     
     func didWin() {
@@ -34,6 +41,17 @@ class GameNavigationAdapterTests: XCTestCase {
         let (_, nav) = makeSUT()
         
         XCTAssertTrue(nav.receivedMessages.isEmpty)
+    }
+    
+    func test_acceptGuess_setsChallengeViewControllerWithoutAnimation() {
+        let challengeController = UIViewController()
+        let (sut, nav) = makeSUT(challengeComposer: {
+            return challengeController
+        })
+        
+        sut.acceptGuess()
+        
+        XCTAssertEqual(nav.receivedMessages, [.set(viewControllers: [challengeController], animated: false)])
     }
     
     func test_didWin_pushesWinControllerWithAnimation() {
@@ -60,9 +78,9 @@ class GameNavigationAdapterTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(winComposer: @escaping () -> UIViewController = { UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
+    private func makeSUT(challengeComposer: @escaping () -> UIViewController = { UIViewController() }, winComposer: @escaping () -> UIViewController = { UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
         let nav = NavigationSpy()
-        let sut = GameNavigationAdapter(navigationController: nav, winComposer: winComposer, loseComposer: loseComposer)
+        let sut = GameNavigationAdapter(navigationController: nav, challengeComposer: challengeComposer, winComposer: winComposer, loseComposer: loseComposer)
         
         trackForMemoryLeaks(nav, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
