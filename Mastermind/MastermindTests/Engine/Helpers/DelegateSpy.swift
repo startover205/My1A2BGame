@@ -18,9 +18,9 @@ final class DelegateSpy: ChallengeDelegate {
     
     private(set) var receivedMessages = [Message]()
     private var replenishCompletions = [(Int) -> Void]()
-    private var guessCompletions = [(String) -> String?]()
+    private var guessCompletions = [(String) -> (String?, Bool)]()
     
-    func acceptGuess(completion: @escaping (String) -> String?) {
+    func acceptGuess(completion: @escaping (String) -> (hint: String?, correct: Bool)) {
         receivedMessages.append(.acceptGuess)
         guessCompletions.append(completion)
     }
@@ -38,7 +38,7 @@ final class DelegateSpy: ChallengeDelegate {
         replenishCompletions.append(completion)
     }
     
-    func completeGuess(with guess: String, at index: Int = 0) -> String? {
+    func completeGuess(with guess: String, at index: Int = 0) -> (String?, Bool) {
         guessCompletions[index](guess)
     }
     

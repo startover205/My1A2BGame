@@ -35,9 +35,9 @@ final class Flow<Delegate: ChallengeDelegate, Secret> {
         }
     }
     
-    private func guess(for secret: Secret, chancesLeft: Int) -> (Guess) -> Hint? {
+    private func guess(for secret: Secret, chancesLeft: Int) -> (Guess) -> (hint: Hint?, correct: Bool) {
         return { [weak self] guess in
-            guard let self = self else { return nil }
+            guard let self = self else { return (nil, false) }
             
             let result = self.matchGuess(guess, secret)
             
@@ -47,7 +47,7 @@ final class Flow<Delegate: ChallengeDelegate, Secret> {
                 self.delegateSecretNumberHandling(chancesLeft: chancesLeft-1)
             }
             
-            return result.hint
+            return result
         }
     }
     

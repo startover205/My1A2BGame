@@ -18,9 +18,10 @@ class ChallengeTests: XCTestCase {
         })
         self.sut = sut
         
-        let hint = delegate.completeGuess(with: "a correct guess")
+        let (hint, correct) = delegate.completeGuess(with: "a correct guess")
         
         XCTAssertEqual(hint, "a hint about the successful match")
+        XCTAssertTrue(correct)
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .handleWin])
     }
     
@@ -30,10 +31,11 @@ class ChallengeTests: XCTestCase {
         })
         self.sut = sut
         
-        let hint = delegate.completeGuess(with: "an incorrect guess")
+        let (hint, correct) = delegate.completeGuess(with: "an incorrect guess")
         
         XCTAssertEqual(hint, "a hint about the failing match")
-        
+        XCTAssertFalse(correct)
+
         delegate.completeReplenish(with: 0)
         
         XCTAssertEqual(delegate.receivedMessages, [.acceptGuess, .replenishChance, .handleLose])
