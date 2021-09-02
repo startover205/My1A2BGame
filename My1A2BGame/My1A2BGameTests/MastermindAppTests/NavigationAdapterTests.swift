@@ -10,9 +10,15 @@ import XCTest
 
 final class GameNavigationAdapter {
     let navigationController: UINavigationController
+    let loseComposer: () -> UIViewController
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, loseComposer: @escaping () -> UIViewController) {
         self.navigationController = navigationController
+        self.loseComposer = loseComposer
+    }
+    
+    func didLose() {
+        navigationController.pushViewController(loseComposer(), animated: true)
     }
 }
 
@@ -24,11 +30,24 @@ class GameNavigationAdapterTests: XCTestCase {
         XCTAssertTrue(nav.receivedMessages.isEmpty)
     }
     
+    func test_didLose_pushesLoseControllerWithAnimation() {
+        let loseController = UIViewController()
+        let (sut, nav) = makeSUT(loseComposer: {
+            return loseController
+        })
+        
+        sut.didLose()
+        
+        XCTAssertEqual(nav.receivedMessages, [.push(viewController: loseController,animated: true)])
+    }
+    
+
+    
     // MARK: Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
+    private func makeSUT(loseComposer: @escaping () -> UIViewController = { UIViewController() }, file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
         let nav = NavigationSpy()
-        let sut = GameNavigationAdapter(navigationController: nav)
+        let sut = GameNavigationAdapter(navigationController: nav, loseComposer: loseComposer)
         
         trackForMemoryLeaks(nav, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
