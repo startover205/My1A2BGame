@@ -56,3 +56,31 @@ public final class RewardAdViewController {
         }
     }
 }
+
+extension RewardAdViewController: ReplenishChanceDelegate {
+    public func replenishChance(completion: @escaping (Int) -> Void) {
+        guard let ad = loader.rewardAd, let hostVC = hostViewController else { return completion(0) }
+        
+        let adRewardChance = self.adRewardChance
+        
+        let format = NSLocalizedString("Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!", comment: "")
+        let message = String.localizedStringWithFormat(format, adRewardChance)
+        let alert = AlertAdCountdownController(
+            title: NSLocalizedString("You Are Out Of Chances...", comment: "2nd"),
+            message: message,
+            cancelMessage: NSLocalizedString("No, thank you", comment: "7th"),
+            countDownTime: countDownTime,
+            adHandler: {
+                ad.present(fromRootViewController: hostVC) {
+                    _ = ad
+                    
+                    completion(adRewardChance)
+                }
+            },
+            cancelHandler: {
+                completion(0)
+            })
+    
+        hostViewController?.present(alert, animated: true)
+    }
+}
