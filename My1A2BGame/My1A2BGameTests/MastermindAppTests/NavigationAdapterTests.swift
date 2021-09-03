@@ -15,7 +15,7 @@ protocol ReplenishChanceDelegate {
 
 typealias GuessCompletion = (_ guess: DigitSecret) -> (hint: String?, correct: Bool)
 
-final class GameNavigationAdapter {
+final class GameNavigationAdapter: ChallengeDelegate {
     let navigationController: UINavigationController
     let gameComposer: (GuessCompletion) -> UIViewController
     let winComposer: () -> UIViewController
