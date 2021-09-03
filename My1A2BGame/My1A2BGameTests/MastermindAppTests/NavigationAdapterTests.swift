@@ -23,7 +23,7 @@ final class GameNavigationAdapter: ChallengeDelegate {
     let delegate: ReplenishChanceDelegate
     
     var gameStart = false
-
+    
     init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController, delegate: ReplenishChanceDelegate) {
         self.navigationController = navigationController
         self.gameComposer = gameComposer
@@ -82,7 +82,6 @@ class GameNavigationAdapterTests: XCTestCase {
             return challengeController
         })
         
-        
         sut.acceptGuess { guess in
             capturedGuess = guess
             return (nil, false)
@@ -125,7 +124,7 @@ class GameNavigationAdapterTests: XCTestCase {
         delegate.completions[0](1)
         
         XCTAssertEqual(capturedChanceCount, 1)
-
+        
         sut.replenishChance(completion: completion)
         delegate.completions[1](0)
         XCTAssertEqual(capturedChanceCount, 0)
