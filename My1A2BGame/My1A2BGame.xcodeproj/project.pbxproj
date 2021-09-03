@@ -77,6 +77,8 @@
 		C0BF9A7626DDC165006BD7C1 /* BasicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */; };
 		C0BF9A7826DDC16C006BD7C1 /* AdvancedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */; };
 		C0BF9A7C26DE05B5006BD7C1 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */; };
+		C0C08E6826E1F10D001A1CF5 /* GameNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6726E1F10D001A1CF5 /* GameNavigationAdapter.swift */; };
+		C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */; };
 		C0C4CDFC26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDF826B95056007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png */; };
 		C0C4CDFD26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDF926B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png */; };
 		C0C4CDFE26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C4CDFA26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png */; };
@@ -201,6 +203,8 @@
 		C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGame.swift; sourceTree = "<group>"; };
 		C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedGame.swift; sourceTree = "<group>"; };
 		C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
+		C0C08E6726E1F10D001A1CF5 /* GameNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationAdapter.swift; sourceTree = "<group>"; };
+		C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplenishChanceDelegate.swift; sourceTree = "<group>"; };
 		C0C4CDF826B95056007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_BASIC_dark.png; sourceTree = "<group>"; };
 		C0C4CDF926B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light.png; sourceTree = "<group>"; };
 		C0C4CDFA26B95057007779FE /* GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_WITH_ONE_LAST_CHANCE_BASIC_light.png; sourceTree = "<group>"; };
@@ -350,6 +354,8 @@
 				C009191F26AD5E0500544115 /* GameUIComposer.swift */,
 				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
 				C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */,
+				C0C08E6726E1F10D001A1CF5 /* GameNavigationAdapter.swift */,
+				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
 			);
 			path = MastermindApp;
 			sourceTree = "<group>";
@@ -757,6 +763,7 @@
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */,
 				C09EE8D826C10F6400351B07 /* ModelAdvanced.xcdatamodeld in Sources */,
+				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
 				C075760C224B0C81007A1F9E /* String+Localization.swift in Sources */,
@@ -781,6 +788,7 @@
 				C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */,
 				C0A1F4AE26B62A1200536D73 /* CustomTransitionTabBarController.swift in Sources */,
 				C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */,
+				C0C08E6826E1F10D001A1CF5 /* GameNavigationAdapter.swift in Sources */,
 				C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */,

@@ -8,50 +8,7 @@
 
 import XCTest
 import Mastermind
-
-protocol ReplenishChanceDelegate {
-    func replenishChance(completion: @escaping (Int) -> Void)
-}
-
-typealias GuessCompletion = (_ guess: DigitSecret) -> (hint: String?, correct: Bool)
-
-final class GameNavigationAdapter: ChallengeDelegate {
-    let navigationController: UINavigationController
-    let gameComposer: (GuessCompletion) -> UIViewController
-    let winComposer: () -> UIViewController
-    let loseComposer: () -> UIViewController
-    let delegate: ReplenishChanceDelegate
-    
-    var gameStart = false
-    
-    init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController, delegate: ReplenishChanceDelegate) {
-        self.navigationController = navigationController
-        self.gameComposer = gameComposer
-        self.winComposer = winComposer
-        self.loseComposer = loseComposer
-        self.delegate = delegate
-    }
-    
-    func acceptGuess(completion: @escaping GuessCompletion) {
-        if !gameStart {
-            gameStart = true
-            
-            navigationController.setViewControllers([gameComposer(completion)], animated: false)
-        }
-    }
-    
-    func didWin() {
-        navigationController.pushViewController(winComposer(), animated: true)
-    }
-    
-    func didLose() {
-        navigationController.pushViewController(loseComposer(), animated: true)
-    }
-    
-    func replenishChance(completion: @escaping (Int) -> Void) {
-        delegate.replenishChance(completion: completion)
-    }
-}
+import My1A2BGame
 
 class GameNavigationAdapterTests: XCTestCase {
     
