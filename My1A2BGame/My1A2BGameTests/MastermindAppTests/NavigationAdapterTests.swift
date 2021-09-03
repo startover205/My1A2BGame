@@ -9,6 +9,10 @@
 import XCTest
 import Mastermind
 
+protocol ReplenishChanceDelegate {
+    func replenishChance(completion: @escaping (Int) -> Void)
+}
+
 typealias GuessCompletion = (_ guess: DigitSecret) -> (hint: String?, correct: Bool)
 
 final class GameNavigationAdapter {
@@ -16,14 +20,16 @@ final class GameNavigationAdapter {
     let gameComposer: (GuessCompletion) -> UIViewController
     let winComposer: () -> UIViewController
     let loseComposer: () -> UIViewController
+    let delegate: ReplenishChanceDelegate
     
     var gameStart = false
 
-    init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController) {
+    init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController, delegate: ReplenishChanceDelegate) {
         self.navigationController = navigationController
         self.gameComposer = gameComposer
         self.winComposer = winComposer
         self.loseComposer = loseComposer
+        self.delegate = delegate
     }
     
     func acceptGuess(completion: @escaping GuessCompletion) {
@@ -40,6 +46,10 @@ final class GameNavigationAdapter {
     
     func didLose() {
         navigationController.pushViewController(loseComposer(), animated: true)
+    }
+    
+    func replenishChance(completion: @escaping (Int) -> Void) {
+        delegate.replenishChance(completion: completion)
     }
 }
 
@@ -103,11 +113,29 @@ class GameNavigationAdapterTests: XCTestCase {
         XCTAssertEqual(nav.receivedMessages, [.push(viewController: loseController,animated: true)])
     }
     
+    func test_replenishChanceTwice_requestDelegateToReplenishChanceTwice() {
+        var capturedChanceCount: Int?
+        let delegate = ReplenishChanceDelegateSpy()
+        let (sut, _) = makeSUT(delegate: delegate)
+        let completion: (Int) -> Void = { chanceCount in
+            capturedChanceCount = chanceCount
+        }
+        
+        sut.replenishChance(completion: completion)
+        delegate.completions[0](1)
+        
+        XCTAssertEqual(capturedChanceCount, 1)
+
+        sut.replenishChance(completion: completion)
+        delegate.completions[1](0)
+        XCTAssertEqual(capturedChanceCount, 0)
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(gameComposer: @escaping (GuessCompletion) -> UIViewController = { _ in UIViewController() }, winComposer: @escaping () -> UIViewController = { UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
+    private func makeSUT(gameComposer: @escaping (GuessCompletion) -> UIViewController = { _ in UIViewController() }, winComposer: @escaping () -> UIViewController = { UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
         let nav = NavigationSpy()
-        let sut = GameNavigationAdapter(navigationController: nav, gameComposer: gameComposer, winComposer: winComposer, loseComposer: loseComposer)
+        let sut = GameNavigationAdapter(navigationController: nav, gameComposer: gameComposer, winComposer: winComposer, loseComposer: loseComposer, delegate: delegate)
         
         trackForMemoryLeaks(nav, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -133,6 +161,14 @@ class GameNavigationAdapterTests: XCTestCase {
         
         override func pushViewController(_ viewController: UIViewController, animated: Bool) {
             receivedMessages.append(.push(viewController: viewController, animated: animated))
+        }
+    }
+    
+    private class ReplenishChanceDelegateSpy: ReplenishChanceDelegate {
+        var completions = [(Int) -> Void]()
+        
+        func replenishChance(completion: @escaping (Int) -> Void) {
+            completions.append(completion)
         }
     }
 }
