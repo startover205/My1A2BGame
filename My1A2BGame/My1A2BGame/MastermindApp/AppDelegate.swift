@@ -77,25 +77,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var advancedGameNavigationController = UINavigationController()
 
     private var basicGameVC: UIViewController {
-        GameUIComposer.gameComposedWith(
-           gameVersion: BasicGame(),
-           userDefaults: .standard,
-           loader: GoogleRewardAdManager.shared,
-           onWin: { [self] in
-               self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
-               self.appReviewController?.markProcessCompleteOneTime()
-               self.appReviewController?.askForAppReviewIfAppropriate()
-           },
-           onLose: showLoseSceneForBasicGame,
-           onRestart: startBasicGame,
-           animate: UIView.animate)
+        let gameVersion = BasicGame()
+        let secret = RandomDigitSecretGenerator.generate(digitCount: gameVersion.digitCount)
+        
+        return GameUIComposer.gameComposedWith(
+            gameVersion: gameVersion,
+            userDefaults: .standard,
+            loader: GoogleRewardAdManager.shared,
+            secret: secret,
+            guessCompletion: { guess in
+                DigitSecretMatcher.match(guess, with: secret)
+            },
+            onWin: { [self] in
+                self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
+                self.appReviewController?.markProcessCompleteOneTime()
+                self.appReviewController?.askForAppReviewIfAppropriate()
+            },
+            onLose: showLoseSceneForBasicGame,
+            onRestart: startBasicGame,
+            animate: UIView.animate)
     }
     
     private var advancedGameVC: UIViewController {
-        GameUIComposer.gameComposedWith(
-           gameVersion: AdvancedGame(),
+        let gameVersion = AdvancedGame()
+        let secret = RandomDigitSecretGenerator.generate(digitCount: gameVersion.digitCount)
+        
+        return GameUIComposer.gameComposedWith(
+           gameVersion: gameVersion,
            userDefaults: .standard,
-           loader: GoogleRewardAdManager.shared,
+            loader: GoogleRewardAdManager.shared,
+            secret: secret,
+            guessCompletion: { guess in
+                DigitSecretMatcher.match(guess, with: secret)
+            },
            onWin: { [self] in
                self.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
                self.appReviewController?.markProcessCompleteOneTime()

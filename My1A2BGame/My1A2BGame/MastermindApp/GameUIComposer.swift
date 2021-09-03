@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, onWin: @escaping (_ guessCount: Int, _ guessTime: TimeInterval) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, guessCompletion: @escaping GuessCompletion,onWin: @escaping (_ guessCount: Int, _ guessTime: TimeInterval) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -24,8 +24,6 @@ public final class GameUIComposer {
         gameViewController.digitCount = gameVersion.digitCount
         gameViewController.evaluate = MastermindEvaluator.evaluate(_:with:)
         gameViewController.availableGuess = gameVersion.maxGuessCount
-        
-        let secret = RandomDigitSecretGenerator.generate(digitCount: gameVersion.digitCount)
         gameViewController.quizNumbers = secret.content.map(String.init)
         
         gameViewController.voicePromptViewController = voicePromptViewController
@@ -43,6 +41,7 @@ public final class GameUIComposer {
         gameViewController.inputVC = inputVC
         inputVC.delegate = gameViewController
         
+        gameViewController.guessCompletion = guessCompletion
         gameViewController.onWin = onWin
         gameViewController.onLose = onLose
         gameViewController.onRestart = onRestart

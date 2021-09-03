@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mastermind
 import MastermindiOS
 
 public class GuessNumberViewController: UIViewController {
@@ -22,6 +23,7 @@ public class GuessNumberViewController: UIViewController {
             updateAvailableGuessLabel()
         }
     }
+    var guessCompletion: GuessCompletion!
     
     @IBOutlet var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
@@ -133,23 +135,17 @@ extension GuessNumberViewController {
         guessCount += 1
         availableGuess -= 1
         
-        //try to match numbers
-        let answer = answerTexts.compactMap(Int.init)
-        let guess = guessTexts.compactMap(Int.init)
+        let (hint, correct) = guessCompletion(DigitSecret(digits: guessTexts.compactMap(Int.init))!)
         
-        guard let evaluate = evaluate else { return }
-        
-        let (correctCount, misplacedCount) = try! evaluate(guess, answer)
-
         //show result
         let guessText = guessTexts.joined()
-        let result = "\(guessText)          \(correctCount)A\(misplacedCount)B\n"
+        let result = "\(guessText)          \(hint ?? "")\n"
         hintViewController.updateHint(result)
         
-        var text = "\(correctCount) A, \(misplacedCount) B" //for speech
+        var text = hint ?? "" //for speech
         
         //win
-        if correctCount == digitCount {
+        if correct {
             feedbackGenerator?.notificationOccurred(.success)
             feedbackGenerator = nil
             
