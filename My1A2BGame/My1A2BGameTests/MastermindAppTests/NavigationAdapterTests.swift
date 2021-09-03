@@ -9,26 +9,28 @@
 import XCTest
 import Mastermind
 
+typealias GuessCompletion = (_ guess: DigitSecret) -> (hint: String?, correct: Bool)
+
 final class GameNavigationAdapter {
     let navigationController: UINavigationController
-    let gameComposer: () -> UIViewController
+    let gameComposer: (GuessCompletion) -> UIViewController
     let winComposer: () -> UIViewController
     let loseComposer: () -> UIViewController
     
     var gameStart = false
 
-    init(navigationController: UINavigationController, gameComposer: @escaping () -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController) {
+    init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController) {
         self.navigationController = navigationController
         self.gameComposer = gameComposer
         self.winComposer = winComposer
         self.loseComposer = loseComposer
     }
     
-    func acceptGuess() {
+    func acceptGuess(completion: @escaping GuessCompletion) {
         if !gameStart {
             gameStart = true
             
-            navigationController.setViewControllers([gameComposer()], animated: false)
+            navigationController.setViewControllers([gameComposer(completion)], animated: false)
         }
     }
     
@@ -51,14 +53,32 @@ class GameNavigationAdapterTests: XCTestCase {
     
     func test_acceptGuessTwice_setsChallengeViewControllerWithoutAnimationOnce() {
         let challengeController = UIViewController()
-        let (sut, nav) = makeSUT(gameComposer: {
+        let (sut, nav) = makeSUT(gameComposer: {_ in
             return challengeController
         })
         
-        sut.acceptGuess()
-        sut.acceptGuess()
+        sut.acceptGuess { _ in (nil, false)}
+        sut.acceptGuess { _ in (nil, false)}
         
         XCTAssertEqual(nav.receivedMessages, [.set(viewControllers: [challengeController], animated: false)])
+    }
+    
+    func test_acceptGuess_passesGuessCallbackToComposer() {
+        var callBackCallCount = 0
+        let challengeController = UIViewController()
+        let digitSecret = anyDigitSecret()
+        let (sut, _) = makeSUT(gameComposer: { completion in
+            _ = completion(digitSecret)
+            return challengeController
+        })
+        
+        
+        sut.acceptGuess { _ in
+            callBackCallCount += 1
+            return (nil, false)
+        }
+        
+        XCTAssertEqual(callBackCallCount, 1)
     }
     
     func test_didWin_pushesWinControllerWithAnimation() {
@@ -85,7 +105,7 @@ class GameNavigationAdapterTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(gameComposer: @escaping () -> UIViewController = { UIViewController() }, winComposer: @escaping () -> UIViewController = { UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
+    private func makeSUT(gameComposer: @escaping (GuessCompletion) -> UIViewController = { _ in UIViewController() }, winComposer: @escaping () -> UIViewController = { UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
         let nav = NavigationSpy()
         let sut = GameNavigationAdapter(navigationController: nav, gameComposer: gameComposer, winComposer: winComposer, loseComposer: loseComposer)
         
@@ -93,6 +113,10 @@ class GameNavigationAdapterTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, nav)
+    }
+    
+    private func anyDigitSecret() -> DigitSecret {
+        DigitSecret(digits: [])!
     }
     
     private class NavigationSpy: UINavigationController {
