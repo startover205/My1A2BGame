@@ -131,26 +131,6 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
     
-    func test_matchNumbers_notifiesLoseHandlerWhenUserHasNoMoreChanceLeft() {
-        var onLoseCallCount = 0
-        let sut = makeSUT(onLose: {
-            onLoseCallCount += 1
-        })
-        let answer = sut.quizNumbers
-        let wrongGuess = Array(answer.reversed())
-        
-        sut.loadViewIfNeeded()
-        sut.availableGuess = 2
-        
-        sut.tryToMatchNumbers(guessTexts: wrongGuess)
-        
-        XCTAssertEqual(onLoseCallCount, 0, "Expect lose handler not trigger when user has chance")
-        
-        sut.tryToMatchNumbers(guessTexts: wrongGuess)
-        
-        XCTAssertEqual(onLoseCallCount, 1, "Expect lose handler triggered when user has no chance left")
-    }
-    
 //    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
 //        let window = UIWindow()
 //        let nav = NavigationSpy()
@@ -180,8 +160,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, guessCompletion: guessCompletion, onLose: onLose, onRestart: onRestart, animate: animate)
+    private func makeSUT(gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, guessCompletion: guessCompletion, onRestart: onRestart, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

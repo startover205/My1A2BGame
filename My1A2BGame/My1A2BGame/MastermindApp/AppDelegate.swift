@@ -112,7 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     loader: GoogleRewardAdManager.shared,
                     secret: secret,
                     guessCompletion: guessCompletion,
-                    onLose: {},
                     onRestart: self.startNewBasicGame,
                     animate: UIView.animate)
             },
@@ -153,7 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     loader: GoogleRewardAdManager.shared,
                     secret: secret,
                     guessCompletion: guessCompletion,
-                    onLose: {},
                     onRestart: self.startNewAdvancedGame,
                     animate: UIView.animate)
             },

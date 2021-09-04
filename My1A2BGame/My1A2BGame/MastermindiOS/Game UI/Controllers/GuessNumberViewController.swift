@@ -13,7 +13,6 @@ import MastermindiOS
 public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
     var adViewController: RewardAdViewController?
-    var onLose: (() -> Void)?
     var onRestart: (() -> Void)?
     var digitCount: Int = 0
     var availableGuess = 0 {
@@ -166,8 +165,6 @@ extension GuessNumberViewController {
         self.endGame()
 
         voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))
-        
-        onLose?()
     }
     
     func fadeOut() { fadeTo(alpha: 0) }
