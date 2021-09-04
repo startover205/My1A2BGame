@@ -58,6 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = makeTabController()
         
         window?.makeKeyAndVisible()
+        
+        startNewBasicGame()
+        
+        startNewAdvancedGame()
     }
     
     private lazy var appReviewController: AppReviewController? = {
@@ -76,58 +80,101 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
 
-    private var basicGameVC: UIViewController {
-        let gameVersion = BasicGame()
-        let secret = RandomDigitSecretGenerator.generate(digitCount: gameVersion.digitCount)
+    private var basicChallenge: Challenge?
+    private var advancedChallenge: Challenge?
+    
+    private let basicGameVersion = BasicGame()
+    private let advancedGameVersion = AdvancedGame()
+    
+    private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
+    
+    convenience init(secretGenerator: @escaping (Int) -> DigitSecret) {
+        self.init()
+        self.secretGenerator = secretGenerator
+    }
+    
+    private func startNewBasicGame() {
+        let basicGameVersion = basicGameVersion
+        let secret = secretGenerator(basicGameVersion.digitCount)
         
-        return GameUIComposer.gameComposedWith(
-            gameVersion: gameVersion,
-            userDefaults: .standard,
+        let rewardAdController = RewardAdViewController(
             loader: GoogleRewardAdManager.shared,
-            secret: secret,
-            guessCompletion: { guess in
-                DigitSecretMatcher.match(guess, with: secret)
-            },
-            onWin: { [self] in
-                self.showWinSceneForBasicGame(guessCount: $0, guessTime: $1)
-                self.appReviewController?.markProcessCompleteOneTime()
-                self.appReviewController?.askForAppReviewIfAppropriate()
-            },
-            onLose: showLoseSceneForBasicGame,
-            onRestart: startBasicGame,
-            animate: UIView.animate)
-    }
-    
-    private var advancedGameVC: UIViewController {
-        let gameVersion = AdvancedGame()
-        let secret = RandomDigitSecretGenerator.generate(digitCount: gameVersion.digitCount)
+            adRewardChance: 5,
+            countDownTime: 5.0,
+            onGrantReward: {})
         
-        return GameUIComposer.gameComposedWith(
-           gameVersion: gameVersion,
-           userDefaults: .standard,
-            loader: GoogleRewardAdManager.shared,
-            secret: secret,
-            guessCompletion: { guess in
-                DigitSecretMatcher.match(guess, with: secret)
+        let delegate = GameNavigationAdapter(
+            navigationController: basicGameNavigationController,
+            gameComposer: { guessCompletion in
+                return GameUIComposer.gameComposedWith(
+                    gameVersion: basicGameVersion,
+                    userDefaults: .standard,
+                    loader: GoogleRewardAdManager.shared,
+                    secret: secret,
+                    guessCompletion: guessCompletion,
+                    onWin: {_,_ in },
+                    onLose: {},
+                    onRestart: self.startNewBasicGame,
+                    animate: UIView.animate)
             },
-           onWin: { [self] in
-               self.showWinSceneForAdvancedGame(guessCount: $0, guessTime: $1)
-               self.appReviewController?.markProcessCompleteOneTime()
-               self.appReviewController?.askForAppReviewIfAppropriate()
-           },
-           onLose: showLoseSceneForAdvancedGame,
-           onRestart: startAdvacnedGame,
-           animate: UIView.animate)
+            winComposer: { score in
+                WinUIComposer.winComposedWith(
+                    score: score,
+                    digitCount: basicGameVersion.digitCount,
+                    recordLoader: self.basicRecordLoader)
+            },
+            loseComposer: LoseUIComposer.loseScene,
+            delegate: rewardAdController,
+            currentDeviceTime: CACurrentMediaTime)
+        
+        basicChallenge = Challenge.start(
+            secret: secret,
+            maxChanceCount: basicGameVersion.maxGuessCount,
+            matchGuess: DigitSecretMatcher.match(_:with:),
+            delegate: delegate)
     }
-    
-    private func startBasicGame() {
-        basicGameNavigationController.setViewControllers([basicGameVC], animated: false)
+
+    private func startNewAdvancedGame() {
+        let advancedGameVersion = advancedGameVersion
+        let secret = secretGenerator(advancedGameVersion.digitCount)
+
+        let rewardAdController = RewardAdViewController(
+            loader: GoogleRewardAdManager.shared,
+            adRewardChance: 5,
+            countDownTime: 5.0,
+            onGrantReward: {})
+        
+        let delegate = GameNavigationAdapter(
+            navigationController: advancedGameNavigationController,
+            gameComposer: { guessCompletion in
+
+                return GameUIComposer.gameComposedWith(
+                    gameVersion: advancedGameVersion,
+                    userDefaults: .standard,
+                    loader: GoogleRewardAdManager.shared,
+                    secret: secret,
+                    guessCompletion: guessCompletion,
+                    onWin: {_,_ in },
+                    onLose: {},
+                    onRestart: self.startNewAdvancedGame,
+                    animate: UIView.animate)
+            },
+            winComposer: { score in
+                WinUIComposer.winComposedWith(
+                    score: score,
+                    digitCount: advancedGameVersion.digitCount,
+                    recordLoader: self.advancedRecordLoader)
+            },
+            loseComposer: LoseUIComposer.loseScene,
+            delegate: rewardAdController,
+            currentDeviceTime: CACurrentMediaTime)
+        
+        advancedChallenge = Challenge.start(
+            secret: secret,
+            maxChanceCount: advancedGameVersion.maxGuessCount,
+            matchGuess: DigitSecretMatcher.match(_:with:),
+            delegate: delegate)
     }
-    
-    private func startAdvacnedGame() {
-        advancedGameNavigationController.setViewControllers([advancedGameVC], animated: false)
-    }
-    
     
     func makeTabController() -> UITabBarController {
         let tabConfigurations: [(title: String, imageName: String)] = [
@@ -147,8 +194,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             item.image = UIImage(named: tabConfigurations[index].imageName)
         }
         
-        startBasicGame()
-        startAdvacnedGame()
         return tabVC
     }
     
@@ -164,31 +209,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return vc
     }
     
-    private func showWinSceneForBasicGame(guessCount: Int, guessTime: TimeInterval) {
+    private lazy var basicRecordLoader: RecordLoader = {
         let store = try! CoreDataRecordStore<Winner>(storeURL: basicGameStoreURL, modelName: "Model")
-        let recordLoader = LocalRecordLoader(store: store)
-        let winScene = WinUIComposer.winComposedWith(digitCount: BasicGame().digitCount, recordLoader: recordLoader)
-        winScene.guessCount = guessCount
-        winScene.guessTime = guessTime
-        basicGameNavigationController.pushViewController(winScene, animated: true)
-    }
+        return LocalRecordLoader(store: store)
+    }()
     
-    private func showLoseSceneForBasicGame() {
-        let controller = LoseUIComposer.loseScene()
-        basicGameNavigationController.pushViewController(controller, animated: true)
-    }
-    
-    private func showLoseSceneForAdvancedGame() {
-        let controller = LoseUIComposer.loseScene()
-        advancedGameNavigationController.pushViewController(controller, animated: true)
-    }
-    
-    private func showWinSceneForAdvancedGame(guessCount: Int, guessTime: TimeInterval) {
+    private lazy var advancedRecordLoader: RecordLoader = {
         let store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
-        let recordLoader = LocalRecordLoader(store: store)
-        let winScene = WinUIComposer.winComposedWith(digitCount: AdvancedGame().digitCount, recordLoader: recordLoader)
-        winScene.guessCount = guessCount
-        winScene.guessTime = guessTime
-        advancedGameNavigationController.pushViewController(winScene, animated: true)
-    }
+        return LocalRecordLoader(store: store)
+    }()
+    
+//    private func showWinSceneForBasicGame(guessCount: Int, guessTime: TimeInterval) {
+//        let store = try! CoreDataRecordStore<Winner>(storeURL: basicGameStoreURL, modelName: "Model")
+//        let recordLoader = LocalRecordLoader(store: store)
+//        let winScene = WinUIComposer.winComposedWith(digitCount: BasicGame().digitCount, recordLoader: recordLoader)
+//        winScene.guessCount = guessCount
+//        winScene.guessTime = guessTime
+//        basicGameNavigationController.pushViewController(winScene, animated: true)
+//    }
+//
+//    private func showLoseSceneForBasicGame() {
+//        let controller = LoseUIComposer.loseScene()
+//        basicGameNavigationController.pushViewController(controller, animated: true)
+//    }
+//
+//    private func showLoseSceneForAdvancedGame() {
+//        let controller = LoseUIComposer.loseScene()
+//        advancedGameNavigationController.pushViewController(controller, animated: true)
+//    }
+    
+//    private func showWinSceneForAdvancedGame(guessCount: Int, guessTime: TimeInterval) {
+//        let store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
+//        let recordLoader = LocalRecordLoader(store: store)
+//        let winScene = WinUIComposer.winComposedWith(digitCount: AdvancedGame().digitCount, recordLoader: recordLoader)
+//        winScene.guessCount = guessCount
+//        winScene.guessTime = guessTime
+//        advancedGameNavigationController.pushViewController(winScene, animated: true)
+//    }
 }

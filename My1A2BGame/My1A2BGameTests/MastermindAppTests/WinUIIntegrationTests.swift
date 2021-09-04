@@ -215,7 +215,7 @@ class WinUIIntegrationTests: XCTestCase {
     
     private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
-        let sut = WinUIComposer.winComposedWith(digitCount: digitCount, recordLoader: loader)
+        let sut = WinUIComposer.winComposedWith(score: (0, 0.0), digitCount: digitCount, recordLoader: loader)
         sut.guessCount = guessCount
         sut.showFireworkAnimation = showFireworkAnimation
         

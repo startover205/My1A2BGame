@@ -30,7 +30,7 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - Helpers
     
     private func launch() -> UITabBarController {
-        let sut = AppDelegate()
+        let sut = AppDelegate(secretGenerator: makeSecretGenerator())
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
         
@@ -56,25 +56,40 @@ class GameAcceptanceTests: XCTestCase{
     private func showWinScene(from game: () -> (GuessNumberViewController)) -> WinViewController {
         let game = game()
         
-        game.simulatePlayerWin(with: makeScore())
+        RunLoop.current.run(until: Date())
+        
+        game.simulatePlayerWin(with: makeGuess(digitCount: game.digitCount))
+        
         RunLoop.current.run(until: Date())
         
         let nav = game.navigationController
         return nav?.topViewController as! WinViewController
     }
     
-    private func makeScore() -> Score { (5, 50.0) }
+    private func makeSecretGenerator() -> (Int) -> DigitSecret {
+        return { digitCount in
+            
+            var digits = [Int]()
+            for i in 0..<digitCount {
+                digits.append(i)
+            }
+            
+            return DigitSecret(digits: digits)!
+        }
+    }
+    
+    private func makeGuess(digitCount: Int) -> DigitSecret { makeSecretGenerator()(digitCount) }
     
     private func makeWinMessageForBasicGame() -> String { "4A0B!! You won!!" }
     
     private func makeWinMessageForAdvancedGame() -> String { "5A0B!! You won!!" }
     
-    private func makeGameResultMessage() -> String { "You guessed 5 times" }
+    private func makeGameResultMessage() -> String { "You guessed 1 time" }
 }
 
 private extension GuessNumberViewController {
-    func simulatePlayerWin(with score: Score){
-        onWin?(score.guessCount, score.guessTime)
+    func simulatePlayerWin(with guess: DigitSecret){
+        tryToMatchNumbers(guessTexts: guess.content.compactMap(String.init))
     }
 }
 
