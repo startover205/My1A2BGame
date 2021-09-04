@@ -71,10 +71,10 @@ class GameUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.resultMessage, "", "expected no text after loading")
         
-        sut.simulateGuessWith(answer: answer, guess: guess1)
+        sut.simulateGuess(with: guess1)
         XCTAssertEqual(sut.resultMessage, "5234          3A0B\n", "expected latest result after matching")
         
-        sut.simulateGuessWith(answer: answer, guess: guess2)
+        sut.simulateGuess(with: guess2)
         XCTAssertEqual(sut.resultMessage, "5634          2A0B\n", "expected latest result after matching")
     }
     
@@ -157,11 +157,11 @@ class GameUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.availableGuess = 2
         
-        sut.tryToMatchNumbers(guessTexts: wrongGuess, answerTexts: answer)
+        sut.tryToMatchNumbers(guessTexts: wrongGuess)
         
         XCTAssertEqual(onLoseCallCount, 0, "Expect lose handler not trigger when user has chance")
         
-        sut.tryToMatchNumbers(guessTexts: wrongGuess, answerTexts: answer)
+        sut.tryToMatchNumbers(guessTexts: wrongGuess)
         
         XCTAssertEqual(onLoseCallCount, 1, "Expect lose handler triggered when user has no chance left")
     }
@@ -270,8 +270,8 @@ private extension GuessNumberViewController {
         inputVC.delegate?.padDidFinishEntering(numberTexts: guess)
     }
     
-    func simulateGuessWith(answer: [String], guess: [String]) {
-        tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
+    func simulateGuess(with guess: [String]) {
+        tryToMatchNumbers(guessTexts: guess)
     }
     
     func simulateTapHelperButton() {
@@ -292,7 +292,7 @@ private extension GuessNumberViewController {
     func simulateUserGuessWithCorrectAnswer() {
         let answer = quizNumbers
         let guess = answer
-        tryToMatchNumbers(guessTexts: guess, answerTexts: answer)
+        tryToMatchNumbers(guessTexts: guess)
     }
     
     func simulateUserRestartGame() {

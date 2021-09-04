@@ -66,11 +66,10 @@ private extension GameVersion {
 
 fileprivate extension GuessNumberViewController {
     func  simulateGameWithOneLastChance() {
-        let answer = quizNumbers
         let wrongAnswer: [String] = quizNumbers.reversed()
             
         for _ in 0..<availableGuess-1 {
-            self.tryToMatchNumbers(guessTexts: wrongAnswer, answerTexts: answer)
+            self.tryToMatchNumbers(guessTexts: wrongAnswer)
         }
     }
 }

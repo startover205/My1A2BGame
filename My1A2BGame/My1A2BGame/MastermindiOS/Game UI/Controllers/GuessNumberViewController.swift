@@ -120,15 +120,15 @@ public class GuessNumberViewController: UIViewController {
 }
 
 // MARK: - GuessPadDelegate
-extension GuessNumberViewController: GuessPadDelegate{
+extension GuessNumberViewController: GuessPadDelegate {
     public func padDidFinishEntering(numberTexts: [String]) {
-        tryToMatchNumbers(guessTexts: numberTexts, answerTexts: quizNumbers)
+        tryToMatchNumbers(guessTexts: numberTexts)
     }
 }
 
 extension GuessNumberViewController {
     
-    func tryToMatchNumbers(guessTexts: [String], answerTexts: [String]){
+    func tryToMatchNumbers(guessTexts: [String]) {
         //startCounting
         _ = startPlayTime
         
