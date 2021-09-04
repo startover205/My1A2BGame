@@ -14,14 +14,14 @@ import MastermindiOS
 class GameAcceptanceTests: XCTestCase{
     
     func test_onGameWin_displaysWinScene_basicGame() {
-        let win = showWinScene(from: launchBasicGame)
+        let win = showWinScene(from: launchBasicGame, digitCount: 4)
         
         XCTAssertEqual(win.winMessage(), makeWinMessageForBasicGame())
         XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage())
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
-        let win = showWinScene(from: launchAdvancedGame)
+        let win = showWinScene(from: launchAdvancedGame, digitCount: 5)
         
         XCTAssertEqual(win.winMessage(), makeWinMessageForAdvancedGame())
         XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage())
@@ -53,12 +53,12 @@ class GameAcceptanceTests: XCTestCase{
         return nav?.topViewController as! GuessNumberViewController
     }
 
-    private func showWinScene(from game: () -> (GuessNumberViewController)) -> WinViewController {
+    private func showWinScene(from game: () -> (GuessNumberViewController), digitCount: Int) -> WinViewController {
         let game = game()
         
         RunLoop.current.run(until: Date())
         
-        game.simulatePlayerWin(with: makeGuess(digitCount: game.digitCount))
+        game.simulatePlayerWin(with: makeGuess(digitCount: digitCount))
         
         RunLoop.current.run(until: Date())
         

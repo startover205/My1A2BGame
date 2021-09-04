@@ -14,7 +14,6 @@ public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
     var adViewController: RewardAdViewController?
     var onRestart: (() -> Void)?
-    var digitCount: Int = 0
     var availableGuess = 0 {
         didSet {
             updateAvailableGuessLabel()
