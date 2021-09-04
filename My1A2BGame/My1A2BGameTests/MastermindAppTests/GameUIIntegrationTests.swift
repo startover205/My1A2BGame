@@ -131,21 +131,6 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
     
-    func test_matchNumbers_notifiesWinHandlerOnWin() {
-        var onWinCallCount = 0
-        let sut = makeSUT(guessCompletion:{ _ in
-            (nil, true)
-        }, onWin: { _, _ in
-            onWinCallCount += 1
-        })
-        
-        sut.loadViewIfNeeded()
-        
-        sut.simulateUserGuessWithCorrectAnswer()
-        
-        XCTAssertEqual(onWinCallCount, 1)
-    }
-    
     func test_matchNumbers_notifiesLoseHandlerWhenUserHasNoMoreChanceLeft() {
         var onLoseCallCount = 0
         let sut = makeSUT(onLose: {
@@ -195,8 +180,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, guessCompletion: guessCompletion, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
+    private func makeSUT(gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, guessCompletion: guessCompletion, onLose: onLose, onRestart: onRestart, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

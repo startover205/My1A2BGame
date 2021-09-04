@@ -13,7 +13,6 @@ import MastermindiOS
 public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
     var adViewController: RewardAdViewController?
-    var onWin: ((_ guessCount: Int, _ guessTime: TimeInterval) -> Void)?
     var onLose: (() -> Void)?
     var onRestart: (() -> Void)?
     var digitCount: Int = 0
@@ -149,8 +148,6 @@ extension GuessNumberViewController {
             feedbackGenerator = nil
             
             text = NSLocalizedString("Congrats! You won!", comment: "")
-            
-            onWin?(guessCount, CACurrentMediaTime() - self.startPlayTime)
         } else {
             feedbackGenerator?.notificationOccurred(.error)
             feedbackGenerator = nil
