@@ -83,8 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var basicChallenge: Challenge?
     private var advancedChallenge: Challenge?
     
-    private let basicGameVersion = BasicGame()
-    private let advancedGameVersion = AdvancedGame()
+    private let basicGameVersion: GameVersion = .basic
+    private let advancedGameVersion: GameVersion = .advanced
     
     private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
     
@@ -178,8 +178,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func makeTabController() -> UITabBarController {
         let tabConfigurations: [(title: String, imageName: String)] = [
-            (BasicGame().title, "baseline_1A2B_24px"),
-            (AdvancedGame().title, "advanced_24px"),
+            (basicGameVersion.title, "baseline_1A2B_24px"),
+            (advancedGameVersion.title, "advanced_24px"),
             ("Rank", "baseline_format_list_numbered_black_24pt"),
             ("More", "baseline_settings_black_24pt"),
         ]

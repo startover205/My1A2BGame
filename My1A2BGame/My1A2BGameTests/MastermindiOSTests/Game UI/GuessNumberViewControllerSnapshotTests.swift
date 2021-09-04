@@ -11,21 +11,21 @@ import XCTest
 
 class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func test_gameStart_basic() {
-        let sut = makeSUT(gameVersion: BasicGame())
+        let sut = makeSUT(gameVersion: .basic)
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_dark")
     }
     
     func test_gameStart_advanced() {
-        let sut = makeSUT(gameVersion: AdvancedGame())
+        let sut = makeSUT(gameVersion: .advanced)
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_ADVANCED_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_ADVANCED_dark")
     }
     
     func test_gameWithOneLastChance_basic() {
-        let sut = makeSUT(gameVersion: BasicGame())
+        let sut = makeSUT(gameVersion: .basic)
         
         sut.simulateGameWithOneLastChance()
         
@@ -34,7 +34,7 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     }
     
     func test_gameWithOneLastChance_advanced() {
-        let sut = makeSUT(gameVersion: AdvancedGame())
+        let sut = makeSUT(gameVersion: .advanced)
         
         sut.simulateGameWithOneLastChance()
         

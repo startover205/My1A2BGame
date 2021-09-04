@@ -8,8 +8,12 @@
 
 import Foundation
 
-public protocol GameVersion {
-    var digitCount: Int { get }
-    var title: String { get }
-    var maxGuessCount: Int { get }
+public struct GameVersion {
+    var digitCount: Int
+    var title: String
+    var maxGuessCount: Int
+    
+    static let basic = GameVersion(digitCount: 4, title: "Basic", maxGuessCount: 10)
+    
+    static let advanced = GameVersion(digitCount: 5, title: "Advanced", maxGuessCount: 15)
 }

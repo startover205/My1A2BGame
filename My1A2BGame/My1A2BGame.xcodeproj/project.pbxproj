@@ -74,8 +74,6 @@
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
 		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
-		C0BF9A7626DDC165006BD7C1 /* BasicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */; };
-		C0BF9A7826DDC16C006BD7C1 /* AdvancedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */; };
 		C0BF9A7C26DE05B5006BD7C1 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */; };
 		C0C08E6826E1F10D001A1CF5 /* GameNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6726E1F10D001A1CF5 /* GameNavigationAdapter.swift */; };
 		C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */; };
@@ -200,8 +198,6 @@
 		C0A9E29E2333E3CC007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		C0A9E29F2333E3CD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVersion.swift; sourceTree = "<group>"; };
-		C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGame.swift; sourceTree = "<group>"; };
-		C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedGame.swift; sourceTree = "<group>"; };
 		C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
 		C0C08E6726E1F10D001A1CF5 /* GameNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationAdapter.swift; sourceTree = "<group>"; };
 		C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplenishChanceDelegate.swift; sourceTree = "<group>"; };
@@ -315,8 +311,6 @@
 				C01BC5CD26A84C2700FA0636 /* Rank */,
 				C01BC5BF26A8499E00FA0636 /* Shared */,
 				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
-				C0BF9A7526DDC165006BD7C1 /* BasicGame.swift */,
-				C0BF9A7726DDC16C006BD7C1 /* AdvancedGame.swift */,
 			);
 			path = MastermindKit;
 			sourceTree = "<group>";
@@ -767,7 +761,6 @@
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
 				C075760C224B0C81007A1F9E /* String+Localization.swift in Sources */,
-				C0BF9A7626DDC165006BD7C1 /* BasicGame.swift in Sources */,
 				C0A1F4A326B62A1200536D73 /* HelperButton.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */,
 				C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */,
@@ -783,7 +776,6 @@
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
-				C0BF9A7826DDC16C006BD7C1 /* AdvancedGame.swift in Sources */,
 				C0757609224A1C32007A1F9E /* CoreDataManager.swift in Sources */,
 				C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */,
 				C0A1F4AE26B62A1200536D73 /* CustomTransitionTabBarController.swift in Sources */,

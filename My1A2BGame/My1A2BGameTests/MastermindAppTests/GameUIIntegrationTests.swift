@@ -14,7 +14,7 @@ import GoogleMobileAds
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
-        let gameVersion = GameVersionMock()
+        let gameVersion = makeGameVersion()
         let sut = makeSUT(gameVersion: gameVersion)
         
         sut.loadViewIfNeeded()
@@ -79,7 +79,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_availableGuess_rendersWithEachGuess() {
-        let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 3))
+        let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3))
 
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect max guess count once view is loaded")
@@ -195,7 +195,7 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = GameVersionMock(), userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+    private func makeSUT(gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onWin: @escaping (Int, TimeInterval) -> Void = { _, _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
         let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, guessCompletion: guessCompletion, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -209,16 +209,8 @@ class GameUIIntegrationTests: XCTestCase {
     
     private func answerPlaceholder(for digitCount: Int) -> [String] { Array(repeating: "?", count: digitCount) }
     
-    private final class GameVersionMock: GameVersion {
-        let digitCount: Int = 4
-        
-        let title: String = "a title"
-        
-        let maxGuessCount: Int
-        
-        init(maxGuessCount: Int = 5) {
-            self.maxGuessCount = maxGuessCount
-        }
+    private func makeGameVersion(maxGuessCount: Int = 1) -> GameVersion {
+        GameVersion(digitCount: 1, title: "a title", maxGuessCount: maxGuessCount)
     }
     
     private func guessMessageFor(guessCount: Int) -> String {
