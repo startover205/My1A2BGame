@@ -223,8 +223,8 @@ class WinUIIntegrationTests: XCTestCase {
         recordViewController.hostViewController = sut
         let recordViewModel = RecordViewModel(
             loader: loader,
-            guessCount: { guessCount },
-            guessTime: { guessTime },
+            guessCount: guessCount,
+            guessTime: guessTime,
             currentDate: currentDate)
         recordViewController.recordViewModel = recordViewModel
         

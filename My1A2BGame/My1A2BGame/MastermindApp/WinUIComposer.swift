@@ -22,8 +22,8 @@ public final class WinUIComposer {
         
         let recordViewModel = RecordViewModel(
             loader: recordLoader,
-            guessCount: { score.guessCount },
-            guessTime: { score.guessTime },
+            guessCount: score.guessCount,
+            guessTime: score.guessTime,
             currentDate: Date.init)
         recordViewController.recordViewModel = recordViewModel
         
