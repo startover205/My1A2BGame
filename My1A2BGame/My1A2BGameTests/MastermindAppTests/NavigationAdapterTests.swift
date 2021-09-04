@@ -47,15 +47,20 @@ class GameNavigationAdapterTests: XCTestCase {
         XCTAssertEqual(capturedGuess, digitSecret)
     }
     
-    func test_didWin_pushesWinControllerWithAnimation() {
+    func test_didWin_pushesWinControllerWithDefaultScoreWithAnimation() {
         let winController = UIViewController()
-        let (sut, nav) = makeSUT(winComposer: {
+        let score: Score = (0, 0.0)
+        var capturedScore: Score?
+        let (sut, nav) = makeSUT(winComposer: { score in
+            capturedScore = score
             return winController
         })
         
         sut.didWin()
         
         XCTAssertEqual(nav.receivedMessages, [.push(viewController: winController,animated: true)])
+        XCTAssertEqual(capturedScore?.guessCount, score.guessCount)
+        XCTAssertEqual(capturedScore?.guessTime, score.guessTime)
     }
     
     func test_didLose_pushesLoseControllerWithAnimation() {
@@ -89,7 +94,7 @@ class GameNavigationAdapterTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(gameComposer: @escaping (GuessCompletion) -> UIViewController = { _ in UIViewController() }, winComposer: @escaping () -> UIViewController = { UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
+    private func makeSUT(gameComposer: @escaping (GuessCompletion) -> UIViewController = { _ in UIViewController() }, winComposer: @escaping (Score) -> UIViewController = { _ in UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
         let nav = NavigationSpy()
         let sut = GameNavigationAdapter(navigationController: nav, gameComposer: gameComposer, winComposer: winComposer, loseComposer: loseComposer, delegate: delegate)
         
@@ -101,6 +106,10 @@ class GameNavigationAdapterTests: XCTestCase {
     
     private func anyDigitSecret() -> DigitSecret {
         DigitSecret(digits: [])!
+    }
+    
+    private func anyScore() -> Score {
+        (1, 10.0)
     }
     
     private class NavigationSpy: UINavigationController {

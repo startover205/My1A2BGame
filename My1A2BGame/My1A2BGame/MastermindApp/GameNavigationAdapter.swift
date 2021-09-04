@@ -14,13 +14,13 @@ public typealias GuessCompletion = (_ guess: DigitSecret) -> (hint: String?, cor
 public final class GameNavigationAdapter: ChallengeDelegate {
     private let navigationController: UINavigationController
     private let gameComposer: (GuessCompletion) -> UIViewController
-    private let winComposer: () -> UIViewController
+    private let winComposer: (Score) -> UIViewController
     private let loseComposer: () -> UIViewController
     private let delegate: ReplenishChanceDelegate
     
     private var gameStart = false
     
-    public init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping () -> UIViewController, loseComposer: @escaping () -> UIViewController, delegate: ReplenishChanceDelegate) {
+    public init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping (Score) -> UIViewController, loseComposer: @escaping () -> UIViewController, delegate: ReplenishChanceDelegate) {
         self.navigationController = navigationController
         self.gameComposer = gameComposer
         self.winComposer = winComposer
@@ -37,7 +37,8 @@ public final class GameNavigationAdapter: ChallengeDelegate {
     }
     
     public func didWin() {
-        navigationController.pushViewController(winComposer(), animated: true)
+        let score = (0, 0.0)
+        navigationController.pushViewController(winComposer(score), animated: true)
     }
     
     public func didLose() {
