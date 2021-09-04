@@ -10,8 +10,8 @@ import XCTest
 @testable import My1A2BGame
 
 class GuessNumberViewControllerSnapshotTests: XCTestCase {
-    func test_gameStart_basic() {
-        let sut = makeSUT(gameVersion: .basic)
+    func test_gameStart() {
+        let sut = makeSUT()
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_dark")
@@ -20,56 +20,31 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func test_gameStart_advanced() {
         let sut = makeSUT(gameVersion: .advanced)
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_ADVANCED_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_ADVANCED_dark")
-    }
-    
-    func test_gameWithOneLastChance_basic() {
-        let sut = makeSUT(gameVersion: .basic)
-        
-        sut.simulateGameWithOneLastChance()
-        
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_WITH_ONE_LAST_CHANCE_BASIC_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_WITH_ONE_LAST_CHANCE_BASIC_dark")
-    }
-    
-    func test_gameWithOneLastChance_advanced() {
-        let sut = makeSUT(gameVersion: .advanced)
-        
-        sut.simulateGameWithOneLastChance()
-        
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_WITH_ONE_LAST_CHANCE_ADVANCED_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_WITH_ONE_LAST_CHANCE_ADVANCED_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_advanced_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_advanced_dark")
     }
     
     // MARK: - Helpers
     
-    func makeSUT(gameVersion: GameVersion) -> GuessNumberViewController {
+    func makeSUT(gameVersion: GameVersion = .basic) -> GuessNumberViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(identifier: "GuessViewController") as! GuessNumberViewController
         controller.quizLabelViewController.answer = gameVersion.makeSecret()
-        controller.availableGuess = gameVersion.maxGuessCount
-        controller.guessCompletion = { _ in
-            (nil, false)
-        }
-        controller.loadViewIfNeeded()
         controller.animate = { _, animations, completion in
             animations()
             completion?(true)
         }
+        controller.guessCompletion = { _ in
+            (nil, false)
+        }
+
+        controller.loadViewIfNeeded()
+        
+        controller.availableGuessLabel.text = "10 chances left"
+        
         return controller
     }
 }
 
 private extension GameVersion {
     func makeSecret() -> [Int] { Array(repeating: 1, count: digitCount) }
-}
-
-fileprivate extension GuessNumberViewController {
-    func  simulateGameWithOneLastChance() {
-        let wrongAnswer: [String] = quizNumbers.reversed()
-            
-        for _ in 0..<availableGuess-1 {
-            self.tryToMatchNumbers(guessTexts: wrongAnswer)
-        }
-    }
 }
