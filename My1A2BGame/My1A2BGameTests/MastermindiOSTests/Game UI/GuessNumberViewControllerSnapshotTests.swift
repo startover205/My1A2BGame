@@ -24,6 +24,15 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_advanced_dark")
     }
     
+    func test_gameWithOneWrongGuess() {
+        let sut = makeSUT()
+        
+        sut.simulateGameWithOneGuess()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_ONE_GUESS_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_ONE_GUESS_dark")
+    }
+    
     // MARK: - Helpers
     
     func makeSUT(gameVersion: GameVersion = .basic) -> GuessNumberViewController {
@@ -39,12 +48,24 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
 
         controller.loadViewIfNeeded()
         
-        controller.availableGuessLabel.text = "10 chances left"
+        controller.availableGuess = 10
         
         return controller
     }
 }
 
 private extension GameVersion {
-    func makeSecret() -> [Int] { Array(repeating: 1, count: digitCount) }
+    func makeSecret() -> [Int] {
+        var digits = [Int]()
+        for i in 0..<digitCount {
+            digits.append(i)
+        }
+        return digits
+    }
+}
+
+private extension GuessNumberViewController {
+    func simulateGameWithOneGuess() {
+        tryToMatchNumbers(guessTexts: ["3", "2", "1", "0"])
+    }
 }

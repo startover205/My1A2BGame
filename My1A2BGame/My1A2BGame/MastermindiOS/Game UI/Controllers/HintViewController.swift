@@ -22,6 +22,7 @@ public final class HintViewController: NSObject {
     }
 
     func updateHint(_ hint: String) {
+        hintLabel.isHidden = false
         hintLabel.text = hint
         hintTextView.text = "\n" + oldHint
         
