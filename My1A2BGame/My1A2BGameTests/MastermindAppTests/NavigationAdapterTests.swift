@@ -63,6 +63,36 @@ class GameNavigationAdapterTests: XCTestCase {
         XCTAssertEqual(capturedScore?.guessTime, score.guessTime)
     }
     
+    func test_didWinAfterTwoGuessesAndTwoMinutes_pushesWinControllerWithProperScoreWithAnimation() {
+        let gameController = UIViewController()
+        let winController = UIViewController()
+        let score: Score = (2, 120.0)
+        var startTime = 0.0
+        var capturedScore: Score?
+        let (sut, nav) = makeSUT(
+            gameComposer: { _ in gameController },
+            winComposer: { score in
+                capturedScore = score
+                return winController
+            },
+            currentDeviceTime: {
+                let currentTime = startTime
+                startTime += 120.0
+                return currentTime
+            })
+        
+        sut.acceptGuess { _ in (nil, false) }
+        sut.acceptGuess { _ in (nil, true) }
+        
+        sut.didWin()
+        
+        XCTAssertEqual(nav.receivedMessages, [
+                        .set(viewControllers: [gameController], animated: false),
+                        .push(viewController: winController,animated: true)])
+        XCTAssertEqual(capturedScore?.guessCount, score.guessCount)
+        XCTAssertEqual(capturedScore?.guessTime, score.guessTime)
+    }
+    
     func test_didLose_pushesLoseControllerWithAnimation() {
         let loseController = UIViewController()
         let (sut, nav) = makeSUT(loseComposer: {
@@ -94,9 +124,9 @@ class GameNavigationAdapterTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(gameComposer: @escaping (GuessCompletion) -> UIViewController = { _ in UIViewController() }, winComposer: @escaping (Score) -> UIViewController = { _ in UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
+    private func makeSUT(gameComposer: @escaping (GuessCompletion) -> UIViewController = { _ in UIViewController() }, winComposer: @escaping (Score) -> UIViewController = { _ in UIViewController() }, loseComposer: @escaping () -> UIViewController = { UIViewController() }, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, file: StaticString = #filePath, line: UInt = #line) -> (GameNavigationAdapter, NavigationSpy) {
         let nav = NavigationSpy()
-        let sut = GameNavigationAdapter(navigationController: nav, gameComposer: gameComposer, winComposer: winComposer, loseComposer: loseComposer, delegate: delegate)
+        let sut = GameNavigationAdapter(navigationController: nav, gameComposer: gameComposer, winComposer: winComposer, loseComposer: loseComposer, delegate: delegate, currentDeviceTime: currentDeviceTime)
         
         trackForMemoryLeaks(nav, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

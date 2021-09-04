@@ -17,27 +17,36 @@ public final class GameNavigationAdapter: ChallengeDelegate {
     private let winComposer: (Score) -> UIViewController
     private let loseComposer: () -> UIViewController
     private let delegate: ReplenishChanceDelegate
+    private let currentDeviceTime: () -> TimeInterval
     
     private var gameStart = false
+    private var gameStartTime: TimeInterval?
+    private var guessCount = 0
     
-    public init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping (Score) -> UIViewController, loseComposer: @escaping () -> UIViewController, delegate: ReplenishChanceDelegate) {
+    public init(navigationController: UINavigationController, gameComposer: @escaping (GuessCompletion) -> UIViewController, winComposer: @escaping (Score) -> UIViewController, loseComposer: @escaping () -> UIViewController, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval) {
         self.navigationController = navigationController
         self.gameComposer = gameComposer
         self.winComposer = winComposer
         self.loseComposer = loseComposer
         self.delegate = delegate
+        self.currentDeviceTime = currentDeviceTime
     }
     
     public func acceptGuess(completion: @escaping GuessCompletion) {
         if !gameStart {
             gameStart = true
             
+            gameStartTime = currentDeviceTime()
+            
             navigationController.setViewControllers([gameComposer(completion)], animated: false)
         }
+        
+        guessCount += 1
     }
     
     public func didWin() {
-        let score = (0, 0.0)
+        let guessTime = gameStartTime == nil ? 0.0 : currentDeviceTime() - gameStartTime!
+        let score = (guessCount, guessTime)
         navigationController.pushViewController(winComposer(score), animated: true)
     }
     
