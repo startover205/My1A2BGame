@@ -10,7 +10,6 @@ import UIKit
 
 public class WinViewController: UIViewController {
     public var guessCount = 0
-    public var guessTime = 99999.9
     public var digitCount = 4
     
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?

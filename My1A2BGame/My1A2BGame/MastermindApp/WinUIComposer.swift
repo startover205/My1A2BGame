@@ -29,7 +29,6 @@ public final class WinUIComposer {
         
         winViewController.digitCount = digitCount
         winViewController.guessCount = score.guessCount
-        winViewController.guessTime = score.guessTime
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
         
         let shareViewController = ShareViewController(
