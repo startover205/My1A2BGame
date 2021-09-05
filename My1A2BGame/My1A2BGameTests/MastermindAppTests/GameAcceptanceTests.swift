@@ -37,14 +37,22 @@ class GameAcceptanceTests: XCTestCase{
         XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage())
     }
     
+    func test_onGameLose_displayLoseScene_advancedGame() {
+        let sut = launchAdvancedGame()
+        
+        sut.simulateGameLose()
+        
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+    }
+    
     // MARK: - Helpers
     
     private func launch() -> UITabBarController {
         let sut = AppDelegate(secretGenerator: makeSecretGenerator())
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
-        
-        RunLoop.current.run(until: Date())
         
         return sut.window?.rootViewController as! UITabBarController
     }
@@ -53,6 +61,8 @@ class GameAcceptanceTests: XCTestCase{
         let tab = launch()
         tab.selectedIndex = 0
         
+        RunLoop.current.run(until: Date())
+        
         let nav = tab.viewControllers?.first as? UINavigationController
         return nav?.topViewController as! GuessNumberViewController
     }
@@ -60,6 +70,8 @@ class GameAcceptanceTests: XCTestCase{
     private func launchAdvancedGame() -> GuessNumberViewController {
         let tab = launch()
         tab.selectedIndex = 1
+        
+        RunLoop.current.run(until: Date())
         
         let nav = tab.viewControllers?[1] as? UINavigationController
         return nav?.topViewController as! GuessNumberViewController
@@ -105,8 +117,8 @@ private extension GuessNumberViewController {
     }
     
     func simulateGameLose() {
-        for _ in 0..<GameVersion.basic.maxGuessCount {
-            inputVC.delegate?.padDidFinishEntering(numberTexts: ["4", "3", "2", "1"])
+        for _ in 0..<availableGuess {
+            inputVC.delegate?.padDidFinishEntering(numberTexts: [])
         }
     }
 }
