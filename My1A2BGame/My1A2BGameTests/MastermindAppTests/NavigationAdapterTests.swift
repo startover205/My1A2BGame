@@ -47,6 +47,25 @@ class GameNavigationAdapterTests: XCTestCase {
         XCTAssertEqual(capturedGuess, digitSecret)
     }
     
+    func test_acceptGuessTwice_requestsGameComposerToHandleGuessCompletionTwice() {
+        var capturedGuesses = [DigitSecret]()
+        let challengeController = UIViewController()
+        let digitSecret = anyDigitSecret()
+        let (sut, _) = makeSUT(gameComposer: { guessCompletion in
+            _ = guessCompletion(digitSecret)
+            return challengeController
+        })
+        
+        let guessCompletion: GuessCompletion = { guess in
+            capturedGuesses.append(guess)
+            return (nil, false)
+        }
+        sut.acceptGuess(completion: guessCompletion)
+        sut.acceptGuess(completion: guessCompletion)
+
+        XCTAssertEqual(capturedGuesses, [digitSecret, digitSecret])
+    }
+    
     func test_didWin_pushesWinControllerWithDefaultScoreWithAnimation() {
         let winController = UIViewController()
         let score: Score = (0, 0.0)

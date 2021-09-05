@@ -39,6 +39,8 @@ public final class GameNavigationAdapter: ChallengeDelegate {
             gameStartTime = currentDeviceTime()
             
             navigationController.setViewControllers([gameComposer(completion)], animated: false)
+        } else {
+            _ = gameComposer(completion)
         }
         
         guessCount += 1
