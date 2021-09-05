@@ -202,7 +202,7 @@ class GameUIIntegrationTests: XCTestCase {
 }
 
 private extension GuessNumberViewController {
-    var fadeInCompoenents: [UIView] { fadeOutElements }
+    var fadeInCompoenents: [UIView] { fadeOutViews }
     
     var availableGuessMessage: String? { availableGuessLabel.text }
     

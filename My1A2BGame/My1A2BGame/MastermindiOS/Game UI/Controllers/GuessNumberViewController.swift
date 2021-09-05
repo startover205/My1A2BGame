@@ -28,7 +28,7 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var guessButton: UIButton!
     @IBOutlet private(set) public weak var quitButton: UIButton!
     @IBOutlet private(set) public weak var restartButton: UIButton!
-    @IBOutlet private(set) public var fadeOutElements: [UIView]!
+    @IBOutlet private(set) public var fadeOutViews: [UIView]!
     
     private var guessCount = 0
 
@@ -52,7 +52,7 @@ public class GuessNumberViewController: UIViewController {
         hintViewController.configureViews()
         quizLabelViewController.configureViews()
         
-        fadeOutElements.forEach { (view) in
+        fadeOutViews.forEach { (view) in
             view.alpha = 0
         }
         
@@ -171,7 +171,7 @@ extension GuessNumberViewController {
         
     private func fadeTo(alpha: CGFloat) {
         animate?(1, { [weak self] in
-            self?.fadeOutElements.forEach { $0.alpha = alpha }
+            self?.fadeOutViews.forEach { $0.alpha = alpha }
         }, nil)
     }
     

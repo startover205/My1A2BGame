@@ -400,10 +400,10 @@
                         <outlet property="quitButton" destination="vZM-Pv-aGF" id="YLE-FC-kOs"/>
                         <outlet property="quizLabelViewController" destination="XYD-0Q-4J3" id="DW2-nR-lrS"/>
                         <outlet property="restartButton" destination="8EC-R7-AJS" id="J6b-Ee-ibX"/>
-                        <outletCollection property="fadeOutElements" destination="6rO-wd-Ywo" collectionClass="NSMutableArray" id="Vjc-lZ-EaC"/>
-                        <outletCollection property="fadeOutElements" destination="m9q-7b-vCB" collectionClass="NSMutableArray" id="4wG-FK-ulu"/>
-                        <outletCollection property="fadeOutElements" destination="Xno-IJ-0VX" collectionClass="NSMutableArray" id="mpe-nY-bpo"/>
-                        <outletCollection property="fadeOutElements" destination="okh-FP-api" collectionClass="NSMutableArray" id="37a-qd-sRI"/>
+                        <outletCollection property="fadeOutViews" destination="6rO-wd-Ywo" collectionClass="NSMutableArray" id="Vjc-lZ-EaC"/>
+                        <outletCollection property="fadeOutViews" destination="m9q-7b-vCB" collectionClass="NSMutableArray" id="4wG-FK-ulu"/>
+                        <outletCollection property="fadeOutViews" destination="Xno-IJ-0VX" collectionClass="NSMutableArray" id="mpe-nY-bpo"/>
+                        <outletCollection property="fadeOutViews" destination="okh-FP-api" collectionClass="NSMutableArray" id="37a-qd-sRI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7v-sR-zpL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
