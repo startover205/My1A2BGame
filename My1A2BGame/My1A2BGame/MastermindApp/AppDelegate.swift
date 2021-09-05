@@ -20,8 +20,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var reachability = Reachability.forInternetConnection()
     
-    private lazy var basicGameStoreURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("Model" + ".sqlite")
-    private lazy var advancedGameStoreURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("ModelAdvanced" + ".sqlite")
+    private lazy var basicRecordLoader: RecordLoader = {
+        let modelName = "Model"
+        let store = try! CoreDataRecordStore<Winner>(
+            storeURL: storeURL(for: modelName),
+            modelName: modelName)
+        return LocalRecordLoader(store: store)
+    }()
+    
+    private lazy var advancedRecordLoader: RecordLoader = {
+        let modelName = "ModelAdvanced"
+        let store = try! CoreDataRecordStore<AdvancedWinner>(
+            storeURL: storeURL(for: modelName),
+            modelName: modelName)
+        return LocalRecordLoader(store: store)
+    }()
+    
+    private lazy var basicGameNavigationController = UINavigationController()
+    private lazy var advancedGameNavigationController = UINavigationController()
+
+    private var basicChallenge: Challenge?
+    private var advancedChallenge: Challenge?
+    
+    private let basicGameVersion: GameVersion = .basic
+    private let advancedGameVersion: GameVersion = .advanced
+    
+    private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
+    
+    convenience init(secretGenerator: @escaping (Int) -> DigitSecret) {
+        self.init()
+        self.secretGenerator = secretGenerator
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -77,22 +106,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appVersion: appVersion)
     }()
     
-    private lazy var basicGameNavigationController = UINavigationController()
-    private lazy var advancedGameNavigationController = UINavigationController()
+    private func makeTabController() -> UITabBarController {
+        let tabConfigurations: [(title: String, imageName: String)] = [
+            (basicGameVersion.title, "baseline_1A2B_24px"),
+            (advancedGameVersion.title, "advanced_24px"),
+            ("Rank", "baseline_format_list_numbered_black_24pt"),
+            ("More", "baseline_settings_black_24pt"),
+        ]
+        let tabVC = UITabBarController()
+        let rankNav = UINavigationController(rootViewController: makeRankVC())
+        let moreNav = UINavigationController(rootViewController: makeMoreVC())
 
-    private var basicChallenge: Challenge?
-    private var advancedChallenge: Challenge?
-    
-    private let basicGameVersion: GameVersion = .basic
-    private let advancedGameVersion: GameVersion = .advanced
-    
-    private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
-    
-    convenience init(secretGenerator: @escaping (Int) -> DigitSecret) {
-        self.init()
-        self.secretGenerator = secretGenerator
+        tabVC.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
+        
+        tabVC.tabBar.items!.enumerated().forEach { index, item in
+            item.title = tabConfigurations[index].title
+            item.image = UIImage(named: tabConfigurations[index].imageName)
+        }
+        
+        return tabVC
     }
-    
+}
+
+private extension AppDelegate {
     private func startNewBasicGame() {
         let gameVersion = basicGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
@@ -180,74 +216,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    private func makeTabController() -> UITabBarController {
-        let tabConfigurations: [(title: String, imageName: String)] = [
-            (basicGameVersion.title, "baseline_1A2B_24px"),
-            (advancedGameVersion.title, "advanced_24px"),
-            ("Rank", "baseline_format_list_numbered_black_24pt"),
-            ("More", "baseline_settings_black_24pt"),
-        ]
-        let tabVC = UITabBarController()
-        let rankNav = UINavigationController(rootViewController: makeRankVC())
-        let moreNav = UINavigationController(rootViewController: makeMoreVC())
-
-        tabVC.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
-        
-        tabVC.tabBar.items!.enumerated().forEach { index, item in
-            item.title = tabConfigurations[index].title
-            item.image = UIImage(named: tabConfigurations[index].imageName)
-        }
-        
-        return tabVC
+    private func storeURL(for modelName: String) -> URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(modelName + ".sqlite")
     }
-    
-    private func makeRankVC() -> UIViewController {
+}
+
+private extension AppDelegate {
+    func makeRankVC() -> UIViewController {
         let vc = UIStoryboard(name: "Rank", bundle: .init(for: RankViewController.self)).instantiateViewController(withIdentifier: "RankViewController")
         vc.title = "Rank"
         return vc
     }
-    
-    private func makeMoreVC() -> UIViewController {
+}
+
+private extension AppDelegate {
+     func makeMoreVC() -> UIViewController {
         let vc = UIStoryboard(name: "More", bundle: .init(for: SettingsTableViewController.self)).instantiateViewController(withIdentifier: "SettingsTableViewController")
         vc.title = "More"
         return vc
     }
-    
-    private lazy var basicRecordLoader: RecordLoader = {
-        let store = try! CoreDataRecordStore<Winner>(storeURL: basicGameStoreURL, modelName: "Model")
-        return LocalRecordLoader(store: store)
-    }()
-    
-    private lazy var advancedRecordLoader: RecordLoader = {
-        let store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
-        return LocalRecordLoader(store: store)
-    }()
-    
-//    private func showWinSceneForBasicGame(guessCount: Int, guessTime: TimeInterval) {
-//        let store = try! CoreDataRecordStore<Winner>(storeURL: basicGameStoreURL, modelName: "Model")
-//        let recordLoader = LocalRecordLoader(store: store)
-//        let winScene = WinUIComposer.winComposedWith(digitCount: BasicGame().digitCount, recordLoader: recordLoader)
-//        winScene.guessCount = guessCount
-//        winScene.guessTime = guessTime
-//        basicGameNavigationController.pushViewController(winScene, animated: true)
-//    }
-//
-//    private func showLoseSceneForBasicGame() {
-//        let controller = LoseUIComposer.loseScene()
-//        basicGameNavigationController.pushViewController(controller, animated: true)
-//    }
-//
-//    private func showLoseSceneForAdvancedGame() {
-//        let controller = LoseUIComposer.loseScene()
-//        advancedGameNavigationController.pushViewController(controller, animated: true)
-//    }
-    
-//    private func showWinSceneForAdvancedGame(guessCount: Int, guessTime: TimeInterval) {
-//        let store = try! CoreDataRecordStore<AdvancedWinner>(storeURL: advancedGameStoreURL, modelName: "ModelAdvanced")
-//        let recordLoader = LocalRecordLoader(store: store)
-//        let winScene = WinUIComposer.winComposedWith(digitCount: AdvancedGame().digitCount, recordLoader: recordLoader)
-//        winScene.guessCount = guessCount
-//        winScene.guessTime = guessTime
-//        advancedGameNavigationController.pushViewController(winScene, animated: true)
-//    }
 }
