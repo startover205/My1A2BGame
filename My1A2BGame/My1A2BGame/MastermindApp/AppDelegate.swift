@@ -96,13 +96,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func startNewBasicGame() {
         let basicGameVersion = basicGameVersion
         let secret = secretGenerator(basicGameVersion.digitCount)
-        
-        let rewardAdController = RewardAdViewController(
-            loader: GoogleRewardAdManager.shared,
-            adRewardChance: 5,
-            countDownTime: 5.0,
-            onGrantReward: {})
-        
+        let rewardAdController = makeRewardAdController()
+
         let delegate = GameNavigationAdapter(
             navigationController: basicGameNavigationController,
             gameComposer: adaptGameUIComposerToGameComposer(
@@ -129,12 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func startNewAdvancedGame() {
         let advancedGameVersion = advancedGameVersion
         let secret = secretGenerator(advancedGameVersion.digitCount)
-
-        let rewardAdController = RewardAdViewController(
-            loader: GoogleRewardAdManager.shared,
-            adRewardChance: 5,
-            countDownTime: 5.0,
-            onGrantReward: {})
+        let rewardAdController = makeRewardAdController()
         
         let delegate = GameNavigationAdapter(
             navigationController: advancedGameNavigationController,
@@ -157,6 +147,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             maxChanceCount: advancedGameVersion.maxGuessCount,
             matchGuess: DigitSecretMatcher.match(_:with:),
             delegate: delegate)
+    }
+    
+    private func makeRewardAdController() -> RewardAdViewController {
+        RewardAdViewController(
+           loader: GoogleRewardAdManager.shared,
+           adRewardChance: 5,
+           countDownTime: 5.0,
+           onGrantReward: {})
     }
     
     private func adaptGameUIComposerToGameComposer(secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void) -> (@escaping GuessCompletion) -> UIViewController {
