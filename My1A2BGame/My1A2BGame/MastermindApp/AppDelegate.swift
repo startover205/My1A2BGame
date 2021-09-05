@@ -96,20 +96,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func startNewBasicGame() {
         let gameVersion = basicGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
-        let rewardAdController = makeRewardAdController()
-
-        let delegate = GameNavigationAdapter(
+        let delegate = makeGameDelegate(
             navigationController: basicGameNavigationController,
-            gameComposer: adaptGameUIComposerToGameComposer(
-                secret: secret,
-                gameVersion: gameVersion,
-                onRestart: startNewBasicGame),
-            winComposer: makeWinComposer(
-                digitCount: gameVersion.digitCount,
-                recordLoader: advancedRecordLoader),
-            loseComposer: LoseUIComposer.loseScene,
-            delegate: rewardAdController,
-            currentDeviceTime: CACurrentMediaTime)
+            secret: secret,
+            gameVersion: gameVersion,
+            onRestart: startNewBasicGame,
+            recordLoader: basicRecordLoader)
         
         basicChallenge = Challenge.start(
             secret: secret,
@@ -117,24 +109,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             matchGuess: DigitSecretMatcher.match(_:with:),
             delegate: delegate)
     }
-
+    
     private func startNewAdvancedGame() {
         let gameVersion = advancedGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
-        let rewardAdController = makeRewardAdController()
-        
-        let delegate = GameNavigationAdapter(
+        let delegate = makeGameDelegate(
             navigationController: advancedGameNavigationController,
-            gameComposer: adaptGameUIComposerToGameComposer(
-                secret: secret,
-                gameVersion: gameVersion,
-                onRestart: startNewAdvancedGame),
-            winComposer: makeWinComposer(
-                digitCount: gameVersion.digitCount,
-                recordLoader: advancedRecordLoader),
-            loseComposer: LoseUIComposer.loseScene,
-            delegate: rewardAdController,
-            currentDeviceTime: CACurrentMediaTime)
+            secret: secret,
+            gameVersion: gameVersion,
+            onRestart: startNewAdvancedGame,
+            recordLoader: advancedRecordLoader)
         
         advancedChallenge = Challenge.start(
             secret: secret,
@@ -142,6 +126,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             matchGuess: DigitSecretMatcher.match(_:with:),
             delegate: delegate)
     }
+    
+    private func makeGameDelegate(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void, recordLoader: RecordLoader) -> GameNavigationAdapter {
+        let rewardAdController = makeRewardAdController()
+        let delegate = GameNavigationAdapter(
+            navigationController: navigationController,
+            gameComposer: adaptGameUIComposerToGameComposer(
+                secret: secret,
+                gameVersion: gameVersion,
+                onRestart: onRestart),
+            winComposer: makeWinComposer(
+                digitCount: gameVersion.digitCount,
+                recordLoader: recordLoader),
+            loseComposer: LoseUIComposer.loseScene,
+            delegate: rewardAdController,
+            currentDeviceTime: CACurrentMediaTime)
+        return delegate
+    }
+    
     
     private func makeRewardAdController() -> RewardAdViewController {
         RewardAdViewController(
@@ -178,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func makeTabController() -> UITabBarController {
+    private func makeTabController() -> UITabBarController {
         let tabConfigurations: [(title: String, imageName: String)] = [
             (basicGameVersion.title, "baseline_1A2B_24px"),
             (advancedGameVersion.title, "advanced_24px"),
