@@ -33,6 +33,8 @@
 		C063989226E37DD700698051 /* GAME_START_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C063988E26E37DD700698051 /* GAME_START_light.png */; };
 		C063989526E37F7A00698051 /* GAME_ONE_GUESS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C063989326E37F7A00698051 /* GAME_ONE_GUESS_dark.png */; };
 		C063989626E37F7A00698051 /* GAME_ONE_GUESS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C063989426E37F7A00698051 /* GAME_ONE_GUESS_light.png */; };
+		C063989926E452A400698051 /* GAME_TWO_GUESS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C063989726E452A400698051 /* GAME_TWO_GUESS_light.png */; };
+		C063989A26E452A400698051 /* GAME_TWO_GUESS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C063989826E452A400698051 /* GAME_TWO_GUESS_dark.png */; };
 		C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07575FF224A015E007A1F9E /* Model.xcdatamodeld */; };
 		C0757609224A1C32007A1F9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757608224A1C32007A1F9E /* CoreDataManager.swift */; };
 		C075760C224B0C81007A1F9E /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760B224B0C81007A1F9E /* String+Localization.swift */; };
@@ -148,6 +150,8 @@
 		C063988E26E37DD700698051 /* GAME_START_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_light.png; sourceTree = "<group>"; };
 		C063989326E37F7A00698051 /* GAME_ONE_GUESS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_ONE_GUESS_dark.png; sourceTree = "<group>"; };
 		C063989426E37F7A00698051 /* GAME_ONE_GUESS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_ONE_GUESS_light.png; sourceTree = "<group>"; };
+		C063989726E452A400698051 /* GAME_TWO_GUESS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_TWO_GUESS_light.png; sourceTree = "<group>"; };
+		C063989826E452A400698051 /* GAME_TWO_GUESS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_TWO_GUESS_dark.png; sourceTree = "<group>"; };
 		C0757600224A015E007A1F9E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C0757608224A1C32007A1F9E /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C075760B224B0C81007A1F9E /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
@@ -397,6 +401,8 @@
 				C063989426E37F7A00698051 /* GAME_ONE_GUESS_light.png */,
 				C063988B26E37DD700698051 /* GAME_START_dark.png */,
 				C063988E26E37DD700698051 /* GAME_START_light.png */,
+				C063989826E452A400698051 /* GAME_TWO_GUESS_dark.png */,
+				C063989726E452A400698051 /* GAME_TWO_GUESS_light.png */,
 			);
 			path = snapshots;
 			sourceTree = "<group>";
@@ -689,6 +695,8 @@
 				C063988F26E37DD700698051 /* GAME_START_dark.png in Resources */,
 				C063989626E37F7A00698051 /* GAME_ONE_GUESS_light.png in Resources */,
 				C063989226E37DD700698051 /* GAME_START_light.png in Resources */,
+				C063989926E452A400698051 /* GAME_TWO_GUESS_light.png in Resources */,
+				C063989A26E452A400698051 /* GAME_TWO_GUESS_dark.png in Resources */,
 				C063989126E37DD700698051 /* GAME_START_advanced_dark.png in Resources */,
 				C063989526E37F7A00698051 /* GAME_ONE_GUESS_dark.png in Resources */,
 				C063989026E37DD700698051 /* GAME_START_advanced_light.png in Resources */,
