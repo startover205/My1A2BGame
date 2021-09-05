@@ -122,20 +122,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func startNewAdvancedGame() {
-        let advancedGameVersion = advancedGameVersion
-        let secret = secretGenerator(advancedGameVersion.digitCount)
+        let gameVersion = advancedGameVersion
+        let secret = secretGenerator(gameVersion.digitCount)
         let rewardAdController = makeRewardAdController()
         
         let delegate = GameNavigationAdapter(
             navigationController: advancedGameNavigationController,
             gameComposer: adaptGameUIComposerToGameComposer(
                 secret: secret,
-                gameVersion: advancedGameVersion,
+                gameVersion: gameVersion,
                 onRestart: startNewAdvancedGame),
             winComposer: { score in
                 WinUIComposer.winComposedWith(
                     score: score,
-                    digitCount: advancedGameVersion.digitCount,
+                    digitCount: gameVersion.digitCount,
                     recordLoader: self.advancedRecordLoader)
             },
             loseComposer: LoseUIComposer.loseScene,
@@ -144,7 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         advancedChallenge = Challenge.start(
             secret: secret,
-            maxChanceCount: advancedGameVersion.maxGuessCount,
+            maxChanceCount: gameVersion.maxGuessCount,
             matchGuess: DigitSecretMatcher.match(_:with:),
             delegate: delegate)
     }
