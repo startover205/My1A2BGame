@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, guessCompletion: @escaping GuessCompletion, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -38,7 +38,6 @@ public final class GameUIComposer {
         gameViewController.inputVC = inputVC
         inputVC.delegate = gameViewController
         
-        gameViewController.guessCompletion = guessCompletion
         gameViewController.onRestart = onRestart
         gameViewController.animate = animate
         

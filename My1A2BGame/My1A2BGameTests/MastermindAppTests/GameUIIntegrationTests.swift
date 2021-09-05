@@ -163,7 +163,8 @@ class GameUIIntegrationTests: XCTestCase {
     // MARK: Helpers
     
     private func makeSUT(gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, guessCompletion: guessCompletion, onRestart: onRestart, animate: animate)
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, onRestart: onRestart, animate: animate)
+        sut.guessCompletion = guessCompletion
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

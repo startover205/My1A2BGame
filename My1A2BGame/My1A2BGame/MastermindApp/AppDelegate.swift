@@ -195,7 +195,6 @@ private extension AppDelegate {
             userDefaults: .standard,
             loader: GoogleRewardAdManager.shared,
             secret: secret,
-            guessCompletion: { _ in (nil, false) },
             onRestart: onRestart,
             animate: UIView.animate)
         
