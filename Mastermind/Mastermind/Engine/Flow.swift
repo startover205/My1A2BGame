@@ -60,7 +60,6 @@ final class Flow<Delegate: ChallengeDelegate, Secret> {
             } else {
                 self.delegate.didLose()
             }
-            
         }
     }
 }
