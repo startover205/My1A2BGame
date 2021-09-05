@@ -30,8 +30,6 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var restartButton: UIButton!
     @IBOutlet private(set) public var fadeOutViews: [UIView]!
     
-    private var guessCount = 0
-
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
     
     public var inputVC: GuessPadViewController!
@@ -127,7 +125,6 @@ extension GuessNumberViewController {
         //startCounting
         _ = startPlayTime
         
-        guessCount += 1
         availableGuess -= 1
         
         let (hint, correct) = guessCompletion(DigitSecret(digits: guessTexts.compactMap(Int.init))!)
