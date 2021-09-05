@@ -20,6 +20,16 @@ class GameAcceptanceTests: XCTestCase{
         XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage())
     }
     
+    func test_onGameLose_displayLoseScene_basicGame() {
+        let sut = launchBasicGame()
+        
+        sut.simulateGameLose()
+        
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+    }
+    
     func test_onGameWin_displaysWinScene_advancedGame() {
         let win = showWinScene(from: launchAdvancedGame, digitCount: 5)
         
@@ -33,6 +43,8 @@ class GameAcceptanceTests: XCTestCase{
         let sut = AppDelegate(secretGenerator: makeSecretGenerator())
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
+        
+        RunLoop.current.run(until: Date())
         
         return sut.window?.rootViewController as! UITabBarController
     }
@@ -90,6 +102,12 @@ class GameAcceptanceTests: XCTestCase{
 private extension GuessNumberViewController {
     func simulatePlayerWin(with guess: DigitSecret){
         tryToMatchNumbers(guessTexts: guess.content.compactMap(String.init))
+    }
+    
+    func simulateGameLose() {
+        for _ in 0..<GameVersion.basic.maxGuessCount {
+            inputVC.delegate?.padDidFinishEntering(numberTexts: ["4", "3", "2", "1"])
+        }
     }
 }
 

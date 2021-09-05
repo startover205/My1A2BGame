@@ -105,16 +105,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let delegate = GameNavigationAdapter(
             navigationController: basicGameNavigationController,
-            gameComposer: { guessCompletion in
-                return GameUIComposer.gameComposedWith(
-                    gameVersion: basicGameVersion,
-                    userDefaults: .standard,
-                    loader: GoogleRewardAdManager.shared,
-                    secret: secret,
-                    guessCompletion: guessCompletion,
-                    onRestart: self.startNewBasicGame,
-                    animate: UIView.animate)
-            },
+            gameComposer: adaptGameUIComposerToGameComposer(
+                secret: secret,
+                gameVersion: basicGameVersion,
+                onRestart: startNewBasicGame),
             winComposer: { score in
                 WinUIComposer.winComposedWith(
                     score: score,
@@ -144,17 +138,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let delegate = GameNavigationAdapter(
             navigationController: advancedGameNavigationController,
-            gameComposer: { guessCompletion in
-
-                return GameUIComposer.gameComposedWith(
-                    gameVersion: advancedGameVersion,
-                    userDefaults: .standard,
-                    loader: GoogleRewardAdManager.shared,
-                    secret: secret,
-                    guessCompletion: guessCompletion,
-                    onRestart: self.startNewAdvancedGame,
-                    animate: UIView.animate)
-            },
+            gameComposer: adaptGameUIComposerToGameComposer(
+                secret: secret,
+                gameVersion: advancedGameVersion,
+                onRestart: startNewAdvancedGame),
             winComposer: { score in
                 WinUIComposer.winComposedWith(
                     score: score,
@@ -170,6 +157,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             maxChanceCount: advancedGameVersion.maxGuessCount,
             matchGuess: DigitSecretMatcher.match(_:with:),
             delegate: delegate)
+    }
+    
+    private func adaptGameUIComposerToGameComposer(secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void) -> (@escaping GuessCompletion) -> UIViewController {
+        let controller = GameUIComposer.gameComposedWith(
+            gameVersion: gameVersion,
+            userDefaults: .standard,
+            loader: GoogleRewardAdManager.shared,
+            secret: secret,
+            guessCompletion: { _ in (nil, false) },
+            onRestart: onRestart,
+            animate: UIView.animate)
+        
+        return { guessCompletion in
+            
+            controller.guessCompletion = guessCompletion
+            
+            return controller
+        }
     }
     
     func makeTabController() -> UITabBarController {
