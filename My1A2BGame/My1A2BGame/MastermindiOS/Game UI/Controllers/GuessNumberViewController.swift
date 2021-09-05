@@ -30,8 +30,6 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var restartButton: UIButton!
     @IBOutlet private(set) public var fadeOutViews: [UIView]!
     
-    private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()
-    
     public var inputVC: GuessPadViewController!
     private lazy var inputNavigationController = UINavigationController(rootViewController: inputVC)
     
@@ -122,8 +120,6 @@ extension GuessNumberViewController: GuessPadDelegate {
 extension GuessNumberViewController {
     
     func tryToMatchNumbers(guessTexts: [String]) {
-        //startCounting
-        _ = startPlayTime
         
         availableGuess -= 1
         
