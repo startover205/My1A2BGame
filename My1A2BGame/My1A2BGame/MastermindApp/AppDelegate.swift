@@ -94,29 +94,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func startNewBasicGame() {
-        let basicGameVersion = basicGameVersion
-        let secret = secretGenerator(basicGameVersion.digitCount)
+        let gameVersion = basicGameVersion
+        let secret = secretGenerator(gameVersion.digitCount)
         let rewardAdController = makeRewardAdController()
 
         let delegate = GameNavigationAdapter(
             navigationController: basicGameNavigationController,
             gameComposer: adaptGameUIComposerToGameComposer(
                 secret: secret,
-                gameVersion: basicGameVersion,
+                gameVersion: gameVersion,
                 onRestart: startNewBasicGame),
-            winComposer: { score in
-                WinUIComposer.winComposedWith(
-                    score: score,
-                    digitCount: basicGameVersion.digitCount,
-                    recordLoader: self.basicRecordLoader)
-            },
+            winComposer: makeWinComposer(
+                digitCount: gameVersion.digitCount,
+                recordLoader: advancedRecordLoader),
             loseComposer: LoseUIComposer.loseScene,
             delegate: rewardAdController,
             currentDeviceTime: CACurrentMediaTime)
         
         basicChallenge = Challenge.start(
             secret: secret,
-            maxChanceCount: basicGameVersion.maxGuessCount,
+            maxChanceCount: gameVersion.maxGuessCount,
             matchGuess: DigitSecretMatcher.match(_:with:),
             delegate: delegate)
     }
@@ -132,12 +129,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 secret: secret,
                 gameVersion: gameVersion,
                 onRestart: startNewAdvancedGame),
-            winComposer: { score in
-                WinUIComposer.winComposedWith(
-                    score: score,
-                    digitCount: gameVersion.digitCount,
-                    recordLoader: self.advancedRecordLoader)
-            },
+            winComposer: makeWinComposer(
+                digitCount: gameVersion.digitCount,
+                recordLoader: advancedRecordLoader),
             loseComposer: LoseUIComposer.loseScene,
             delegate: rewardAdController,
             currentDeviceTime: CACurrentMediaTime)
@@ -172,6 +166,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             controller.guessCompletion = guessCompletion
             
             return controller
+        }
+    }
+    
+    private func makeWinComposer(digitCount: Int, recordLoader: RecordLoader) -> (Score) -> UIViewController {
+        return { score in
+            WinUIComposer.winComposedWith(
+                score: score,
+                digitCount: digitCount,
+                recordLoader: recordLoader)
         }
     }
     
