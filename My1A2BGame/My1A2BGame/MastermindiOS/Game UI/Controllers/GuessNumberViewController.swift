@@ -30,7 +30,6 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var restartButton: UIButton!
     @IBOutlet private(set) public var fadeOutElements: [UIView]!
     
-    public var quizNumbers = [String]()
     private var guessCount = 0
 
     private lazy var startPlayTime: TimeInterval = CACurrentMediaTime()

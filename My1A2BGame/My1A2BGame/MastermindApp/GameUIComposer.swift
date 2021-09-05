@@ -22,7 +22,6 @@ public final class GameUIComposer {
         let gameViewController = makeGameViewController()
         gameViewController.title = gameVersion.title
         gameViewController.availableGuess = gameVersion.maxGuessCount
-        gameViewController.quizNumbers = secret.content.map(String.init)
         
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [unowned gameViewController] isOn in

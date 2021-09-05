@@ -79,18 +79,20 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_availableGuess_rendersWithEachGuess() {
-        let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3))
+        let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3), guessCompletion: { guess in
+            (nil, false)
+        })
 
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect max guess count once view is loaded")
 
-        sut.simulateUserInitiatedWrongGuess()
+        sut.simulateUserInitiateGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2), "expect guess count minus 1 after user guess")
 
-        sut.simulateUserInitiatedWrongGuess()
+        sut.simulateUserInitiateGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1), "expect guess count minus 1 after user guess")
 
-        sut.simulateUserInitiatedWrongGuess()
+        sut.simulateUserInitiateGuess()
         XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
     }
     
@@ -218,13 +220,8 @@ private extension GuessNumberViewController {
     
     func simulateViewAppear() { viewWillAppear(false) }
     
-    func simulateUserInitiatedWrongGuess() {
-        guessButton.sendActions(for: .touchUpInside)
-        
-        let answer = quizNumbers
-        let guess: [String] = answer.reversed()
-        
-        inputVC.delegate?.padDidFinishEntering(numberTexts: guess)
+    func simulateUserInitiateGuess() {
+        inputVC.delegate?.padDidFinishEntering(numberTexts: ["1", "2", "3", "4"])
     }
     
     func simulateGuess(with guess: [String]) {
@@ -244,12 +241,6 @@ private extension GuessNumberViewController {
     func simulateUserGiveUp() {
         showLoseVCAndEndGame()
         RunLoop.current.run(until: Date())
-    }
-    
-    func simulateUserGuessWithCorrectAnswer() {
-        let answer = quizNumbers
-        let guess = answer
-        tryToMatchNumbers(guessTexts: guess)
     }
     
     func simulateUserRestartGame() {
