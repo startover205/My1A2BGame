@@ -49,12 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdManager.shared
     
-    convenience init(secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader?) {
+    convenience init(secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader) {
         self.init()
         self.secretGenerator = secretGenerator
-        if let rewardAdLoader = rewardAdLoader {
-            self.rewardAdLoader = rewardAdLoader
-        }
+        self.rewardAdLoader = rewardAdLoader
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

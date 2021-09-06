@@ -14,43 +14,43 @@ import MastermindiOS
 class GameAcceptanceTests: XCTestCase{
     
     func test_onGameWin_displaysWinScene_basicGame() {
-        let win = showWinScene(from: launchBasicGame, digitCount: 4)
+        let win = showWinScene(from: launchBasicGame(rewardAdLoader: .null), digitCount: 4)
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForBasicGame())
     }
     
     func test_onGameLose_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame())
+        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame(rewardAdLoader: .null))
     }
     
     func test_onGiveUpGame_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchBasicGame())
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchBasicGame(rewardAdLoader: .null))
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
-        let win = showWinScene(from: launchAdvancedGame, digitCount: 5)
+        let win = showWinScene(from: launchAdvancedGame(rewardAdLoader: .null), digitCount: 5)
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
     }
     
     func test_onGameLose_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame())
+        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame(rewardAdLoader: .null))
     }
     
     func test_onGiveUpGame_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchAdvancedGame())
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchAdvancedGame(rewardAdLoader: .null))
     }
     
     // MARK: - Helpers
     
-    private func launch() -> UITabBarController {
-        let sut = AppDelegate(secretGenerator: makeSecretGenerator(), rewardAdLoader: nil)
+    private func launch(rewardAdLoader: RewardAdLoaderStub) -> UITabBarController {
+        let sut = AppDelegate(secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader)
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
         
         return sut.window?.rootViewController as! UITabBarController
     }
     
-    private func launchBasicGame() -> GuessNumberViewController {
-        let tab = launch()
+    private func launchBasicGame(rewardAdLoader: RewardAdLoaderStub) -> GuessNumberViewController {
+        let tab = launch(rewardAdLoader: rewardAdLoader)
         tab.selectedIndex = 0
         
         RunLoop.current.run(until: Date())
@@ -59,8 +59,8 @@ class GameAcceptanceTests: XCTestCase{
         return nav?.topViewController as! GuessNumberViewController
     }
 
-    private func launchAdvancedGame() -> GuessNumberViewController {
-        let tab = launch()
+    private func launchAdvancedGame(rewardAdLoader: RewardAdLoaderStub) -> GuessNumberViewController {
+        let tab = launch(rewardAdLoader: rewardAdLoader)
         tab.selectedIndex = 1
         
         RunLoop.current.run(until: Date())
@@ -69,9 +69,7 @@ class GameAcceptanceTests: XCTestCase{
         return nav?.topViewController as! GuessNumberViewController
     }
     
-    private func showWinScene(from game: () -> (GuessNumberViewController), digitCount: Int) -> WinViewController {
-        let game = game()
-        
+    private func showWinScene(from game: GuessNumberViewController, digitCount: Int) -> WinViewController {
         RunLoop.current.run(until: Date())
         
         game.simulatePlayerWin(with: makeGuess(digitCount: digitCount))
@@ -167,5 +165,25 @@ private extension UIAlertController {
         guard let block = actions[index].value(forKey: "handler") else { return }
         let handler = unsafeBitCast(block as AnyObject, to: AlertHandler.self)
         handler(actions[index])
+    }
+}
+
+private class RewardAdLoaderStub: RewardAdLoader {
+    private let ad: RewardAd?
+    
+    var rewardAd: RewardAd? { ad }
+    
+    init(ad: RewardAd?) {
+        self.ad = ad
+    }
+}
+
+private extension RewardAdLoaderStub {
+    static var null: RewardAdLoaderStub {
+        .init(ad: nil)
+    }
+    
+    static func providing(_ stub: RewardAd) -> RewardAdLoaderStub {
+        .init(ad: stub)
     }
 }
