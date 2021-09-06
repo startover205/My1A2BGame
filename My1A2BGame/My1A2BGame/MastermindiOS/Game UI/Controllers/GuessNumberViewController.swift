@@ -134,7 +134,7 @@ extension GuessNumberViewController {
     }
     
     func showLoseVCAndEndGame(){
-        self.endGame()
+        configureViewsForGameResult()
 
         voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))
     }
@@ -163,7 +163,7 @@ extension GuessNumberViewController {
         }
     }
     
-    func endGame()  {
+    func configureViewsForGameResult()  {
         //toggle UI
         guessButton.isHidden = true
         quitButton.isHidden = true

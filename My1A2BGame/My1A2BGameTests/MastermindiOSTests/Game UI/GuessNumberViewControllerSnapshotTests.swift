@@ -89,6 +89,6 @@ private extension GuessNumberViewController {
     }
     
     func simulateGameEnd() {
-        endGame()
+        configureViewsForGameResult()
     }
 }
