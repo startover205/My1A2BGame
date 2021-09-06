@@ -108,6 +108,19 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(restartCallCount, 1)
     }
     
+    func test_giveUp_notifiesGiveUpHandler() {
+        var giveUpCallCount = 0
+        let sut = makeSUT()
+        sut.onGiveUp = {
+            giveUpCallCount += 1
+        }
+
+        sut.loadViewIfNeeded()
+        sut.simulateUserGiveUpGame()
+
+        XCTAssertEqual(giveUpCallCount, 1)
+    }
+    
     func test_deallocation_doesNotRetain() {
         let sut = makeSUT()
         
@@ -247,8 +260,22 @@ private extension GuessNumberViewController {
     func simulateUserRestartGame() {
         restartButton.sendActions(for: .touchUpInside)
     }
+    
+    func simulateUserGiveUpGame() {
+        quitButton.sendActions(for: .touchUpInside)
+    }
 }
 
 private extension UserDefaults {
     func setVoicePromptOn() { setValue(true, forKey: "VOICE_PROMPT") }
+}
+
+private extension UIAlertController {
+    typealias AlertHandler = @convention(block) (UIAlertAction) -> Void
+
+    func tapButton(atIndex index: Int) {
+        guard let block = actions[index].value(forKey: "handler") else { return }
+        let handler = unsafeBitCast(block as AnyObject, to: AlertHandler.self)
+        handler(actions[index])
+    }
 }

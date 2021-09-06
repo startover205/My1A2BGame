@@ -14,6 +14,7 @@ public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
     var adViewController: RewardAdViewController?
     var onRestart: (() -> Void)?
+    var onGiveUp: (() -> Void)?
     var availableGuess = 0 {
         didSet {
             updateAvailableGuessLabel()
@@ -82,25 +83,7 @@ public class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
-        let alert = UIAlertController(
-            title: NSLocalizedString("Are you sure you want to give up?", comment: ""),
-            message: nil,
-            preferredStyle: .alert)
-        
-        let ok = UIAlertAction(
-            title: NSLocalizedString("Give Up!", comment: "2nd"),
-            style: .destructive) { [weak self] _ in
-            self?.showLoseVCAndEndGame()
-        }
-        
-        let cancel = UIAlertAction(
-            title: NSLocalizedString("Cancel", comment: "2nd"),
-            style: .cancel)
-        
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true)
+        onGiveUp?()
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
