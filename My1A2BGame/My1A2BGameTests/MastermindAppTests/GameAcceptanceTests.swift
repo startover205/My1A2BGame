@@ -30,6 +30,20 @@ class GameAcceptanceTests: XCTestCase{
         XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
     }
     
+    func test_onGiveUpGame_displayLoseScene_basicGame() {
+        let sut = launchBasicGame()
+
+        let exp = expectation(description: "wait for request")
+        
+        try? sut.simulateUserGiveUp(completion: {
+            exp.fulfill()
+        })
+        
+        wait(for: [exp], timeout: 2)
+        
+        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+    }
+    
     func test_onGameWin_displaysWinScene_advancedGame() {
         let win = showWinScene(from: launchAdvancedGame, digitCount: 5)
         
@@ -43,6 +57,20 @@ class GameAcceptanceTests: XCTestCase{
         sut.simulateGameLose()
         
         RunLoop.current.run(until: Date())
+        
+        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+    }
+    
+    func test_onGiveUpGame_displayLoseScene_advancedGame() {
+        let sut = launchAdvancedGame()
+
+        let exp = expectation(description: "wait for request")
+        
+        try? sut.simulateUserGiveUp(completion: {
+            exp.fulfill()
+        })
+        
+        wait(for: [exp], timeout: 2)
         
         XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
     }
@@ -121,10 +149,32 @@ private extension GuessNumberViewController {
             inputVC.delegate?.padDidFinishEntering(numberTexts: [])
         }
     }
+    
+    func simulateUserGiveUp(completion: @escaping () -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
+        quitButton.sendActions(for: .touchUpInside)
+
+        let alert = try XCTUnwrap(presentedViewController as? UIAlertController, file: file, line: line)
+
+        dismiss(animated: false, completion: {
+            alert.tapButton(atIndex: 0)
+
+            completion()
+        })
+    }
 }
 
 private extension WinViewController {
     func winMessage() -> String? { winLabel.text }
     
     func gameResultMessage() -> String? { guessCountLabel.text }
+}
+
+private extension UIAlertController {
+    typealias AlertHandler = @convention(block) (UIAlertAction) -> Void
+
+    func tapButton(atIndex index: Int) {
+        guard let block = actions[index].value(forKey: "handler") else { return }
+        let handler = unsafeBitCast(block as AnyObject, to: AlertHandler.self)
+        handler(actions[index])
+    }
 }

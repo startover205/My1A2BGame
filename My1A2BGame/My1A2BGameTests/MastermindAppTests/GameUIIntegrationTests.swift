@@ -269,13 +269,3 @@ private extension GuessNumberViewController {
 private extension UserDefaults {
     func setVoicePromptOn() { setValue(true, forKey: "VOICE_PROMPT") }
 }
-
-private extension UIAlertController {
-    typealias AlertHandler = @convention(block) (UIAlertAction) -> Void
-
-    func tapButton(atIndex index: Int) {
-        guard let block = actions[index].value(forKey: "handler") else { return }
-        let handler = unsafeBitCast(block as AnyObject, to: AlertHandler.self)
-        handler(actions[index])
-    }
-}
