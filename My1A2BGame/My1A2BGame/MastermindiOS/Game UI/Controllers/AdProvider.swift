@@ -9,5 +9,11 @@
 import GoogleMobileAds
 
 public protocol RewardAdLoader {
-    var rewardAd: GADRewardedAd? { get }
+    var rewardAd: RewardAd? { get }
 }
+
+public protocol RewardAd {
+    func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void)
+}
+
+extension GADRewardedAd: RewardAd { }

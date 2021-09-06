@@ -19,7 +19,7 @@ class GoogleRewardAdManager: NSObject {
     /// 避免多次 load 廣告
     private let retrieveLock = NSLock()
     
-    private(set) var rewardAd: GADRewardedAd?
+    private(set) var gadRewardAd: GADRewardedAd?
     
     /// 開始下載廣告、監聽網路狀況
     func begin() {
@@ -34,13 +34,13 @@ class GoogleRewardAdManager: NSObject {
     }
     
     private func reload() {
-        rewardAd = nil
+        gadRewardAd = nil
         
         tryToLoadRewardAd()
     }
     
     private func tryToLoadRewardAd(){
-        guard rewardAd == nil, internetAvailable, retrieveLock.try() else { return }
+        guard gadRewardAd == nil, internetAvailable, retrieveLock.try() else { return }
         
         print("---開始讀取廣告----", .error)
         
@@ -53,7 +53,7 @@ class GoogleRewardAdManager: NSObject {
                 print("讀取廣告失敗: \(error.localizedDescription)")
                 return
             }
-            self.rewardAd = ad
+            self.gadRewardAd = ad
             ad?.fullScreenContentDelegate = self
             print("Rewarded ad loaded.")
             
@@ -86,4 +86,6 @@ extension GoogleRewardAdManager: GADFullScreenContentDelegate {
     }
 }
 
-extension GoogleRewardAdManager: RewardAdLoader { }
+extension GoogleRewardAdManager: RewardAdLoader {
+    var rewardAd: RewardAd? { gadRewardAd }
+}

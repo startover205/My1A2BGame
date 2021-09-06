@@ -211,7 +211,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     private final class RewardAdLoaderFake: RewardAdLoader {
-        var rewardAd: GADRewardedAd?
+        var rewardAd: RewardAd?
     }
 }
 
