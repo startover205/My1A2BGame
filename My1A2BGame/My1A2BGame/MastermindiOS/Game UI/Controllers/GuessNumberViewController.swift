@@ -122,11 +122,6 @@ extension GuessNumberViewController {
         } else {
             feedbackGenerator?.notificationOccurred(.error)
             feedbackGenerator = nil
-            
-            // 如果沒次數，且沒廣告，則直接結束
-            if availableGuess <= 0 {
-                handleNoChanceLeft()
-            }
         }
         
         //speech function
