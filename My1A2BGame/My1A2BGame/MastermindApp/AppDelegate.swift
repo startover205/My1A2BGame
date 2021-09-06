@@ -47,9 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
     
-    convenience init(secretGenerator: @escaping (Int) -> DigitSecret) {
+    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdManager.shared
+    
+    convenience init(secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader?) {
         self.init()
         self.secretGenerator = secretGenerator
+        if let rewardAdLoader = rewardAdLoader {
+            self.rewardAdLoader = rewardAdLoader
+        }
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -166,7 +171,7 @@ private extension AppDelegate {
     private func makeGameDelegate(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void, recordLoader: RecordLoader) -> GameNavigationAdapter {
         let gameController = makeGameController(secret: secret, gameVersion: gameVersion, onRestart: onRestart)
         let rewardAdController = RewardAdViewController(
-            loader: GoogleRewardAdManager.shared,
+            loader: rewardAdLoader,
             adRewardChance: 5,
             countDownTime: 5.0,
             onGrantReward: {},
@@ -187,7 +192,7 @@ private extension AppDelegate {
         let controller = GameUIComposer.gameComposedWith(
             gameVersion: gameVersion,
             userDefaults: .standard,
-            loader: GoogleRewardAdManager.shared,
+            loader: rewardAdLoader,
             secret: secret,
             onRestart: onRestart,
             animate: UIView.animate)

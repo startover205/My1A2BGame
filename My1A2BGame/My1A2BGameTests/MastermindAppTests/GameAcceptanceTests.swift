@@ -42,7 +42,7 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - Helpers
     
     private func launch() -> UITabBarController {
-        let sut = AppDelegate(secretGenerator: makeSecretGenerator())
+        let sut = AppDelegate(secretGenerator: makeSecretGenerator(), rewardAdLoader: nil)
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
         
