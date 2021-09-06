@@ -89,3 +89,5 @@ extension GoogleRewardAdManager: GADFullScreenContentDelegate {
 extension GoogleRewardAdManager: RewardAdLoader {
     var rewardAd: RewardAd? { gadRewardAd }
 }
+
+extension GADRewardedAd: RewardAd { }

@@ -6,7 +6,7 @@
 //  Copyright © 2021 Ming-Ta Yang. All rights reserved.
 //
 
-import GoogleMobileAds
+import UIKit
 
 public protocol RewardAdLoader {
     var rewardAd: RewardAd? { get }
@@ -15,5 +15,3 @@ public protocol RewardAdLoader {
 public protocol RewardAd {
     func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void)
 }
-
-extension GADRewardedAd: RewardAd { }
