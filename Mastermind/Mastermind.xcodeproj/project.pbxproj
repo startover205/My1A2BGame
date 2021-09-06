@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -76,6 +76,7 @@
 		C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6B26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift */; };
 		C0BF9A6E26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */; };
 		C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */; };
+		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C034AA7526B67CEA006AABE6;
 			remoteInfo = MastermindiOS;
+		};
+		C0D5DE5526E5E69D001F4A0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C034C53426B5431300F6166E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C034C53C26B5431300F6166E;
+			remoteInfo = Mastermind;
 		};
 		C0EFCBEB26B54BD80041A622 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -182,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +342,7 @@
 				C034AA7726B67CEA006AABE6 /* MastermindiOS */,
 				C034AA9226B67E7A006AABE6 /* MastermindiOSTests */,
 				C034C53E26B5431300F6166E /* Products */,
+				C0D5DE5226E5E69D001F4A0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -521,6 +531,13 @@
 			path = "Basic Challenge";
 			sourceTree = "<group>";
 		};
+		C0D5DE5226E5E69D001F4A0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +583,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C0D5DE5626E5E69D001F4A0D /* PBXTargetDependency */,
 			);
 			name = MastermindiOS;
 			productName = MastermindiOS;
@@ -809,6 +827,12 @@
 			isa = PBXTargetDependency;
 			target = C034AA7526B67CEA006AABE6 /* MastermindiOS */;
 			targetProxy = C034AA9726B67E7A006AABE6 /* PBXContainerItemProxy */;
+		};
+		C0D5DE5626E5E69D001F4A0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = C034C53C26B5431300F6166E /* Mastermind */;
+			targetProxy = C0D5DE5526E5E69D001F4A0D /* PBXContainerItemProxy */;
 		};
 		C0EFCBEC26B54BD80041A622 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
