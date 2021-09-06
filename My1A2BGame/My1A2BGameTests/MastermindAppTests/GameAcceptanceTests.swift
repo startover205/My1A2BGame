@@ -15,64 +15,28 @@ class GameAcceptanceTests: XCTestCase{
     
     func test_onGameWin_displaysWinScene_basicGame() {
         let win = showWinScene(from: launchBasicGame, digitCount: 4)
-        
-        XCTAssertEqual(win.winMessage(), makeWinMessageForBasicGame())
-        XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage())
+        assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForBasicGame())
     }
     
     func test_onGameLose_displayLoseScene_basicGame() {
-        let sut = launchBasicGame()
-        
-        sut.simulateGameLose()
-        
-        RunLoop.current.run(until: Date())
-        
-        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame())
     }
     
     func test_onGiveUpGame_displayLoseScene_basicGame() {
-        let sut = launchBasicGame()
-
-        let exp = expectation(description: "wait for request")
-        
-        try? sut.simulateUserGiveUp(completion: {
-            exp.fulfill()
-        })
-        
-        wait(for: [exp], timeout: 2)
-        
-        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchBasicGame())
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
         let win = showWinScene(from: launchAdvancedGame, digitCount: 5)
-        
-        XCTAssertEqual(win.winMessage(), makeWinMessageForAdvancedGame())
-        XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage())
+        assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
     }
     
     func test_onGameLose_displayLoseScene_advancedGame() {
-        let sut = launchAdvancedGame()
-        
-        sut.simulateGameLose()
-        
-        RunLoop.current.run(until: Date())
-        
-        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame())
     }
     
     func test_onGiveUpGame_displayLoseScene_advancedGame() {
-        let sut = launchAdvancedGame()
-
-        let exp = expectation(description: "wait for request")
-        
-        try? sut.simulateUserGiveUp(completion: {
-            exp.fulfill()
-        })
-        
-        wait(for: [exp], timeout: 2)
-        
-        XCTAssertNotNil(sut.navigationController?.topViewController as? LoseViewController)
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchAdvancedGame())
     }
     
     // MARK: - Helpers
@@ -104,7 +68,7 @@ class GameAcceptanceTests: XCTestCase{
         let nav = tab.viewControllers?[1] as? UINavigationController
         return nav?.topViewController as! GuessNumberViewController
     }
-
+    
     private func showWinScene(from game: () -> (GuessNumberViewController), digitCount: Int) -> WinViewController {
         let game = game()
         
@@ -139,6 +103,31 @@ class GameAcceptanceTests: XCTestCase{
     private func makeGameResultMessage() -> String { "You guessed 1 time" }
 }
 
+extension GameAcceptanceTests {
+    func assertDisplayingWinSceneOnGameWin(win: WinViewController, winMessage: String, file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(win.winMessage(), winMessage, file: file, line: line)
+        XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage(), file: file, line: line)
+    }
+    
+    func assertDisplayingLoseSceneOnGameLose(game: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
+        game.simulateGameLose()
+        
+        XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
+    }
+    
+    func assertDisplayingLoseSceneOnUserGiveUpGame(game: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "wait for presentation complete")
+        
+        try? game.simulateUserGiveUp(completion: {
+            exp.fulfill()
+        })
+        
+        wait(for: [exp], timeout: 3)
+        
+        XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
+    }
+}
+
 private extension GuessNumberViewController {
     func simulatePlayerWin(with guess: DigitSecret){
         tryToMatchNumbers(guessTexts: guess.content.compactMap(String.init))
@@ -148,6 +137,8 @@ private extension GuessNumberViewController {
         for _ in 0..<availableGuess {
             inputVC.delegate?.padDidFinishEntering(numberTexts: [])
         }
+        
+        RunLoop.current.run(until: Date())
     }
     
     func simulateUserGiveUp(completion: @escaping () -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
