@@ -75,10 +75,10 @@ public class GuessNumberViewController: UIViewController {
     private func handleNoChanceLeft() {
         if adViewController?.adAvailable() == true {
             adViewController?.askUserToWatchAd { [weak self] success in
-                if !success { self?.showLoseVCAndEndGame() }
+                if !success { self?.onGameLose() }
             }
         } else {
-            showLoseVCAndEndGame()
+            onGameLose()
         }
     }
     
@@ -133,7 +133,7 @@ extension GuessNumberViewController {
         voicePromptViewController?.playVoicePromptIfEnabled(message: text)
     }
     
-    func showLoseVCAndEndGame(){
+    func onGameLose(){
         configureViewsForGameResult()
 
         voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))

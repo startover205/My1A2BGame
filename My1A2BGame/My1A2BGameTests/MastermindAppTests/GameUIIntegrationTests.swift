@@ -253,7 +253,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateUserGiveUp() {
-        showLoseVCAndEndGame()
+        onGameLose()
         RunLoop.current.run(until: Date())
     }
     
