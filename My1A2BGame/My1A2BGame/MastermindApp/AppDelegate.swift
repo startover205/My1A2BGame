@@ -164,13 +164,16 @@ private extension AppDelegate {
     }
     
     private func makeGameDelegate(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void, recordLoader: RecordLoader) -> GameNavigationAdapter {
-        let rewardAdController = makeRewardAdController()
+        let gameController = makeGameController(secret: secret, gameVersion: gameVersion, onRestart: onRestart)
+        let rewardAdController = RewardAdViewController(
+            loader: GoogleRewardAdManager.shared,
+            adRewardChance: 5,
+            countDownTime: 5.0,
+            onGrantReward: {},
+            hostViewController: gameController)
         let delegate = GameNavigationAdapter(
             navigationController: navigationController,
-            gameComposer: adaptGameUIComposerToGameComposer(
-                secret: secret,
-                gameVersion: gameVersion,
-                onRestart: onRestart),
+            gameComposer: adaptGameControllerToGameComposer(controller: gameController),
             winComposer: makeWinComposer(
                 digitCount: gameVersion.digitCount,
                 recordLoader: recordLoader),
@@ -180,16 +183,7 @@ private extension AppDelegate {
         return delegate
     }
     
-    
-    private func makeRewardAdController() -> RewardAdViewController {
-        RewardAdViewController(
-           loader: GoogleRewardAdManager.shared,
-           adRewardChance: 5,
-           countDownTime: 5.0,
-           onGrantReward: {})
-    }
-    
-    private func adaptGameUIComposerToGameComposer(secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void) -> (@escaping GuessCompletion) -> UIViewController {
+    private func makeGameController(secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void) -> GuessNumberViewController {
         let controller = GameUIComposer.gameComposedWith(
             gameVersion: gameVersion,
             userDefaults: .standard,
@@ -221,6 +215,10 @@ private extension AppDelegate {
             controller?.present(alert, animated: true)
         }
         
+        return controller
+    }
+    
+    private func adaptGameControllerToGameComposer(controller: GuessNumberViewController) -> (@escaping GuessCompletion) -> UIViewController {
         return { guessCompletion in
             
             controller.guessCompletion = guessCompletion
