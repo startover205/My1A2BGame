@@ -26,6 +26,10 @@ class GameAcceptanceTests: XCTestCase{
         assertDisplayingLoseSceneOnUserGiveUpGame(game: launchBasicGame(rewardAdLoader: .null))
     }
     
+    func test_onNoGameChanceLeft_displaysAd_basicGame() {
+        assertDisplayingAdOnNoGameChanceLeft(game: launchBasicGame)
+    }
+    
     func test_onGameWin_displaysWinScene_advancedGame() {
         let win = showWinScene(from: launchAdvancedGame(rewardAdLoader: .null), digitCount: 5)
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
@@ -37,6 +41,10 @@ class GameAcceptanceTests: XCTestCase{
     
     func test_onGiveUpGame_displayLoseScene_advancedGame() {
         assertDisplayingLoseSceneOnUserGiveUpGame(game: launchAdvancedGame(rewardAdLoader: .null))
+    }
+    
+    func test_onNoGameChanceLeft_displaysAd_advancedGame() {
+        assertDisplayingAdOnNoGameChanceLeft(game: launchAdvancedGame)
     }
     
     // MARK: - Helpers
@@ -99,9 +107,17 @@ class GameAcceptanceTests: XCTestCase{
     private func makeWinMessageForAdvancedGame() -> String { "5A0B!! You won!!" }
     
     private func makeGameResultMessage() -> String { "You guessed 1 time" }
+    
+    private final class RewardAdSpy: RewardAd {
+        var capturedPresentation: ((viewController: UIViewController, handler: () -> Void))?
+        
+        func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void) {
+            capturedPresentation = (rootViewController, userDidEarnRewardHandler)
+        }
+    }
 }
 
-extension GameAcceptanceTests {
+private extension GameAcceptanceTests {
     func assertDisplayingWinSceneOnGameWin(win: WinViewController, winMessage: String, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertEqual(win.winMessage(), winMessage, file: file, line: line)
         XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage(), file: file, line: line)
@@ -120,9 +136,24 @@ extension GameAcceptanceTests {
             exp.fulfill()
         })
         
-        wait(for: [exp], timeout: 3)
+        wait(for: [exp], timeout: 5.0)
         
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
+    }
+    
+    func assertDisplayingAdOnNoGameChanceLeft(game: (RewardAdLoaderStub) -> GuessNumberViewController) {
+        let ad = RewardAdSpy()
+        let game = game(RewardAdLoaderStub.init(ad: ad))
+        
+        let exp = expectation(description: "wait for presentation complete")
+        
+        try? game.simulateOutOfChances() {
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5.0)
+        
+        XCTAssertEqual(ad.capturedPresentation?.viewController, game)
     }
 }
 
@@ -149,6 +180,24 @@ private extension GuessNumberViewController {
 
             completion()
         })
+    }
+    
+    func simulateOutOfChances(completion: @escaping () -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
+        for _ in 0..<availableGuess {
+            inputVC.delegate?.padDidFinishEntering(numberTexts: [])
+        }
+        
+        RunLoop.current.run(until: Date())
+        
+        let alert = try XCTUnwrap(presentedViewController as? AlertAdCountdownController, file: file, line: line)
+
+        dismiss(animated: false, completion: {
+            alert.tapConfirmButton()
+
+            completion()
+        })
+        
+        RunLoop.current.run(until: Date())
     }
 }
 

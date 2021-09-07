@@ -148,3 +148,9 @@ private extension AlertAdCountdownController {
         cancelBtn.layer.addSublayer(border)
     }
 }
+
+extension AlertAdCountdownController {
+    func tapConfirmButton() {
+        adHandler?()
+    }
+}
