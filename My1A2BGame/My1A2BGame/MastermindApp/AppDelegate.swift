@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ("Rank", "baseline_format_list_numbered_black_24pt"),
             ("More", "baseline_settings_black_24pt"),
         ]
-        let tabVC = UITabBarController()
+        let tabVC = BannerAdTabBarViewController()
         let rankNav = UINavigationController(rootViewController: makeRankVC())
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
 
