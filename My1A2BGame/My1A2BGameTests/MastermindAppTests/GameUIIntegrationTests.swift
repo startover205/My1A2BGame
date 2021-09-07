@@ -145,6 +145,19 @@ class GameUIIntegrationTests: XCTestCase {
 
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
+    
+    func test_instruction_showsByTappingInstructionButton() {
+        let sut = makeSUT()
+        let nav = UINavigationController(rootViewController: sut)
+        
+        sut.loadViewIfNeeded()
+        
+        sut.simulateTapInstructionButton()
+        
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertTrue(nav.topViewController is InstructionViewController)
+    }
 
     // MARK: Helpers
     
@@ -237,8 +250,18 @@ private extension GuessNumberViewController {
     func simulateUserGiveUpGame() {
         quitButton.sendActions(for: .touchUpInside)
     }
+    
+    func simulateTapInstructionButton() {
+        navigationItem.rightBarButtonItems?.first?.simulateTap()
+    }
 }
 
 private extension UserDefaults {
     func setVoicePromptOn() { setValue(true, forKey: "VOICE_PROMPT") }
+}
+
+private extension UIBarButtonItem {
+    func simulateTap() {
+        target!.performSelector(onMainThread: action!, with: nil, waitUntilDone: true)
+    }
 }
