@@ -24,6 +24,15 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_advanced_dark")
     }
     
+    func test_gameWithHelperShown() {
+        let sut = makeSUT()
+        
+        sut.simulateTurnOnHelper()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_HELPER_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_HELPER_dark")
+    }
+    
     func test_gameWithOneWrongGuess() {
         let sut = makeSUT()
         
@@ -57,15 +66,17 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func makeSUT(gameVersion: GameVersion = .basic) -> GuessNumberViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(identifier: "GuessViewController") as! GuessNumberViewController
         controller.quizLabelViewController.answer = gameVersion.makeSecret()
-        controller.animate = { _, animations, completion in
+        let animate: Animate = { _, animations, completion in
             animations()
             completion?(true)
         }
+        controller.animate = animate
         controller.guessCompletion = { _ in
             (nil, false)
         }
-
+        
         controller.loadViewIfNeeded()
+        controller.helperViewController.animate = animate
         
         controller.availableGuess = 10
         
@@ -90,5 +101,9 @@ private extension GuessNumberViewController {
     
     func simulateGameEnd() {
         configureViewsForGameResult()
+    }
+    
+    func simulateTurnOnHelper() {
+        helperViewController.helperBtnPressed(self)
     }
 }
