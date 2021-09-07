@@ -145,33 +145,6 @@ class GameUIIntegrationTests: XCTestCase {
 
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
-    
-//    func test_endGame_showAnswerOnlyAfterResultViewIsPresented() {
-//        let window = UIWindow()
-//        let nav = NavigationSpy()
-//        let sut = makeSUT(gameVersion: GameVersionMock(maxGuessCount: 1))
-//        nav.setViewControllers([sut], animated: false)
-//        nav.delegate = sut
-//
-//        window.rootViewController = nav
-//        window.makeKeyAndVisible()
-//        nav.pushCapturedControllerWithoutAnimation()
-//
-//        sut.loadViewIfNeeded()
-//        let answer = sut.quizNumbers
-//        let placeholders = answerPlaceholder(for: sut.gameVersion)
-//
-//        XCTAssertEqual(sut.quizLabels.map { $0.text }, placeholders, "expect showing placeholders after game start")
-//
-//        sut.simulateUserInitiatedWrongGuess()
-//        XCTAssertEqual(sut.quizLabels.map { $0.text }, placeholders, "expect showing placeholders before showing the result controller")
-//
-//        nav.pushCapturedControllerWithoutAnimation()
-//        XCTAssertEqual(sut.quizLabels.map { $0.text }, answer, "expect showing answer after showing the result controller")
-//
-//        // remove retain on sut
-//        nav.setViewControllers([], animated: false)
-//    }
 
     // MARK: Helpers
     
