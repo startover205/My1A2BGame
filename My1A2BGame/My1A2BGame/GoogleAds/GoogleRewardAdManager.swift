@@ -23,6 +23,11 @@ class GoogleRewardAdManager: NSObject {
     
     /// 開始下載廣告、監聽網路狀況
     func begin() {
+        
+        #if DEBUG
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ kGADSimulatorID ]
+        #endif
+        
         NotificationCenter.default.addObserver(forName: .reachabilityChanged, object: nil, queue: nil) { [weak self] (_) in
             print("---internet changed----", .error)
             
