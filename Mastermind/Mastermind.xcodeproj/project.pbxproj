@@ -35,7 +35,6 @@
 		C034AAD526B693D2006AABE6 /* FULL_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAD126B693D2006AABE6 /* FULL_INPUT_PAD_FIVE_DIGIT_dark.png */; };
 		C034AAD626B693D2006AABE6 /* FULL_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAD226B693D2006AABE6 /* FULL_INPUT_PAD_FOUR_DIGIT_dark.png */; };
 		C034AAD726B693D2006AABE6 /* FULL_INPUT_PAD_FIVE_DIGIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAD326B693D2006AABE6 /* FULL_INPUT_PAD_FIVE_DIGIT_light.png */; };
-		C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034C54C26B54B2400F6166E /* MastermindEvaluator.swift */; };
 		C041383A26C76CED00DFBA59 /* RankValidationPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C041383926C76CED00DFBA59 /* RankValidationPolicyTests.swift */; };
 		C04B5B1D26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B1C26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift */; };
 		C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B1F26C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -78,7 +77,6 @@
 		C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */; };
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0D5DE6126E883A8001F4A0D /* RecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */; };
-		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,7 +138,6 @@
 		C034AAD326B693D2006AABE6 /* FULL_INPUT_PAD_FIVE_DIGIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FULL_INPUT_PAD_FIVE_DIGIT_light.png; sourceTree = "<group>"; };
 		C034C53D26B5431300F6166E /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C034C54126B5431300F6166E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C034C54C26B54B2400F6166E /* MastermindEvaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastermindEvaluator.swift; sourceTree = "<group>"; };
 		C041383926C76CED00DFBA59 /* RankValidationPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankValidationPolicyTests.swift; sourceTree = "<group>"; };
 		C04B5B1C26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRecordsFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C04B5B1F26C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -183,7 +180,6 @@
 		C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcher.swift; sourceTree = "<group>"; };
 		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -366,7 +362,6 @@
 				C0BF9A6226DC62F4006BD7C1 /* Basic Challenge */,
 				C04B5B1A26C608B40056DDA8 /* Game Record */,
 				C034C54126B5431300F6166E /* Info.plist */,
-				C034C54C26B54B2400F6166E /* MastermindEvaluator.swift */,
 			);
 			path = Mastermind;
 			sourceTree = "<group>";
@@ -548,7 +543,6 @@
 				C098421226D5031A00AE72F4 /* Engine */,
 				C0BF9A5F26DB5D7B006BD7C1 /* Basic Challenge */,
 				C04B5B1B26C608CE0056DDA8 /* Game Record */,
-				C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */,
 				C0EFCBE926B54BD80041A622 /* Info.plist */,
 			);
 			path = MastermindTests;
@@ -782,7 +776,6 @@
 				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,
 				C0BF9A5E26DB177D006BD7C1 /* GuessMatcher.swift in Sources */,
 				C098422526D776F600AE72F4 /* Challenge.swift in Sources */,
-				C034C54D26B54B2400F6166E /* MastermindEvaluator.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
 				C098421A26D6167800AE72F4 /* Flow.swift in Sources */,
@@ -804,7 +797,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */,
 				C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */,
 				C0BF9A6A26DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift in Sources */,
 				C09FAB9426C6524F00A15B9E /* RecordStoreTestHelpers.swift in Sources */,
