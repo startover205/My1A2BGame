@@ -8,35 +8,23 @@
 
 import UIKit
 
+public protocol RecordViewControllerDelegate {
+    func didRequestValidateRecord()
+    func didRequestSaveRecord(playerName: String)
+}
+
 public final class RecordViewController: NSObject {
     @IBOutlet private(set) public weak var confirmButton: UIButton!
     @IBOutlet private(set) public weak var containerView: UIStackView!
     @IBOutlet private(set) public weak var inputTextField: UITextField!
     
     public weak var hostViewController: UIViewController?
-    public var recordViewModel: RecordViewModel?
+    public var delegate: RecordViewControllerDelegate?
     
     public func configureViews() {
-        bindViews()
-        
-        recordViewModel?.validateRecord()
-    }
-    
-    private func bindViews() {
         confirmButton.addTarget(self, action: #selector(insertRecord), for: .touchUpInside)
         
-        recordViewModel?.onValidation = { [weak self] breakRecord in
-            self?.containerView.alpha = breakRecord ? 1 : 0
-        }
-        
-        recordViewModel?.onSave = { [weak self] error in
-            if let error = error {
-                self?.showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
-            } else {
-                self?.containerView.alpha = 0
-                self?.showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd"))
-            }
-        }
+        delegate?.didRequestValidateRecord()
     }
     
     @IBAction private func dismissKeyboard(_ sender: UITextField) {
@@ -53,7 +41,7 @@ public final class RecordViewController: NSObject {
         
         inputTextField.resignFirstResponder()
         
-        recordViewModel?.insertRecord(playerName: name)
+        delegate?.didRequestSaveRecord(playerName: name)
     }
     
     private func showAlert(title: String, message: String? = nil, onDismiss: ((UIAlertAction) -> Void)? = nil) {
@@ -62,5 +50,22 @@ public final class RecordViewController: NSObject {
         alert.addAction(ok)
         
         hostViewController?.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension RecordViewController: RecordValidationView {
+    public func display(_ viewModel: RecordValidationViewModel) {
+        containerView.alpha = viewModel.isValid ? 1 : 0
+    }
+}
+
+extension RecordViewController: RecordSaveView {
+    public func display(_ viewModel: RecordSaveViewModel) {
+        if let error = viewModel.error {
+            showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
+        } else {
+            containerView.alpha = 0
+            showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd"))
+        }
     }
 }

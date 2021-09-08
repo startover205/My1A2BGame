@@ -158,7 +158,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.receivedMessages, [.validate(playerRecord.guessCount, playerRecord.guessTime)], "Expect no save message added after view load")
         
         sut.simulateUserSendInput()
-        XCTAssertEqual(loader.receivedMessages, [.validate(playerRecord.guessCount, playerRecord.guessTime)], "Expect no save message added after view load")
+        XCTAssertEqual(loader.receivedMessages, [.validate(playerRecord.guessCount, playerRecord.guessTime)], "Expect no save message without entering the user name")
 
         sut.simulateUserEnterPlayerName(name: playerRecord.playerName)
         loader.completeSave(with: anyNSError())
@@ -215,18 +215,9 @@ class WinUIIntegrationTests: XCTestCase {
     
     private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
-        let sut = WinUIComposer.winComposedWith(score: (0, 0.0), digitCount: digitCount, recordLoader: loader)
+        let sut = WinUIComposer.winComposedWith(score: (guessCount, guessTime), digitCount: digitCount, recordLoader: loader, currentDate: currentDate)
         sut.guessCount = guessCount
         sut.showFireworkAnimation = showFireworkAnimation
-        
-        let recordViewController = sut.recordViewController!
-        recordViewController.hostViewController = sut
-        let recordViewModel = RecordViewModel(
-            loader: loader,
-            guessCount: guessCount,
-            guessTime: guessTime,
-            currentDate: currentDate)
-        recordViewController.recordViewModel = recordViewModel
         
         if trackMemoryLeak {
             trackForMemoryLeaks(loader, file: file, line: line)

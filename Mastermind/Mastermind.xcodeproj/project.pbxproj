@@ -77,6 +77,7 @@
 		C0BF9A6E26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */; };
 		C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */; };
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
+		C0D5DE6126E883A8001F4A0D /* RecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */; };
 		C0EFCBE826B54BD80041A622 /* MastermindEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 /* End PBXBuildFile section */
@@ -180,6 +181,7 @@
 		C0BF9A6B26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDigitSecretGenerator.swift; sourceTree = "<group>"; };
 		C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcherTests.swift; sourceTree = "<group>"; };
 		C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcher.swift; sourceTree = "<group>"; };
+		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE726B54BD80041A622 /* MastermindEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindEvaluatorTests.swift; sourceTree = "<group>"; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				C098420226D33E8600AE72F4 /* RecordViewModel.swift */,
+				C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */,
 			);
 			path = "Win Presentation";
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
 				C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */,
+				C0D5DE6126E883A8001F4A0D /* RecordPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

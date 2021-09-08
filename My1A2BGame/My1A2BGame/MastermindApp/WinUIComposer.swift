@@ -14,19 +14,9 @@ import MastermindiOS
 public final class WinUIComposer {
     private init() {}
     
-    public static func winComposedWith(score: (guessCount: Int, guessTime: TimeInterval), digitCount: Int, recordLoader: RecordLoader) -> WinViewController {
+    public static func winComposedWith(score: Score, digitCount: Int, recordLoader: RecordLoader, currentDate: @escaping () -> Date = Date.init) -> WinViewController {
         
         let winViewController = makeWinViewController()
-        let recordViewController = winViewController.recordViewController!
-        recordViewController.hostViewController = winViewController
-        
-        let recordViewModel = RecordViewModel(
-            loader: recordLoader,
-            guessCount: score.guessCount,
-            guessTime: score.guessTime,
-            currentDate: Date.init)
-        recordViewController.recordViewModel = recordViewModel
-        
         winViewController.digitCount = digitCount
         winViewController.guessCount = score.guessCount
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
@@ -35,6 +25,19 @@ public final class WinUIComposer {
             hostViewController: winViewController,
             guessCount: { [unowned winViewController] in winViewController.guessCount }, appDownloadUrl: Constants.appStoreDownloadUrl)
         winViewController.shareViewController = shareViewController
+        
+        let presentationAdapter = RecordPresentationAdapter(
+            loader: recordLoader,
+            guessCount: score.guessCount,
+            guessTime: score.guessTime,
+            currentDate: currentDate)
+        let recordViewController = winViewController.recordViewController!
+        recordViewController.hostViewController = winViewController
+        recordViewController.delegate = presentationAdapter
+        
+        presentationAdapter.presenter = RecordPresenter(
+            recordSaveView: WeakRefVirtualProxy(recordViewController),
+            recordValidationView: WeakRefVirtualProxy(recordViewController))
         
         return winViewController
     }
@@ -108,5 +111,55 @@ public final class WinUIComposer {
                 showFirework(on: view)
             }
         }
+    }
+}
+
+final class RecordPresentationAdapter: RecordViewControllerDelegate {
+    private let loader: RecordLoader
+    private let guessCount: Int
+    private let guessTime: TimeInterval
+    private let currentDate: (() -> Date)
+    var presenter: RecordPresenter?
+
+    public init(loader: RecordLoader, guessCount: Int, guessTime: TimeInterval, currentDate: @escaping (() -> Date)) {
+        self.loader = loader
+        self.guessCount = guessCount
+        self.guessTime = guessTime
+        self.currentDate = currentDate
+    }
+    
+    public func didRequestValidateRecord() {
+        presenter?.didValidateRecord(loader.validate(score: (guessCount, guessTime)))
+    }
+    
+    public func didRequestSaveRecord(playerName: String) {
+        let record = PlayerRecord(playerName: playerName, guessCount: guessCount, guessTime: guessTime, timestamp: currentDate())
+        
+        do {
+            try loader.insertNewRecord(record)
+            presenter?.didSaveRecordSuccessfully()
+        } catch {
+            presenter?.didSaveRecord(with: error)
+        }
+    }
+}
+
+final class WeakRefVirtualProxy<T: AnyObject> {
+    private weak var object: T?
+    
+    init(_ object: T) {
+        self.object = object
+    }
+}
+
+extension WeakRefVirtualProxy: RecordValidationView where T: RecordValidationView {
+    func display(_ viewModel: RecordValidationViewModel) {
+        object?.display(viewModel)
+    }
+}
+
+extension WeakRefVirtualProxy: RecordSaveView where T: RecordSaveView {
+    func display(_ viewModel: RecordSaveViewModel) {
+        object?.display(viewModel)
     }
 }
