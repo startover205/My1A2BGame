@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Mastermind
 
 public struct RecordValidationViewModel {
     let isValid: Bool
