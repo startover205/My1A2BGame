@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import My1A2BGame
+import Mastermind
 
 class PromptAppReviewControllerTests: XCTestCase {
     

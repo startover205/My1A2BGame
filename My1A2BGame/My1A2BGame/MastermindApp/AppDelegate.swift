@@ -12,6 +12,7 @@ import GoogleMobileAds
 import AppTrackingTransparency
 import AdSupport
 import Mastermind
+import MastermindiOS
 
 
 @UIApplicationMain
