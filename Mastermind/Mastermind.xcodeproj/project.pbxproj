@@ -83,6 +83,7 @@
 		C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE7026E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift */; };
 		C0D5DE7226E9F028001F4A0D /* AppReviewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6C26E9EEE1001F4A0D /* AppReviewHandler.swift */; };
 		C0D5DE8A26E9F2A6001F4A0D /* AppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8926E9F2A6001F4A0D /* AppReviewController.swift */; };
+		C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +192,7 @@
 		C0D5DE6C26E9EEE1001F4A0D /* AppReviewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewHandler.swift; sourceTree = "<group>"; };
 		C0D5DE7026E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptAppReviewControllerTests.swift; sourceTree = "<group>"; };
 		C0D5DE8926E9F2A6001F4A0D /* AppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewController.swift; sourceTree = "<group>"; };
+		C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +260,7 @@
 				C034AA9E26B67FDA006AABE6 /* Game UI */,
 				C09841F526D0D53500AE72F4 /* Win UI */,
 				C098420B26D4C72F00AE72F4 /* Lose UI */,
+				C0D5DE8B26E9F3E5001F4A0D /* Reward Ad UI */,
 				C034AA7926B67CEA006AABE6 /* Info.plist */,
 			);
 			path = MastermindiOS;
@@ -569,6 +572,22 @@
 			path = "App Review";
 			sourceTree = "<group>";
 		};
+		C0D5DE8B26E9F3E5001F4A0D /* Reward Ad UI */ = {
+			isa = PBXGroup;
+			children = (
+				C0D5DE8C26E9F4C5001F4A0D /* Controllers */,
+			);
+			path = "Reward Ad UI";
+			sourceTree = "<group>";
+		};
+		C0D5DE8C26E9F4C5001F4A0D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +797,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */,
+				C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */,
 				C034AAA126B6800F006AABE6 /* GuessPadViewController.swift in Sources */,
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import GoogleMobileAds
+import MastermindiOS
 
 class GoogleRewardAdManager: NSObject {
     static let shared = GoogleRewardAdManager()

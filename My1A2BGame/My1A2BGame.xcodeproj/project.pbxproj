@@ -15,7 +15,6 @@
 		C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */; };
 		C01A79E526DF096A000A7E7A /* QuizLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */; };
 		C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */; };
-		C01A79E926DF23A0000A7E7A /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E826DF23A0000A7E7A /* AdProvider.swift */; };
 		C01A79EB26DF2703000A7E7A /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EA26DF2703000A7E7A /* Animate.swift */; };
 		C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */; };
 		C01A79F126DF6709000A7E7A /* NavigationAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79F026DF6709000A7E7A /* NavigationAdapterTests.swift */; };
@@ -131,7 +130,6 @@
 		C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdManager.swift; sourceTree = "<group>"; };
 		C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLabelViewController.swift; sourceTree = "<group>"; };
 		C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewController.swift; sourceTree = "<group>"; };
-		C01A79E826DF23A0000A7E7A /* AdProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
 		C01A79EA26DF2703000A7E7A /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
 		C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
 		C01A79F026DF6709000A7E7A /* NavigationAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAdapterTests.swift; sourceTree = "<group>"; };
@@ -449,7 +447,6 @@
 				C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */,
 				C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */,
 				C01A79EA26DF2703000A7E7A /* Animate.swift */,
-				C01A79E826DF23A0000A7E7A /* AdProvider.swift */,
 				C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */,
 				C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */,
 				C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */,
@@ -748,7 +745,6 @@
 			files = (
 				C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */,
 				C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */,
-				C01A79E926DF23A0000A7E7A /* AdProvider.swift in Sources */,
 				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
 				C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,

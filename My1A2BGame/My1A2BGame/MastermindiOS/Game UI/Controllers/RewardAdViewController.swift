@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MastermindiOS
 
 public final class RewardAdViewController {
     init(loader: RewardAdLoader, adRewardChance: Int, countDownTime: TimeInterval, onGrantReward: @escaping () -> Void, hostViewController: UIViewController? = nil) {
