@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mastermind
 
 public protocol RecordViewControllerDelegate {
     func didRequestValidateRecord()

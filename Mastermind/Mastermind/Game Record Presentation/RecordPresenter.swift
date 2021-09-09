@@ -7,22 +7,6 @@
 
 import Foundation
 
-public struct RecordValidationViewModel {
-    let isValid: Bool
-}
-
-public protocol RecordValidationView {
-    func display(_ viewModel: RecordValidationViewModel)
-}
-
-public struct RecordSaveViewModel {
-    let error: Error?
-}
-
-public protocol RecordSaveView {
-    func display(_ viewModel: RecordSaveViewModel)
-}
-
 public final class RecordPresenter {
     private let recordSaveView: RecordSaveView
     private let recordValidationView: RecordValidationView
