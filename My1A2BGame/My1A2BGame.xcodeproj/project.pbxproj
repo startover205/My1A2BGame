@@ -37,7 +37,6 @@
 		C063989A26E452A400698051 /* GAME_TWO_GUESS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C063989826E452A400698051 /* GAME_TWO_GUESS_dark.png */; };
 		C063989D26E4535700698051 /* GAME_RESULT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C063989B26E4535700698051 /* GAME_RESULT_light.png */; };
 		C063989E26E4535700698051 /* GAME_RESULT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C063989C26E4535700698051 /* GAME_RESULT_dark.png */; };
-		C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07575FF224A015E007A1F9E /* Model.xcdatamodeld */; };
 		C0757609224A1C32007A1F9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0757608224A1C32007A1F9E /* CoreDataManager.swift */; };
 		C075760C224B0C81007A1F9E /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760B224B0C81007A1F9E /* String+Localization.swift */; };
 		C075760F224C7A7D007A1F9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760E224C7A7D007A1F9E /* Global.swift */; };
@@ -53,7 +52,6 @@
 		C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420426D4768500AE72F4 /* SharedTestHelpers.swift */; };
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
-		C09EE8D826C10F6400351B07 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C09EE8D626C10F6400351B07 /* ModelAdvanced.xcdatamodeld */; };
 		C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */; };
 		C0A1F4A126B62A1200536D73 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */; };
 		C0A1F4A226B62A1200536D73 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F47F26B62A1100536D73 /* Game.storyboard */; };
@@ -158,7 +156,6 @@
 		C063989826E452A400698051 /* GAME_TWO_GUESS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_TWO_GUESS_dark.png; sourceTree = "<group>"; };
 		C063989B26E4535700698051 /* GAME_RESULT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_RESULT_light.png; sourceTree = "<group>"; };
 		C063989C26E4535700698051 /* GAME_RESULT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_RESULT_dark.png; sourceTree = "<group>"; };
-		C0757600224A015E007A1F9E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C0757608224A1C32007A1F9E /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C075760B224B0C81007A1F9E /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		C075760E224C7A7D007A1F9E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -176,7 +173,6 @@
 		C098420426D4768500AE72F4 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
-		C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
 		C0A1F47F26B62A1100536D73 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
@@ -365,8 +361,6 @@
 		C01BC5CD26A84C2700FA0636 /* Rank */ = {
 			isa = PBXGroup;
 			children = (
-				C07575FF224A015E007A1F9E /* Model.xcdatamodeld */,
-				C09EE8D626C10F6400351B07 /* ModelAdvanced.xcdatamodeld */,
 				C0757608224A1C32007A1F9E /* CoreDataManager.swift */,
 				C075760E224C7A7D007A1F9E /* Global.swift */,
 			);
@@ -772,7 +766,6 @@
 				C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */,
-				C09EE8D826C10F6400351B07 /* ModelAdvanced.xcdatamodeld in Sources */,
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
@@ -782,7 +775,6 @@
 				C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */,
 				C0A1F4A126B62A1200536D73 /* GuessNumberViewController.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
-				C0757601224A015E007A1F9E /* Model.xcdatamodeld in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C01A79E526DF096A000A7E7A /* QuizLabelViewController.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
@@ -1148,29 +1140,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C07575FF224A015E007A1F9E /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C0757600224A015E007A1F9E /* Model.xcdatamodel */,
-			);
-			currentVersion = C0757600224A015E007A1F9E /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		C09EE8D626C10F6400351B07 /* ModelAdvanced.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */,
-			);
-			currentVersion = C09EE8D726C10F6400351B07 /* ModelAdvanced.xcdatamodel */;
-			path = ModelAdvanced.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C014619320BE6BD20023EEB6 /* Project object */;
 }
