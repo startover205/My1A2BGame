@@ -5,8 +5,6 @@
 //  Created by Ming-Ta Yang on 2021/9/8.
 //
 
-import Foundation
-
 public final class RecordPresenter {
     private let recordSaveView: RecordSaveView
     private let recordValidationView: RecordValidationView
