@@ -243,7 +243,6 @@
 		C034AA7726B67CEA006AABE6 /* MastermindiOS */ = {
 			isa = PBXGroup;
 			children = (
-				C098420626D491BE00AE72F4 /* Win Presentation */,
 				C034AA9E26B67FDA006AABE6 /* Game UI */,
 				C09841F526D0D53500AE72F4 /* Win UI */,
 				C098420B26D4C72F00AE72F4 /* Lose UI */,
@@ -361,6 +360,7 @@
 				C098421826D6166C00AE72F4 /* Engine */,
 				C0BF9A6226DC62F4006BD7C1 /* Basic Challenge */,
 				C04B5B1A26C608B40056DDA8 /* Game Record */,
+				C0D5DE6226E9B80C001F4A0D /* Game Record Presentation */,
 				C034C54126B5431300F6166E /* Info.plist */,
 			);
 			path = Mastermind;
@@ -434,15 +434,6 @@
 			children = (
 			);
 			path = "Win UI";
-			sourceTree = "<group>";
-		};
-		C098420626D491BE00AE72F4 /* Win Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				C098420226D33E8600AE72F4 /* RecordViewModel.swift */,
-				C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */,
-			);
-			path = "Win Presentation";
 			sourceTree = "<group>";
 		};
 		C098420B26D4C72F00AE72F4 /* Lose UI */ = {
@@ -534,6 +525,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0D5DE6226E9B80C001F4A0D /* Game Record Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C098420226D33E8600AE72F4 /* RecordViewModel.swift */,
+				C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */,
+			);
+			path = "Game Record Presentation";
 			sourceTree = "<group>";
 		};
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
