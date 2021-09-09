@@ -50,7 +50,6 @@
 		C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F126D0D50900AE72F4 /* ShareViewController.swift */; };
 		C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F226D0D50900AE72F4 /* RecordViewController.swift */; };
 		C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C09841F826D0D56200AE72F4 /* Win.storyboard */; };
-		C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420226D33E8600AE72F4 /* RecordViewModel.swift */; };
 		C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420E26D4C74B00AE72F4 /* LoseViewController.swift */; };
 		C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098421026D4C78000AE72F4 /* Lose.storyboard */; };
 		C098421426D5033800AE72F4 /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098421326D5033800AE72F4 /* FlowTests.swift */; };
@@ -153,7 +152,6 @@
 		C09841F126D0D50900AE72F4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C09841F226D0D50900AE72F4 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		C09841F826D0D56200AE72F4 /* Win.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Win.storyboard; sourceTree = "<group>"; };
-		C098420226D33E8600AE72F4 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		C098420E26D4C74B00AE72F4 /* LoseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
 		C098421026D4C78000AE72F4 /* Lose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lose.storyboard; sourceTree = "<group>"; };
 		C098421326D5033800AE72F4 /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
@@ -530,7 +528,6 @@
 		C0D5DE6226E9B80C001F4A0D /* Game Record Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				C098420226D33E8600AE72F4 /* RecordViewModel.swift */,
 				C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */,
 			);
 			path = "Game Record Presentation";
@@ -749,7 +746,6 @@
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
-				C098420326D33E8600AE72F4 /* RecordViewModel.swift in Sources */,
 				C0D5DE6126E883A8001F4A0D /* RecordPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
