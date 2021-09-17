@@ -189,6 +189,7 @@ private extension AppDelegate {
     
     private func makeGameController(secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void) -> GuessNumberViewController {
         let controller = GameUIComposer.gameComposedWith(
+            title: "a title",
             gameVersion: gameVersion,
             userDefaults: .standard,
             loader: rewardAdLoader,

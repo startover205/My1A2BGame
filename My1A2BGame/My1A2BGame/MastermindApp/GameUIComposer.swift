@@ -13,14 +13,14 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
         inputVC.digitCount = gameVersion.digitCount
 
         let gameViewController = makeGameViewController()
-        gameViewController.title = gameVersion.title
+        gameViewController.title = title
         gameViewController.availableGuess = gameVersion.maxGuessCount
         
         gameViewController.voicePromptViewController = voicePromptViewController

@@ -14,12 +14,11 @@ import GoogleMobileAds
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
-        let gameVersion = makeGameVersion()
-        let sut = makeSUT(gameVersion: gameVersion)
+        let sut = makeSUT(title: "a title")
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.title, gameVersion.title)
+        XCTAssertEqual(sut.title, "a title")
     }
     
     func test_viewComponents_fadeInOnAppear() {
@@ -161,8 +160,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, onRestart: onRestart, animate: animate)
+    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, onRestart: onRestart, animate: animate)
         sut.guessCompletion = guessCompletion
         
         trackForMemoryLeaks(sut, file: file, line: line)
