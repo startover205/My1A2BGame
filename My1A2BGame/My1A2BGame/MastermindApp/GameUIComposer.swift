@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, onWin:  @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -58,7 +58,7 @@ public final class GameUIComposer {
             hostViewController: gameViewController)
         gameViewController.adViewController = adViewController
         
-        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount)
+        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount, secret: secret, onWin: onWin)
         gameViewController.delegate = gamePresentationAdapter
         gamePresentationAdapter.presenter = GamePresenter(gameView: WeakRefVirtualProxy(gameViewController))
         
@@ -136,10 +136,14 @@ protocol GuessNumberViewControllerDelegate {
 
 final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
-    init(maxGuessCount: Int) {
+    init(maxGuessCount: Int, secret: DigitSecret, onWin: @escaping () -> Void) {
         self.leftChanceCount = maxGuessCount
+        self.secret = secret
+        self.onWin = onWin
     }
     
+    let secret: DigitSecret
+    let onWin: () -> Void
     var guessCompletion: GuessCompletion?
     var presenter: GamePresenter?
     
@@ -157,6 +161,10 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         
         presenter?.didUpdateLeftChanceCount(leftChanceCount)
         presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
+        
+        if DigitSecretMatcher.match(guess, with: secret).correct {
+            onWin()
+        }
     }
 }
 

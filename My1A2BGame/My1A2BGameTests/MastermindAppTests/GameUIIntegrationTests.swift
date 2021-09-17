@@ -77,6 +77,32 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.resultMessage, "5634          2A0B\n", "expected latest result after matching")
     }
     
+    func test_guessCorrectly_notifiesWinHandler() {
+        var winCallCount = 0
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let sut = makeSUT(secret: secret, onWin: {
+            winCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        sut.simulateGuess(with: secret)
+        
+        XCTAssertEqual(winCallCount, 1)
+    }
+    
+    func test_guessIncorrectly_doesNotNotifiesWinHandler() {
+        var winCallCount = 0
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let sut = makeSUT(secret: secret, onWin: {
+            winCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
+        
+        XCTAssertEqual(winCallCount, 0)
+    }
+    
     func test_availableGuess_rendersWithEachGuess() {
         let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3), guessCompletion: { guess in
             (nil, false)
@@ -160,8 +186,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, onRestart: onRestart, animate: animate)
+    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, onWin:  @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, onWin: onWin, onRestart: onRestart, animate: animate)
         sut.guessCompletion = guessCompletion
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -214,6 +240,10 @@ private extension GuessNumberViewController {
     
     func simulateGuess(with guess: [String]) {
         tryToMatchNumbers(guessTexts: guess)
+    }
+    
+    func simulateGuess(with guess: DigitSecret) {
+        tryToMatchNumbers(guessTexts: guess.content.compactMap(String.init))
     }
     
     func simulateTapHelperButton() {

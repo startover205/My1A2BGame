@@ -194,6 +194,7 @@ private extension AppDelegate {
             userDefaults: .standard,
             loader: rewardAdLoader,
             secret: secret,
+            onWin: {},
             onRestart: onRestart,
             animate: UIView.animate)
         
