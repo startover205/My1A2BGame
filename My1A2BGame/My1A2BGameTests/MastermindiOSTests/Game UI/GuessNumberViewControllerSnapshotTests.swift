@@ -45,8 +45,7 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func test_gameWithTwoWrongGuesses() {
         let sut = makeSUT()
         
-        sut.simulateGameWithOneGuess()
-        sut.simulateGameWithOneGuess()
+        sut.simulateGameWithTwoGuess()
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_TWO_GUESS_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_TWO_GUESS_dark")
@@ -96,7 +95,14 @@ private extension GameVersion {
 
 private extension GuessNumberViewController {
     func simulateGameWithOneGuess() {
-        tryToMatchNumbers(guessTexts: ["3", "2", "1", "0"])
+        hintViewController.hintLabel.isHidden = false
+        hintViewController.hintLabel.text = "3210          0A4B"
+    }
+    
+    func simulateGameWithTwoGuess() {
+        hintViewController.hintLabel.isHidden = false
+        hintViewController.hintLabel.text = "3210          0A4B"
+        hintViewController.hintTextView.text = "\n3210          0A4B"
     }
     
     func simulateGameEnd() {
