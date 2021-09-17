@@ -123,31 +123,6 @@ extension GuessNumberViewController {
         availableGuess -= 1
 
         delegate?.didRequestMatch(guessTexts.compactMap(Int.init))
-//
-//        availableGuess -= 1
-//
-//        let (hint, correct) = guessCompletion(DigitSecret(digits: guessTexts.compactMap(Int.init))!)
-//
-//        //show result
-//        let guessText = guessTexts.joined()
-//        let result = "\(guessText)          \(hint ?? "")\n"
-//        hintViewController.updateHint(result)
-//
-//        var text = hint ?? "" //for speech
-//
-//        //win
-//        if correct {
-//            feedbackGenerator?.notificationOccurred(.success)
-//            feedbackGenerator = nil
-//
-//            text = NSLocalizedString("Congrats! You won!", comment: "")
-//        } else {
-//            feedbackGenerator?.notificationOccurred(.error)
-//            feedbackGenerator = nil
-//        }
-//
-//        //speech function
-//        voicePromptViewController?.playVoicePromptIfEnabled(message: text)
     }
     
     func onGameLose(){
