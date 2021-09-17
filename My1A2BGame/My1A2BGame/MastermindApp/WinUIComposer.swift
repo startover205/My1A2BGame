@@ -163,3 +163,9 @@ extension WeakRefVirtualProxy: RecordSaveView where T: RecordSaveView {
         object?.display(viewModel)
     }
 }
+
+extension WeakRefVirtualProxy: GameView where T: GameView {
+    func display(_ viewModel: MatchResultViewModel) {
+        object?.display(viewModel)
+    }
+}

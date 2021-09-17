@@ -61,6 +61,10 @@ public final class GameUIComposer {
             hostViewController: gameViewController)
         gameViewController.adViewController = adViewController
         
+        let gamePresentationAdapter = GamePresentationAdapter()
+        gameViewController.delegate = gamePresentationAdapter
+        gamePresentationAdapter.presenter = GamePresenter(gameView: WeakRefVirtualProxy(gameViewController))
+        
         return gameViewController
     }
     
@@ -76,3 +80,50 @@ public final class GameUIComposer {
         return controller
     }
 }
+
+protocol GameView {
+    func display(_ viewModel: MatchResultViewModel)
+}
+
+struct MatchResultViewModel {
+    let matchCorrect: Bool
+    let resultMessage: String
+    let voiceMessage: String
+}
+
+final class GamePresenter {
+    let gameView: GameView
+
+    init(gameView: GameView) {
+        self.gameView = gameView
+    }
+    
+    func didMatchGuess(guess: DigitSecret, hint: String?, matchCorrect: Bool) {
+        let resultMessage = guess.content.compactMap(String.init).joined() + "          \(hint ?? "")\n"
+        
+        let voiceMessage = matchCorrect ? NSLocalizedString("Congrats! You won!", comment: "") : hint ?? ""
+        
+        gameView.display(MatchResultViewModel(
+                            matchCorrect: matchCorrect,
+                            resultMessage: resultMessage,
+                            voiceMessage: voiceMessage))
+    }
+}
+
+protocol GuessNumberViewControllerDelegate {
+    func didRequestMatch(_ guess: [Int])
+}
+
+final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
+    var guessCompletion: GuessCompletion?
+    var presenter: GamePresenter?
+    
+    func didRequestMatch(_ guess: [Int]) {
+        let guess = DigitSecret(digits: guess)!
+        let (hint, correct) = guessCompletion!(guess)
+        
+        presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
+    }
+}
+
+

@@ -20,7 +20,14 @@ public class GuessNumberViewController: UIViewController {
             updateAvailableGuessLabel()
         }
     }
-    var guessCompletion: GuessCompletion!
+    var guessCompletion: GuessCompletion! {
+        didSet {
+            if let presentationAdapter = delegate as? GamePresentationAdapter {
+                presentationAdapter.guessCompletion = guessCompletion
+            }
+        }
+    }
+    var delegate: GuessNumberViewControllerDelegate?
     
     @IBOutlet var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
@@ -98,34 +105,49 @@ extension GuessNumberViewController: GuessPadDelegate {
     }
 }
 
+extension GuessNumberViewController: GameView {
+    func display(_ viewModel: MatchResultViewModel) {
+        let result = viewModel.resultMessage
+        hintViewController.updateHint(result)
+        
+        feedbackGenerator?.notificationOccurred(viewModel.matchCorrect ? .success : .error)
+        feedbackGenerator = nil
+
+        voicePromptViewController?.playVoicePromptIfEnabled(message: viewModel.voiceMessage)
+    }
+}
+
 extension GuessNumberViewController {
     
     func tryToMatchNumbers(guessTexts: [String]) {
-        
         availableGuess -= 1
-        
-        let (hint, correct) = guessCompletion(DigitSecret(digits: guessTexts.compactMap(Int.init))!)
-        
-        //show result
-        let guessText = guessTexts.joined()
-        let result = "\(guessText)          \(hint ?? "")\n"
-        hintViewController.updateHint(result)
-        
-        var text = hint ?? "" //for speech
-        
-        //win
-        if correct {
-            feedbackGenerator?.notificationOccurred(.success)
-            feedbackGenerator = nil
-            
-            text = NSLocalizedString("Congrats! You won!", comment: "")
-        } else {
-            feedbackGenerator?.notificationOccurred(.error)
-            feedbackGenerator = nil
-        }
-        
-        //speech function
-        voicePromptViewController?.playVoicePromptIfEnabled(message: text)
+
+        delegate?.didRequestMatch(guessTexts.compactMap(Int.init))
+//
+//        availableGuess -= 1
+//
+//        let (hint, correct) = guessCompletion(DigitSecret(digits: guessTexts.compactMap(Int.init))!)
+//
+//        //show result
+//        let guessText = guessTexts.joined()
+//        let result = "\(guessText)          \(hint ?? "")\n"
+//        hintViewController.updateHint(result)
+//
+//        var text = hint ?? "" //for speech
+//
+//        //win
+//        if correct {
+//            feedbackGenerator?.notificationOccurred(.success)
+//            feedbackGenerator = nil
+//
+//            text = NSLocalizedString("Congrats! You won!", comment: "")
+//        } else {
+//            feedbackGenerator?.notificationOccurred(.error)
+//            feedbackGenerator = nil
+//        }
+//
+//        //speech function
+//        voicePromptViewController?.playVoicePromptIfEnabled(message: text)
     }
     
     func onGameLose(){
