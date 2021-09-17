@@ -19,7 +19,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onGameLose_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame(rewardAdLoader: .null))
+        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame(rewardAdLoader: .null), guessChanceCount: GameVersion.basic.maxGuessCount)
     }
     
     func test_onGiveUpGame_displayLoseScene_basicGame() {
@@ -27,7 +27,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onNoGameChanceLeft_displaysAd_basicGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: launchBasicGame)
+        assertDisplayingAdOnNoGameChanceLeft(game: launchBasicGame, guessChanceCount: GameVersion.basic.maxGuessCount)
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
@@ -36,7 +36,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onGameLose_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame(rewardAdLoader: .null))
+        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame(rewardAdLoader: .null), guessChanceCount: GameVersion.advanced.maxGuessCount)
     }
     
     func test_onGiveUpGame_displayLoseScene_advancedGame() {
@@ -44,7 +44,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onNoGameChanceLeft_displaysAd_advancedGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: launchAdvancedGame)
+        assertDisplayingAdOnNoGameChanceLeft(game: launchAdvancedGame, guessChanceCount: GameVersion.advanced.maxGuessCount)
     }
     
     // MARK: - Helpers
@@ -123,8 +123,8 @@ private extension GameAcceptanceTests {
         XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage(), file: file, line: line)
     }
     
-    func assertDisplayingLoseSceneOnGameLose(game: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
-        game.simulateGameLose()
+    func assertDisplayingLoseSceneOnGameLose(game: GuessNumberViewController, guessChanceCount: Int, file: StaticString = #filePath, line: UInt = #line) {
+        game.simulateGameLose(guessChanceCount: guessChanceCount)
         
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
     }
@@ -141,13 +141,13 @@ private extension GameAcceptanceTests {
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
     }
     
-    func assertDisplayingAdOnNoGameChanceLeft(game: (RewardAdLoaderStub) -> GuessNumberViewController) {
+    func assertDisplayingAdOnNoGameChanceLeft(game: (RewardAdLoaderStub) -> GuessNumberViewController, guessChanceCount: Int) {
         let ad = RewardAdSpy()
         let game = game(RewardAdLoaderStub.init(ad: ad))
         
         let exp = expectation(description: "wait for presentation complete")
         
-        try? game.simulateOutOfChances() {
+        try? game.simulateOutOfChances(guessChanceCount: guessChanceCount) {
             exp.fulfill()
         }
         
@@ -162,8 +162,8 @@ private extension GuessNumberViewController {
         tryToMatchNumbers(guessTexts: guess.content.compactMap(String.init))
     }
     
-    func simulateGameLose() {
-        for _ in 0..<availableGuess {
+    func simulateGameLose(guessChanceCount: Int) {
+        for _ in 0..<guessChanceCount {
             inputVC.delegate?.padDidFinishEntering(numberTexts: [])
         }
         
@@ -182,8 +182,8 @@ private extension GuessNumberViewController {
         })
     }
     
-    func simulateOutOfChances(completion: @escaping () -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
-        for _ in 0..<availableGuess {
+    func simulateOutOfChances(guessChanceCount: Int, completion: @escaping () -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
+        for _ in 0..<guessChanceCount {
             inputVC.delegate?.padDidFinishEntering(numberTexts: [])
         }
         

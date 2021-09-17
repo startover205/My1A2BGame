@@ -15,11 +15,6 @@ public class GuessNumberViewController: UIViewController {
     var adViewController: RewardAdViewController?
     var onRestart: (() -> Void)?
     var onGiveUp: (() -> Void)?
-    var availableGuess = 0 {
-        didSet {
-            updateAvailableGuessLabel()
-        }
-    }
     var guessCompletion: GuessCompletion! {
         didSet {
             if let presentationAdapter = delegate as? GamePresentationAdapter {
@@ -58,7 +53,7 @@ public class GuessNumberViewController: UIViewController {
         
         fadeOutViews.forEach { $0.alpha = 0 }
         
-        updateAvailableGuessLabel()
+        delegate?.didRequestLeftChanceCountUpdate()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -68,11 +63,6 @@ public class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func guessBtnPressed(_ sender: Any) {
-        guard availableGuess > 0 else {
-            handleNoChanceLeft()
-            return
-        }
-        
         feedbackGenerator = .init()
         feedbackGenerator?.prepare()
         
@@ -115,13 +105,16 @@ extension GuessNumberViewController: GameView {
 
         voicePromptViewController?.playVoicePromptIfEnabled(message: viewModel.voiceMessage)
     }
+    
+    func display(_ viewModel: LeftChanceCountViewModel) {
+        availableGuessLabel?.text = viewModel.message
+        availableGuessLabel?.textColor = viewModel.textColor
+    }
 }
 
 extension GuessNumberViewController {
     
     func tryToMatchNumbers(guessTexts: [String]) {
-        availableGuess -= 1
-
         delegate?.didRequestMatch(guessTexts.compactMap(Int.init))
     }
     
@@ -139,12 +132,6 @@ extension GuessNumberViewController {
         animate?(1, { [weak self] in
             self?.fadeOutViews.forEach { $0.alpha = alpha }
         }, nil)
-    }
-    
-    func updateAvailableGuessLabel() {
-        let format = NSLocalizedString("You can still guess %d times", comment: "")
-        availableGuessLabel?.text = String.localizedStringWithFormat(format, availableGuess)
-        availableGuessLabel?.textColor = availableGuess <= 3 ? UIColor.systemRed : labelColor
     }
     
     private var labelColor: UIColor {

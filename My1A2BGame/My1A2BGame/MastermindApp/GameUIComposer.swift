@@ -21,7 +21,6 @@ public final class GameUIComposer {
 
         let gameViewController = makeGameViewController()
         gameViewController.title = title
-        gameViewController.availableGuess = gameVersion.maxGuessCount
         
         gameViewController.voicePromptViewController = voicePromptViewController
         voicePromptViewController.onToggleSwitch = { [unowned gameViewController] isOn in
@@ -55,13 +54,11 @@ public final class GameUIComposer {
             loader: loader,
             adRewardChance: adRewardChance,
             countDownTime: 5,
-            onGrantReward: { [unowned gameViewController] in
-                gameViewController.availableGuess += adRewardChance
-            },
+            onGrantReward: { },
             hostViewController: gameViewController)
         gameViewController.adViewController = adViewController
         
-        let gamePresentationAdapter = GamePresentationAdapter()
+        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount)
         gameViewController.delegate = gamePresentationAdapter
         gamePresentationAdapter.presenter = GamePresenter(gameView: WeakRefVirtualProxy(gameViewController))
         
@@ -83,6 +80,7 @@ public final class GameUIComposer {
 
 protocol GameView {
     func display(_ viewModel: MatchResultViewModel)
+    func display(_ viewModel: LeftChanceCountViewModel)
 }
 
 struct MatchResultViewModel {
@@ -91,11 +89,32 @@ struct MatchResultViewModel {
     let voiceMessage: String
 }
 
+struct LeftChanceCountViewModel {
+    let message: String
+    let textColor: UIColor
+}
+
 final class GamePresenter {
     let gameView: GameView
 
     init(gameView: GameView) {
         self.gameView = gameView
+    }
+    
+    private var labelColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .label
+        } else {
+            return .darkGray
+        }
+    }
+    
+    func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
+        let format = NSLocalizedString("You can still guess %d times", comment: "")
+
+        let message = String.localizedStringWithFormat(format, leftChanceCount)
+        let textColor = leftChanceCount <= 3 ? UIColor.systemRed : labelColor
+        gameView.display(LeftChanceCountViewModel(message: message, textColor: textColor))
     }
     
     func didMatchGuess(guess: DigitSecret, hint: String?, matchCorrect: Bool) {
@@ -112,16 +131,31 @@ final class GamePresenter {
 
 protocol GuessNumberViewControllerDelegate {
     func didRequestMatch(_ guess: [Int])
+    func didRequestLeftChanceCountUpdate()
 }
 
 final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
+    
+    init(maxGuessCount: Int) {
+        self.leftChanceCount = maxGuessCount
+    }
+    
     var guessCompletion: GuessCompletion?
     var presenter: GamePresenter?
+    
+    private var leftChanceCount: Int
+    
+    func didRequestLeftChanceCountUpdate() {
+        presenter?.didUpdateLeftChanceCount(leftChanceCount)
+    }
     
     func didRequestMatch(_ guess: [Int]) {
         let guess = DigitSecret(digits: guess)!
         let (hint, correct) = guessCompletion!(guess)
         
+        leftChanceCount -= 1
+        
+        presenter?.didUpdateLeftChanceCount(leftChanceCount)
         presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
     }
 }

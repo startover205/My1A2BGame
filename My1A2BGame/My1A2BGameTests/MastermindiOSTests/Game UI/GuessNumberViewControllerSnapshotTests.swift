@@ -77,7 +77,7 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         controller.loadViewIfNeeded()
         controller.helperViewController.animate = animate
         
-        controller.availableGuess = 10
+        controller.availableGuessLabel.text = "10 chances left"
         
         return controller
     }
