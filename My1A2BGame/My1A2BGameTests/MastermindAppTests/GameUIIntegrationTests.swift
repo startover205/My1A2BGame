@@ -103,29 +103,30 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(winCallCount, 0)
     }
     
-    func test_guessCorrectly_doesNotRequestReplenishChanceDelegate() {
+    func test_gameOutOfChance_requestsReplenishChanceDelegateToReplenish() {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
-        let delegate = ReplenishChanceDelegateSpy()
-        let sut = makeSUT(secret: secret, delegate: delegate)
-        
-        sut.loadViewIfNeeded()
-        sut.simulateGuess(with: secret)
-        
-        XCTAssertTrue(delegate.completions.isEmpty)
-    }
-    
-    func test_guessIncorrectly_requestsReplenishChanceDelegateWhenOutOfChance() {
-        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let wrongGuess = DigitSecret(digits: [4, 3, 2, 1])!
         let gameVersion = makeGameVersion(maxGuessCount: 2)
         let delegate = ReplenishChanceDelegateSpy()
         let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate)
         
         sut.loadViewIfNeeded()
-        sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
-        XCTAssertTrue(delegate.completions.isEmpty)
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertTrue(delegate.completions.isEmpty, "Expect no request when guess chance not zero")
         
-        sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
-        XCTAssertEqual(delegate.completions.count, 1)
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(delegate.completions.count, 1, "Expect one request when out of guess chance")
+        
+        delegate.completeReplenish(with: 2, at: 0)
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(delegate.completions.count, 1, "Expect no new request when guess chance not zero")
+        
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(delegate.completions.count, 2, "Expect another request when out of guess chance again")
+        
+        delegate.completeReplenish(with: 1, at: 0)
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(delegate.completions.count, 3, "Expect another request when out of guess chance again")
     }
     
     func test_gameLose_notifiesLoseHandler() {
