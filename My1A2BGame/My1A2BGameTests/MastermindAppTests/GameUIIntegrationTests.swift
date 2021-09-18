@@ -27,15 +27,13 @@ class GameUIIntegrationTests: XCTestCase {
         })
         
         sut.loadViewIfNeeded()
-        
         sut.fadeInCompoenents.forEach {
-            XCTAssertTrue($0.alpha == 0)
+            XCTAssertTrue($0.alpha == 0, "Expect components hidden before view appear")
         }
         
         sut.simulateViewAppear()
-        
         sut.fadeInCompoenents.forEach {
-            XCTAssertTrue($0.alpha != 0)
+            XCTAssertTrue($0.alpha != 0, "Expect components shown after view appear")
         }
     }
     
@@ -168,9 +166,10 @@ class GameUIIntegrationTests: XCTestCase {
         })
         
         sut.loadViewIfNeeded()
+        XCTAssertEqual(restartCallCount, 0, "Expect no restart called on view load")
+
         sut.simulateUserRestartGame()
-        
-        XCTAssertEqual(restartCallCount, 1)
+        XCTAssertEqual(restartCallCount, 1, "Expect restart called after user restarts the game")
     }
     
     func test_giveUp_notifiesGiveUpHandler() {
@@ -181,9 +180,10 @@ class GameUIIntegrationTests: XCTestCase {
         }
 
         sut.loadViewIfNeeded()
-        sut.simulateUserGiveUpGame()
+        XCTAssertEqual(giveUpCallCount, 0, "Expect no give up called on view load")
 
-        XCTAssertEqual(giveUpCallCount, 1)
+        sut.simulateUserGiveUpGame()
+        XCTAssertEqual(giveUpCallCount, 1, "Expect give up called after user gives up the game")
     }
     
     func test_deallocation_doesNotRetain() {
@@ -199,15 +199,12 @@ class GameUIIntegrationTests: XCTestCase {
         })
 
         sut.loadViewIfNeeded()
-
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden upon view load")
 
         sut.simulateTapHelperButton()
-
         XCTAssertTrue(sut.showingHelperView, "Expect helper view to be shown when helper button pressed")
 
         sut.simulateTapHelperButton()
-
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
     
@@ -216,11 +213,10 @@ class GameUIIntegrationTests: XCTestCase {
         let nav = UINavigationController(rootViewController: sut)
         
         sut.loadViewIfNeeded()
+        XCTAssertFalse(nav.topViewController is InstructionViewController)
         
         sut.simulateTapInstructionButton()
-        
         RunLoop.current.run(until: Date())
-        
         XCTAssertTrue(nav.topViewController is InstructionViewController)
     }
 
