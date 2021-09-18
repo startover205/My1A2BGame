@@ -29,6 +29,10 @@ extension WeakRefVirtualProxy: RecordSaveView where T: RecordSaveView {
 }
 
 extension WeakRefVirtualProxy: GameView where T: GameView {
+    func displayGameEnd() {
+        object?.displayGameEnd()
+    }
+    
     func display(_ viewModel: LeftChanceCountViewModel) {
         object?.display(viewModel)
     }

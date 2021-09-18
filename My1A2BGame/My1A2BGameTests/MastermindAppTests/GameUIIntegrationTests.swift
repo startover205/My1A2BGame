@@ -141,6 +141,28 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(winCallCount, 1, "Expect win handler called after a right guess is made")
     }
     
+    func test_gameLose_rendersGameEnded() {
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let gameVersion = makeGameVersion(maxGuessCount: 1)
+        let delegate = ReplenishChanceDelegateSpy()
+        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate)
+        
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game lose")
+        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game lose")
+        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game lose")
+        
+        sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
+        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game lose")
+        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game lose")
+        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game lose")
+
+        delegate.completeReplenish(with: 0)
+        XCTAssertFalse(sut.isShowingGameOngoingComponents, "Expect game not ongoing after game lose")
+        XCTAssertTrue(sut.isShowingGameEndedComponents, "Expect game ended after game lose")
+        XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game lose")
+    }
+    
     func test_availableGuess_rendersWithEachGuess() {
         let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3), guessCompletion: { guess in
             (nil, false)
@@ -222,7 +244,7 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), onWin: @escaping () -> Void = {}, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), onWin: @escaping () -> Void = {}, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, completion in completion?(true) }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
         let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, delegate: delegate, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         sut.guessCompletion = guessCompletion
         
@@ -278,6 +300,24 @@ private extension GuessNumberViewController {
         } else {
             return false
         }
+    }
+    
+    var isShowingGameEndedComponents: Bool {
+        guessButton.isHidden && quitButton.isHidden && !restartButton.isHidden && helperViewController.helperBoardView.isHidden
+    }
+    
+    var isShowingGameOngoingComponents: Bool {
+        !guessButton.isHidden && !quitButton.isHidden && restartButton.isHidden
+    }
+    
+    func isShowingSecret(secret: DigitSecret) -> Bool {
+        for (index, label) in quizLabelViewController.quizLabels.enumerated() {
+            if label.text != secret.content[index].description {
+                return false
+            }
+        }
+        
+        return true
     }
     
     func simulateViewAppear() { viewWillAppear(false) }

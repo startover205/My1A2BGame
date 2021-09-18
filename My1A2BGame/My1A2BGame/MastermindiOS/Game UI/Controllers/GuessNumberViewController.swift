@@ -110,6 +110,10 @@ extension GuessNumberViewController: GameView {
         availableGuessLabel?.text = viewModel.message
         availableGuessLabel?.textColor = viewModel.textColor
     }
+    
+    func displayGameEnd() {
+        configureViewsForGameResult()
+    }
 }
 
 extension GuessNumberViewController {

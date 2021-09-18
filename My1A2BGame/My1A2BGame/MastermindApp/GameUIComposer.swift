@@ -81,6 +81,7 @@ public final class GameUIComposer {
 protocol GameView {
     func display(_ viewModel: MatchResultViewModel)
     func display(_ viewModel: LeftChanceCountViewModel)
+    func displayGameEnd()
 }
 
 struct MatchResultViewModel {
@@ -126,6 +127,10 @@ final class GamePresenter {
                             matchCorrect: matchCorrect,
                             resultMessage: resultMessage,
                             voiceMessage: voiceMessage))
+    }
+    
+    func didEndGame() {
+        gameView.displayGameEnd()
     }
 }
 
@@ -176,6 +181,8 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     private func handleOutOfChance() {
         delegate.replenishChance { [weak self] replenishCount in
             if replenishCount <= 0 {
+                self?.presenter?.didEndGame()
+                
                 self?.onLose()
             } else {
                 self?.leftChanceCount += replenishCount
