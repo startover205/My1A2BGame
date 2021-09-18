@@ -193,22 +193,27 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game win")
     }
     
-    func test_availableGuess_rendersWithEachGuess() {
-        let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3), guessCompletion: { guess in
-            (nil, false)
-        })
+    func test_guessAndReplenish_rendersAvailableGuessCount() {
+        let gameVersion = makeGameVersion(maxGuessCount: 3)
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let wrongGuess = DigitSecret(digits: [4, 3, 2, 1])!
+        let delegate = ReplenishChanceDelegateSpy()
+        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate)
 
         sut.loadViewIfNeeded()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "expect max guess count once view is loaded")
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 3), "Expect max guess count once view is loaded")
 
-        sut.simulateUserInitiateGuess()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2), "expect guess count minus 1 after user guess")
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 2), "Expect guess count minus 1 after user guess")
 
-        sut.simulateUserInitiateGuess()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1), "expect guess count minus 1 after user guess")
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 1), "Expect guess count minus 1 after user guess")
 
-        sut.simulateUserInitiateGuess()
-        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "expect guess count minus 1 after user guess")
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 0), "Expect guess count minus 1 after user guess")
+        
+        delegate.completeReplenish(with: 5)
+        XCTAssertEqual(sut.availableGuessMessage, guessMessageFor(guessCount: 5), "Expect guess count increases replenish chance count")
     }
     
     func test_restart_notifiesRestartHandler() {

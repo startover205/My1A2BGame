@@ -182,12 +182,16 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
     private func handleOutOfChance() {
         delegate.replenishChance { [weak self] replenishCount in
+            guard let self = self else { return }
+            
             if replenishCount <= 0 {
-                self?.presenter?.didEndGame()
+                self.presenter?.didEndGame()
                 
-                self?.onLose()
+                self.onLose()
             } else {
-                self?.leftChanceCount += replenishCount
+                self.leftChanceCount += replenishCount
+                
+                self.presenter?.didUpdateLeftChanceCount(self.leftChanceCount)
             }
         }
     }
