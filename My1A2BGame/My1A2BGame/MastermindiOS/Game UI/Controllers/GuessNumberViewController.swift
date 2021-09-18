@@ -12,7 +12,6 @@ import MastermindiOS
 
 public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
-    var adViewController: RewardAdViewController?
     var onRestart: (() -> Void)?
     var onGiveUp: (() -> Void)?
     var guessCompletion: GuessCompletion! {
@@ -67,16 +66,6 @@ public class GuessNumberViewController: UIViewController {
         feedbackGenerator?.prepare()
         
         present(inputNavigationController, animated: true)
-    }
-    
-    private func handleNoChanceLeft() {
-        if adViewController?.adAvailable() == true {
-            adViewController?.askUserToWatchAd { [weak self] success in
-                if !success { self?.onGameLose() }
-            }
-        } else {
-            onGameLose()
-        }
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {

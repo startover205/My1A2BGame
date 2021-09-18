@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
+    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -49,16 +49,12 @@ public final class GameUIComposer {
         
         gameViewController.hintViewController.animate = animate
         
-        let adRewardChance = Constants.adGrantChances
-        let adViewController = RewardAdViewController(
-            loader: loader,
-            adRewardChance: adRewardChance,
-            countDownTime: 5,
-            onGrantReward: { },
-            hostViewController: gameViewController)
-        gameViewController.adViewController = adViewController
-        
-        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose)
+        let gamePresentationAdapter = GamePresentationAdapter(
+            maxGuessCount: gameVersion.maxGuessCount,
+            secret: secret, delegate: delegate,
+            currentDeviceTime: currentDeviceTime,
+            onWin: onWin,
+            onLose: onLose)
         gameViewController.delegate = gamePresentationAdapter
         gamePresentationAdapter.presenter = GamePresenter(gameView: WeakRefVirtualProxy(gameViewController))
         

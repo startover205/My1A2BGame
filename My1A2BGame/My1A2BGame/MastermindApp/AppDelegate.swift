@@ -164,7 +164,6 @@ private extension AppDelegate {
             title: gameVersion.title,
             gameVersion: gameVersion,
             userDefaults: .standard,
-            loader: rewardAdLoader,
             secret: secret,
             delegate: rewardAdViewController,
             onWin: { score in
