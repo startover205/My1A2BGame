@@ -133,14 +133,12 @@ private extension AppDelegate {
     private func startNewBasicGame() {
         let gameVersion = basicGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
-        let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, adRewardChance: Constants.adGrantChances, countDownTime: 5.0, onGrantReward: {})
         let gameController = makeGameController(
             navigationController: basicGameNavigationController,
             secret: secret,
             gameVersion: gameVersion,
             recordLoader: basicRecordLoader,
             onRestart: startNewBasicGame)
-        rewardAdViewController.hostViewController = gameController
         
         basicGameNavigationController.setViewControllers([gameController], animated: false)
     }
@@ -159,7 +157,7 @@ private extension AppDelegate {
     }
     
     private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onRestart: @escaping () -> Void) -> GuessNumberViewController {
-        let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, adRewardChance: Constants.adGrantChances, countDownTime: 5.0, onGrantReward: {})
+        let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, adRewardChance: Constants.adGrantChances, countDownTime: 5.0)
         let controller = GameUIComposer.gameComposedWith(
             title: gameVersion.title,
             gameVersion: gameVersion,
