@@ -194,6 +194,7 @@ private extension AppDelegate {
             userDefaults: .standard,
             loader: rewardAdLoader,
             secret: secret,
+            delegate: NullReplenishChanceDelegate(),
             onWin: {},
             onRestart: onRestart,
             animate: UIView.animate)
@@ -244,6 +245,12 @@ private extension AppDelegate {
     
     private func storeURL(for modelName: String) -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(modelName + ".sqlite")
+    }
+    
+    private final class NullReplenishChanceDelegate: ReplenishChanceDelegate {
+        func replenishChance(completion: @escaping (Int) -> Void) {
+            completion(0)
+        }
     }
 }
 

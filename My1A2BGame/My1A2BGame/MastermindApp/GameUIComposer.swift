@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, onWin:  @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, delegate: ReplenishChanceDelegate, onWin: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -58,7 +58,7 @@ public final class GameUIComposer {
             hostViewController: gameViewController)
         gameViewController.adViewController = adViewController
         
-        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount, secret: secret, onWin: onWin)
+        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount, secret: secret, delegate: delegate, onWin: onWin)
         gameViewController.delegate = gamePresentationAdapter
         gamePresentationAdapter.presenter = GamePresenter(gameView: WeakRefVirtualProxy(gameViewController))
         
@@ -136,13 +136,15 @@ protocol GuessNumberViewControllerDelegate {
 
 final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
-    init(maxGuessCount: Int, secret: DigitSecret, onWin: @escaping () -> Void) {
+    init(maxGuessCount: Int, secret: DigitSecret, delegate: ReplenishChanceDelegate, onWin: @escaping () -> Void) {
         self.leftChanceCount = maxGuessCount
         self.secret = secret
+        self.delegate = delegate
         self.onWin = onWin
     }
     
     let secret: DigitSecret
+    let delegate: ReplenishChanceDelegate
     let onWin: () -> Void
     var guessCompletion: GuessCompletion?
     var presenter: GamePresenter?
@@ -164,6 +166,8 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         
         if DigitSecretMatcher.match(guess, with: secret).correct {
             onWin()
+        } else if leftChanceCount == 0 {
+            delegate.replenishChance(completion: { _ in })
         }
     }
 }
