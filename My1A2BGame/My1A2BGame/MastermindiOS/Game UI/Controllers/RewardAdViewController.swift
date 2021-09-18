@@ -23,7 +23,7 @@ public final class RewardAdViewController {
     private let countDownTime: TimeInterval
     private let onGrantReward: () -> Void
     
-    private weak var hostViewController: UIViewController?
+    weak var hostViewController: UIViewController?
     
     func adAvailable() -> Bool { loader.rewardAd != nil }
     

@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -168,7 +168,7 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
     func didRequestMatch(_ guess: [Int]) {
         let guess = DigitSecret(digits: guess)!
-        let (hint, correct) = guessCompletion!(guess)
+        let (hint, correct) = DigitSecretMatcher.match(guess, with: secret)
         
         leftChanceCount -= 1
         guessCount += 1
@@ -180,7 +180,7 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         presenter?.didUpdateLeftChanceCount(leftChanceCount)
         presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
         
-        if DigitSecretMatcher.match(guess, with: secret).correct {
+        if correct {
             presenter?.didEndGame()
             
             let guessTime = currentDeviceTime() - (gameStartTime ?? 0.0)

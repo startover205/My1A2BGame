@@ -40,9 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
 
-    private var basicChallenge: Challenge?
-    private var advancedChallenge: Challenge?
-    
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced
     
@@ -136,69 +133,48 @@ private extension AppDelegate {
     private func startNewBasicGame() {
         let gameVersion = basicGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
-        let delegate = makeGameDelegate(
+        let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, adRewardChance: Constants.adGrantChances, countDownTime: 5.0, onGrantReward: {})
+        let gameController = makeGameController(
             navigationController: basicGameNavigationController,
             secret: secret,
             gameVersion: gameVersion,
-            onRestart: startNewBasicGame,
-            recordLoader: basicRecordLoader)
+            recordLoader: basicRecordLoader,
+            onRestart: startNewBasicGame)
+        rewardAdViewController.hostViewController = gameController
         
-        basicChallenge = Challenge.start(
-            secret: secret,
-            maxChanceCount: gameVersion.maxGuessCount,
-            matchGuess: DigitSecretMatcher.match(_:with:),
-            delegate: delegate)
+        basicGameNavigationController.setViewControllers([gameController], animated: false)
     }
     
     private func startNewAdvancedGame() {
         let gameVersion = advancedGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
-        let delegate = makeGameDelegate(
+        let gameController = makeGameController(
             navigationController: advancedGameNavigationController,
             secret: secret,
             gameVersion: gameVersion,
-            onRestart: startNewAdvancedGame,
-            recordLoader: advancedRecordLoader)
+            recordLoader: advancedRecordLoader,
+            onRestart: startNewAdvancedGame)
         
-        advancedChallenge = Challenge.start(
-            secret: secret,
-            maxChanceCount: gameVersion.maxGuessCount,
-            matchGuess: DigitSecretMatcher.match(_:with:),
-            delegate: delegate)
+        advancedGameNavigationController.setViewControllers([gameController], animated: false)
     }
     
-    private func makeGameDelegate(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void, recordLoader: RecordLoader) -> GameNavigationAdapter {
-        let gameController = makeGameController(secret: secret, gameVersion: gameVersion, onRestart: onRestart)
-        let rewardAdController = RewardAdViewController(
-            loader: rewardAdLoader,
-            adRewardChance: 5,
-            countDownTime: 5.0,
-            onGrantReward: {},
-            hostViewController: gameController)
-        let delegate = GameNavigationAdapter(
-            navigationController: navigationController,
-            gameComposer: adaptGameControllerToGameComposer(controller: gameController),
-            winComposer: makeWinComposer(
-                digitCount: gameVersion.digitCount,
-                recordLoader: recordLoader),
-            loseComposer: LoseUIComposer.loseScene,
-            delegate: rewardAdController,
-            currentDeviceTime: CACurrentMediaTime)
-        return delegate
-    }
-    
-    private func makeGameController(secret: DigitSecret, gameVersion: GameVersion, onRestart: @escaping () -> Void) -> GuessNumberViewController {
+    private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onRestart: @escaping () -> Void) -> GuessNumberViewController {
+        let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, adRewardChance: Constants.adGrantChances, countDownTime: 5.0, onGrantReward: {})
         let controller = GameUIComposer.gameComposedWith(
-            title: "a title",
+            title: gameVersion.title,
             gameVersion: gameVersion,
             userDefaults: .standard,
             loader: rewardAdLoader,
             secret: secret,
-            delegate: NullReplenishChanceDelegate(),
-            onWin: { _ in },
-            onLose: {},
-            onRestart: onRestart,
-            animate: UIView.animate)
+            delegate: rewardAdViewController,
+            onWin: { score in
+                let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader)
+                navigationController.pushViewController(winController, animated: true)
+            },
+            onLose: {
+                navigationController.pushViewController(LoseUIComposer.loseScene(), animated: true)
+            },
+            onRestart: onRestart)
         
         controller.onGiveUp = { [weak controller] in
             let alert = UIAlertController(
@@ -223,35 +199,13 @@ private extension AppDelegate {
             controller?.present(alert, animated: true)
         }
         
+        rewardAdViewController.hostViewController = controller
+        
         return controller
-    }
-    
-    private func adaptGameControllerToGameComposer(controller: GuessNumberViewController) -> (@escaping GuessCompletion) -> UIViewController {
-        return { guessCompletion in
-            
-            controller.guessCompletion = guessCompletion
-            
-            return controller
-        }
-    }
-    
-    private func makeWinComposer(digitCount: Int, recordLoader: RecordLoader) -> (Score) -> UIViewController {
-        return { score in
-            WinUIComposer.winComposedWith(
-                score: score,
-                digitCount: digitCount,
-                recordLoader: recordLoader)
-        }
     }
     
     private func storeURL(for modelName: String) -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(modelName + ".sqlite")
-    }
-    
-    private final class NullReplenishChanceDelegate: ReplenishChanceDelegate {
-        func replenishChance(completion: @escaping (Int) -> Void) {
-            completion(0)
-        }
     }
 }
 
