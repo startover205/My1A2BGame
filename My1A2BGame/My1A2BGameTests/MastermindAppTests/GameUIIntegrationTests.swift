@@ -147,6 +147,29 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loseCallCount, 1, "Expect lose handler called once delegate complete replenishing")
     }
     
+    func test_gameWin_notifiesWinHandlerAfterOutOfChanceTwice() {
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let wrongGuess = DigitSecret(digits: [4, 3, 2, 1])!
+        let gameVersion = makeGameVersion(maxGuessCount: 1)
+        let delegate = ReplenishChanceDelegateSpy()
+        var winCallCount = 0
+        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate, onWin: {
+            winCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(winCallCount, 0, "Expect win handler not called before a right guess is made")
+
+        delegate.completeReplenish(with: 1, at: 0)
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(winCallCount, 0, "Expect win handler not called before a right guess is made")
+        
+        delegate.completeReplenish(with: 1, at: 1)
+        sut.simulateGuess(with: secret)
+        XCTAssertEqual(winCallCount, 1, "Expect win handler called after a right guess is made")
+    }
+    
     func test_availableGuess_rendersWithEachGuess() {
         let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3), guessCompletion: { guess in
             (nil, false)
