@@ -195,7 +195,7 @@ private extension AppDelegate {
             loader: rewardAdLoader,
             secret: secret,
             delegate: NullReplenishChanceDelegate(),
-            onWin: {},
+            onWin: { _ in },
             onLose: {},
             onRestart: onRestart,
             animate: UIView.animate)

@@ -124,7 +124,14 @@ class GameUIIntegrationTests: XCTestCase {
         let gameVersion = makeGameVersion(maxGuessCount: 1)
         let delegate = ReplenishChanceDelegateSpy()
         var winCallCount = 0
-        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate, onWin: {
+        var timerCount = 0.0
+        let currentDeviceTime: () -> TimeInterval = {
+            timerCount += 1
+            return timerCount * 3.0
+        }
+        var capturedScore: Score?
+        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: { score in
+            capturedScore = score
             winCallCount += 1
         })
         
@@ -139,6 +146,8 @@ class GameUIIntegrationTests: XCTestCase {
         delegate.completeReplenish(with: 1, at: 1)
         sut.simulateGuess(with: secret)
         XCTAssertEqual(winCallCount, 1, "Expect win handler called after a right guess is made")
+        XCTAssertEqual(capturedScore?.guessCount, 3, "Expect score matching guess count")
+        XCTAssertEqual(capturedScore?.guessTime, 3.0, "Expect score matching guess time")
     }
     
     func test_gameLose_rendersGameEnded() {
@@ -169,10 +178,7 @@ class GameUIIntegrationTests: XCTestCase {
         let wrongGuess = DigitSecret(digits: [4, 3, 2, 1])!
         let gameVersion = makeGameVersion(maxGuessCount: 1)
         let delegate = ReplenishChanceDelegateSpy()
-        var winCallCount = 0
-        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate, onWin: {
-            winCallCount += 1
-        })
+        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate)
         
         sut.loadViewIfNeeded()
         sut.simulateGuess(with: wrongGuess)
@@ -279,8 +285,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), onWin: @escaping () -> Void = {}, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, completion in completion?(true) }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, delegate: delegate, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
+    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void = { _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, completion in completion?(true) }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, loader: RewardAdLoaderFake(), secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         sut.guessCompletion = guessCompletion
         
         trackForMemoryLeaks(sut, file: file, line: line)

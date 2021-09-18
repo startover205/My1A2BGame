@@ -13,7 +13,7 @@ import MastermindiOS
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, delegate: ReplenishChanceDelegate, onWin: @escaping () -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
+    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, loader: RewardAdLoader, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate) -> GuessNumberViewController {
         let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
         
         let inputVC = makeInputPadUI()
@@ -58,7 +58,7 @@ public final class GameUIComposer {
             hostViewController: gameViewController)
         gameViewController.adViewController = adViewController
         
-        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount, secret: secret, delegate: delegate, onWin: onWin, onLose: onLose)
+        let gamePresentationAdapter = GamePresentationAdapter(maxGuessCount: gameVersion.maxGuessCount, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose)
         gameViewController.delegate = gamePresentationAdapter
         gamePresentationAdapter.presenter = GamePresenter(gameView: WeakRefVirtualProxy(gameViewController))
         
@@ -141,22 +141,26 @@ protocol GuessNumberViewControllerDelegate {
 
 final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
-    init(maxGuessCount: Int, secret: DigitSecret, delegate: ReplenishChanceDelegate, onWin: @escaping () -> Void, onLose: @escaping () -> Void) {
+    init(maxGuessCount: Int, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void) {
         self.leftChanceCount = maxGuessCount
         self.secret = secret
         self.delegate = delegate
+        self.currentDeviceTime = currentDeviceTime
         self.onWin = onWin
         self.onLose = onLose
     }
     
     let secret: DigitSecret
     let delegate: ReplenishChanceDelegate
-    let onWin: () -> Void
+    let currentDeviceTime: () -> TimeInterval
+    let onWin: (Score) -> Void
     let onLose: () -> Void
     var guessCompletion: GuessCompletion?
     var presenter: GamePresenter?
     
     private var leftChanceCount: Int
+    private var gameStartTime: TimeInterval?
+    private var guessCount = 0
     
     func didRequestLeftChanceCountUpdate() {
         presenter?.didUpdateLeftChanceCount(leftChanceCount)
@@ -167,6 +171,11 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         let (hint, correct) = guessCompletion!(guess)
         
         leftChanceCount -= 1
+        guessCount += 1
+        
+        if gameStartTime == nil {
+            gameStartTime = currentDeviceTime()
+        }
         
         presenter?.didUpdateLeftChanceCount(leftChanceCount)
         presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
@@ -174,7 +183,9 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         if DigitSecretMatcher.match(guess, with: secret).correct {
             presenter?.didEndGame()
             
-            onWin()
+            let guessTime = currentDeviceTime() - (gameStartTime ?? 0.0)
+            
+            onWin((guessCount, guessTime))
         } else if leftChanceCount == 0 {
             handleOutOfChance()
         }
