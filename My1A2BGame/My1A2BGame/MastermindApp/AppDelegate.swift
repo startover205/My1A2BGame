@@ -196,6 +196,7 @@ private extension AppDelegate {
             secret: secret,
             delegate: NullReplenishChanceDelegate(),
             onWin: {},
+            onLose: {},
             onRestart: onRestart,
             animate: UIView.animate)
         
