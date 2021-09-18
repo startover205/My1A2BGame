@@ -77,32 +77,6 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.resultMessage, "5634          2A0B\n", "expected latest result after matching")
     }
     
-    func test_guessCorrectly_notifiesWinHandler() {
-        var winCallCount = 0
-        let secret = DigitSecret(digits: [1, 2, 3, 4])!
-        let sut = makeSUT(secret: secret, onWin: {
-            winCallCount += 1
-        })
-        
-        sut.loadViewIfNeeded()
-        sut.simulateGuess(with: secret)
-        
-        XCTAssertEqual(winCallCount, 1)
-    }
-    
-    func test_guessIncorrectly_doesNotNotifiesWinHandler() {
-        var winCallCount = 0
-        let secret = DigitSecret(digits: [1, 2, 3, 4])!
-        let sut = makeSUT(secret: secret, onWin: {
-            winCallCount += 1
-        })
-        
-        sut.loadViewIfNeeded()
-        sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
-        
-        XCTAssertEqual(winCallCount, 0)
-    }
-    
     func test_gameOutOfChance_requestsReplenishChanceDelegateToReplenish() {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
         let wrongGuess = DigitSecret(digits: [4, 3, 2, 1])!
@@ -140,11 +114,9 @@ class GameUIIntegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
-        
         XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called before delegate complete replenishing")
 
         delegate.completeReplenish(with: 0)
-        
         XCTAssertEqual(loseCallCount, 1, "Expect lose handler called once delegate complete replenishing")
     }
     
