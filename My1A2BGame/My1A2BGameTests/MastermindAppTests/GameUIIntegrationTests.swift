@@ -163,6 +163,36 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game lose")
     }
     
+    
+    func test_gameWin_rendersGameEnded() {
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let wrongGuess = DigitSecret(digits: [4, 3, 2, 1])!
+        let gameVersion = makeGameVersion(maxGuessCount: 1)
+        let delegate = ReplenishChanceDelegateSpy()
+        var winCallCount = 0
+        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate, onWin: {
+            winCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game win")
+        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game win")
+        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game win")
+
+        delegate.completeReplenish(with: 1, at: 0)
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game win")
+        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game win")
+        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game win")
+
+        delegate.completeReplenish(with: 1, at: 1)
+        sut.simulateGuess(with: secret)
+        XCTAssertFalse(sut.isShowingGameOngoingComponents, "Expect game not ongoing after game win")
+        XCTAssertTrue(sut.isShowingGameEndedComponents, "Expect game ended after game win")
+        XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game win")
+    }
+    
     func test_availableGuess_rendersWithEachGuess() {
         let sut = makeSUT(gameVersion: makeGameVersion(maxGuessCount: 3), guessCompletion: { guess in
             (nil, false)

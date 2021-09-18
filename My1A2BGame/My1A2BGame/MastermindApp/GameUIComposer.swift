@@ -172,6 +172,8 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
         
         if DigitSecretMatcher.match(guess, with: secret).correct {
+            presenter?.didEndGame()
+            
             onWin()
         } else if leftChanceCount == 0 {
             handleOutOfChance()
