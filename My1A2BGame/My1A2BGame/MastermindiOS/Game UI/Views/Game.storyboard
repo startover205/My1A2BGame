@@ -439,7 +439,7 @@
         <!--Instruction View Controller-->
         <scene sceneID="Jw2-sG-991">
             <objects>
-                <viewController id="iTx-Eq-N44" customClass="InstructionViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iTx-Eq-N44" customClass="InstructionViewController" customModule="MastermindiOS" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CWE-HY-tSa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

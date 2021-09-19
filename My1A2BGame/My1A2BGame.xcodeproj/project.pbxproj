@@ -44,7 +44,6 @@
 		C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420426D4768500AE72F4 /* SharedTestHelpers.swift */; };
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
-		C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */; };
 		C0A1F4A126B62A1200536D73 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */; };
 		C0A1F4A226B62A1200536D73 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F47F26B62A1100536D73 /* Game.storyboard */; };
 		C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48126B62A1100536D73 /* KeyboardButton.swift */; };
@@ -153,7 +152,6 @@
 		C098420426D4768500AE72F4 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
-		C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
 		C0A1F47F26B62A1100536D73 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		C0A1F48126B62A1100536D73 /* KeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
@@ -428,7 +426,6 @@
 		C0A1F47826B62A1100536D73 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */,
 				C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */,
 				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
 			);
@@ -723,7 +720,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */,
-				C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */,
 				C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */,
 				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
 				C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */,
