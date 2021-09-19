@@ -199,18 +199,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C009191C26AD5CA600544115 /* MastermindAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				C0E601A326ADB00A006C8D6D /* Helpers */,
-				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
-				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
-				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
-				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
-			);
-			path = MastermindAppTests;
-			sourceTree = "<group>";
-		};
 		C014619220BE6BD20023EEB6 = {
 			isa = PBXGroup;
 			children = (
@@ -315,8 +303,12 @@
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
 			isa = PBXGroup;
 			children = (
-				C009191C26AD5CA600544115 /* MastermindAppTests */,
+				C0E601A326ADB00A006C8D6D /* Helpers */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
+				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
+				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
+				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
+				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
