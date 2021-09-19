@@ -274,6 +274,7 @@
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
 				C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */,
 				C009191F26AD5E0500544115 /* GameUIComposer.swift */,
+				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
 				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
 				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
@@ -328,18 +329,9 @@
 		C0A1F47726B62A1100536D73 /* Game UI */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F47826B62A1100536D73 /* Controllers */,
 				C0A1F47E26B62A1100536D73 /* Views */,
 			);
 			path = "Game UI";
-			sourceTree = "<group>";
-		};
-		C0A1F47826B62A1100536D73 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		C0A1F47E26B62A1100536D73 /* Views */ = {
