@@ -334,10 +334,10 @@
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
 				C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */,
 				C009191F26AD5E0500544115 /* GameUIComposer.swift */,
+				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
 				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
 				C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */,
-				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
 			);
 			path = MastermindApp;
 			sourceTree = "<group>";
