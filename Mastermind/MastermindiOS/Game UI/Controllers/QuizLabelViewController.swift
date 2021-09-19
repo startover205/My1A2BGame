@@ -9,13 +9,13 @@
 import UIKit
 
 public final class QuizLabelViewController: NSObject {
-    @IBOutlet weak var quizLabelContainer: UIStackView!
-    
-    public var answer: [Int]!
+    @IBOutlet private(set) public weak var quizLabelContainer: UIStackView!
     
     private(set) public var quizLabels = [UILabel]()
+    
+    public var answer: [Int]!
 
-    func configureViews() {
+    public func configureViews() {
         for _ in 0 ..< answer.count {
             let label = makeQuizLabel()
             quizLabelContainer.addArrangedSubview(label)
@@ -26,14 +26,14 @@ public final class QuizLabelViewController: NSObject {
         quizLabelContainer.layoutIfNeeded()
     }
     
-    func hideAnswer() {
+    public func hideAnswer() {
         quizLabels.forEach {
             $0.text = "?"
             $0.textColor = .systemRed
         }
     }
     
-    func revealAnswer() {
+    public func revealAnswer() {
         answer.enumerated().forEach { index, digit in
             let label = quizLabels[index]
             label.text = digit.description

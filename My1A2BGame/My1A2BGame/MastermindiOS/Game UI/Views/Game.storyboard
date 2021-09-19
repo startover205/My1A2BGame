@@ -428,7 +428,7 @@
                         <outletCollection property="helperNumberButtons" destination="Fng-TS-14R" collectionClass="NSMutableArray" id="Ifg-Yb-hyz"/>
                     </connections>
                 </customObject>
-                <customObject id="XYD-0Q-4J3" customClass="QuizLabelViewController" customModule="My1A2BGame" customModuleProvider="target">
+                <customObject id="XYD-0Q-4J3" customClass="QuizLabelViewController" customModule="MastermindiOS">
                     <connections>
                         <outlet property="quizLabelContainer" destination="Xno-IJ-0VX" id="GBb-Ip-pB7"/>
                     </connections>
