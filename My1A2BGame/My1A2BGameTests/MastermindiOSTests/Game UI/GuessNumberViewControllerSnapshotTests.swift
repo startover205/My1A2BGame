@@ -70,9 +70,6 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
             completion?(true)
         }
         controller.animate = animate
-        controller.guessCompletion = { _ in
-            (nil, false)
-        }
         
         controller.loadViewIfNeeded()
         controller.helperViewController.animate = animate

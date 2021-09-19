@@ -61,9 +61,7 @@ class GameUIIntegrationTests: XCTestCase {
         let secret = DigitSecret(digits: answer.compactMap(Int.init))!
         let guess1 = ["5", "2", "3", "4"]
         let guess2 = ["5", "6", "3", "4"]
-        let sut = makeSUT(secret: secret) { guess in
-            DigitSecretMatcher.match(guess, with: secret)
-        }
+        let sut = makeSUT(secret: secret) 
         
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.resultMessage, "", "expected no text after loading")
@@ -285,9 +283,8 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, guessCompletion: @escaping GuessCompletion = { _ in (nil, false)}, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void = { _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, completion in completion?(true) }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void = { _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, completion in completion?(true) }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
         let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
-        sut.guessCompletion = guessCompletion
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
