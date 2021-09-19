@@ -88,7 +88,7 @@ struct MatchResultViewModel {
 
 struct LeftChanceCountViewModel {
     let message: String
-    let textColor: UIColor
+    let shouldBeAwareOfChanceCount: Bool
 }
 
 final class GamePresenter {
@@ -97,21 +97,13 @@ final class GamePresenter {
     init(gameView: GameView) {
         self.gameView = gameView
     }
-    
-    private var labelColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .darkGray
-        }
-    }
-    
+
     func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
         let format = NSLocalizedString("You can still guess %d times", comment: "")
 
         let message = String.localizedStringWithFormat(format, leftChanceCount)
-        let textColor = leftChanceCount <= 3 ? UIColor.systemRed : labelColor
-        gameView.display(LeftChanceCountViewModel(message: message, textColor: textColor))
+        let shouldBeAwareOfChanceCount = leftChanceCount <= 3
+        gameView.display(LeftChanceCountViewModel(message: message, shouldBeAwareOfChanceCount: shouldBeAwareOfChanceCount))
     }
     
     func didMatchGuess(guess: DigitSecret, hint: String?, matchCorrect: Bool) {

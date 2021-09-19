@@ -90,11 +90,19 @@ extension GuessNumberViewController: GameView {
     
     func display(_ viewModel: LeftChanceCountViewModel) {
         availableGuessLabel?.text = viewModel.message
-        availableGuessLabel?.textColor = viewModel.textColor
+        availableGuessLabel?.textColor = viewModel.shouldBeAwareOfChanceCount ? .systemRed : labelColor
     }
     
     func displayGameEnd() {
         configureViewsForGameResult()
+    }
+    
+    private var labelColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .label
+        } else {
+            return .darkGray
+        }
     }
 }
 
@@ -118,14 +126,6 @@ extension GuessNumberViewController {
         animate?(1, { [weak self] in
             self?.fadeOutViews.forEach { $0.alpha = alpha }
         }, nil)
-    }
-    
-    private var labelColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .darkGray
-        }
     }
     
     func configureViewsForGameResult()  {
