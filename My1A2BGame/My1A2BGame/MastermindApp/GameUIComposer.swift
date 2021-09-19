@@ -67,7 +67,7 @@ public final class GameUIComposer {
         return gameViewController
     }
     
-    public static func makeInputPadUI() -> GuessPadViewController {
+    private static func makeInputPadUI() -> GuessPadViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessPadViewController.self)).instantiateViewController(withIdentifier: "GuessPadViewController") as! GuessPadViewController
         
         return controller
@@ -75,6 +75,12 @@ public final class GameUIComposer {
 }
 
 final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
+    private let secret: DigitSecret
+    private let delegate: ReplenishChanceDelegate
+    private let currentDeviceTime: () -> TimeInterval
+    private let onWin: (Score) -> Void
+    private let onLose: () -> Void
+    var presenter: GamePresenter?
     
     init(maxGuessCount: Int, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void) {
         self.leftChanceCount = maxGuessCount
@@ -84,13 +90,6 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         self.onWin = onWin
         self.onLose = onLose
     }
-    
-    let secret: DigitSecret
-    let delegate: ReplenishChanceDelegate
-    let currentDeviceTime: () -> TimeInterval
-    let onWin: (Score) -> Void
-    let onLose: () -> Void
-    var presenter: GamePresenter?
     
     private var leftChanceCount: Int
     private var gameStartTime: TimeInterval?
