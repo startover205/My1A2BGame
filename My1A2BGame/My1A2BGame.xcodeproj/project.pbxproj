@@ -31,7 +31,6 @@
 		C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420426D4768500AE72F4 /* SharedTestHelpers.swift */; };
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
-		C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48126B62A1100536D73 /* KeyboardButton.swift */; };
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
 		C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */; };
@@ -122,7 +121,6 @@
 		C098420426D4768500AE72F4 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
-		C0A1F48126B62A1100536D73 /* KeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
 		C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
@@ -318,28 +316,11 @@
 		C0A1F47626B62A1100536D73 /* MastermindiOS */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F47726B62A1100536D73 /* Game UI */,
 				C0A1F48226B62A1100536D73 /* More UI */,
 				C0A1F48A26B62A1100536D73 /* Shared UI */,
 				C0A1F49726B62A1200536D73 /* Rank UI */,
 			);
 			path = MastermindiOS;
-			sourceTree = "<group>";
-		};
-		C0A1F47726B62A1100536D73 /* Game UI */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F47E26B62A1100536D73 /* Views */,
-			);
-			path = "Game UI";
-			sourceTree = "<group>";
-		};
-		C0A1F47E26B62A1100536D73 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F48126B62A1100536D73 /* KeyboardButton.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		C0A1F48226B62A1100536D73 /* More UI */ = {
@@ -612,7 +593,6 @@
 				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
 				C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
-				C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */,
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,

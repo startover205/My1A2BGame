@@ -92,6 +92,7 @@
 		C0CA896226F710A90025F9E5 /* GAME_RESULT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895626F710A90025F9E5 /* GAME_RESULT_dark.png */; };
 		C0CA896326F710A90025F9E5 /* GAME_START_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895726F710A90025F9E5 /* GAME_START_light.png */; };
 		C0CA896426F710A90025F9E5 /* GAME_RESULT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895826F710A90025F9E5 /* GAME_RESULT_light.png */; };
+		C0CA896626F7258A0025F9E5 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA896526F7258A0025F9E5 /* KeyboardButton.swift */; };
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */; };
 		C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */; };
@@ -220,6 +221,7 @@
 		C0CA895626F710A90025F9E5 /* GAME_RESULT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_RESULT_dark.png; sourceTree = "<group>"; };
 		C0CA895726F710A90025F9E5 /* GAME_START_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_light.png; sourceTree = "<group>"; };
 		C0CA895826F710A90025F9E5 /* GAME_RESULT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_RESULT_light.png; sourceTree = "<group>"; };
+		C0CA896526F7258A0025F9E5 /* KeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationView.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 			children = (
 				C034AAA326B6804A006AABE6 /* Game.storyboard */,
 				C0CA890326F6D9B80025F9E5 /* HelperButton.swift */,
+				C0CA896526F7258A0025F9E5 /* KeyboardButton.swift */,
 				C0CA891526F70F4A0025F9E5 /* Game.xcassets */,
 			);
 			path = Views;
@@ -871,6 +874,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0CA896626F7258A0025F9E5 /* KeyboardButton.swift in Sources */,
 				C0CA891026F70C360025F9E5 /* QuizLabelViewController.swift in Sources */,
 				C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */,
 				C0CA890426F6D9B80025F9E5 /* HelperButton.swift in Sources */,
