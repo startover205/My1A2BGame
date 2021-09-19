@@ -407,7 +407,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7v-sR-zpL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <customObject id="Nar-IU-og5" customClass="HintViewController" customModule="My1A2BGame" customModuleProvider="target">
+                <customObject id="Nar-IU-og5" customClass="HintViewController" customModule="MastermindiOS">
                     <connections>
                         <outlet property="hintLabel" destination="okh-FP-api" id="Ze5-lp-kqh"/>
                         <outlet property="hintTextView" destination="MJE-CA-5hz" id="uMU-e7-btK"/>

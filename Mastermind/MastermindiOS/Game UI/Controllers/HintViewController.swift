@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MastermindiOS
 
 public final class HintViewController: NSObject {
     @IBOutlet private(set) public weak var hintLabel: UILabel!
@@ -17,12 +16,12 @@ public final class HintViewController: NSObject {
 
     private var oldHint = ""
     
-    func configureViews() {
+    public func configureViews() {
         hintLabel.text = ""
         hintTextView.text = ""
     }
 
-    func updateHint(_ hint: String) {
+    public func updateHint(_ hint: String) {
         hintLabel.isHidden = false
         hintLabel.text = hint
         hintTextView.text = "\n" + oldHint

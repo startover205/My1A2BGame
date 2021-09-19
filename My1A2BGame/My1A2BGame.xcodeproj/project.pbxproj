@@ -15,7 +15,6 @@
 		C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */; };
 		C01A79E526DF096A000A7E7A /* QuizLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */; };
 		C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */; };
-		C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
 		C034AA6626B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AA5926B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift */; };
 		C034AA6726B66B32006AABE6 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AA5B26B66B32006AABE6 /* XCTestCase+Snapshot.swift */; };
@@ -125,7 +124,6 @@
 		C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdManager.swift; sourceTree = "<group>"; };
 		C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLabelViewController.swift; sourceTree = "<group>"; };
 		C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewController.swift; sourceTree = "<group>"; };
-		C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
 		C034AA5926B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		C034AA5B26B66B32006AABE6 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
@@ -435,7 +433,6 @@
 				C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */,
 				C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */,
 				C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */,
-				C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */,
 				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
 			);
 			path = Controllers;
@@ -752,7 +749,6 @@
 				C0757609224A1C32007A1F9E /* CoreDataManager.swift in Sources */,
 				C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */,
 				C0A1F4AE26B62A1200536D73 /* CustomTransitionTabBarController.swift in Sources */,
-				C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */,
 				C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */,
