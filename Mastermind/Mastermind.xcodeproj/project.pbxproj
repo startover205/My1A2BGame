@@ -67,6 +67,10 @@
 		C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6B26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift */; };
 		C0BF9A6E26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */; };
 		C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */; };
+		C0CA88EC26F6D0C60025F9E5 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */; };
+		C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88ED26F6D1660025F9E5 /* GameView.swift */; };
+		C0CA88F026F6D1700025F9E5 /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */; };
+		C0CA88F226F6D17E0025F9E5 /* LeftChanceCountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */; };
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */; };
 		C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */; };
@@ -170,6 +174,10 @@
 		C0BF9A6B26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDigitSecretGenerator.swift; sourceTree = "<group>"; };
 		C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcherTests.swift; sourceTree = "<group>"; };
 		C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcher.swift; sourceTree = "<group>"; };
+		C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
+		C0CA88ED26F6D1660025F9E5 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
+		C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftChanceCountViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationView.swift; sourceTree = "<group>"; };
@@ -359,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				C0BF9A6226DC62F4006BD7C1 /* Basic Challenge */,
+				C0CA88EA26F6D0B20025F9E5 /* Game Presentation */,
 				C04B5B1A26C608B40056DDA8 /* Game Record */,
 				C0D5DE6226E9B80C001F4A0D /* Game Record Presentation */,
 				C0D5DE6E26E9EF5B001F4A0D /* App Review */,
@@ -490,6 +499,17 @@
 				C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */,
 			);
 			path = "Basic Challenge";
+			sourceTree = "<group>";
+		};
+		C0CA88EA26F6D0B20025F9E5 /* Game Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */,
+				C0CA88ED26F6D1660025F9E5 /* GameView.swift */,
+				C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */,
+				C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */,
+			);
+			path = "Game Presentation";
 			sourceTree = "<group>";
 		};
 		C0D5DE5226E5E69D001F4A0D /* Frameworks */ = {
@@ -778,6 +798,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */,
+				C0CA88F226F6D17E0025F9E5 /* LeftChanceCountViewModel.swift in Sources */,
 				C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */,
 				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,
 				C0D5DE6826E9B968001F4A0D /* RecordSaveViewModel.swift in Sources */,
@@ -785,11 +806,14 @@
 				C0D5DE8A26E9F2A6001F4A0D /* AppReviewController.swift in Sources */,
 				C0D5DE6A26E9B977001F4A0D /* RecordSaveView.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
+				C0CA88EC26F6D0C60025F9E5 /* GamePresenter.swift in Sources */,
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
 				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
 				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
 				C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */,
 				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
+				C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */,
+				C0CA88F026F6D1700025F9E5 /* MatchResultViewModel.swift in Sources */,
 				C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */,
 				C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */,
 				C0D5DE6B26E9BA24001F4A0D /* RecordPresenter.swift in Sources */,

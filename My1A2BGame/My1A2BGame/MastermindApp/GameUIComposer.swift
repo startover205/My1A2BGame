@@ -74,54 +74,6 @@ public final class GameUIComposer {
     }
 }
 
-protocol GameView {
-    func display(_ viewModel: MatchResultViewModel)
-    func display(_ viewModel: LeftChanceCountViewModel)
-    func displayGameEnd()
-}
-
-struct MatchResultViewModel {
-    let matchCorrect: Bool
-    let resultMessage: String
-    let voiceMessage: String
-}
-
-struct LeftChanceCountViewModel {
-    let message: String
-    let shouldBeAwareOfChanceCount: Bool
-}
-
-final class GamePresenter {
-    let gameView: GameView
-
-    init(gameView: GameView) {
-        self.gameView = gameView
-    }
-
-    func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
-        let format = NSLocalizedString("You can still guess %d times", comment: "")
-
-        let message = String.localizedStringWithFormat(format, leftChanceCount)
-        let shouldBeAwareOfChanceCount = leftChanceCount <= 3
-        gameView.display(LeftChanceCountViewModel(message: message, shouldBeAwareOfChanceCount: shouldBeAwareOfChanceCount))
-    }
-    
-    func didMatchGuess(guess: DigitSecret, hint: String?, matchCorrect: Bool) {
-        let resultMessage = guess.content.compactMap(String.init).joined() + "          \(hint ?? "")\n"
-        
-        let voiceMessage = matchCorrect ? NSLocalizedString("Congrats! You won!", comment: "") : hint ?? ""
-        
-        gameView.display(MatchResultViewModel(
-                            matchCorrect: matchCorrect,
-                            resultMessage: resultMessage,
-                            voiceMessage: voiceMessage))
-    }
-    
-    func didEndGame() {
-        gameView.displayGameEnd()
-    }
-}
-
 protocol GuessNumberViewControllerDelegate {
     func didRequestMatch(_ guess: [Int])
     func didRequestLeftChanceCountUpdate()
