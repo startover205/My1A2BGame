@@ -10,6 +10,11 @@ import UIKit
 import Mastermind
 import MastermindiOS
 
+protocol GuessNumberViewControllerDelegate {
+    func didRequestMatch(_ guess: [Int])
+    func didRequestLeftChanceCountUpdate()
+}
+
 public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
     var onRestart: (() -> Void)?

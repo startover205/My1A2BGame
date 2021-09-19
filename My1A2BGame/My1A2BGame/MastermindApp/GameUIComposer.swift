@@ -74,11 +74,6 @@ public final class GameUIComposer {
     }
 }
 
-protocol GuessNumberViewControllerDelegate {
-    func didRequestMatch(_ guess: [Int])
-    func didRequestLeftChanceCountUpdate()
-}
-
 final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
     init(maxGuessCount: Int, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void) {
