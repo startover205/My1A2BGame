@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import MastermindiOS
 
-final class HelperViewController: NSObject {
-    @IBOutlet weak var helperBoardView: UIView!
-    @IBOutlet var helperNumberButtons: [HelperButton]!
+public final class HelperViewController: NSObject {
+    @IBOutlet private(set) public weak var helperBoardView: UIView!
+    @IBOutlet private(set) public var helperNumberButtons: [HelperButton]!
     
     public var animate: Animate?
     public var onTapHelperInfo: (() -> Void)?
     
-    @IBAction func helperBtnPressed(_ sender: Any) {
+    @IBAction public func helperBtnPressed(_ sender: Any) {
         if helperBoardView.isHidden {
             self.helperBoardView.isHidden = false
             self.helperBoardView.transform = .init(translationX: 0, y: -300)
@@ -43,7 +42,7 @@ final class HelperViewController: NSObject {
         helperNumberButtons.forEach { $0.reset() }
     }
     
-    func hideView() {
+    public func hideView() {
         helperBoardView.isHidden = true
     }
 }

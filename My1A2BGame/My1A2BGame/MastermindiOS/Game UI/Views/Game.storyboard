@@ -413,7 +413,7 @@
                         <outlet property="hintTextView" destination="MJE-CA-5hz" id="uMU-e7-btK"/>
                     </connections>
                 </customObject>
-                <customObject id="686-fz-APB" customClass="HelperViewController" customModule="My1A2BGame" customModuleProvider="target">
+                <customObject id="686-fz-APB" customClass="HelperViewController" customModule="MastermindiOS">
                     <connections>
                         <outlet property="helperBoardView" destination="kyL-Dg-isP" id="bHs-Jc-rMd"/>
                         <outletCollection property="helperNumberButtons" destination="v6K-b7-bVR" collectionClass="NSMutableArray" id="K9Y-uJ-yK9"/>

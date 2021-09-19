@@ -74,6 +74,7 @@
 		C0CA890426F6D9B80025F9E5 /* HelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890326F6D9B80025F9E5 /* HelperButton.swift */; };
 		C0CA890626F6D9E00025F9E5 /* HelperButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890526F6D9E00025F9E5 /* HelperButtonTests.swift */; };
 		C0CA890A26F70A9C0025F9E5 /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890926F70A9C0025F9E5 /* Animate.swift */; };
+		C0CA890C26F70AFC0025F9E5 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890B26F70AFC0025F9E5 /* HelperViewController.swift */; };
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */; };
 		C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */; };
@@ -184,6 +185,7 @@
 		C0CA890326F6D9B80025F9E5 /* HelperButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperButton.swift; sourceTree = "<group>"; };
 		C0CA890526F6D9E00025F9E5 /* HelperButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButtonTests.swift; sourceTree = "<group>"; };
 		C0CA890926F70A9C0025F9E5 /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
+		C0CA890B26F70AFC0025F9E5 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
 		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationView.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				C034AAA026B6800F006AABE6 /* GuessPadViewController.swift */,
 				C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */,
 				C0CA890926F70A9C0025F9E5 /* Animate.swift */,
+				C0CA890B26F70AFC0025F9E5 /* HelperViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -784,6 +787,7 @@
 				C0CA890426F6D9B80025F9E5 /* HelperButton.swift in Sources */,
 				C0CA890A26F70A9C0025F9E5 /* Animate.swift in Sources */,
 				C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */,
+				C0CA890C26F70AFC0025F9E5 /* HelperViewController.swift in Sources */,
 				C034AAA126B6800F006AABE6 /* GuessPadViewController.swift in Sources */,
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,

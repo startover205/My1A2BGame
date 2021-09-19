@@ -69,7 +69,6 @@
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
 		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
-		C0BF9A7C26DE05B5006BD7C1 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */; };
 		C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */; };
 		C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */; };
 		C0CB93AB225C90F400278B08 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB93A9225C90F400278B08 /* Reachability.m */; };
@@ -186,7 +185,6 @@
 		C0A9E29E2333E3CC007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		C0A9E29F2333E3CD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVersion.swift; sourceTree = "<group>"; };
-		C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
 		C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplenishChanceDelegate.swift; sourceTree = "<group>"; };
 		C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My1A2BGame-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 				C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */,
 				C01A79E426DF096A000A7E7A /* QuizLabelViewController.swift */,
 				C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */,
-				C0BF9A7B26DE05B5006BD7C1 /* HelperViewController.swift */,
 				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
 			);
 			path = Controllers;
@@ -749,7 +746,6 @@
 				C01A79E526DF096A000A7E7A /* QuizLabelViewController.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
-				C0BF9A7C26DE05B5006BD7C1 /* HelperViewController.swift in Sources */,
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
