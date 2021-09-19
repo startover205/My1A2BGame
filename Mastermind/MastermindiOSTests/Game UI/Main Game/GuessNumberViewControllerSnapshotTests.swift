@@ -8,7 +8,6 @@
 
 import XCTest
 import MastermindiOS
-@testable import My1A2BGame
 
 class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func test_gameStart() {
@@ -19,7 +18,7 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     }
     
     func test_gameStart_advanced() {
-        let sut = makeSUT(gameVersion: .advanced)
+        let sut = makeSUT(secret: [1, 2, 3, 4, 5])
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GAME_START_advanced_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GAME_START_advanced_dark")
@@ -63,9 +62,9 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    func makeSUT(gameVersion: GameVersion = .basic) -> GuessNumberViewController {
+    func makeSUT(secret: [Int] = [1, 2, 3, 4]) -> GuessNumberViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(identifier: "GuessViewController") as! GuessNumberViewController
-        controller.quizLabelViewController.answer = gameVersion.makeSecret()
+        controller.quizLabelViewController.answer = secret
         let animate: Animate = { _, animations, completion in
             animations()
             completion?(true)
@@ -78,16 +77,6 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         controller.availableGuessLabel.text = "10 chances left"
         
         return controller
-    }
-}
-
-private extension GameVersion {
-    func makeSecret() -> [Int] {
-        var digits = [Int]()
-        for i in 0..<digitCount {
-            digits.append(i)
-        }
-        return digits
     }
 }
 

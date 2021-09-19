@@ -72,7 +72,6 @@
 		C0CA88F026F6D1700025F9E5 /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */; };
 		C0CA88F226F6D17E0025F9E5 /* LeftChanceCountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */; };
 		C0CA890426F6D9B80025F9E5 /* HelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890326F6D9B80025F9E5 /* HelperButton.swift */; };
-		C0CA890626F6D9E00025F9E5 /* HelperButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890526F6D9E00025F9E5 /* HelperButtonTests.swift */; };
 		C0CA890A26F70A9C0025F9E5 /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890926F70A9C0025F9E5 /* Animate.swift */; };
 		C0CA890C26F70AFC0025F9E5 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890B26F70AFC0025F9E5 /* HelperViewController.swift */; };
 		C0CA890E26F70BD80025F9E5 /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890D26F70BD80025F9E5 /* HintViewController.swift */; };
@@ -80,6 +79,19 @@
 		C0CA891226F70C8E0025F9E5 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA891126F70C8D0025F9E5 /* InstructionViewController.swift */; };
 		C0CA891426F70CE40025F9E5 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA891326F70CE30025F9E5 /* GuessNumberViewController.swift */; };
 		C0CA891626F70F4A0025F9E5 /* Game.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0CA891526F70F4A0025F9E5 /* Game.xcassets */; };
+		C0CA894B26F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA892626F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift */; };
+		C0CA895926F710A90025F9E5 /* GAME_ONE_GUESS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA894D26F710A90025F9E5 /* GAME_ONE_GUESS_light.png */; };
+		C0CA895A26F710A90025F9E5 /* GAME_START_advanced_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA894E26F710A90025F9E5 /* GAME_START_advanced_dark.png */; };
+		C0CA895B26F710A90025F9E5 /* GAME_START_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA894F26F710A90025F9E5 /* GAME_START_dark.png */; };
+		C0CA895C26F710A90025F9E5 /* GAME_TWO_GUESS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895026F710A90025F9E5 /* GAME_TWO_GUESS_light.png */; };
+		C0CA895D26F710A90025F9E5 /* GAME_START_advanced_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895126F710A90025F9E5 /* GAME_START_advanced_light.png */; };
+		C0CA895E26F710A90025F9E5 /* GAME_TWO_GUESS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895226F710A90025F9E5 /* GAME_TWO_GUESS_dark.png */; };
+		C0CA895F26F710A90025F9E5 /* GAME_ONE_GUESS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895326F710A90025F9E5 /* GAME_ONE_GUESS_dark.png */; };
+		C0CA896026F710A90025F9E5 /* GAME_HELPER_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895426F710A90025F9E5 /* GAME_HELPER_dark.png */; };
+		C0CA896126F710A90025F9E5 /* GAME_HELPER_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895526F710A90025F9E5 /* GAME_HELPER_light.png */; };
+		C0CA896226F710A90025F9E5 /* GAME_RESULT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895626F710A90025F9E5 /* GAME_RESULT_dark.png */; };
+		C0CA896326F710A90025F9E5 /* GAME_START_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895726F710A90025F9E5 /* GAME_START_light.png */; };
+		C0CA896426F710A90025F9E5 /* GAME_RESULT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CA895826F710A90025F9E5 /* GAME_RESULT_light.png */; };
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */; };
 		C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */; };
@@ -188,7 +200,6 @@
 		C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
 		C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftChanceCountViewModel.swift; sourceTree = "<group>"; };
 		C0CA890326F6D9B80025F9E5 /* HelperButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperButton.swift; sourceTree = "<group>"; };
-		C0CA890526F6D9E00025F9E5 /* HelperButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButtonTests.swift; sourceTree = "<group>"; };
 		C0CA890926F70A9C0025F9E5 /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
 		C0CA890B26F70AFC0025F9E5 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
 		C0CA890D26F70BD80025F9E5 /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +207,19 @@
 		C0CA891126F70C8D0025F9E5 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C0CA891326F70CE30025F9E5 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
 		C0CA891526F70F4A0025F9E5 /* Game.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Game.xcassets; sourceTree = "<group>"; };
+		C0CA892626F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		C0CA894D26F710A90025F9E5 /* GAME_ONE_GUESS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_ONE_GUESS_light.png; sourceTree = "<group>"; };
+		C0CA894E26F710A90025F9E5 /* GAME_START_advanced_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_advanced_dark.png; sourceTree = "<group>"; };
+		C0CA894F26F710A90025F9E5 /* GAME_START_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_dark.png; sourceTree = "<group>"; };
+		C0CA895026F710A90025F9E5 /* GAME_TWO_GUESS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_TWO_GUESS_light.png; sourceTree = "<group>"; };
+		C0CA895126F710A90025F9E5 /* GAME_START_advanced_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_advanced_light.png; sourceTree = "<group>"; };
+		C0CA895226F710A90025F9E5 /* GAME_TWO_GUESS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_TWO_GUESS_dark.png; sourceTree = "<group>"; };
+		C0CA895326F710A90025F9E5 /* GAME_ONE_GUESS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_ONE_GUESS_dark.png; sourceTree = "<group>"; };
+		C0CA895426F710A90025F9E5 /* GAME_HELPER_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_HELPER_dark.png; sourceTree = "<group>"; };
+		C0CA895526F710A90025F9E5 /* GAME_HELPER_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_HELPER_light.png; sourceTree = "<group>"; };
+		C0CA895626F710A90025F9E5 /* GAME_RESULT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_RESULT_dark.png; sourceTree = "<group>"; };
+		C0CA895726F710A90025F9E5 /* GAME_START_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_START_light.png; sourceTree = "<group>"; };
+		C0CA895826F710A90025F9E5 /* GAME_RESULT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAME_RESULT_light.png; sourceTree = "<group>"; };
 		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationView.swift; sourceTree = "<group>"; };
@@ -326,8 +350,8 @@
 		C034AAA626B680D6006AABE6 /* Game UI */ = {
 			isa = PBXGroup;
 			children = (
+				C0CA891826F70FDE0025F9E5 /* Main Game */,
 				C0CA891726F70FBC0025F9E5 /* Game Pad */,
-				C0CA890526F6D9E00025F9E5 /* HelperButtonTests.swift */,
 			);
 			path = "Game UI";
 			sourceTree = "<group>";
@@ -545,6 +569,34 @@
 				C034AAB026B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift */,
 			);
 			path = "Game Pad";
+			sourceTree = "<group>";
+		};
+		C0CA891826F70FDE0025F9E5 /* Main Game */ = {
+			isa = PBXGroup;
+			children = (
+				C0CA894C26F710A90025F9E5 /* snapshots */,
+				C0CA892626F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift */,
+			);
+			path = "Main Game";
+			sourceTree = "<group>";
+		};
+		C0CA894C26F710A90025F9E5 /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				C0CA894D26F710A90025F9E5 /* GAME_ONE_GUESS_light.png */,
+				C0CA894E26F710A90025F9E5 /* GAME_START_advanced_dark.png */,
+				C0CA894F26F710A90025F9E5 /* GAME_START_dark.png */,
+				C0CA895026F710A90025F9E5 /* GAME_TWO_GUESS_light.png */,
+				C0CA895126F710A90025F9E5 /* GAME_START_advanced_light.png */,
+				C0CA895226F710A90025F9E5 /* GAME_TWO_GUESS_dark.png */,
+				C0CA895326F710A90025F9E5 /* GAME_ONE_GUESS_dark.png */,
+				C0CA895426F710A90025F9E5 /* GAME_HELPER_dark.png */,
+				C0CA895526F710A90025F9E5 /* GAME_HELPER_light.png */,
+				C0CA895626F710A90025F9E5 /* GAME_RESULT_dark.png */,
+				C0CA895726F710A90025F9E5 /* GAME_START_light.png */,
+				C0CA895826F710A90025F9E5 /* GAME_RESULT_light.png */,
+			);
+			path = snapshots;
 			sourceTree = "<group>";
 		};
 		C0D5DE5226E5E69D001F4A0D /* Frameworks */ = {
@@ -767,22 +819,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0CA896226F710A90025F9E5 /* GAME_RESULT_dark.png in Resources */,
+				C0CA895F26F710A90025F9E5 /* GAME_ONE_GUESS_dark.png in Resources */,
 				C034AACC26B693C8006AABE6 /* TWO_INPUT_PAD_FOUR_DIGIT_light.png in Resources */,
 				C034AAB826B680D6006AABE6 /* EMPTY_INPUT_PAD_FIVE_DIGIT_light.png in Resources */,
 				C034AAB526B680D6006AABE6 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */,
 				C034AAD526B693D2006AABE6 /* FULL_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */,
+				C0CA895A26F710A90025F9E5 /* GAME_START_advanced_dark.png in Resources */,
 				C034AACE26B693C8006AABE6 /* TWO_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */,
 				C034AAB626B680D6006AABE6 /* ONE_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */,
 				C034AAD426B693D2006AABE6 /* FULL_INPUT_PAD_FOUR_DIGIT_light.png in Resources */,
+				C0CA896026F710A90025F9E5 /* GAME_HELPER_dark.png in Resources */,
+				C0CA896426F710A90025F9E5 /* GAME_RESULT_light.png in Resources */,
 				C034AABB26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png in Resources */,
 				C034AACD26B693C8006AABE6 /* TWO_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */,
+				C0CA896126F710A90025F9E5 /* GAME_HELPER_light.png in Resources */,
+				C0CA895E26F710A90025F9E5 /* GAME_TWO_GUESS_dark.png in Resources */,
+				C0CA895D26F710A90025F9E5 /* GAME_START_advanced_light.png in Resources */,
 				C034AAB726B680D6006AABE6 /* ONE_INPUT_PAD_FIVE_DIGIT_light.png in Resources */,
+				C0CA895C26F710A90025F9E5 /* GAME_TWO_GUESS_light.png in Resources */,
 				C034AAB426B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_light.png in Resources */,
+				C0CA896326F710A90025F9E5 /* GAME_START_light.png in Resources */,
 				C034AABA26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */,
 				C034AAD726B693D2006AABE6 /* FULL_INPUT_PAD_FIVE_DIGIT_light.png in Resources */,
 				C034AAD626B693D2006AABE6 /* FULL_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */,
+				C0CA895926F710A90025F9E5 /* GAME_ONE_GUESS_light.png in Resources */,
 				C034AACF26B693C8006AABE6 /* TWO_INPUT_PAD_FIVE_DIGIT_light.png in Resources */,
 				C034AAB926B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */,
+				C0CA895B26F710A90025F9E5 /* GAME_START_dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,7 +897,7 @@
 				C034AABE26B680D6006AABE6 /* UIViewController+Snapshot.swift in Sources */,
 				C034AAC426B68D48006AABE6 /* UIControl+TestHelpers.swift in Sources */,
 				C034AABC26B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift in Sources */,
-				C0CA890626F6D9E00025F9E5 /* HelperButtonTests.swift in Sources */,
+				C0CA894B26F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
