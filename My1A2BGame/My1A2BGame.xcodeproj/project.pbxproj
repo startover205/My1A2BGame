@@ -44,8 +44,6 @@
 		C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420426D4768500AE72F4 /* SharedTestHelpers.swift */; };
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
-		C0A1F4A126B62A1200536D73 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */; };
-		C0A1F4A226B62A1200536D73 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F47F26B62A1100536D73 /* Game.storyboard */; };
 		C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48126B62A1100536D73 /* KeyboardButton.swift */; };
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
@@ -152,8 +150,6 @@
 		C098420426D4768500AE72F4 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
-		C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
-		C0A1F47F26B62A1100536D73 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		C0A1F48126B62A1100536D73 /* KeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
@@ -426,7 +422,6 @@
 		C0A1F47826B62A1100536D73 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */,
 				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
 			);
 			path = Controllers;
@@ -435,7 +430,6 @@
 		C0A1F47E26B62A1100536D73 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F47F26B62A1100536D73 /* Game.storyboard */,
 				C0A1F48126B62A1100536D73 /* KeyboardButton.swift */,
 			);
 			path = Views;
@@ -643,7 +637,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0A1F4B326B62A1200536D73 /* Rank.storyboard in Resources */,
-				C0A1F4A226B62A1200536D73 /* Game.storyboard in Resources */,
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */,
 				C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */,
@@ -730,7 +723,6 @@
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */,
 				C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */,
-				C0A1F4A126B62A1200536D73 /* GuessNumberViewController.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,

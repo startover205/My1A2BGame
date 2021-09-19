@@ -8,20 +8,19 @@
 
 import UIKit
 import Mastermind
-import MastermindiOS
 
-protocol GuessNumberViewControllerDelegate {
+public protocol GuessNumberViewControllerDelegate {
     func didRequestMatch(_ guess: [Int])
     func didRequestLeftChanceCountUpdate()
 }
 
 public class GuessNumberViewController: UIViewController {
-    var voicePromptViewController: VoicePromptViewController?
-    var onRestart: (() -> Void)?
-    var onGiveUp: (() -> Void)?
-    var delegate: GuessNumberViewControllerDelegate?
+    public var voicePromptViewController: VoicePromptViewController?
+    public var onRestart: (() -> Void)?
+    public var onGiveUp: (() -> Void)?
+    public var delegate: GuessNumberViewControllerDelegate?
     
-    @IBOutlet var helperViewController: HelperViewController!
+    @IBOutlet private(set) public var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
     @IBOutlet private(set) public var hintViewController: HintViewController!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
@@ -102,6 +101,21 @@ extension GuessNumberViewController: GameView {
         configureViewsForGameResult()
     }
     
+    public func onGameLose(){
+        configureViewsForGameResult()
+
+        voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))
+    }
+    
+    public func configureViewsForGameResult()  {
+        //toggle UI
+        guessButton.isHidden = true
+        quitButton.isHidden = true
+        restartButton.isHidden = false
+        helperViewController?.hideView()
+        quizLabelViewController.revealAnswer()
+    }
+    
     private var labelColor: UIColor {
         if #available(iOS 13.0, *) {
             return .label
@@ -117,12 +131,6 @@ extension GuessNumberViewController {
         delegate?.didRequestMatch(guessTexts.compactMap(Int.init))
     }
     
-    func onGameLose(){
-        configureViewsForGameResult()
-
-        voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))
-    }
-    
     func fadeOut() { fadeTo(alpha: 0) }
     
     func fadeIn() { fadeTo(alpha: 1) }
@@ -131,14 +139,5 @@ extension GuessNumberViewController {
         animate?(1, { [weak self] in
             self?.fadeOutViews.forEach { $0.alpha = alpha }
         }, nil)
-    }
-    
-    func configureViewsForGameResult()  {
-        //toggle UI
-        guessButton.isHidden = true
-        quitButton.isHidden = true
-        restartButton.isHidden = false
-        helperViewController?.hideView()
-        quizLabelViewController.revealAnswer()
     }
 }

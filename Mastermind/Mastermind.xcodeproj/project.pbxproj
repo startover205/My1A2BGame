@@ -78,6 +78,8 @@
 		C0CA890E26F70BD80025F9E5 /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890D26F70BD80025F9E5 /* HintViewController.swift */; };
 		C0CA891026F70C360025F9E5 /* QuizLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA890F26F70C350025F9E5 /* QuizLabelViewController.swift */; };
 		C0CA891226F70C8E0025F9E5 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA891126F70C8D0025F9E5 /* InstructionViewController.swift */; };
+		C0CA891426F70CE40025F9E5 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA891326F70CE30025F9E5 /* GuessNumberViewController.swift */; };
+		C0CA891626F70F4A0025F9E5 /* Game.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0CA891526F70F4A0025F9E5 /* Game.xcassets */; };
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */; };
 		C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */; };
@@ -192,6 +194,8 @@
 		C0CA890D26F70BD80025F9E5 /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
 		C0CA890F26F70C350025F9E5 /* QuizLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLabelViewController.swift; sourceTree = "<group>"; };
 		C0CA891126F70C8D0025F9E5 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
+		C0CA891326F70CE30025F9E5 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
+		C0CA891526F70F4A0025F9E5 /* Game.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Game.xcassets; sourceTree = "<group>"; };
 		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationView.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 				C0CA890D26F70BD80025F9E5 /* HintViewController.swift */,
 				C0CA890F26F70C350025F9E5 /* QuizLabelViewController.swift */,
 				C0CA891126F70C8D0025F9E5 /* InstructionViewController.swift */,
+				C0CA891326F70CE30025F9E5 /* GuessNumberViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 			children = (
 				C034AAA326B6804A006AABE6 /* Game.storyboard */,
 				C0CA890326F6D9B80025F9E5 /* HelperButton.swift */,
+				C0CA891526F70F4A0025F9E5 /* Game.xcassets */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -745,6 +751,7 @@
 				C034AAA426B6804A006AABE6 /* Game.storyboard in Resources */,
 				C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */,
 				C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */,
+				C0CA891626F70F4A0025F9E5 /* Game.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +806,7 @@
 				C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */,
 				C0CA890C26F70AFC0025F9E5 /* HelperViewController.swift in Sources */,
 				C0CA891226F70C8E0025F9E5 /* InstructionViewController.swift in Sources */,
+				C0CA891426F70CE40025F9E5 /* GuessNumberViewController.swift in Sources */,
 				C034AAA126B6800F006AABE6 /* GuessPadViewController.swift in Sources */,
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,

@@ -159,7 +159,7 @@ private extension GameAcceptanceTests {
 
 private extension GuessNumberViewController {
     func simulatePlayerWin(with guess: DigitSecret){
-        tryToMatchNumbers(guessTexts: guess.content.compactMap(String.init))
+        padDidFinishEntering(numberTexts: guess.content.compactMap(String.init))
     }
     
     func simulateGameLose(guessChanceCount: Int) {

@@ -61,7 +61,7 @@ class GameUIIntegrationTests: XCTestCase {
         let secret = DigitSecret(digits: answer.compactMap(Int.init))!
         let guess1 = ["5", "2", "3", "4"]
         let guess2 = ["5", "6", "3", "4"]
-        let sut = makeSUT(secret: secret) 
+        let sut = makeSUT(secret: secret)
         
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.resultMessage, "", "expected no text after loading")
@@ -302,7 +302,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     private func guessMessageFor(guessCount: Int) -> String {
-        let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .init(for: GuessNumberViewController.self), value: "", comment: "")
+        let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .main, value: "", comment: "")
         return String.localizedStringWithFormat(format, guessCount)
     }
     
@@ -361,11 +361,11 @@ private extension GuessNumberViewController {
     }
     
     func simulateGuess(with guess: [String]) {
-        tryToMatchNumbers(guessTexts: guess)
+        padDidFinishEntering(numberTexts: guess)
     }
     
     func simulateGuess(with guess: DigitSecret) {
-        tryToMatchNumbers(guessTexts: guess.content.compactMap(String.init))
+        padDidFinishEntering(numberTexts: guess.content.compactMap(String.init))
     }
     
     func simulateTapHelperButton() {
