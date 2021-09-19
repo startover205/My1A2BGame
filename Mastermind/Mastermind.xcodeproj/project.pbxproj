@@ -326,8 +326,7 @@
 		C034AAA626B680D6006AABE6 /* Game UI */ = {
 			isa = PBXGroup;
 			children = (
-				C034AAA726B680D6006AABE6 /* snapshots */,
-				C034AAB026B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift */,
+				C0CA891726F70FBC0025F9E5 /* Game Pad */,
 				C0CA890526F6D9E00025F9E5 /* HelperButtonTests.swift */,
 			);
 			path = "Game UI";
@@ -537,6 +536,15 @@
 				C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */,
 			);
 			path = "Game Presentation";
+			sourceTree = "<group>";
+		};
+		C0CA891726F70FBC0025F9E5 /* Game Pad */ = {
+			isa = PBXGroup;
+			children = (
+				C034AAA726B680D6006AABE6 /* snapshots */,
+				C034AAB026B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift */,
+			);
+			path = "Game Pad";
 			sourceTree = "<group>";
 		};
 		C0D5DE5226E5E69D001F4A0D /* Frameworks */ = {
