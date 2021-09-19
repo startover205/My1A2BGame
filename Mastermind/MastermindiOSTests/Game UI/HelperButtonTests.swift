@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import My1A2BGame
 
 class HelperButtonTests: XCTestCase {
     func test_reset_restoreDefaultBackgroundColor() {

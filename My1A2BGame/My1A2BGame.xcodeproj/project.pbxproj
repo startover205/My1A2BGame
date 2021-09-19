@@ -18,7 +18,6 @@
 		C01A79EB26DF2703000A7E7A /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EA26DF2703000A7E7A /* Animate.swift */; };
 		C01A79ED26DF5E7F000A7E7A /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
-		C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */; };
 		C034AA6626B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AA5926B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift */; };
 		C034AA6726B66B32006AABE6 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AA5B26B66B32006AABE6 /* XCTestCase+Snapshot.swift */; };
 		C034AA6826B66B32006AABE6 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AA5C26B66B32006AABE6 /* UIViewController+Snapshot.swift */; };
@@ -51,7 +50,6 @@
 		C0A1F49F26B62A1200536D73 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */; };
 		C0A1F4A126B62A1200536D73 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */; };
 		C0A1F4A226B62A1200536D73 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F47F26B62A1100536D73 /* Game.storyboard */; };
-		C0A1F4A326B62A1200536D73 /* HelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48026B62A1100536D73 /* HelperButton.swift */; };
 		C0A1F4A426B62A1200536D73 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48126B62A1100536D73 /* KeyboardButton.swift */; };
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
@@ -132,7 +130,6 @@
 		C01A79EA26DF2703000A7E7A /* Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
 		C01A79EC26DF5E7F000A7E7A /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
-		C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperButtonTests.swift; sourceTree = "<group>"; };
 		C034AA5926B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		C034AA5B26B66B32006AABE6 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		C034AA5C26B66B32006AABE6 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 		C0A1F47B26B62A1100536D73 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		C0A1F47D26B62A1100536D73 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
 		C0A1F47F26B62A1100536D73 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
-		C0A1F48026B62A1100536D73 /* HelperButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperButton.swift; sourceTree = "<group>"; };
 		C0A1F48126B62A1100536D73 /* KeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
@@ -412,7 +408,6 @@
 				C034AA4D26B66B32006AABE6 /* MastermindiOSTests */,
 				C009191C26AD5CA600544115 /* MastermindAppTests */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
-				C032E6FC266B7134002B8D02 /* HelperButtonTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
@@ -456,7 +451,6 @@
 			isa = PBXGroup;
 			children = (
 				C0A1F47F26B62A1100536D73 /* Game.storyboard */,
-				C0A1F48026B62A1100536D73 /* HelperButton.swift */,
 				C0A1F48126B62A1100536D73 /* KeyboardButton.swift */,
 			);
 			path = Views;
@@ -750,7 +744,6 @@
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
-				C0A1F4A326B62A1200536D73 /* HelperButton.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */,
 				C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */,
 				C0A1F4A126B62A1200536D73 /* GuessNumberViewController.swift in Sources */,
@@ -793,7 +786,6 @@
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
-				C032E6FD266B7134002B8D02 /* HelperButtonTests.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
 				C034AA6626B66B32006AABE6 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
 				C09841FF26D0DE9100AE72F4 /* WinUIIntegrationTests.swift in Sources */,

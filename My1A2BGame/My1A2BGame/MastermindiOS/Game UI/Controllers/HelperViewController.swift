@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MastermindiOS
 
 final class HelperViewController: NSObject {
     @IBOutlet weak var helperBoardView: UIView!
