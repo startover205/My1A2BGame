@@ -14,13 +14,7 @@ public class GuessNumberViewController: UIViewController {
     var voicePromptViewController: VoicePromptViewController?
     var onRestart: (() -> Void)?
     var onGiveUp: (() -> Void)?
-    var guessCompletion: GuessCompletion! {
-        didSet {
-            if let presentationAdapter = delegate as? GamePresentationAdapter {
-                presentationAdapter.guessCompletion = guessCompletion
-            }
-        }
-    }
+    var guessCompletion: GuessCompletion!
     var delegate: GuessNumberViewControllerDelegate?
     
     @IBOutlet var helperViewController: HelperViewController!

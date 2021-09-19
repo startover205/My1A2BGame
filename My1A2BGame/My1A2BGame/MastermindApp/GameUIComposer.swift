@@ -151,7 +151,6 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     let currentDeviceTime: () -> TimeInterval
     let onWin: (Score) -> Void
     let onLose: () -> Void
-    var guessCompletion: GuessCompletion?
     var presenter: GamePresenter?
     
     private var leftChanceCount: Int
