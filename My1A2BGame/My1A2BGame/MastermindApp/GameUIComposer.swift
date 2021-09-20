@@ -67,8 +67,8 @@ public final class GameUIComposer {
         return gameViewController
     }
     
-    private static func makeInputPadUI() -> GuessPadViewController {
-        let controller = UIStoryboard(name: "Game", bundle: .init(for: GuessPadViewController.self)).instantiateViewController(withIdentifier: "GuessPadViewController") as! GuessPadViewController
+    private static func makeInputPadUI() -> NumberInputViewController {
+        let controller = UIStoryboard(name: "Game", bundle: .init(for: NumberInputViewController.self)).instantiateViewController(withIdentifier: "NumberInputViewController") as! NumberInputViewController
         
         return controller
     }

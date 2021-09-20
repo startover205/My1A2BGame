@@ -26,9 +26,9 @@ class GuessPadViewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(hostViewController: UIViewController) -> (GuessPadViewController, GuessPadDelegateSpy) {
-        let bundle = Bundle(for: GuessPadViewController.self)
-        let controller = UIStoryboard(name: "Game", bundle: bundle).instantiateViewController(withIdentifier: "GuessPadViewController") as! GuessPadViewController
+    private func makeSUT(hostViewController: UIViewController) -> (NumberInputViewController, GuessPadDelegateSpy) {
+        let bundle = Bundle(for: NumberInputViewController.self)
+        let controller = UIStoryboard(name: "Game", bundle: bundle).instantiateViewController(withIdentifier: "NumberInputViewController") as! NumberInputViewController
         let delegate = GuessPadDelegateSpy()
         controller.delegate = delegate
         let window = UIWindow()
@@ -63,7 +63,7 @@ class GuessPadViewControllerTests: XCTestCase {
     }
 }
 
-private extension GuessPadViewController {
+private extension NumberInputViewController {
     func simulateFinishInput() {
         oneButton.sendActions(for: .touchUpInside)
         twoButton.sendActions(for: .touchUpInside)

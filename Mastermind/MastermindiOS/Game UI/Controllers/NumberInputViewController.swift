@@ -1,5 +1,5 @@
 //
-//  GuessPadViewController.swift
+//  NumberInputViewController.swift
 //  My1A2BGame
 //
 //  Created by Ming-Ta Yang on 2019/9/15.
@@ -12,7 +12,7 @@ public protocol GuessPadDelegate: AnyObject {
     func padDidFinishEntering(numberTexts: [String])
 }
 
-public class GuessPadViewController: UIViewController {
+public class NumberInputViewController: UIViewController {
     
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     
@@ -171,7 +171,7 @@ public class GuessPadViewController: UIViewController {
 }
 
 // MARK: - Private
-private extension GuessPadViewController {
+private extension NumberInputViewController {
     func guess(){
         var texts = [String]()
         for label in self.digitLabels {

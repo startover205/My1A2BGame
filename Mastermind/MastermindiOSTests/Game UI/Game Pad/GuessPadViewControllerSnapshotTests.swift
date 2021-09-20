@@ -90,17 +90,17 @@ class GuessPadViewControllerSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    func makeSUT(digitCount: Int) -> GuessPadViewController {
-        let bundle = Bundle(for: GuessPadViewController.self)
+    func makeSUT(digitCount: Int) -> NumberInputViewController {
+        let bundle = Bundle(for: NumberInputViewController.self)
         let storyboard = UIStoryboard(name: "Game", bundle: bundle)
-        let controller = storyboard.instantiateViewController(identifier: "GuessPadViewController") as! GuessPadViewController
+        let controller = storyboard.instantiateViewController(identifier: "GuessPadViewController") as! NumberInputViewController
         controller.loadViewIfNeeded()
         controller.digitCount = digitCount
         return controller
     }
 }
 
-private extension GuessPadViewController {
+private extension NumberInputViewController {
     func pressNumberOne() { oneButton.simulateTap() }
     
     func pressNumberTwo() { twoButton.simulateTap() }

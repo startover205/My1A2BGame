@@ -12,7 +12,7 @@
 		C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */; };
 		C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC3126C7A64600E6AA77 /* Winner.swift */; };
 		C034AA9626B67E7A006AABE6 /* MastermindiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034AA7626B67CEA006AABE6 /* MastermindiOS.framework */; };
-		C034AAA126B6800F006AABE6 /* GuessPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAA026B6800F006AABE6 /* GuessPadViewController.swift */; };
+		C034AAA126B6800F006AABE6 /* NumberInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAA026B6800F006AABE6 /* NumberInputViewController.swift */; };
 		C034AAA426B6804A006AABE6 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C034AAA326B6804A006AABE6 /* Game.storyboard */; };
 		C034AAB426B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAA826B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_light.png */; };
 		C034AAB526B680D6006AABE6 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAA926B680D6006AABE6 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png */; };
@@ -139,7 +139,7 @@
 		C034AA7926B67CEA006AABE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C034AA9126B67E7A006AABE6 /* MastermindiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C034AA9C26B67EBA006AABE6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C034AAA026B6800F006AABE6 /* GuessPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessPadViewController.swift; sourceTree = "<group>"; };
+		C034AAA026B6800F006AABE6 /* NumberInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewController.swift; sourceTree = "<group>"; };
 		C034AAA326B6804A006AABE6 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		C034AAA826B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ONE_INPUT_PAD_FOUR_DIGIT_light.png; sourceTree = "<group>"; };
 		C034AAA926B680D6006AABE6 /* EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_INPUT_PAD_FIVE_DIGIT_dark.png; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 		C034AA9F26B67FEF006AABE6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C034AAA026B6800F006AABE6 /* GuessPadViewController.swift */,
+				C034AAA026B6800F006AABE6 /* NumberInputViewController.swift */,
 				C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */,
 				C0CA890926F70A9C0025F9E5 /* Animate.swift */,
 				C0CA890B26F70AFC0025F9E5 /* HelperViewController.swift */,
@@ -883,7 +883,7 @@
 				C0CA890C26F70AFC0025F9E5 /* HelperViewController.swift in Sources */,
 				C0CA891226F70C8E0025F9E5 /* InstructionViewController.swift in Sources */,
 				C0CA891426F70CE40025F9E5 /* GuessNumberViewController.swift in Sources */,
-				C034AAA126B6800F006AABE6 /* GuessPadViewController.swift in Sources */,
+				C034AAA126B6800F006AABE6 /* NumberInputViewController.swift in Sources */,
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,

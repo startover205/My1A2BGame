@@ -29,7 +29,7 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var restartButton: UIButton!
     @IBOutlet private(set) public var fadeOutViews: [UIView]!
     
-    public var inputVC: GuessPadViewController!
+    public var inputVC: NumberInputViewController!
     private lazy var inputNavigationController = UINavigationController(rootViewController: inputVC)
     
     public var animate: Animate?

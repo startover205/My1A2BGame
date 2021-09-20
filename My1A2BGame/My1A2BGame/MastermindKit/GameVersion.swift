@@ -13,7 +13,7 @@ public struct GameVersion {
     var title: String
     var maxGuessCount: Int
     
-    static let basic = GameVersion(digitCount: 4, title: "Basic", maxGuessCount: 10)
+    static let basic = GameVersion(digitCount: 4, title: "Basic", maxGuessCount: 1)
     
     static let advanced = GameVersion(digitCount: 5, title: "Advanced", maxGuessCount: 15)
 }
