@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C02FDE8126F8C848009D8E89 /* GameEndViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02FDE8026F8C848009D8E89 /* GameEndViewModel.swift */; };
 		C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */; };
 		C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */; };
 		C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */; };
@@ -131,6 +132,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C02FDE8026F8C848009D8E89 /* GameEndViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndViewModel.swift; sourceTree = "<group>"; };
 		C033BC2A26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2C26C7A5EC00E6AA77 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWinner.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				C0CA88ED26F6D1660025F9E5 /* GameView.swift */,
 				C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */,
 				C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */,
+				C02FDE8026F8C848009D8E89 /* GameEndViewModel.swift */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -919,6 +922,7 @@
 				C0D5DE6A26E9B977001F4A0D /* RecordSaveView.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
 				C0CA88EC26F6D0C60025F9E5 /* GamePresenter.swift in Sources */,
+				C02FDE8126F8C848009D8E89 /* GameEndViewModel.swift in Sources */,
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
 				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
 				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
