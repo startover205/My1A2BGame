@@ -54,7 +54,7 @@ class GuessPadViewControllerTests: XCTestCase {
         }
     }
     
-    private final class GuessPadDelegateSpy: GuessPadDelegate {
+    private final class GuessPadDelegateSpy: NumberInputViewControllerDelegate {
         private(set) var messageCallCount = 0
         
         func padDidFinishEntering(numberTexts: [String]) {
