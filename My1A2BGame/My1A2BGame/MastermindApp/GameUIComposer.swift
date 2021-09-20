@@ -35,7 +35,7 @@ public final class GameUIComposer {
         }
         
         gameViewController.inputVC = inputVC
-        inputVC.delegate = gameViewController
+        inputVC.delegate = WeakRefVirtualProxy(gameViewController)
         
         gameViewController.onRestart = onRestart
         gameViewController.animate = animate

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol NumberInputViewControllerDelegate: AnyObject {
+public protocol NumberInputViewControllerDelegate {
     func padDidFinishEntering(numberTexts: [String])
 }
 
@@ -36,7 +36,7 @@ public class NumberInputViewController: UIViewController {
     var currentDigit = 0
     var canTap = true
     public var digitCount: Int = 4
-    public weak var delegate: NumberInputViewControllerDelegate?
+    public var delegate: NumberInputViewControllerDelegate?
     
     public override func viewDidLoad() {
         super.viewDidLoad()

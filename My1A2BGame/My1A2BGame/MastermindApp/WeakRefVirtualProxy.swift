@@ -7,6 +7,7 @@
 //
 
 import Mastermind
+import MastermindiOS
 
 final class WeakRefVirtualProxy<T: AnyObject> {
     private weak var object: T?
@@ -39,5 +40,11 @@ extension WeakRefVirtualProxy: GameView where T: GameView {
     
     func display(_ viewModel: MatchResultViewModel) {
         object?.display(viewModel)
+    }
+}
+
+extension WeakRefVirtualProxy: NumberInputViewControllerDelegate where T: NumberInputViewControllerDelegate {
+    func padDidFinishEntering(numberTexts: [String]) {
+        object?.padDidFinishEntering(numberTexts: numberTexts)
     }
 }
