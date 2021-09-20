@@ -27,7 +27,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onNoGameChanceLeft_displaysAd_basicGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: launchBasicGame, guessChanceCount: GameVersion.basic.maxGuessCount)
+        assertDisplayingAdOnNoGameChanceLeft(game: launchBasicGame, guessChanceCount: 10)
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
@@ -44,7 +44,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onNoGameChanceLeft_displaysAd_advancedGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: launchAdvancedGame, guessChanceCount: GameVersion.advanced.maxGuessCount)
+        assertDisplayingAdOnNoGameChanceLeft(game: launchAdvancedGame, guessChanceCount: 15)
     }
     
     // MARK: - Helpers
@@ -115,6 +115,14 @@ class GameAcceptanceTests: XCTestCase{
             capturedPresentation = (rootViewController, userDidEarnRewardHandler)
         }
     }
+    
+    private final class ReplenishChanceDelegateSpy: ReplenishChanceDelegate {
+        private(set) var capturedCompletions = [(Int) -> Void]()
+        
+        func replenishChance(completion: @escaping (Int) -> Void) {
+            capturedCompletions.append(completion)
+        }
+    }
 }
 
 private extension GameAcceptanceTests {
@@ -145,14 +153,27 @@ private extension GameAcceptanceTests {
         let ad = RewardAdSpy()
         let game = game(RewardAdLoaderStub.init(ad: ad))
         
-        let exp = expectation(description: "wait for presentation complete")
+        for _ in 0..<guessChanceCount-1 {
+            game.simulateOneWrongGuess()
+        }
+        RunLoop.current.run(until: Date())
         
-        try? game.simulateOutOfChances(guessChanceCount: guessChanceCount) {
+        XCTAssertNil(game.presentedViewController as? AlertAdCountdownController, "Expect ad alert not shown until out of chance", file: file, line: line)
+        
+        game.simulateOneWrongGuess()
+        RunLoop.current.run(until: Date())
+        
+        let alert = try? XCTUnwrap(game.presentedViewController as? AlertAdCountdownController, "Expect ad alert shown when out of chance", file: file, line: line)
+        
+        let exp = expectation(description: "wait for dismissal complete")
+        game.dismiss(animated: false) {
             exp.fulfill()
         }
-        
         wait(for: [exp], timeout: 10.0)
         
+        alert?.tapConfirmButton()
+        RunLoop.current.run(until: Date())
+
         XCTAssertNotNil(ad.capturedPresentation, file: file, line: line)
     }
 }
@@ -182,22 +203,8 @@ private extension GuessNumberViewController {
         })
     }
     
-    func simulateOutOfChances(guessChanceCount: Int, completion: @escaping () -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
-        for _ in 0..<guessChanceCount {
-            inputVC.delegate?.padDidFinishEntering(numberTexts: [])
-        }
-        
-        RunLoop.current.run(until: Date())
-        
-        let alert = try XCTUnwrap(presentedViewController as? AlertAdCountdownController, file: file, line: line)
-
-        dismiss(animated: false, completion: {
-            alert.tapConfirmButton()
-
-            completion()
-        })
-        
-        RunLoop.current.run(until: Date())
+    func simulateOneWrongGuess() {
+        inputVC.delegate?.padDidFinishEntering(numberTexts: [])
     }
 }
 
