@@ -103,14 +103,10 @@ extension GuessNumberViewController: GameView {
         availableGuessLabel?.textColor = viewModel.shouldBeAwareOfChanceCount ? .systemRed : labelColor
     }
     
-    public func displayGameEnd() {
+    public func display(_ viewModel: GameEndViewModel) {
         configureViewsForGameResult()
-    }
-    
-    public func onGameLose(){
-        configureViewsForGameResult()
-
-        voicePromptViewController?.playVoicePromptIfEnabled(message: NSLocalizedString("Don't give up! Give it another try!", comment: ""))
+        
+        voicePromptViewController?.playVoicePromptIfEnabled(message: viewModel.voiceMessage)
     }
     
     public func configureViewsForGameResult()  {

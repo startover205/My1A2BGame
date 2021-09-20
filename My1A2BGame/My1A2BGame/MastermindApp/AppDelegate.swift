@@ -183,7 +183,7 @@ private extension AppDelegate {
                 title: NSLocalizedString("Give Up!", comment: "2nd"),
                 style: .destructive) { [weak controller] _ in
                 controller?.navigationController?.pushViewController(LoseUIComposer.loseScene(), animated: true)
-                controller?.onGameLose()
+                controller?.configureViewsForGameResult()
             }
             
             let cancel = UIAlertAction(

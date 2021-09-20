@@ -114,7 +114,7 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
         
         if correct {
-            presenter?.didEndGame()
+            presenter?.didWinGame()
             
             let guessTime = currentDeviceTime() - (gameStartTime ?? 0.0)
             
@@ -129,7 +129,7 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
             guard let self = self else { return }
             
             if replenishCount <= 0 {
-                self.presenter?.didEndGame()
+                self.presenter?.didLoseGame()
                 
                 self.onLose()
             } else {

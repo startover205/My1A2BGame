@@ -25,7 +25,7 @@ public final class GamePresenter {
     public func didMatchGuess(guess: DigitSecret, hint: String?, matchCorrect: Bool) {
         let resultMessage = guess.content.compactMap(String.init).joined() + "          \(hint ?? "")\n"
         
-        let voiceMessage = matchCorrect ? NSLocalizedString("Congrats! You won!", comment: "") : hint ?? ""
+        let voiceMessage = hint ?? ""
         
         gameView.display(MatchResultViewModel(
                             matchCorrect: matchCorrect,
@@ -33,7 +33,11 @@ public final class GamePresenter {
                             voiceMessage: voiceMessage))
     }
     
-    public func didEndGame() {
-        gameView.displayGameEnd()
+    public func didWinGame() {
+        gameView.display(GameEndViewModel(voiceMessage: NSLocalizedString("Congrats! You won!", comment: "")))
+    }
+    
+    public func didLoseGame() {
+        gameView.display(GameEndViewModel(voiceMessage: NSLocalizedString("Don't give up! Give it another try!", comment: "")))
     }
 }
