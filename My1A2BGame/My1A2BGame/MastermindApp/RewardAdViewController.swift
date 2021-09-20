@@ -10,7 +10,7 @@ import UIKit
 import MastermindiOS
 
 public final class RewardAdViewController {
-    init(loader: RewardAdLoader, adRewardChance: Int, countDownTime: TimeInterval, hostViewController: UIViewController? = nil) {
+    init(loader: RewardAdLoader, adRewardChance: Int, countDownTime: TimeInterval, hostViewController: UIViewController) {
         self.loader = loader
         self.adRewardChance = adRewardChance
         self.countDownTime = countDownTime
@@ -21,7 +21,7 @@ public final class RewardAdViewController {
     private let adRewardChance: Int
     private let countDownTime: TimeInterval
     
-    weak var hostViewController: UIViewController?
+    private weak var hostViewController: UIViewController?
 }
 
 extension RewardAdViewController: ReplenishChanceDelegate {

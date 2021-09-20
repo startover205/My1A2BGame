@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return LocalRecordLoader(store: store)
     }()
     
+    private lazy var tabController = BannerAdTabBarViewController()
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
 
@@ -114,18 +115,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ("Rank", "baseline_format_list_numbered_black_24pt"),
             ("More", "baseline_settings_black_24pt"),
         ]
-        let tabVC = BannerAdTabBarViewController()
         let rankNav = UINavigationController(rootViewController: makeRankVC())
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
 
-        tabVC.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
+        tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
         
-        tabVC.tabBar.items!.enumerated().forEach { index, item in
+        tabController.tabBar.items!.enumerated().forEach { index, item in
             item.title = tabConfigurations[index].title
             item.image = UIImage(named: tabConfigurations[index].imageName)
         }
         
-        return tabVC
+        return tabController
     }
 }
 
@@ -157,7 +157,7 @@ private extension AppDelegate {
     }
     
     private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onRestart: @escaping () -> Void) -> GuessNumberViewController {
-        let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, adRewardChance: Constants.adGrantChances, countDownTime: 5.0)
+        let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, adRewardChance: Constants.adGrantChances, countDownTime: 5.0, hostViewController: tabController)
         let controller = GameUIComposer.gameComposedWith(
             title: gameVersion.title,
             gameVersion: gameVersion,
@@ -195,8 +195,6 @@ private extension AppDelegate {
             
             controller?.present(alert, animated: true)
         }
-        
-        rewardAdViewController.hostViewController = controller
         
         return controller
     }

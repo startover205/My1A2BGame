@@ -141,7 +141,7 @@ private extension GameAcceptanceTests {
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
     }
     
-    func assertDisplayingAdOnNoGameChanceLeft(game: (RewardAdLoaderStub) -> GuessNumberViewController, guessChanceCount: Int) {
+    func assertDisplayingAdOnNoGameChanceLeft(game: (RewardAdLoaderStub) -> GuessNumberViewController, guessChanceCount: Int, file: StaticString = #filePath, line: UInt = #line) {
         let ad = RewardAdSpy()
         let game = game(RewardAdLoaderStub.init(ad: ad))
         
@@ -153,7 +153,7 @@ private extension GameAcceptanceTests {
         
         wait(for: [exp], timeout: 10.0)
         
-        XCTAssertEqual(ad.capturedPresentation?.viewController, game)
+        XCTAssertNotNil(ad.capturedPresentation, file: file, line: line)
     }
 }
 
