@@ -177,12 +177,12 @@ private extension GuessPadViewController {
         for label in self.digitLabels {
             texts.append(label.text!)
         }
-           self.delegate?.padDidFinishEntering(numberTexts: texts)
         
-        dismiss(animated: true) {
-
+        presentingViewController?.dismiss(animated: true) {
+            self.delegate?.padDidFinishEntering(numberTexts: texts)
         }
     }
+    
     func enableNumberBtn(text: String?){
         guard let text = text else { return }
         guard let number = Int(text) else {
