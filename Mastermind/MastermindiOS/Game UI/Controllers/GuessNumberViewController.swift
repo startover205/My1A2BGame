@@ -72,12 +72,18 @@ public class GuessNumberViewController: UIViewController {
     @IBAction func restartBtnPressed(_ sender: Any) {
         onRestart?()
     }
+    
+    private func fadeIn() {
+        animate?(1, { [weak self] in
+            self?.fadeOutViews.forEach { $0.alpha = 1 }
+        }, nil)
+    }
 }
 
 // MARK: - GuessPadDelegate
 extension GuessNumberViewController: GuessPadDelegate {
     public func padDidFinishEntering(numberTexts: [String]) {
-        tryToMatchNumbers(guessTexts: numberTexts)
+        delegate?.didRequestMatch(numberTexts.compactMap(Int.init))
     }
 }
 
@@ -122,22 +128,5 @@ extension GuessNumberViewController: GameView {
         } else {
             return .darkGray
         }
-    }
-}
-
-extension GuessNumberViewController {
-    
-    func tryToMatchNumbers(guessTexts: [String]) {
-        delegate?.didRequestMatch(guessTexts.compactMap(Int.init))
-    }
-    
-    func fadeOut() { fadeTo(alpha: 0) }
-    
-    func fadeIn() { fadeTo(alpha: 1) }
-        
-    private func fadeTo(alpha: CGFloat) {
-        animate?(1, { [weak self] in
-            self?.fadeOutViews.forEach { $0.alpha = alpha }
-        }, nil)
     }
 }
