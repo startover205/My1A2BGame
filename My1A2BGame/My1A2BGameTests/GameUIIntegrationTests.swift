@@ -10,7 +10,6 @@ import XCTest
 @testable import My1A2BGame
 import Mastermind
 import MastermindiOS
-import GoogleMobileAds
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
