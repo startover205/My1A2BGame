@@ -7,18 +7,6 @@
 
 import Foundation
 
-public struct MatchResult: Equatable {
-    public let bulls: Int
-    public let cows: Int
-    public let correct: Bool
-    
-    public init(bulls: Int, cows: Int, correct: Bool) {
-        self.bulls = bulls
-        self.cows = cows
-        self.correct = correct
-    }
-}
-
 public final class DigitSecretMatcher {
     private init() {}
     
