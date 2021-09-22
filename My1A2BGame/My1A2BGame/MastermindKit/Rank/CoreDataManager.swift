@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import Mastermind
 
 public typealias SaveDoneHandler = (_ success: Bool) -> Void
 
@@ -73,7 +74,7 @@ class CoreDataManager<T: NSManagedObject>: NSObject, NSFetchedResultsControllerD
     //Private methods/properties(從舊架構空白範本的appDelegate跟MasterViewController而來)
     private lazy var managedObjectModel: NSManagedObjectModel = { //被第二呼叫->第三
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = Bundle.main.url(forResource: momdFilename, withExtension: "momd")!
+        let modelURL = Bundle(for: Winner.self).url(forResource: momdFilename, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
