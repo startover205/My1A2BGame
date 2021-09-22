@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol NumberInputViewControllerDelegate {
-    func padDidFinishEntering(numberTexts: [String])
+    func didFinishEntering(numberTexts: [String])
 }
 
 public class NumberInputViewController: UIViewController {
@@ -179,7 +179,7 @@ private extension NumberInputViewController {
         }
         
         presentingViewController?.dismiss(animated: true) {
-            self.delegate?.padDidFinishEntering(numberTexts: texts)
+            self.delegate?.didFinishEntering(numberTexts: texts)
         }
     }
     

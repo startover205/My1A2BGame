@@ -180,12 +180,12 @@ private extension GameAcceptanceTests {
 
 private extension GuessNumberViewController {
     func simulatePlayerWin(with guess: DigitSecret){
-        padDidFinishEntering(numberTexts: guess.content.compactMap(String.init))
+        didFinishEntering(numberTexts: guess.content.compactMap(String.init))
     }
     
     func simulateGameLose(guessChanceCount: Int) {
         for _ in 0..<guessChanceCount {
-            inputVC.delegate?.padDidFinishEntering(numberTexts: [])
+            inputVC.delegate?.didFinishEntering(numberTexts: [])
         }
         
         RunLoop.current.run(until: Date())
@@ -204,7 +204,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateOneWrongGuess() {
-        inputVC.delegate?.padDidFinishEntering(numberTexts: [])
+        inputVC.delegate?.didFinishEntering(numberTexts: [])
     }
 }
 

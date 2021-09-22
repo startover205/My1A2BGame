@@ -81,7 +81,7 @@ public class GuessNumberViewController: UIViewController {
 }
 
 extension GuessNumberViewController: NumberInputViewControllerDelegate {
-    public func padDidFinishEntering(numberTexts: [String]) {
+    public func didFinishEntering(numberTexts: [String]) {
         delegate?.didRequestMatch(numberTexts.compactMap(Int.init))
     }
 }

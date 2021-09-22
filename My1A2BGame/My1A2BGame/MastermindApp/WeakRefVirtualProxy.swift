@@ -48,7 +48,7 @@ extension WeakRefVirtualProxy: GameView where T: GameView {
 }
 
 extension WeakRefVirtualProxy: NumberInputViewControllerDelegate where T: NumberInputViewControllerDelegate {
-    func padDidFinishEntering(numberTexts: [String]) {
-        object?.padDidFinishEntering(numberTexts: numberTexts)
+    func didFinishEntering(numberTexts: [String]) {
+        object?.didFinishEntering(numberTexts: numberTexts)
     }
 }
