@@ -101,7 +101,7 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
     func didRequestMatch(_ guess: [Int]) {
         let guess = DigitSecret(digits: guess)!
-        let matchResult = DigitSecretMatcher.matchGuess(guess, with: secret)
+        let matchResult = DigitSecretMatcher.match(guess, with: secret)
         
         leftChanceCount -= 1
         guessCount += 1

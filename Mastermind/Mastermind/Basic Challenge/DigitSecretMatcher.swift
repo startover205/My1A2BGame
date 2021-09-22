@@ -10,7 +10,7 @@ import Foundation
 public final class DigitSecretMatcher {
     private init() {}
     
-    public static func matchGuess(_ guess: DigitSecret, with secret: DigitSecret) -> MatchResult {
+    public static func match(_ guess: DigitSecret, with secret: DigitSecret) -> MatchResult {
         guard guess.content.count == secret.content.count else { return .init(bulls: 0, cows: 0, correct: false) }
         
         var correctCount = 0

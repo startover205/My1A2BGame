@@ -58,7 +58,7 @@ class DigitSecretMatchGuessTests: XCTestCase {
         let secret = DigitSecret(digits: secret)!
         let guess = DigitSecret(digits: guess)!
         
-        let result = DigitSecretMatcher.matchGuess(guess, with: secret)
+        let result = DigitSecretMatcher.match(guess, with: secret)
         
         XCTAssertEqual(result, expectedResult)
     }
