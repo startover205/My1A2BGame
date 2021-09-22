@@ -336,11 +336,11 @@ private extension GuessNumberViewController {
     }
     
     var isShowingGameEndedComponents: Bool {
-        guessButton.isHidden && quitButton.isHidden && !restartButton.isHidden && helperViewController.helperBoardView.isHidden
+        guessButton.isHidden && giveUpButton.isHidden && !restartButton.isHidden && helperViewController.helperBoardView.isHidden
     }
     
     var isShowingGameOngoingComponents: Bool {
-        !guessButton.isHidden && !quitButton.isHidden && restartButton.isHidden
+        !guessButton.isHidden && !giveUpButton.isHidden && restartButton.isHidden
     }
     
     func isShowingSecret(secret: DigitSecret) -> Bool {
@@ -382,7 +382,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateTapGiveUpButton() {
-        quitButton.sendActions(for: .touchUpInside)
+        giveUpButton.sendActions(for: .touchUpInside)
     }
     
     func simulateTapInstructionButton() {

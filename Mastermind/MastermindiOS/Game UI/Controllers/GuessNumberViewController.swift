@@ -25,7 +25,7 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public var hintViewController: HintViewController!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
     @IBOutlet private(set) public weak var guessButton: UIButton!
-    @IBOutlet private(set) public weak var quitButton: UIButton!
+    @IBOutlet private(set) public weak var giveUpButton: UIButton!
     @IBOutlet private(set) public weak var restartButton: UIButton!
     @IBOutlet private(set) public var fadeOutViews: [UIView]!
     
@@ -112,7 +112,7 @@ extension GuessNumberViewController: GameView {
     public func configureViewsForGameResult()  {
         //toggle UI
         guessButton.isHidden = true
-        quitButton.isHidden = true
+        giveUpButton.isHidden = true
         restartButton.isHidden = false
         helperViewController?.hideView()
         quizLabelViewController.revealAnswer()

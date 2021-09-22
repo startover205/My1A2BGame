@@ -192,7 +192,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateUserGiveUp(completion: @escaping () -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
-        quitButton.sendActions(for: .touchUpInside)
+        giveUpButton.sendActions(for: .touchUpInside)
 
         let alert = try XCTUnwrap(presentedViewController as? UIAlertController, file: file, line: line)
 

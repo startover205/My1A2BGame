@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,20 +13,20 @@
             <objects>
                 <viewController storyboardIdentifier="NumberInputViewController" id="56w-i7-12e" customClass="NumberInputViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HG4-gb-N9E">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLi-ql-Srl">
-                                <rect key="frame" x="0.0" y="528" width="414" height="368"/>
+                                <rect key="frame" x="0.0" y="266" width="600" height="334"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VOe-Mm-ZvE">
-                                        <rect key="frame" x="8" y="8" width="398" height="318"/>
+                                        <rect key="frame" x="8" y="8" width="584" height="318"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HAP-6Q-713">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmS-mz-CiU" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="1">
@@ -39,7 +37,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wA-gm-R2q" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="2">
@@ -50,7 +48,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mco-o5-zma" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="3">
@@ -63,10 +61,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BJV-nB-LHh">
-                                                <rect key="frame" x="0.0" y="82" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="82" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5f-ut-ll1" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="4">
@@ -77,7 +75,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-cM-Dik" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="5">
@@ -88,7 +86,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZK-sZ-hlC" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="6">
@@ -101,10 +99,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7nX-MC-GFs">
-                                                <rect key="frame" x="0.0" y="164" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="164" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7b8-VM-S7s" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="7">
@@ -115,7 +113,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67D-Jn-2mE" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="8">
@@ -126,7 +124,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAQ-pp-SsL" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="9">
@@ -139,10 +137,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sCS-Bz-yoU">
-                                                <rect key="frame" x="0.0" y="246" width="398" height="72"/>
+                                                <rect key="frame" x="0.0" y="246" width="584" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FA-3R-7KY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="72"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="CLEAR">
                                                             <color key="titleColor" systemColor="labelColor"/>
@@ -152,7 +150,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bch-Ly-v3Q" customClass="KeyboardButton" customModule="MastermindiOS" customModuleProvider="target">
-                                                        <rect key="frame" x="135.5" y="0.0" width="127" height="72"/>
+                                                        <rect key="frame" x="197.5" y="0.0" width="189" height="72"/>
                                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <state key="normal" title="0">
@@ -163,7 +161,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="os2-SD-Buf">
-                                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="72"/>
+                                                        <rect key="frame" x="394.5" y="0.0" width="189.5" height="72"/>
                                                         <color key="tintColor" systemColor="labelColor"/>
                                                         <state key="normal" image="delete_arrow_48pt">
                                                             <color key="titleColor" systemColor="labelColor"/>
@@ -188,7 +186,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="acj-p3-aSA">
-                                <rect key="frame" x="40" y="211" width="334" height="237"/>
+                                <rect key="frame" x="40" y="106.5" width="520" height="79.5"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="S2g-lv-ZDv"/>
@@ -237,14 +235,14 @@
             <objects>
                 <viewController storyboardIdentifier="GuessViewController" id="aZ7-0h-fWr" customClass="GuessNumberViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TiL-Ze-BAD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-k4-YYu">
-                                <rect key="frame" x="20" y="52" width="374" height="130.5"/>
+                                <rect key="frame" x="20" y="8" width="560" height="130.5"/>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfH-k3-RIw">
-                                <rect key="frame" x="20" y="217" width="374" height="525"/>
+                                <rect key="frame" x="20" y="173" width="560" height="307"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -255,7 +253,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSp-sb-xF4">
-                                <rect key="frame" x="20" y="190.5" width="111.5" height="50.5"/>
+                                <rect key="frame" x="20" y="146.5" width="111.5" height="50.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61s-2u-rIK">
                                         <rect key="frame" x="8" y="8" width="95.5" height="14.5"/>
@@ -278,7 +276,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1A2B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO5-bv-lex">
-                                <rect key="frame" x="28" y="225" width="358" height="27"/>
+                                <rect key="frame" x="28" y="181" width="544" height="27"/>
                                 <color key="backgroundColor" name="MainBackgroundOffsetOffset"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -290,15 +288,15 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can still guess 12 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rG-JG-Gw4">
-                                <rect key="frame" x="172" y="194" width="222" height="20.5"/>
+                                <rect key="frame" x="358" y="150" width="222" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wsR-l9-bIc">
-                                <rect key="frame" x="20" y="750" width="374" height="104"/>
+                                <rect key="frame" x="20" y="488" width="560" height="104"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="460-TV-n2o">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="48"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <accessibility key="accessibilityConfiguration" label="guessButton"/>
                                         <constraints>
@@ -318,7 +316,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KkV-2F-3LL">
-                                        <rect key="frame" x="0.0" y="56" width="374" height="48"/>
+                                        <rect key="frame" x="0.0" y="56" width="560" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <state key="normal" title="Surrender😱">
                                             <color key="titleColor" systemColor="secondaryLabelColor"/>
@@ -328,7 +326,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRd-NF-Bwe">
-                                        <rect key="frame" x="0.0" y="104" width="374" height="104"/>
+                                        <rect key="frame" x="0.0" y="104" width="560" height="104"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <state key="normal" title="Restart😤">
@@ -352,7 +350,7 @@
                                 </constraints>
                             </stackView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujz-41-3mP">
-                                <rect key="frame" x="20" y="52" width="374" height="130.5"/>
+                                <rect key="frame" x="20" y="8" width="560" height="130.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jag-7s-UmF">
                                         <rect key="frame" x="8" y="4" width="45.5" height="14.5"/>
@@ -361,13 +359,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KPV-e5-nMF">
-                                        <rect key="frame" x="8" y="26.5" width="358" height="96"/>
+                                        <rect key="frame" x="8" y="26.5" width="544" height="96"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jGl-Z8-bsI">
-                                                <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="544" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJh-v6-coS" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="jHr-n4-6go"/>
@@ -383,7 +381,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLK-PY-CUW" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="61" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="92" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="XZ9-25-OVe"/>
@@ -399,7 +397,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJq-wH-W7Z" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="122" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="184" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="eiF-UI-Kc6"/>
@@ -415,7 +413,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAI-ze-Gji" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="183" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="276" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="7Kg-ty-A1r"/>
@@ -431,7 +429,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ee8-Yd-6iN" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="244" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="368" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="dtk-2d-Oae"/>
@@ -447,7 +445,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMZ-tf-kmY">
-                                                        <rect key="frame" x="305" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="460" y="0.0" width="84" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="sUA-8f-mo3"/>
                                                         </constraints>
@@ -458,10 +456,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-6r-gzX">
-                                                <rect key="frame" x="0.0" y="52" width="358" height="44"/>
+                                                <rect key="frame" x="0.0" y="52" width="544" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tn-rr-v5a" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="iW3-Fb-9Mp"/>
@@ -477,7 +475,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQd-y9-cXR" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="61" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="92" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="YN7-VF-Uxc"/>
@@ -493,7 +491,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnJ-pX-URS" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="122" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="184" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="8ak-V4-LEn"/>
@@ -509,7 +507,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUc-Jk-5E2" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="183" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="276" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="MOj-sR-n8R"/>
@@ -525,7 +523,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABh-sN-sb7" customClass="HelperButton" customModule="MastermindiOS">
-                                                        <rect key="frame" x="244" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="368" y="0.0" width="84" height="44"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="vC9-Gi-Qva"/>
@@ -541,7 +539,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ow-oT-Vjr">
-                                                        <rect key="frame" x="305" y="0.0" width="53" height="44"/>
+                                                        <rect key="frame" x="460" y="0.0" width="84" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="ecE-iR-Pty"/>
                                                         </constraints>
@@ -616,10 +614,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="availableGuessLabel" destination="0rG-JG-Gw4" id="vc1-tf-X4b"/>
+                        <outlet property="giveUpButton" destination="KkV-2F-3LL" id="SZi-Y6-XiA"/>
                         <outlet property="guessButton" destination="460-TV-n2o" id="Ztk-4u-hlq"/>
                         <outlet property="helperViewController" destination="5Az-zZ-TMl" id="ZaE-OT-k2a"/>
                         <outlet property="hintViewController" destination="Ave-qO-mEa" id="5lr-7s-f74"/>
-                        <outlet property="quitButton" destination="KkV-2F-3LL" id="SZi-Y6-XiA"/>
                         <outlet property="quizLabelViewController" destination="NNC-fX-ZKY" id="zah-7h-X9s"/>
                         <outlet property="restartButton" destination="qRd-NF-Bwe" id="hJc-xZ-s0V"/>
                         <outletCollection property="fadeOutViews" destination="wsR-l9-bIc" collectionClass="NSMutableArray" id="Dh0-Nj-hUg"/>
@@ -663,11 +661,11 @@
             <objects>
                 <viewController id="WU0-JZ-BRX" customClass="InstructionViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FX9-MY-cnz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilm-d5-Xqp">
-                                <rect key="frame" x="20" y="20" width="374" height="768"/>
+                                <rect key="frame" x="20" y="20" width="560" height="540"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
                                 <string key="text">       1A2B 是一個簡單的益智遊戲。
        電腦會準備一組數字不重複的四位數，玩家必須猜出是哪一組四位數。
