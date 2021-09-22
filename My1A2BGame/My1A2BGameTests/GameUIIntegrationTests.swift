@@ -377,10 +377,6 @@ private extension GuessNumberViewController {
         voiceView.sendActions(for: .valueChanged)
     }
     
-    func simulateUserGiveUp() {
-        quitButton.sendActions(for: .touchUpInside)
-    }
-    
     func simulateUserRestartGame() {
         restartButton.sendActions(for: .touchUpInside)
     }
