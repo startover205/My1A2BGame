@@ -1,5 +1,5 @@
 //
-//  GuessPadViewControllerTests.swift
+//  NumberInputViewControllerTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/9/20.
@@ -10,7 +10,7 @@ import XCTest
 import UIKit
 import MastermindiOS
 
-class GuessPadViewControllerTests: XCTestCase {
+class NumberInputViewControllerTests: XCTestCase {
     func test_finishInput_messagesDelegateAfterDimissal() {
         let hostViewController = UIViewControllerSpy()
         let (sut, delegate) = makeSUT(hostViewController: hostViewController)
