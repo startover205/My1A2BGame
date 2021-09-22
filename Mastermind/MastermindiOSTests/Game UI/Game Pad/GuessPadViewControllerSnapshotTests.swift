@@ -93,7 +93,7 @@ class GuessPadViewControllerSnapshotTests: XCTestCase {
     func makeSUT(digitCount: Int) -> NumberInputViewController {
         let bundle = Bundle(for: NumberInputViewController.self)
         let storyboard = UIStoryboard(name: "Game", bundle: bundle)
-        let controller = storyboard.instantiateViewController(identifier: "GuessPadViewController") as! NumberInputViewController
+        let controller = storyboard.instantiateViewController(identifier: "NumberInputViewController") as! NumberInputViewController
         controller.loadViewIfNeeded()
         controller.digitCount = digitCount
         return controller
