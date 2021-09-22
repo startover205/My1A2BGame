@@ -32,8 +32,7 @@ class GuessPadViewControllerTests: XCTestCase {
         let delegate = GuessPadDelegateSpy()
         controller.delegate = delegate
         let window = UIWindow()
-        window.rootViewController = hostViewController
-        window.makeKeyAndVisible()
+        window.addSubview(hostViewController.view)
         
         let exp = expectation(description: "wait for presentation")
         
