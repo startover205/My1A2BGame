@@ -242,7 +242,7 @@ class GameUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(giveUpCallCount, 0, "Expect no give up called on view load")
 
-        sut.simulateUserGiveUpGame()
+        sut.simulateTapGiveUpButton()
         XCTAssertEqual(giveUpCallCount, 1, "Expect give up called after user gives up the game")
     }
     
@@ -381,7 +381,7 @@ private extension GuessNumberViewController {
         restartButton.sendActions(for: .touchUpInside)
     }
     
-    func simulateUserGiveUpGame() {
+    func simulateTapGiveUpButton() {
         quitButton.sendActions(for: .touchUpInside)
     }
     
