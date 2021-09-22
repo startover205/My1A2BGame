@@ -131,7 +131,7 @@ extension GuessNumberViewController: GameView {
         present(alert, animated: true)
     }
     
-    public func configureViewsForGameResult()  {
+    private func configureViewsForGameResult()  {
         //toggle UI
         guessButton.isHidden = true
         giveUpButton.isHidden = true
