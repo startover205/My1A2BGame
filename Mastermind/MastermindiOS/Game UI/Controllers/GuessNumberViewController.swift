@@ -65,7 +65,7 @@ public class GuessNumberViewController: UIViewController {
         present(inputNavigationController, animated: true)
     }
     
-    @IBAction func quitBtnPressed(_ sender: Any) {
+    @IBAction func giveUpBtnPressed(_ sender: Any) {
         delegate?.didTapGiveUpButton()
     }
     

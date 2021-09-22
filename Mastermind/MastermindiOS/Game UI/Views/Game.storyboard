@@ -322,7 +322,7 @@
                                             <color key="titleColor" systemColor="secondaryLabelColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="quitBtnPressed:" destination="aZ7-0h-fWr" eventType="touchUpInside" id="pzq-gt-1Mf"/>
+                                            <action selector="giveUpBtnPressed:" destination="aZ7-0h-fWr" eventType="touchUpInside" id="pzq-gt-1Mf"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRd-NF-Bwe">
