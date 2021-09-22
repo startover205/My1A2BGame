@@ -201,7 +201,6 @@ class WinUIIntegrationTests: XCTestCase {
         let window = UIWindow()
         window.addSubview(sut.view)
         
-        sut.loadViewIfNeeded()
         sut.simulateKeyboardShowing()
         
         XCTAssertTrue(sut.isKeyboardShowing)
