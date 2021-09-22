@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MatchResult {
+public struct MatchResult: Equatable {
     public let bulls: Int
     public let cows: Int
     public let correct: Bool
