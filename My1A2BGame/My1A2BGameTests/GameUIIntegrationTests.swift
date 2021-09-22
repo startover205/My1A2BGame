@@ -237,7 +237,6 @@ class GameUIIntegrationTests: XCTestCase {
         let window = UIWindow()
         window.addSubview(sut.view)
 
-        sut.loadViewIfNeeded()
         sut.simulateTapGiveUpButton()
         
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
@@ -256,7 +255,6 @@ class GameUIIntegrationTests: XCTestCase {
         let window = UIWindow()
         window.addSubview(sut.view)
 
-        sut.loadViewIfNeeded()
         XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called on view load")
 
         sut.simulateTapGiveUpButton()
@@ -278,7 +276,6 @@ class GameUIIntegrationTests: XCTestCase {
         let window = UIWindow()
         window.addSubview(sut.view)
 
-        sut.loadViewIfNeeded()
         sut.simulateTapGiveUpButton()
         let alert2 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
         alert2?.tapConfirmButton()
