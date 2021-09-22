@@ -34,13 +34,14 @@ public final class GamePresenter {
         gameView.display(LeftChanceCountViewModel(message: message, shouldBeAwareOfChanceCount: shouldBeAwareOfChanceCount))
     }
     
-    public func didMatchGuess(guess: DigitSecret, hint: String?, matchCorrect: Bool) {
-        let resultMessage = guess.content.compactMap(String.init).joined() + "          \(hint ?? "")\n"
+    public func didMatchGuess(guess: DigitSecret, result: MatchResult) {
+        let hint = "\(result.bulls)A\(result.cows)B"
+        let resultMessage = guess.content.compactMap(String.init).joined() + "          " + "\(hint)\n"
         
-        let voiceMessage = hint ?? ""
+        let voiceMessage = hint
         
         gameView.display(MatchResultViewModel(
-                            matchCorrect: matchCorrect,
+                            matchCorrect: result.correct,
                             resultMessage: resultMessage,
                             voiceMessage: voiceMessage))
     }

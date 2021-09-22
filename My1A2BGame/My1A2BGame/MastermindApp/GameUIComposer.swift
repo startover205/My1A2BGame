@@ -101,7 +101,7 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     
     func didRequestMatch(_ guess: [Int]) {
         let guess = DigitSecret(digits: guess)!
-        let (hint, correct) = DigitSecretMatcher.match(guess, with: secret)
+        let matchResult = DigitSecretMatcher.matchGuess(guess, with: secret)
         
         leftChanceCount -= 1
         guessCount += 1
@@ -111,9 +111,9 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         }
         
         presenter?.didUpdateLeftChanceCount(leftChanceCount)
-        presenter?.didMatchGuess(guess: guess, hint: hint, matchCorrect: correct)
+        presenter?.didMatchGuess(guess: guess, result: matchResult)
         
-        if correct {
+        if matchResult.correct {
             presenter?.didWinGame()
             
             let guessTime = currentDeviceTime() - (gameStartTime ?? 0.0)
