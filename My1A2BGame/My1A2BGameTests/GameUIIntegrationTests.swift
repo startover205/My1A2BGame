@@ -154,21 +154,14 @@ class GameUIIntegrationTests: XCTestCase {
         let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate)
         
         sut.loadViewIfNeeded()
-        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game lose")
-        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game lose")
-        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game lose")
+        assertGameOngoing(sut, secret: secret)
         
         sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
-        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game lose")
-        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game lose")
-        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game lose")
+        assertGameOngoing(sut, secret: secret)
 
         delegate.completeReplenish(with: 0)
-        XCTAssertFalse(sut.isShowingGameOngoingComponents, "Expect game not ongoing after game lose")
-        XCTAssertTrue(sut.isShowingGameEndedComponents, "Expect game ended after game lose")
-        XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game lose")
+        assertGameEnd(sut, secret: secret)
     }
-    
     
     func test_gameWin_rendersGameEnded() {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
@@ -179,21 +172,15 @@ class GameUIIntegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         sut.simulateGuess(with: wrongGuess)
-        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game win")
-        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game win")
-        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game win")
+        assertGameOngoing(sut, secret: secret)
 
         delegate.completeReplenish(with: 1, at: 0)
         sut.simulateGuess(with: wrongGuess)
-        XCTAssertTrue(sut.isShowingGameOngoingComponents, "Expect game ongoing before game win")
-        XCTAssertFalse(sut.isShowingGameEndedComponents, "Expect game not ended before game win")
-        XCTAssertFalse(sut.isShowingSecret(secret: secret), "Expect hiding secret before game win")
+        assertGameOngoing(sut, secret: secret)
 
         delegate.completeReplenish(with: 1, at: 1)
         sut.simulateGuess(with: secret)
-        XCTAssertFalse(sut.isShowingGameOngoingComponents, "Expect game not ongoing after game win")
-        XCTAssertTrue(sut.isShowingGameEndedComponents, "Expect game ended after game win")
-        XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game win")
+        assertGameEnd(sut, secret: secret)
     }
     
     func test_guessAndReplenish_rendersAvailableGuessCount() {
@@ -280,9 +267,7 @@ class GameUIIntegrationTests: XCTestCase {
         let alert2 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
         alert2?.tapConfirmButton()
 
-        XCTAssertFalse(sut.isShowingGameOngoingComponents, "Expect game not ongoing after game win")
-        XCTAssertTrue(sut.isShowingGameEndedComponents, "Expect game ended after game win")
-        XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game win")
+        assertGameEnd(sut, secret: secret)
         
         clearModalPresentationReference(sut)
     }
@@ -356,6 +341,19 @@ class GameUIIntegrationTests: XCTestCase {
         let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .main, value: "", comment: "")
         return String.localizedStringWithFormat(format, guessCount)
     }
+    
+    private func assertGameOngoing(_ sut: GuessNumberViewController, secret: DigitSecret) {
+        XCTAssertTrue(sut.isShowingGameOngoingComponents)
+        XCTAssertFalse(sut.isShowingGameEndedComponents)
+        XCTAssertFalse(sut.isShowingSecret(secret: secret))
+    }
+    
+    private func assertGameEnd(_ sut: GuessNumberViewController, secret: DigitSecret) {
+        XCTAssertFalse(sut.isShowingGameOngoingComponents)
+        XCTAssertTrue(sut.isShowingGameEndedComponents)
+        XCTAssertTrue(sut.isShowingSecret(secret: secret))
+    }
+    
     
     private func clearModalPresentationReference(_ sut: UIViewController) {
         let exp = expectation(description: "wait for dismiss")
