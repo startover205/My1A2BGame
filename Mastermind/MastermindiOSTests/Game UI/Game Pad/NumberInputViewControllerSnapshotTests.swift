@@ -1,5 +1,5 @@
 //
-//  GuessPadViewControllerSnapshotTests.swift
+//  NumberInputViewControllerSnapshotTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/7/30.
@@ -9,7 +9,7 @@
 import XCTest
 import MastermindiOS
 
-class GuessPadViewControllerSnapshotTests: XCTestCase {
+class NumberInputViewControllerSnapshotTests: XCTestCase {
     
     func test_emptyInputWithFourDigit() {
         let sut = makeSUT(digitCount: 4)

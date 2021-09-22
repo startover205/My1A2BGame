@@ -23,7 +23,7 @@
 		C034AAB926B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAAD26B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_dark.png */; };
 		C034AABA26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAAE26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png */; };
 		C034AABB26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = C034AAAF26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */; };
-		C034AABC26B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAB026B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift */; };
+		C034AABC26B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAB026B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift */; };
 		C034AABD26B680D6006AABE6 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAB226B680D6006AABE6 /* XCTestCase+Snapshot.swift */; };
 		C034AABE26B680D6006AABE6 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAB326B680D6006AABE6 /* UIViewController+Snapshot.swift */; };
 		C034AAC326B68D48006AABE6 /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034AAC126B68D48006AABE6 /* UIButton+TestHelpers.swift */; };
@@ -151,7 +151,7 @@
 		C034AAAD26B680D6006AABE6 /* ONE_INPUT_PAD_FOUR_DIGIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ONE_INPUT_PAD_FOUR_DIGIT_dark.png; sourceTree = "<group>"; };
 		C034AAAE26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_INPUT_PAD_FOUR_DIGIT_dark.png; sourceTree = "<group>"; };
 		C034AAAF26B680D6006AABE6 /* EMPTY_INPUT_PAD_FOUR_DIGIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_INPUT_PAD_FOUR_DIGIT_light.png; sourceTree = "<group>"; };
-		C034AAB026B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessPadViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		C034AAB026B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberInputViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		C034AAB226B680D6006AABE6 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		C034AAB326B680D6006AABE6 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		C034AAC126B68D48006AABE6 /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -572,7 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				C034AAA726B680D6006AABE6 /* snapshots */,
-				C034AAB026B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift */,
+				C034AAB026B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift */,
 			);
 			path = "Game Pad";
 			sourceTree = "<group>";
@@ -903,7 +903,7 @@
 				C034AAC326B68D48006AABE6 /* UIButton+TestHelpers.swift in Sources */,
 				C034AABE26B680D6006AABE6 /* UIViewController+Snapshot.swift in Sources */,
 				C034AAC426B68D48006AABE6 /* UIControl+TestHelpers.swift in Sources */,
-				C034AABC26B680D6006AABE6 /* GuessPadViewControllerSnapshotTests.swift in Sources */,
+				C034AABC26B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift in Sources */,
 				C0CA894B26F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
