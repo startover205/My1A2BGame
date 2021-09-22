@@ -232,18 +232,62 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(restartCallCount, 1, "Expect restart called after user restarts the game")
     }
     
-    func test_giveUp_notifiesGiveUpHandler() {
-        var giveUpCallCount = 0
+    func test_giveUp_showAlertWithProperDescriptionOnTapGiveUpButton() {
         let sut = makeSUT()
-        sut.onGiveUp = {
-            giveUpCallCount += 1
-        }
+        let window = UIWindow()
+        window.addSubview(sut.view)
 
         sut.loadViewIfNeeded()
-        XCTAssertEqual(giveUpCallCount, 0, "Expect no give up called on view load")
+        sut.simulateTapGiveUpButton()
+        
+        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert?.title, GamePresenter.giveUpAlertTitle)
+        XCTAssertEqual(alert?.actions.first?.title, GamePresenter.giveUpAlertConfirmTitle)
+        XCTAssertEqual(alert?.actions.last?.title, GamePresenter.giveUpAlertCancelTitle)
+        
+        clearModalPresentationReference(sut)
+    }
+    
+    func test_giveUp_notifiesLoseHandlerOnConfirmingGiveUp() {
+        var loseCallCount = 0
+        let sut = makeSUT(onLose: {
+            loseCallCount += 1
+        })
+        let window = UIWindow()
+        window.addSubview(sut.view)
+
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called on view load")
 
         sut.simulateTapGiveUpButton()
-        XCTAssertEqual(giveUpCallCount, 1, "Expect give up called after user gives up the game")
+        let alert1 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        alert1?.tapCancelButton()
+        XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called on cancel alert")
+        
+        sut.simulateTapGiveUpButton()
+        let alert2 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        alert2?.tapConfirmButton()
+        XCTAssertEqual(loseCallCount, 1, "Expect give up called on confirming")
+        
+        clearModalPresentationReference(sut)
+    }
+    
+    func test_giveUp_rendersGameEndedOnConfirmingGiveUp() {
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let sut = makeSUT(secret: secret)
+        let window = UIWindow()
+        window.addSubview(sut.view)
+
+        sut.loadViewIfNeeded()
+        sut.simulateTapGiveUpButton()
+        let alert2 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        alert2?.tapConfirmButton()
+
+        XCTAssertFalse(sut.isShowingGameOngoingComponents, "Expect game not ongoing after game win")
+        XCTAssertTrue(sut.isShowingGameEndedComponents, "Expect game ended after game win")
+        XCTAssertTrue(sut.isShowingSecret(secret: secret), "Expect showing secret after game win")
+        
+        clearModalPresentationReference(sut)
     }
     
     func test_deallocation_doesNotRetain() {
@@ -282,7 +326,18 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(title: String = "", gameVersion: GameVersion = .basic, userDefaults: UserDefaults = UserDefaultsMock(), secret: DigitSecret = DigitSecret(digits: [])!, delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(), currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void = { _ in }, onLose: @escaping () -> Void = {}, onRestart: @escaping () -> Void = {}, animate: @escaping Animate = { _, _, completion in completion?(true) }, file: StaticString = #filePath, line: UInt = #line) -> GuessNumberViewController {
+    private func makeSUT(title: String = "",
+                         gameVersion: GameVersion = .basic,
+                         userDefaults: UserDefaults = UserDefaultsMock(),
+                         secret: DigitSecret = DigitSecret(digits: [])!,
+                         delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(),
+                         currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
+                         onWin: @escaping (Score) -> Void = { _ in },
+                         onLose: @escaping () -> Void = {},
+                         onRestart: @escaping () -> Void = {},
+                         animate: @escaping Animate = { _, _, completion in completion?(true) },
+                         file: StaticString = #filePath,
+                         line: UInt = #line) -> GuessNumberViewController {
         let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -303,6 +358,14 @@ class GameUIIntegrationTests: XCTestCase {
     private func guessMessageFor(guessCount: Int) -> String {
         let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .main, value: "", comment: "")
         return String.localizedStringWithFormat(format, guessCount)
+    }
+    
+    private func clearModalPresentationReference(_ sut: GuessNumberViewController) {
+        let exp = expectation(description: "wait for dismiss")
+        sut.dismiss(animated: false) {
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 1)
     }
     
     private final class ReplenishChanceDelegateSpy: ReplenishChanceDelegate {
@@ -397,5 +460,23 @@ private extension UserDefaults {
 private extension UIBarButtonItem {
     func simulateTap() {
         target!.performSelector(onMainThread: action!, with: nil, waitUntilDone: true)
+    }
+}
+
+private extension UIAlertController {
+    typealias AlertHandler = @convention(block) (UIAlertAction) -> Void
+
+    private func tapButton(atIndex index: Int) {
+        guard let block = actions[index].value(forKey: "handler") else { return }
+        let handler = unsafeBitCast(block as AnyObject, to: AlertHandler.self)
+        handler(actions[index])
+    }
+    
+    func tapConfirmButton() {
+        tapButton(atIndex: 0)
+    }
+    
+    func tapCancelButton() {
+        tapButton(atIndex: 1)
     }
 }

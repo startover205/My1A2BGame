@@ -173,29 +173,6 @@ private extension AppDelegate {
             },
             onRestart: onRestart)
         
-        controller.onGiveUp = { [weak controller] in
-            let alert = UIAlertController(
-                title: NSLocalizedString("Are you sure you want to give up?", comment: ""),
-                message: nil,
-                preferredStyle: .alert)
-            
-            let ok = UIAlertAction(
-                title: NSLocalizedString("Give Up!", comment: "2nd"),
-                style: .destructive) { [weak controller] _ in
-                controller?.navigationController?.pushViewController(LoseUIComposer.loseScene(), animated: true)
-                controller?.configureViewsForGameResult()
-            }
-            
-            let cancel = UIAlertAction(
-                title: NSLocalizedString("Cancel", comment: "2nd"),
-                style: .cancel)
-            
-            alert.addAction(ok)
-            alert.addAction(cancel)
-            
-            controller?.present(alert, animated: true)
-        }
-        
         return controller
     }
     

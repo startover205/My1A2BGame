@@ -12,12 +12,12 @@ import Mastermind
 public protocol GuessNumberViewControllerDelegate {
     func didRequestMatch(_ guess: [Int])
     func didRequestLeftChanceCountUpdate()
+    func didTapGiveUpButton()
 }
 
 public class GuessNumberViewController: UIViewController {
     public var voicePromptViewController: VoicePromptViewController?
     public var onRestart: (() -> Void)?
-    public var onGiveUp: (() -> Void)?
     public var delegate: GuessNumberViewControllerDelegate?
     
     @IBOutlet private(set) public var helperViewController: HelperViewController!
@@ -66,7 +66,7 @@ public class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func quitBtnPressed(_ sender: Any) {
-        onGiveUp?()
+        delegate?.didTapGiveUpButton()
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
@@ -107,6 +107,28 @@ extension GuessNumberViewController: GameView {
         configureViewsForGameResult()
         
         voicePromptViewController?.playVoicePromptIfEnabled(message: viewModel.voiceMessage)
+    }
+    
+    public func display(_ viewModel: GiveUpAlertViewModel) {
+        let alert = UIAlertController(
+            title: viewModel.title,
+            message: nil,
+            preferredStyle: .alert)
+        
+        let confirm = UIAlertAction(
+            title: viewModel.confirmTitle,
+            style: .destructive) {  _ in
+            viewModel.confirmCallBack()
+        }
+        
+        let cancel = UIAlertAction(
+            title: viewModel.cancelTitle,
+            style: .cancel)
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
     
     public func configureViewsForGameResult()  {

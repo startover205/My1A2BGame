@@ -41,6 +41,10 @@ extension WeakRefVirtualProxy: GameView where T: GameView {
     func display(_ viewModel: GameEndViewModel) {
         object?.display(viewModel)
     }
+    
+    func display(_ viewModel: GiveUpAlertViewModel) {
+        object?.display(viewModel)
+    }
 }
 
 extension WeakRefVirtualProxy: NumberInputViewControllerDelegate where T: NumberInputViewControllerDelegate {

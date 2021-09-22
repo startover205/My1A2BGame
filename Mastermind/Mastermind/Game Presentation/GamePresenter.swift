@@ -9,6 +9,18 @@ import Foundation
 
 public final class GamePresenter {
     private let gameView: GameView
+    
+    public static var giveUpAlertTitle: String {
+        NSLocalizedString("Are you sure you want to give up?", comment: "")
+    }
+    
+    public static var giveUpAlertConfirmTitle: String {
+        NSLocalizedString("Give Up!", comment: "2nd")
+    }
+
+    public static var giveUpAlertCancelTitle: String {
+        NSLocalizedString("Cancel", comment: "2nd")
+    }
 
     public init(gameView: GameView) {
         self.gameView = gameView
@@ -39,5 +51,13 @@ public final class GamePresenter {
     
     public func didLoseGame() {
         gameView.display(GameEndViewModel(voiceMessage: NSLocalizedString("Don't give up! Give it another try!", comment: "")))
+    }
+    
+    public func didTapGiveUpButton(confirmCallBack: @escaping () -> Void) {
+        gameView.display(GiveUpAlertViewModel(
+                            title: Self.giveUpAlertTitle,
+                            confirmTitle: Self.giveUpAlertConfirmTitle,
+                            cancelTitle: Self.giveUpAlertCancelTitle,
+                            confirmCallBack: confirmCallBack))
     }
 }

@@ -139,5 +139,13 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
             }
         }
     }
+    
+    func didTapGiveUpButton() {
+        presenter?.didTapGiveUpButton(confirmCallBack: { [weak self] in
+            self?.presenter?.didLoseGame()
+            
+            self?.onLose()
+        })
+    }
 }
 

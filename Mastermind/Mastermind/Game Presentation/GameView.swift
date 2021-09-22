@@ -9,4 +9,12 @@ public protocol GameView {
     func display(_ viewModel: MatchResultViewModel)
     func display(_ viewModel: LeftChanceCountViewModel)
     func display(_ viewModel: GameEndViewModel)
+    func display(_ viewModel: GiveUpAlertViewModel)
+}
+
+public struct GiveUpAlertViewModel {
+    public let title: String
+    public let confirmTitle: String
+    public let cancelTitle: String
+    public let confirmCallBack: () -> Void
 }
