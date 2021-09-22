@@ -68,6 +68,7 @@
 		C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6B26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift */; };
 		C0BF9A6E26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */; };
 		C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */; };
+		C0C01EEE26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C01EED26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift */; };
 		C0CA88EC26F6D0C60025F9E5 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */; };
 		C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88ED26F6D1660025F9E5 /* GameView.swift */; };
 		C0CA88F026F6D1700025F9E5 /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */; };
@@ -198,6 +199,7 @@
 		C0BF9A6B26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDigitSecretGenerator.swift; sourceTree = "<group>"; };
 		C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcherTests.swift; sourceTree = "<group>"; };
 		C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcher.swift; sourceTree = "<group>"; };
+		C0C01EED26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatchGuessTests.swift; sourceTree = "<group>"; };
 		C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		C0CA88ED26F6D1660025F9E5 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				C0BF9A6026DB5E23006BD7C1 /* DigitSecret.swift */,
 				C0BF9A6926DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift */,
 				C0BF9A6D26DC72ED006BD7C1 /* DigitSecretMatcherTests.swift */,
+				C0C01EED26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift */,
 			);
 			path = "Basic Challenge";
 			sourceTree = "<group>";
@@ -954,6 +957,7 @@
 				C04B5B1D26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift in Sources */,
 				C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */,
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				C0C01EEE26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift in Sources */,
 				C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */,
 				C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */,
 				C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */,
