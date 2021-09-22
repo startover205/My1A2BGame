@@ -356,7 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				C0CA891826F70FDE0025F9E5 /* Main Game */,
-				C0CA891726F70FBC0025F9E5 /* Game Pad */,
+				C0CA891726F70FBC0025F9E5 /* Number Input */,
 			);
 			path = "Game UI";
 			sourceTree = "<group>";
@@ -568,13 +568,13 @@
 			path = "Game Presentation";
 			sourceTree = "<group>";
 		};
-		C0CA891726F70FBC0025F9E5 /* Game Pad */ = {
+		C0CA891726F70FBC0025F9E5 /* Number Input */ = {
 			isa = PBXGroup;
 			children = (
 				C034AAA726B680D6006AABE6 /* snapshots */,
 				C034AAB026B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift */,
 			);
-			path = "Game Pad";
+			path = "Number Input";
 			sourceTree = "<group>";
 		};
 		C0CA891826F70FDE0025F9E5 /* Main Game */ = {
