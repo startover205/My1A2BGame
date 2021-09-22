@@ -8,10 +8,10 @@
 import CoreData
 
 public protocol ManagedRecord: NSManagedObject {
-    var name: String? { get set }
+    var name: String { get set }
     var guessTimes: Int16 { get set }
     var spentTime: Double { get set }
-    var date: Date? { get set }
+    var date: Date { get set }
 }
 
 extension Winner: ManagedRecord { }

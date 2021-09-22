@@ -11,8 +11,8 @@ import CoreData
 
 @objc(AdvancedWinner)
 public class AdvancedWinner: NSManagedObject {
-    @NSManaged public var date: Date?
+    @NSManaged public var date: Date
     @NSManaged public var guessTimes: Int16
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var spentTime: Double
 }

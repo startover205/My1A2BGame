@@ -11,16 +11,14 @@ import CoreData
 import Mastermind
 
 protocol User {
-    var date: Date? { get set }
+    var date: Date { get set }
     var guessTimes: Int16 { get set }
-    var name: String? { get set }
+    var name: String { get set }
     var spentTime: Double { get set }
 }
 
-extension Winner: User {
-}
-extension AdvancedWinner: User {
-}
+extension Winner: User {}
+extension AdvancedWinner: User {}
 
 class RankViewController: UIViewController {
 

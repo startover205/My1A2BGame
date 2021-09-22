@@ -44,7 +44,7 @@ extension CoreDataRecordStore: RecordStore {
                 let request = NSFetchRequest<T>(entityName: T.entity().name!)
                 request.returnsObjectsAsFaults = false
                 return try context.fetch(request).map {
-                    LocalPlayerRecord(playerName: $0.name ?? "", guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date ?? Date())
+                    LocalPlayerRecord(playerName: $0.name, guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date)
                 }
             }
         }
