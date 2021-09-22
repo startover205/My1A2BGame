@@ -93,7 +93,11 @@ private extension GuessNumberViewController {
     }
     
     func simulateGameEnd() {
-        configureViewsForGameResult()
+        guessButton.isHidden = true
+        giveUpButton.isHidden = true
+        restartButton.isHidden = false
+        helperViewController?.hideView()
+        quizLabelViewController.revealAnswer()
     }
     
     func simulateTurnOnHelper() {
