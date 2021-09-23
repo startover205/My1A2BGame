@@ -11,10 +11,10 @@
 "5A0B!! You won!!" = "5A0B!! You won!!";
 
 /* No comment provided by engineer. */
-"GAME_GIVE_UP_ALERT_TITLE" = "GAME_GIVE_UP_ALERT_TITLE";
+"GAME_GIVE_UP_ALERT_TITLE" = "Are you sure you want to give up?";
 
 /* 2nd */
-"GAME_GIVE_UP_ALERT_CANCEL_TITLE" = "GAME_GIVE_UP_ALERT_CANCEL_TITLE";
+"GAME_GIVE_UP_ALERT_CANCEL_TITLE" = "Cancel";
 
 /* 3nd */
 "Certain content will only be available after restarting the app." = "Certain content will only be available after restarting the app.";
@@ -56,7 +56,7 @@
 "Failed to Restore Purchase" = "Failed to Restore Purchase";
 
 /* 2nd */
-"GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "GAME_GIVE_UP_ALERT_CONFIRM_TITLE";
+"GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "Give Up!";
 
 /* No comment provided by engineer. */
 "Helper Area" = "Helper Area";
@@ -116,7 +116,7 @@
 "You can filter out numbers however you want in this area." = "You can filter out numbers however you want in this area.";
 
 /* No comment provided by engineer. */
-"%d_GUESS_CHANCE_COUNT_FORMAT" = "%d_GUESS_CHANCE_COUNT_FORMAT";
+"%d_GUESS_CHANCE_COUNT_FORMAT" = "%d chances left";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "You guessed %d times";
