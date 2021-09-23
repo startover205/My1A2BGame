@@ -8,10 +8,10 @@
 "5A0B!! You won!!" = "5A0B！！赢了！！";
 
 /* No comment provided by engineer. */
-"Are you sure you want to give up?" = "您确定要投降吗？";
+"GAME_GIVE_UP_ALERT_TITLE" = "您确定要投降吗？";
 
 /* 2nd */
-"Cancel" = "取消";
+"GAME_GIVE_UP_ALERT_CANCEL_TITLE" = "取消";
 
 /* 3nd */
 "Certain content will only be available after restarting the app." = "部分内容会在App重启后生效。";
@@ -53,7 +53,7 @@
 "Failed to Restore Purchase" = "无法恢复购买";
 
 /* 2nd */
-"Give Up!" = "投降";
+"GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "投降";
 
 /* No comment provided by engineer. */
 "Helper Area" = "小帮手";

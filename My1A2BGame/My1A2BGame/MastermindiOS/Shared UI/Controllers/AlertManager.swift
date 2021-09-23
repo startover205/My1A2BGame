@@ -57,8 +57,8 @@ class AlertManager: NSObject {
         
         switch type {
         case .giveUp:
-            alert.title = NSLocalizedString("Are you sure you want to give up?", comment: "")
-            actionTitle = NSLocalizedString("Give Up!", comment: "2nd")
+            alert.title = NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE", comment: "")
+            actionTitle = NSLocalizedString("GAME_GIVE_UP_ALERT_CONFIRM_TITLE", comment: "2nd")
         }
         let ok = UIAlertAction(title: actionTitle, style: actionStyle) { (_) in
             confirmHandler()

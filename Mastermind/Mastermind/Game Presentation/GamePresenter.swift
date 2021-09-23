@@ -11,15 +11,24 @@ public final class GamePresenter {
     private let gameView: GameView
     
     public static var giveUpAlertTitle: String {
-        NSLocalizedString("Are you sure you want to give up?", comment: "")
+        NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert")
     }
     
     public static var giveUpAlertConfirmTitle: String {
-        NSLocalizedString("Give Up!", comment: "2nd")
+        NSLocalizedString("GAME_GIVE_UP_ALERT_CONFIRM_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert confirm button")
     }
 
     public static var giveUpAlertCancelTitle: String {
-        NSLocalizedString("Cancel", comment: "2nd")
+        NSLocalizedString("GAME_GIVE_UP_ALERT_CANCEL_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert cancel button")
     }
 
     public init(gameView: GameView) {
