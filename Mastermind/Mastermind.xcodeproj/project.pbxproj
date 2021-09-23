@@ -108,6 +108,7 @@
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 		C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */; };
 		C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0F984EE26FC4CAF001DAB38 /* Game.strings */; };
+		C0F984F226FC58A1001DAB38 /* GamePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984F126FC58A1001DAB38 /* GamePresenterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +242,7 @@
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLocalizationTests.swift; sourceTree = "<group>"; };
 		C0F984ED26FC4CAF001DAB38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Game.strings; sourceTree = "<group>"; };
+		C0F984F126FC58A1001DAB38 /* GamePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -682,6 +684,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */,
+				C0F984F126FC58A1001DAB38 /* GamePresenterTests.swift */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -974,6 +977,7 @@
 				C04B5B1D26C6094F0056DDA8 /* LoadRecordsFromStoreUseCaseTests.swift in Sources */,
 				C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */,
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				C0F984F226FC58A1001DAB38 /* GamePresenterTests.swift in Sources */,
 				C0C01EEE26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift in Sources */,
 				C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */,
 				C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */,
