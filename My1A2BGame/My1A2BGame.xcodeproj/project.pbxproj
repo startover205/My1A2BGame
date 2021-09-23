@@ -61,6 +61,7 @@
 		C0ED626A22648B9700892A80 /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626922648B9700892A80 /* IAP.swift */; };
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
 		C0EFCBF226B54C4B0041A622 /* Mastermind.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */; };
 		DF35789FEE4E03F7F56F3F0B /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +159,8 @@
 		C0ED626622608FFD00892A80 /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
+		C0F984F526FC6081001DAB38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9FAF4D352E36CA927CDC21C /* Pods-My1A2BGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame.release.xcconfig"; sourceTree = "<group>"; };
 		FED992AD8D99E6385D411354 /* Pods-My1A2BGameTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -311,6 +314,7 @@
 				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
 				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
 				C02FDE7E26F85AC0009D8E89 /* NumberInputViewControllerTests.swift */,
+				C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
@@ -629,6 +633,7 @@
 			files = (
 				C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */,
 				C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */,
+				C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */,
 				C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */,
 				C02FDE7F26F85AC0009D8E89 /* NumberInputViewControllerTests.swift in Sources */,
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,
@@ -691,6 +696,7 @@
 			children = (
 				C0A9E2912333E29C007F45B9 /* zh-Hant */,
 				C0A9E2962333E2AD007F45B9 /* zh-Hans */,
+				C0F984F526FC6081001DAB38 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
