@@ -113,7 +113,7 @@
 "You can filter out numbers however you want in this area." = "您可以在此过滤数字、协助思考。";
 
 /* No comment provided by engineer. */
-"You can still guess %d times" = "还可以猜 %d 次";
+"%d_GUESS_CHANCE_COUNT_FORMAT" = "还可以猜 %d 次";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "共猜了 %d 次";

@@ -338,7 +338,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     private func guessMessageFor(guessCount: Int) -> String {
-        let format = NSLocalizedString("You can still guess %d times", tableName: nil, bundle: .main, value: "", comment: "")
+        let format = NSLocalizedString("%d_GUESS_CHANCE_COUNT_FORMAT", tableName: nil, bundle: .main, value: "", comment: "")
         return String.localizedStringWithFormat(format, guessCount)
     }
     

@@ -31,14 +31,19 @@ public final class GamePresenter {
             comment: "Title for the give up alert cancel button")
     }
 
+    public static var guessChanceCountFormat: String {
+        NSLocalizedString("%d_GUESS_CHANCE_COUNT_FORMAT",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Format for the left chance count")
+    }
+
     public init(gameView: GameView) {
         self.gameView = gameView
     }
 
     public func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
-        let format = NSLocalizedString("You can still guess %d times", comment: "")
-
-        let message = String.localizedStringWithFormat(format, leftChanceCount)
+        let message = String.localizedStringWithFormat(Self.guessChanceCountFormat, leftChanceCount)
         let shouldBeAwareOfChanceCount = leftChanceCount <= 3
         gameView.display(LeftChanceCountViewModel(message: message, shouldBeAwareOfChanceCount: shouldBeAwareOfChanceCount))
     }
