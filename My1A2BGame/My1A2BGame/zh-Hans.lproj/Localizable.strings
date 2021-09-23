@@ -23,7 +23,7 @@
 "Confirm" = "确认";
 
 /* No comment provided by engineer. */
-"Congrats! You won!" = "恭喜赢了";
+"WIN_VOICE_MESSAGE" = "恭喜赢了";
 
 /* 3nd */
 "Currently No Product Available" = "目前没有可购买的商品";
@@ -32,7 +32,7 @@
 "Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!" = "是否要观看奖励广告？观看奖励广告能让您增加 %d 次机会！";
 
 /* No comment provided by engineer. */
-"Don't give up! Give it another try!" = "不要灰心，再试试看！";
+"LOSE_VOICE_MESSAGE" = "不要灰心，再试试看！";
 
 /* 2nd */
 "Done" = "完成";

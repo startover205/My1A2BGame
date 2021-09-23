@@ -26,7 +26,7 @@
 "Confirm" = "Confirm";
 
 /* No comment provided by engineer. */
-"Congrats! You won!" = "Congrats! You won!";
+"WIN_VOICE_MESSAGE" = "WIN_VOICE_MESSAGE";
 
 /* 3nd */
 "Currently No Product Available" = "Currently No Product Available";
@@ -35,7 +35,7 @@
 "Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!" = "Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!";
 
 /* No comment provided by engineer. */
-"Don't give up! Give it another try!" = "Don't give up! Give it another try!";
+"LOSE_VOICE_MESSAGE" = "LOSE_VOICE_MESSAGE";
 
 /* 2nd */
 "Done" = "Done";

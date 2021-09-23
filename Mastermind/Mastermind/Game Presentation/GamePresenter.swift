@@ -38,6 +38,20 @@ public final class GamePresenter {
             comment: "Format for the left chance count")
     }
 
+    public static var voiceMessageForWinning: String {
+        NSLocalizedString("WIN_VOICE_MESSAGE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Voice message played when user wins")
+    }
+
+    public static var voiceMessageForLosing: String {
+        NSLocalizedString("LOSE_VOICE_MESSAGE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Voice message played when user loses")
+    }
+
     public init(gameView: GameView) {
         self.gameView = gameView
     }
@@ -61,11 +75,11 @@ public final class GamePresenter {
     }
     
     public func didWinGame() {
-        gameView.display(GameEndViewModel(voiceMessage: NSLocalizedString("Congrats! You won!", comment: "")))
+        gameView.display(GameEndViewModel(voiceMessage: Self.voiceMessageForWinning))
     }
     
     public func didLoseGame() {
-        gameView.display(GameEndViewModel(voiceMessage: NSLocalizedString("Don't give up! Give it another try!", comment: "")))
+        gameView.display(GameEndViewModel(voiceMessage: Self.voiceMessageForLosing))
     }
     
     public func didTapGiveUpButton(confirmCallBack: @escaping () -> Void) {
