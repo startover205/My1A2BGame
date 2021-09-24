@@ -7,8 +7,17 @@
 
 import Foundation
 
+public struct VoiceMessageViewModel {
+    public let message: String
+}
+
+public protocol UtteranceView {
+    func display(_ viewModel: VoiceMessageViewModel)
+}
+
 public final class GamePresenter {
     private let gameView: GameView
+    private let utteranceView: UtteranceView
     
     private static var giveUpAlertTitle: String {
         NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE",
@@ -52,8 +61,9 @@ public final class GamePresenter {
             comment: "Voice message played when user loses")
     }
 
-    public init(gameView: GameView) {
+    public init(gameView: GameView, utteranceView: UtteranceView) {
         self.gameView = gameView
+        self.utteranceView = utteranceView
     }
 
     public func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
@@ -66,20 +76,23 @@ public final class GamePresenter {
         let hint = "\(result.bulls)A\(result.cows)B"
         let resultMessage = guess.content.compactMap(String.init).joined() + "          " + "\(hint)\n"
         
-        let voiceMessage = hint
-        
         gameView.display(MatchResultViewModel(
                             matchCorrect: result.correct,
-                            resultMessage: resultMessage,
-                            voiceMessage: voiceMessage))
+                            resultMessage: resultMessage))
+        
+        utteranceView.display(VoiceMessageViewModel(message: hint))
     }
     
     public func didWinGame() {
-        gameView.display(GameEndViewModel(voiceMessage: Self.voiceMessageForWinning))
+        gameView.displayGameEnd()
+        
+        utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForWinning))
     }
     
     public func didLoseGame() {
-        gameView.display(GameEndViewModel(voiceMessage: Self.voiceMessageForLosing))
+        gameView.displayGameEnd()
+
+        utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForLosing))
     }
     
     public func didTapGiveUpButton(confirmCallBack: @escaping () -> Void) {

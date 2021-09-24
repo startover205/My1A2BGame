@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Mastermind
 import AVFoundation
 
 public final class VoicePromptViewController: NSObject {
@@ -30,10 +31,12 @@ public final class VoicePromptViewController: NSObject {
         userDefaults.setValue(view.isOn, forKey: "VOICE_PROMPT")
         onToggleSwitch?(view.isOn)
     }
-    
-    public func playVoicePromptIfEnabled(message: String) {
+}
+
+extension VoicePromptViewController: UtteranceView{
+    public func display(_ viewModel: VoiceMessageViewModel) {
         if view.isOn {
-            let speechUtterance = AVSpeechUtterance(string: message)
+            let speechUtterance = AVSpeechUtterance(string: viewModel.message)
             synthesizer.speak(speechUtterance)
         }
     }

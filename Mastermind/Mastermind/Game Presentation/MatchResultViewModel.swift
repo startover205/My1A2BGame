@@ -8,5 +8,4 @@
 public struct MatchResultViewModel {
     public let matchCorrect: Bool
     public let resultMessage: String
-    public let voiceMessage: String
 }

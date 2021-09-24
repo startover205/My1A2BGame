@@ -93,8 +93,6 @@ extension GuessNumberViewController: GameView {
         
         feedbackGenerator?.notificationOccurred(viewModel.matchCorrect ? .success : .error)
         feedbackGenerator = nil
-
-        voicePromptViewController?.playVoicePromptIfEnabled(message: viewModel.voiceMessage)
     }
     
     public func display(_ viewModel: LeftChanceCountViewModel) {
@@ -102,10 +100,8 @@ extension GuessNumberViewController: GameView {
         availableGuessLabel?.textColor = viewModel.shouldBeAwareOfChanceCount ? .systemRed : labelColor
     }
     
-    public func display(_ viewModel: GameEndViewModel) {
+    public func displayGameEnd() {
         configureViewsForGameResult()
-        
-        voicePromptViewController?.playVoicePromptIfEnabled(message: viewModel.voiceMessage)
     }
     
     public func display(_ viewModel: GiveUpAlertViewModel) {

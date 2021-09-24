@@ -74,7 +74,9 @@ public final class GameUIComposer {
             onWin: onWin,
             onLose: onLose)
         gameViewController.delegate = gamePresentationAdapter
-        gamePresentationAdapter.presenter = GamePresenter(gameView: WeakRefVirtualProxy(gameViewController))
+        gamePresentationAdapter.presenter = GamePresenter(
+            gameView: WeakRefVirtualProxy(gameViewController),
+            utteranceView: voicePromptViewController)
         
         return gameViewController
     }
