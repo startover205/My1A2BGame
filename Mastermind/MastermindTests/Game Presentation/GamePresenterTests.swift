@@ -49,12 +49,12 @@ class GamePresenterTests: XCTestCase {
         let (sut, view) = makeSUT()
         
         sut.didUpdateLeftChanceCount(4)
-        XCTAssertEqual(view.receivedMessages, [.display(leftCountMessage: String.localizedStringWithFormat(GamePresenter.guessChanceCountFormat, 4), shouldBeAwareOfLeftCount: false)], "Expect displaying left chance count message but don't have to remind user to be aware of the left chance count")
+        XCTAssertEqual(view.receivedMessages, [.display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false)], "Expect displaying left chance count message but don't have to remind user to be aware of the left chance count")
         
         sut.didUpdateLeftChanceCount(3)
         XCTAssertEqual(view.receivedMessages, [
-                        .display(leftCountMessage: String.localizedStringWithFormat(GamePresenter.guessChanceCountFormat, 4), shouldBeAwareOfLeftCount: false),
-                        .display(leftCountMessage: String.localizedStringWithFormat(GamePresenter.guessChanceCountFormat, 3), shouldBeAwareOfLeftCount: true)], "Expect displaying left chance count message and remind user to be aware of the left chance count")
+                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false),
+                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 3), shouldBeAwareOfLeftCount: true)], "Expect displaying left chance count message and remind user to be aware of the left chance count")
     }
     
     // MARK: Helpers
@@ -67,6 +67,16 @@ class GamePresenterTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, view)
+    }
+    
+    private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+        let table = "Game"
+        let bundle = Bundle(for: GamePresenter.self)
+        let value = bundle.localizedString(forKey: key, value: nil, table: table)
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        return value
     }
     
     private final class ViewSpy: GameView {
