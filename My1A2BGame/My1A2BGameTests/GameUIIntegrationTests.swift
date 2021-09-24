@@ -212,17 +212,19 @@ class GameUIIntegrationTests: XCTestCase {
         let sut = makeSUT(gameVersion: gameVersion, userDefaults: userDefaults, speechSynthesizer: synthesizer, secret: secret, delegate: delegate)
         
         sut.loadViewIfNeeded()
-        sut.simulateTurnVoiewPrompt(on: true)
         
+        sut.simulateTurnVoiewPrompt(on: true)
         sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
         XCTAssertEqual(synthesizer.capturedMessages, ["0A4B"], "Expect playing match result")
 
+        sut.simulateTurnVoiewPrompt(on: false)
         delegate.completeReplenish(with: 1, at: 0)
         sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 0])!)
-        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B", "0A3B"], "Expect playing match result")
+        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B"], "Expect no voice message when voice prompt is set to off")
 
+        sut.simulateTurnVoiewPrompt(on: true)
         delegate.completeReplenish(with: 0, at: 1)
-        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B", "0A3B", localized("LOSE_VOICE_MESSAGE")], "Expect playing lose message on game lose")
+        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B", localized("LOSE_VOICE_MESSAGE")], "Expect playing lose message on game lose")
     }
     
     func test_guessAndReplenish_rendersAvailableGuessCount() {
