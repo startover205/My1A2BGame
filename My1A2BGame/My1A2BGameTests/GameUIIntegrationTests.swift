@@ -10,6 +10,7 @@ import XCTest
 @testable import My1A2BGame
 import Mastermind
 import MastermindiOS
+import AVFoundation
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
@@ -183,6 +184,25 @@ class GameUIIntegrationTests: XCTestCase {
         assertGameEnd(sut, secret: secret)
     }
     
+    func test_gameWin_playsMatchResultAndWinMessageIfNeeded() {
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let synthesizer = AVSpeechSynthesizerSpy()
+        let userDefaults = UserDefaultsMock()
+        let sut = makeSUT(userDefaults: userDefaults, speechSynthesizer: synthesizer, secret: secret)
+        
+        sut.loadViewIfNeeded()
+        
+        sut.simulateTurnVoiewPrompt(on: false)
+        sut.simulateGuess(with: secret)
+        
+        XCTAssertEqual(synthesizer.capturedMessages, [], "Expect no voice message when voice prompt is set to off")
+        
+        sut.simulateTurnVoiewPrompt(on: true)
+        sut.simulateGuess(with: secret)
+        
+        XCTAssertEqual(synthesizer.capturedMessages, ["4A0B", localized("WIN_VOICE_MESSAGE")], "Expect winning voice message when voice prompt is set to on")
+    }
+    
     func test_guessAndReplenish_rendersAvailableGuessCount() {
         let gameVersion = makeGameVersion(maxGuessCount: 3)
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
@@ -311,6 +331,7 @@ class GameUIIntegrationTests: XCTestCase {
     private func makeSUT(title: String = "",
                          gameVersion: GameVersion = .basic,
                          userDefaults: UserDefaults = UserDefaultsMock(),
+                         speechSynthesizer: AVSpeechSynthesizer = AVSpeechSynthesizerSpy(),
                          secret: DigitSecret = DigitSecret(digits: [])!,
                          delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(),
                          currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
@@ -320,7 +341,7 @@ class GameUIIntegrationTests: XCTestCase {
                          animate: @escaping Animate = { _, _, completion in completion?(true) },
                          file: StaticString = #filePath,
                          line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
+        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, speechSynthesizer: speechSynthesizer, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -353,6 +374,16 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.isShowingSecret(secret: secret))
     }
     
+    private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+        let table = "Game"
+        let bundle = Bundle(for: GamePresenter.self)
+        let value = bundle.localizedString(forKey: key, value: nil, table: table)
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        
+        return value
+    }
     
     private func clearModalPresentationReference(_ sut: UIViewController) {
         let exp = expectation(description: "wait for dismiss")
@@ -371,6 +402,14 @@ class GameUIIntegrationTests: XCTestCase {
         
         func completeReplenish(with chanceCount: Int, at index: Int = 0) {
             completions[index](chanceCount)
+        }
+    }
+    
+    private final class AVSpeechSynthesizerSpy: AVSpeechSynthesizer {
+        var capturedMessages = [String]()
+        
+        override func speak(_ utterance: AVSpeechUtterance) {
+            capturedMessages.append(utterance.speechString)
         }
     }
 }
@@ -444,6 +483,10 @@ private extension GuessNumberViewController {
     
     func simulateTapInstructionButton() {
         navigationItem.rightBarButtonItems?.first?.simulateTap()
+    }
+    
+    func simulateTurnVoiewPrompt(on: Bool) {
+        voicePromptViewController?.view.setOn(on, animated: false)
     }
 }
 

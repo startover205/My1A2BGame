@@ -9,12 +9,13 @@
 import UIKit
 import Mastermind
 import MastermindiOS
+import AVFoundation
 
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
-        let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
+    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, speechSynthesizer: AVSpeechSynthesizer = .init(), secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
+        let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults, synthesizer: speechSynthesizer)
         
         let inputVC = makeInputPadUI()
         inputVC.digitCount = gameVersion.digitCount

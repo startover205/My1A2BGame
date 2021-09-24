@@ -1,7 +1,2 @@
-/* 
-  Game.strings
-  Mastermind
 
-  Created by Ming-Ta Yang on 2021/9/22.
-  
-*/
+"WIN_VOICE_MESSAGE" = "Congrats! You won!";
