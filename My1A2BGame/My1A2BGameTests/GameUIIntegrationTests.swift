@@ -367,6 +367,8 @@ class GameUIIntegrationTests: XCTestCase {
                          line: UInt = #line) -> GuessNumberViewController {
         let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, speechSynthesizer: speechSynthesizer, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         
+        trackForMemoryLeaks(userDefaults, file: file, line: line)
+        trackForMemoryLeaks(speechSynthesizer, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
