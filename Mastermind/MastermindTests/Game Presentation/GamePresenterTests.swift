@@ -23,7 +23,7 @@ private final class GamePresenter {
         self.gameView = gameView
     }
     
-    public static var guessChanceCountFormat: String {
+    private static var guessChanceCountFormat: String {
         NSLocalizedString("%d_GUESS_CHANCE_COUNT_FORMAT",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
