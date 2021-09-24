@@ -6,17 +6,25 @@
 //
 
 import XCTest
+import Mastermind
 
-public struct LeftChanceCountViewModel {
-    public let message: String
-    public let shouldBeAwareOfChanceCount: Bool
-}
-
-private protocol GameView {
+protocol GameView {
     func display(_ viewModel: LeftChanceCountViewModel)
+    func display(_ viewModel: MatchResultViewModel)
 }
 
-private final class GamePresenter {
+struct MatchResultViewModel {
+    let matchCorrect: Bool
+    let resultMessage: String
+    let voiceMessage: String
+}
+
+struct LeftChanceCountViewModel {
+    let message: String
+    let shouldBeAwareOfChanceCount: Bool
+}
+
+final class GamePresenter {
     private let gameView: GameView
     
     init(gameView: GameView) {
@@ -34,6 +42,18 @@ private final class GamePresenter {
         let message = String.localizedStringWithFormat(Self.guessChanceCountFormat, leftChanceCount)
         let shouldBeAwareOfChanceCount = leftChanceCount <= 3
         gameView.display(LeftChanceCountViewModel(message: message, shouldBeAwareOfChanceCount: shouldBeAwareOfChanceCount))
+    }
+    
+    public func didMatchGuess(guess: DigitSecret, result: MatchResult) {
+        let hint = "\(result.bulls)A\(result.cows)B"
+        let resultMessage = guess.content.compactMap(String.init).joined() + "          " + "\(hint)\n"
+        
+        let voiceMessage = hint
+        
+        gameView.display(MatchResultViewModel(
+                            matchCorrect: result.correct,
+                            resultMessage: resultMessage,
+                            voiceMessage: voiceMessage))
     }
 }
 
@@ -55,6 +75,16 @@ class GamePresenterTests: XCTestCase {
         XCTAssertEqual(view.receivedMessages, [
                         .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false),
                         .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 3), shouldBeAwareOfLeftCount: true)], "Expect displaying left chance count message and remind user to be aware of the left chance count")
+    }
+    
+    func test_didMatchGuess_displaysMatchResultAndVoiceMessage() {
+        let guesss = DigitSecret(digits: [1, 2, 3, 4])!
+        let matchResult = MatchResult(bulls: 3, cows: 1, correct: true)
+        let (sut, view) = makeSUT()
+        
+        sut.didMatchGuess(guess: guesss, result: matchResult)
+        
+        XCTAssertEqual(view.receivedMessages, [.display(matchCorrect: matchResult.correct, resultMesssage: "1234          3A1B\n", voiceMessage: "3A1B")])
     }
     
     // MARK: Helpers
@@ -81,13 +111,21 @@ class GamePresenterTests: XCTestCase {
     
     private final class ViewSpy: GameView {
         enum Message: Equatable {
-            case display(leftCountMessage: String, shouldBeAwareOfLeftCount: Bool)
+            case display(leftCountMessage: String,
+                         shouldBeAwareOfLeftCount: Bool)
+            case display(matchCorrect: Bool,
+                         resultMesssage: String,
+                         voiceMessage: String)
         }
         
         private(set) var receivedMessages = [Message]()
         
         func display(_ viewModel: LeftChanceCountViewModel) {
             receivedMessages.append(.display(leftCountMessage: viewModel.message, shouldBeAwareOfLeftCount: viewModel.shouldBeAwareOfChanceCount))
+        }
+        
+        func display(_ viewModel: MatchResultViewModel) {
+            receivedMessages.append(.display(matchCorrect: viewModel.matchCorrect, resultMesssage: viewModel.resultMessage, voiceMessage: viewModel.voiceMessage))
         }
     }
 }
