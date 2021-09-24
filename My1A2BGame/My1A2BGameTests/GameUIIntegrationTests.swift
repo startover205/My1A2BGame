@@ -271,9 +271,9 @@ class GameUIIntegrationTests: XCTestCase {
         sut.simulateTapGiveUpButton()
         
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert?.title, GamePresenter.giveUpAlertTitle)
-        XCTAssertEqual(alert?.actions.first?.title, GamePresenter.giveUpAlertConfirmTitle)
-        XCTAssertEqual(alert?.actions.last?.title, GamePresenter.giveUpAlertCancelTitle)
+        XCTAssertEqual(alert?.title, localized("GAME_GIVE_UP_ALERT_TITLE"))
+        XCTAssertEqual(alert?.actions.first?.title, localized("GAME_GIVE_UP_ALERT_CONFIRM_TITLE"))
+        XCTAssertEqual(alert?.actions.last?.title, localized("GAME_GIVE_UP_ALERT_CANCEL_TITLE"))
         
         clearModalPresentationReference(sut)
     }
@@ -383,7 +383,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     private func guessMessageFor(guessCount: Int) -> String {
-         String.localizedStringWithFormat(GamePresenter.guessChanceCountFormat, guessCount)
+         String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), guessCount)
     }
     
     private func assertGameOngoing(_ sut: GuessNumberViewController, secret: DigitSecret) {

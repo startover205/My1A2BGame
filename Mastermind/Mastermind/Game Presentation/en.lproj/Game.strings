@@ -2,3 +2,11 @@
 "WIN_VOICE_MESSAGE" = "Congrats! You won!";
 
 "LOSE_VOICE_MESSAGE" = "Don't give up! Give it another try!";
+
+"%d_GUESS_CHANCE_COUNT_FORMAT" = "%d chances left";
+
+"GAME_GIVE_UP_ALERT_TITLE" = "Are you sure you want to give up?";
+
+"GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "Give Up!";
+
+"GAME_GIVE_UP_ALERT_CANCEL_TITLE" = "Cancel";
