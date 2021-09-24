@@ -11,7 +11,7 @@ import Mastermind
 class GameLocalizationTests: XCTestCase {
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Game"
-        let presentationBundle = Bundle(for: GamePresenter.self)
+        let presentationBundle = Bundle(for: Mastermind.GamePresenter.self)
         let localizationBundles = allLocalizationBundles(in: presentationBundle)
         let localizedStringKeys = allLocalizedStringKeys(in: localizationBundles, table: table)
         
