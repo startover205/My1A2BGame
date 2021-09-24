@@ -17,10 +17,11 @@ public final class VoicePromptViewController: NSObject {
     }()
     
     private let userDefaults: UserDefaults
-    private let synthesizer = AVSpeechSynthesizer()
+    private let synthesizer: AVSpeechSynthesizer
     
-    public init(userDefaults: UserDefaults) {
+    public init(userDefaults: UserDefaults, synthesizer: AVSpeechSynthesizer = .init()) {
         self.userDefaults = userDefaults
+        self.synthesizer = synthesizer
     }
     
     public var onToggleSwitch: ((Bool) -> Void)?
