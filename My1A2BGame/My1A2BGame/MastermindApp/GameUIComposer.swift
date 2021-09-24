@@ -42,8 +42,16 @@ public final class GameUIComposer {
         gameViewController.animate = animate
         
         gameViewController.helperViewController?.animate = animate
-        gameViewController.helperViewController?.onTapHelperInfo = {
-            AlertManager.shared.showConfirmAlert(.helperInfo)
+        gameViewController.helperViewController?.onTapHelperInfo = { [unowned gameViewController] in
+            let alertController = UIAlertController(
+                title: NSLocalizedString("Helper Area", comment: ""),
+                message: NSLocalizedString("You can filter out numbers however you want in this area.", comment: ""),
+                preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
+            
+            alertController.addAction(okAction)
+            gameViewController.present(alertController, animated: true, completion: nil)
         }
         
         gameViewController.quizLabelViewController.answer = secret.content

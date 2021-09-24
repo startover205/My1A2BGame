@@ -40,7 +40,6 @@
 		C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */; };
 		C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48D26B62A1100536D73 /* AlertAdController.swift */; };
 		C0A1F4AC26B62A1200536D73 /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */; };
-		C0A1F4AD26B62A1200536D73 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48F26B62A1100536D73 /* AlertManager.swift */; };
 		C0A1F4AE26B62A1200536D73 /* CustomTransitionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F49026B62A1100536D73 /* CustomTransitionTabBarController.swift */; };
 		C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49226B62A1200536D73 /* AlertAdController.strings */; };
 		C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49426B62A1200536D73 /* AlertAdController.xib */; };
@@ -132,7 +131,6 @@
 		C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
 		C0A1F48D26B62A1100536D73 /* AlertAdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdController.swift; sourceTree = "<group>"; };
 		C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
-		C0A1F48F26B62A1100536D73 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		C0A1F49026B62A1100536D73 /* CustomTransitionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransitionTabBarController.swift; sourceTree = "<group>"; };
 		C0A1F49326B62A1200536D73 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
 		C0A1F49526B62A1200536D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertAdController.xib; sourceTree = "<group>"; };
@@ -373,7 +371,6 @@
 				C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */,
 				C0A1F48D26B62A1100536D73 /* AlertAdController.swift */,
 				C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */,
-				C0A1F48F26B62A1100536D73 /* AlertManager.swift */,
 				C0A1F49026B62A1100536D73 /* CustomTransitionTabBarController.swift */,
 			);
 			path = Controllers;
@@ -618,7 +615,6 @@
 				C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */,
-				C0A1F4AD26B62A1200536D73 /* AlertManager.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
 				C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */,
 				C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */,
