@@ -203,6 +203,28 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(synthesizer.capturedMessages, ["4A0B", localized("WIN_VOICE_MESSAGE")], "Expect winning voice message when voice prompt is set to on")
     }
     
+    func test_gameLose_playsMatchResultAndLoseMessageIfNeeded() {
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let gameVersion = makeGameVersion(maxGuessCount: 1)
+        let synthesizer = AVSpeechSynthesizerSpy()
+        let userDefaults = UserDefaultsMock()
+        let delegate = ReplenishChanceDelegateSpy()
+        let sut = makeSUT(gameVersion: gameVersion, userDefaults: userDefaults, speechSynthesizer: synthesizer, secret: secret, delegate: delegate)
+        
+        sut.loadViewIfNeeded()
+        sut.simulateTurnVoiewPrompt(on: true)
+        
+        sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 1])!)
+        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B"], "Expect playing match result")
+
+        delegate.completeReplenish(with: 1, at: 0)
+        sut.simulateGuess(with: DigitSecret(digits: [4, 3, 2, 0])!)
+        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B", "0A3B"], "Expect playing match result")
+
+        delegate.completeReplenish(with: 0, at: 1)
+        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B", "0A3B", localized("LOSE_VOICE_MESSAGE")], "Expect playing lose message on game lose")
+    }
+    
     func test_guessAndReplenish_rendersAvailableGuessCount() {
         let gameVersion = makeGameVersion(maxGuessCount: 3)
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
