@@ -33,12 +33,11 @@ public final class VoicePromptViewController: NSObject {
     private let onToggleSwitch: (Bool) -> Void
     private var userDefaultsObservation: NSKeyValueObservation?
 
-    public init(userDefaults: UserDefaults, synthesizer: AVSpeechSynthesizer = .init(), onToggleSwitch: @escaping ((Bool) -> Void)) {
+    public init(userDefaults: UserDefaults, synthesizer: AVSpeechSynthesizer, onToggleSwitch: @escaping ((Bool) -> Void)) {
         self.userDefaults = userDefaults
         self.synthesizer = synthesizer
         self.onToggleSwitch = onToggleSwitch
     }
-    
     
     @objc private func voicePromptToggled() {
         userDefaults.setValue(view.isOn, forKey: voicePromptKey)
