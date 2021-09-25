@@ -15,7 +15,6 @@ public final class GameUIComposer {
     private init() {}
     
     public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, speechSynthesizer: AVSpeechSynthesizer = .init(), secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
-        let voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults, synthesizer: speechSynthesizer)
         
         let inputVC = makeInputPadUI()
         inputVC.digitCount = gameVersion.digitCount
@@ -23,24 +22,27 @@ public final class GameUIComposer {
         let gameViewController = makeGameViewController()
         gameViewController.title = title
         
+        let voicePromptViewController = VoicePromptViewController(
+            userDefaults: userDefaults,
+            synthesizer: speechSynthesizer,
+            onToggleSwitch: { [unowned gameViewController] isOn in
+                if isOn {
+                    let alertController = UIAlertController(
+                        title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""),
+                        message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"),
+                        preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(
+                        title: NSLocalizedString("OK", comment: ""),
+                        style: .default,
+                        handler: nil)
+                    
+                    alertController.addAction(okAction)
+                    gameViewController.present(alertController, animated: true, completion: nil)
+                }
+            })
         gameViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)
-        voicePromptViewController.onToggleSwitch = { [unowned gameViewController] isOn in
-            if isOn {
-                let alertController = UIAlertController(
-                    title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""),
-                    message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"),
-                    preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(
-                    title: NSLocalizedString("OK", comment: ""),
-                    style: .default,
-                    handler: nil)
-                
-                alertController.addAction(okAction)
-                gameViewController.present(alertController, animated: true, completion: nil)
-            }
-        }
-        
+
         gameViewController.inputVC = inputVC
         inputVC.delegate = WeakRefVirtualProxy(gameViewController)
         
