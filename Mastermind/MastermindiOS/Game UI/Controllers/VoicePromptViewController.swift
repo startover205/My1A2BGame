@@ -14,8 +14,6 @@ private extension UserDefaults {
 }
 
 public final class VoicePromptViewController: NSObject {
-    private let voicePromptKey = "VOICE_PROMPT"
-    
     private(set) public lazy var view: UISwitch = {
         let view = UISwitch()
         view.isOn = userDefaults.bool(forKey: voicePromptKey)
@@ -28,6 +26,7 @@ public final class VoicePromptViewController: NSObject {
         return view
     }()
     
+    private let voicePromptKey = "VOICE_PROMPT"
     private let userDefaults: UserDefaults
     private let synthesizer: AVSpeechSynthesizer
     private let onToggleSwitch: (Bool) -> Void
