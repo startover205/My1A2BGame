@@ -10,7 +10,6 @@ import UIKit
 import Mastermind
 
 public protocol GuessNumberViewControllerDelegate {
-    func didRequestMatch(_ guess: [Int])
     func didRequestLeftChanceCountUpdate()
     func didTapGiveUpButton()
 }

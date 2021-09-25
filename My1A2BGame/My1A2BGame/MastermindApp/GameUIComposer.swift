@@ -121,31 +121,6 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         presenter?.didUpdateLeftChanceCount(leftChanceCount)
     }
     
-    func didRequestMatch(_ guess: [Int]) {
-        let guess = DigitSecret(digits: guess)!
-        let matchResult = DigitSecretMatcher.match(guess, with: secret)
-        
-        leftChanceCount -= 1
-        guessCount += 1
-        
-        if gameStartTime == nil {
-            gameStartTime = currentDeviceTime()
-        }
-        
-        presenter?.didUpdateLeftChanceCount(leftChanceCount)
-        presenter?.didMatchGuess(guess: guess, result: matchResult)
-        
-        if matchResult.correct {
-            presenter?.didWinGame()
-            
-            let guessTime = currentDeviceTime() - (gameStartTime ?? 0.0)
-            
-            onWin((guessCount, guessTime))
-        } else if leftChanceCount == 0 {
-            handleOutOfChance()
-        }
-    }
-    
     private func handleOutOfChance() {
         delegate.replenishChance { [weak self] replenishCount in
             guard let self = self else { return }
