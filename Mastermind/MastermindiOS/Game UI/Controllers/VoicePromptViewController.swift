@@ -9,17 +9,29 @@ import UIKit
 import Mastermind
 import AVFoundation
 
+private extension UserDefaults {
+    @objc dynamic var VOICE_PROMPT: Bool { bool(forKey: "VOICE_PROMPT") }
+}
+
 public final class VoicePromptViewController: NSObject {
+    private let voicePromptKey = "VOICE_PROMPT"
+    
     private(set) public lazy var view: UISwitch = {
         let view = UISwitch()
-        view.isOn = userDefaults.bool(forKey: "VOICE_PROMPT")
+        view.isOn = userDefaults.bool(forKey: voicePromptKey)
         view.addTarget(self, action: #selector(voicePromptToggled), for: .valueChanged)
+        
+        userDefaultsObservation = userDefaults.observe(\.VOICE_PROMPT, options: [.new], changeHandler: { (defaults, change) in
+            view.isOn = change.newValue!
+        })
+        
         return view
     }()
     
     private let userDefaults: UserDefaults
     private let synthesizer: AVSpeechSynthesizer
-    
+    private var userDefaultsObservation: NSKeyValueObservation?
+
     public init(userDefaults: UserDefaults, synthesizer: AVSpeechSynthesizer = .init()) {
         self.userDefaults = userDefaults
         self.synthesizer = synthesizer
@@ -28,7 +40,7 @@ public final class VoicePromptViewController: NSObject {
     public var onToggleSwitch: ((Bool) -> Void)?
     
     @objc private func voicePromptToggled() {
-        userDefaults.setValue(view.isOn, forKey: "VOICE_PROMPT")
+        userDefaults.setValue(view.isOn, forKey: voicePromptKey)
         onToggleSwitch?(view.isOn)
     }
 }

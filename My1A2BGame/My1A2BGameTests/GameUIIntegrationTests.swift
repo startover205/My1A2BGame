@@ -37,23 +37,20 @@ class GameUIIntegrationTests: XCTestCase {
         }
     }
     
-    func test_voicePrompt_canToggleFromView() {
+    func test_voicePrompt_canShareSettingsFromDiffetentSUT() {
         let userDefaults = UserDefaultsMock()
-        let sut = makeSUT()
-        sut.voicePromptViewController = VoicePromptViewController(userDefaults: userDefaults)
-        let anotherSut = makeSUT()
+        let sut = makeSUT(userDefaults: userDefaults)
+        let anotherSut = makeSUT(userDefaults: userDefaults)
+
+        sut.loadViewIfNeeded()
+        anotherSut.loadViewIfNeeded()
         
         userDefaults.setVoicePromptOn()
-        sut.loadViewIfNeeded()
-        sut.simulateViewAppear()
-        
-        XCTAssertTrue(sut.voicePromptOn, "expect voice switch is on matching the user preferance")
-        
+        XCTAssertTrue(sut.voicePromptOn, "expect voice switch is on, matching the user preferance")
+        XCTAssertTrue(anotherSut.voicePromptOn, "expect voice switch is on, matching the user preferance")
+
         sut.simulateToggleVoicePrompt()
-        anotherSut.loadViewIfNeeded()
-        anotherSut.simulateViewAppear()
-        
-        XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off matching the user preferance")
+        XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off, matching the user preferance updated by `sut`")
     }
     
     func test_guess_rendersResult() {
@@ -316,13 +313,6 @@ class GameUIIntegrationTests: XCTestCase {
         clearModalPresentationReference(sut)
     }
     
-    func test_deallocation_doesNotRetain() {
-        let sut = makeSUT()
-        
-        trackForMemoryLeaks(sut)
-        trackForMemoryLeaks(sut.voicePromptViewController!)
-    }
-    
     func test_helperView_showsByTogglingHelperButton() {
         let sut = makeSUT(animate: { _, _, completion in
             completion?(true)
@@ -447,7 +437,7 @@ private extension GuessNumberViewController {
     
     var resultMessage: String? { hintViewController.hintLabel.text }
     
-    var voicePromptOn: Bool { voicePromptViewController?.view.isOn ?? false }
+    var voicePromptOn: Bool { (navigationItem.leftBarButtonItem!.customView as! UISwitch).isOn }
     
     var showingHelperView: Bool {
         if let helperView = helperViewController?.helperBoardView {
@@ -494,7 +484,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateToggleVoicePrompt() {
-        guard let voiceView = voicePromptViewController?.view else { return }
+        guard let voiceView = navigationItem.leftBarButtonItem?.customView as? UISwitch else { return }
         voiceView.isOn = !voiceView.isOn
         voiceView.sendActions(for: .valueChanged)
     }
@@ -512,12 +502,13 @@ private extension GuessNumberViewController {
     }
     
     func simulateTurnVoiewPrompt(on: Bool) {
-        voicePromptViewController?.view.setOn(on, animated: false)
+        (navigationItem.leftBarButtonItem?.customView as? UISwitch)?.setOn(on, animated: false)
     }
 }
 
 private extension UserDefaults {
-    func setVoicePromptOn() { setValue(true, forKey: "VOICE_PROMPT") }
+    func setVoicePromptOn() { set(true, forKey: "VOICE_PROMPT") }
+    func setVoicePromptOff() { set(false, forKey: "VOICE_PROMPT") }
 }
 
 private extension UIBarButtonItem {

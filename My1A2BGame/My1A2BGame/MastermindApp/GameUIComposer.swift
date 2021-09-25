@@ -23,7 +23,7 @@ public final class GameUIComposer {
         let gameViewController = makeGameViewController()
         gameViewController.title = title
         
-        gameViewController.voicePromptViewController = voicePromptViewController
+        gameViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)
         voicePromptViewController.onToggleSwitch = { [unowned gameViewController] isOn in
             if isOn {
                 let alertController = UIAlertController(

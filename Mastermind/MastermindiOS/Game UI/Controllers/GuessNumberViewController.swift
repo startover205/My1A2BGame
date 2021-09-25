@@ -16,7 +16,6 @@ public protocol GuessNumberViewControllerDelegate {
 }
 
 public class GuessNumberViewController: UIViewController {
-    public var voicePromptViewController: VoicePromptViewController?
     public var onRestart: (() -> Void)?
     public var delegate: GuessNumberViewControllerDelegate?
     
@@ -39,10 +38,6 @@ public class GuessNumberViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let voicePromptView = voicePromptViewController?.view {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptView)
-        }
         
         hintViewController.configureViews()
         quizLabelViewController.configureViews()
