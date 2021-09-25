@@ -16,6 +16,8 @@ final class UserDefaultsMock: UserDefaults {
     }
     
     override func set(_ value: Any?, forKey defaultName: String) {
+        willChangeValue(forKey: defaultName)
         values[defaultName] = value
+        didChangeValue(forKey: defaultName)
     }
 }
