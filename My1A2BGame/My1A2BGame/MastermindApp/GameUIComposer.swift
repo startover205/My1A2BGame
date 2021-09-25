@@ -43,9 +43,6 @@ public final class GameUIComposer {
             })
         gameViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)
 
-        gameViewController.inputVC = inputVC
-        inputVC.delegate = WeakRefVirtualProxy(gameViewController)
-        
         gameViewController.onRestart = onRestart
         gameViewController.animate = animate
         
@@ -79,6 +76,9 @@ public final class GameUIComposer {
         gamePresentationAdapter.presenter = GamePresenter(
             gameView: WeakRefVirtualProxy(gameViewController),
             utteranceView: voicePromptViewController)
+        
+        gameViewController.inputVC = inputVC
+        inputVC.delegate = gamePresentationAdapter
         
         return gameViewController
     }
@@ -171,3 +171,29 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     }
 }
 
+extension GamePresentationAdapter: NumberInputViewControllerDelegate {
+    public func didFinishEntering(numberTexts: [String]) {
+        let guess = DigitSecret(digits: numberTexts.compactMap(Int.init))!
+        let matchResult = DigitSecretMatcher.match(guess, with: secret)
+        
+        leftChanceCount -= 1
+        guessCount += 1
+        
+        if gameStartTime == nil {
+            gameStartTime = currentDeviceTime()
+        }
+        
+        presenter?.didUpdateLeftChanceCount(leftChanceCount)
+        presenter?.didMatchGuess(guess: guess, result: matchResult)
+        
+        if matchResult.correct {
+            presenter?.didWinGame()
+            
+            let guessTime = currentDeviceTime() - (gameStartTime ?? 0.0)
+            
+            onWin((guessCount, guessTime))
+        } else if leftChanceCount == 0 {
+            handleOutOfChance()
+        }
+    }
+}

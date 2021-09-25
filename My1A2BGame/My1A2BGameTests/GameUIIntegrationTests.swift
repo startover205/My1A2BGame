@@ -472,11 +472,11 @@ private extension GuessNumberViewController {
     }
     
     func simulateGuess(with guess: [String]) {
-        didFinishEntering(numberTexts: guess)
+        inputVC.delegate?.didFinishEntering(numberTexts: guess)
     }
     
     func simulateGuess(with guess: DigitSecret) {
-        didFinishEntering(numberTexts: guess.content.compactMap(String.init))
+        inputVC.delegate?.didFinishEntering(numberTexts: guess.content.compactMap(String.init))
     }
     
     func simulateTapHelperButton() {

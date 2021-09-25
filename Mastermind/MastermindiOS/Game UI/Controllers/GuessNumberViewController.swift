@@ -75,12 +75,6 @@ public class GuessNumberViewController: UIViewController {
     }
 }
 
-extension GuessNumberViewController: NumberInputViewControllerDelegate {
-    public func didFinishEntering(numberTexts: [String]) {
-        delegate?.didRequestMatch(numberTexts.compactMap(Int.init))
-    }
-}
-
 extension GuessNumberViewController: GameView {
     public func display(_ viewModel: MatchResultViewModel) {
         let result = viewModel.resultMessage
