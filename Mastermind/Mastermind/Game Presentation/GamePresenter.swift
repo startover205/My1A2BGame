@@ -7,10 +7,6 @@
 
 import Foundation
 
-public struct VoiceMessageViewModel {
-    public let message: String
-}
-
 public protocol UtteranceView {
     func display(_ viewModel: VoiceMessageViewModel)
 }
