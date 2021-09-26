@@ -55,6 +55,13 @@ final class GamePresenter {
             comment: "Voice message played when user wins")
     }
     
+    private static var voiceMessageForLosing: String {
+        NSLocalizedString("LOSE_VOICE_MESSAGE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Voice message played when user loses")
+    }
+    
     func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
         let message = String.localizedStringWithFormat(Self.guessChanceCountFormat, leftChanceCount)
         let shouldBeAwareOfChanceCount = leftChanceCount <= 3
@@ -76,6 +83,12 @@ final class GamePresenter {
         gameView.displayGameEnd()
         
         utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForWinning))
+    }
+    
+    func didLoseGame() {
+        gameView.displayGameEnd()
+
+        utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForLosing))
     }
 }
 
@@ -123,6 +136,16 @@ class GamePresenterTests: XCTestCase {
         
         XCTAssertEqual(view.receivedMessages, [
                         .display(voiceMessage: localized("WIN_VOICE_MESSAGE")),
+                        .displayGameEnd])
+    }
+    
+    func test_didLoseGame_displaysGameEndAndPlaysLoseMessage() {
+        let (sut, view) = makeSUT()
+        
+        sut.didLoseGame()
+        
+        XCTAssertEqual(view.receivedMessages, [
+                        .display(voiceMessage: localized("LOSE_VOICE_MESSAGE")),
                         .displayGameEnd])
     }
     

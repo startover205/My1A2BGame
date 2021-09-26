@@ -1,2 +1,4 @@
 
 "WIN_VOICE_MESSAGE" = "Congrats! You won!";
+
+"LOSE_VOICE_MESSAGE" = "Don't give up! Give it another try!";
