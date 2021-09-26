@@ -8,6 +8,14 @@
 import XCTest
 import Mastermind
 
+protocol UtteranceView {
+    func display(_ viewModel: VoiceMessageViewModel)
+}
+
+struct VoiceMessageViewModel {
+   public let message: String
+}
+
 protocol GameView {
     func display(_ viewModel: LeftChanceCountViewModel)
     func display(_ viewModel: MatchResultViewModel)
@@ -16,9 +24,8 @@ protocol GameView {
 struct MatchResultViewModel {
     let matchCorrect: Bool
     let resultMessage: String
-    let voiceMessage: String
 }
-
+    
 struct LeftChanceCountViewModel {
     let message: String
     let shouldBeAwareOfChanceCount: Bool
@@ -26,9 +33,11 @@ struct LeftChanceCountViewModel {
 
 final class GamePresenter {
     private let gameView: GameView
+    private let utteranceView: UtteranceView
     
-    init(gameView: GameView) {
+    init(gameView: GameView, utteranceView: UtteranceView) {
         self.gameView = gameView
+        self.utteranceView = utteranceView
     }
     
     private static var guessChanceCountFormat: String {
@@ -48,12 +57,11 @@ final class GamePresenter {
         let hint = "\(result.bulls)A\(result.cows)B"
         let resultMessage = guess.content.compactMap(String.init).joined() + "          " + "\(hint)\n"
         
-        let voiceMessage = hint
-        
         gameView.display(MatchResultViewModel(
                             matchCorrect: result.correct,
-                            resultMessage: resultMessage,
-                            voiceMessage: voiceMessage))
+                            resultMessage: resultMessage))
+        
+        utteranceView.display(VoiceMessageViewModel(message: hint))
     }
 }
 
@@ -85,14 +93,16 @@ class GamePresenterTests: XCTestCase {
         
         sut.didMatchGuess(guess: guesss, result: matchResult)
         
-        XCTAssertEqual(view.receivedMessages, [.display(matchCorrect: matchResult.correct, resultMesssage: "1234          3A1B\n", voiceMessage: "3A1B")])
+        XCTAssertEqual(view.receivedMessages, [
+                        .display(matchCorrect: matchResult.correct, resultMesssage: "1234          3A1B\n"),
+                        .display(voiceMessage: "3A1B")])
     }
     
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (GamePresenter, ViewSpy) {
         let view = ViewSpy()
-        let sut = GamePresenter(gameView: view)
+        let sut = GamePresenter(gameView: view, utteranceView: view)
         
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -110,13 +120,13 @@ class GamePresenterTests: XCTestCase {
         return value
     }
     
-    private final class ViewSpy: GameView {
+    private final class ViewSpy: GameView, UtteranceView {
         enum Message: Equatable {
             case display(leftCountMessage: String,
                          shouldBeAwareOfLeftCount: Bool)
             case display(matchCorrect: Bool,
-                         resultMesssage: String,
-                         voiceMessage: String)
+                         resultMesssage: String)
+            case display(voiceMessage: String)
         }
         
         private(set) var receivedMessages = [Message]()
@@ -126,7 +136,11 @@ class GamePresenterTests: XCTestCase {
         }
         
         func display(_ viewModel: MatchResultViewModel) {
-            receivedMessages.append(.display(matchCorrect: viewModel.matchCorrect, resultMesssage: viewModel.resultMessage, voiceMessage: viewModel.voiceMessage))
+            receivedMessages.append(.display(matchCorrect: viewModel.matchCorrect, resultMesssage: viewModel.resultMessage))
+        }
+        
+        func display(_ viewModel: VoiceMessageViewModel) {
+            receivedMessages.append(.display(voiceMessage: viewModel.message))
         }
     }
 }
