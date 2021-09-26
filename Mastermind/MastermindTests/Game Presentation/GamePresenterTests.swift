@@ -19,6 +19,7 @@ struct VoiceMessageViewModel {
 protocol GameView {
     func display(_ viewModel: LeftChanceCountViewModel)
     func display(_ viewModel: MatchResultViewModel)
+    func display(_ viewModel: GiveUpAlertViewModel)
     func displayGameEnd()
 }
 
@@ -30,6 +31,13 @@ struct MatchResultViewModel {
 struct LeftChanceCountViewModel {
     let message: String
     let shouldBeAwareOfChanceCount: Bool
+}
+
+struct GiveUpAlertViewModel {
+    public let title: String
+    public let confirmTitle: String
+    public let cancelTitle: String
+    public let confirmCallBack: () -> Void
 }
 
 final class GamePresenter {
@@ -62,6 +70,27 @@ final class GamePresenter {
             comment: "Voice message played when user loses")
     }
     
+    private static var giveUpAlertTitle: String {
+        NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert")
+    }
+    
+    private static var giveUpAlertConfirmTitle: String {
+        NSLocalizedString("GAME_GIVE_UP_ALERT_CONFIRM_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert confirm button")
+    }
+
+    private static var giveUpAlertCancelTitle: String {
+        NSLocalizedString("GAME_GIVE_UP_ALERT_CANCEL_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert cancel button")
+    }
+    
     func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
         let message = String.localizedStringWithFormat(Self.guessChanceCountFormat, leftChanceCount)
         let shouldBeAwareOfChanceCount = leftChanceCount <= 3
@@ -89,6 +118,14 @@ final class GamePresenter {
         gameView.displayGameEnd()
 
         utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForLosing))
+    }
+    
+    func didTapGiveUpButton(confirmCallBack: @escaping () -> Void) {
+        gameView.display(GiveUpAlertViewModel(
+                            title: Self.giveUpAlertTitle,
+                            confirmTitle: Self.giveUpAlertConfirmTitle,
+                            cancelTitle: Self.giveUpAlertCancelTitle,
+                            confirmCallBack: confirmCallBack))
     }
 }
 
@@ -149,6 +186,24 @@ class GamePresenterTests: XCTestCase {
                         .displayGameEnd])
     }
     
+    func test_didTapGiveUpButton_displayGiveUpAlert() {
+        let (sut, view) = makeSUT()
+        var callbackCallCount = 0
+        
+        sut.didTapGiveUpButton { callbackCallCount += 1 }
+        
+        XCTAssertEqual(view.receivedMessages,
+                       [ .displayGiveUpAlert(
+                            alertTitle: localized("GAME_GIVE_UP_ALERT_TITLE"),
+                            confirmTitle: localized("GAME_GIVE_UP_ALERT_CONFIRM_TITLE"),
+                            cancelTitle: localized("GAME_GIVE_UP_ALERT_CANCEL_TITLE"))],
+                       "Expect displaying localized alert content")
+        
+        view.receivedAlertConfirmCallback?()
+        
+        XCTAssertEqual(callbackCallCount, 1, "Expect passing correct callback to view")
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (GamePresenter, ViewSpy) {
@@ -178,10 +233,12 @@ class GamePresenterTests: XCTestCase {
             case display(matchCorrect: Bool,
                          resultMesssage: String)
             case display(voiceMessage: String)
+            case displayGiveUpAlert(alertTitle: String, confirmTitle: String, cancelTitle: String)
             case displayGameEnd
         }
         
         private(set) var receivedMessages = Set<Message>()
+        private(set) var receivedAlertConfirmCallback: (() -> Void)?
         
         func display(_ viewModel: LeftChanceCountViewModel) {
             receivedMessages.insert(.display(leftCountMessage: viewModel.message, shouldBeAwareOfLeftCount: viewModel.shouldBeAwareOfChanceCount))
@@ -193,6 +250,11 @@ class GamePresenterTests: XCTestCase {
         
         func display(_ viewModel: VoiceMessageViewModel) {
             receivedMessages.insert(.display(voiceMessage: viewModel.message))
+        }
+        
+        func display(_ viewModel: GiveUpAlertViewModel) {
+            receivedMessages.insert(.displayGiveUpAlert(alertTitle: viewModel.title, confirmTitle: viewModel.confirmTitle, cancelTitle: viewModel.cancelTitle))
+            receivedAlertConfirmCallback = viewModel.confirmCallBack
         }
         
         func displayGameEnd() {
