@@ -3,8 +3,6 @@
 
 "LOSE_VOICE_MESSAGE" = "不要灰心，再试试看！";
 
-"%d_GUESS_CHANCE_COUNT_FORMAT" = "还可以猜 %d 次";
-
 "GAME_GIVE_UP_ALERT_TITLE" = "您确定要投降吗？";
 
 "GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "投降";
