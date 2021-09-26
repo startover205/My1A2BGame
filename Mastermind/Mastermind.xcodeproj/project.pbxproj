@@ -46,6 +46,7 @@
 		C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */; };
 		C07537212700486900865482 /* VoiceMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07537202700486900865482 /* VoiceMessageViewModel.swift */; };
 		C0753723270048B300865482 /* UtteranceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753722270048B300865482 /* UtteranceView.swift */; };
+		C0753725270048D400865482 /* GiveUpAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753724270048D400865482 /* GiveUpAlertViewModel.swift */; };
 		C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */; };
 		C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */; };
 		C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841EF26D0D49900AE72F4 /* WinViewController.swift */; };
@@ -182,6 +183,7 @@
 		C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStoreTests.swift; sourceTree = "<group>"; };
 		C07537202700486900865482 /* VoiceMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageViewModel.swift; sourceTree = "<group>"; };
 		C0753722270048B300865482 /* UtteranceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtteranceView.swift; sourceTree = "<group>"; };
+		C0753724270048D400865482 /* GiveUpAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveUpAlertViewModel.swift; sourceTree = "<group>"; };
 		C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStore.swift; sourceTree = "<group>"; };
 		C09841EF26D0D49900AE72F4 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */,
 				C0CA88ED26F6D1660025F9E5 /* GameView.swift */,
 				C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */,
+				C0753724270048D400865482 /* GiveUpAlertViewModel.swift */,
 				C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */,
 				C07537202700486900865482 /* VoiceMessageViewModel.swift */,
 				C0753722270048B300865482 /* UtteranceView.swift */,
@@ -961,6 +964,7 @@
 				C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */,
 				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
 				C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */,
+				C0753725270048D400865482 /* GiveUpAlertViewModel.swift in Sources */,
 				C0CA88F026F6D1700025F9E5 /* MatchResultViewModel.swift in Sources */,
 				C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */,
 				C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */,

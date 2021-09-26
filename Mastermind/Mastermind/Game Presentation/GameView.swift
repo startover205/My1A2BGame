@@ -12,9 +12,4 @@ public protocol GameView {
     func displayGameEnd()
 }
 
-public struct GiveUpAlertViewModel {
-    public let title: String
-    public let confirmTitle: String
-    public let cancelTitle: String
-    public let confirmCallBack: () -> Void
-}
+
