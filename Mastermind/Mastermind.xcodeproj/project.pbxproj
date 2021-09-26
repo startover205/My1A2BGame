@@ -585,8 +585,8 @@
 				C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */,
 				C0753724270048D400865482 /* GiveUpAlertViewModel.swift */,
 				C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */,
-				C07537202700486900865482 /* VoiceMessageViewModel.swift */,
 				C0753722270048B300865482 /* UtteranceView.swift */,
+				C07537202700486900865482 /* VoiceMessageViewModel.swift */,
 				C0F984EE26FC4CAF001DAB38 /* Game.strings */,
 			);
 			path = "Game Presentation";
