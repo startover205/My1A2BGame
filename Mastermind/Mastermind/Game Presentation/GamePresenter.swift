@@ -10,26 +10,10 @@ import Foundation
 public final class GamePresenter {
     private let gameView: GameView
     private let utteranceView: UtteranceView
-    
-    private static var giveUpAlertTitle: String {
-        NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE",
-            tableName: "Game",
-            bundle: Bundle(for: GamePresenter.self),
-            comment: "Title for the give up alert")
-    }
-    
-    private static var giveUpAlertConfirmTitle: String {
-        NSLocalizedString("GAME_GIVE_UP_ALERT_CONFIRM_TITLE",
-            tableName: "Game",
-            bundle: Bundle(for: GamePresenter.self),
-            comment: "Title for the give up alert confirm button")
-    }
 
-    private static var giveUpAlertCancelTitle: String {
-        NSLocalizedString("GAME_GIVE_UP_ALERT_CANCEL_TITLE",
-            tableName: "Game",
-            bundle: Bundle(for: GamePresenter.self),
-            comment: "Title for the give up alert cancel button")
+    public init(gameView: GameView, utteranceView: UtteranceView) {
+        self.gameView = gameView
+        self.utteranceView = utteranceView
     }
 
     private static var guessChanceCountFormat: String {
@@ -53,9 +37,25 @@ public final class GamePresenter {
             comment: "Voice message played when user loses")
     }
 
-    public init(gameView: GameView, utteranceView: UtteranceView) {
-        self.gameView = gameView
-        self.utteranceView = utteranceView
+    private static var giveUpAlertTitle: String {
+        NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert")
+    }
+
+    private static var giveUpAlertConfirmTitle: String {
+        NSLocalizedString("GAME_GIVE_UP_ALERT_CONFIRM_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert confirm button")
+    }
+
+    private static var giveUpAlertCancelTitle: String {
+        NSLocalizedString("GAME_GIVE_UP_ALERT_CANCEL_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the give up alert cancel button")
     }
 
     public func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
@@ -63,30 +63,30 @@ public final class GamePresenter {
         let shouldBeAwareOfChanceCount = leftChanceCount <= 3
         gameView.display(LeftChanceCountViewModel(message: message, shouldBeAwareOfChanceCount: shouldBeAwareOfChanceCount))
     }
-    
+
     public func didMatchGuess(guess: DigitSecret, result: MatchResult) {
         let hint = "\(result.bulls)A\(result.cows)B"
         let resultMessage = guess.content.compactMap(String.init).joined() + "          " + "\(hint)\n"
-        
+
         gameView.display(MatchResultViewModel(
                             matchCorrect: result.correct,
                             resultMessage: resultMessage))
-        
+
         utteranceView.display(VoiceMessageViewModel(message: hint))
     }
-    
+
     public func didWinGame() {
         gameView.displayGameEnd()
-        
+
         utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForWinning))
     }
-    
+
     public func didLoseGame() {
         gameView.displayGameEnd()
 
         utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForLosing))
     }
-    
+
     public func didTapGiveUpButton(confirmCallBack: @escaping () -> Void) {
         gameView.display(GiveUpAlertViewModel(
                             title: Self.giveUpAlertTitle,
