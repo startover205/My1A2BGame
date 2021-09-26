@@ -7,10 +7,6 @@
 
 import Foundation
 
-public protocol UtteranceView {
-    func display(_ viewModel: VoiceMessageViewModel)
-}
-
 public final class GamePresenter {
     private let gameView: GameView
     private let utteranceView: UtteranceView
