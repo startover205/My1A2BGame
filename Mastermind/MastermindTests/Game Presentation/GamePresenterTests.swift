@@ -19,6 +19,7 @@ struct VoiceMessageViewModel {
 protocol GameView {
     func display(_ viewModel: LeftChanceCountViewModel)
     func display(_ viewModel: MatchResultViewModel)
+    func displayGameEnd()
 }
 
 struct MatchResultViewModel {
@@ -47,6 +48,13 @@ final class GamePresenter {
             comment: "Format for the left chance count")
     }
     
+    private static var voiceMessageForWinning: String {
+        NSLocalizedString("WIN_VOICE_MESSAGE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Voice message played when user wins")
+    }
+    
     func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
         let message = String.localizedStringWithFormat(Self.guessChanceCountFormat, leftChanceCount)
         let shouldBeAwareOfChanceCount = leftChanceCount <= 3
@@ -62,6 +70,12 @@ final class GamePresenter {
                             resultMessage: resultMessage))
         
         utteranceView.display(VoiceMessageViewModel(message: hint))
+    }
+    
+    func didWinGame() {
+        gameView.displayGameEnd()
+        
+        utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForWinning))
     }
 }
 
@@ -102,6 +116,16 @@ class GamePresenterTests: XCTestCase {
                         .display(voiceMessage: "3A1B")])
     }
     
+    func test_didWinGame_displaysGameEndAndPlaysWinMessage() {
+        let (sut, view) = makeSUT()
+        
+        sut.didWinGame()
+        
+        XCTAssertEqual(view.receivedMessages, [
+                        .display(voiceMessage: localized("WIN_VOICE_MESSAGE")),
+                        .displayGameEnd])
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (GamePresenter, ViewSpy) {
@@ -131,6 +155,7 @@ class GamePresenterTests: XCTestCase {
             case display(matchCorrect: Bool,
                          resultMesssage: String)
             case display(voiceMessage: String)
+            case displayGameEnd
         }
         
         private(set) var receivedMessages = Set<Message>()
@@ -145,6 +170,10 @@ class GamePresenterTests: XCTestCase {
         
         func display(_ viewModel: VoiceMessageViewModel) {
             receivedMessages.insert(.display(voiceMessage: viewModel.message))
+        }
+        
+        func displayGameEnd() {
+            receivedMessages.insert(.displayGameEnd)
         }
     }
 }

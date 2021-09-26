@@ -47,6 +47,7 @@
 		C07537212700486900865482 /* VoiceMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07537202700486900865482 /* VoiceMessageViewModel.swift */; };
 		C0753723270048B300865482 /* UtteranceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753722270048B300865482 /* UtteranceView.swift */; };
 		C0753725270048D400865482 /* GiveUpAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753724270048D400865482 /* GiveUpAlertViewModel.swift */; };
+		C075372727004C6E00865482 /* Game.strings in Resources */ = {isa = PBXBuildFile; fileRef = C075372627004C6E00865482 /* Game.strings */; };
 		C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */; };
 		C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */; };
 		C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841EF26D0D49900AE72F4 /* WinViewController.swift */; };
@@ -184,6 +185,7 @@
 		C07537202700486900865482 /* VoiceMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageViewModel.swift; sourceTree = "<group>"; };
 		C0753722270048B300865482 /* UtteranceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtteranceView.swift; sourceTree = "<group>"; };
 		C0753724270048D400865482 /* GiveUpAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveUpAlertViewModel.swift; sourceTree = "<group>"; };
+		C075372627004C6E00865482 /* Game.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Game.strings; sourceTree = "<group>"; };
 		C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStore.swift; sourceTree = "<group>"; };
 		C09841EF26D0D49900AE72F4 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
@@ -697,6 +699,7 @@
 			children = (
 				C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */,
 				C0F984F126FC58A1001DAB38 /* GamePresenterTests.swift */,
+				C075372627004C6E00865482 /* Game.strings */,
 				C0EFD30A26FD80590039E9D4 /* Game.stringsdict */,
 			);
 			path = "Game Presentation";
@@ -901,6 +904,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C075372727004C6E00865482 /* Game.strings in Resources */,
 				C0EFD30826FD80590039E9D4 /* Game.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
