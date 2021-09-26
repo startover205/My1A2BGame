@@ -16,9 +16,6 @@ public final class GameUIComposer {
     
     public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, speechSynthesizer: AVSpeechSynthesizer = .init(), secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
         
-        let inputVC = makeInputPadUI()
-        inputVC.digitCount = gameVersion.digitCount
-
         let gameViewController = makeGameViewController()
         gameViewController.title = title
         
@@ -77,8 +74,14 @@ public final class GameUIComposer {
             gameView: WeakRefVirtualProxy(gameViewController),
             utteranceView: voicePromptViewController)
         
-        gameViewController.inputVC = inputVC
-        inputVC.delegate = gamePresentationAdapter
+        gameViewController.onGuessButtonPressed = { [unowned gamePresentationAdapter, unowned gameViewController] in
+            
+            let inputVC = makeInputPadUI()
+            inputVC.digitCount = gameVersion.digitCount
+            inputVC.delegate = gamePresentationAdapter
+
+            gameViewController.present(UINavigationController(rootViewController: inputVC), animated: true)
+        }
         
         return gameViewController
     }

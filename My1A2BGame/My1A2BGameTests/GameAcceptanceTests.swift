@@ -134,6 +134,8 @@ private extension GameAcceptanceTests {
     func assertDisplayingLoseSceneOnGameLose(game: GuessNumberViewController, guessChanceCount: Int, file: StaticString = #filePath, line: UInt = #line) {
         game.simulateGameLose(guessChanceCount: guessChanceCount)
         
+        RunLoop.current.run(until: Date())
+        
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
     }
     
@@ -179,13 +181,15 @@ private extension GameAcceptanceTests {
 }
 
 private extension GuessNumberViewController {
+    private var inputDelegate: NumberInputViewControllerDelegate? { delegate as? GamePresentationAdapter }
+    
     func simulatePlayerWin(with guess: DigitSecret){
-        inputVC.delegate?.didFinishEntering(numberTexts: guess.content.compactMap(String.init))
+        inputDelegate?.didFinishEntering(numberTexts: guess.content.compactMap(String.init))
     }
     
     func simulateGameLose(guessChanceCount: Int) {
         for _ in 0..<guessChanceCount {
-            inputVC.delegate?.didFinishEntering(numberTexts: [])
+            inputDelegate?.didFinishEntering(numberTexts: [])
         }
         
         RunLoop.current.run(until: Date())
@@ -204,7 +208,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateOneWrongGuess() {
-        inputVC.delegate?.didFinishEntering(numberTexts: [])
+        inputDelegate?.didFinishEntering(numberTexts: [])
     }
 }
 

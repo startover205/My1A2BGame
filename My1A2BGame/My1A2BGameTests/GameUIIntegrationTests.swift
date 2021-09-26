@@ -431,6 +431,8 @@ class GameUIIntegrationTests: XCTestCase {
 }
 
 private extension GuessNumberViewController {
+    var inputDelegate: NumberInputViewControllerDelegate? { delegate as? GamePresentationAdapter }
+    
     var fadeInCompoenents: [UIView] { fadeOutViews }
     
     var availableGuessMessage: String? { availableGuessLabel.text }
@@ -468,15 +470,15 @@ private extension GuessNumberViewController {
     func simulateViewAppear() { viewWillAppear(false) }
     
     func simulateUserInitiateGuess() {
-        inputVC.delegate?.didFinishEntering(numberTexts: ["1", "2", "3", "4"])
+        inputDelegate?.didFinishEntering(numberTexts: ["1", "2", "3", "4"])
     }
     
     func simulateGuess(with guess: [String]) {
-        inputVC.delegate?.didFinishEntering(numberTexts: guess)
+        inputDelegate?.didFinishEntering(numberTexts: guess)
     }
     
     func simulateGuess(with guess: DigitSecret) {
-        inputVC.delegate?.didFinishEntering(numberTexts: guess.content.compactMap(String.init))
+        inputDelegate?.didFinishEntering(numberTexts: guess.content.compactMap(String.init))
     }
     
     func simulateTapHelperButton() {

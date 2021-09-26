@@ -16,6 +16,7 @@ public protocol GuessNumberViewControllerDelegate {
 
 public class GuessNumberViewController: UIViewController {
     public var onRestart: (() -> Void)?
+    public var onGuessButtonPressed: (() -> Void)?
     public var delegate: GuessNumberViewControllerDelegate?
     
     @IBOutlet private(set) public var helperViewController: HelperViewController!
@@ -26,9 +27,6 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public weak var giveUpButton: UIButton!
     @IBOutlet private(set) public weak var restartButton: UIButton!
     @IBOutlet private(set) public var fadeOutViews: [UIView]!
-    
-    public var inputVC: NumberInputViewController!
-    private lazy var inputNavigationController = UINavigationController(rootViewController: inputVC)
     
     public var animate: Animate?
     
@@ -56,7 +54,7 @@ public class GuessNumberViewController: UIViewController {
         feedbackGenerator = .init()
         feedbackGenerator?.prepare()
         
-        present(inputNavigationController, animated: true)
+        onGuessButtonPressed?()
     }
     
     @IBAction func giveUpBtnPressed(_ sender: Any) {
