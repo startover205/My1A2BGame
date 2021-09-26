@@ -69,7 +69,8 @@ class GamePresenterTests: XCTestCase {
         let (sut, view) = makeSUT()
         
         sut.didUpdateLeftChanceCount(4)
-        XCTAssertEqual(view.receivedMessages, [.display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false)], "Expect displaying left chance count message but don't have to remind user to be aware of the left chance count")
+        XCTAssertEqual(view.receivedMessages, [
+                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false)], "Expect displaying left chance count message but don't have to remind user to be aware of the left chance count")
         
         sut.didUpdateLeftChanceCount(3)
         XCTAssertEqual(view.receivedMessages, [
