@@ -73,17 +73,21 @@ class GamePresenterTests: XCTestCase {
         XCTAssertTrue(view.receivedMessages.isEmpty)
     }
     
-    func test_didUpdateLeftChanceCount_displaysLeftChanceCountMessage() {
+    func test_didUpdateLeftChanceCount_displaysLeftChanceCountMessageWithoutWarningWhenLeftChancesStillSufficient() {
         let (sut, view) = makeSUT()
         
         sut.didUpdateLeftChanceCount(4)
         XCTAssertEqual(view.receivedMessages, [
-                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false)], "Expect displaying left chance count message but don't have to remind user to be aware of the left chance count")
+                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false)])
+        
+    }
+    
+    func test_didUpdateLeftChanceCount_displaysLeftChanceCountMessageWithWarningWhenLeftChancesTooLittle() {
+        let (sut, view) = makeSUT()
         
         sut.didUpdateLeftChanceCount(3)
         XCTAssertEqual(view.receivedMessages, [
-                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 4), shouldBeAwareOfLeftCount: false),
-                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 3), shouldBeAwareOfLeftCount: true)], "Expect displaying left chance count message and remind user to be aware of the left chance count")
+                        .display(leftCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), 3), shouldBeAwareOfLeftCount: true)])
     }
     
     func test_didMatchGuess_displaysMatchResultAndVoiceMessage() {
