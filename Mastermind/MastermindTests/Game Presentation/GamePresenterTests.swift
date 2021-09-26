@@ -121,7 +121,7 @@ class GamePresenterTests: XCTestCase {
     }
     
     private final class ViewSpy: GameView, UtteranceView {
-        enum Message: Equatable {
+        enum Message: Hashable {
             case display(leftCountMessage: String,
                          shouldBeAwareOfLeftCount: Bool)
             case display(matchCorrect: Bool,
@@ -129,18 +129,18 @@ class GamePresenterTests: XCTestCase {
             case display(voiceMessage: String)
         }
         
-        private(set) var receivedMessages = [Message]()
+        private(set) var receivedMessages = Set<Message>()
         
         func display(_ viewModel: LeftChanceCountViewModel) {
-            receivedMessages.append(.display(leftCountMessage: viewModel.message, shouldBeAwareOfLeftCount: viewModel.shouldBeAwareOfChanceCount))
+            receivedMessages.insert(.display(leftCountMessage: viewModel.message, shouldBeAwareOfLeftCount: viewModel.shouldBeAwareOfChanceCount))
         }
         
         func display(_ viewModel: MatchResultViewModel) {
-            receivedMessages.append(.display(matchCorrect: viewModel.matchCorrect, resultMesssage: viewModel.resultMessage))
+            receivedMessages.insert(.display(matchCorrect: viewModel.matchCorrect, resultMesssage: viewModel.resultMessage))
         }
         
         func display(_ viewModel: VoiceMessageViewModel) {
-            receivedMessages.append(.display(voiceMessage: viewModel.message))
+            receivedMessages.insert(.display(voiceMessage: viewModel.message))
         }
     }
 }
