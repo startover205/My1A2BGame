@@ -217,7 +217,7 @@ class GameUIIntegrationTests: XCTestCase {
         sut.simulateTurnVoiewPrompt(on: true)
         sut.simulateGuess(with: secret)
         
-        XCTAssertEqual(synthesizer.capturedMessages, ["4A0B", localized("WIN_VOICE_MESSAGE")], "Expect winning voice message when voice prompt is set to on")
+        XCTAssertEqual(synthesizer.capturedMessages, ["4A0B", GamePresenter.voiceMessageForWinning], "Expect winning voice message when voice prompt is set to on")
     }
     
     func test_gameLose_playsMatchResultAndLoseMessageIfNeeded() {
@@ -241,7 +241,7 @@ class GameUIIntegrationTests: XCTestCase {
 
         sut.simulateTurnVoiewPrompt(on: true)
         delegate.completeReplenish(with: 0, at: 1)
-        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B", localized("LOSE_VOICE_MESSAGE")], "Expect playing lose message on game lose")
+        XCTAssertEqual(synthesizer.capturedMessages, ["0A4B", GamePresenter.voiceMessageForLosing], "Expect playing lose message on game lose")
     }
     
     func test_guessAndReplenish_rendersAvailableGuessCount() {
@@ -288,9 +288,9 @@ class GameUIIntegrationTests: XCTestCase {
         sut.simulateTapGiveUpButton()
         
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert?.title, localized("GAME_GIVE_UP_ALERT_TITLE"))
-        XCTAssertEqual(alert?.actions.first?.title, localized("GAME_GIVE_UP_ALERT_CONFIRM_TITLE"))
-        XCTAssertEqual(alert?.actions.last?.title, localized("GAME_GIVE_UP_ALERT_CANCEL_TITLE"))
+        XCTAssertEqual(alert?.title, GamePresenter.giveUpAlertTitle)
+        XCTAssertEqual(alert?.actions.first?.title, GamePresenter.giveUpAlertConfirmTitle)
+        XCTAssertEqual(alert?.actions.last?.title, GamePresenter.giveUpAlertCancelTitle)
         
         clearModalPresentationReference(sut)
     }
@@ -395,7 +395,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     private func guessMessageFor(guessCount: Int) -> String {
-         String.localizedStringWithFormat(localized("%d_GUESS_CHANCE_COUNT_FORMAT"), guessCount)
+         String.localizedStringWithFormat(GamePresenter.guessChanceCountFormat, guessCount)
     }
     
     private func assertGameOngoing(_ sut: GuessNumberViewController, secret: DigitSecret) {
@@ -408,17 +408,6 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.isShowingGameOngoingComponents)
         XCTAssertTrue(sut.isShowingGameEndedComponents)
         XCTAssertTrue(sut.isShowingSecret(secret: secret))
-    }
-    
-    private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
-        let table = "Game"
-        let bundle = Bundle(for: GamePresenter.self)
-        let value = bundle.localizedString(forKey: key, value: nil, table: table)
-        if value == key {
-            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
-        }
-        
-        return value
     }
     
     private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
