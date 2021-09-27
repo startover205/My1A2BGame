@@ -41,9 +41,6 @@
 /* 3nd */
 "Failed to Restore Purchase" = "Failed to Restore Purchase";
 
-/* No comment provided by engineer. */
-"HELPER_INFO_ALERT_TITLE" = "Helper Area";
-
 /* 6th */
 "Here we go!" = "Here we go!";
 
@@ -64,8 +61,6 @@
 
 /* 2nd */
 "OK" = "OK";
-
-"HELPER_INFO_ALERT_CONFIRM_TITLE" = "OK";
 
 /* 4th */
 "Purchase not available" = "Purchase not available";
@@ -90,9 +85,6 @@
 
 /* 2nd */
 "You Are Out Of Chances..." = "You Are Out Of Chances...";
-
-/* No comment provided by engineer. */
-"HELPER_INFO_ALERT_MESSAGE" = "You can filter out numbers however you want in this area.";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "You guessed %d times";

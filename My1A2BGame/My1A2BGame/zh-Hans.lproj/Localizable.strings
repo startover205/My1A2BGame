@@ -40,9 +40,6 @@
 /* 3nd */
 "Failed to Restore Purchase" = "无法恢复购买";
 
-/* No comment provided by engineer. */
-"HELPER_INFO_ALERT_TITLE" = "小帮手";
-
 /* 6th */
 "Here we go!" = "立即评论";
 
@@ -63,8 +60,6 @@
 
 /* 2nd */
 "OK" = "确定";
-
-"HELPER_INFO_ALERT_CONFIRM_TITLE" = "确定";
 
 /* 4th */
 "Purchase not available" = "无法购买";
@@ -89,9 +84,6 @@
 
 /* 2nd */
 "You Are Out Of Chances..." = "您用完次数了...";
-
-/* No comment provided by engineer. */
-"HELPER_INFO_ALERT_MESSAGE" = "您可以在此过滤数字、协助思考。";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "共猜了 %d 次";
