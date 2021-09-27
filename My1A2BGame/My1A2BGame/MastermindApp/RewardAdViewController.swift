@@ -30,12 +30,12 @@ extension RewardAdViewController: ReplenishChanceDelegate {
         
         let adRewardChance = self.adRewardChance
         
-        let format = NSLocalizedString("Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!", comment: "")
+        let format = NSLocalizedString("%d_REWARD_AD_ALERT_MESSAGE_FORMAT", comment: "")
         let message = String.localizedStringWithFormat(format, adRewardChance)
         let alert = AlertAdCountdownController(
-            title: NSLocalizedString("You Are Out Of Chances...", comment: "2nd"),
+            title: NSLocalizedString("REWARD_AD_ALERT_TITLE", comment: "2nd"),
             message: message,
-            cancelMessage: NSLocalizedString("No, thank you", comment: "7th"),
+            cancelMessage: NSLocalizedString("REWARD_AD_ALERT_CANCEL_TITLE", comment: "7th"),
             countDownTime: countDownTime,
             adHandler: {
                 ad.present(fromRootViewController: hostVC) {
