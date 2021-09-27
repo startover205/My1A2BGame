@@ -7,11 +7,14 @@
 //
 
 import XCTest
+import MastermindiOS
 
 public final class RewardAdViewController {
+    private let loader: RewardAdLoader
     private weak var hostViewController: UIViewController?
     
-    init(hostViewController: UIViewController) {
+    init(loader: RewardAdLoader, hostViewController: UIViewController) {
+        self.loader = loader
         self.hostViewController = hostViewController
     }
     
@@ -36,11 +39,21 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(capturedChanceCount, 0)
     }
     
+    func test_replenishChance_deliversZeroIfRewardAdUnavailable() {
+        let rewardAdLoader = RewardAdLoaderStub(ad: nil)
+        let (sut, _) = makeSUT(loader: rewardAdLoader)
+        var capturedChanceCount: Int?
+        
+        sut.replenishChance { capturedChanceCount = $0 }
+        
+        XCTAssertEqual(capturedChanceCount, 0)
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
+    private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
         let hostVC = UIViewControllerPresentationSpy()
-        let sut = RewardAdViewController(hostViewController: hostVC)
+        let sut = RewardAdViewController(loader: loader, hostViewController: hostVC)
         
         trackForMemoryLeaks(hostVC, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
