@@ -7,12 +7,6 @@
 /* No comment provided by engineer. */
 "5A0B!! You won!!" = "5A0B！！贏了！！";
 
-/* No comment provided by engineer. */
-"GAME_GIVE_UP_ALERT_TITLE" = "您確定要投降嗎？";
-
-/* 2nd */
-"GAME_GIVE_UP_ALERT_CANCEL_TITLE" = "取消";
-
 /* 3nd */
 "Certain content will only be available after restarting the app." = "部分內容會在App重啟後生效。";
 
@@ -22,17 +16,11 @@
 /* 3nd */
 "Confirm" = "確認";
 
-/* No comment provided by engineer. */
-"WIN_VOICE_MESSAGE" = "恭喜贏了";
-
 /* 3nd */
 "Currently No Product Available" = "目前沒有可購買的商品";
 
 /* No comment provided by engineer. */
 "Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!" = "是否要觀看獎勵廣告？觀看獎勵廣告能讓您增加 %d 次機會！";
-
-/* No comment provided by engineer. */
-"LOSE_VOICE_MESSAGE" = "不要灰心，再試試看！";
 
 /* 2nd */
 "Done" = "完成";
@@ -51,9 +39,6 @@
 
 /* 3nd */
 "Failed to Restore Purchase" = "無法恢復購買";
-
-/* 2nd */
-"GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "投降";
 
 /* No comment provided by engineer. */
 "Helper Area" = "小幫手";
@@ -111,9 +96,6 @@
 
 /* No comment provided by engineer. */
 "You can filter out numbers however you want in this area." = "您可以在此過濾數字、協助思考。";
-
-/* No comment provided by engineer. */
-"%d_GUESS_CHANCE_COUNT_FORMAT" = "還可以猜 %d 次";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "共猜了 %d 次";
