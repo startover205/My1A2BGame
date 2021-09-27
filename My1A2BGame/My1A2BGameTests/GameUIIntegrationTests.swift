@@ -348,6 +348,27 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
     
+    func test_helperView_showsIllustrationAlertOnTappingInfoButton() {
+        let sut = makeSUT(animate: { _, _, completion in
+            completion?(true)
+        })
+        let window = UIWindow()
+        window.addSubview(sut.view)
+        
+        sut.simulateTapHelperButton()
+        
+        XCTAssertNil(sut.presentedViewController, "Expect no alert shown before tapping info button")
+        
+        sut.simulateTapHelperViewInfoButton()
+        
+        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown after tapping info button")
+        XCTAssertEqual(alert?.title, localizedInApp("HELPER_INFO_ALERT_TITLE"))
+        XCTAssertEqual(alert?.message, localizedInApp("HELPER_INFO_ALERT_MESSAGE"))
+        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("HELPER_INFO_ALERT_CONFIRM_TITLE"))
+        
+        clearModalPresentationReference(sut)
+    }
+    
     func test_instruction_showsByTappingInstructionButton() {
         let sut = makeSUT()
         let nav = UINavigationController(rootViewController: sut)
@@ -503,6 +524,10 @@ private extension GuessNumberViewController {
     
     func simulateTapHelperButton() {
         helperViewController?.helperBtnPressed(self)
+    }
+    
+    func simulateTapHelperViewInfoButton() {
+        helperViewController.helperInfoBtnPressed(self)
     }
     
     func simulateToggleVoicePrompt() {
