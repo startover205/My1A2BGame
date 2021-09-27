@@ -25,12 +25,12 @@ public final class GameUIComposer {
             onToggleSwitch: { [unowned gameViewController] isOn in
                 if isOn {
                     let alertController = UIAlertController(
-                        title: NSLocalizedString("Voice-Prompts Feature is On", comment: ""),
-                        message: NSLocalizedString("Siri will speak out the result for you.", comment: "2nd"),
+                        title: NSLocalizedString("VOICE_PROMPT_ON_ALERT_TITLE", comment: ""),
+                        message: NSLocalizedString("VOICE_PROMPT_ON_ALERT_MESSAGE", comment: "2nd"),
                         preferredStyle: .alert)
                     
                     let okAction = UIAlertAction(
-                        title: NSLocalizedString("OK", comment: ""),
+                        title: NSLocalizedString("VOICE_PROMPT_ON_ALERT_CONFIRM_TITLE", comment: ""),
                         style: .default,
                         handler: nil)
                     

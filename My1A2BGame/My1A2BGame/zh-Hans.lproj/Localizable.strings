@@ -71,7 +71,9 @@
 "Record Complete!" = "纪录完成！";
 
 /* 2nd */
-"Siri will speak out the result for you." = "Siri会将猜测结果报告给您。";
+"VOICE_PROMPT_ON_ALERT_MESSAGE" = "Siri会将猜测结果报告给您。";
+
+"VOICE_PROMPT_ON_ALERT_CONFIRM_TITLE" = "确定";
 
 /* 4th */
 "Sorry, it seems purchase is not available on this device or within this app." = "很抱歉，您的装置似乎不支持App内购买或被设定限制无法购买。";
@@ -86,7 +88,7 @@
 "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report." = "未知产品标识符，如果扣款已成功，请联系 Apple 寻求退款或是送出错误回报。";
 
 /* No comment provided by engineer. */
-"Voice-Prompts Feature is On" = "语音提示功能已开启";
+"VOICE_PROMPT_ON_ALERT_TITLE" = "语音提示功能已开启";
 
 /* 6th */
 "We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的评论功能来回报。";

@@ -72,7 +72,9 @@
 "Record Complete!" = "Record Complete!";
 
 /* 2nd */
-"Siri will speak out the result for you." = "Siri will speak out the result for you.";
+"VOICE_PROMPT_ON_ALERT_MESSAGE" = "Siri will speak out the result for you.";
+
+"VOICE_PROMPT_ON_ALERT_CONFIRM_TITLE" = "OK";
 
 /* 4th */
 "Sorry, it seems purchase is not available on this device or within this app." = "Sorry, it seems purchase is not available on this device or within this app.";
@@ -87,7 +89,7 @@
 "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report." = "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.";
 
 /* No comment provided by engineer. */
-"Voice-Prompts Feature is On" = "Voice-Prompts Feature is On";
+"VOICE_PROMPT_ON_ALERT_TITLE" = "Voice-Prompts Feature is On";
 
 /* 6th */
 "We're sorry. Please leave a review in the AppStore instead." = "We're sorry. Please leave a review in the AppStore instead.";
