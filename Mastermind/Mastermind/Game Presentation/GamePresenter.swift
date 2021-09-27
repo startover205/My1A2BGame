@@ -16,42 +16,42 @@ public final class GamePresenter {
         self.utteranceView = utteranceView
     }
 
-    private static var guessChanceCountFormat: String {
+    public static var guessChanceCountFormat: String {
         NSLocalizedString("%d_GUESS_CHANCE_COUNT_FORMAT",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
             comment: "Format for the left chance count")
     }
 
-    private static var voiceMessageForWinning: String {
+    public static var voiceMessageForWinning: String {
         NSLocalizedString("WIN_VOICE_MESSAGE",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
             comment: "Voice message played when user wins")
     }
 
-    private static var voiceMessageForLosing: String {
+    public static var voiceMessageForLosing: String {
         NSLocalizedString("LOSE_VOICE_MESSAGE",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
             comment: "Voice message played when user loses")
     }
 
-    private static var giveUpAlertTitle: String {
+    public static var giveUpAlertTitle: String {
         NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
             comment: "Title for the give up alert")
     }
 
-    private static var giveUpAlertConfirmTitle: String {
+    public static var giveUpAlertConfirmTitle: String {
         NSLocalizedString("GAME_GIVE_UP_ALERT_CONFIRM_TITLE",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
             comment: "Title for the give up alert confirm button")
     }
 
-    private static var giveUpAlertCancelTitle: String {
+    public static var giveUpAlertCancelTitle: String {
         NSLocalizedString("GAME_GIVE_UP_ALERT_CANCEL_TITLE",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
