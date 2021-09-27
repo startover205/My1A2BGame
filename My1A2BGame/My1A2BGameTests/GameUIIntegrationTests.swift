@@ -53,6 +53,26 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off, matching the user preferance updated by `sut`")
     }
     
+    func test_voicePrompt_showsIllustrationAlertOnTurningOn() {
+        let userDefaults = UserDefaultsMock()
+        let sut = makeSUT(userDefaults: userDefaults)
+        let window = UIWindow()
+        window.addSubview(sut.view)
+
+        userDefaults.setVoicePromptOn()
+        
+        sut.simulateToggleVoicePrompt()
+        XCTAssertNil(sut.presentedViewController, "Expect no alert shown on turning off voice prompt")
+        
+        sut.simulateToggleVoicePrompt()
+        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown on turning on voice prompt")
+        XCTAssertEqual(alert?.title, localizedInApp("VOICE_PROMPT_ON_ALERT_TITLE"))
+        XCTAssertEqual(alert?.message, localizedInApp("VOICE_PROMPT_ON_ALERT_MESSAGE"))
+        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("VOICE_PROMPT_ON_ALERT_CONFIRM_TITLE"))
+        
+        clearModalPresentationReference(sut)
+    }
+    
     func test_guess_rendersResult() {
         let answer = ["1", "2", "3", "4"]
         let secret = DigitSecret(digits: answer.compactMap(Int.init))!
@@ -393,6 +413,17 @@ class GameUIIntegrationTests: XCTestCase {
     private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "Game"
         let bundle = Bundle(for: GamePresenter.self)
+        let value = bundle.localizedString(forKey: key, value: nil, table: table)
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        
+        return value
+    }
+    
+    private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+        let table = "Localizable"
+        let bundle = Bundle.main
         let value = bundle.localizedString(forKey: key, value: nil, table: table)
         if value == key {
             XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
