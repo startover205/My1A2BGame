@@ -66,9 +66,9 @@ class GameUIIntegrationTests: XCTestCase {
         
         sut.simulateToggleVoicePrompt()
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown on turning on voice prompt")
-        XCTAssertEqual(alert?.title, localizedInApp("VOICE_PROMPT_ON_ALERT_TITLE"))
-        XCTAssertEqual(alert?.message, localizedInApp("VOICE_PROMPT_ON_ALERT_MESSAGE"))
-        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("VOICE_PROMPT_ON_ALERT_CONFIRM_TITLE"))
+        XCTAssertEqual(alert?.title, VoicePromptOnAlertPresenter.alertTitle)
+        XCTAssertEqual(alert?.message, VoicePromptOnAlertPresenter.alertMessage)
+        XCTAssertEqual(alert?.actions.first?.title, VoicePromptOnAlertPresenter.alertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
