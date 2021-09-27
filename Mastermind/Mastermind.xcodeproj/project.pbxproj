@@ -11,6 +11,7 @@
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
 		C0137FFB2701902A00D3F4A8 /* VoicePrompt.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */; };
+		C01380032701984700D3F4A8 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380022701984700D3F4A8 /* SharedLocalizationTestHelpers.swift */; };
 		C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */; };
 		C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */; };
 		C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */; };
@@ -149,6 +150,7 @@
 		C0137FFC2701902A00D3F4A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VoicePrompt.strings; sourceTree = "<group>"; };
 		C0137FFE2701902D00D3F4A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/VoicePrompt.strings"; sourceTree = "<group>"; };
 		C0137FFF2701902E00D3F4A8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/VoicePrompt.strings"; sourceTree = "<group>"; };
+		C01380022701984700D3F4A8 /* SharedLocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTestHelpers.swift; sourceTree = "<group>"; };
 		C033BC2A26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2C26C7A5EC00E6AA77 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWinner.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 			children = (
 				C04B5B1F26C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift */,
 				C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */,
+				C01380022701984700D3F4A8 /* SharedLocalizationTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1016,6 +1019,7 @@
 				C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */,
 				C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */,
 				C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */,
+				C01380032701984700D3F4A8 /* SharedLocalizationTestHelpers.swift in Sources */,
 				C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */,
 				C041383A26C76CED00DFBA59 /* RankValidationPolicyTests.swift in Sources */,
 				C0BF9A6126DB5E23006BD7C1 /* DigitSecret.swift in Sources */,
