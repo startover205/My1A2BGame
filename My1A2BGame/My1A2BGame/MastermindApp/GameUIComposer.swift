@@ -11,31 +11,6 @@ import Mastermind
 import MastermindiOS
 import AVFoundation
 
-final class VoicePromptAlertPresenter {
-    private init() {}
-    
-    public static var alertTitle: String {
-        NSLocalizedString("VOICE_PROMPT_ON_ALERT_TITLE",
-                          tableName: "Localizable",
-                          bundle: Bundle(for: VoicePromptAlertPresenter.self),
-                          comment: "Alert title for turning on voice prompt function")
-    }
-    
-    public static var alertMessage: String {
-        NSLocalizedString("VOICE_PROMPT_ON_ALERT_MESSAGE",
-                          tableName: "Localizable",
-                          bundle: Bundle(for: VoicePromptAlertPresenter.self),
-                          comment: "Alert message for turning on voice prompt function")
-    }
-    
-    public static var alertConfirmTitle: String {
-        NSLocalizedString("VOICE_PROMPT_ON_ALERT_CONFIRM_TITLE",
-                          tableName: "Localizable",
-                          bundle: Bundle(for: VoicePromptAlertPresenter.self),
-                          comment: "Alert confirm title for turning on voice prompt function")
-    }
-}
-
 public final class GameUIComposer {
     private init() {}
     
@@ -50,12 +25,12 @@ public final class GameUIComposer {
             onToggleSwitch: { [unowned gameViewController] isOn in
                 if isOn {
                     let alertController = UIAlertController(
-                        title: VoicePromptAlertPresenter.alertTitle,
-                        message: VoicePromptAlertPresenter.alertMessage,
+                        title: VoicePromptOnAlertPresenter.alertTitle,
+                        message: VoicePromptOnAlertPresenter.alertMessage,
                         preferredStyle: .alert)
                     
                     let okAction = UIAlertAction(
-                        title: VoicePromptAlertPresenter.alertConfirmTitle,
+                        title: VoicePromptOnAlertPresenter.alertConfirmTitle,
                         style: .default)
                     
                     alertController.addAction(okAction)
