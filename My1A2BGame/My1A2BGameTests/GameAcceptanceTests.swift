@@ -227,23 +227,3 @@ private extension UIAlertController {
         handler(actions[index])
     }
 }
-
-private class RewardAdLoaderStub: RewardAdLoader {
-    private let ad: RewardAd?
-    
-    var rewardAd: RewardAd? { ad }
-    
-    init(ad: RewardAd?) {
-        self.ad = ad
-    }
-}
-
-private extension RewardAdLoaderStub {
-    static var null: RewardAdLoaderStub {
-        .init(ad: nil)
-    }
-    
-    static func providing(_ stub: RewardAd) -> RewardAdLoaderStub {
-        .init(ad: stub)
-    }
-}
