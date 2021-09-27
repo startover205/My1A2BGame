@@ -362,9 +362,9 @@ class GameUIIntegrationTests: XCTestCase {
         sut.simulateTapHelperViewInfoButton()
         
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown after tapping info button")
-        XCTAssertEqual(alert?.title, localizedInApp("HELPER_INFO_ALERT_TITLE"))
-        XCTAssertEqual(alert?.message, localizedInApp("HELPER_INFO_ALERT_MESSAGE"))
-        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("HELPER_INFO_ALERT_CONFIRM_TITLE"))
+        XCTAssertEqual(alert?.title, HelperPresenter.infoAlertTitle)
+        XCTAssertEqual(alert?.message, HelperPresenter.infoAlertMessage)
+        XCTAssertEqual(alert?.actions.first?.title, HelperPresenter.infoAlertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
