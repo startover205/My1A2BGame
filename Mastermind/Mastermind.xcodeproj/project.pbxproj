@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */; };
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
-		C0137FF82701700C00D3F4A8 /* VoicePrompt.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0137FF427016F1700D3F4A8 /* VoicePrompt.strings */; };
+		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
+		C0137FFB2701902A00D3F4A8 /* VoicePrompt.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */; };
 		C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */; };
 		C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */; };
 		C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */; };
@@ -143,8 +144,11 @@
 
 /* Begin PBXFileReference section */
 		C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenterTests.swift; sourceTree = "<group>"; };
-		C0137FF427016F1700D3F4A8 /* VoicePrompt.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = VoicePrompt.strings; sourceTree = "<group>"; };
 		C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenter.swift; sourceTree = "<group>"; };
+		C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptLocalizationTests.swift; sourceTree = "<group>"; };
+		C0137FFC2701902A00D3F4A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VoicePrompt.strings; sourceTree = "<group>"; };
+		C0137FFE2701902D00D3F4A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/VoicePrompt.strings"; sourceTree = "<group>"; };
+		C0137FFF2701902E00D3F4A8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/VoicePrompt.strings"; sourceTree = "<group>"; };
 		C033BC2A26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2C26C7A5EC00E6AA77 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWinner.swift; sourceTree = "<group>"; };
@@ -592,7 +596,7 @@
 				C0753722270048B300865482 /* UtteranceView.swift */,
 				C07537202700486900865482 /* VoiceMessageViewModel.swift */,
 				C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */,
-				C0137FF427016F1700D3F4A8 /* VoicePrompt.strings */,
+				C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */,
 				C0EFD30A26FD80590039E9D4 /* Game.stringsdict */,
 				C0F984EE26FC4CAF001DAB38 /* Game.strings */,
 			);
@@ -707,6 +711,7 @@
 				C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */,
 				C0F984F126FC58A1001DAB38 /* GamePresenterTests.swift */,
 				C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */,
+				C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -902,7 +907,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0137FF82701700C00D3F4A8 /* VoicePrompt.strings in Resources */,
+				C0137FFB2701902A00D3F4A8 /* VoicePrompt.strings in Resources */,
 				C075372F270054DD00865482 /* Game.stringsdict in Resources */,
 				C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */,
 			);
@@ -1009,6 +1014,7 @@
 				C0C01EEE26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift in Sources */,
 				C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */,
 				C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */,
+				C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */,
 				C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */,
 				C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */,
 				C041383A26C76CED00DFBA59 /* RankValidationPolicyTests.swift in Sources */,
@@ -1038,6 +1044,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0137FFC2701902A00D3F4A8 /* en */,
+				C0137FFE2701902D00D3F4A8 /* zh-Hans */,
+				C0137FFF2701902E00D3F4A8 /* zh-Hant */,
+			);
+			name = VoicePrompt.strings;
+			sourceTree = "<group>";
+		};
 		C0EFD30A26FD80590039E9D4 /* Game.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
