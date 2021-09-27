@@ -41,7 +41,7 @@
 "Failed to Restore Purchase" = "無法恢復購買";
 
 /* No comment provided by engineer. */
-"Helper Area" = "小幫手";
+"HELPER_INFO_ALERT_TITLE" = "小幫手";
 
 /* 6th */
 "Here we go!" = "立即評論";
@@ -63,6 +63,8 @@
 
 /* 2nd */
 "OK" = "確定";
+
+"HELPER_INFO_ALERT_CONFIRM_TITLE" = "確定";
 
 /* 4th */
 "Purchase not available" = "無法購買";
@@ -89,7 +91,7 @@
 "You Are Out Of Chances..." = "您用完次數了...";
 
 /* No comment provided by engineer. */
-"You can filter out numbers however you want in this area." = "您可以在此過濾數字、協助思考。";
+"HELPER_INFO_ALERT_MESSAGE" = "您可以在此過濾數字、協助思考。";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "共猜了 %d 次";
