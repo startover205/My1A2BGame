@@ -12,6 +12,8 @@
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
 		C0137FFB2701902A00D3F4A8 /* VoicePrompt.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */; };
 		C01380032701984700D3F4A8 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380022701984700D3F4A8 /* SharedLocalizationTestHelpers.swift */; };
+		C013800527019A9700D3F4A8 /* HelperPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */; };
+		C013800727019B7000D3F4A8 /* Helper.strings in Resources */ = {isa = PBXBuildFile; fileRef = C013800627019B7000D3F4A8 /* Helper.strings */; };
 		C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2926C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld */; };
 		C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2B26C7A5EC00E6AA77 /* Model.xcdatamodeld */; };
 		C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */; };
@@ -151,6 +153,8 @@
 		C0137FFE2701902D00D3F4A8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/VoicePrompt.strings"; sourceTree = "<group>"; };
 		C0137FFF2701902E00D3F4A8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/VoicePrompt.strings"; sourceTree = "<group>"; };
 		C01380022701984700D3F4A8 /* SharedLocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTestHelpers.swift; sourceTree = "<group>"; };
+		C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperPresenterTests.swift; sourceTree = "<group>"; };
+		C013800627019B7000D3F4A8 /* Helper.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Helper.strings; sourceTree = "<group>"; };
 		C033BC2A26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelAdvanced.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2C26C7A5EC00E6AA77 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C033BC2F26C7A64600E6AA77 /* AdvancedWinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWinner.swift; sourceTree = "<group>"; };
@@ -715,6 +719,8 @@
 				C0F984F126FC58A1001DAB38 /* GamePresenterTests.swift */,
 				C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */,
 				C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */,
+				C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */,
+				C013800627019B7000D3F4A8 /* Helper.strings */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -920,6 +926,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C013800727019B7000D3F4A8 /* Helper.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,6 +1011,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C013800527019A9700D3F4A8 /* HelperPresenterTests.swift in Sources */,
 				C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */,
 				C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */,
 				C0BF9A6A26DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift in Sources */,
