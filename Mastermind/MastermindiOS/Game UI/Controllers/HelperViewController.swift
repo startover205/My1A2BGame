@@ -34,7 +34,7 @@ public final class HelperViewController: NSObject {
         }
     }
     
-    @IBAction func helperInfoBtnPressed(_ sender: Any) {
+    @IBAction public func helperInfoBtnPressed(_ sender: Any) {
         onTapHelperInfo?()
     }
     
