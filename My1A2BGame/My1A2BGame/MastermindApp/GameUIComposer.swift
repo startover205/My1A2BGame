@@ -45,12 +45,12 @@ public final class GameUIComposer {
         gameViewController.helperViewController?.animate = animate
         gameViewController.helperViewController?.onTapHelperInfo = { [unowned gameViewController] in
             let alertController = UIAlertController(
-                title: NSLocalizedString("HELPER_INFO_ALERT_TITLE", comment: ""),
-                message: NSLocalizedString("HELPER_INFO_ALERT_MESSAGE", comment: ""),
+                title: HelperPresenter.infoAlertTitle,
+                message: HelperPresenter.infoAlertMessage,
                 preferredStyle: .alert)
             
             let okAction = UIAlertAction(
-                title: NSLocalizedString("HELPER_INFO_ALERT_CONFIRM_TITLE", comment: ""),
+                title: HelperPresenter.infoAlertConfirmTitle,
                 style: .default,
                 handler: nil)
             
