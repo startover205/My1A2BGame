@@ -19,7 +19,7 @@ public final class RewardAdPresenter {
     }
     
     public static var alertMessageFormat: String {
-        NSLocalizedString("%d_ALERT_MESSAMGE_FORMAT",
+        NSLocalizedString("%d_ALERT_MESSAGE_FORMAT",
                           tableName: "RewardAd",
                           bundle: Bundle(for: RewardAdPresenter.self),
                           comment: "Message format for reward ad alert")
