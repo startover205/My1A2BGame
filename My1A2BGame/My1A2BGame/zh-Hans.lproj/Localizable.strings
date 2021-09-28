@@ -19,9 +19,6 @@
 /* 3nd */
 "Currently No Product Available" = "目前没有可购买的商品";
 
-/* No comment provided by engineer. */
-"%d_REWARD_AD_ALERT_MESSAGE_FORMAT" = "是否要观看奖励广告？观看奖励广告能让您增加 %d 次机会！";
-
 /* 2nd */
 "Done" = "完成";
 
@@ -55,9 +52,6 @@
 /* 3nd */
 "No Restorable Products" = "没有可以恢复的商品";
 
-/* 7th */
-"REWARD_AD_ALERT_CANCEL_TITLE" = "不用了，谢谢";
-
 /* 2nd */
 "OK" = "确定";
 
@@ -81,9 +75,6 @@
 
 /* 6th */
 "We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的评论功能来回报。";
-
-/* 2nd */
-"REWARD_AD_ALERT_TITLE" = "您用完次数了...";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "共猜了 %d 次";

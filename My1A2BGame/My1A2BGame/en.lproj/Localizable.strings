@@ -20,9 +20,6 @@
 /* 3nd */
 "Currently No Product Available" = "Currently No Product Available";
 
-/* No comment provided by engineer. */
-"%d_REWARD_AD_ALERT_MESSAGE_FORMAT" = "Do you want to watch a reward ad? Watching a reward ad will grant you %d chances!";
-
 /* 2nd */
 "Done" = "Done";
 
@@ -56,9 +53,6 @@
 /* 3nd */
 "No Restorable Products" = "No Restorable Products";
 
-/* 7th */
-"REWARD_AD_ALERT_CANCEL_TITLE" = "No, thank you";
-
 /* 2nd */
 "OK" = "OK";
 
@@ -82,9 +76,6 @@
 
 /* 6th */
 "We're sorry. Please leave a review in the AppStore instead." = "We're sorry. Please leave a review in the AppStore instead.";
-
-/* 2nd */
-"REWARD_AD_ALERT_TITLE" = "You Are Out Of Chances...";
 
 /* No comment provided by engineer. */
 "You guessed %d times" = "You guessed %d times";
