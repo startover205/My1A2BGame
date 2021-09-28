@@ -55,7 +55,7 @@ public final class RewardAdViewController {
             cancelMessage: RewardAdPresenter.alertCancelTitle,
             countDownTime: RewardAdPresenter.alertCountDownTime,
             adHandler: nil,
-            cancelHandler: nil)
+            cancelHandler: { completion(0) })
         
         hostVC.present(alert, animated: true)
     }
@@ -101,6 +101,19 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(alert?.message, RewardAdPresenter.alertMessage)
         XCTAssertEqual(alert?.cancelMessage, RewardAdPresenter.alertCancelTitle)
         XCTAssertEqual(alert?.countDownTime, RewardAdPresenter.alertCountDownTime)
+    }
+
+    func test_replenishChance_deliversZeroOnCancelAlert() {
+        let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdFake())
+        let (sut, hostVC) = makeSUT(loader: rewardAdLoader)
+        var capturedChanceCount: Int?
+        
+        sut.replenishChance { capturedChanceCount = $0 }
+
+        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        alert?.cancelHandler?()
+        
+        XCTAssertEqual(capturedChanceCount, 0)
     }
     
     // MARK: Helpers
