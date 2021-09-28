@@ -40,7 +40,6 @@
 		C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* QuestionsTableViewController.swift */; };
 		C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F48926B62A1100536D73 /* More.storyboard */; };
 		C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */; };
-		C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48D26B62A1100536D73 /* AlertAdController.swift */; };
 		C0A1F4AC26B62A1200536D73 /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */; };
 		C0A1F4AE26B62A1200536D73 /* CustomTransitionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F49026B62A1100536D73 /* CustomTransitionTabBarController.swift */; };
 		C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49226B62A1200536D73 /* AlertAdController.strings */; };
@@ -133,7 +132,6 @@
 		C0A1F48726B62A1100536D73 /* QuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48926B62A1100536D73 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
-		C0A1F48D26B62A1100536D73 /* AlertAdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdController.swift; sourceTree = "<group>"; };
 		C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
 		C0A1F49026B62A1100536D73 /* CustomTransitionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransitionTabBarController.swift; sourceTree = "<group>"; };
 		C0A1F49326B62A1200536D73 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */,
-				C0A1F48D26B62A1100536D73 /* AlertAdController.swift */,
 				C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */,
 				C0A1F49026B62A1100536D73 /* CustomTransitionTabBarController.swift */,
 			);
@@ -607,7 +604,6 @@
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */,
-				C0A1F4AB26B62A1200536D73 /* AlertAdController.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,

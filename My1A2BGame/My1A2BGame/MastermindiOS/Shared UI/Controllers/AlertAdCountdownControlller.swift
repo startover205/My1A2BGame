@@ -47,7 +47,7 @@ public final class AlertAdCountdownController: UIViewController {
         self.confirmHandler = confirmHandler
         self.cancelHandler = cancelHandler
         
-        super.init(nibName: String(describing: AlertAdController.self), bundle: nil)
+        super.init(nibName: "AlertAdController", bundle: nil)
         
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
