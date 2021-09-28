@@ -8,6 +8,34 @@
 
 import XCTest
 import MastermindiOS
+import My1A2BGame
+
+final class RewardAdPresenter {
+    private init() {}
+    
+    public static var alertTitle: String {
+        NSLocalizedString("ALERT_TITLE",
+                          tableName: "RewardAd",
+                          bundle: Bundle(for: RewardAdPresenter.self),
+                          comment: "Title for reward ad alert")
+    }
+    
+    public static var alertMessage: String {
+        NSLocalizedString("ALERT_Message",
+                          tableName: "RewardAd",
+                          bundle: Bundle(for: RewardAdPresenter.self),
+                          comment: "Message for reward ad alert")
+    }
+    
+    public static var alertCancelTitle: String {
+        NSLocalizedString("ALERT_CANCEL_TITLE",
+                          tableName: "RewardAd",
+                          bundle: Bundle(for: RewardAdPresenter.self),
+                          comment: "Cancel title for reward ad alert")
+    }
+    
+    public static var alertCountDownTime: TimeInterval { 5.0 }
+}
 
 public final class RewardAdViewController {
     private let loader: RewardAdLoader
@@ -19,7 +47,17 @@ public final class RewardAdViewController {
     }
     
     func replenishChance(completion: @escaping (Int) -> Void) {
-        completion(0)
+        guard let _ = loader.rewardAd, let hostVC = hostViewController else { return completion(0) }
+
+        let alert = AlertAdCountdownController(
+            title: RewardAdPresenter.alertTitle,
+            message: RewardAdPresenter.alertMessage,
+            cancelMessage: RewardAdPresenter.alertCancelTitle,
+            countDownTime: RewardAdPresenter.alertCountDownTime,
+            adHandler: nil,
+            cancelHandler: nil)
+        
+        hostVC.present(alert, animated: true)
     }
 }
 
@@ -48,6 +86,22 @@ class RewardAdViewControllerTests: XCTestCase {
         
         XCTAssertEqual(capturedChanceCount, 0)
     }
+
+    func test_replenishChance_requestHostViewControllerToPresentAlertWithProperContentAnimatedlyIfRewardAdAvailable() {
+        let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdFake())
+        let (sut, hostVC) = makeSUT(loader: rewardAdLoader)
+
+        sut.replenishChance { _ in }
+
+        XCTAssertEqual(hostVC.capturedPresentations.count, 1, "Expect exactly one presentation")
+        XCTAssertEqual(hostVC.capturedPresentations.first?.animated, true, "Expect presenation is animated")
+        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        
+        XCTAssertEqual(alert?.alertTitle, RewardAdPresenter.alertTitle)
+        XCTAssertEqual(alert?.message, RewardAdPresenter.alertMessage)
+        XCTAssertEqual(alert?.cancelMessage, RewardAdPresenter.alertCancelTitle)
+        XCTAssertEqual(alert?.countDownTime, RewardAdPresenter.alertCountDownTime)
+    }
     
     // MARK: Helpers
     
@@ -68,6 +122,11 @@ class RewardAdViewControllerTests: XCTestCase {
         override func present(_ vc: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
             capturedPresentations.append((vc, animated))
             capturedCompletions.append(completion)
+        }
+    }
+    
+    private final class RewardAdFake: RewardAd {
+        func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void) {
         }
     }
 }
