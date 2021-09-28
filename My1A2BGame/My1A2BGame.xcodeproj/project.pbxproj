@@ -25,6 +25,7 @@
 		C075760F224C7A7D007A1F9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760E224C7A7D007A1F9E /* Global.swift */; };
 		C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */; };
 		C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */; };
+		C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */; };
 		C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082F16826CF4B1F0091E44B /* WinUIComposer.swift */; };
 		C085BE6A2254974700320563 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* Constants.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
@@ -114,6 +115,7 @@
 		C075760E224C7A7D007A1F9E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
+		C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdPresenter.swift; sourceTree = "<group>"; };
 		C07D1A6023BCDAEE00197857 /* My1A2BGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07D1A6423BCDAEE00197857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C082F16826CF4B1F0091E44B /* WinUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinUIComposer.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */,
 				C009191F26AD5E0500544115 /* GameUIComposer.swift */,
 				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
+				C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */,
 				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
 				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
@@ -601,6 +604,7 @@
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
 				C0A1F4B226B62A1200536D73 /* RankTableViewCell.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */,
+				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,

@@ -9,33 +9,6 @@
 import UIKit
 import MastermindiOS
 
-public final class RewardAdPresenter {
-    private init() {}
-    
-    public static var alertTitle: String {
-        NSLocalizedString("ALERT_TITLE",
-                          tableName: "RewardAd",
-                          bundle: Bundle(for: RewardAdPresenter.self),
-                          comment: "Title for reward ad alert")
-    }
-    
-    public static var alertMessage: String {
-        NSLocalizedString("ALERT_Message",
-                          tableName: "RewardAd",
-                          bundle: Bundle(for: RewardAdPresenter.self),
-                          comment: "Message for reward ad alert")
-    }
-    
-    public static var alertCancelTitle: String {
-        NSLocalizedString("ALERT_CANCEL_TITLE",
-                          tableName: "RewardAd",
-                          bundle: Bundle(for: RewardAdPresenter.self),
-                          comment: "Cancel title for reward ad alert")
-    }
-    
-    public static var alertCountDownTime: TimeInterval { 5.0 }
-}
-
 public final class RewardAdViewController: ReplenishChanceDelegate {
     private let loader: RewardAdLoader
     private let rewardChanceCount: Int
