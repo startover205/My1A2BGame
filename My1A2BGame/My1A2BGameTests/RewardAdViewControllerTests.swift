@@ -39,22 +39,32 @@ final class RewardAdPresenter {
 
 public final class RewardAdViewController {
     private let loader: RewardAdLoader
+    private let rewardChanceCount: Int
     private weak var hostViewController: UIViewController?
     
-    init(loader: RewardAdLoader, hostViewController: UIViewController) {
+    init(loader: RewardAdLoader, rewardChanceCount: Int, hostViewController: UIViewController) {
         self.loader = loader
+        self.rewardChanceCount = rewardChanceCount
         self.hostViewController = hostViewController
     }
     
     func replenishChance(completion: @escaping (Int) -> Void) {
-        guard let _ = loader.rewardAd, let hostVC = hostViewController else { return completion(0) }
+        guard let ad = loader.rewardAd, let hostVC = hostViewController else { return completion(0) }
+        
+        let rewardChanceCount = rewardChanceCount
 
         let alert = AlertAdCountdownController(
             title: RewardAdPresenter.alertTitle,
             message: RewardAdPresenter.alertMessage,
             cancelMessage: RewardAdPresenter.alertCancelTitle,
             countDownTime: RewardAdPresenter.alertCountDownTime,
-            adHandler: nil,
+            adHandler: { [weak hostVC] in
+                guard let hostVC = hostVC else { return }
+                
+                ad.present(fromRootViewController: hostVC) {
+                    completion(rewardChanceCount)
+                }
+            },
             cancelHandler: { completion(0) })
         
         hostVC.present(alert, animated: true)
@@ -88,7 +98,7 @@ class RewardAdViewControllerTests: XCTestCase {
     }
 
     func test_replenishChance_requestHostViewControllerToPresentAlertWithProperContentAnimatedlyIfRewardAdAvailable() {
-        let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdFake())
+        let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdSpy())
         let (sut, hostVC) = makeSUT(loader: rewardAdLoader)
 
         sut.replenishChance { _ in }
@@ -104,7 +114,7 @@ class RewardAdViewControllerTests: XCTestCase {
     }
 
     func test_replenishChance_deliversZeroOnCancelAlert() {
-        let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdFake())
+        let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdSpy())
         let (sut, hostVC) = makeSUT(loader: rewardAdLoader)
         var capturedChanceCount: Int?
         
@@ -116,14 +126,38 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(capturedChanceCount, 0)
     }
     
+    func test_replenishChance_displaysRewardAdAndReplenishOnDisplayCompletionWhenUserConfirmsAlert() {
+        let ad = RewardAdSpy()
+        let rewardAdLoader = RewardAdLoaderStub(ad: ad)
+        let (sut, hostVC) = makeSUT(loader: rewardAdLoader, rewardChanceCount: 5)
+        var capturedChanceCount: Int?
+        
+        sut.replenishChance { capturedChanceCount = $0 }
+
+        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        
+        XCTAssertTrue(ad.capturedPresentations.isEmpty, "Expect ad presententation not used before comfirm alert")
+        alert?.adHandler?()
+        
+        XCTAssertEqual(ad.capturedPresentations.first?.vc, hostVC, "Expect ad presents using host view controller")
+        XCTAssertNil(capturedChanceCount, "Expect replenish completion not called before ad presentation completes")
+        
+        ad.capturedPresentations.first?.handler()
+        
+        XCTAssertEqual(capturedChanceCount, 5, "Expect replenishing after ad presentation completes")
+        
+        ad.clearCapturedInstances()
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
+    private func makeSUT(loader: RewardAdLoaderStub = .null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
         let hostVC = UIViewControllerPresentationSpy()
-        let sut = RewardAdViewController(loader: loader, hostViewController: hostVC)
+        let sut = RewardAdViewController(loader: loader, rewardChanceCount: rewardChanceCount, hostViewController: hostVC)
         
         trackForMemoryLeaks(hostVC, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
         
         return (sut, hostVC)
     }
@@ -138,8 +172,15 @@ class RewardAdViewControllerTests: XCTestCase {
         }
     }
     
-    private final class RewardAdFake: RewardAd {
+    private final class RewardAdSpy: RewardAd {
+        private(set) var capturedPresentations = [(vc: UIViewController, handler: () -> Void)]()
+
         func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void) {
+            capturedPresentations.append((rootViewController, userDidEarnRewardHandler))
+        }
+        
+        func clearCapturedInstances() {
+            capturedPresentations.removeAll()
         }
     }
 }
