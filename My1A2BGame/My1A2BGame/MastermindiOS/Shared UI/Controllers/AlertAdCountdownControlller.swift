@@ -18,12 +18,12 @@ class AlertAdCountdownController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     
     typealias Handler = ()->()
-    private var adHandler: Handler?
-    private var cancelHandler: Handler?
-    private var countDownTime = 5.0
-    private var titleString: String
-    private var message: String?
-    private var cancelMessage: String
+    private(set) var adHandler: Handler?
+    private(set) var cancelHandler: Handler?
+    private(set) var countDownTime = 5.0
+    private(set) var titleString: String
+    private(set) var message: String?
+    private(set) var cancelMessage: String
     
     private weak var adCountDownTimer: Timer?
     private weak var progressCountDownTimer: Timer?
