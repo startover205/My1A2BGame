@@ -38,7 +38,7 @@ public final class AlertAdCountdownController: UIViewController {
         shakeAdIcon()
     }()
     
-    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil) {
+    public init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil) {
         
         self.alertTitle = title
         self.message = message
