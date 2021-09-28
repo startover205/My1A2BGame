@@ -21,7 +21,7 @@ class AlertAdCountdownController: UIViewController {
     private(set) var adHandler: Handler?
     private(set) var cancelHandler: Handler?
     private(set) var countDownTime = 5.0
-    private(set) var titleString: String
+    private(set) var alertTitle: String
     private(set) var message: String?
     private(set) var cancelMessage: String
     
@@ -41,7 +41,7 @@ class AlertAdCountdownController: UIViewController {
     
     init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: Handler? = nil, cancelHandler: Handler? = nil) {
         
-        self.titleString = title
+        self.alertTitle = title
         self.message = message
         self.cancelMessage = cancelMessage
         self.countDownTime = countDownTime
@@ -62,7 +62,7 @@ class AlertAdCountdownController: UIViewController {
         super.viewDidLoad()
 //        cancelBtn.alpha = 0
         cancelBtn.setTitle(cancelMessage, for: .normal)
-        titleLabel.text = titleString
+        titleLabel.text = alertTitle
         messageLabel.text = message
         
         self.cancelBtn.alpha = 1
