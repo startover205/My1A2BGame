@@ -9,7 +9,7 @@
 import UIKit
 
 /// 時間到自動消失
-class AlertAdCountdownController: UIViewController {
+public final class AlertAdCountdownController: UIViewController {
     
     @IBOutlet weak var countDownProgressView: UIProgressView!
     @IBOutlet weak var cancelBtn: UIButton!
@@ -58,7 +58,7 @@ class AlertAdCountdownController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 //        cancelBtn.alpha = 0
         cancelBtn.setTitle(cancelMessage, for: .normal)
@@ -69,7 +69,7 @@ class AlertAdCountdownController: UIViewController {
         self.addButtonBorder()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         _ = _startCounting
     }
