@@ -37,7 +37,7 @@ extension RewardAdViewController: ReplenishChanceDelegate {
             message: message,
             cancelMessage: NSLocalizedString("REWARD_AD_ALERT_CANCEL_TITLE", comment: "7th"),
             countDownTime: countDownTime,
-            adHandler: {
+            confirmHandler: {
                 ad.present(fromRootViewController: hostVC) {
                     _ = ad
                     

@@ -58,7 +58,7 @@ public final class RewardAdViewController {
             message: RewardAdPresenter.alertMessage,
             cancelMessage: RewardAdPresenter.alertCancelTitle,
             countDownTime: RewardAdPresenter.alertCountDownTime,
-            adHandler: { [weak hostVC] in
+            confirmHandler: { [weak hostVC] in
                 guard let hostVC = hostVC else { return }
                 
                 ad.present(fromRootViewController: hostVC) {
@@ -137,7 +137,7 @@ class RewardAdViewControllerTests: XCTestCase {
         let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
         
         XCTAssertTrue(ad.capturedPresentations.isEmpty, "Expect ad presententation not used before comfirm alert")
-        alert?.adHandler?()
+        alert?.confirmHandler?()
         
         XCTAssertEqual(ad.capturedPresentations.first?.vc, hostVC, "Expect ad presents using host view controller")
         XCTAssertNil(capturedChanceCount, "Expect replenish completion not called before ad presentation completes")

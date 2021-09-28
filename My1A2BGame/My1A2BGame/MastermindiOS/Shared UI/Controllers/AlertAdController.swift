@@ -19,7 +19,7 @@ class AlertAdController: UIViewController {
     
     typealias AdHandler = ()->()
     typealias CancelHandler = ()->()
-    private var adHandler: AdHandler?
+    private var confirmHandler: AdHandler?
     private var cancelHandler: CancelHandler?
     private var countDownTime = 5.0
     private var titleString: String
@@ -40,13 +40,13 @@ class AlertAdController: UIViewController {
         shakeAdIcon()
     }()
     
-    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: AdHandler? = nil, cancelHandler: CancelHandler? = nil) {
+    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, confirmHandler: AdHandler? = nil, cancelHandler: CancelHandler? = nil) {
         
         self.titleString = title
         self.message = message
         self.cancelMessage = cancelMessage
         self.countDownTime = countDownTime
-        self.adHandler = adHandler
+        self.confirmHandler = confirmHandler
         self.cancelHandler = cancelHandler
         
         super.init(nibName: String(describing: AlertAdController.self), bundle: nil)
@@ -80,7 +80,7 @@ class AlertAdController: UIViewController {
     
     @IBAction func adBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: {
-            self.adHandler?()
+            self.confirmHandler?()
         })
     }
     

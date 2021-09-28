@@ -17,7 +17,7 @@ public final class AlertAdCountdownController: UIViewController {
     @IBOutlet weak private(set) public var titleLabel: UILabel!
     @IBOutlet weak private(set) public var messageLabel: UILabel!
     
-    private(set) public var adHandler: (() -> Void)?
+    private(set) public var confirmHandler: (() -> Void)?
     private(set) public var cancelHandler: (() -> Void)?
     private(set) public var countDownTime = 5.0
     private(set) public var alertTitle: String
@@ -38,13 +38,13 @@ public final class AlertAdCountdownController: UIViewController {
         shakeAdIcon()
     }()
     
-    public init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil) {
+    public init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, confirmHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil) {
         
         self.alertTitle = title
         self.message = message
         self.cancelMessage = cancelMessage
         self.countDownTime = countDownTime
-        self.adHandler = adHandler
+        self.confirmHandler = confirmHandler
         self.cancelHandler = cancelHandler
         
         super.init(nibName: String(describing: AlertAdController.self), bundle: nil)
@@ -81,7 +81,7 @@ public final class AlertAdCountdownController: UIViewController {
     
     @IBAction func adBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: {
-            self.adHandler?()
+            self.confirmHandler?()
         })
     }
     
@@ -150,6 +150,6 @@ private extension AlertAdCountdownController {
 
 extension AlertAdCountdownController {
     func tapConfirmButton() {
-        adHandler?()
+        confirmHandler?()
     }
 }
