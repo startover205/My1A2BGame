@@ -380,7 +380,7 @@ class GameUIIntegrationTests: XCTestCase {
         RunLoop.current.run(until: Date())
         let instructionVC = try? XCTUnwrap(nav.topViewController as? InstructionViewController)
         instructionVC?.loadViewIfNeeded()
-        XCTAssertEqual(instructionVC?.instructionTextView.text, localizedInApp("INSTRUCTION"))
+        XCTAssertEqual(instructionVC?.instructionTextView.text, GameInstructionPresenter.instruction)
     }
 
     // MARK: Helpers
