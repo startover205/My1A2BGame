@@ -27,7 +27,9 @@
 		C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */; };
 		C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */; };
 		C07C16AF2702F52B00451060 /* RewardAdPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */; };
-		C07C16B12702F5F800451060 /* RewardAd.strings in Resources */ = {isa = PBXBuildFile; fileRef = C07C16B02702F5F800451060 /* RewardAd.strings */; };
+		C07C16B32702F89900451060 /* RewardAdLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */; };
+		C07C16B52702F8F900451060 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */; };
+		C07C16B62702F94E00451060 /* RewardAd.strings in Resources */ = {isa = PBXBuildFile; fileRef = C07C16B82702F94E00451060 /* RewardAd.strings */; };
 		C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082F16826CF4B1F0091E44B /* WinUIComposer.swift */; };
 		C085BE6A2254974700320563 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* Constants.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
@@ -119,7 +121,11 @@
 		C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdPresenter.swift; sourceTree = "<group>"; };
 		C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdPresenterTests.swift; sourceTree = "<group>"; };
-		C07C16B02702F5F800451060 /* RewardAd.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = RewardAd.strings; sourceTree = "<group>"; };
+		C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdLocalizationTests.swift; sourceTree = "<group>"; };
+		C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTestHelpers.swift; sourceTree = "<group>"; };
+		C07C16B72702F94E00451060 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RewardAd.strings; sourceTree = "<group>"; };
+		C07C16B92702F94F00451060 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RewardAd.strings"; sourceTree = "<group>"; };
+		C07C16BA2702F95200451060 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/RewardAd.strings"; sourceTree = "<group>"; };
 		C07D1A6023BCDAEE00197857 /* My1A2BGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07D1A6423BCDAEE00197857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C082F16826CF4B1F0091E44B /* WinUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinUIComposer.swift; sourceTree = "<group>"; };
@@ -287,7 +293,7 @@
 				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
 				C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */,
-				C07C16B02702F5F800451060 /* RewardAd.strings */,
+				C07C16B82702F94E00451060 /* RewardAd.strings */,
 			);
 			path = MastermindApp;
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 				C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */,
 				C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */,
 				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
+				C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
@@ -428,6 +435,7 @@
 				C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */,
 				C088A65026BE7855005FC389 /* UserDefaultsMock.swift */,
 				C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */,
+				C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -539,7 +547,7 @@
 			files = (
 				C0A1F4B326B62A1200536D73 /* Rank.storyboard in Resources */,
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
-				C07C16B12702F5F800451060 /* RewardAd.strings in Resources */,
+				C07C16B62702F94E00451060 /* RewardAd.strings in Resources */,
 				C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */,
 				C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
@@ -636,6 +644,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07C16B52702F8F900451060 /* SharedLocalizationTestHelpers.swift in Sources */,
+				C07C16B32702F89900451060 /* RewardAdLocalizationTests.swift in Sources */,
 				C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */,
 				C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */,
 				C01380132701A24200D3F4A8 /* RewardAdViewControllerTests.swift in Sources */,
@@ -671,6 +681,16 @@
 				C01461A820BE6BD30023EEB6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C07C16B82702F94E00451060 /* RewardAd.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C07C16B72702F94E00451060 /* en */,
+				C07C16B92702F94F00451060 /* zh-Hans */,
+				C07C16BA2702F95200451060 /* zh-Hant */,
+			);
+			name = RewardAd.strings;
 			sourceTree = "<group>";
 		};
 		C0A1F49226B62A1200536D73 /* AlertAdController.strings */ = {
