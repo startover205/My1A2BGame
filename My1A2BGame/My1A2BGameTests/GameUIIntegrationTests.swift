@@ -374,11 +374,13 @@ class GameUIIntegrationTests: XCTestCase {
         let nav = UINavigationController(rootViewController: sut)
         
         sut.loadViewIfNeeded()
-        XCTAssertFalse(nav.topViewController is InstructionViewController)
+        XCTAssertNil(nav.topViewController as? InstructionViewController)
         
         sut.simulateTapInstructionButton()
         RunLoop.current.run(until: Date())
-        XCTAssertTrue(nav.topViewController is InstructionViewController)
+        let instructionVC = try? XCTUnwrap(nav.topViewController as? InstructionViewController)
+        instructionVC?.loadViewIfNeeded()
+        XCTAssertEqual(instructionVC?.instructionTextView.text, localizedInApp("INSTRUCTION"))
     }
 
     // MARK: Helpers
