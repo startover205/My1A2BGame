@@ -18,11 +18,11 @@ public final class RewardAdPresenter {
                           comment: "Title for reward ad alert")
     }
     
-    public static var alertMessage: String {
-        NSLocalizedString("ALERT_Message",
+    public static var alertMessageFormat: String {
+        NSLocalizedString("%d_ALERT_MESSAMGE_FORMAT",
                           tableName: "RewardAd",
                           bundle: Bundle(for: RewardAdPresenter.self),
-                          comment: "Message for reward ad alert")
+                          comment: "Message format for reward ad alert")
     }
     
     public static var alertCancelTitle: String {

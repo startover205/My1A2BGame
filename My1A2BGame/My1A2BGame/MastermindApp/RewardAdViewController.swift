@@ -25,9 +25,11 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
         
         let rewardChanceCount = rewardChanceCount
 
+        let alertMessage = String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, rewardChanceCount)
+        
         let alert = AlertAdCountdownController(
             title: RewardAdPresenter.alertTitle,
-            message: RewardAdPresenter.alertMessage,
+            message: alertMessage,
             cancelMessage: RewardAdPresenter.alertCancelTitle,
             countDownTime: RewardAdPresenter.alertCountDownTime,
             confirmHandler: { [weak hostVC] in

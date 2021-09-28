@@ -38,16 +38,16 @@ class RewardAdViewControllerTests: XCTestCase {
 
     func test_replenishChance_requestHostViewControllerToPresentAlertWithProperContentAnimatedlyIfRewardAdAvailable() {
         let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdSpy())
-        let (sut, hostVC) = makeSUT(loader: rewardAdLoader)
+        let (sut, hostVC) = makeSUT(loader: rewardAdLoader, rewardChanceCount: 10)
 
         sut.replenishChance { _ in }
 
         XCTAssertEqual(hostVC.capturedPresentations.count, 1, "Expect exactly one presentation")
         XCTAssertEqual(hostVC.capturedPresentations.first?.animated, true, "Expect presenation is animated")
         let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
-        
+
         XCTAssertEqual(alert?.alertTitle, RewardAdPresenter.alertTitle)
-        XCTAssertEqual(alert?.message, RewardAdPresenter.alertMessage)
+        XCTAssertEqual(alert?.message, String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10))
         XCTAssertEqual(alert?.cancelMessage, RewardAdPresenter.alertCancelTitle)
         XCTAssertEqual(alert?.countDownTime, RewardAdPresenter.alertCountDownTime)
     }
