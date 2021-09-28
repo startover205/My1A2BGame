@@ -1,5 +1,3 @@
-/* No comment provided by engineer. */
-"INSTRUCTION" = "       1A2B 是一個簡單的益智遊戲。\n       電腦會準備一組數字不重複的四位數(第一位數可以是0)，玩家必須猜出是哪一組四位數。\n       每當玩家輸入四位數字，電腦會根據玩家的猜測提供提示，舉例來說：1A2B，1A代表有一個數字正確、位置也正確，2B代表有兩個數字正確、但是位置不正確。        依據電腦的提示，跟朋友比比誰能花最少次數猜出答案吧！";
 
 /* No comment provided by engineer. */
 "4A0B!! You won!!" = "4A0B！！贏了！！";
@@ -18,12 +16,6 @@
 
 /* 3nd */
 "Currently No Product Available" = "目前沒有可購買的商品";
-
-/* 2nd */
-"Done" = "完成";
-
-/* No comment provided by engineer. */
-"en-US" = "zh-TW";
 
 /* 3nd */
 "Error" = "錯誤";
