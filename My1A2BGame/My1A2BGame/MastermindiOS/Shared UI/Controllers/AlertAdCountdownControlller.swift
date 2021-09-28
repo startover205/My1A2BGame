@@ -11,19 +11,18 @@ import UIKit
 /// 時間到自動消失
 public final class AlertAdCountdownController: UIViewController {
     
-    @IBOutlet weak var countDownProgressView: UIProgressView!
-    @IBOutlet weak var cancelBtn: UIButton!
-    @IBOutlet weak var adBtn: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak private(set) public var countDownProgressView: UIProgressView!
+    @IBOutlet weak private(set) public var cancelBtn: UIButton!
+    @IBOutlet weak private(set) public var adBtn: UIButton!
+    @IBOutlet weak private(set) public var titleLabel: UILabel!
+    @IBOutlet weak private(set) public var messageLabel: UILabel!
     
-    typealias Handler = ()->()
-    private(set) var adHandler: Handler?
-    private(set) var cancelHandler: Handler?
-    private(set) var countDownTime = 5.0
-    private(set) var alertTitle: String
-    private(set) var message: String?
-    private(set) var cancelMessage: String
+    private(set) public var adHandler: (() -> Void)?
+    private(set) public var cancelHandler: (() -> Void)?
+    private(set) public var countDownTime = 5.0
+    private(set) public var alertTitle: String
+    private(set) public var message: String?
+    private(set) public var cancelMessage: String
     
     private weak var adCountDownTimer: Timer?
     private weak var progressCountDownTimer: Timer?
@@ -39,7 +38,7 @@ public final class AlertAdCountdownController: UIViewController {
         shakeAdIcon()
     }()
     
-    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: Handler? = nil, cancelHandler: Handler? = nil) {
+    init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, adHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil) {
         
         self.alertTitle = title
         self.message = message
