@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mastermind
 
 public class InstructionViewController: UIViewController {
     @IBOutlet private(set) public weak var instructionTextView: UITextView!
@@ -14,6 +15,6 @@ public class InstructionViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        instructionTextView.text = NSLocalizedString("INSTRUCTION", comment: "")
+        instructionTextView.text = GameInstructionPresenter.instruction
     }
 }
