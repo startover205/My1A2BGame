@@ -57,6 +57,8 @@
 		C0753723270048B300865482 /* UtteranceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753722270048B300865482 /* UtteranceView.swift */; };
 		C0753725270048D400865482 /* GiveUpAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753724270048D400865482 /* GiveUpAlertViewModel.swift */; };
 		C075372F270054DD00865482 /* Game.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0EFD30A26FD80590039E9D4 /* Game.stringsdict */; };
+		C07C16BC2703045700451060 /* GameInstructionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */; };
+		C07C16BE2703273E00451060 /* InstructionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16BD2703273E00451060 /* InstructionPresenter.swift */; };
 		C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */; };
 		C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */; };
 		C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841EF26D0D49900AE72F4 /* WinViewController.swift */; };
@@ -206,6 +208,8 @@
 		C07537202700486900865482 /* VoiceMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageViewModel.swift; sourceTree = "<group>"; };
 		C0753722270048B300865482 /* UtteranceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtteranceView.swift; sourceTree = "<group>"; };
 		C0753724270048D400865482 /* GiveUpAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveUpAlertViewModel.swift; sourceTree = "<group>"; };
+		C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInstructionPresenterTests.swift; sourceTree = "<group>"; };
+		C07C16BD2703273E00451060 /* InstructionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionPresenter.swift; sourceTree = "<group>"; };
 		C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStore.swift; sourceTree = "<group>"; };
 		C09841EF26D0D49900AE72F4 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
@@ -610,6 +614,7 @@
 				C07537202700486900865482 /* VoiceMessageViewModel.swift */,
 				C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */,
 				C013800827019BD700D3F4A8 /* HelperPresenter.swift */,
+				C07C16BD2703273E00451060 /* InstructionPresenter.swift */,
 				C013800F27019C3400D3F4A8 /* Helper.strings */,
 				C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */,
 				C0EFD30A26FD80590039E9D4 /* Game.stringsdict */,
@@ -729,6 +734,7 @@
 				C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */,
 				C013800B27019C1600D3F4A8 /* HelperLocalizationTests.swift */,
 				C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */,
+				C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -995,6 +1001,7 @@
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
 				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
 				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
+				C07C16BE2703273E00451060 /* InstructionPresenter.swift in Sources */,
 				C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */,
 				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
 				C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */,
@@ -1039,6 +1046,7 @@
 				C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */,
 				C01380032701984700D3F4A8 /* SharedLocalizationTestHelpers.swift in Sources */,
 				C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */,
+				C07C16BC2703045700451060 /* GameInstructionPresenterTests.swift in Sources */,
 				C041383A26C76CED00DFBA59 /* RankValidationPolicyTests.swift in Sources */,
 				C0BF9A6126DB5E23006BD7C1 /* DigitSecret.swift in Sources */,
 			);
