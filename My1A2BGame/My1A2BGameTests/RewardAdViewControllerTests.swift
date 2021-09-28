@@ -37,7 +37,7 @@ final class RewardAdPresenter {
     public static var alertCountDownTime: TimeInterval { 5.0 }
 }
 
-public final class RewardAdViewController {
+public final class RewardAdViewController: ReplenishChanceDelegate {
     private let loader: RewardAdLoader
     private let rewardChanceCount: Int
     private weak var hostViewController: UIViewController?
@@ -48,7 +48,7 @@ public final class RewardAdViewController {
         self.hostViewController = hostViewController
     }
     
-    func replenishChance(completion: @escaping (Int) -> Void) {
+    public func replenishChance(completion: @escaping (Int) -> Void) {
         guard let ad = loader.rewardAd, let hostVC = hostViewController else { return completion(0) }
         
         let rewardChanceCount = rewardChanceCount
