@@ -47,7 +47,7 @@ public final class RecordViewController: NSObject {
     
     private func showAlert(title: String, message: String? = nil, onDismiss: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "2nd"), style: .default, handler: onDismiss)
+        let ok = UIAlertAction(title: NSLocalizedString("SAVE_RECORD_ALERT_CONFIRM", comment: "2nd"), style: .default, handler: onDismiss)
         alert.addAction(ok)
         
         hostViewController?.present(alert, animated: true, completion: nil)
@@ -63,10 +63,10 @@ extension RecordViewController: RecordValidationView {
 extension RecordViewController: RecordSaveView {
     public func display(_ viewModel: RecordErrorViewModel) {
         if let error = viewModel.error {
-            showAlert(title: NSLocalizedString("Failed to Make a Record", comment: "2nd"), message: error.localizedDescription)
+            showAlert(title: NSLocalizedString("SAVE_RECORD_ALERT_FAILURE_TITLE", comment: "2nd"), message: error.localizedDescription)
         } else {
             containerView.alpha = 0
-            showAlert(title: NSLocalizedString("Record Complete!", comment: "2nd"))
+            showAlert(title: NSLocalizedString("SAVE_RECORD_ALERT_SUCCESS_TITLE", comment: "2nd"))
         }
     }
 }

@@ -21,7 +21,7 @@
 "Error" = "Error";
 
 /* 2nd */
-"Failed to Make a Record" = "Failed to Make a Record";
+"SAVE_RECORD_ALERT_FAILURE_TITLE" = "Failed to Make a Record";
 
 /* 5th */
 "Failed to Purchase" = "Failed to Purchase";
@@ -45,13 +45,13 @@
 "No Restorable Products" = "No Restorable Products";
 
 /* 2nd */
-"OK" = "OK";
+"SAVE_RECORD_ALERT_CONFIRM" = "OK";
 
 /* 4th */
 "Purchase not available" = "Purchase not available";
 
 /* 2nd */
-"Record Complete!" = "Record Complete!";
+"SAVE_RECORD_ALERT_SUCCESS_TITLE" = "Record Complete!";
 
 /* 4th */
 "Sorry, it seems purchase is not available on this device or within this app." = "Sorry, it seems purchase is not available on this device or within this app.";
