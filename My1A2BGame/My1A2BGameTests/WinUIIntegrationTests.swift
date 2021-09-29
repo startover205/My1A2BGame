@@ -177,23 +177,47 @@ class WinUIIntegrationTests: XCTestCase {
         ], "Expect another save message when user trys to save again")
     }
     
-    func test_saveRecord_hidesSaveRecordViewsAfterSuccessfullySaveRecord() {
+    func test_saveRecord_showsErrorAlertOnError() {
         let playerRecord = anyPlayerRecord()
         let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
+        let saveError = anyNSError()
+        let window = UIWindow()
         
         loader.completeValidation(with: true)
-        sut.loadViewIfNeeded()
-        XCTAssertTrue(sut.showingSaveRecordViews)
-        
+        window.addSubview(sut.view)
         sut.simulateUserEnterPlayerName(name: playerRecord.playerName)
         
         loader.completeSave(with: anyNSError())
         sut.simulateUserSendInput()
-        XCTAssertTrue(sut.showingSaveRecordViews)
+        
+        XCTAssertTrue(sut.showingSaveRecordViews, "Expect still showing save record views on save error")
+
+        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save error")
+        XCTAssertEqual(alert?.title, localizedInApp("SAVE_RECORD_ALERT_FAILURE_TITLE"))
+        XCTAssertEqual(alert?.message, saveError.localizedDescription)
+        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("SAVE_RECORD_ALERT_CONFIRM"))
+        
+        clearModalPresentationReference(sut)
+    }
+    
+    func test_saveRecord_showsCompletionAlertAndHidesSaveRecordViewsOnSuccess() {
+        let playerRecord = anyPlayerRecord()
+        let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
+        let window = UIWindow()
+        
+        loader.completeValidation(with: true)
+        window.addSubview(sut.view)
+        sut.simulateUserEnterPlayerName(name: playerRecord.playerName)
         
         loader.completeSaveSuccesfully()
         sut.simulateUserSendInput()
-        XCTAssertFalse(sut.showingSaveRecordViews)
+        XCTAssertFalse(sut.showingSaveRecordViews, "Expect not showing save record views on save success")
+        
+        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save sucess")
+        XCTAssertEqual(alert?.title, localizedInApp("SAVE_RECORD_ALERT_SUCCESS_TITLE"))
+        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("SAVE_RECORD_ALERT_CONFIRM"))
+        
+        clearModalPresentationReference(sut)
     }
     
     func test_tapOnScreen_dismissKeyboard() {
@@ -239,6 +263,25 @@ class WinUIIntegrationTests: XCTestCase {
     private func guessCountMessageFor(guessCount: Int) -> String {
         let unit = guessCount == 1 ? "time" : "times"
         return "You guessed \(guessCount) \(unit)"
+    }
+    
+    private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+        let table = "Localizable"
+        let bundle = Bundle.main
+        let value = bundle.localizedString(forKey: key, value: nil, table: table)
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        
+        return value
+    }
+    
+    private func clearModalPresentationReference(_ sut: UIViewController) {
+        let exp = expectation(description: "wait for dismiss")
+        sut.dismiss(animated: false) {
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 1)
     }
     
     private final class UIViewControllerSpy: UIViewController {
