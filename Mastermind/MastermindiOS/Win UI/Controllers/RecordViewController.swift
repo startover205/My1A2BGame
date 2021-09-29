@@ -61,7 +61,7 @@ extension RecordViewController: RecordValidationView {
 }
 
 extension RecordViewController: RecordSaveView {
-    public func display(_ viewModel: RecordErrorViewModel) {
+    public func display(_ viewModel: RecordSaveResultViewModel) {
         if let error = viewModel.error {
             showAlert(title: NSLocalizedString("SAVE_RECORD_ALERT_FAILURE_TITLE", comment: "2nd"), message: error.localizedDescription)
         } else {

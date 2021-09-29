@@ -112,7 +112,7 @@
 		C0D5DE5326E5E69D001F4A0D /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; platformFilter = ios; };
 		C0D5DE6426E9B93C001F4A0D /* RecordValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */; };
 		C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */; };
-		C0D5DE6826E9B968001F4A0D /* RecordErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6726E9B968001F4A0D /* RecordErrorViewModel.swift */; };
+		C0D5DE6826E9B968001F4A0D /* RecordSaveResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6726E9B968001F4A0D /* RecordSaveResultViewModel.swift */; };
 		C0D5DE6A26E9B977001F4A0D /* RecordSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6926E9B977001F4A0D /* RecordSaveView.swift */; };
 		C0D5DE6B26E9BA24001F4A0D /* RecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */; };
 		C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE7026E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift */; };
@@ -263,7 +263,7 @@
 		C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenter.swift; sourceTree = "<group>"; };
 		C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordValidationView.swift; sourceTree = "<group>"; };
-		C0D5DE6726E9B968001F4A0D /* RecordErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordErrorViewModel.swift; sourceTree = "<group>"; };
+		C0D5DE6726E9B968001F4A0D /* RecordSaveResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSaveResultViewModel.swift; sourceTree = "<group>"; };
 		C0D5DE6926E9B977001F4A0D /* RecordSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSaveView.swift; sourceTree = "<group>"; };
 		C0D5DE6C26E9EEE1001F4A0D /* AppReviewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewHandler.swift; sourceTree = "<group>"; };
 		C0D5DE7026E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptAppReviewControllerTests.swift; sourceTree = "<group>"; };
@@ -672,7 +672,7 @@
 			children = (
 				C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */,
 				C0D5DE6926E9B977001F4A0D /* RecordSaveView.swift */,
-				C0D5DE6726E9B968001F4A0D /* RecordErrorViewModel.swift */,
+				C0D5DE6726E9B968001F4A0D /* RecordSaveResultViewModel.swift */,
 				C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */,
 				C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */,
 			);
@@ -991,7 +991,7 @@
 				C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */,
 				C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */,
 				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,
-				C0D5DE6826E9B968001F4A0D /* RecordErrorViewModel.swift in Sources */,
+				C0D5DE6826E9B968001F4A0D /* RecordSaveResultViewModel.swift in Sources */,
 				C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */,
 				C0D5DE8A26E9F2A6001F4A0D /* AppReviewController.swift in Sources */,
 				C0D5DE6A26E9B977001F4A0D /* RecordSaveView.swift in Sources */,

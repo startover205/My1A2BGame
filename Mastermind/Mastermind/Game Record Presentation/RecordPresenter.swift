@@ -19,10 +19,10 @@ public final class RecordPresenter {
     }
     
     public func didSaveRecordSuccessfully() {
-        recordSaveView.display(RecordErrorViewModel(error: nil))
+        recordSaveView.display(RecordSaveResultViewModel(error: nil))
     }
     
     public func didSaveRecord(with error: Error) {
-        recordSaveView.display(RecordErrorViewModel(error: error))
+        recordSaveView.display(RecordSaveResultViewModel(error: error))
     }
 }
