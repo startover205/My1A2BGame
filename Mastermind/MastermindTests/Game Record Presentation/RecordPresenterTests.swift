@@ -15,11 +15,24 @@ public struct RecordValidationViewModel {
     public let isValid: Bool
 }
 
+public protocol RecordSaveView {
+    func display(_ viewModel: RecordSaveResultAlertViewModel)
+}
+
+public struct RecordSaveResultAlertViewModel {
+    public let success: Bool
+    public let title: String
+    public let message: String?
+    public let confirmTitle: String
+}
+
 public final class RecordPresenter {
     private let validationView: RecordValidationView
+    private let saveView: RecordSaveView
     
-    internal init(validationView: RecordValidationView) {
+    internal init(validationView: RecordValidationView, saveView: RecordSaveView) {
         self.validationView = validationView
+        self.saveView = saveView
     }
     
     static var saveSuccessAlertTitle: String {
@@ -45,6 +58,10 @@ public final class RecordPresenter {
     
     public func didValidateRecord(_ isValid: Bool) {
         validationView.display(RecordValidationViewModel(isValid: isValid))
+    }
+    
+    public func didSaveRecord(with error: Error) {
+        saveView.display(RecordSaveResultAlertViewModel(success: false, title: Self.saveFailureAlertTitle, message: error.localizedDescription, confirmTitle: Self.saveResultAlertConfirmTitle))
     }
 }
 
@@ -80,11 +97,24 @@ class RecordPresenterTests: XCTestCase {
                         .display(isValidRecord: false)])
     }
     
+    func test_didSaveRecordWithError_displaysErrorAlert() {
+        let (sut, view) = makeSUT()
+        let saveError = anyNSError()
+        
+        sut.didSaveRecord(with: saveError)
+        
+        XCTAssertEqual(view.receivedMessages, [.display(
+                                                saveSuccess: false,
+                                                alertTitle: localized("SAVE_FAILURE_ALERT_TITLE"),
+                                                alertMessage: saveError.localizedDescription,
+                                                alertConfirmTitle: localized("SAVE_RESULT_ALERT_CONFIRM_TITLE"))])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordPresenter, ViewSpy) {
         let view = ViewSpy()
-        let sut = RecordPresenter(validationView: view)
+        let sut = RecordPresenter(validationView: view, saveView: view)
         
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -92,15 +122,20 @@ class RecordPresenterTests: XCTestCase {
         return (sut, view)
     }
     
-    private final class ViewSpy: RecordValidationView {
+    private final class ViewSpy: RecordValidationView, RecordSaveView {
         enum Message: Hashable {
             case display(isValidRecord: Bool)
+            case display(saveSuccess: Bool, alertTitle: String, alertMessage: String?, alertConfirmTitle: String)
         }
         
         private(set) var receivedMessages = Set<Message>()
         
         func display(_ viewModel: RecordValidationViewModel) {
             receivedMessages.insert(.display(isValidRecord: viewModel.isValid))
+        }
+        
+        func display(_ viewModel: RecordSaveResultAlertViewModel) {
+            receivedMessages.insert(.display(saveSuccess: viewModel.success, alertTitle: viewModel.title, alertMessage: viewModel.message, alertConfirmTitle: viewModel.confirmTitle))
         }
     }
     
