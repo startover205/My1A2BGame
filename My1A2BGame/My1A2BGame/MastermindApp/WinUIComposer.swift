@@ -23,7 +23,8 @@ public final class WinUIComposer {
         
         let shareViewController = ShareViewController(
             hostViewController: winViewController,
-            guessCount: score.guessCount, appDownloadUrl: Constants.appStoreDownloadUrl)
+            guessCount: score.guessCount,
+            appDownloadUrl: Constants.appStoreDownloadUrl)
         winViewController.shareViewController = shareViewController
         
         let presentationAdapter = RecordPresentationAdapter(
