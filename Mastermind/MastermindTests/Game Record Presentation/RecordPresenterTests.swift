@@ -7,11 +7,19 @@
 
 import XCTest
 
+public protocol RecordValidationView {
+    func display(_ viewModel: RecordValidationViewModel)
+}
+
+public struct RecordValidationViewModel {
+    public let isValid: Bool
+}
+
 public final class RecordPresenter {
-    private let view: Any
+    private let validationView: RecordValidationView
     
-    internal init(view: Any) {
-        self.view = view
+    internal init(validationView: RecordValidationView) {
+        self.validationView = validationView
     }
     
     static var saveSuccessAlertTitle: String {
@@ -34,8 +42,12 @@ public final class RecordPresenter {
                           bundle: Bundle(for: RecordPresenter.self),
                           comment: "Confirm title for save failure alert")
     }
-}
     
+    public func didValidateRecord(_ isValid: Bool) {
+        validationView.display(RecordValidationViewModel(isValid: isValid))
+    }
+}
+
 
 class RecordPresenterTests: XCTestCase {
     func test_saveSuccessAlertTitle_isLocalized() {
@@ -56,11 +68,23 @@ class RecordPresenterTests: XCTestCase {
         XCTAssertTrue(view.receivedMessages.isEmpty)
     }
     
+    func test_didValidateRecord_displaysValidationResult() {
+        let (sut, view) = makeSUT()
+        
+        sut.didValidateRecord(true)
+        XCTAssertEqual(view.receivedMessages, [.display(isValidRecord: true)])
+        
+        sut.didValidateRecord(false)
+        XCTAssertEqual(view.receivedMessages, [
+                        .display(isValidRecord: true),
+                        .display(isValidRecord: false)])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordPresenter, ViewSpy) {
         let view = ViewSpy()
-        let sut = RecordPresenter(view: view)
+        let sut = RecordPresenter(validationView: view)
         
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -68,14 +92,18 @@ class RecordPresenterTests: XCTestCase {
         return (sut, view)
     }
     
-    private final class ViewSpy {
-        enum Message: Equatable {
-            
+    private final class ViewSpy: RecordValidationView {
+        enum Message: Hashable {
+            case display(isValidRecord: Bool)
         }
         
-        private(set) var receivedMessages = [Message]()
+        private(set) var receivedMessages = Set<Message>()
+        
+        func display(_ viewModel: RecordValidationViewModel) {
+            receivedMessages.insert(.display(isValidRecord: viewModel.isValid))
+        }
     }
-
+    
     private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "Record"
         let bundle = Bundle(for: RecordPresenter.self)
