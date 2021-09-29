@@ -67,8 +67,9 @@
 		C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C09841F826D0D56200AE72F4 /* Win.storyboard */; };
 		C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420E26D4C74B00AE72F4 /* LoseViewController.swift */; };
 		C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098421026D4C78000AE72F4 /* Lose.storyboard */; };
-		C09D16E1270438AC002F49A3 /* Record.strings in Resources */ = {isa = PBXBuildFile; fileRef = C09D16E0270438AC002F49A3 /* Record.strings */; };
 		C09D16E427043AF2002F49A3 /* RecordPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D16E327043AF2002F49A3 /* RecordPresenterTests.swift */; };
+		C09D16E827044C49002F49A3 /* RecordLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D16E727044C49002F49A3 /* RecordLocalizationTests.swift */; };
+		C09D16E927044C84002F49A3 /* Record.strings in Resources */ = {isa = PBXBuildFile; fileRef = C09D16EB27044C84002F49A3 /* Record.strings */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -220,8 +221,11 @@
 		C09841F826D0D56200AE72F4 /* Win.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Win.storyboard; sourceTree = "<group>"; };
 		C098420E26D4C74B00AE72F4 /* LoseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoseViewController.swift; sourceTree = "<group>"; };
 		C098421026D4C78000AE72F4 /* Lose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lose.storyboard; sourceTree = "<group>"; };
-		C09D16E0270438AC002F49A3 /* Record.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Record.strings; sourceTree = "<group>"; };
 		C09D16E327043AF2002F49A3 /* RecordPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenterTests.swift; sourceTree = "<group>"; };
+		C09D16E727044C49002F49A3 /* RecordLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLocalizationTests.swift; sourceTree = "<group>"; };
+		C09D16EA27044C84002F49A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Record.strings; sourceTree = "<group>"; };
+		C09D16EC27044C88002F49A3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Record.strings"; sourceTree = "<group>"; };
+		C09D16ED27044C8A002F49A3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Record.strings"; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -578,6 +582,7 @@
 		C09D16E227043AD6002F49A3 /* Game Record Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C09D16E727044C49002F49A3 /* RecordLocalizationTests.swift */,
 				C09D16E327043AF2002F49A3 /* RecordPresenterTests.swift */,
 			);
 			path = "Game Record Presentation";
@@ -687,7 +692,7 @@
 				C0D5DE6726E9B968001F4A0D /* RecordSaveResultAlertViewModel.swift */,
 				C0D5DE6526E9B953001F4A0D /* RecordValidationView.swift */,
 				C0D5DE6326E9B93C001F4A0D /* RecordValidationViewModel.swift */,
-				C09D16E0270438AC002F49A3 /* Record.strings */,
+				C09D16EB27044C84002F49A3 /* Record.strings */,
 			);
 			path = "Game Record Presentation";
 			sourceTree = "<group>";
@@ -945,7 +950,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0137FFB2701902A00D3F4A8 /* VoicePrompt.strings in Resources */,
-				C09D16E1270438AC002F49A3 /* Record.strings in Resources */,
+				C09D16E927044C84002F49A3 /* Record.strings in Resources */,
 				C075372F270054DD00865482 /* Game.stringsdict in Resources */,
 				C013800D27019C3400D3F4A8 /* Helper.strings in Resources */,
 				C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */,
@@ -1053,6 +1058,7 @@
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C013800C27019C1600D3F4A8 /* HelperLocalizationTests.swift in Sources */,
 				C0F984F226FC58A1001DAB38 /* GamePresenterTests.swift in Sources */,
+				C09D16E827044C49002F49A3 /* RecordLocalizationTests.swift in Sources */,
 				C09D16E427043AF2002F49A3 /* RecordPresenterTests.swift in Sources */,
 				C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */,
 				C0C01EEE26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift in Sources */,
@@ -1108,6 +1114,16 @@
 				C013801127019C3900D3F4A8 /* zh-Hant */,
 			);
 			name = Helper.strings;
+			sourceTree = "<group>";
+		};
+		C09D16EB27044C84002F49A3 /* Record.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C09D16EA27044C84002F49A3 /* en */,
+				C09D16EC27044C88002F49A3 /* zh-Hans */,
+				C09D16ED27044C8A002F49A3 /* zh-Hant */,
+			);
+			name = Record.strings;
 			sourceTree = "<group>";
 		};
 		C0EFD30A26FD80590039E9D4 /* Game.stringsdict */ = {
