@@ -8,7 +8,11 @@
 import XCTest
 
 public final class RecordPresenter {
-    private init() {}
+    private let view: Any
+    
+    internal init(view: Any) {
+        self.view = view
+    }
     
     static var saveSuccessAlertTitle: String {
         NSLocalizedString("SAVE_SUCCESS_ALERT_TITLE",
@@ -46,7 +50,31 @@ class RecordPresenterTests: XCTestCase {
         XCTAssertEqual(RecordPresenter.saveResultAlertConfirmTitle, localized("SAVE_RESULT_ALERT_CONFIRM_TITLE"))
     }
     
+    func test_init_doesNotMessageView() {
+        let (_, view) = makeSUT()
+        
+        XCTAssertTrue(view.receivedMessages.isEmpty)
+    }
+    
     // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RecordPresenter, ViewSpy) {
+        let view = ViewSpy()
+        let sut = RecordPresenter(view: view)
+        
+        trackForMemoryLeaks(view, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return (sut, view)
+    }
+    
+    private final class ViewSpy {
+        enum Message: Equatable {
+            
+        }
+        
+        private(set) var receivedMessages = [Message]()
+    }
 
     private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "Record"
@@ -57,5 +85,4 @@ class RecordPresenterTests: XCTestCase {
         }
         return value
     }
-
 }
