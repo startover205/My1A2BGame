@@ -6,5 +6,8 @@
 //
 
 public struct RecordSaveResultViewModel {
-    public let error: Error?
+    public let success: Bool
+    public let title: String
+    public let message: String?
+    public let confirmTitle: String
 }

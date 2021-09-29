@@ -44,14 +44,6 @@ public final class RecordViewController: NSObject {
         
         delegate?.didRequestSaveRecord(playerName: name)
     }
-    
-    private func showAlert(title: String, message: String? = nil, onDismiss: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: NSLocalizedString("SAVE_RECORD_ALERT_CONFIRM", comment: "2nd"), style: .default, handler: onDismiss)
-        alert.addAction(ok)
-        
-        hostViewController?.present(alert, animated: true, completion: nil)
-    }
 }
 
 extension RecordViewController: RecordValidationView {
@@ -62,11 +54,20 @@ extension RecordViewController: RecordValidationView {
 
 extension RecordViewController: RecordSaveView {
     public func display(_ viewModel: RecordSaveResultViewModel) {
-        if let error = viewModel.error {
-            showAlert(title: NSLocalizedString("SAVE_RECORD_ALERT_FAILURE_TITLE", comment: "2nd"), message: error.localizedDescription)
-        } else {
+        if viewModel.success {
             containerView.alpha = 0
-            showAlert(title: NSLocalizedString("SAVE_RECORD_ALERT_SUCCESS_TITLE", comment: "2nd"))
         }
+        
+        let alert = UIAlertController(
+            title: viewModel.title,
+            message: viewModel.message,
+            preferredStyle: .alert)
+        let confirm = UIAlertAction(
+            title: viewModel.confirmTitle,
+            style: .default)
+        
+        alert.addAction(confirm)
+        
+        hostViewController?.present(alert, animated: true)
     }
 }
