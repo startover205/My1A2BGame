@@ -20,9 +20,6 @@
 /* 3nd */
 "Error" = "错误";
 
-/* 2nd */
-"SAVE_RECORD_ALERT_FAILURE_TITLE" = "无法纪录";
-
 /* 5th */
 "Failed to Purchase" = "无法购买";
 
@@ -44,20 +41,11 @@
 /* 3nd */
 "No Restorable Products" = "没有可以恢复的商品";
 
-/* 2nd */
-"SAVE_RECORD_ALERT_CONFIRM" = "确定";
-
 /* 4th */
 "Purchase not available" = "无法购买";
 
-/* 2nd */
-"SAVE_RECORD_ALERT_SUCCESS_TITLE" = "纪录完成！";
-
 /* 4th */
 "Sorry, it seems purchase is not available on this device or within this app." = "很抱歉，您的装置似乎不支持App内购买或被设定限制无法购买。";
-
-/* 2nd */
-"Sorry. Please try agin." = "对不起，请重新再试一次。";
 
 /* 3nd */
 "Successfully Restored Purchase" = "成功恢复购买";
