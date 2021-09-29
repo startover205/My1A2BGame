@@ -42,10 +42,10 @@ public final class RecordPresenter {
     }
     
     public func didSaveRecordSuccessfully() {
-        recordSaveView.display(RecordSaveResultViewModel(success: true, title: Self.saveSuccessAlertTitle, message: nil, confirmTitle: Self.saveResultAlertConfirmTitle))
+        recordSaveView.display(RecordSaveResultAlertViewModel(success: true, title: Self.saveSuccessAlertTitle, message: nil, confirmTitle: Self.saveResultAlertConfirmTitle))
     }
     
     public func didSaveRecord(with error: Error) {
-        recordSaveView.display(RecordSaveResultViewModel(success: false, title: Self.saveFailureAlertTitle, message: error.localizedDescription, confirmTitle: Self.saveResultAlertConfirmTitle))
+        recordSaveView.display(RecordSaveResultAlertViewModel(success: false, title: Self.saveFailureAlertTitle, message: error.localizedDescription, confirmTitle: Self.saveResultAlertConfirmTitle))
     }
 }

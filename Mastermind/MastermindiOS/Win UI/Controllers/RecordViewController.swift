@@ -53,7 +53,7 @@ extension RecordViewController: RecordValidationView {
 }
 
 extension RecordViewController: RecordSaveView {
-    public func display(_ viewModel: RecordSaveResultViewModel) {
+    public func display(_ viewModel: RecordSaveResultAlertViewModel) {
         if viewModel.success {
             containerView.alpha = 0
         }
