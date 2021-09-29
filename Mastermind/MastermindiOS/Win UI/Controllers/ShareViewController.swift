@@ -15,10 +15,10 @@ public final class ShareViewController {
     }()
     
     private weak var hostViewController: UIViewController?
-    private let guessCount: () -> Int
+    private let guessCount: Int
     private let appDownloadUrl: String
     
-    public init(hostViewController: UIViewController, guessCount: @escaping () -> Int, appDownloadUrl: String) {
+    public init(hostViewController: UIViewController, guessCount: Int, appDownloadUrl: String) {
         self.hostViewController = hostViewController
         self.guessCount = guessCount
         self.appDownloadUrl = appDownloadUrl
@@ -26,8 +26,6 @@ public final class ShareViewController {
     
     @objc func share() {
         guard let hostViewController = hostViewController else { return }
-        let guessCount = guessCount()
-        
         let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
         var activityItems: [Any] = [String.localizedStringWithFormat(format, guessCount)]
         activityItems.append(appDownloadUrl)

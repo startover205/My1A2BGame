@@ -104,7 +104,7 @@ class WinUIIntegrationTests: XCTestCase {
     func test_tapOnShareView_canShareContent() {
         let (sut, _) = makeSUT()
         let hostVC = UIViewControllerSpy()
-        let shareController = ShareViewController(hostViewController: hostVC, guessCount: { [unowned sut] in sut.guessCount }, appDownloadUrl: "")
+        let shareController = ShareViewController(hostViewController: hostVC, guessCount: 1, appDownloadUrl: "")
         sut.shareViewController = shareController
 
         sut.loadViewIfNeeded()
