@@ -63,6 +63,10 @@ public final class RecordPresenter {
     public func didSaveRecord(with error: Error) {
         saveView.display(RecordSaveResultAlertViewModel(success: false, title: Self.saveFailureAlertTitle, message: error.localizedDescription, confirmTitle: Self.saveResultAlertConfirmTitle))
     }
+    
+    public func didSaveRecordSuccessfully() {
+        saveView.display(RecordSaveResultAlertViewModel(success: true, title: Self.saveSuccessAlertTitle, message: nil, confirmTitle: Self.saveResultAlertConfirmTitle))
+    }
 }
 
 
@@ -108,6 +112,19 @@ class RecordPresenterTests: XCTestCase {
                                                 alertTitle: localized("SAVE_FAILURE_ALERT_TITLE"),
                                                 alertMessage: saveError.localizedDescription,
                                                 alertConfirmTitle: localized("SAVE_RESULT_ALERT_CONFIRM_TITLE"))])
+    }
+    
+    func test_didSaveRecordSuccesfully_displaysSuccessAlert() {
+        let (sut, view) = makeSUT()
+        
+        sut.didSaveRecordSuccessfully()
+        
+        XCTAssertEqual(view.receivedMessages, [.display(
+                                                saveSuccess: true,
+                                                alertTitle: localized("SAVE_SUCCESS_ALERT_TITLE"),
+                                                alertMessage: nil,
+                                                alertConfirmTitle: localized("SAVE_RESULT_ALERT_CONFIRM_TITLE"))])
+        
     }
     
     // MARK: - Helpers
