@@ -193,9 +193,9 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.showingSaveRecordViews, "Expect still showing save record views on save error")
 
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save error")
-        XCTAssertEqual(alert?.title, localizedInApp("SAVE_RECORD_ALERT_FAILURE_TITLE"))
+        XCTAssertEqual(alert?.title, RecordPresenter.saveFailureAlertTitle)
         XCTAssertEqual(alert?.message, saveError.localizedDescription)
-        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("SAVE_RECORD_ALERT_CONFIRM"))
+        XCTAssertEqual(alert?.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
@@ -214,8 +214,8 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingSaveRecordViews, "Expect not showing save record views on save success")
         
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save sucess")
-        XCTAssertEqual(alert?.title, localizedInApp("SAVE_RECORD_ALERT_SUCCESS_TITLE"))
-        XCTAssertEqual(alert?.actions.first?.title, localizedInApp("SAVE_RECORD_ALERT_CONFIRM"))
+        XCTAssertEqual(alert?.title, RecordPresenter.saveSuccessAlertTitle)
+        XCTAssertEqual(alert?.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
