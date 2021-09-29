@@ -6,5 +6,5 @@
 //
 
 public protocol RecordSaveView {
-    func display(_ viewModel: RecordSaveViewModel)
+    func display(_ viewModel: RecordErrorViewModel)
 }

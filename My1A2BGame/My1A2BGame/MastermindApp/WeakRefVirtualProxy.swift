@@ -24,7 +24,7 @@ extension WeakRefVirtualProxy: RecordValidationView where T: RecordValidationVie
 }
 
 extension WeakRefVirtualProxy: RecordSaveView where T: RecordSaveView {
-    func display(_ viewModel: RecordSaveViewModel) {
+    func display(_ viewModel: RecordErrorViewModel) {
         object?.display(viewModel)
     }
 }
