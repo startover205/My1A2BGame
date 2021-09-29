@@ -69,7 +69,6 @@
 		C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098421026D4C78000AE72F4 /* Lose.storyboard */; };
 		C09D16E1270438AC002F49A3 /* Record.strings in Resources */ = {isa = PBXBuildFile; fileRef = C09D16E0270438AC002F49A3 /* Record.strings */; };
 		C09D16E427043AF2002F49A3 /* RecordPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D16E327043AF2002F49A3 /* RecordPresenterTests.swift */; };
-		C09D16E627043D3B002F49A3 /* Record.strings in Resources */ = {isa = PBXBuildFile; fileRef = C09D16E527043D3B002F49A3 /* Record.strings */; };
 		C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */; };
 		C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */; };
 		C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */; };
@@ -223,7 +222,6 @@
 		C098421026D4C78000AE72F4 /* Lose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lose.storyboard; sourceTree = "<group>"; };
 		C09D16E0270438AC002F49A3 /* Record.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Record.strings; sourceTree = "<group>"; };
 		C09D16E327043AF2002F49A3 /* RecordPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPresenterTests.swift; sourceTree = "<group>"; };
-		C09D16E527043D3B002F49A3 /* Record.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Record.strings; sourceTree = "<group>"; };
 		C09FAB8C26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateNewRecordFromStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		C09FAB8F26C63F8700A15B9E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C09FAB9126C6400300A15B9E /* RecordStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoreSpy.swift; sourceTree = "<group>"; };
@@ -581,7 +579,6 @@
 			isa = PBXGroup;
 			children = (
 				C09D16E327043AF2002F49A3 /* RecordPresenterTests.swift */,
-				C09D16E527043D3B002F49A3 /* Record.strings */,
 			);
 			path = "Game Record Presentation";
 			sourceTree = "<group>";
@@ -959,7 +956,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C09D16E627043D3B002F49A3 /* Record.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,8 +36,8 @@ public final class WinUIComposer {
         recordViewController.delegate = presentationAdapter
         
         presentationAdapter.presenter = RecordPresenter(
-            recordSaveView: WeakRefVirtualProxy(recordViewController),
-            recordValidationView: WeakRefVirtualProxy(recordViewController))
+            validationView: WeakRefVirtualProxy(recordViewController),
+            saveView: WeakRefVirtualProxy(recordViewController))
         
         return winViewController
     }

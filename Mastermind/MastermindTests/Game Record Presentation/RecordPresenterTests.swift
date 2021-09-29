@@ -6,69 +6,7 @@
 //
 
 import XCTest
-
-public protocol RecordValidationView {
-    func display(_ viewModel: RecordValidationViewModel)
-}
-
-public struct RecordValidationViewModel {
-    public let isValid: Bool
-}
-
-public protocol RecordSaveView {
-    func display(_ viewModel: RecordSaveResultAlertViewModel)
-}
-
-public struct RecordSaveResultAlertViewModel {
-    public let success: Bool
-    public let title: String
-    public let message: String?
-    public let confirmTitle: String
-}
-
-public final class RecordPresenter {
-    private let validationView: RecordValidationView
-    private let saveView: RecordSaveView
-    
-    internal init(validationView: RecordValidationView, saveView: RecordSaveView) {
-        self.validationView = validationView
-        self.saveView = saveView
-    }
-    
-    static var saveSuccessAlertTitle: String {
-        NSLocalizedString("SAVE_SUCCESS_ALERT_TITLE",
-                          tableName: "Record",
-                          bundle: Bundle(for: RecordPresenter.self),
-                          comment: "Title for save success alert")
-    }
-    
-    static var saveFailureAlertTitle: String {
-        NSLocalizedString("SAVE_FAILURE_ALERT_TITLE",
-                          tableName: "Record",
-                          bundle: Bundle(for: RecordPresenter.self),
-                          comment: "Title for save failure alert")
-    }
-    
-    static var saveResultAlertConfirmTitle: String {
-        NSLocalizedString("SAVE_RESULT_ALERT_CONFIRM_TITLE",
-                          tableName: "Record",
-                          bundle: Bundle(for: RecordPresenter.self),
-                          comment: "Confirm title for save failure alert")
-    }
-    
-    public func didValidateRecord(_ isValid: Bool) {
-        validationView.display(RecordValidationViewModel(isValid: isValid))
-    }
-    
-    public func didSaveRecord(with error: Error) {
-        saveView.display(RecordSaveResultAlertViewModel(success: false, title: Self.saveFailureAlertTitle, message: error.localizedDescription, confirmTitle: Self.saveResultAlertConfirmTitle))
-    }
-    
-    public func didSaveRecordSuccessfully() {
-        saveView.display(RecordSaveResultAlertViewModel(success: true, title: Self.saveSuccessAlertTitle, message: nil, confirmTitle: Self.saveResultAlertConfirmTitle))
-    }
-}
-
+import Mastermind
 
 class RecordPresenterTests: XCTestCase {
     func test_init_doesNotMessageView() {
