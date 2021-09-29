@@ -71,18 +71,6 @@ public final class RecordPresenter {
 
 
 class RecordPresenterTests: XCTestCase {
-    func test_saveSuccessAlertTitle_isLocalized() {
-        XCTAssertEqual(RecordPresenter.saveSuccessAlertTitle, localized("SAVE_SUCCESS_ALERT_TITLE"))
-    }
-    
-    func test_saveFailureAlertTitle_isLocalized() {
-        XCTAssertEqual(RecordPresenter.saveFailureAlertTitle, localized("SAVE_FAILURE_ALERT_TITLE"))
-    }
-    
-    func test_saveResultAlertConfirmTitle_isLocalized() {
-        XCTAssertEqual(RecordPresenter.saveResultAlertConfirmTitle, localized("SAVE_RESULT_ALERT_CONFIRM_TITLE"))
-    }
-    
     func test_init_doesNotMessageView() {
         let (_, view) = makeSUT()
         
