@@ -15,31 +15,17 @@ public final class ShareViewController {
     }()
     
     private weak var hostViewController: UIViewController?
-    private let guessCount: Int
-    private let appDownloadUrl: String
+    private let items: () -> [Any]
     
-    public init(hostViewController: UIViewController, guessCount: Int, appDownloadUrl: String) {
+    public init(hostViewController: UIViewController, sharing items: @escaping () -> [Any]) {
         self.hostViewController = hostViewController
-        self.guessCount = guessCount
-        self.appDownloadUrl = appDownloadUrl
+        self.items = items
     }
     
     @objc func share() {
         guard let hostViewController = hostViewController else { return }
-        let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
-        var activityItems: [Any] = [String.localizedStringWithFormat(format, guessCount)]
-        activityItems.append(appDownloadUrl)
-        
-        if let snapshotView = hostViewController.view {
-            UIGraphicsBeginImageContextWithOptions(snapshotView.bounds.size, false, UIScreen.main.scale)
-            snapshotView.drawHierarchy(in: snapshotView.bounds, afterScreenUpdates: true)
-            if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
-                activityItems.append(screenShotImage)
-            }
-            UIGraphicsEndImageContext()
-        }
-        
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+
+        let controller = UIActivityViewController(activityItems: items(), applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = view
         hostViewController.present(controller, animated: true)
     }

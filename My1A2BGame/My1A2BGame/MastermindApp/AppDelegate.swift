@@ -165,7 +165,7 @@ private extension AppDelegate {
             secret: secret,
             delegate: rewardAdViewController,
             onWin: { score in
-                let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader)
+                let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader, appDownloadURL: Constants.appStoreDownloadUrl)
                 navigationController.pushViewController(winController, animated: true)
             },
             onLose: {

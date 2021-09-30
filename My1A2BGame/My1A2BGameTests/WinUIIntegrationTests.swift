@@ -104,7 +104,7 @@ class WinUIIntegrationTests: XCTestCase {
     func test_tapOnShareView_canShareContent() {
         let (sut, _) = makeSUT()
         let hostVC = UIViewControllerSpy()
-        let shareController = ShareViewController(hostViewController: hostVC, guessCount: 1, appDownloadUrl: "")
+        let shareController = ShareViewController(hostViewController: hostVC, sharing: { [] })
         sut.shareViewController = shareController
 
         sut.loadViewIfNeeded()
@@ -238,7 +238,7 @@ class WinUIIntegrationTests: XCTestCase {
     
     private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
-        let sut = WinUIComposer.winComposedWith(score: (guessCount, guessTime), digitCount: digitCount, recordLoader: loader, currentDate: currentDate)
+        let sut = WinUIComposer.winComposedWith(score: (guessCount, guessTime), digitCount: digitCount, recordLoader: loader, currentDate: currentDate, appDownloadURL: "")
         sut.guessCount = guessCount
         sut.showFireworkAnimation = showFireworkAnimation
         

@@ -14,18 +14,20 @@ import MastermindiOS
 public final class WinUIComposer {
     private init() {}
     
-    public static func winComposedWith(score: Score, digitCount: Int, recordLoader: RecordLoader, currentDate: @escaping () -> Date = Date.init) -> WinViewController {
+    public static func winComposedWith(score: Score, digitCount: Int, recordLoader: RecordLoader, currentDate: @escaping () -> Date = Date.init, appDownloadURL: String) -> WinViewController {
         
         let winViewController = makeWinViewController()
         winViewController.digitCount = digitCount
         winViewController.guessCount = score.guessCount
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
         
-        let shareViewController = ShareViewController(
-            hostViewController: winViewController,
-            guessCount: score.guessCount,
-            appDownloadUrl: Constants.appStoreDownloadUrl)
-        winViewController.shareViewController = shareViewController
+        let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
+        let message = String.localizedStringWithFormat(format, score.guessTime)
+        let shareController = ShareViewController(hostViewController: winViewController, sharing: { [unowned winViewController] in
+            return makeSharingItems(message: message, appDownloadURL: appDownloadURL, snapshotView: winViewController.view)
+        })
+
+        winViewController.shareViewController = shareController
         
         let presentationAdapter = RecordPresentationAdapter(
             loader: recordLoader,
@@ -41,6 +43,21 @@ public final class WinUIComposer {
             saveView: WeakRefVirtualProxy(recordViewController))
         
         return winViewController
+    }
+    
+    private static func makeSharingItems(message: String, appDownloadURL: String, snapshotView: UIView) -> [Any] {
+        var sharingItems = [Any]()
+        sharingItems.append(message)
+        sharingItems.append(appDownloadURL)
+        
+        UIGraphicsBeginImageContextWithOptions(snapshotView.bounds.size, false, UIScreen.main.scale)
+        snapshotView.drawHierarchy(in: snapshotView.bounds, afterScreenUpdates: true)
+        if let screenShotImage = UIGraphicsGetImageFromCurrentImageContext() {
+            sharingItems.append(screenShotImage)
+        }
+        UIGraphicsEndImageContext()
+        
+        return sharingItems
     }
     
     private static func makeWinViewController() -> WinViewController {
