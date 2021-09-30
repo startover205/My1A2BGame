@@ -30,7 +30,7 @@
 "Here we go!" = "立即評論";
 
 /* 8th */
-"I won 1A2B Fun! with guessing only %d times! Come challenge me!" = "我在「1A2B Fun!」裡只花 %d 次就猜贏了！快來挑戰我！";
+"%d_SHARE_MESSAGE_FORMAT" = "我在「1A2B Fun!」裡只花 %d 次就猜贏了！快來挑戰我！";
 
 /* 6th */
 "Maybe later" = "稍後再說";

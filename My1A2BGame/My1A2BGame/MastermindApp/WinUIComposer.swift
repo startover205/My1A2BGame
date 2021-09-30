@@ -21,7 +21,7 @@ public final class WinUIComposer {
         winViewController.guessCount = score.guessCount
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
         
-        let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
+        let format = NSLocalizedString("%d_SHARE_MESSAGE_FORMAT", comment: "8th")
         let message = String.localizedStringWithFormat(format, score.guessCount)
         let shareController = ShareViewController(
             hostViewController: winViewController,
