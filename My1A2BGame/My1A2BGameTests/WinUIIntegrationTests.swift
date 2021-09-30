@@ -118,6 +118,41 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(hostVC.presentCallCount, 2)
     }
 
+    func test_share_shareDesiredContent() {
+        var capturedItems: [Any]?
+        let appDownloadURL = "any URL"
+        let (sut, _) = makeSUT(guessCount: 14, appDownloadURL: appDownloadURL, activityViewControllerFactory: { items, applicationActivities in
+            capturedItems = items
+            return UIActivityViewController(activityItems: items, applicationActivities: applicationActivities)
+        })
+
+        sut.loadViewIfNeeded()
+        sut.simulateUserInitiatedShareAction()
+        
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertEqual(capturedItems?.count, 3, "Expect shared items count to be exactly 3")
+        
+        guard let items = capturedItems else {
+            XCTFail("CapturedItems should not be nil")
+            return
+        }
+        
+        for item in items {
+            if let text = item as? String {
+                if text == appDownloadURL { continue }
+                if text == "I won \"1A2B Fun!\" with guessing only 14 times! Come challenge me!" { continue }
+            }
+            
+            if item is UIImage {
+                continue
+            }
+            
+            XCTFail("Unexpectd item \(item) in captured items")
+            return
+        }
+    }
+    
     func test_saveRecordButton_enabledOnlyWhenUserEnteredName() {
         let (sut, _) = makeSUT()
         
@@ -236,9 +271,9 @@ class WinUIIntegrationTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, appDownloadURL: String = "", activityViewControllerFactory: @escaping ActivityViewControllerFactory = UIActivityViewController.init, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
-        let sut = WinUIComposer.winComposedWith(score: (guessCount, guessTime), digitCount: digitCount, recordLoader: loader, currentDate: currentDate, appDownloadURL: "")
+        let sut = WinUIComposer.winComposedWith(score: (guessCount, guessTime), digitCount: digitCount, recordLoader: loader, currentDate: currentDate, appDownloadURL: appDownloadURL, activityViewControllerFactory: activityViewControllerFactory)
         sut.guessCount = guessCount
         sut.showFireworkAnimation = showFireworkAnimation
         
