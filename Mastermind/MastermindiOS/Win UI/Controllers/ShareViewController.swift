@@ -8,6 +8,8 @@
 
 import UIKit
 
+public typealias ActivityViewControllerFactory = (_ items: [Any], _ applicationActivities: [UIActivity]?) -> UIActivityViewController
+
 public final class ShareViewController {
     private(set) lazy var view: UIBarButtonItem = {
         let view = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
@@ -16,16 +18,18 @@ public final class ShareViewController {
     
     private weak var hostViewController: UIViewController?
     private let items: () -> [Any]
+    private let activityViewControllerFactory: ActivityViewControllerFactory
     
-    public init(hostViewController: UIViewController, sharing items: @escaping () -> [Any]) {
+    public init(hostViewController: UIViewController, sharing items: @escaping () -> [Any], activityViewControllerFactory: @escaping ActivityViewControllerFactory) {
         self.hostViewController = hostViewController
         self.items = items
+        self.activityViewControllerFactory = activityViewControllerFactory
     }
     
     @objc func share() {
         guard let hostViewController = hostViewController else { return }
-
-        let controller = UIActivityViewController(activityItems: items(), applicationActivities: nil)
+        
+        let controller = activityViewControllerFactory(items(), nil)
         controller.popoverPresentationController?.barButtonItem = view
         hostViewController.present(controller, animated: true)
     }

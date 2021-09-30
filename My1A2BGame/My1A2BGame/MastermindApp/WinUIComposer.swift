@@ -14,7 +14,7 @@ import MastermindiOS
 public final class WinUIComposer {
     private init() {}
     
-    public static func winComposedWith(score: Score, digitCount: Int, recordLoader: RecordLoader, currentDate: @escaping () -> Date = Date.init, appDownloadURL: String) -> WinViewController {
+    public static func winComposedWith(score: Score, digitCount: Int, recordLoader: RecordLoader, currentDate: @escaping () -> Date = Date.init, appDownloadURL: String, activityViewControllerFactory: @escaping ActivityViewControllerFactory = UIActivityViewController.init) -> WinViewController {
         
         let winViewController = makeWinViewController()
         winViewController.digitCount = digitCount
@@ -27,7 +27,7 @@ public final class WinUIComposer {
             hostViewController: winViewController,
             sharing: { [unowned winViewController] in
             return makeSharingItems(message: message, appDownloadURL: appDownloadURL, snapshotView: winViewController.view)
-        })
+            }, activityViewControllerFactory: activityViewControllerFactory)
 
         winViewController.shareViewController = shareController
         
