@@ -6,17 +6,7 @@
 //
 
 import XCTest
-
-public final class WinPresenter {
-    private init() {}
-    
-    public static var shareMessageFormat: String {
-        NSLocalizedString("%d_SHARE_MESSAGE_FORMAT",
-                          tableName: "Win",
-                          bundle: Bundle(for: WinPresenter.self),
-                          comment: "Format for the sharing message")
-    }
-}
+import Mastermind
 
 class WinPresenterTests: XCTestCase {
     func test_shareMessageFormat_isLocalized() {
