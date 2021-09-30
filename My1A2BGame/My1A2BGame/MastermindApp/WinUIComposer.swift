@@ -23,7 +23,9 @@ public final class WinUIComposer {
         
         let format = NSLocalizedString("I won 1A2B Fun! with guessing only %d times! Come challenge me!", comment: "8th")
         let message = String.localizedStringWithFormat(format, score.guessTime)
-        let shareController = ShareViewController(hostViewController: winViewController, sharing: { [unowned winViewController] in
+        let shareController = ShareViewController(
+            hostViewController: winViewController,
+            sharing: { [unowned winViewController] in
             return makeSharingItems(message: message, appDownloadURL: appDownloadURL, snapshotView: winViewController.view)
         })
 
