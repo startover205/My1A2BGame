@@ -160,15 +160,15 @@ class WinUIIntegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertFalse(sut.saveReocrdButtonEanbled, "expect confirm button to be not enabled after view did load")
+        XCTAssertFalse(sut.saveRecordButtonEanbled, "expect confirm button to be not enabled after view did load")
         
         sut.simulateUserEnterPlayerName(name: "any name")
         
-        XCTAssertTrue(sut.saveReocrdButtonEanbled, "expect confirm button to be enabled after user entered name")
+        XCTAssertTrue(sut.saveRecordButtonEanbled, "expect confirm button to be enabled after user entered name")
         
         sut.simulateUserEnterPlayerName(name: "")
         
-        XCTAssertFalse(sut.saveReocrdButtonEanbled, "expect confirm button to be not enabled after user clear name input")
+        XCTAssertFalse(sut.saveRecordButtonEanbled, "expect confirm button to be not enabled after user clear name input")
     }
     
     func test_saveRecordButton_dismissKeyboardOnButtonPressed() {
@@ -388,7 +388,7 @@ private extension WinViewController {
     
     var sublayerCount: Int { view.layer.sublayers?.count ?? 0 }
     
-    var saveReocrdButtonEanbled: Bool { recordViewController!.confirmButton.isEnabled }
+    var saveRecordButtonEanbled: Bool { recordViewController!.confirmButton.isEnabled }
     
     var isKeyboardShowing: Bool {
         inputView().isFirstResponder
