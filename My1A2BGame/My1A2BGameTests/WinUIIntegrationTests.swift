@@ -294,11 +294,12 @@ class WinUIIntegrationTests: XCTestCase {
         RunLoop.current.run(until: Date())
     }
     
-    private func winMessageFor(digitCount: Int) -> String { "\(digitCount)A0B!! You won!!" }
+    private func winMessageFor(digitCount: Int) -> String {
+        String.localizedStringWithFormat(WinPresenter.winMessageFormat, digitCount)
+    }
     
     private func guessCountMessageFor(guessCount: Int) -> String {
-        let unit = guessCount == 1 ? "time" : "times"
-        return "You guessed \(guessCount) \(unit)"
+        String.localizedStringWithFormat(WinPresenter.guessCountMessageFormat, guessCount)
     }
     
     private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
