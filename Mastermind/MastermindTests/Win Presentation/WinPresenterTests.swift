@@ -19,11 +19,20 @@ class WinPresenterTests: XCTestCase {
         XCTAssertTrue(view.receivedMessages.isEmpty)
     }
     
+    func test_didRequestWinMessage_displaysWinMessage() {
+        let digitCount = 4
+        let (sut, view) = makeSUT(digitCount: digitCount)
+        
+        sut.didRequestWinMessage()
+        
+        XCTAssertEqual(view.receivedMessages, [.display(winMessage: String.localizedStringWithFormat(localized("%d_WIN_MESSAGE_FORMAT"), digitCount))])
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (WinPresenter, ViewSpy) {
+    private func makeSUT(digitCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (WinPresenter, ViewSpy) {
         let view = ViewSpy()
-        let sut = WinPresenter(view: view)
+        let sut = WinPresenter(digitCount: digitCount, winView: view)
         
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -31,14 +40,18 @@ class WinPresenterTests: XCTestCase {
         return (sut, view)
     }
     
-    private final class ViewSpy {
+    private final class ViewSpy: WinView {
         enum Message: Hashable {
-            
+            case display(winMessage: String)
         }
         
         private(set) var receivedMessages = Set<Message>()
+        
+        func display(_ viewModel: WinMessageViewModel) {
+            receivedMessages.insert(.display(winMessage: viewModel.message))
+        }
     }
-     
+    
     private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "Win"
         let bundle = Bundle(for: WinPresenter.self)
