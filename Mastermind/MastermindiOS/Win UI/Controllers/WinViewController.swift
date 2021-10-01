@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import Mastermind
+
+public protocol WinViewControllerDelegate {
+    func didRequestWinMessage()
+}
 
 public class WinViewController: UIViewController {
     public var guessCount = 0
@@ -14,6 +19,7 @@ public class WinViewController: UIViewController {
     
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
     public var shareViewController: ShareViewController?
+    public var delegate: WinViewControllerDelegate?
     @IBOutlet private(set) public weak var recordViewController: RecordViewController!
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
@@ -31,8 +37,7 @@ public class WinViewController: UIViewController {
 
         recordViewController?.configureViews()
         
-        let format = NSLocalizedString("%d_WIN_MESSAGE_FORMAT", comment: "2nd")
-        winLabel.text = String.localizedStringWithFormat(format, digitCount)
+        delegate?.didRequestWinMessage()
         
         prepareEmoji()
     }
@@ -46,6 +51,12 @@ public class WinViewController: UIViewController {
             emojiAnimation()
             showFireworkAnimation?(self.view)
         }
+    }
+}
+
+extension WinViewController: WinView {
+    public func display(_ viewModel: WinMessageViewModel) {
+        winLabel.text = viewModel.message
     }
 }
 

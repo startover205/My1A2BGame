@@ -52,3 +52,9 @@ extension WeakRefVirtualProxy: NumberInputViewControllerDelegate where T: Number
         object?.didFinishEntering(numberTexts: numberTexts)
     }
 }
+
+extension WeakRefVirtualProxy: WinView where T: WinView {
+    func display(_ viewModel: WinMessageViewModel) {
+        object?.display(viewModel)
+    }
+}
