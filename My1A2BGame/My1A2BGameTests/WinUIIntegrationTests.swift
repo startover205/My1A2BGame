@@ -317,7 +317,7 @@ class WinUIIntegrationTests: XCTestCase {
         sut.dismiss(animated: false) {
             exp.fulfill()
         }
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 3)
     }
     
     private final class UIViewControllerSpy: UIViewController {
