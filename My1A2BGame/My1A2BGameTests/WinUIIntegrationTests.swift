@@ -55,6 +55,7 @@ class WinUIIntegrationTests: XCTestCase {
         
         XCTAssertTrue(sut.showingSaveRecordViews, "Expect showing save record views if user breaks record")
         XCTAssertEqual(sut.breakRecordMessage, RecordPresenter.breakRecordMessage, "Expect showing break record message")
+        XCTAssertEqual(sut.saveRecordButtonTitle, localizedInApp("SAVE_RECORD_BUTTON_TITLE"), "Expect localized title")
     }
     
     func test_loadView_doesNotRendersNewRecordViewsIfRecordNotBroken() {
@@ -381,6 +382,10 @@ private extension WinViewController {
     var winMessage: String? { winLabel.text }
     
     var breakRecordMessage: String? { recordViewController.breakRecordMessageLabel.text }
+    
+    var saveRecordButtonTitle: String? {
+        recordViewController.confirmButton.title(for: .normal)
+    }
     
     var showingSaveRecordViews: Bool { recordViewController!.containerView.alpha != 0 }
     
