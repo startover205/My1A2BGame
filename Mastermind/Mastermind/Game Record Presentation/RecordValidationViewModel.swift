@@ -7,4 +7,5 @@
 
 public struct RecordValidationViewModel {
     public let isValid: Bool
+    public let message: String?
 }

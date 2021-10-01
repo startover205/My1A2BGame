@@ -1,4 +1,6 @@
 
+"BREAK_RECORD_MESSAGE" = "恭喜您破纪录，请输入您的大名";
+
 "SAVE_SUCCESS_ALERT_TITLE" = "纪录完成！";
 
 "SAVE_FAILURE_ALERT_TITLE" = "无法纪录";

@@ -15,16 +15,18 @@ class RecordPresenterTests: XCTestCase {
         XCTAssertTrue(view.receivedMessages.isEmpty)
     }
     
-    func test_didValidateRecord_displaysValidationResult() {
+    func test_didValidateRecord_displaysNoMessageOnInvalidRecord() {
+        let (sut, view) = makeSUT()
+        
+        sut.didValidateRecord(false)
+        XCTAssertEqual(view.receivedMessages, [.display(isValidRecord: false, message: nil)])
+    }
+    
+    func test_didValidateRecord_displaysValidationResultOnValidRecord() {
         let (sut, view) = makeSUT()
         
         sut.didValidateRecord(true)
-        XCTAssertEqual(view.receivedMessages, [.display(isValidRecord: true)])
-        
-        sut.didValidateRecord(false)
-        XCTAssertEqual(view.receivedMessages, [
-                        .display(isValidRecord: true),
-                        .display(isValidRecord: false)])
+        XCTAssertEqual(view.receivedMessages, [.display(isValidRecord: true, message: localized("BREAK_RECORD_MESSAGE"))])
     }
     
     func test_didSaveRecordWithError_displaysErrorAlert() {
@@ -67,14 +69,14 @@ class RecordPresenterTests: XCTestCase {
     
     private final class ViewSpy: RecordValidationView, RecordSaveView {
         enum Message: Hashable {
-            case display(isValidRecord: Bool)
+            case display(isValidRecord: Bool, message: String?)
             case display(saveSuccess: Bool, alertTitle: String, alertMessage: String?, alertConfirmTitle: String)
         }
         
         private(set) var receivedMessages = Set<Message>()
         
         func display(_ viewModel: RecordValidationViewModel) {
-            receivedMessages.insert(.display(isValidRecord: viewModel.isValid))
+            receivedMessages.insert(.display(isValidRecord: viewModel.isValid, message: viewModel.message))
         }
         
         func display(_ viewModel: RecordSaveResultAlertViewModel) {

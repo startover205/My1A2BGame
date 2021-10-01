@@ -16,6 +16,13 @@ public final class RecordPresenter {
         self.saveView = saveView
     }
     
+    public static var breakRecordMessage: String {
+        NSLocalizedString("BREAK_RECORD_MESSAGE",
+                          tableName: "Record",
+                          bundle: Bundle(for: RecordPresenter.self),
+                          comment: "Message when breaking record")
+    }
+    
     public static var saveSuccessAlertTitle: String {
         NSLocalizedString("SAVE_SUCCESS_ALERT_TITLE",
                           tableName: "Record",
@@ -38,7 +45,8 @@ public final class RecordPresenter {
     }
     
     public func didValidateRecord(_ isValid: Bool) {
-        validationView.display(RecordValidationViewModel(isValid: isValid))
+        let message = isValid ? Self.breakRecordMessage  : nil
+        validationView.display(RecordValidationViewModel(isValid: isValid, message: message))
     }
     
     public func didSaveRecord(with error: Error) {
