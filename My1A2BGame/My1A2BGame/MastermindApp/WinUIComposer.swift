@@ -19,7 +19,6 @@ public final class WinUIComposer {
     public static func winComposedWith(score: Score, digitCount: Int, recordLoader: RecordLoader, currentDate: @escaping () -> Date = Date.init, appDownloadURL: String, activityViewControllerFactory: @escaping ActivityViewControllerFactory = UIActivityViewController.init) -> WinViewController {
         
         let winViewController = makeWinViewController()
-        winViewController.guessCount = score.guessCount
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
         
         let winPresenter = WinPresenter(
