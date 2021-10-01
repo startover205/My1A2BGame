@@ -102,13 +102,14 @@ Please enter your name.</string>
                 </tapGestureRecognizer>
                 <customObject id="POp-O3-uua" customClass="RecordViewController" customModule="MastermindiOS">
                     <connections>
+                        <outlet property="breakRecordMessageLabel" destination="ezt-08-jsj" id="2v2-3f-AAr"/>
                         <outlet property="confirmButton" destination="ral-C3-FW5" id="uP5-uS-sSo"/>
                         <outlet property="containerView" destination="9cN-8A-PUK" id="xkK-X0-9Xa"/>
                         <outlet property="inputTextField" destination="1zD-or-vVV" id="dDu-Oi-BBB"/>
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="5632" y="5"/>
+            <point key="canvasLocation" x="5631.884057971015" y="4.6875"/>
         </scene>
     </scenes>
     <resources>

@@ -53,7 +53,8 @@ class WinUIIntegrationTests: XCTestCase {
         loader.completeValidation(with: true)
         sut.loadViewIfNeeded()
         
-        XCTAssertTrue(sut.showingSaveRecordViews)
+        XCTAssertTrue(sut.showingSaveRecordViews, "Expect showing save record views if user breaks record")
+        XCTAssertEqual(sut.breakRecordMessage, localizedInApp("BREAK_RECORD_MESSAGE"))
     }
     
     func test_loadView_doesNotRendersNewRecordViewsIfRecordNotBroken() {
@@ -378,6 +379,8 @@ private extension WinViewController {
     var guessCountMessage: String? { guessCountLabel.text }
     
     var winMessage: String? { winLabel.text }
+    
+    var breakRecordMessage: String? { recordViewController.breakRecordMessageLabel.text }
     
     var showingSaveRecordViews: Bool { recordViewController!.containerView.alpha != 0 }
     

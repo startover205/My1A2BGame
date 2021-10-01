@@ -18,6 +18,7 @@ public final class RecordViewController: NSObject {
     @IBOutlet private(set) public weak var confirmButton: UIButton!
     @IBOutlet private(set) public weak var containerView: UIStackView!
     @IBOutlet private(set) public weak var inputTextField: UITextField!
+    @IBOutlet private(set) public weak var breakRecordMessageLabel: UILabel!
     
     public weak var hostViewController: UIViewController?
     public var delegate: RecordViewControllerDelegate?
