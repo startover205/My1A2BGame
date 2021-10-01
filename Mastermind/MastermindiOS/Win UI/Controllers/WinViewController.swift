@@ -15,7 +15,6 @@ public protocol WinViewControllerDelegate {
 
 public class WinViewController: UIViewController {
     public var guessCount = 0
-    public var digitCount = 4
     
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
     public var shareViewController: ShareViewController?
