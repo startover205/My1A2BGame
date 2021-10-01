@@ -47,12 +47,6 @@ extension WeakRefVirtualProxy: GameView where T: GameView {
     }
 }
 
-extension WeakRefVirtualProxy: NumberInputViewControllerDelegate where T: NumberInputViewControllerDelegate {
-    func didFinishEntering(numberTexts: [String]) {
-        object?.didFinishEntering(numberTexts: numberTexts)
-    }
-}
-
 extension WeakRefVirtualProxy: WinView where T: WinView {
     func display(_ viewModel: WinMessageViewModel) {
         object?.display(viewModel)
