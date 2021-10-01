@@ -9,6 +9,10 @@ import XCTest
 import Mastermind
 
 class RecordPresenterTests: XCTestCase {
+    func test_saveRecordButtonTitle_isLocalized() {
+        XCTAssertEqual(RecordPresenter.saveRecordButtonTitle, localized("SAVE_RECORD_BUTTON_TITLE"))
+    }
+    
     func test_init_doesNotMessageView() {
         let (_, view) = makeSUT()
         

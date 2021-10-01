@@ -16,6 +16,13 @@ public final class RecordPresenter {
         self.saveView = saveView
     }
     
+    public static var saveRecordButtonTitle: String {
+        NSLocalizedString("SAVE_RECORD_BUTTON_TITLE",
+                          tableName: "Record",
+                          bundle: Bundle(for: RecordPresenter.self),
+                          comment: "Title for the save record button")
+    }
+    
     public static var breakRecordMessage: String {
         NSLocalizedString("BREAK_RECORD_MESSAGE",
                           tableName: "Record",
