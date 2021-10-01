@@ -54,7 +54,7 @@
 		C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */; };
 		C057097527069D67005D2603 /* WinLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057097427069D67005D2603 /* WinLocalizationTests.swift */; };
 		C057097627069DAD005D2603 /* Win.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C057097827069DAD005D2603 /* Win.stringsdict */; };
-		C057097C2706BBBB005D2603 /* Win.strings in Resources */ = {isa = PBXBuildFile; fileRef = C057097B2706BBBB005D2603 /* Win.strings */; };
+		C057097D2706C0BB005D2603 /* Win.strings in Resources */ = {isa = PBXBuildFile; fileRef = C057097F2706C0BB005D2603 /* Win.strings */; };
 		C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */; };
 		C07537212700486900865482 /* VoiceMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07537202700486900865482 /* VoiceMessageViewModel.swift */; };
 		C0753723270048B300865482 /* UtteranceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753722270048B300865482 /* UtteranceView.swift */; };
@@ -216,7 +216,9 @@
 		C057097727069DAD005D2603 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Win.stringsdict; sourceTree = "<group>"; };
 		C057097927069DB2005D2603 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Win.stringsdict"; sourceTree = "<group>"; };
 		C057097A27069DB3005D2603 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Win.stringsdict"; sourceTree = "<group>"; };
-		C057097B2706BBBB005D2603 /* Win.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Win.strings; sourceTree = "<group>"; };
+		C057097E2706C0BB005D2603 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Win.strings; sourceTree = "<group>"; };
+		C05709802706C0BF005D2603 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Win.strings"; sourceTree = "<group>"; };
+		C05709812706C0C0005D2603 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Win.strings"; sourceTree = "<group>"; };
 		C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStoreTests.swift; sourceTree = "<group>"; };
 		C07537202700486900865482 /* VoiceMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageViewModel.swift; sourceTree = "<group>"; };
 		C0753722270048B300865482 /* UtteranceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtteranceView.swift; sourceTree = "<group>"; };
@@ -703,7 +705,7 @@
 			isa = PBXGroup;
 			children = (
 				C0CEAEDF2705AAD40029B221 /* WinPresenter.swift */,
-				C057097B2706BBBB005D2603 /* Win.strings */,
+				C057097F2706C0BB005D2603 /* Win.strings */,
 				C057097827069DAD005D2603 /* Win.stringsdict */,
 			);
 			path = "Win Presentation";
@@ -982,7 +984,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C057097C2706BBBB005D2603 /* Win.strings in Resources */,
+				C057097D2706C0BB005D2603 /* Win.strings in Resources */,
 				C0137FFB2701902A00D3F4A8 /* VoicePrompt.strings in Resources */,
 				C09D16E927044C84002F49A3 /* Record.strings in Resources */,
 				C075372F270054DD00865482 /* Game.stringsdict in Resources */,
@@ -1162,6 +1164,16 @@
 				C057097A27069DB3005D2603 /* zh-Hant */,
 			);
 			name = Win.stringsdict;
+			sourceTree = "<group>";
+		};
+		C057097F2706C0BB005D2603 /* Win.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C057097E2706C0BB005D2603 /* en */,
+				C05709802706C0BF005D2603 /* zh-Hans */,
+				C05709812706C0C0005D2603 /* zh-Hant */,
+			);
+			name = Win.strings;
 			sourceTree = "<group>";
 		};
 		C09D16EB27044C84002F49A3 /* Record.strings */ = {

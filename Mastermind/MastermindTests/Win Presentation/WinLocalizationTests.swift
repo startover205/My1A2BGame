@@ -13,6 +13,6 @@ class WinLocalizationTests: XCTestCase {
         let table = "Win"
         let bundle = Bundle(for: WinPresenter.self)
         
-        assertLocalizedKeyAndValuesExist(in: bundle, table)
+        assertLocalizedKeyAndValuesExist(in: bundle, table, for: ["strings", "stringsdict"])
     }
 }
