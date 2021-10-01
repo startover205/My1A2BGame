@@ -13,6 +13,6 @@ class GameLocalizationTests: XCTestCase {
         let table = "Game"
         let bundle = Bundle(for: GamePresenter.self)
         
-        assertLocalizedKeyAndValuesExist(in: bundle, table)
+        assertLocalizedKeyAndValuesExist(in: bundle, table, for: ["strings", "stringsdict"])
     }
 }
