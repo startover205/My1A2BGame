@@ -50,6 +50,8 @@ public final class RecordViewController: NSObject {
 extension RecordViewController: RecordValidationView {
     public func display(_ viewModel: RecordValidationViewModel) {
         containerView.alpha = viewModel.isValid ? 1 : 0
+        
+        breakRecordMessageLabel.text = viewModel.message
     }
 }
 

@@ -54,7 +54,7 @@ class WinUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         XCTAssertTrue(sut.showingSaveRecordViews, "Expect showing save record views if user breaks record")
-        XCTAssertEqual(sut.breakRecordMessage, localizedInApp("BREAK_RECORD_MESSAGE"))
+        XCTAssertEqual(sut.breakRecordMessage, RecordPresenter.breakRecordMessage)
     }
     
     func test_loadView_doesNotRendersNewRecordViewsIfRecordNotBroken() {
