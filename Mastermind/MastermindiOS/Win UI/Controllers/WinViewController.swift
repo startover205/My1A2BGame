@@ -31,7 +31,7 @@ public class WinViewController: UIViewController {
 
         recordViewController?.configureViews()
         
-        let format = NSLocalizedString("%dA0B!! You won!!", comment: "2nd")
+        let format = NSLocalizedString("%d_WIN_MESSAGE_FORMAT", comment: "2nd")
         winLabel.text = String.localizedStringWithFormat(format, digitCount)
         
         prepareEmoji()

@@ -5,7 +5,7 @@
 /* No comment provided by engineer. */
 "5A0B!! You won!!" = "5A0B！！贏了！！";
 
-"%dA0B!! You won!!" = "%dA0B！！贏了！！";
+"%d_WIN_MESSAGE_FORMAT" = "%dA0B！！贏了！！";
 
 /* 3nd */
 "Certain content will only be available after restarting the app." = "部分內容會在App重啟後生效。";
