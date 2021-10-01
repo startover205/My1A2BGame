@@ -56,7 +56,7 @@
 		C057097627069DAD005D2603 /* Win.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C057097827069DAD005D2603 /* Win.stringsdict */; };
 		C057097D2706C0BB005D2603 /* Win.strings in Resources */ = {isa = PBXBuildFile; fileRef = C057097F2706C0BB005D2603 /* Win.strings */; };
 		C05709832706DBD9005D2603 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05709822706DBD9005D2603 /* WinView.swift */; };
-		C05709852706DBEA005D2603 /* WinMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05709842706DBEA005D2603 /* WinMessageViewModel.swift */; };
+		C05709852706DBEA005D2603 /* WinResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05709842706DBEA005D2603 /* WinResultViewModel.swift */; };
 		C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */; };
 		C07537212700486900865482 /* VoiceMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07537202700486900865482 /* VoiceMessageViewModel.swift */; };
 		C0753723270048B300865482 /* UtteranceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753722270048B300865482 /* UtteranceView.swift */; };
@@ -222,7 +222,7 @@
 		C05709802706C0BF005D2603 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Win.strings"; sourceTree = "<group>"; };
 		C05709812706C0C0005D2603 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Win.strings"; sourceTree = "<group>"; };
 		C05709822706DBD9005D2603 /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
-		C05709842706DBEA005D2603 /* WinMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinMessageViewModel.swift; sourceTree = "<group>"; };
+		C05709842706DBEA005D2603 /* WinResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinResultViewModel.swift; sourceTree = "<group>"; };
 		C0640DA226C80C63008BA4A1 /* CoreDataRecordStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStoreTests.swift; sourceTree = "<group>"; };
 		C07537202700486900865482 /* VoiceMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageViewModel.swift; sourceTree = "<group>"; };
 		C0753722270048B300865482 /* UtteranceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtteranceView.swift; sourceTree = "<group>"; };
@@ -710,7 +710,7 @@
 			children = (
 				C0CEAEDF2705AAD40029B221 /* WinPresenter.swift */,
 				C05709822706DBD9005D2603 /* WinView.swift */,
-				C05709842706DBEA005D2603 /* WinMessageViewModel.swift */,
+				C05709842706DBEA005D2603 /* WinResultViewModel.swift */,
 				C057097F2706C0BB005D2603 /* Win.strings */,
 				C057097827069DAD005D2603 /* Win.stringsdict */,
 			);
@@ -1049,7 +1049,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C05709852706DBEA005D2603 /* WinMessageViewModel.swift in Sources */,
+				C05709852706DBEA005D2603 /* WinResultViewModel.swift in Sources */,
 				C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */,
 				C0CA88F226F6D17E0025F9E5 /* LeftChanceCountViewModel.swift in Sources */,
 				C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */,

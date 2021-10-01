@@ -10,8 +10,7 @@ import UIKit
 import Mastermind
 
 public protocol WinViewControllerDelegate {
-    func didRequestWinMessage()
-    func didRequestGuessCountMessage()
+    func didRequestWinResultMessage()
 }
 
 public class WinViewController: UIViewController {
@@ -33,11 +32,9 @@ public class WinViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = shareViewController?.view
         
-        delegate?.didRequestGuessCountMessage()
+        delegate?.didRequestWinResultMessage()
 
         recordViewController?.configureViews()
-        
-        delegate?.didRequestWinMessage()
         
         prepareEmoji()
     }
@@ -56,11 +53,8 @@ public class WinViewController: UIViewController {
 
 extension WinViewController: WinView {
     public func display(_ viewModel: WinResultViewModel) {
+        winLabel.text = viewModel.winMessage
         guessCountLabel.text = viewModel.guessCountMessage
-    }
-    
-    public func display(_ viewModel: WinMessageViewModel) {
-        winLabel.text = viewModel.message
     }
 }
 

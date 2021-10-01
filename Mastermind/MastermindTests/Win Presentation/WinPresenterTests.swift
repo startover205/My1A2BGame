@@ -19,22 +19,16 @@ class WinPresenterTests: XCTestCase {
         XCTAssertTrue(view.receivedMessages.isEmpty)
     }
     
-    func test_didRequestWinMessage_displaysWinMessage() {
-        let digitCount = 4
-        let (sut, view) = makeSUT(digitCount: digitCount)
-        
-        sut.didRequestWinMessage()
-        
-        XCTAssertEqual(view.receivedMessages, [.display(winMessage: String.localizedStringWithFormat(localized("%d_WIN_MESSAGE_FORMAT"), digitCount))])
-    }
-    
-    func test_didRequestGuessCountMessage_displaysGuessCountMessage() {
+    func test_didRequestWinResultMessage_displaysWinMessageAndGuessCountMessage() {
+        let digitCount = 3
         let guessCount = 11
-        let (sut, view) = makeSUT(guessCount: guessCount)
+        let (sut, view) = makeSUT(digitCount: digitCount, guessCount: guessCount)
         
-        sut.didRequestGuessCountMessage()
+        sut.didRequestWinResultMessage()
         
-        XCTAssertEqual(view.receivedMessages, [.display(guessCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_COUNT_MESSAGE_FORMAT"), guessCount))])
+        XCTAssertEqual(view.receivedMessages, [.display(
+                                                winMessage: String.localizedStringWithFormat(localized("%d_WIN_MESSAGE_FORMAT"), digitCount),
+                                                guessCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_COUNT_MESSAGE_FORMAT"), guessCount))])
     }
     
     // MARK: - Helpers
@@ -51,18 +45,13 @@ class WinPresenterTests: XCTestCase {
     
     private final class ViewSpy: WinView {
         enum Message: Hashable {
-            case display(winMessage: String)
-            case display(guessCountMessage: String)
+            case display(winMessage: String, guessCountMessage: String)
         }
         
         private(set) var receivedMessages = Set<Message>()
         
-        func display(_ viewModel: WinMessageViewModel) {
-            receivedMessages.insert(.display(winMessage: viewModel.message))
-        }
-        
         func display(_ viewModel: WinResultViewModel) {
-            receivedMessages.insert(.display(guessCountMessage: viewModel.guessCountMessage))
+            receivedMessages.insert(.display(winMessage: viewModel.winMessage, guessCountMessage: viewModel.guessCountMessage))
         }
     }
     
