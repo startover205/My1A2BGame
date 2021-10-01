@@ -121,7 +121,8 @@ class WinUIIntegrationTests: XCTestCase {
     func test_share_shareDesiredContent() {
         var capturedItems: [Any]?
         let appDownloadURL = "any URL"
-        let (sut, _) = makeSUT(guessCount: 14, appDownloadURL: appDownloadURL, activityViewControllerFactory: { items, applicationActivities in
+        let guessCount = 14
+        let (sut, _) = makeSUT(guessCount: guessCount, appDownloadURL: appDownloadURL, activityViewControllerFactory: { items, applicationActivities in
             capturedItems = items
             return UIActivityViewController(activityItems: items, applicationActivities: applicationActivities)
         })
@@ -141,7 +142,7 @@ class WinUIIntegrationTests: XCTestCase {
         for item in items {
             if let text = item as? String {
                 if text == appDownloadURL { continue }
-                if text == "I won \"1A2B Fun!\" with guessing only 14 times! Come challenge me!" { continue }
+                if text == String.localizedStringWithFormat(WinPresenter.shareMessageFormat, guessCount) { continue }
             }
             
             if item is UIImage {
