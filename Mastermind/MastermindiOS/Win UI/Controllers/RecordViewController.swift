@@ -10,6 +10,7 @@ import UIKit
 import Mastermind
 
 public protocol RecordViewControllerDelegate {
+    var saveRecordButtonTitle: String { get }
     func didRequestValidateRecord()
     func didRequestSaveRecord(playerName: String)
 }
@@ -25,6 +26,8 @@ public final class RecordViewController: NSObject {
     
     public func configureViews() {
         confirmButton.addTarget(self, action: #selector(insertRecord), for: .touchUpInside)
+        
+        confirmButton.setTitle(delegate?.saveRecordButtonTitle, for: .normal)
         
         delegate?.didRequestValidateRecord()
     }

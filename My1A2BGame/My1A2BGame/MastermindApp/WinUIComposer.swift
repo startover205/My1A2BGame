@@ -153,6 +153,10 @@ final class RecordPresentationAdapter: RecordViewControllerDelegate {
         self.currentDate = currentDate
     }
     
+    public var saveRecordButtonTitle: String {
+        RecordPresenter.saveRecordButtonTitle
+    }
+    
     public func didRequestValidateRecord() {
         presenter?.didValidateRecord(loader.validate(score: (guessCount, guessTime)))
     }
