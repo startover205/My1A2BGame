@@ -53,7 +53,6 @@
 		C0A1F4B326B62A1200536D73 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49C26B62A1200536D73 /* Rank.storyboard */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
-		C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */; };
 		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
 		C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */; };
 		C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */; };
@@ -154,9 +153,6 @@
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2962333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		C0A9E29C2333E3C3007F45B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		C0A9E29E2333E3CC007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
-		C0A9E29F2333E3CD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVersion.swift; sourceTree = "<group>"; };
 		C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplenishChanceDelegate.swift; sourceTree = "<group>"; };
 		C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
@@ -215,7 +211,6 @@
 		C014619220BE6BD20023EEB6 = {
 			isa = PBXGroup;
 			children = (
-				C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */,
 				C014619D20BE6BD20023EEB6 /* My1A2BGame */,
 				C07D1A6123BCDAEE00197857 /* My1A2BGameTests */,
 				C014619C20BE6BD20023EEB6 /* Products */,
@@ -554,7 +549,6 @@
 				C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */,
 				C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */,
 				C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */,
-				C0A9E29B2333E3C3007F45B9 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,16 +721,6 @@
 				C0F984F526FC6081001DAB38 /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		C0A9E29D2333E3C3007F45B9 /* Localizable.stringsdict */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0A9E29C2333E3C3007F45B9 /* en */,
-				C0A9E29E2333E3CC007F45B9 /* zh-Hant */,
-				C0A9E29F2333E3CD007F45B9 /* zh-Hans */,
-			);
-			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
