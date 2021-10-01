@@ -18,37 +18,5 @@
 			<string>You guessed %d times</string>
 		</dict>
 	</dict>
-	<key>I won 1A2B Fun! with guessing only %d times! Come challenge me!</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@times@</string>
-		<key>times</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>I won &quot;1A2B Fun!&quot; with guessing only %d time! Come challenge me!</string>
-			<key>other</key>
-			<string>I won &quot;1A2B Fun!&quot; with guessing only %d times! Come challenge me!</string>
-		</dict>
-	</dict>
-	<key>You can still guess %d times</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@times@</string>
-		<key>times</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>%d chance left</string>
-			<key>other</key>
-			<string>%d chances left</string>
-		</dict>
-	</dict>
 </dict>
 </plist>
