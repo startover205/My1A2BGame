@@ -8,7 +8,7 @@
 import Foundation
 
 public final class WinPresenter {
-    private init() {}
+    public init(view: Any) { }
     
     public static var shareMessageFormat: String {
         NSLocalizedString("%d_SHARE_MESSAGE_FORMAT",
