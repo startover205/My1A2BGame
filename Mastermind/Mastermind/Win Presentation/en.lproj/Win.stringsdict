@@ -11,7 +11,7 @@
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
-			<string></string>
+			<string>d</string>
 			<key>one</key>
 			<string>I won &quot;1A2B Fun!&quot; with guessing only %d time! Come challenge me!</string>
 			<key>other</key>
