@@ -7,14 +7,6 @@
 
 import Foundation
 
-public protocol WinView {
-    func display(_ viewModel: WinMessageViewModel)
-}
-
-public struct WinMessageViewModel {
-    public let message: String
-}
-
 public final class WinPresenter {
     private let winView: WinView
     private let digitCount: Int
