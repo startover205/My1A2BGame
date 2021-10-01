@@ -62,7 +62,7 @@ extension WinViewController: WinView {
 // MARK: - Private
 private extension WinViewController {
     func showResult(){
-        let format = NSLocalizedString("You guessed %d times", comment: "")
+        let format = NSLocalizedString("%d_GUESS_COUNT_MESSAGE_FORMAT", comment: "")
         guessCountLabel.text = String.localizedStringWithFormat(format, guessCount)
     }
     

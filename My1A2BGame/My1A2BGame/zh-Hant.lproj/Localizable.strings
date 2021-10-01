@@ -48,5 +48,5 @@
 "We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的評論功能來回報。";
 
 /* No comment provided by engineer. */
-"You guessed %d times" = "共猜了 %d 次";
+"%d_GUESS_COUNT_MESSAGE_FORMAT" = "共猜了 %d 次";
 

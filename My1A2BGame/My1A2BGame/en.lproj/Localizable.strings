@@ -48,5 +48,5 @@
 "We're sorry. Please leave a review in the AppStore instead." = "We're sorry. Please leave a review in the AppStore instead.";
 
 /* No comment provided by engineer. */
-"You guessed %d times" = "You guessed %d times";
+"%d_GUESS_COUNT_MESSAGE_FORMAT" = "You guessed %d times";
 
