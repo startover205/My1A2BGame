@@ -11,6 +11,7 @@ import Mastermind
 
 public protocol WinViewControllerDelegate {
     func didRequestWinMessage()
+    func didRequestGuessCountMessage()
 }
 
 public class WinViewController: UIViewController {
@@ -32,7 +33,7 @@ public class WinViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = shareViewController?.view
         
-        showResult()
+        delegate?.didRequestGuessCountMessage()
 
         recordViewController?.configureViews()
         
@@ -55,6 +56,7 @@ public class WinViewController: UIViewController {
 
 extension WinViewController: WinView {
     public func display(_ viewModel: WinResultViewModel) {
+        guessCountLabel.text = viewModel.guessCountMessage
     }
     
     public func display(_ viewModel: WinMessageViewModel) {
@@ -64,15 +66,10 @@ extension WinViewController: WinView {
 
 // MARK: - Private
 private extension WinViewController {
-    func showResult(){
-        let format = NSLocalizedString("%d_GUESS_COUNT_MESSAGE_FORMAT", comment: "")
-        guessCountLabel.text = String.localizedStringWithFormat(format, guessCount)
-    }
-    
-    func prepareEmoji(){
+    func prepareEmoji() {
         self.emojiLabel.transform = CGAffineTransform(translationX: 0, y:-view.frame.height)
     }
-    func emojiAnimation(){
+    func emojiAnimation() {
         UIView.animate(withDuration: 4, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3, options: [.curveEaseOut], animations: {
             
             self.emojiLabel.transform = CGAffineTransform(translationX: 0, y: 0)

@@ -11,7 +11,7 @@ import StoreKit
 import Mastermind
 import MastermindiOS
 
-extension WinPresenter: WinViewControllerDelegate { }
+extension WinPresenter: WinViewControllerDelegate {}
 
 public final class WinUIComposer {
     private init() {}
