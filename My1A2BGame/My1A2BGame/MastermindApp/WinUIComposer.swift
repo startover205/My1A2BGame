@@ -24,6 +24,7 @@ public final class WinUIComposer {
         
         let winPresenter = WinPresenter(
             digitCount: digitCount,
+            guessCount: score.guessCount,
             winView: WeakRefVirtualProxy(winViewController))
         winViewController.delegate = winPresenter
         

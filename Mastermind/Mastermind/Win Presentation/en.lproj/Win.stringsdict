@@ -18,5 +18,21 @@
 			<string>I won &quot;1A2B Fun!&quot; with guessing only %d times! Come challenge me!</string>
 		</dict>
 	</dict>
+	<key>%d_GUESS_COUNT_MESSAGE_FORMAT</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@VARIABLE@</string>
+		<key>VARIABLE</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>You guessed %d time</string>
+			<key>other</key>
+			<string>You guessed %d times</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

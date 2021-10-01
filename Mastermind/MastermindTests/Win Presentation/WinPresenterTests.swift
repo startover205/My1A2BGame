@@ -28,11 +28,20 @@ class WinPresenterTests: XCTestCase {
         XCTAssertEqual(view.receivedMessages, [.display(winMessage: String.localizedStringWithFormat(localized("%d_WIN_MESSAGE_FORMAT"), digitCount))])
     }
     
+    func test_didRequestGuessCountMessage_displaysGuessCountMessage() {
+        let guessCount = 11
+        let (sut, view) = makeSUT(guessCount: guessCount)
+        
+        sut.didRequestGuessCountMessage()
+        
+        XCTAssertEqual(view.receivedMessages, [.display(guessCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_COUNT_MESSAGE_FORMAT"), guessCount))])
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(digitCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (WinPresenter, ViewSpy) {
+    private func makeSUT(digitCount: Int = 0, guessCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (WinPresenter, ViewSpy) {
         let view = ViewSpy()
-        let sut = WinPresenter(digitCount: digitCount, winView: view)
+        let sut = WinPresenter(digitCount: digitCount, guessCount: guessCount, winView: view)
         
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -43,12 +52,17 @@ class WinPresenterTests: XCTestCase {
     private final class ViewSpy: WinView {
         enum Message: Hashable {
             case display(winMessage: String)
+            case display(guessCountMessage: String)
         }
         
         private(set) var receivedMessages = Set<Message>()
         
         func display(_ viewModel: WinMessageViewModel) {
             receivedMessages.insert(.display(winMessage: viewModel.message))
+        }
+        
+        func display(_ viewModel: WinResultViewModel) {
+            receivedMessages.insert(.display(guessCountMessage: viewModel.guessCountMessage))
         }
     }
     

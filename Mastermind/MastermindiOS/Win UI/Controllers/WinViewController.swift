@@ -54,6 +54,9 @@ public class WinViewController: UIViewController {
 }
 
 extension WinViewController: WinView {
+    public func display(_ viewModel: WinResultViewModel) {
+    }
+    
     public func display(_ viewModel: WinMessageViewModel) {
         winLabel.text = viewModel.message
     }

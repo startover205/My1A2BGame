@@ -10,9 +10,11 @@ import Foundation
 public final class WinPresenter {
     private let winView: WinView
     private let digitCount: Int
+    private let guessCount: Int
     
-    public init(digitCount: Int, winView: WinView) {
+    public init(digitCount: Int, guessCount: Int, winView: WinView) {
         self.digitCount = digitCount
+        self.guessCount = guessCount
         self.winView = winView
     }
     
@@ -30,7 +32,18 @@ public final class WinPresenter {
                           comment: "Format for the win message")
     }
     
+    public static var guessCountMessageFormat: String {
+        NSLocalizedString("%d_GUESS_COUNT_MESSAGE_FORMAT",
+                          tableName: "Win",
+                          bundle: Bundle(for: WinPresenter.self),
+                          comment: "Format for the guess count message")
+    }
+    
     public func didRequestWinMessage() {
         winView.display(WinMessageViewModel(message: String.localizedStringWithFormat(Self.winMessageFormat, digitCount)))
+    }
+    
+    public func didRequestGuessCountMessage() {
+        winView.display(WinResultViewModel(guessCountMessage: String.localizedStringWithFormat(Self.guessCountMessageFormat, guessCount)))
     }
 }

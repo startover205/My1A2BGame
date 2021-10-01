@@ -7,4 +7,9 @@
 
 public protocol WinView {
     func display(_ viewModel: WinMessageViewModel)
+    func display(_ viewModel: WinResultViewModel)
+}
+
+public struct WinResultViewModel {
+    public let guessCountMessage: String
 }
