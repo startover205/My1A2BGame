@@ -42,15 +42,24 @@ private func allLocalizationBundles(in bundle: Bundle, file: StaticString = #fil
 
 private func allLocalizedStringKeys(in bundles: [LocalizedBundle], table: String, file: StaticString = #filePath, line: UInt = #line) -> Set<String> {
     return bundles.reduce([]) { (acc, current) in
-        guard
-            let path = current.bundle.path(forResource: table, ofType: "strings"),
-            let strings = NSDictionary(contentsOfFile: path),
-            let keys = strings.allKeys as? [String]
-        else {
+        var allKeys = [String]()
+        
+        let localizedFileTypes = ["strings", "stringsdict"]
+        
+        localizedFileTypes.forEach { type in
+            if
+                let path = current.bundle.path(forResource: table, ofType: type),
+                let strings = NSDictionary(contentsOfFile: path),
+                let keys = strings.allKeys as? [String] {
+                allKeys.append(contentsOf: keys)
+            }
+        }
+        
+        guard !allKeys.isEmpty else {
             XCTFail("Couldn't load localized strings for localization: \(current.localization)", file: file, line: line)
             return acc
         }
         
-        return acc.union(Set(keys))
+        return acc.union(Set(allKeys))
     }
 }
