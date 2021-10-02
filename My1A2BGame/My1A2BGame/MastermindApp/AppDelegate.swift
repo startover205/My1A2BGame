@@ -115,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ("Rank", "baseline_format_list_numbered_black_24pt"),
             ("More", "baseline_settings_black_24pt"),
         ]
-        let rankNav = UINavigationController(rootViewController: makeRankVC())
+        let rankNav = UINavigationController(rootViewController: RankUIComposer.rank())
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
 
         tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
@@ -178,14 +178,6 @@ private extension AppDelegate {
     
     private func storeURL(for modelName: String) -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(modelName + ".sqlite")
-    }
-}
-
-private extension AppDelegate {
-    func makeRankVC() -> UIViewController {
-        let vc = UIStoryboard(name: "Rank", bundle: .init(for: RankViewController.self)).instantiateViewController(withIdentifier: "RankViewController")
-        vc.title = "Rank"
-        return vc
     }
 }
 
