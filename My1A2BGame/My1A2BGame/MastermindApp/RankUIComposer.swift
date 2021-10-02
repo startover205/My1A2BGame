@@ -11,10 +11,10 @@ import UIKit
 public final class RankUIComposer {
     private init() {}
     
-    static func rank() -> RankViewController {
+    public static func rankComposedWith(requestRecords: @escaping () -> [User], requestAdvancedRecords: @escaping () -> [User]) -> RankViewController {
         let rankController = makeRankViewController(title: "Rank")
-        rankController.requestRecords = winnerCoreDataManager.fetchAllObjects
-        rankController.requestAdvancedRecord = winnerCoreDataManager.fetchAllObjects
+        rankController.requestRecords = requestRecords
+        rankController.requestAdvancedRecord = requestAdvancedRecords
         
         return rankController
     }

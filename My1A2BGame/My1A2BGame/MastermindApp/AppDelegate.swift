@@ -115,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ("Rank", "baseline_format_list_numbered_black_24pt"),
             ("More", "baseline_settings_black_24pt"),
         ]
-        let rankNav = UINavigationController(rootViewController: RankUIComposer.rank())
+        let rankNav = UINavigationController(rootViewController: RankUIComposer.rankComposedWith(requestRecords: winnerCoreDataManager.fetchAllObjects, requestAdvancedRecords: advancedWinnerCoreDataManager.fetchAllObjects))
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
 
         tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
