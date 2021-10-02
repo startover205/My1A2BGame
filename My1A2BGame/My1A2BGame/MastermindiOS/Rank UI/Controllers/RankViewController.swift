@@ -19,7 +19,7 @@ protocol User {
 extension Winner: User {}
 extension AdvancedWinner: User {}
 
-class RankViewController: UIViewController {
+public class RankViewController: UIViewController {
 
     @IBOutlet weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -30,7 +30,7 @@ class RankViewController: UIViewController {
         return gameTypeSegmentedControl.selectedSegmentIndex == 1
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         refresh()
@@ -42,10 +42,10 @@ class RankViewController: UIViewController {
 }
 
 extension RankViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if objects.isEmpty {
             return 1
         }
@@ -55,7 +55,7 @@ extension RankViewController: UITableViewDataSource {
 
 
 extension RankViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RankTableViewCell", for: indexPath) as! RankTableViewCell
         
         guard !objects.isEmpty else {
