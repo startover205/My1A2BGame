@@ -10,17 +10,37 @@ import XCTest
 import My1A2BGame
 
 class RankUIIntegrationTests: XCTestCase {
-    func test_viewWillAppear_requestRefresh() {
-        var refreshCallCount = 0
+    func test_loadRecordsActions_requestsRecordsFromLoader() {
+        var loadRecordCallCount = 0
+        var loadAdvancedRecordCallCount = 0
         let sut = makeSUT(requestRecords: {
-            refreshCallCount += 1
+            loadRecordCallCount += 1
+            return []
+        }, requestAdvancedRecords: {
+            loadAdvancedRecordCallCount += 1
             return []
         })
         
         sut.loadViewIfNeeded()
-        sut.viewWillAppear(false)
+        XCTAssertEqual(loadRecordCallCount, 0, "Expect no loading requests after view is loaded")
         
-        XCTAssertEqual(refreshCallCount, 1)
+        sut.viewWillAppear(false)
+        XCTAssertEqual(loadRecordCallCount, 1, "Expect a loading request on will view appear")
+        
+        sut.viewWillAppear(false)
+        XCTAssertEqual(loadRecordCallCount, 2, "Expect another loading request on will view appear")
+        
+        sut.simulateChangeSegmentIndex(to: 0)
+        XCTAssertEqual(loadRecordCallCount, 2, "Expect no loading requests on tapping the current segment")
+        
+        sut.simulateChangeSegmentIndex(to: 1)
+        XCTAssertEqual(loadAdvancedRecordCallCount, 1, "Expect a loading request on tapping other segments")
+        
+        sut.viewWillAppear(false)
+        XCTAssertEqual(loadAdvancedRecordCallCount, 2, "Expect another loading request on will view appear")
+        
+        sut.simulateChangeSegmentIndex(to: 0)
+        XCTAssertEqual(loadRecordCallCount, 3, "Expect a loading request on tapping other segments")
     }
     
     // MARK: - Helpers
@@ -31,5 +51,15 @@ class RankUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
+    }
+}
+
+private extension RankViewController {
+    func simulateChangeSegmentIndex(to index: Int) {
+        let currentIndex = gameTypeSegmentedControl.selectedSegmentIndex
+        gameTypeSegmentedControl.selectedSegmentIndex = index
+        if index != currentIndex {
+            gameTypeSegmentedControl.sendActions(for: .valueChanged)
+        }
     }
 }

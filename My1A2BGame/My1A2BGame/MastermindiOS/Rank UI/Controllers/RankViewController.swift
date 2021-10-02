@@ -21,8 +21,8 @@ extension AdvancedWinner: User {}
 
 public class RankViewController: UIViewController {
 
-    @IBOutlet weak var gameTypeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet private(set) public weak var tableView: UITableView!
     
     var objects = [User]()
     
