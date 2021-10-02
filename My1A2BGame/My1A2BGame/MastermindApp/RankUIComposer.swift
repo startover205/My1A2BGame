@@ -12,7 +12,11 @@ public final class RankUIComposer {
     private init() {}
     
     static func rank() -> RankViewController {
-        makeRankViewController(title: "Rank")
+        let rankController = makeRankViewController(title: "Rank")
+        rankController.requestRecords = winnerCoreDataManager.fetchAllObjects
+        rankController.requestAdvancedRecord = winnerCoreDataManager.fetchAllObjects
+        
+        return rankController
     }
     
     private static func makeRankViewController(title: String) -> RankViewController {

@@ -9,7 +9,7 @@
 import UIKit
 import Mastermind
 
-protocol User {
+public protocol User {
     var date: Date { get set }
     var guessTimes: Int16 { get set }
     var name: String { get set }
@@ -25,6 +25,9 @@ public class RankViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var objects = [User]()
+    
+    public var requestRecords: (() -> [User])!
+    public var requestAdvancedRecord: (() -> [User])!
     
     var isAdvancedVersion: Bool {
         return gameTypeSegmentedControl.selectedSegmentIndex == 1
@@ -76,9 +79,9 @@ extension RankViewController: UITableViewDelegate {
 private extension RankViewController {
     func refresh() {
         if isAdvancedVersion{
-            objects = advancedWinnerCoreDataManager.fetchAllObjects()
+            objects = requestAdvancedRecord()
         } else {
-            objects = winnerCoreDataManager.fetchAllObjects()
+            objects = requestRecords()
         }
         
         tableView.reloadData()
