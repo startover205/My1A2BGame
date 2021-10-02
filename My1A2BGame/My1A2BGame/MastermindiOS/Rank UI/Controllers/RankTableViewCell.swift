@@ -8,8 +8,8 @@
 
 import UIKit
 
-class RankTableViewCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timesLabel: UILabel!
-    @IBOutlet weak var spentTimeLabel: UILabel!
+public class RankTableViewCell: UITableViewCell {
+    @IBOutlet private(set) public weak var nameLabel: UILabel!
+    @IBOutlet private(set) public weak var timesLabel: UILabel!
+    @IBOutlet private(set) public weak var spentTimeLabel: UILabel!
 }
