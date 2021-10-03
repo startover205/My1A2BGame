@@ -9,14 +9,10 @@
 import UIKit
 import Mastermind
 
-public protocol WinViewControllerDelegate {
-    func didRequestWinResultMessage()
-}
-
 public class WinViewController: UIViewController {
     public var showFireworkAnimation: ((_ on: UIView) -> Void)?
     public var shareViewController: ShareViewController?
-    public var delegate: WinViewControllerDelegate?
+    public var viewModel: WinResultViewModel?
     @IBOutlet private(set) public weak var recordViewController: RecordViewController!
     
     @IBOutlet private(set) public weak var winLabel: UILabel!
@@ -30,7 +26,8 @@ public class WinViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = shareViewController?.view
         
-        delegate?.didRequestWinResultMessage()
+        winLabel.text = viewModel?.winMessage
+        guessCountLabel.text = viewModel?.guessCountMessage
 
         recordViewController?.configureViews()
         
@@ -51,8 +48,7 @@ public class WinViewController: UIViewController {
 
 extension WinViewController: WinView {
     public func display(_ viewModel: WinResultViewModel) {
-        winLabel.text = viewModel.winMessage
-        guessCountLabel.text = viewModel.guessCountMessage
+
     }
 }
 

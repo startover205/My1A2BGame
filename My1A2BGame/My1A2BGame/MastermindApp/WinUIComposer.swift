@@ -11,8 +11,6 @@ import StoreKit
 import Mastermind
 import MastermindiOS
 
-extension WinPresenter: WinViewControllerDelegate {}
-
 public final class WinUIComposer {
     private init() {}
     
@@ -25,7 +23,7 @@ public final class WinUIComposer {
             digitCount: digitCount,
             guessCount: score.guessCount,
             winView: WeakRefVirtualProxy(winViewController))
-        winViewController.delegate = winPresenter
+        winViewController.viewModel = winPresenter.resultViewModel
         
         let message = String.localizedStringWithFormat(WinPresenter.shareMessageFormat, score.guessCount)
         let shareController = ShareViewController(
