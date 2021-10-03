@@ -83,6 +83,8 @@
 		C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */; };
 		C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3077F26CB462100C79D5B /* ManagedRecord.swift */; };
 		C0A3078226CB5BD200C79D5B /* RecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3078126CB5BD200C79D5B /* RecordLoader.swift */; };
+		C0B474A22709B50300F337CE /* LosePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B474A12709B50300F337CE /* LosePresenterTests.swift */; };
+		C0B474A42709B6B600F337CE /* Lose.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0B474A32709B6B600F337CE /* Lose.strings */; };
 		C0BF9A6126DB5E23006BD7C1 /* DigitSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6026DB5E23006BD7C1 /* DigitSecret.swift */; };
 		C0BF9A6426DC630B006BD7C1 /* DigitSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6326DC630B006BD7C1 /* DigitSecret.swift */; };
 		C0BF9A6A26DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6926DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift */; };
@@ -249,6 +251,8 @@
 		C0A128D726BB79DF00FFEB61 /* VoicePromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptViewController.swift; sourceTree = "<group>"; };
 		C0A3077F26CB462100C79D5B /* ManagedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRecord.swift; sourceTree = "<group>"; };
 		C0A3078126CB5BD200C79D5B /* RecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoader.swift; sourceTree = "<group>"; };
+		C0B474A12709B50300F337CE /* LosePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LosePresenterTests.swift; sourceTree = "<group>"; };
+		C0B474A32709B6B600F337CE /* Lose.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Lose.strings; sourceTree = "<group>"; };
 		C0BF9A6026DB5E23006BD7C1 /* DigitSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecret.swift; sourceTree = "<group>"; };
 		C0BF9A6326DC630B006BD7C1 /* DigitSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecret.swift; sourceTree = "<group>"; };
 		C0BF9A6926DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDigitSecretGeneratorTests.swift; sourceTree = "<group>"; };
@@ -615,6 +619,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		C0B474A02709B4E300F337CE /* Lose Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C0B474A12709B50300F337CE /* LosePresenterTests.swift */,
+				C0B474A32709B6B600F337CE /* Lose.strings */,
+			);
+			path = "Lose Presentation";
+			sourceTree = "<group>";
+		};
 		C0BF9A5F26DB5D7B006BD7C1 /* Basic Challenge */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +787,7 @@
 				C0BF9A5F26DB5D7B006BD7C1 /* Basic Challenge */,
 				C0F984E926FC4C6E001DAB38 /* Game Presentation */,
 				C0CEAED72705A1ED0029B221 /* Win Presentation */,
+				C0B474A02709B4E300F337CE /* Lose Presentation */,
 				C04B5B1B26C608CE0056DDA8 /* Game Record */,
 				C09D16E227043AD6002F49A3 /* Game Record Presentation */,
 				C0D5DE6F26E9EF9B001F4A0D /* App Review */,
@@ -1001,6 +1015,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B474A42709B6B600F337CE /* Lose.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,6 +1121,7 @@
 				C0C01EEE26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift in Sources */,
 				C09FAB8D26C63F0300A15B9E /* ValidateNewRecordFromStoreUseCaseTests.swift in Sources */,
 				C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */,
+				C0B474A22709B50300F337CE /* LosePresenterTests.swift in Sources */,
 				C0CEAED92705A2070029B221 /* WinPresenterTests.swift in Sources */,
 				C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */,
 				C09FAB9226C6400300A15B9E /* RecordStoreSpy.swift in Sources */,
