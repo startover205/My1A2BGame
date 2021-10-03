@@ -13,28 +13,17 @@ import My1A2BGame
 
 class WinUIIntegrationTests: XCTestCase {
     
-    func test_loadView_rendersGuessCountMessageAccordingToGuessCount() {
-        let guessCount = 1
-        let (sut, _) = makeSUT(guessCount: guessCount)
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(sut.guessCountMessage, guessCountMessageFor(guessCount: guessCount))
-        
-        let (anotherSut, _) = makeSUT(guessCount: guessCount+1)
-        
-        anotherSut.loadViewIfNeeded()
-        
-        XCTAssertEqual(anotherSut.guessCountMessage, guessCountMessageFor(guessCount: guessCount+1))
-    }
-    
-    func test_loadView_rendersWinMessageAccordingToDigitCount() {
+    func test_loadView_rendersWinResultMessage() {
         let digitCount = 3
-        let (sut, _) = makeSUT(digitCount: digitCount)
+        let guessCount = 11
+        let (sut, _) = makeSUT(digitCount: 3, guessCount: 11)
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.winMessage, winMessageFor(digitCount: digitCount))
+        let viewModel = WinPresenter(digitCount: digitCount, guessCount: guessCount).resultViewModel
+        XCTAssertEqual(sut.winMessage, viewModel.winMessage)
+        XCTAssertEqual(sut.guessCountMessage, viewModel.guessCountMessage)
+        
     }
     
     func test_loadView_reqeustLoaderValidatePlayerScore() {
@@ -293,14 +282,6 @@ class WinUIIntegrationTests: XCTestCase {
     
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
-    }
-    
-    private func winMessageFor(digitCount: Int) -> String {
-        String.localizedStringWithFormat(WinPresenter.winMessageFormat, digitCount)
-    }
-    
-    private func guessCountMessageFor(guessCount: Int) -> String {
-        String.localizedStringWithFormat(WinPresenter.guessCountMessageFormat, guessCount)
     }
     
     private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
