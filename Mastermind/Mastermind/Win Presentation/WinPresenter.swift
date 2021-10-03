@@ -8,14 +8,12 @@
 import Foundation
 
 public final class WinPresenter {
-    private let winView: WinView
     private let digitCount: Int
     private let guessCount: Int
     
-    public init(digitCount: Int, guessCount: Int, winView: WinView) {
+    public init(digitCount: Int, guessCount: Int) {
         self.digitCount = digitCount
         self.guessCount = guessCount
-        self.winView = winView
     }
     
     public static var shareMessageFormat: String {
@@ -43,11 +41,5 @@ public final class WinPresenter {
         .init(
             winMessage: String.localizedStringWithFormat(Self.winMessageFormat, digitCount),
             guessCountMessage: String.localizedStringWithFormat(Self.guessCountMessageFormat, guessCount))
-    }
-    
-    public func didRequestWinResultMessage() {
-        winView.display(WinResultViewModel(
-                            winMessage: String.localizedStringWithFormat(Self.winMessageFormat, digitCount),
-                            guessCountMessage: String.localizedStringWithFormat(Self.guessCountMessageFormat, guessCount)))
     }
 }

@@ -46,9 +46,3 @@ extension WeakRefVirtualProxy: GameView where T: GameView {
         object?.display(viewModel)
     }
 }
-
-extension WeakRefVirtualProxy: WinView where T: WinView {
-    func display(_ viewModel: WinResultViewModel) {
-        object?.display(viewModel)
-    }
-}

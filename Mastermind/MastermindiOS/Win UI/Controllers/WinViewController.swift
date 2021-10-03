@@ -46,12 +46,6 @@ public class WinViewController: UIViewController {
     }
 }
 
-extension WinViewController: WinView {
-    public func display(_ viewModel: WinResultViewModel) {
-
-    }
-}
-
 // MARK: - Private
 private extension WinViewController {
     func prepareEmoji() {

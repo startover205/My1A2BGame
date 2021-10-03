@@ -13,28 +13,10 @@ class WinPresenterTests: XCTestCase {
         XCTAssertEqual(WinPresenter.shareMessageFormat, localized("%d_SHARE_MESSAGE_FORMAT"))
     }
     
-    func test_init_doesNotMessageView() {
-        let (_, view) = makeSUT()
-        
-        XCTAssertTrue(view.receivedMessages.isEmpty)
-    }
-    
-    func test_didRequestWinResultMessage_displaysWinMessageAndGuessCountMessage() {
-        let digitCount = 3
-        let guessCount = 11
-        let (sut, view) = makeSUT(digitCount: digitCount, guessCount: guessCount)
-        
-        sut.didRequestWinResultMessage()
-        
-        XCTAssertEqual(view.receivedMessages, [.display(
-                                                winMessage: String.localizedStringWithFormat(localized("%d_WIN_MESSAGE_FORMAT"), digitCount),
-                                                guessCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_COUNT_MESSAGE_FORMAT"), guessCount))])
-    }
-    
     func test_resultViewModel_providesWinMessageAndGuessCountMessage() {
         let digitCount = 3
         let guessCount = 11
-        let (sut, _) = makeSUT(digitCount: digitCount, guessCount: guessCount)
+        let sut = makeSUT(digitCount: digitCount, guessCount: guessCount)
         
         XCTAssertEqual(sut.resultViewModel.winMessage, String.localizedStringWithFormat(localized("%d_WIN_MESSAGE_FORMAT"), digitCount))
         XCTAssertEqual(sut.resultViewModel.guessCountMessage, String.localizedStringWithFormat(localized("%d_GUESS_COUNT_MESSAGE_FORMAT"), guessCount))
@@ -42,26 +24,12 @@ class WinPresenterTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(digitCount: Int = 0, guessCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (WinPresenter, ViewSpy) {
-        let view = ViewSpy()
-        let sut = WinPresenter(digitCount: digitCount, guessCount: guessCount, winView: view)
+    private func makeSUT(digitCount: Int = 0, guessCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> WinPresenter {
+        let sut = WinPresenter(digitCount: digitCount, guessCount: guessCount)
         
-        trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, view)
-    }
-    
-    private final class ViewSpy: WinView {
-        enum Message: Hashable {
-            case display(winMessage: String, guessCountMessage: String)
-        }
-        
-        private(set) var receivedMessages = Set<Message>()
-        
-        func display(_ viewModel: WinResultViewModel) {
-            receivedMessages.insert(.display(winMessage: viewModel.winMessage, guessCountMessage: viewModel.guessCountMessage))
-        }
+        return sut
     }
     
     private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {

@@ -21,8 +21,7 @@ public final class WinUIComposer {
         
         let winPresenter = WinPresenter(
             digitCount: digitCount,
-            guessCount: score.guessCount,
-            winView: WeakRefVirtualProxy(winViewController))
+            guessCount: score.guessCount)
         winViewController.viewModel = winPresenter.resultViewModel
         
         let message = String.localizedStringWithFormat(WinPresenter.shareMessageFormat, score.guessCount)
