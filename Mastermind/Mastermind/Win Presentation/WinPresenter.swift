@@ -23,14 +23,14 @@ public final class WinPresenter {
                           comment: "Format for the sharing message")
     }
     
-    public static var winMessageFormat: String {
+    private static var winMessageFormat: String {
         NSLocalizedString("%d_WIN_MESSAGE_FORMAT",
                           tableName: "Win",
                           bundle: Bundle(for: WinPresenter.self),
                           comment: "Format for the win message")
     }
     
-    public static var guessCountMessageFormat: String {
+    private static var guessCountMessageFormat: String {
         NSLocalizedString("%d_GUESS_COUNT_MESSAGE_FORMAT",
                           tableName: "Win",
                           bundle: Bundle(for: WinPresenter.self),
