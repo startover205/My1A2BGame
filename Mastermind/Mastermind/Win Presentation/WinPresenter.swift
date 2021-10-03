@@ -39,6 +39,12 @@ public final class WinPresenter {
                           comment: "Format for the guess count message")
     }
     
+    public var resultViewModel: WinResultViewModel {
+        .init(
+            winMessage: String.localizedStringWithFormat(Self.winMessageFormat, digitCount),
+            guessCountMessage: String.localizedStringWithFormat(Self.guessCountMessageFormat, guessCount))
+    }
+    
     public func didRequestWinResultMessage() {
         winView.display(WinResultViewModel(
                             winMessage: String.localizedStringWithFormat(Self.winMessageFormat, digitCount),

@@ -31,6 +31,15 @@ class WinPresenterTests: XCTestCase {
                                                 guessCountMessage: String.localizedStringWithFormat(localized("%d_GUESS_COUNT_MESSAGE_FORMAT"), guessCount))])
     }
     
+    func test_resultViewModel_providesWinMessageAndGuessCountMessage() {
+        let digitCount = 3
+        let guessCount = 11
+        let (sut, _) = makeSUT(digitCount: digitCount, guessCount: guessCount)
+        
+        XCTAssertEqual(sut.resultViewModel.winMessage, String.localizedStringWithFormat(localized("%d_WIN_MESSAGE_FORMAT"), digitCount))
+        XCTAssertEqual(sut.resultViewModel.guessCountMessage, String.localizedStringWithFormat(localized("%d_GUESS_COUNT_MESSAGE_FORMAT"), guessCount))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(digitCount: Int = 0, guessCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (WinPresenter, ViewSpy) {
