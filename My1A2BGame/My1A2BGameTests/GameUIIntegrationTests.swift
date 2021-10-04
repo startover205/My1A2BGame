@@ -288,9 +288,9 @@ class GameUIIntegrationTests: XCTestCase {
         sut.simulateTapGiveUpButton()
         
         let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert?.title, GamePresenter.giveUpAlertTitle)
-        XCTAssertEqual(alert?.actions.first?.title, GamePresenter.giveUpAlertConfirmTitle)
-        XCTAssertEqual(alert?.actions.last?.title, GamePresenter.giveUpAlertCancelTitle)
+        XCTAssertEqual(alert?.title, GamePresenter.giveUpConfirmMessage)
+        XCTAssertEqual(alert?.actions.first?.title, GamePresenter.confirmGiveUpAction)
+        XCTAssertEqual(alert?.actions.last?.title, GamePresenter.cancelGiveUpAction)
         
         clearModalPresentationReference(sut)
     }

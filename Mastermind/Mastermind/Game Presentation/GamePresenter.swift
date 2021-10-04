@@ -37,25 +37,25 @@ public final class GamePresenter {
             comment: "Voice message played when user loses")
     }
 
-    public static var giveUpAlertTitle: String {
-        NSLocalizedString("GAME_GIVE_UP_ALERT_TITLE",
+    public static var giveUpConfirmMessage: String {
+        NSLocalizedString("GIVE_UP_CONFIRM_MESSAGE",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
-            comment: "Title for the give up alert")
+            comment: "Confirm give up message")
     }
 
-    public static var giveUpAlertConfirmTitle: String {
-        NSLocalizedString("GAME_GIVE_UP_ALERT_CONFIRM_TITLE",
+    public static var confirmGiveUpAction: String {
+        NSLocalizedString("CONFIRM_GIVE_UP_ACTION",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
-            comment: "Title for the give up alert confirm button")
+            comment: "Button for confirming give up game")
     }
 
-    public static var giveUpAlertCancelTitle: String {
-        NSLocalizedString("GAME_GIVE_UP_ALERT_CANCEL_TITLE",
+    public static var cancelGiveUpAction: String {
+        NSLocalizedString("CANCEL_GIVE_UP_ACTION",
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
-            comment: "Title for the give up alert cancel button")
+            comment: "Button for canceling give up game")
     }
 
     public func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
@@ -89,9 +89,9 @@ public final class GamePresenter {
 
     public func didTapGiveUpButton(confirmCallBack: @escaping () -> Void) {
         gameView.display(GiveUpAlertViewModel(
-                            title: Self.giveUpAlertTitle,
-                            confirmTitle: Self.giveUpAlertConfirmTitle,
-                            cancelTitle: Self.giveUpAlertCancelTitle,
+                            title: Self.giveUpConfirmMessage,
+                            confirmTitle: Self.confirmGiveUpAction,
+                            cancelTitle: Self.cancelGiveUpAction,
                             confirmCallBack: confirmCallBack))
     }
 }

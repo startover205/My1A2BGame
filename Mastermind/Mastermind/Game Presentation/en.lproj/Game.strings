@@ -3,11 +3,11 @@
 
 "LOSE_VOICE_MESSAGE" = "Don't give up! Give it another try!";
 
-"GAME_GIVE_UP_ALERT_TITLE" = "Are you sure you want to give up?";
+"GIVE_UP_CONFIRM_MESSAGE" = "Are you sure you want to give up?";
 
-"GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "Give Up!";
+"CONFIRM_GIVE_UP_ACTION" = "Give Up!";
 
-"GAME_GIVE_UP_ALERT_CANCEL_TITLE" = "Cancel";
+"CANCEL_GIVE_UP_ACTION" = "Cancel";
 
 
 "INSTRUCTION" = "     1A2B is a simple game to enjoy.\n     The computer will prepare a non-repeating four-digit nubmer (first digit could be 0). The player needs to find that very number.\n     The computer will provide hints according to the number inputted by the player. For example: \"1A2B\" means that there is one correct digit in its correct place while there are two correct digits in wrong places.\n     Try to guess the right number, compete with your friends, and enjoy!";

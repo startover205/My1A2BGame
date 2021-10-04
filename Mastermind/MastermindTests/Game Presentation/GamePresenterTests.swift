@@ -73,9 +73,9 @@ class GamePresenterTests: XCTestCase {
         
         XCTAssertEqual(view.receivedMessages,
                        [ .displayGiveUpAlert(
-                            alertTitle: localized("GAME_GIVE_UP_ALERT_TITLE"),
-                            confirmTitle: localized("GAME_GIVE_UP_ALERT_CONFIRM_TITLE"),
-                            cancelTitle: localized("GAME_GIVE_UP_ALERT_CANCEL_TITLE"))],
+                            alertTitle: localized("GIVE_UP_CONFIRM_MESSAGE"),
+                            confirmTitle: localized("CONFIRM_GIVE_UP_ACTION"),
+                            cancelTitle: localized("CANCEL_GIVE_UP_ACTION"))],
                        "Expect displaying localized alert content")
         
         view.receivedAlertConfirmCallback?()

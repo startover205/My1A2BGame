@@ -3,11 +3,11 @@
 
 "LOSE_VOICE_MESSAGE" = "不要灰心，再试试看！";
 
-"GAME_GIVE_UP_ALERT_TITLE" = "您确定要投降吗？";
+"GIVE_UP_CONFIRM_MESSAGE" = "您确定要投降吗？";
 
-"GAME_GIVE_UP_ALERT_CONFIRM_TITLE" = "投降";
+"CONFIRM_GIVE_UP_ACTION" = "投降";
 
-"GAME_GIVE_UP_ALERT_CANCEL_TITLE" = "取消";
+"CANCEL_GIVE_UP_ACTION" = "取消";
 
 
 "INSTRUCTION" = "       1A2B 是一个简单的益智游戏。\n       计算机会准备一组数字不重复的四位数，玩家必须猜出是哪一组四位数。\n       每当玩家输入四位数字，计算机会根据玩家的猜测提供提示，举例来说：1A2B，1A代表有一个数字正确、位置也正确，2B代表有两个数字正确、但是位置不正确。        依据计算机的提示，跟朋友比比谁能花最少次数猜出答案吧！";
