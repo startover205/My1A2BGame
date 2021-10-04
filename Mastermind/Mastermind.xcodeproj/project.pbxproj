@@ -65,6 +65,9 @@
 		C07C16BE2703273E00451060 /* InstructionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16BD2703273E00451060 /* InstructionPresenter.swift */; };
 		C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */; };
 		C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */; };
+		C092A1E8270A9C2C0097F0CD /* LosePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092A1E7270A9C2C0097F0CD /* LosePresenter.swift */; };
+		C092A1EA270A9C330097F0CD /* LoseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092A1E9270A9C330097F0CD /* LoseViewModel.swift */; };
+		C092A1EB270A9C690097F0CD /* Lose.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0B474A32709B6B600F337CE /* Lose.strings */; };
 		C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841EF26D0D49900AE72F4 /* WinViewController.swift */; };
 		C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F126D0D50900AE72F4 /* ShareViewController.swift */; };
 		C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F226D0D50900AE72F4 /* RecordViewController.swift */; };
@@ -84,7 +87,6 @@
 		C0A3078026CB462100C79D5B /* ManagedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3077F26CB462100C79D5B /* ManagedRecord.swift */; };
 		C0A3078226CB5BD200C79D5B /* RecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A3078126CB5BD200C79D5B /* RecordLoader.swift */; };
 		C0B474A22709B50300F337CE /* LosePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B474A12709B50300F337CE /* LosePresenterTests.swift */; };
-		C0B474A42709B6B600F337CE /* Lose.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0B474A32709B6B600F337CE /* Lose.strings */; };
 		C0BF9A6126DB5E23006BD7C1 /* DigitSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6026DB5E23006BD7C1 /* DigitSecret.swift */; };
 		C0BF9A6426DC630B006BD7C1 /* DigitSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6326DC630B006BD7C1 /* DigitSecret.swift */; };
 		C0BF9A6A26DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6926DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift */; };
@@ -231,6 +233,8 @@
 		C07C16BD2703273E00451060 /* InstructionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionPresenter.swift; sourceTree = "<group>"; };
 		C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStore.swift; sourceTree = "<group>"; };
+		C092A1E7270A9C2C0097F0CD /* LosePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LosePresenter.swift; sourceTree = "<group>"; };
+		C092A1E9270A9C330097F0CD /* LoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewModel.swift; sourceTree = "<group>"; };
 		C09841EF26D0D49900AE72F4 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C09841F126D0D50900AE72F4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C09841F226D0D50900AE72F4 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +500,7 @@
 				C0BF9A6226DC62F4006BD7C1 /* Basic Challenge */,
 				C0CA88EA26F6D0B20025F9E5 /* Game Presentation */,
 				C0CEAEDE2705AAC40029B221 /* Win Presentation */,
+				C092A1E6270A9C160097F0CD /* Lose Presentation */,
 				C04B5B1A26C608B40056DDA8 /* Game Record */,
 				C0D5DE6226E9B80C001F4A0D /* Game Record Presentation */,
 				C0D5DE6E26E9EF5B001F4A0D /* App Review */,
@@ -539,6 +544,16 @@
 				C01380022701984700D3F4A8 /* SharedLocalizationTestHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C092A1E6270A9C160097F0CD /* Lose Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C092A1E7270A9C2C0097F0CD /* LosePresenter.swift */,
+				C092A1E9270A9C330097F0CD /* LoseViewModel.swift */,
+				C0B474A32709B6B600F337CE /* Lose.strings */,
+			);
+			path = "Lose Presentation";
 			sourceTree = "<group>";
 		};
 		C09841F526D0D53500AE72F4 /* Win UI */ = {
@@ -623,7 +638,6 @@
 			isa = PBXGroup;
 			children = (
 				C0B474A12709B50300F337CE /* LosePresenterTests.swift */,
-				C0B474A32709B6B600F337CE /* Lose.strings */,
 			);
 			path = "Lose Presentation";
 			sourceTree = "<group>";
@@ -1008,6 +1022,7 @@
 				C013800D27019C3400D3F4A8 /* Helper.strings in Resources */,
 				C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */,
 				C057097627069DAD005D2603 /* Win.stringsdict in Resources */,
+				C092A1EB270A9C690097F0CD /* Lose.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,7 +1030,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0B474A42709B6B600F337CE /* Lose.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,10 +1106,12 @@
 				C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */,
 				C0C01EF026FB0EEE00794856 /* MatchResult.swift in Sources */,
 				C04DA16026CA4DBC00E6C6B8 /* LocalPlayerRecord.swift in Sources */,
+				C092A1EA270A9C330097F0CD /* LoseViewModel.swift in Sources */,
 				C0A3078226CB5BD200C79D5B /* RecordLoader.swift in Sources */,
 				C013800927019BD700D3F4A8 /* HelperPresenter.swift in Sources */,
 				C09FAB9826C67CF200A15B9E /* RankValidationPolicy.swift in Sources */,
 				C0D5DE7226E9F028001F4A0D /* AppReviewHandler.swift in Sources */,
+				C092A1E8270A9C2C0097F0CD /* LosePresenter.swift in Sources */,
 				C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

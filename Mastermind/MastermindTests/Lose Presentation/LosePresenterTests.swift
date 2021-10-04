@@ -6,33 +6,7 @@
 //
 
 import XCTest
-
-public struct LoseViewModel {
-    public let loseMessage: String
-    public let encouragementMessage: String
-}
-
-public final class LosePresenter {
-    private init() {}
-    
-    private static var loseMessage: String {
-        NSLocalizedString("LOSE_MESSAGE",
-                          tableName: "Lose",
-                          bundle: Bundle(for: LosePresenter.self),
-                          comment: "Message for lose scene")
-    }
-    
-    private static var encouragementMessage: String {
-        NSLocalizedString("ENCOURAGEMENT_MESSAGE",
-                          tableName: "Lose",
-                          bundle: Bundle(for: LosePresenter.self),
-                          comment: "Encouragement message for lose scene")
-    }
-    
-    public static var loseViewModel: LoseViewModel {
-        .init(loseMessage: Self.loseMessage, encouragementMessage: Self.encouragementMessage)
-    }
-}
+import Mastermind
 
 class LosePresenterTests: XCTestCase {
     
