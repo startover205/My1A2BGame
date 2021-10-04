@@ -12,7 +12,6 @@ class NumberInputPresenterTests: XCTestCase {
 
     func test_viewModel_providesLocalizedText() {
         XCTAssertEqual(NumberInputPresenter.viewModel.viewTitle, localized("VIEW_TITLE"))
-        XCTAssertEqual(NumberInputPresenter.viewModel.cancelInputAction, localized("DISMISS_VIEW_ACTION"))
         XCTAssertEqual(NumberInputPresenter.viewModel.clearInputAction, localized("CLEAR_INPUT_ACTION"))
     }
     
