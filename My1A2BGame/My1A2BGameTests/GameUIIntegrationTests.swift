@@ -73,6 +73,23 @@ class GameUIIntegrationTests: XCTestCase {
         clearModalPresentationReference(sut)
     }
     
+    func test_guess_showsRenderedInputView() {
+        let sut = makeSUT()
+        let window = UIWindow()
+        window.addSubview(sut.view)
+        
+        sut.onGuessButtonPressed?()
+        
+        RunLoop.current.run(until: Date())
+        
+        let inputVC = (sut.presentedViewController as? UINavigationController)?.topViewController as? NumberInputViewController
+        
+        XCTAssertEqual(inputVC?.title, NumberInputPresenter.viewModel.viewTitle)
+        XCTAssertEqual(inputVC?.clearButton.title(for: .normal), NumberInputPresenter.viewModel.clearInputAction)
+        
+        clearModalPresentationReference(sut)
+    }
+    
     func test_guess_rendersResult() {
         let answer = ["1", "2", "3", "4"]
         let secret = DigitSecret(digits: answer.compactMap(Int.init))!
