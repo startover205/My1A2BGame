@@ -67,7 +67,8 @@
 		C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */; };
 		C092A1E8270A9C2C0097F0CD /* LosePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092A1E7270A9C2C0097F0CD /* LosePresenter.swift */; };
 		C092A1EA270A9C330097F0CD /* LoseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092A1E9270A9C330097F0CD /* LoseViewModel.swift */; };
-		C092A1EB270A9C690097F0CD /* Lose.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0B474A32709B6B600F337CE /* Lose.strings */; };
+		C092A1ED270A9C7D0097F0CD /* LoseLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092A1EC270A9C7D0097F0CD /* LoseLocalizationTests.swift */; };
+		C092A1EE270A9C9E0097F0CD /* Lose.strings in Resources */ = {isa = PBXBuildFile; fileRef = C092A1F0270A9C9E0097F0CD /* Lose.strings */; };
 		C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841EF26D0D49900AE72F4 /* WinViewController.swift */; };
 		C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F126D0D50900AE72F4 /* ShareViewController.swift */; };
 		C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841F226D0D50900AE72F4 /* RecordViewController.swift */; };
@@ -235,6 +236,10 @@
 		C07E289726C8A70900967DAA /* CoreDataRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecordStore.swift; sourceTree = "<group>"; };
 		C092A1E7270A9C2C0097F0CD /* LosePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LosePresenter.swift; sourceTree = "<group>"; };
 		C092A1E9270A9C330097F0CD /* LoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewModel.swift; sourceTree = "<group>"; };
+		C092A1EC270A9C7D0097F0CD /* LoseLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseLocalizationTests.swift; sourceTree = "<group>"; };
+		C092A1EF270A9C9E0097F0CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Lose.strings; sourceTree = "<group>"; };
+		C092A1F1270A9CA10097F0CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Lose.strings"; sourceTree = "<group>"; };
+		C092A1F2270A9CA20097F0CD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Lose.strings"; sourceTree = "<group>"; };
 		C09841EF26D0D49900AE72F4 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		C09841F126D0D50900AE72F4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C09841F226D0D50900AE72F4 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
@@ -256,7 +261,6 @@
 		C0A3077F26CB462100C79D5B /* ManagedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRecord.swift; sourceTree = "<group>"; };
 		C0A3078126CB5BD200C79D5B /* RecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLoader.swift; sourceTree = "<group>"; };
 		C0B474A12709B50300F337CE /* LosePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LosePresenterTests.swift; sourceTree = "<group>"; };
-		C0B474A32709B6B600F337CE /* Lose.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Lose.strings; sourceTree = "<group>"; };
 		C0BF9A6026DB5E23006BD7C1 /* DigitSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecret.swift; sourceTree = "<group>"; };
 		C0BF9A6326DC630B006BD7C1 /* DigitSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecret.swift; sourceTree = "<group>"; };
 		C0BF9A6926DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDigitSecretGeneratorTests.swift; sourceTree = "<group>"; };
@@ -551,7 +555,7 @@
 			children = (
 				C092A1E7270A9C2C0097F0CD /* LosePresenter.swift */,
 				C092A1E9270A9C330097F0CD /* LoseViewModel.swift */,
-				C0B474A32709B6B600F337CE /* Lose.strings */,
+				C092A1F0270A9C9E0097F0CD /* Lose.strings */,
 			);
 			path = "Lose Presentation";
 			sourceTree = "<group>";
@@ -637,6 +641,7 @@
 		C0B474A02709B4E300F337CE /* Lose Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C092A1EC270A9C7D0097F0CD /* LoseLocalizationTests.swift */,
 				C0B474A12709B50300F337CE /* LosePresenterTests.swift */,
 			);
 			path = "Lose Presentation";
@@ -1022,7 +1027,7 @@
 				C013800D27019C3400D3F4A8 /* Helper.strings in Resources */,
 				C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */,
 				C057097627069DAD005D2603 /* Win.stringsdict in Resources */,
-				C092A1EB270A9C690097F0CD /* Lose.strings in Resources */,
+				C092A1EE270A9C9E0097F0CD /* Lose.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C013800527019A9700D3F4A8 /* HelperPresenterTests.swift in Sources */,
+				C092A1ED270A9C7D0097F0CD /* LoseLocalizationTests.swift in Sources */,
 				C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */,
 				C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */,
 				C0BF9A6A26DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift in Sources */,
@@ -1210,6 +1216,16 @@
 				C05709812706C0C0005D2603 /* zh-Hant */,
 			);
 			name = Win.strings;
+			sourceTree = "<group>";
+		};
+		C092A1F0270A9C9E0097F0CD /* Lose.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C092A1EF270A9C9E0097F0CD /* en */,
+				C092A1F1270A9CA10097F0CD /* zh-Hans */,
+				C092A1F2270A9CA20097F0CD /* zh-Hant */,
+			);
+			name = Lose.strings;
 			sourceTree = "<group>";
 		};
 		C09D16EB27044C84002F49A3 /* Record.strings */ = {
