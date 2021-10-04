@@ -10,6 +10,8 @@ import UIKit
 
 public class LoseViewController: UIViewController {
     @IBOutlet private(set) public weak var emojiLabel: UILabel!
+    @IBOutlet private(set) public weak var loseMessageLabel: UILabel!
+    @IBOutlet private(set) public weak var encouragementMessageLabel: UILabel!
     
     public var rainAnimation: ((_ on: UIView) -> Void)?
     

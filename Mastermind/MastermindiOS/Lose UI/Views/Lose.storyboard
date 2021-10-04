@@ -50,6 +50,8 @@
                     </view>
                     <connections>
                         <outlet property="emojiLabel" destination="SBw-Do-vbI" id="PCC-CQ-WFy"/>
+                        <outlet property="encouragementMessageLabel" destination="Fq7-E9-TiN" id="353-cV-fpo"/>
+                        <outlet property="loseMessageLabel" destination="2Ns-5c-0gU" id="yhO-jB-2Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8S0-0Y-nkz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -59,7 +61,7 @@
     </scenes>
     <resources>
         <namedColor name="MainBackground">
-            <color red="1" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

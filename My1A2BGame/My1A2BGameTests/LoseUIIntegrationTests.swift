@@ -7,10 +7,21 @@
 //
 
 import XCTest
+import Mastermind
 import MastermindiOS
 import My1A2BGame
 
 class LoseUIIntegrationTests: XCTestCase {
+    
+    func test_loadView_rendersLoseMessageAndEncouragementMessage() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.loseMessage(), LosePresenter.loseViewModel.loseMessage)
+        XCTAssertEqual(sut.encouragementMessage(), LosePresenter.loseViewModel.encouragementMessage)
+    }
+        
     func test_rainAnimation_showsOnLoadView() {
         var rainAnimationCallCount = 0
         let sut = makeSUT { _ in
@@ -52,6 +63,14 @@ class LoseUIIntegrationTests: XCTestCase {
 }
 
 private extension LoseViewController {
+    func loseMessage() -> String? {
+        loseMessageLabel.text
+    }
+    
+    func encouragementMessage() -> String? {
+        encouragementMessageLabel.text
+    }
+    
     var emojiViewTransform: CGAffineTransform {
         emojiLabel.transform
     }
