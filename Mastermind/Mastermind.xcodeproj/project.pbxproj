@@ -55,7 +55,8 @@
 		C0558B75270AA5680049B9FE /* NumberInputPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */; };
 		C0558B79270AA82C0049B9FE /* NumberInputPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */; };
 		C0558B7B270AA83B0049B9FE /* NumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */; };
-		C0558B7C270AA8520049B9FE /* NumberInput.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0558B76270AA74C0049B9FE /* NumberInput.strings */; };
+		C0558B7E270AB1790049B9FE /* NumberInputLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B7D270AB1790049B9FE /* NumberInputLocalizationTests.swift */; };
+		C0558B7F270AB1970049B9FE /* NumberInput.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0558B81270AB1970049B9FE /* NumberInput.strings */; };
 		C057097527069D67005D2603 /* WinLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057097427069D67005D2603 /* WinLocalizationTests.swift */; };
 		C057097627069DAD005D2603 /* Win.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C057097827069DAD005D2603 /* Win.stringsdict */; };
 		C057097D2706C0BB005D2603 /* Win.strings in Resources */ = {isa = PBXBuildFile; fileRef = C057097F2706C0BB005D2603 /* Win.strings */; };
@@ -223,9 +224,12 @@
 		C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayerRecord.swift; sourceTree = "<group>"; };
 		C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Stub.swift"; sourceTree = "<group>"; };
 		C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputPresenterTests.swift; sourceTree = "<group>"; };
-		C0558B76270AA74C0049B9FE /* NumberInput.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = NumberInput.strings; sourceTree = "<group>"; };
 		C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputPresenter.swift; sourceTree = "<group>"; };
 		C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewModel.swift; sourceTree = "<group>"; };
+		C0558B7D270AB1790049B9FE /* NumberInputLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputLocalizationTests.swift; sourceTree = "<group>"; };
+		C0558B80270AB1970049B9FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NumberInput.strings; sourceTree = "<group>"; };
+		C0558B82270AB1990049B9FE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NumberInput.strings"; sourceTree = "<group>"; };
+		C0558B83270AB19A0049B9FE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/NumberInput.strings"; sourceTree = "<group>"; };
 		C057097427069D67005D2603 /* WinLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinLocalizationTests.swift; sourceTree = "<group>"; };
 		C057097727069DAD005D2603 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Win.stringsdict; sourceTree = "<group>"; };
 		C057097927069DB2005D2603 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Win.stringsdict"; sourceTree = "<group>"; };
@@ -691,7 +695,7 @@
 				C07C16BD2703273E00451060 /* InstructionPresenter.swift */,
 				C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */,
 				C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */,
-				C0558B76270AA74C0049B9FE /* NumberInput.strings */,
+				C0558B81270AB1970049B9FE /* NumberInput.strings */,
 				C013800F27019C3400D3F4A8 /* Helper.strings */,
 				C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */,
 				C0EFD30A26FD80590039E9D4 /* Game.stringsdict */,
@@ -837,6 +841,7 @@
 				C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */,
 				C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */,
 				C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */,
+				C0558B7D270AB1790049B9FE /* NumberInputLocalizationTests.swift */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -1040,7 +1045,7 @@
 				C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */,
 				C057097627069DAD005D2603 /* Win.stringsdict in Resources */,
 				C092A1EE270A9C9E0097F0CD /* Lose.strings in Resources */,
-				C0558B7C270AA8520049B9FE /* NumberInput.strings in Resources */,
+				C0558B7F270AB1970049B9FE /* NumberInput.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,6 +1145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0558B7E270AB1790049B9FE /* NumberInputLocalizationTests.swift in Sources */,
 				C013800527019A9700D3F4A8 /* HelperPresenterTests.swift in Sources */,
 				C092A1ED270A9C7D0097F0CD /* LoseLocalizationTests.swift in Sources */,
 				C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */,
@@ -1212,6 +1218,16 @@
 				C013801127019C3900D3F4A8 /* zh-Hant */,
 			);
 			name = Helper.strings;
+			sourceTree = "<group>";
+		};
+		C0558B81270AB1970049B9FE /* NumberInput.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0558B80270AB1970049B9FE /* en */,
+				C0558B82270AB1990049B9FE /* zh-Hans */,
+				C0558B83270AB19A0049B9FE /* zh-Hant */,
+			);
+			name = NumberInput.strings;
 			sourceTree = "<group>";
 		};
 		C057097827069DAD005D2603 /* Win.stringsdict */ = {
