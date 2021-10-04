@@ -52,6 +52,8 @@
 		C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04B5B2526C622480056DDA8 /* LocalRecordLoader.swift */; };
 		C04DA16026CA4DBC00E6C6B8 /* LocalPlayerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */; };
 		C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */; };
+		C0558B75270AA5680049B9FE /* NumberInputPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */; };
+		C0558B77270AA74C0049B9FE /* NumberInput.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0558B76270AA74C0049B9FE /* NumberInput.strings */; };
 		C057097527069D67005D2603 /* WinLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057097427069D67005D2603 /* WinLocalizationTests.swift */; };
 		C057097627069DAD005D2603 /* Win.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C057097827069DAD005D2603 /* Win.stringsdict */; };
 		C057097D2706C0BB005D2603 /* Win.strings in Resources */ = {isa = PBXBuildFile; fileRef = C057097F2706C0BB005D2603 /* Win.strings */; };
@@ -218,6 +220,8 @@
 		C04B5B2526C622480056DDA8 /* LocalRecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecordLoader.swift; sourceTree = "<group>"; };
 		C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayerRecord.swift; sourceTree = "<group>"; };
 		C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Stub.swift"; sourceTree = "<group>"; };
+		C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputPresenterTests.swift; sourceTree = "<group>"; };
+		C0558B76270AA74C0049B9FE /* NumberInput.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = NumberInput.strings; sourceTree = "<group>"; };
 		C057097427069D67005D2603 /* WinLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinLocalizationTests.swift; sourceTree = "<group>"; };
 		C057097727069DAD005D2603 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Win.stringsdict; sourceTree = "<group>"; };
 		C057097927069DB2005D2603 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Win.stringsdict"; sourceTree = "<group>"; };
@@ -825,6 +829,8 @@
 				C013800B27019C1600D3F4A8 /* HelperLocalizationTests.swift */,
 				C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */,
 				C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */,
+				C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */,
+				C0558B76270AA74C0049B9FE /* NumberInput.strings */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -1035,6 +1041,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0558B77270AA74C0049B9FE /* NumberInput.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1157,7 @@
 				C01380032701984700D3F4A8 /* SharedLocalizationTestHelpers.swift in Sources */,
 				C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */,
 				C07C16BC2703045700451060 /* GameInstructionPresenterTests.swift in Sources */,
+				C0558B75270AA5680049B9FE /* NumberInputPresenterTests.swift in Sources */,
 				C041383A26C76CED00DFBA59 /* RankValidationPolicyTests.swift in Sources */,
 				C0BF9A6126DB5E23006BD7C1 /* DigitSecret.swift in Sources */,
 				C057097527069D67005D2603 /* WinLocalizationTests.swift in Sources */,
