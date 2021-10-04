@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Mastermind
 
 public class LoseViewController: UIViewController {
     @IBOutlet private(set) public weak var emojiLabel: UILabel!
     @IBOutlet private(set) public weak var loseMessageLabel: UILabel!
     @IBOutlet private(set) public weak var encouragementMessageLabel: UILabel!
+    
+    public var viewModel: LoseViewModel?
     
     public var rainAnimation: ((_ on: UIView) -> Void)?
     
@@ -19,6 +22,9 @@ public class LoseViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loseMessageLabel.text = viewModel?.loseMessage
+        encouragementMessageLabel.text = viewModel?.encouragementMessage
         
         rainAnimation?(self.view)
     }

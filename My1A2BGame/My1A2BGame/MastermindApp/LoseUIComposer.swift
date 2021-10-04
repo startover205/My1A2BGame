@@ -7,6 +7,7 @@
 //
 
 import SceneKit
+import Mastermind
 import MastermindiOS
 
 public final class LoseUIComposer {
@@ -14,7 +15,7 @@ public final class LoseUIComposer {
     
     public static func loseScene() -> LoseViewController {
         let loseViewController = makeLoseViewController()
-        
+        loseViewController.viewModel = LosePresenter.loseViewModel
         loseViewController.rainAnimation = rainAnimation(on:)
         
         return loseViewController
