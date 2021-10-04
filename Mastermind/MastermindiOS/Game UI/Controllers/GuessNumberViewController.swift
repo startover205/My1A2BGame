@@ -92,18 +92,18 @@ extension GuessNumberViewController: GameView {
     
     public func display(_ viewModel: GiveUpConfirmViewModel) {
         let alert = UIAlertController(
-            title: viewModel.title,
+            title: viewModel.message,
             message: nil,
             preferredStyle: .alert)
         
         let confirm = UIAlertAction(
-            title: viewModel.confirmTitle,
+            title: viewModel.confirmAction,
             style: .destructive) {  _ in
-            viewModel.confirmCallBack()
+            viewModel.confirmCallback()
         }
         
         let cancel = UIAlertAction(
-            title: viewModel.cancelTitle,
+            title: viewModel.cancelAction,
             style: .cancel)
         
         alert.addAction(confirm)
