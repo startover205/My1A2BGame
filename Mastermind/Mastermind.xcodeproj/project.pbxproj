@@ -53,7 +53,9 @@
 		C04DA16026CA4DBC00E6C6B8 /* LocalPlayerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA15F26CA4DBC00E6C6B8 /* LocalPlayerRecord.swift */; };
 		C04DA16426CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */; };
 		C0558B75270AA5680049B9FE /* NumberInputPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */; };
-		C0558B77270AA74C0049B9FE /* NumberInput.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0558B76270AA74C0049B9FE /* NumberInput.strings */; };
+		C0558B79270AA82C0049B9FE /* NumberInputPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */; };
+		C0558B7B270AA83B0049B9FE /* NumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */; };
+		C0558B7C270AA8520049B9FE /* NumberInput.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0558B76270AA74C0049B9FE /* NumberInput.strings */; };
 		C057097527069D67005D2603 /* WinLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057097427069D67005D2603 /* WinLocalizationTests.swift */; };
 		C057097627069DAD005D2603 /* Win.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C057097827069DAD005D2603 /* Win.stringsdict */; };
 		C057097D2706C0BB005D2603 /* Win.strings in Resources */ = {isa = PBXBuildFile; fileRef = C057097F2706C0BB005D2603 /* Win.strings */; };
@@ -222,6 +224,8 @@
 		C04DA16326CAA2CB00E6C6B8 /* NSManagedObjectContext+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Stub.swift"; sourceTree = "<group>"; };
 		C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputPresenterTests.swift; sourceTree = "<group>"; };
 		C0558B76270AA74C0049B9FE /* NumberInput.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = NumberInput.strings; sourceTree = "<group>"; };
+		C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputPresenter.swift; sourceTree = "<group>"; };
+		C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewModel.swift; sourceTree = "<group>"; };
 		C057097427069D67005D2603 /* WinLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinLocalizationTests.swift; sourceTree = "<group>"; };
 		C057097727069DAD005D2603 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Win.stringsdict; sourceTree = "<group>"; };
 		C057097927069DB2005D2603 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Win.stringsdict"; sourceTree = "<group>"; };
@@ -685,6 +689,9 @@
 				C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */,
 				C013800827019BD700D3F4A8 /* HelperPresenter.swift */,
 				C07C16BD2703273E00451060 /* InstructionPresenter.swift */,
+				C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */,
+				C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */,
+				C0558B76270AA74C0049B9FE /* NumberInput.strings */,
 				C013800F27019C3400D3F4A8 /* Helper.strings */,
 				C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */,
 				C0EFD30A26FD80590039E9D4 /* Game.stringsdict */,
@@ -830,7 +837,6 @@
 				C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */,
 				C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */,
 				C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */,
-				C0558B76270AA74C0049B9FE /* NumberInput.strings */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
@@ -1034,6 +1040,7 @@
 				C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */,
 				C057097627069DAD005D2603 /* Win.stringsdict in Resources */,
 				C092A1EE270A9C9E0097F0CD /* Lose.strings in Resources */,
+				C0558B7C270AA8520049B9FE /* NumberInput.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,7 +1048,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0558B77270AA74C0049B9FE /* NumberInput.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,8 +1108,10 @@
 				C0CA88EC26F6D0C60025F9E5 /* GamePresenter.swift in Sources */,
 				C033BC3326C7A64600E6AA77 /* AdvancedWinner.swift in Sources */,
 				C04B5B2226C621C80056DDA8 /* PlayerRecord.swift in Sources */,
+				C0558B79270AA82C0049B9FE /* NumberInputPresenter.swift in Sources */,
 				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
 				C07C16BE2703273E00451060 /* InstructionPresenter.swift in Sources */,
+				C0558B7B270AA83B0049B9FE /* NumberInputViewModel.swift in Sources */,
 				C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */,
 				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
 				C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */,
