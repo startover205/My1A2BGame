@@ -90,7 +90,7 @@ extension GuessNumberViewController: GameView {
         configureViewsForGameResult()
     }
     
-    public func display(_ viewModel: GiveUpAlertViewModel) {
+    public func display(_ viewModel: GiveUpConfirmViewModel) {
         let alert = UIAlertController(
             title: viewModel.title,
             message: nil,

@@ -87,11 +87,11 @@ public final class GamePresenter {
         utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForLosing))
     }
 
-    public func didTapGiveUpButton(confirmCallBack: @escaping () -> Void) {
-        gameView.display(GiveUpAlertViewModel(
-                            title: Self.giveUpConfirmMessage,
-                            confirmTitle: Self.confirmGiveUpAction,
-                            cancelTitle: Self.cancelGiveUpAction,
-                            confirmCallBack: confirmCallBack))
+    public func didTapGiveUpButton(confirmCallback: @escaping () -> Void) {
+        gameView.display(GiveUpConfirmViewModel(
+                            message: Self.giveUpConfirmMessage,
+                            confirmAction: Self.confirmGiveUpAction,
+                            cancelAction: Self.cancelGiveUpAction,
+                            confirmCallback: confirmCallback))
     }
 }

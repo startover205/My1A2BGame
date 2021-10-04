@@ -1,13 +1,13 @@
 //
-//  GiveUpAlertViewModel.swift
+//  GiveUpConfirmViewModel.swift
 //  Mastermind
 //
 //  Created by Ming-Ta Yang on 2021/9/26.
 //
 
-public struct GiveUpAlertViewModel {
-    public let title: String
-    public let confirmTitle: String
-    public let cancelTitle: String
-    public let confirmCallBack: () -> Void
+public struct GiveUpConfirmViewModel {
+    public let message: String
+    public let confirmAction: String
+    public let cancelAction: String
+    public let confirmCallback: () -> Void
 }

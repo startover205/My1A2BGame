@@ -72,10 +72,10 @@ class GamePresenterTests: XCTestCase {
         sut.didTapGiveUpButton { callbackCallCount += 1 }
         
         XCTAssertEqual(view.receivedMessages,
-                       [ .displayGiveUpAlert(
-                            alertTitle: localized("GIVE_UP_CONFIRM_MESSAGE"),
-                            confirmTitle: localized("CONFIRM_GIVE_UP_ACTION"),
-                            cancelTitle: localized("CANCEL_GIVE_UP_ACTION"))],
+                       [ .displayGiveUpMessage(
+                            message: localized("GIVE_UP_CONFIRM_MESSAGE"),
+                            confirmAction: localized("CONFIRM_GIVE_UP_ACTION"),
+                            cancelAction: localized("CANCEL_GIVE_UP_ACTION"))],
                        "Expect displaying localized alert content")
         
         view.receivedAlertConfirmCallback?()
@@ -112,7 +112,7 @@ class GamePresenterTests: XCTestCase {
             case display(matchCorrect: Bool,
                          resultMesssage: String)
             case display(voiceMessage: String)
-            case displayGiveUpAlert(alertTitle: String, confirmTitle: String, cancelTitle: String)
+            case displayGiveUpMessage(message: String, confirmAction: String, cancelAction: String)
             case displayGameEnd
         }
         
@@ -131,9 +131,9 @@ class GamePresenterTests: XCTestCase {
             receivedMessages.insert(.display(voiceMessage: viewModel.message))
         }
         
-        func display(_ viewModel: GiveUpAlertViewModel) {
-            receivedMessages.insert(.displayGiveUpAlert(alertTitle: viewModel.title, confirmTitle: viewModel.confirmTitle, cancelTitle: viewModel.cancelTitle))
-            receivedAlertConfirmCallback = viewModel.confirmCallBack
+        func display(_ viewModel: GiveUpConfirmViewModel) {
+            receivedMessages.insert(.displayGiveUpMessage(message: viewModel.message, confirmAction: viewModel.confirmAction, cancelAction: viewModel.cancelAction))
+            receivedAlertConfirmCallback = viewModel.confirmCallback
         }
         
         func displayGameEnd() {

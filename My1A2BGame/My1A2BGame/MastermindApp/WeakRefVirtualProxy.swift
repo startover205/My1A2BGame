@@ -42,7 +42,7 @@ extension WeakRefVirtualProxy: GameView where T: GameView {
         object?.displayGameEnd()
     }
     
-    func display(_ viewModel: GiveUpAlertViewModel) {
+    func display(_ viewModel: GiveUpConfirmViewModel) {
         object?.display(viewModel)
     }
 }
