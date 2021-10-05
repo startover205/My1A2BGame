@@ -366,6 +366,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C000341C270C7BE20037E5B8 /* Voice Prompt */ = {
+			isa = PBXGroup;
+			children = (
+				C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */,
+				C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */,
+			);
+			path = "Voice Prompt";
+			sourceTree = "<group>";
+		};
+		C000341E270C7C0D0037E5B8 /* Number Input */ = {
+			isa = PBXGroup;
+			children = (
+				C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */,
+				C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */,
+				C0558B81270AB1970049B9FE /* NumberInput.strings */,
+			);
+			path = "Number Input";
+			sourceTree = "<group>";
+		};
+		C000341F270C7C410037E5B8 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C013800827019BD700D3F4A8 /* HelperPresenter.swift */,
+				C013800F27019C3400D3F4A8 /* Helper.strings */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		C033BC2726C7A5A700E6AA77 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,6 +713,9 @@
 		C0CA88EA26F6D0B20025F9E5 /* Game Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C000341F270C7C410037E5B8 /* Helper */,
+				C000341E270C7C0D0037E5B8 /* Number Input */,
+				C000341C270C7BE20037E5B8 /* Voice Prompt */,
 				C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */,
 				C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */,
 				C0CA88ED26F6D1660025F9E5 /* GameView.swift */,
@@ -693,14 +724,7 @@
 				C0CA88F126F6D17E0025F9E5 /* LeftChanceCountViewModel.swift */,
 				C0753722270048B300865482 /* UtteranceView.swift */,
 				C07537202700486900865482 /* VoiceMessageViewModel.swift */,
-				C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */,
-				C013800827019BD700D3F4A8 /* HelperPresenter.swift */,
 				C07C16BD2703273E00451060 /* InstructionPresenter.swift */,
-				C0558B78270AA82C0049B9FE /* NumberInputPresenter.swift */,
-				C0558B7A270AA83B0049B9FE /* NumberInputViewModel.swift */,
-				C0558B81270AB1970049B9FE /* NumberInput.strings */,
-				C013800F27019C3400D3F4A8 /* Helper.strings */,
-				C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */,
 				C0EFD30A26FD80590039E9D4 /* Game.stringsdict */,
 				C0F984EE26FC4CAF001DAB38 /* Game.strings */,
 			);
