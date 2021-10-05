@@ -22,6 +22,7 @@ public class GuessNumberViewController: UIViewController {
     @IBOutlet private(set) public var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
     @IBOutlet private(set) public var hintViewController: HintViewController!
+    @IBOutlet private(set) public weak var guessHistoryTitleLabel: UILabel!
     @IBOutlet private(set) public weak var availableGuessLabel: UILabel!
     @IBOutlet private(set) public weak var guessButton: UIButton!
     @IBOutlet private(set) public weak var giveUpButton: UIButton!

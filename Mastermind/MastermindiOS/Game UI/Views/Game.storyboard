@@ -618,6 +618,7 @@
                         <outlet property="availableGuessLabel" destination="0rG-JG-Gw4" id="vc1-tf-X4b"/>
                         <outlet property="giveUpButton" destination="KkV-2F-3LL" id="SZi-Y6-XiA"/>
                         <outlet property="guessButton" destination="460-TV-n2o" id="Ztk-4u-hlq"/>
+                        <outlet property="guessHistoryTitleLabel" destination="61s-2u-rIK" id="dDJ-4i-gUB"/>
                         <outlet property="helperViewController" destination="5Az-zZ-TMl" id="ZaE-OT-k2a"/>
                         <outlet property="hintViewController" destination="Ave-qO-mEa" id="5lr-7s-f74"/>
                         <outlet property="quizLabelViewController" destination="NNC-fX-ZKY" id="zah-7h-X9s"/>

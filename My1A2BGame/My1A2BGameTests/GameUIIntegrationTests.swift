@@ -21,6 +21,18 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.title, "a title")
     }
     
+    func test_gameScene_isLocalized() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        let viewModel = GamePresenter.sceneViewModel
+        XCTAssertEqual(sut.guessHistoryViewTitle(), viewModel.guessHistoryViewTitle)
+        XCTAssertEqual(sut.guessButtonTitle(), viewModel.guessAction)
+        XCTAssertEqual(sut.giveUpButtonTitle(), viewModel.giveUpAction)
+        XCTAssertEqual(sut.restartButtonTitle(), viewModel.restartAction)
+    }
+    
     func test_viewComponents_fadeInOnAppear() {
         let sut = makeSUT(animate: { _, animations, _ in
             animations()
@@ -525,6 +537,22 @@ private extension GuessNumberViewController {
         }
         
         return true
+    }
+    
+    func guessHistoryViewTitle() -> String? {
+        guessHistoryTitleLabel.text
+    }
+    
+    func guessButtonTitle() -> String? {
+        guessButton.title(for: .normal)
+    }
+    
+    func giveUpButtonTitle() -> String? {
+        giveUpButton.title(for: .normal)
+    }
+    
+    func restartButtonTitle() -> String? {
+        restartButton.title(for: .normal)
     }
     
     func simulateViewAppear() { viewWillAppear(false) }
