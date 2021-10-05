@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C000341B270C3AAD0037E5B8 /* GameSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */; };
 		C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */; };
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
@@ -169,6 +170,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneViewModel.swift; sourceTree = "<group>"; };
 		C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenterTests.swift; sourceTree = "<group>"; };
 		C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenter.swift; sourceTree = "<group>"; };
 		C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptLocalizationTests.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */,
+				C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */,
 				C0CA88ED26F6D1660025F9E5 /* GameView.swift */,
 				C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */,
 				C0753724270048D400865482 /* GiveUpAlertViewModel.swift */,
@@ -1108,6 +1111,7 @@
 				C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */,
 				C0D5DE8A26E9F2A6001F4A0D /* AppReviewController.swift in Sources */,
 				C0D5DE6A26E9B977001F4A0D /* RecordSaveView.swift in Sources */,
+				C000341B270C3AAD0037E5B8 /* GameSceneViewModel.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
 				C07537212700486900865482 /* VoiceMessageViewModel.swift in Sources */,
 				C0CA88EC26F6D0C60025F9E5 /* GamePresenter.swift in Sources */,

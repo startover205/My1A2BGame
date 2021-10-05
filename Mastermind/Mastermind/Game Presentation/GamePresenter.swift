@@ -7,13 +7,6 @@
 
 import Foundation
 
-public struct GameSceneViewModel {
-    public let guessHistoryViewTitle: String
-    public let guessAction: String
-    public let giveUpAction: String
-    public let restartAction: String
-}
-
 public final class GamePresenter {
     private let gameView: GameView
     private let utteranceView: UtteranceView
