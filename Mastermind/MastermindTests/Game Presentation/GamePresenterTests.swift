@@ -65,14 +65,14 @@ class GamePresenterTests: XCTestCase {
                         .displayGameEnd])
     }
     
-    func test_didTapGiveUpButton_displayGiveUpAlert() {
+    func test_didTapGiveUpButton_displayGiveUpConfirmMessage() {
         let (sut, view) = makeSUT()
         var callbackCallCount = 0
         
         sut.didTapGiveUpButton { callbackCallCount += 1 }
         
         XCTAssertEqual(view.receivedMessages,
-                       [ .displayGiveUpMessage(
+                       [ .displayGiveUpConfirmMessage(
                             message: localized("GIVE_UP_CONFIRM_MESSAGE"),
                             confirmAction: localized("CONFIRM_GIVE_UP_ACTION"),
                             cancelAction: localized("CANCEL_GIVE_UP_ACTION"))],
@@ -112,7 +112,7 @@ class GamePresenterTests: XCTestCase {
             case display(matchCorrect: Bool,
                          resultMesssage: String)
             case display(voiceMessage: String)
-            case displayGiveUpMessage(message: String, confirmAction: String, cancelAction: String)
+            case displayGiveUpConfirmMessage(message: String, confirmAction: String, cancelAction: String)
             case displayGameEnd
         }
         
@@ -132,7 +132,7 @@ class GamePresenterTests: XCTestCase {
         }
         
         func display(_ viewModel: GiveUpConfirmViewModel) {
-            receivedMessages.insert(.displayGiveUpMessage(message: viewModel.message, confirmAction: viewModel.confirmAction, cancelAction: viewModel.cancelAction))
+            receivedMessages.insert(.displayGiveUpConfirmMessage(message: viewModel.message, confirmAction: viewModel.confirmAction, cancelAction: viewModel.cancelAction))
             receivedAlertConfirmCallback = viewModel.confirmCallback
         }
         
