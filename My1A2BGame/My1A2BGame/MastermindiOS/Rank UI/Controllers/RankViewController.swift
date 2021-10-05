@@ -24,7 +24,7 @@ public class RankViewController: UIViewController {
     @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private(set) public weak var tableView: UITableView!
     
-    var objects = [User]()
+    var objects = [PlayerRecord]()
     
     public var requestRecords: (() -> [User])!
     public var requestAdvancedRecord: (() -> [User])!
@@ -68,10 +68,10 @@ extension RankViewController: UITableViewDelegate {
             return cell
         }
         
-        let winner = objects[indexPath.row]
-        cell.nameLabel.text = winner.name
-        cell.timesLabel.text = "\(winner.guessTimes)"
-        cell.spentTimeLabel.text = getTimeString(with: winner.spentTime)
+        let record = objects[indexPath.row]
+        cell.nameLabel.text = record.playerName
+        cell.timesLabel.text = record.guessCount.description
+        cell.spentTimeLabel.text = getTimeString(with: record.guessTime)
         return cell
     }
 }
@@ -79,9 +79,9 @@ extension RankViewController: UITableViewDelegate {
 private extension RankViewController {
     func refresh() {
         if isAdvancedVersion{
-            objects = requestAdvancedRecord()
+            objects = requestAdvancedRecord().toModel()
         } else {
-            objects = requestRecords()
+            objects = requestRecords().toModel()
         }
         
         tableView.reloadData()
@@ -98,5 +98,13 @@ private extension RankViewController {
         }
         
         return String(format:"%02d:%02d:%02d", hour, minute, second)
+    }
+}
+
+private extension Array where Element == User {
+    func toModel() -> [PlayerRecord] {
+        map { 
+            .init(playerName: $0.name, guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date)
+        }
     }
 }
