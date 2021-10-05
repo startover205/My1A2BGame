@@ -18,6 +18,7 @@ public final class GameUIComposer {
         
         let gameViewController = makeGameViewController()
         gameViewController.title = title
+        gameViewController.viewModel = GamePresenter.sceneViewModel
         
         let voicePromptViewController = VoicePromptViewController(
             userDefaults: userDefaults,

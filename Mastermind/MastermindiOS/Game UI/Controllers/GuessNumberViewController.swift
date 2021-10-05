@@ -18,6 +18,7 @@ public class GuessNumberViewController: UIViewController {
     public var onRestart: (() -> Void)?
     public var onGuessButtonPressed: (() -> Void)?
     public var delegate: GuessNumberViewControllerDelegate?
+    public var viewModel: GameSceneViewModel?
     
     @IBOutlet private(set) public var helperViewController: HelperViewController!
     @IBOutlet private(set) public var quizLabelViewController: QuizLabelViewController!
@@ -36,6 +37,11 @@ public class GuessNumberViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guessHistoryTitleLabel.text = viewModel?.guessHistoryViewTitle
+        guessButton.setTitle(viewModel?.guessAction, for: .normal)
+        giveUpButton.setTitle(viewModel?.giveUpAction, for: .normal)
+        restartButton.setTitle(viewModel?.restartAction, for: .normal)
         
         hintViewController.configureViews()
         quizLabelViewController.configureViews()
