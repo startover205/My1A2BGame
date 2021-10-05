@@ -840,8 +840,8 @@
 				C013800B27019C1600D3F4A8 /* HelperLocalizationTests.swift */,
 				C013800427019A9700D3F4A8 /* HelperPresenterTests.swift */,
 				C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */,
-				C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */,
 				C0558B7D270AB1790049B9FE /* NumberInputLocalizationTests.swift */,
+				C0558B74270AA5680049B9FE /* NumberInputPresenterTests.swift */,
 			);
 			path = "Game Presentation";
 			sourceTree = "<group>";
