@@ -9,6 +9,13 @@ import XCTest
 import Mastermind
 
 class GamePresenterTests: XCTestCase {
+    
+    func test_sceneViewModel_isLocalized() {
+        XCTAssertEqual(GamePresenter.sceneViewModel.guessHistoryViewTitle, localized("GUESS_HISTORY_VIEW_TITLE"))
+        XCTAssertEqual(GamePresenter.sceneViewModel.guessAction, localized("GUESS_ACTION"))
+        XCTAssertEqual(GamePresenter.sceneViewModel.giveUpAction, localized("GIVE_UP_ACTION"))
+        XCTAssertEqual(GamePresenter.sceneViewModel.restartAction, localized("RESTART_ACTION"))
+    }
 
     func test_init_doesNotMessageView() {
         let (_, view) = makeSUT()

@@ -7,6 +7,13 @@
 
 import Foundation
 
+public struct GameSceneViewModel {
+    public let guessHistoryViewTitle: String
+    public let guessAction: String
+    public let giveUpAction: String
+    public let restartAction: String
+}
+
 public final class GamePresenter {
     private let gameView: GameView
     private let utteranceView: UtteranceView
@@ -56,6 +63,38 @@ public final class GamePresenter {
             tableName: "Game",
             bundle: Bundle(for: GamePresenter.self),
             comment: "Button for canceling give up game")
+    }
+    
+    private static var guessHistoryViewTitle: String {
+        NSLocalizedString("GUESS_HISTORY_VIEW_TITLE",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Title for the guess history view")
+    }
+    
+    private static var guessAction: String {
+        NSLocalizedString("GUESS_ACTION",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Button for guessing")
+    }
+    
+    private static var giveUpAction: String {
+        NSLocalizedString("GIVE_UP_ACTION",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Button for giving up the game")
+    }
+    
+    private static var restartAction: String {
+        NSLocalizedString("RESTART_ACTION",
+            tableName: "Game",
+            bundle: Bundle(for: GamePresenter.self),
+            comment: "Button for restarting the game")
+    }
+    
+    public static var sceneViewModel: GameSceneViewModel {
+        .init(guessHistoryViewTitle: Self.guessHistoryViewTitle, guessAction: Self.guessAction, giveUpAction: Self.giveUpAction, restartAction: Self.restartAction)
     }
 
     public func didUpdateLeftChanceCount(_ leftChanceCount: Int) {
