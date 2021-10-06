@@ -74,19 +74,19 @@ extension RankViewController: UITableViewDataSource {
 
 extension RankViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RankTableViewCell", for: indexPath) as! RankTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell", for: indexPath) as! PlayerRecordCell
         
         guard !objects.isEmpty else {
-            cell.nameLabel.text = "-----"
-            cell.timesLabel.text = "--"
-            cell.spentTimeLabel.text = "--:--:--"
+            cell.playerNameLabel.text = "-----"
+            cell.guessCountLabel.text = "--"
+            cell.guessTimeLabel.text = "--:--:--"
             return cell
         }
         
         let record = objects[indexPath.row]
-        cell.nameLabel.text = record.playerName
-        cell.timesLabel.text = record.guessCount.description
-        cell.spentTimeLabel.text = getTimeString(with: record.guessTime)
+        cell.playerNameLabel.text = record.playerName
+        cell.guessCountLabel.text = record.guessCount.description
+        cell.guessTimeLabel.text = getTimeString(with: record.guessTime)
         return cell
     }
 }

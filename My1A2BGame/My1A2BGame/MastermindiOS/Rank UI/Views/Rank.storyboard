@@ -62,7 +62,7 @@
                                         <rect key="frame" x="0.0" y="44" width="374" height="734"/>
                                         <color key="backgroundColor" name="MainBackgroundOffset"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RankTableViewCell" id="Zva-wi-m1O" customClass="RankTableViewCell" customModule="My1A2BGame" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerRecordCell" id="Zva-wi-m1O" customClass="PlayerRecordCell" customModule="My1A2BGame" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="24.5" width="374" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zva-wi-m1O" id="rxf-yi-eCY">
@@ -101,9 +101,9 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <outlet property="nameLabel" destination="hX3-HT-5Bu" id="5Q9-Ai-otW"/>
-                                                    <outlet property="spentTimeLabel" destination="ryn-uT-Khc" id="3RE-VP-09M"/>
-                                                    <outlet property="timesLabel" destination="DwF-lC-G8v" id="tx1-s9-nAS"/>
+                                                    <outlet property="guessCountLabel" destination="DwF-lC-G8v" id="tx1-s9-nAS"/>
+                                                    <outlet property="guessTimeLabel" destination="ryn-uT-Khc" id="3RE-VP-09M"/>
+                                                    <outlet property="playerNameLabel" destination="hX3-HT-5Bu" id="5Q9-Ai-otW"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

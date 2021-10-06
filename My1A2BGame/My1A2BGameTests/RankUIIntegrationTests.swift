@@ -87,10 +87,10 @@ class RankUIIntegrationTests: XCTestCase {
     }
 
     private func assertThat(_ sut: RankViewController, hasViewConfiguredFor record: CellViewModel, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
-        let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: index, section: 0)) as? RankTableViewCell
-        XCTAssertEqual(cell?.nameLabel.text, record.name, "Expected `name` to be \(record.name) for image view at index (\(index))", file: file, line: line)
-        XCTAssertEqual(cell?.timesLabel.text, record.guessCount, "Expected `guessCount` to be \(record.guessCount) for image view at index (\(index))", file: file, line: line)
-        XCTAssertEqual(cell?.spentTimeLabel.text, record.guessTime, "Expected `guessTime` to be \(record.guessTime) for image view at index (\(index))", file: file, line: line)
+        let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: index, section: 0)) as? PlayerRecordCell
+        XCTAssertEqual(cell?.playerNameLabel.text, record.name, "Expected `name` to be \(record.name) for image view at index (\(index))", file: file, line: line)
+        XCTAssertEqual(cell?.guessCountLabel.text, record.guessCount, "Expected `guessCount` to be \(record.guessCount) for image view at index (\(index))", file: file, line: line)
+        XCTAssertEqual(cell?.guessTimeLabel.text, record.guessTime, "Expected `guessTime` to be \(record.guessTime) for image view at index (\(index))", file: file, line: line)
     }
 
     private func makeRecord(name: String, guessCount: Int, guessTime: TimeInterval) -> PlayerRecord {
