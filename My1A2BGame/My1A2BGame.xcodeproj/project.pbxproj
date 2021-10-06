@@ -238,28 +238,10 @@
 				C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */,
 				C01BC5D026A85B5000FA0636 /* In-App Purchase */,
 				C01BC5C826A84B9400FA0636 /* GoogleAds */,
-				C01BC5BE26A848F500FA0636 /* MastermindKit */,
 				C0A1F47626B62A1100536D73 /* MastermindiOS */,
 				C01BC5CC26A84BF600FA0636 /* MastermindApp */,
 			);
 			path = My1A2BGame;
-			sourceTree = "<group>";
-		};
-		C01BC5BE26A848F500FA0636 /* MastermindKit */ = {
-			isa = PBXGroup;
-			children = (
-				C01BC5CD26A84C2700FA0636 /* Rank */,
-				C01BC5BF26A8499E00FA0636 /* Shared */,
-				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
-			);
-			path = MastermindKit;
-			sourceTree = "<group>";
-		};
-		C01BC5BF26A8499E00FA0636 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		C01BC5C826A84B9400FA0636 /* GoogleAds */ = {
@@ -278,7 +260,9 @@
 			children = (
 				C014619E20BE6BD20023EEB6 /* AppDelegate.swift */,
 				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
+				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
 				C085BE692254974700320563 /* Constants.swift */,
+				C075760E224C7A7D007A1F9E /* Global.swift */,
 				C0ED62642260416300892A80 /* ErrorManager.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
@@ -294,14 +278,6 @@
 				C07C16B82702F94E00451060 /* RewardAd.strings */,
 			);
 			path = MastermindApp;
-			sourceTree = "<group>";
-		};
-		C01BC5CD26A84C2700FA0636 /* Rank */ = {
-			isa = PBXGroup;
-			children = (
-				C075760E224C7A7D007A1F9E /* Global.swift */,
-			);
-			path = Rank;
 			sourceTree = "<group>";
 		};
 		C01BC5D026A85B5000FA0636 /* In-App Purchase */ = {
