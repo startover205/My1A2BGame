@@ -7,40 +7,35 @@
 //
 
 import XCTest
+import Mastermind
 import My1A2BGame
 
 class RankUIIntegrationTests: XCTestCase {
     func test_loadRecordsActions_requestsRecordsFromLoader() {
-        var loadRecordCallCount = 0
-        var loadAdvancedRecordCallCount = 0
-        let sut = makeSUT(requestRecords: {
-            loadRecordCallCount += 1
-            return []
-        }, requestAdvancedRecords: {
-            loadAdvancedRecordCallCount += 1
-            return []
-        })
+        let basicRecordLoader = RecordLoaderSpy(stub: [])
+        let advancedRecordLoader = RecordLoaderSpy(stub: [])
+        let sut = makeSUT(requestRecords: basicRecordLoader, requestAdvancedRecords: advancedRecordLoader)
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(loadRecordCallCount, 0, "Expect no loading requests after view is loaded")
+        XCTAssertEqual(basicRecordLoader.loadCallCount, 0, "Expect no loading requests after view is loaded")
         
         sut.viewWillAppear(false)
-        XCTAssertEqual(loadRecordCallCount, 1, "Expect a loading request on will view appear")
+        XCTAssertEqual(basicRecordLoader.loadCallCount, 1, "Expect a loading request on will view appear")
         
         sut.viewWillAppear(false)
-        XCTAssertEqual(loadRecordCallCount, 2, "Expect another loading request on will view appear")
+        XCTAssertEqual(basicRecordLoader.loadCallCount, 2, "Expect another loading request on will view appear")
         
         sut.simulateChangeSegmentIndex(to: 0)
-        XCTAssertEqual(loadRecordCallCount, 2, "Expect no loading requests on tapping the current segment")
+        XCTAssertEqual(basicRecordLoader.loadCallCount, 2, "Expect no loading requests on tapping the current segment")
         
         sut.simulateChangeSegmentIndex(to: 1)
-        XCTAssertEqual(loadAdvancedRecordCallCount, 1, "Expect a loading request on tapping other segments")
+        XCTAssertEqual(advancedRecordLoader.loadCallCount, 1, "Expect a loading request on tapping other segments")
         
         sut.viewWillAppear(false)
-        XCTAssertEqual(loadAdvancedRecordCallCount, 2, "Expect another loading request on will view appear")
+        XCTAssertEqual(advancedRecordLoader.loadCallCount, 2, "Expect another loading request on will view appear")
         
         sut.simulateChangeSegmentIndex(to: 0)
-        XCTAssertEqual(loadRecordCallCount, 3, "Expect a loading request on tapping other segments")
+        XCTAssertEqual(basicRecordLoader.loadCallCount, 3, "Expect a loading request on tapping other segments")
     }
     
     func test_loadRecordsCompletion_rendersSuccessfullyLoadedRecords() {
@@ -48,18 +43,8 @@ class RankUIIntegrationTests: XCTestCase {
         let record0 = makeRecord(name: "a name", guessCount: 10, guessTime: 300)
         let record1 = makeRecord(name: "another name", guessCount: 13, guessTime: 123.3)
         let record2 = makeRecord(name: "a name", guessCount: 1, guessTime: 5.1)
-        var callCount = 0
-        let sut = makeSUT(requestRecords: {
-            callCount += 1
-            if callCount == 1 {
-                return []
-            } else if callCount == 2 {
-                return [record0, record1]
-            } else if callCount == 3 {
-                return [record0, record1, record2]
-            }
-            return [record0]
-        })
+        let recordLoader = RecordLoaderSpy(stub: [])
+        let sut = makeSUT(requestRecords: recordLoader)
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [placeholder])
@@ -67,20 +52,23 @@ class RankUIIntegrationTests: XCTestCase {
         sut.viewWillAppear(false)
         assertThat(sut, isRendering: [placeholder])
 
+        recordLoader.stub = [record0, record1]
         sut.viewWillAppear(false)
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00"), record1.toModel(guessTime: "00:02:03")])
 
+        recordLoader.stub = [record0, record1, record2]
         sut.viewWillAppear(false)
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00"), record1.toModel(guessTime: "00:02:03"), record2.toModel(guessTime: "00:00:05")])
 
+        recordLoader.stub = [record0]
         sut.viewWillAppear(false)
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00")])
     }
     
-    
     // MARK: - Helpers
     
-    private func makeSUT(requestRecords: @escaping () -> [User] = { [] }, requestAdvancedRecords: @escaping () -> [User] = { []},   file: StaticString = #filePath, line: UInt = #line) -> RankViewController {
+    private func makeSUT(requestRecords: RecordLoader = RecordLoaderSpy(stub: []), requestAdvancedRecords: RecordLoader = RecordLoaderSpy(stub: []), file: StaticString = #filePath, line: UInt = #line) -> RankViewController {
+        
         let sut = RankUIComposer.rankComposedWith(requestRecords: requestRecords, requestAdvancedRecords: requestAdvancedRecords)
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -105,8 +93,8 @@ class RankUIIntegrationTests: XCTestCase {
         XCTAssertEqual(cell?.spentTimeLabel.text, record.guessTime, "Expected `guessTime` to be \(record.guessTime) for image view at index (\(index))", file: file, line: line)
     }
 
-    private func makeRecord(name: String, guessCount: Int, guessTime: TimeInterval) -> User {
-        RecordMock(date: Date(), guessTimes: Int16(guessCount), name: name, spentTime: guessTime)
+    private func makeRecord(name: String, guessCount: Int, guessTime: TimeInterval) -> PlayerRecord {
+        .init(playerName: name, guessCount: guessCount, guessTime: guessTime, timestamp: Date())
     }
     
     private final class RecordMock: User {
@@ -121,7 +109,27 @@ class RankUIIntegrationTests: XCTestCase {
             self.name = name
             self.spentTime = spentTime
         }
+    }
+    
+    private final class RecordLoaderSpy: RecordLoader {
+        var stub: [PlayerRecord]
+        private(set) var loadCallCount = 0
         
+        init(stub: [PlayerRecord]) {
+            self.stub = stub
+        }
+        
+        func load() throws -> [PlayerRecord] {
+            loadCallCount += 1
+            return stub
+        }
+        
+        func validate(score: Score) -> Bool {
+            true
+        }
+        
+        func insertNewRecord(_ record: PlayerRecord) throws {
+        }
     }
 }
 
@@ -155,5 +163,11 @@ private struct CellViewModel {
 private extension User {
     func toModel(guessTime: String) -> CellViewModel {
         CellViewModel(name: name, guessCount: guessTimes.description, guessTime: guessTime)
+    }
+}
+
+private extension PlayerRecord {
+    func toModel(guessTime: String) -> CellViewModel {
+        CellViewModel(name: playerName, guessCount: guessCount.description, guessTime: guessTime)
     }
 }

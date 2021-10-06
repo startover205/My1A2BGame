@@ -12,7 +12,7 @@ import Mastermind
 public final class RankUIComposer {
     private init() {}
     
-    public static func rankComposedWith(requestRecords: @escaping () -> [User], requestAdvancedRecords: @escaping () -> [User]) -> RankViewController {
+    public static func rankComposedWith(requestRecords: RecordLoader, requestAdvancedRecords: RecordLoader) -> RankViewController {
         let rankController = makeRankViewController(title: "Rank")
         
         let presentationAdapter = RankPresentationAdapter(
@@ -33,20 +33,20 @@ public final class RankUIComposer {
 }
 
 final class RankPresentationAdapter {
-    private let requestRecords: (() -> [User])
-    private let requestAdvancedRecord: (() -> [User])
+    private let requestRecords: RecordLoader
+    private let requestAdvancedRecord: RecordLoader
     var presenter: RankPresenter?
     
-    init(requestRecords: @escaping (() -> [User]), requestAdvancedRecord: @escaping (() -> [User])) {
+    init(requestRecords: RecordLoader, requestAdvancedRecord: RecordLoader) {
         self.requestRecords = requestRecords
         self.requestAdvancedRecord = requestAdvancedRecord
     }
     
     func refresh(isAdvancedVersion: Bool) {
         if isAdvancedVersion {
-            presenter?.didRefresh(records: requestAdvancedRecord().toModel())
+            presenter?.didRefresh(records: try! requestAdvancedRecord.load())
         } else {
-            presenter?.didRefresh(records: requestRecords().toModel())
+            presenter?.didRefresh(records: try! requestRecords.load())
         }
     }
 }
