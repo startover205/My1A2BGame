@@ -19,16 +19,34 @@ public protocol User {
 extension Winner: User {}
 extension AdvancedWinner: User {}
 
+public struct RankViewModel {
+    public let records: [PlayerRecord]
+}
+
+public protocol RankView {
+    func display(_ viewModel: RankViewModel)
+}
+
+public final class RankPresenter {
+    private let rankView: RankView
+    
+    public init(rankView: RankView) {
+        self.rankView = rankView
+    }
+    
+    func didRefresh(records: [PlayerRecord]) {
+        rankView.display(RankViewModel(records: records))
+    }
+}
+
 public class RankViewController: UIViewController {
 
     @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private(set) public weak var tableView: UITableView!
     
     var objects = [PlayerRecord]()
-    
-    public var requestRecords: (() -> [User])!
-    public var requestAdvancedRecord: (() -> [User])!
-    
+    var onRefresh: ((_ isAdvancedVersion: Bool) -> Void)?
+
     var isAdvancedVersion: Bool {
         return gameTypeSegmentedControl.selectedSegmentIndex == 1
     }
@@ -36,11 +54,18 @@ public class RankViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        refresh()
+        onRefresh?(isAdvancedVersion)
     }
     
     @IBAction func didChangeScope(_ sender: Any) {
-        refresh()
+        onRefresh?(isAdvancedVersion)
+    }
+}
+
+extension RankViewController: RankView {
+    public func display(_ viewModel: RankViewModel) {
+        objects = viewModel.records
+        tableView.reloadData()
     }
 }
 
@@ -77,16 +102,6 @@ extension RankViewController: UITableViewDelegate {
 }
 
 private extension RankViewController {
-    func refresh() {
-        if isAdvancedVersion{
-            objects = requestAdvancedRecord().toModel()
-        } else {
-            objects = requestRecords().toModel()
-        }
-        
-        tableView.reloadData()
-    }
-    
     func getTimeString(with timeInterval: Double) -> String {
         let time = Int(timeInterval)
         var hour = time / 3600
@@ -101,10 +116,3 @@ private extension RankViewController {
     }
 }
 
-private extension Array where Element == User {
-    func toModel() -> [PlayerRecord] {
-        map { 
-            .init(playerName: $0.name, guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date)
-        }
-    }
-}

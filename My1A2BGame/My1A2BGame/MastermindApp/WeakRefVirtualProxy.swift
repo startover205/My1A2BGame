@@ -46,3 +46,9 @@ extension WeakRefVirtualProxy: GameView where T: GameView {
         object?.display(viewModel)
     }
 }
+
+extension WeakRefVirtualProxy: RankView where T: RankView {
+    func display(_ viewModel: RankViewModel) {
+        object?.display(viewModel)
+    }
+}
