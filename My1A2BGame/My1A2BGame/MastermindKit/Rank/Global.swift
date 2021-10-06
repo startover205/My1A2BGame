@@ -6,12 +6,6 @@
 //  Copyright © 2019年 Ming-Ta Yang. All rights reserved.
 //
 
-import Mastermind
-
-var winnerCoreDataManager: CoreDataManager = CoreDataManager<Winner>(momdFilename: "Model", entityName: "Winner", sortDescriptors: [NSSortDescriptor(key: "guessTimes", ascending: true), NSSortDescriptor(key: "spentTime", ascending: true), NSSortDescriptor(key: "date", ascending: true)])
-
-var advancedWinnerCoreDataManager: CoreDataManager = CoreDataManager<AdvancedWinner>(momdFilename: "ModelAdvanced", entityName: "AdvancedWinner", sortDescriptors: [NSSortDescriptor(key: "guessTimes", ascending: true), NSSortDescriptor(key: "spentTime", ascending: true), NSSortDescriptor(key: "date", ascending: true)])
-
 import os.log
 
 func print(_ text: String, _ type: OSLogType) {
