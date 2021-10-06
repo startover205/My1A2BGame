@@ -50,11 +50,3 @@ final class RankPresentationAdapter {
         }
     }
 }
-
-private extension Array where Element == User {
-    func toModel() -> [PlayerRecord] {
-        map {
-            .init(playerName: $0.name, guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date)
-        }
-    }
-}

@@ -9,16 +9,6 @@
 import UIKit
 import Mastermind
 
-public protocol User {
-    var date: Date { get set }
-    var guessTimes: Int16 { get set }
-    var name: String { get set }
-    var spentTime: Double { get set }
-}
-
-extension Winner: User {}
-extension AdvancedWinner: User {}
-
 public struct RankViewModel {
     public let records: [PlayerRecord]
 }

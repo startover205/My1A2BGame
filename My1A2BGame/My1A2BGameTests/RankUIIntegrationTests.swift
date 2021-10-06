@@ -97,20 +97,6 @@ class RankUIIntegrationTests: XCTestCase {
         .init(playerName: name, guessCount: guessCount, guessTime: guessTime, timestamp: Date())
     }
     
-    private final class RecordMock: User {
-        var date: Date
-        var guessTimes: Int16
-        var name: String
-        var spentTime: Double
-        
-        init(date: Date, guessTimes: Int16, name: String, spentTime: Double) {
-            self.date = date
-            self.guessTimes = guessTimes
-            self.name = name
-            self.spentTime = spentTime
-        }
-    }
-    
     private final class RecordLoaderSpy: RecordLoader {
         var stub: [PlayerRecord]
         private(set) var loadCallCount = 0
@@ -158,12 +144,6 @@ private struct CellViewModel {
     let name: String
     let guessCount: String
     let guessTime: String
-}
-
-private extension User {
-    func toModel(guessTime: String) -> CellViewModel {
-        CellViewModel(name: name, guessCount: guessTimes.description, guessTime: guessTime)
-    }
 }
 
 private extension PlayerRecord {
