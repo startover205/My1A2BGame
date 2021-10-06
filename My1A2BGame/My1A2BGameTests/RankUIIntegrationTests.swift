@@ -38,7 +38,7 @@ class RankUIIntegrationTests: XCTestCase {
         XCTAssertEqual(basicRecordLoader.loadCallCount, 3, "Expect a loading request on tapping other segments")
     }
     
-    func test_loadRecordsCompletion_rendersSuccessfullyLoadedRecords() {
+    func test_loadRecordsCompletion_rendersSuccessfullyLoadedRecordsAndPlaceholderForEmptyRecords() {
         let placeholder = CellViewModel(name: "-----", guessCount: "--", guessTime: "--:--:--")
         let record0 = makeRecord(name: "a name", guessCount: 10, guessTime: 300)
         let record1 = makeRecord(name: "another name", guessCount: 13, guessTime: 123.3)
