@@ -22,7 +22,7 @@ public final class RankUIComposer {
             requestAdvancedRecord: requestAdvancedRecords)
         presentationAdapter.presenter = RankPresenter(rankView: rankViewAdapter)
         
-        rankController.onRefresh = presentationAdapter.refresh
+        rankController.loadRank = presentationAdapter.refresh
         
         return rankController
     }
@@ -68,9 +68,9 @@ final class RankViewAdapter: RankView {
     
     func display(_ viewModel: RankViewModel) {
         if viewModel.records.isEmpty {
-            controller?.tableModels = [PlaceholderRecordCellController()]
+            controller?.tableModel = [PlaceholderRecordCellController()]
         } else {
-            controller?.tableModels = viewModel.records.map {
+            controller?.tableModel = viewModel.records.map {
                 ModelRecordCellController(model: $0, formatter: guessTimeFormatter)
             }
         }

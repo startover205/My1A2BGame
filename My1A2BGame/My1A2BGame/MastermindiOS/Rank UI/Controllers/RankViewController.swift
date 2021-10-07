@@ -77,10 +77,10 @@ public class RankViewController: UIViewController {
     @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private(set) public weak var tableView: UITableView!
     
-    var tableModels = [RecordCellController]() {
+    var tableModel = [RecordCellController]() {
         didSet { tableView.reloadData() }
     }
-    var onRefresh: ((_ isAdvancedVersion: Bool) -> Void)?
+    var loadRank: ((_ isAdvancedVersion: Bool) -> Void)?
 
     var isAdvancedVersion: Bool {
         return gameTypeSegmentedControl.selectedSegmentIndex == 1
@@ -89,11 +89,11 @@ public class RankViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        onRefresh?(isAdvancedVersion)
+        loadRank?(isAdvancedVersion)
     }
     
     @IBAction func didChangeScope(_ sender: Any) {
-        onRefresh?(isAdvancedVersion)
+        loadRank?(isAdvancedVersion)
     }
 }
 
@@ -101,13 +101,13 @@ extension RankViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableModels.count
+        tableModel.count
     }
 }
 
 
 extension RankViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableModels[indexPath.row].view(in: tableView)
+        tableModel[indexPath.row].view(in: tableView)
     }
 }
