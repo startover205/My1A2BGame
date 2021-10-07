@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PlayerRecord: Equatable {
+public struct PlayerRecord: Equatable, Hashable {
     public let playerName: String
     public let guessCount: Int
     public let guessTime: TimeInterval
