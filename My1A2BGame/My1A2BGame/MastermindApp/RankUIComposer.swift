@@ -88,10 +88,10 @@ final class RankViewAdapter: RankView {
     
     func display(_ viewModel: RankViewModel) {
         if viewModel.records.isEmpty {
-            controller?.tableModel = [ModelRecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: nil).viewModel)]
+            controller?.tableModel = [RecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: nil).viewModel)]
         } else {
             controller?.tableModel = viewModel.records.map {
-                ModelRecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: $0).viewModel)
+                RecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: $0).viewModel)
             }
         }
     }

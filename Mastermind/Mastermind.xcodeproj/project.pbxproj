@@ -15,7 +15,7 @@
 		C012C510270EC7CE00A3A7AD /* PlayerRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50F270EC7CE00A3A7AD /* PlayerRecordCell.swift */; };
 		C012C512270EC86400A3A7AD /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C511270EC86300A3A7AD /* RankViewController.swift */; };
 		C012C516270EC87E00A3A7AD /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C012C515270EC87E00A3A7AD /* Rank.storyboard */; };
-		C012C51A270ECC5F00A3A7AD /* ModelRecordCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C519270ECC5F00A3A7AD /* ModelRecordCellController.swift */; };
+		C012C51A270ECC5F00A3A7AD /* RecordCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C519270ECC5F00A3A7AD /* RecordCellController.swift */; };
 		C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */; };
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
@@ -186,7 +186,7 @@
 		C012C50F270EC7CE00A3A7AD /* PlayerRecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRecordCell.swift; sourceTree = "<group>"; };
 		C012C511270EC86300A3A7AD /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
 		C012C515270EC87E00A3A7AD /* Rank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
-		C012C519270ECC5F00A3A7AD /* ModelRecordCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRecordCellController.swift; sourceTree = "<group>"; };
+		C012C519270ECC5F00A3A7AD /* RecordCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellController.swift; sourceTree = "<group>"; };
 		C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenterTests.swift; sourceTree = "<group>"; };
 		C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenter.swift; sourceTree = "<group>"; };
 		C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptLocalizationTests.swift; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				C012C511270EC86300A3A7AD /* RankViewController.swift */,
-				C012C519270ECC5F00A3A7AD /* ModelRecordCellController.swift */,
+				C012C519270ECC5F00A3A7AD /* RecordCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1169,7 +1169,7 @@
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,
-				C012C51A270ECC5F00A3A7AD /* ModelRecordCellController.swift in Sources */,
+				C012C51A270ECC5F00A3A7AD /* RecordCellController.swift in Sources */,
 				C012C510270EC7CE00A3A7AD /* PlayerRecordCell.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
 				C0CA890E26F70BD80025F9E5 /* HintViewController.swift in Sources */,

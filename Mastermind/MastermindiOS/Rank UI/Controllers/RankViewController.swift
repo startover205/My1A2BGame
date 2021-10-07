@@ -26,7 +26,7 @@ public class RankViewController: UIViewController {
     @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private(set) public weak var tableView: UITableView!
     
-    public var tableModel = [ModelRecordCellController]() {
+    public var tableModel = [RecordCellController]() {
         didSet { tableView.reloadData() }
     }
     public var loadRank: ((_ isAdvancedVersion: Bool) -> Void)?
