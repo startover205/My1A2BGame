@@ -45,11 +45,9 @@ final class RankPresentationAdapter {
     }
     
     func loadRank(isAdvancedVersion: Bool) {
-        if isAdvancedVersion {
-            presenter?.didLoad(records: try! requestAdvancedRecord.load())
-        } else {
-            presenter?.didLoad(records: try! requestRecords.load())
-        }
+        let records = isAdvancedVersion ? try! requestAdvancedRecord.load() : try! requestRecords.load()
+        
+        presenter?.didLoad(records)
     }
 }
 

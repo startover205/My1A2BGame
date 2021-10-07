@@ -9,26 +9,6 @@
 import UIKit
 import Mastermind
 
-public struct RankViewModel {
-    public let records: [PlayerRecord]
-}
-
-public protocol RankView {
-    func display(_ viewModel: RankViewModel)
-}
-
-public final class RankPresenter {
-    private let rankView: RankView
-    
-    public init(rankView: RankView) {
-        self.rankView = rankView
-    }
-    
-    func didLoad(records: [PlayerRecord]) {
-        rankView.display(RankViewModel(records: records))
-    }
-}
-
 struct RecordViewModel {
     let record: PlayerRecord
 }
