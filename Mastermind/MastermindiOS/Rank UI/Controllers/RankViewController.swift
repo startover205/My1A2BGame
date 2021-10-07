@@ -10,7 +10,7 @@ import UIKit
 
 public class RankViewController: UIViewController {
 
-    @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
+    private(set) public var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private(set) public weak var tableView: UITableView!
     
     public var tableModel = [RecordCellController]() {
@@ -22,13 +22,23 @@ public class RankViewController: UIViewController {
         return gameTypeSegmentedControl.selectedSegmentIndex == 1
     }
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let items = ["Basic", "Advanced"]
+        gameTypeSegmentedControl = UISegmentedControl(items: items)
+        gameTypeSegmentedControl.selectedSegmentIndex = 0
+        gameTypeSegmentedControl.addTarget(self, action: #selector(didChangeScope(_:)), for: .valueChanged)
+        navigationItem.titleView = gameTypeSegmentedControl
+    }
+    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         loadRank?(isAdvancedVersion)
     }
     
-    @IBAction func didChangeScope(_ sender: Any) {
+    @objc func didChangeScope(_ sender: Any) {
         loadRank?(isAdvancedVersion)
     }
 }

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Top 10-->
+        <!--Rank View Controller-->
         <scene sceneID="wFZ-rw-zsi">
             <objects>
                 <viewController storyboardIdentifier="RankViewController" id="SXi-6e-0j4" customClass="RankViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -142,21 +142,7 @@
                             <constraint firstItem="5Xb-VD-77G" firstAttribute="top" secondItem="OZb-8S-KlP" secondAttribute="top" constant="20" id="Hyq-dL-bDb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Top 10" largeTitleDisplayMode="always" id="mdu-oj-jm1">
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tEs-R5-l2e">
-                            <rect key="frame" x="126.5" y="6" width="161" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Basic"/>
-                                <segment title="Advanced"/>
-                            </segments>
-                            <connections>
-                                <action selector="didChangeScope:" destination="SXi-6e-0j4" eventType="valueChanged" id="jg3-cH-1lE"/>
-                            </connections>
-                        </segmentedControl>
-                    </navigationItem>
                     <connections>
-                        <outlet property="gameTypeSegmentedControl" destination="tEs-R5-l2e" id="QEO-in-wRC"/>
                         <outlet property="tableView" destination="Qfv-wE-e4c" id="jtO-NN-EDr"/>
                     </connections>
                 </viewController>
