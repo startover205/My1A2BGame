@@ -7,19 +7,6 @@
 //
 
 import UIKit
-import Mastermind
-
-public struct RecordViewModel {
-    public init(playerName: String, guessCount: String, guessTime: String) {
-        self.playerName = playerName
-        self.guessCount = guessCount
-        self.guessTime = guessTime
-    }
-    
-    public let playerName: String
-    public let guessCount: String
-    public let guessTime: String
-}
 
 public class RankViewController: UIViewController {
 
