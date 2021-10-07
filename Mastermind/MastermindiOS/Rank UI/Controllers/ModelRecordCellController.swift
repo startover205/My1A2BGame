@@ -9,21 +9,19 @@ import UIKit
 import Mastermind
 
 public final class ModelRecordCellController: RecordCellController {
-    private let model: PlayerRecord
+    private let viewModel: RecordViewModel
     private var cell: PlayerRecordCell?
-    private let formatter: DateComponentsFormatter
     
-    public init(model: PlayerRecord, formatter: DateComponentsFormatter) {
-        self.model = model
-        self.formatter = formatter
+    public init(viewModel: RecordViewModel) {
+        self.viewModel = viewModel
     }
     
     public func view(in tableView: UITableView) -> UITableViewCell {
         cell = (tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell") as! PlayerRecordCell)
         
-        cell?.playerNameLabel.text = model.playerName
-        cell?.guessCountLabel.text = model.guessCount.description
-        cell?.guessTimeLabel.text = formatter.string(from: model.guessTime)
+        cell?.playerNameLabel.text = viewModel.playerName
+        cell?.guessCountLabel.text = viewModel.guessCount
+        cell?.guessTimeLabel.text = viewModel.guessTime
         return cell!
     }
 }

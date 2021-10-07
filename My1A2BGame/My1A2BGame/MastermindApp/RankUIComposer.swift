@@ -52,6 +52,27 @@ final class RankPresentationAdapter {
     }
 }
 
+final class PlayerRecordPresenter {
+    internal init(formatter: DateComponentsFormatter, record: PlayerRecord?) {
+        self.formatter = formatter
+        self.record = record
+    }
+    
+    private let formatter: DateComponentsFormatter
+    private let record: PlayerRecord?
+    
+    var viewModel: RecordViewModel {
+        let playerName = record?.playerName ?? "-----"
+        let guessCount = record?.guessCount.description ?? "--"
+        var guessTimeString = "--:--:--"
+        if let guessTime = record?.guessTime, let formattedString =  formatter.string(from: guessTime) {
+            guessTimeString = formattedString
+        }
+        
+        return RecordViewModel(playerName: playerName, guessCount: guessCount, guessTime: guessTimeString)
+    }
+}
+
 final class RankViewAdapter: RankView {
     private weak var controller: RankViewController?
     private let guessTimeFormatter: DateComponentsFormatter = {
@@ -67,10 +88,10 @@ final class RankViewAdapter: RankView {
     
     func display(_ viewModel: RankViewModel) {
         if viewModel.records.isEmpty {
-            controller?.tableModel = [PlaceholderRecordCellController()]
+            controller?.tableModel = [ModelRecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: nil).viewModel)]
         } else {
             controller?.tableModel = viewModel.records.map {
-                ModelRecordCellController(model: $0, formatter: guessTimeFormatter)
+                ModelRecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: $0).viewModel)
             }
         }
     }
