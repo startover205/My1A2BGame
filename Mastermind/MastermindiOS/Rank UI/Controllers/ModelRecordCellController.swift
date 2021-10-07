@@ -8,7 +8,7 @@
 import UIKit
 import Mastermind
 
-public final class ModelRecordCellController: RecordCellController {
+public final class ModelRecordCellController {
     private let viewModel: RecordViewModel
     private var cell: PlayerRecordCell?
     
