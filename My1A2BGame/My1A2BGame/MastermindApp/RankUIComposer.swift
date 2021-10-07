@@ -14,7 +14,7 @@ public final class RankUIComposer {
     private init() {}
     
     public static func rankComposedWith(requestRecords: RecordLoader, requestAdvancedRecords: RecordLoader) -> RankViewController {
-        let rankController = makeRankViewController(title: "Rank")
+        let rankController = makeRankViewController()
         
         let rankViewAdapter = RankViewAdapter(controller: rankController)
         
@@ -28,9 +28,8 @@ public final class RankUIComposer {
         return rankController
     }
     
-    private static func makeRankViewController(title: String) -> RankViewController {
+    private static func makeRankViewController() -> RankViewController {
         let controller = UIStoryboard(name: "Rank", bundle: .init(for: RankViewController.self)).instantiateViewController(withIdentifier: "RankViewController") as! RankViewController
-        controller.title = title
         return controller
     }
 }
