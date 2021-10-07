@@ -308,7 +308,6 @@
 			children = (
 				C0A1F48226B62A1100536D73 /* More UI */,
 				C0A1F48A26B62A1100536D73 /* Shared UI */,
-				C0A1F49726B62A1200536D73 /* Rank UI */,
 			);
 			path = MastermindiOS;
 			sourceTree = "<group>";
@@ -364,29 +363,6 @@
 			children = (
 				C0A1F49226B62A1200536D73 /* AlertAdController.strings */,
 				C0A1F49426B62A1200536D73 /* AlertAdController.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		C0A1F49726B62A1200536D73 /* Rank UI */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F49826B62A1200536D73 /* Controllers */,
-				C0A1F49B26B62A1200536D73 /* Views */,
-			);
-			path = "Rank UI";
-			sourceTree = "<group>";
-		};
-		C0A1F49826B62A1200536D73 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		C0A1F49B26B62A1200536D73 /* Views */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
