@@ -16,6 +16,7 @@
 		C012C512270EC86400A3A7AD /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C511270EC86300A3A7AD /* RankViewController.swift */; };
 		C012C516270EC87E00A3A7AD /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C012C515270EC87E00A3A7AD /* Rank.storyboard */; };
 		C012C51A270ECC5F00A3A7AD /* RecordCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C519270ECC5F00A3A7AD /* RecordCellController.swift */; };
+		C012C51E270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C51D270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift */; };
 		C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */; };
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
@@ -187,6 +188,7 @@
 		C012C511270EC86300A3A7AD /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
 		C012C515270EC87E00A3A7AD /* Rank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
 		C012C519270ECC5F00A3A7AD /* RecordCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellController.swift; sourceTree = "<group>"; };
+		C012C51D270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRecordPresenterTests.swift; sourceTree = "<group>"; };
 		C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenterTests.swift; sourceTree = "<group>"; };
 		C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenter.swift; sourceTree = "<group>"; };
 		C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptLocalizationTests.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */,
+				C012C51D270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift */,
 			);
 			path = "Rank Presentation";
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 				C013800527019A9700D3F4A8 /* HelperPresenterTests.swift in Sources */,
 				C092A1ED270A9C7D0097F0CD /* LoseLocalizationTests.swift in Sources */,
 				C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */,
+				C012C51E270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift in Sources */,
 				C0640DA326C80C63008BA4A1 /* CoreDataRecordStoreTests.swift in Sources */,
 				C0BF9A6A26DC67D4006BD7C1 /* RandomDigitSecretGeneratorTests.swift in Sources */,
 				C09FAB9426C6524F00A15B9E /* RecordStoreTestHelpers.swift in Sources */,
