@@ -8,11 +8,23 @@
 import XCTest
 import Mastermind
 
+public struct RankViewModel {
+    public let records: [PlayerRecord]
+}
+
+public protocol RankView {
+    func display(_ viewModel: RankViewModel)
+}
+
 public final class RankPresenter {
-    let view: Any
+    let rankView: RankView
     
-    init(view: Any) {
-        self.view = view
+    init(rankView: RankView) {
+        self.rankView = rankView
+    }
+    
+    func didLoad(_ records: [PlayerRecord]) {
+        rankView.display(RankViewModel(records: records))
     }
 }
 
@@ -24,11 +36,20 @@ class RankPresenterTests: XCTestCase {
         XCTAssertTrue(view.receivedMessages.isEmpty)
     }
     
+    func test_didLoadRecords_displaysRecords() {
+        let records = [anyPlayerRecord().model, anyPlayerRecord().model]
+        let (sut, view) = makeSUT()
+        
+        sut.didLoad(records)
+        
+        XCTAssertEqual(view.receivedMessages, [.display(records: records)])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RankPresenter, ViewSpy) {
         let view = ViewSpy()
-        let sut = RankPresenter(view: view)
+        let sut = RankPresenter(rankView: view)
         
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -36,11 +57,15 @@ class RankPresenterTests: XCTestCase {
         return (sut, view)
     }
  
-    private final class ViewSpy {
+    private final class ViewSpy: RankView {
         enum Message: Hashable {
-            
+            case display(records: [PlayerRecord])
         }
         
         private(set) var receivedMessages = Set<Message>()
+        
+        func display(_ viewModel: RankViewModel) {
+            receivedMessages.insert(.display(records: viewModel.records))
+        }
     }
 }
