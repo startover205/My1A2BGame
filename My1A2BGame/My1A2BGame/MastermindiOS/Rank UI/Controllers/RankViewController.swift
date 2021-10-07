@@ -24,7 +24,7 @@ public final class RankPresenter {
         self.rankView = rankView
     }
     
-    func didRefresh(records: [PlayerRecord]) {
+    func didLoad(records: [PlayerRecord]) {
         rankView.display(RankViewModel(records: records))
     }
 }
