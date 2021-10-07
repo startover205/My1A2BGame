@@ -34,7 +34,7 @@ public final class RankUIComposer {
     }
 }
 
-final class RankPresentationAdapter {
+private final class RankPresentationAdapter {
     private let requestRecords: RecordLoader
     private let requestAdvancedRecord: RecordLoader
     var presenter: RankPresenter?
@@ -51,7 +51,7 @@ final class RankPresentationAdapter {
     }
 }
 
-final class RankViewAdapter: RankView {
+private final class RankViewAdapter: RankView {
     private weak var controller: RankViewController?
     private let guessTimeFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()

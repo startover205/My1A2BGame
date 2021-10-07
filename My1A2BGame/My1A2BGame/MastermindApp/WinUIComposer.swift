@@ -136,7 +136,7 @@ public final class WinUIComposer {
     }
 }
 
-final class RecordPresentationAdapter: RecordViewControllerDelegate {
+private final class RecordPresentationAdapter: RecordViewControllerDelegate {
     private let loader: RecordLoader
     private let guessCount: Int
     private let guessTime: TimeInterval
