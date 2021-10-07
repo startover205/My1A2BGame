@@ -13,45 +13,6 @@ struct RecordViewModel {
     let record: PlayerRecord
 }
 
-public protocol RecordCellController {
-    func view(in tableView: UITableView) -> UITableViewCell
-}
-
-public final class ModelRecordCellController: RecordCellController {
-    private let model: PlayerRecord
-    private var cell: PlayerRecordCell?
-    private let formatter: DateComponentsFormatter
-    
-    public init(model: PlayerRecord, formatter: DateComponentsFormatter) {
-        self.model = model
-        self.formatter = formatter
-    }
-    
-    public func view(in tableView: UITableView) -> UITableViewCell {
-        cell = (tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell") as! PlayerRecordCell)
-        
-        cell?.playerNameLabel.text = model.playerName
-        cell?.guessCountLabel.text = model.guessCount.description
-        cell?.guessTimeLabel.text = formatter.string(from: model.guessTime)
-        return cell!
-    }
-}
-
-public final class PlaceholderRecordCellController: RecordCellController {
-    private var cell: PlayerRecordCell?
-    
-    public init() {}
-    
-    public func view(in tableView: UITableView) -> UITableViewCell {
-        cell = (tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell") as! PlayerRecordCell)
-        
-        cell?.playerNameLabel.text = "-----"
-        cell?.guessCountLabel.text = "--"
-        cell?.guessTimeLabel.text = "--:--:--"
-        return cell!
-    }
-}
-
 public class RankViewController: UIViewController {
 
     @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
