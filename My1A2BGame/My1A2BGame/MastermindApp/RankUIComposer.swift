@@ -22,7 +22,7 @@ public final class RankUIComposer {
             requestAdvancedRecord: requestAdvancedRecords)
         presentationAdapter.presenter = RankPresenter(rankView: rankViewAdapter)
         
-        rankController.loadRank = presentationAdapter.refresh
+        rankController.loadRank = presentationAdapter.loadRank
         
         return rankController
     }
@@ -44,7 +44,7 @@ final class RankPresentationAdapter {
         self.requestAdvancedRecord = requestAdvancedRecord
     }
     
-    func refresh(isAdvancedVersion: Bool) {
+    func loadRank(isAdvancedVersion: Bool) {
         if isAdvancedVersion {
             presenter?.didRefresh(records: try! requestAdvancedRecord.load())
         } else {
