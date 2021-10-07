@@ -8,40 +8,6 @@
 import XCTest
 import Mastermind
 
-public struct RecordViewModel {
-    public init(playerName: String, guessCount: String, guessTime: String) {
-        self.playerName = playerName
-        self.guessCount = guessCount
-        self.guessTime = guessTime
-    }
-    
-    public let playerName: String
-    public let guessCount: String
-    public let guessTime: String
-}
-
-
-public final class PlayerRecordPresenter {
-    private let formatter: DateComponentsFormatter
-    private let record: PlayerRecord?
-    
-    public init(formatter: DateComponentsFormatter, record: PlayerRecord?) {
-        self.formatter = formatter
-        self.record = record
-    }
-    
-    public var viewModel: RecordViewModel {
-        let playerName = record?.playerName ?? "-----"
-        let guessCount = record?.guessCount.description ?? "--"
-        var guessTimeString = "--:--:--"
-        if let guessTime = record?.guessTime, let formattedString =  formatter.string(from: guessTime) {
-            guessTimeString = formattedString
-        }
-        
-        return RecordViewModel(playerName: playerName, guessCount: guessCount, guessTime: guessTimeString)
-    }
-}
-
 class PlayerRecordPresenterTests: XCTestCase {
     
     func test_NonNilRecord_providesViewModelWithValidData() {

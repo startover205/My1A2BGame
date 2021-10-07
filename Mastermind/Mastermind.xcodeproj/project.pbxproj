@@ -17,6 +17,8 @@
 		C012C516270EC87E00A3A7AD /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C012C515270EC87E00A3A7AD /* Rank.storyboard */; };
 		C012C51A270ECC5F00A3A7AD /* RecordCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C519270ECC5F00A3A7AD /* RecordCellController.swift */; };
 		C012C51E270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C51D270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift */; };
+		C012C520270EFE6B00A3A7AD /* PlayerRecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C51F270EFE6B00A3A7AD /* PlayerRecordPresenter.swift */; };
+		C012C522270EFE8500A3A7AD /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C521270EFE8500A3A7AD /* RecordViewModel.swift */; };
 		C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */; };
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
@@ -189,6 +191,8 @@
 		C012C515270EC87E00A3A7AD /* Rank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
 		C012C519270ECC5F00A3A7AD /* RecordCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellController.swift; sourceTree = "<group>"; };
 		C012C51D270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRecordPresenterTests.swift; sourceTree = "<group>"; };
+		C012C51F270EFE6B00A3A7AD /* PlayerRecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRecordPresenter.swift; sourceTree = "<group>"; };
+		C012C521270EFE8500A3A7AD /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenterTests.swift; sourceTree = "<group>"; };
 		C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenter.swift; sourceTree = "<group>"; };
 		C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptLocalizationTests.swift; sourceTree = "<group>"; };
@@ -427,6 +431,8 @@
 				C012C508270EC6A600A3A7AD /* RankPresenter.swift */,
 				C012C50A270EC6B600A3A7AD /* RankViewModel.swift */,
 				C012C50C270EC6CB00A3A7AD /* RankView.swift */,
+				C012C51F270EFE6B00A3A7AD /* PlayerRecordPresenter.swift */,
+				C012C521270EFE8500A3A7AD /* RecordViewModel.swift */,
 			);
 			path = "Rank Presentation";
 			sourceTree = "<group>";
@@ -1221,6 +1227,7 @@
 				C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */,
 				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
 				C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */,
+				C012C520270EFE6B00A3A7AD /* PlayerRecordPresenter.swift in Sources */,
 				C0753725270048D400865482 /* GiveUpAlertViewModel.swift in Sources */,
 				C0CA88F026F6D1700025F9E5 /* MatchResultViewModel.swift in Sources */,
 				C0CEAEE02705AAD40029B221 /* WinPresenter.swift in Sources */,
@@ -1230,6 +1237,7 @@
 				C0BF9A6426DC630B006BD7C1 /* DigitSecret.swift in Sources */,
 				C0753723270048B300865482 /* UtteranceView.swift in Sources */,
 				C07E289826C8A70900967DAA /* CoreDataRecordStore.swift in Sources */,
+				C012C522270EFE8500A3A7AD /* RecordViewModel.swift in Sources */,
 				C0C01EF026FB0EEE00794856 /* MatchResult.swift in Sources */,
 				C04DA16026CA4DBC00E6C6B8 /* LocalPlayerRecord.swift in Sources */,
 				C092A1EA270A9C330097F0CD /* LoseViewModel.swift in Sources */,
