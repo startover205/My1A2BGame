@@ -12,7 +12,7 @@
         <!--Top 10-->
         <scene sceneID="wFZ-rw-zsi">
             <objects>
-                <viewController storyboardIdentifier="RankViewController" id="SXi-6e-0j4" customClass="RankViewController" customModule="My1A2BGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RankViewController" id="SXi-6e-0j4" customClass="RankViewController" customModule="MastermindiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0ue-QW-GYh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,7 +62,7 @@
                                         <rect key="frame" x="0.0" y="44" width="374" height="734"/>
                                         <color key="backgroundColor" name="MainBackgroundOffset"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerRecordCell" id="Zva-wi-m1O" customClass="PlayerRecordCell" customModule="My1A2BGame" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerRecordCell" id="Zva-wi-m1O" customClass="PlayerRecordCell" customModule="MastermindiOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="24.5" width="374" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zva-wi-m1O" id="rxf-yi-eCY">

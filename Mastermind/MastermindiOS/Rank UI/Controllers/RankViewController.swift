@@ -13,21 +13,21 @@ struct RecordViewModel {
     let record: PlayerRecord
 }
 
-protocol RecordCellController {
+public protocol RecordCellController {
     func view(in tableView: UITableView) -> UITableViewCell
 }
 
-final class ModelRecordCellController: RecordCellController {
+public final class ModelRecordCellController: RecordCellController {
     private let model: PlayerRecord
     private var cell: PlayerRecordCell?
     private let formatter: DateComponentsFormatter
     
-    init(model: PlayerRecord, formatter: DateComponentsFormatter) {
+    public init(model: PlayerRecord, formatter: DateComponentsFormatter) {
         self.model = model
         self.formatter = formatter
     }
     
-    func view(in tableView: UITableView) -> UITableViewCell {
+    public func view(in tableView: UITableView) -> UITableViewCell {
         cell = (tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell") as! PlayerRecordCell)
         
         cell?.playerNameLabel.text = model.playerName
@@ -37,12 +37,12 @@ final class ModelRecordCellController: RecordCellController {
     }
 }
 
-final class PlaceholderRecordCellController: RecordCellController {
+public final class PlaceholderRecordCellController: RecordCellController {
     private var cell: PlayerRecordCell?
     
-    init() {}
+    public init() {}
     
-    func view(in tableView: UITableView) -> UITableViewCell {
+    public func view(in tableView: UITableView) -> UITableViewCell {
         cell = (tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell") as! PlayerRecordCell)
         
         cell?.playerNameLabel.text = "-----"
@@ -57,10 +57,10 @@ public class RankViewController: UIViewController {
     @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private(set) public weak var tableView: UITableView!
     
-    var tableModel = [RecordCellController]() {
+    public var tableModel = [RecordCellController]() {
         didSet { tableView.reloadData() }
     }
-    var loadRank: ((_ isAdvancedVersion: Bool) -> Void)?
+    public var loadRank: ((_ isAdvancedVersion: Bool) -> Void)?
 
     var isAdvancedVersion: Bool {
         return gameTypeSegmentedControl.selectedSegmentIndex == 1

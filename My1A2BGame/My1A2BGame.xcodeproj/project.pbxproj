@@ -49,9 +49,6 @@
 		C0A1F4AC26B62A1200536D73 /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */; };
 		C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49226B62A1200536D73 /* AlertAdController.strings */; };
 		C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49426B62A1200536D73 /* AlertAdController.xib */; };
-		C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F49926B62A1200536D73 /* RankViewController.swift */; };
-		C0A1F4B226B62A1200536D73 /* PlayerRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F49A26B62A1200536D73 /* PlayerRecordCell.swift */; };
-		C0A1F4B326B62A1200536D73 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49C26B62A1200536D73 /* Rank.storyboard */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
@@ -148,9 +145,6 @@
 		C0A1F49326B62A1200536D73 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
 		C0A1F49526B62A1200536D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertAdController.xib; sourceTree = "<group>"; };
 		C0A1F49626B62A1200536D73 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
-		C0A1F49926B62A1200536D73 /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
-		C0A1F49A26B62A1200536D73 /* PlayerRecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRecordCell.swift; sourceTree = "<group>"; };
-		C0A1F49C26B62A1200536D73 /* Rank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
 		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -386,8 +380,6 @@
 		C0A1F49826B62A1200536D73 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F49926B62A1200536D73 /* RankViewController.swift */,
-				C0A1F49A26B62A1200536D73 /* PlayerRecordCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -395,7 +387,6 @@
 		C0A1F49B26B62A1200536D73 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F49C26B62A1200536D73 /* Rank.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -519,7 +510,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0A1F4B326B62A1200536D73 /* Rank.storyboard in Resources */,
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C07C16B62702F94E00451060 /* RewardAd.strings in Resources */,
 				C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */,
@@ -590,7 +580,6 @@
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
-				C0A1F4B226B62A1200536D73 /* PlayerRecordCell.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* QuestionsTableViewController.swift in Sources */,
 				C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */,
 				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,
@@ -601,7 +590,6 @@
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
-				C0A1F4B126B62A1200536D73 /* RankViewController.swift in Sources */,
 				C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */,

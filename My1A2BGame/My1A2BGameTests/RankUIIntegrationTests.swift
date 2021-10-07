@@ -8,6 +8,7 @@
 
 import XCTest
 import Mastermind
+import MastermindiOS
 import My1A2BGame
 
 class RankUIIntegrationTests: XCTestCase {

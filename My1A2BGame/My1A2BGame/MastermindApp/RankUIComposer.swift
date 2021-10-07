@@ -8,6 +8,7 @@
 
 import UIKit
 import Mastermind
+import MastermindiOS
 
 public final class RankUIComposer {
     private init() {}

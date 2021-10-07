@@ -12,6 +12,9 @@
 		C012C509270EC6A600A3A7AD /* RankPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C508270EC6A600A3A7AD /* RankPresenter.swift */; };
 		C012C50B270EC6B600A3A7AD /* RankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50A270EC6B600A3A7AD /* RankViewModel.swift */; };
 		C012C50D270EC6CB00A3A7AD /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50C270EC6CB00A3A7AD /* RankView.swift */; };
+		C012C510270EC7CE00A3A7AD /* PlayerRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50F270EC7CE00A3A7AD /* PlayerRecordCell.swift */; };
+		C012C512270EC86400A3A7AD /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C511270EC86300A3A7AD /* RankViewController.swift */; };
+		C012C516270EC87E00A3A7AD /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C012C515270EC87E00A3A7AD /* Rank.storyboard */; };
 		C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */; };
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
@@ -179,6 +182,9 @@
 		C012C508270EC6A600A3A7AD /* RankPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankPresenter.swift; sourceTree = "<group>"; };
 		C012C50A270EC6B600A3A7AD /* RankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewModel.swift; sourceTree = "<group>"; };
 		C012C50C270EC6CB00A3A7AD /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
+		C012C50F270EC7CE00A3A7AD /* PlayerRecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRecordCell.swift; sourceTree = "<group>"; };
+		C012C511270EC86300A3A7AD /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
+		C012C515270EC87E00A3A7AD /* Rank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
 		C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenterTests.swift; sourceTree = "<group>"; };
 		C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenter.swift; sourceTree = "<group>"; };
 		C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptLocalizationTests.swift; sourceTree = "<group>"; };
@@ -420,6 +426,32 @@
 			path = "Rank Presentation";
 			sourceTree = "<group>";
 		};
+		C012C50E270EC7BE00A3A7AD /* Rank UI */ = {
+			isa = PBXGroup;
+			children = (
+				C012C513270EC86600A3A7AD /* Controllers */,
+				C012C514270EC86F00A3A7AD /* Views */,
+			);
+			path = "Rank UI";
+			sourceTree = "<group>";
+		};
+		C012C513270EC86600A3A7AD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C012C511270EC86300A3A7AD /* RankViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C012C514270EC86F00A3A7AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C012C50F270EC7CE00A3A7AD /* PlayerRecordCell.swift */,
+				C012C515270EC87E00A3A7AD /* Rank.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C033BC2726C7A5A700E6AA77 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +481,7 @@
 				C09841F526D0D53500AE72F4 /* Win UI */,
 				C098420B26D4C72F00AE72F4 /* Lose UI */,
 				C0D5DE8B26E9F3E5001F4A0D /* Reward Ad UI */,
+				C012C50E270EC7BE00A3A7AD /* Rank UI */,
 				C034AA7926B67CEA006AABE6 /* Info.plist */,
 			);
 			path = MastermindiOS;
@@ -1046,6 +1079,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C012C516270EC87E00A3A7AD /* Rank.storyboard in Resources */,
 				C034AAA426B6804A006AABE6 /* Game.storyboard in Resources */,
 				C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */,
 				C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */,
@@ -1128,9 +1162,11 @@
 				C0CA891226F70C8E0025F9E5 /* InstructionViewController.swift in Sources */,
 				C0CA891426F70CE40025F9E5 /* GuessNumberViewController.swift in Sources */,
 				C034AAA126B6800F006AABE6 /* NumberInputViewController.swift in Sources */,
+				C012C512270EC86400A3A7AD /* RankViewController.swift in Sources */,
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,
+				C012C510270EC7CE00A3A7AD /* PlayerRecordCell.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
 				C0CA890E26F70BD80025F9E5 /* HintViewController.swift in Sources */,
 			);
