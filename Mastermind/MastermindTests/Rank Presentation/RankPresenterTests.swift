@@ -8,26 +8,6 @@
 import XCTest
 import Mastermind
 
-public struct RankViewModel {
-    public let records: [PlayerRecord]
-}
-
-public protocol RankView {
-    func display(_ viewModel: RankViewModel)
-}
-
-public final class RankPresenter {
-    let rankView: RankView
-    
-    init(rankView: RankView) {
-        self.rankView = rankView
-    }
-    
-    func didLoad(_ records: [PlayerRecord]) {
-        rankView.display(RankViewModel(records: records))
-    }
-}
-
 class RankPresenterTests: XCTestCase {
     
     func test_init_doesNotMessageView() {

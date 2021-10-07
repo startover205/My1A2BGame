@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C000341B270C3AAD0037E5B8 /* GameSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */; };
 		C012C505270EC2FD00A3A7AD /* RankPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */; };
+		C012C509270EC6A600A3A7AD /* RankPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C508270EC6A600A3A7AD /* RankPresenter.swift */; };
+		C012C50B270EC6B600A3A7AD /* RankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50A270EC6B600A3A7AD /* RankViewModel.swift */; };
+		C012C50D270EC6CB00A3A7AD /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50C270EC6CB00A3A7AD /* RankView.swift */; };
 		C0137FF327016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */; };
 		C0137FF727016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */; };
 		C0137FFA27018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */; };
@@ -173,6 +176,9 @@
 /* Begin PBXFileReference section */
 		C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneViewModel.swift; sourceTree = "<group>"; };
 		C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankPresenterTests.swift; sourceTree = "<group>"; };
+		C012C508270EC6A600A3A7AD /* RankPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankPresenter.swift; sourceTree = "<group>"; };
+		C012C50A270EC6B600A3A7AD /* RankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewModel.swift; sourceTree = "<group>"; };
+		C012C50C270EC6CB00A3A7AD /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
 		C0137FF227016DBB00D3F4A8 /* VoicePromptOnAlertPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenterTests.swift; sourceTree = "<group>"; };
 		C0137FF627016FC100D3F4A8 /* VoicePromptOnAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptOnAlertPresenter.swift; sourceTree = "<group>"; };
 		C0137FF927018FDE00D3F4A8 /* VoicePromptLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePromptLocalizationTests.swift; sourceTree = "<group>"; };
@@ -404,6 +410,16 @@
 			path = "Rank Presentation";
 			sourceTree = "<group>";
 		};
+		C012C507270EC69000A3A7AD /* Rank Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C012C508270EC6A600A3A7AD /* RankPresenter.swift */,
+				C012C50A270EC6B600A3A7AD /* RankViewModel.swift */,
+				C012C50C270EC6CB00A3A7AD /* RankView.swift */,
+			);
+			path = "Rank Presentation";
+			sourceTree = "<group>";
+		};
 		C033BC2726C7A5A700E6AA77 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,6 +575,7 @@
 				C092A1E6270A9C160097F0CD /* Lose Presentation */,
 				C04B5B1A26C608B40056DDA8 /* Game Record */,
 				C0D5DE6226E9B80C001F4A0D /* Game Record Presentation */,
+				C012C507270EC69000A3A7AD /* Rank Presentation */,
 				C0D5DE6E26E9EF5B001F4A0D /* App Review */,
 				C034C54126B5431300F6166E /* Info.plist */,
 			);
@@ -1146,6 +1163,7 @@
 				C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */,
 				C0D5DE8A26E9F2A6001F4A0D /* AppReviewController.swift in Sources */,
 				C0D5DE6A26E9B977001F4A0D /* RecordSaveView.swift in Sources */,
+				C012C509270EC6A600A3A7AD /* RankPresenter.swift in Sources */,
 				C000341B270C3AAD0037E5B8 /* GameSceneViewModel.swift in Sources */,
 				C04B5B2426C6221F0056DDA8 /* RecordStore.swift in Sources */,
 				C07537212700486900865482 /* VoiceMessageViewModel.swift in Sources */,
@@ -1155,6 +1173,7 @@
 				C0558B79270AA82C0049B9FE /* NumberInputPresenter.swift in Sources */,
 				C033BC2E26C7A5EC00E6AA77 /* Model.xcdatamodeld in Sources */,
 				C07C16BE2703273E00451060 /* InstructionPresenter.swift in Sources */,
+				C012C50D270EC6CB00A3A7AD /* RankView.swift in Sources */,
 				C0558B7B270AA83B0049B9FE /* NumberInputViewModel.swift in Sources */,
 				C0BF9A6C26DC7287006BD7C1 /* RandomDigitSecretGenerator.swift in Sources */,
 				C04B5B2626C622480056DDA8 /* LocalRecordLoader.swift in Sources */,
@@ -1176,6 +1195,7 @@
 				C09FAB9826C67CF200A15B9E /* RankValidationPolicy.swift in Sources */,
 				C0D5DE7226E9F028001F4A0D /* AppReviewHandler.swift in Sources */,
 				C092A1E8270A9C2C0097F0CD /* LosePresenter.swift in Sources */,
+				C012C50B270EC6B600A3A7AD /* RankViewModel.swift in Sources */,
 				C033BC2D26C7A5EC00E6AA77 /* ModelAdvanced.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
