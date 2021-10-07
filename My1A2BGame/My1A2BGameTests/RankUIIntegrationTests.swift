@@ -47,7 +47,7 @@ class RankUIIntegrationTests: XCTestCase {
         let sut = makeSUT(requestRecords: recordLoader)
         
         sut.loadViewIfNeeded()
-        assertThat(sut, isRendering: [placeholder])
+        assertThat(sut, isRendering: [])
 
         sut.viewWillAppear(false)
         assertThat(sut, isRendering: [placeholder])

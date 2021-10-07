@@ -15,10 +15,12 @@ public final class RankUIComposer {
     public static func rankComposedWith(requestRecords: RecordLoader, requestAdvancedRecords: RecordLoader) -> RankViewController {
         let rankController = makeRankViewController(title: "Rank")
         
+        let rankViewAdapter = RankViewAdapter(controller: rankController)
+        
         let presentationAdapter = RankPresentationAdapter(
             requestRecords: requestRecords,
             requestAdvancedRecord: requestAdvancedRecords)
-        presentationAdapter.presenter = RankPresenter(rankView: WeakRefVirtualProxy(rankController))
+        presentationAdapter.presenter = RankPresenter(rankView: rankViewAdapter)
         
         rankController.onRefresh = presentationAdapter.refresh
         
@@ -47,6 +49,30 @@ final class RankPresentationAdapter {
             presenter?.didRefresh(records: try! requestAdvancedRecord.load())
         } else {
             presenter?.didRefresh(records: try! requestRecords.load())
+        }
+    }
+}
+
+final class RankViewAdapter: RankView {
+    private weak var controller: RankViewController?
+    private let guessTimeFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
+    
+    init(controller: RankViewController) {
+        self.controller = controller
+    }
+    
+    func display(_ viewModel: RankViewModel) {
+        if viewModel.records.isEmpty {
+            controller?.tableModels = [PlaceholderRecordCellController()]
+        } else {
+            controller?.tableModels = viewModel.records.map {
+                ModelRecordCellController(model: $0, formatter: guessTimeFormatter)
+            }
         }
     }
 }

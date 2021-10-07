@@ -29,12 +29,57 @@ public final class RankPresenter {
     }
 }
 
+struct RecordViewModel {
+    let record: PlayerRecord
+}
+
+protocol RecordCellController {
+    func view(in tableView: UITableView) -> UITableViewCell
+}
+
+final class ModelRecordCellController: RecordCellController {
+    private let model: PlayerRecord
+    private var cell: PlayerRecordCell?
+    private let formatter: DateComponentsFormatter
+    
+    init(model: PlayerRecord, formatter: DateComponentsFormatter) {
+        self.model = model
+        self.formatter = formatter
+    }
+    
+    func view(in tableView: UITableView) -> UITableViewCell {
+        cell = (tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell") as! PlayerRecordCell)
+        
+        cell?.playerNameLabel.text = model.playerName
+        cell?.guessCountLabel.text = model.guessCount.description
+        cell?.guessTimeLabel.text = formatter.string(from: model.guessTime)
+        return cell!
+    }
+}
+
+final class PlaceholderRecordCellController: RecordCellController {
+    private var cell: PlayerRecordCell?
+    
+    init() {}
+    
+    func view(in tableView: UITableView) -> UITableViewCell {
+        cell = (tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell") as! PlayerRecordCell)
+        
+        cell?.playerNameLabel.text = "-----"
+        cell?.guessCountLabel.text = "--"
+        cell?.guessTimeLabel.text = "--:--:--"
+        return cell!
+    }
+}
+
 public class RankViewController: UIViewController {
 
     @IBOutlet private(set) public weak var gameTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private(set) public weak var tableView: UITableView!
     
-    var objects = [PlayerRecord]()
+    var tableModels = [RecordCellController]() {
+        didSet { tableView.reloadData() }
+    }
     var onRefresh: ((_ isAdvancedVersion: Bool) -> Void)?
 
     var isAdvancedVersion: Bool {
@@ -52,57 +97,17 @@ public class RankViewController: UIViewController {
     }
 }
 
-extension RankViewController: RankView {
-    public func display(_ viewModel: RankViewModel) {
-        objects = viewModel.records
-        tableView.reloadData()
-    }
-}
-
 extension RankViewController: UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+    public func numberOfSections(in tableView: UITableView) -> Int { 1 }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if objects.isEmpty {
-            return 1
-        }
-        return objects.count
+        tableModels.count
     }
 }
 
 
 extension RankViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerRecordCell", for: indexPath) as! PlayerRecordCell
-        
-        guard !objects.isEmpty else {
-            cell.playerNameLabel.text = "-----"
-            cell.guessCountLabel.text = "--"
-            cell.guessTimeLabel.text = "--:--:--"
-            return cell
-        }
-        
-        let record = objects[indexPath.row]
-        cell.playerNameLabel.text = record.playerName
-        cell.guessCountLabel.text = record.guessCount.description
-        cell.guessTimeLabel.text = getTimeString(with: record.guessTime)
-        return cell
+        tableModels[indexPath.row].view(in: tableView)
     }
 }
-
-private extension RankViewController {
-    func getTimeString(with timeInterval: Double) -> String {
-        let time = Int(timeInterval)
-        var hour = time / 3600
-        let second = time % 60
-        let minute = time / 60 % 60
-        
-        if hour > 99 {
-            hour = 99
-        }
-        
-        return String(format:"%02d:%02d:%02d", hour, minute, second)
-    }
-}
-
