@@ -10,16 +10,6 @@ import UIKit
 import Mastermind
 import MastermindiOS
 
-public struct Rank {
-    public let title: String
-    public let loader: RecordLoader
-    
-    public init(title: String, loader: RecordLoader) {
-        self.title = title
-        self.loader = loader
-    }
-}
-
 public final class RankUIComposer {
     private init() {}
     
