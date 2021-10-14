@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C000341B270C3AAD0037E5B8 /* GameSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */; };
+		C00B4AE12718087E0099D754 /* RankTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00B4AE02718087E0099D754 /* RankTypeSelectionViewController.swift */; };
 		C012C505270EC2FD00A3A7AD /* RankPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */; };
 		C012C509270EC6A600A3A7AD /* RankPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C508270EC6A600A3A7AD /* RankPresenter.swift */; };
 		C012C50B270EC6B600A3A7AD /* RankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50A270EC6B600A3A7AD /* RankViewModel.swift */; };
@@ -182,6 +183,7 @@
 
 /* Begin PBXFileReference section */
 		C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneViewModel.swift; sourceTree = "<group>"; };
+		C00B4AE02718087E0099D754 /* RankTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankPresenterTests.swift; sourceTree = "<group>"; };
 		C012C508270EC6A600A3A7AD /* RankPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankPresenter.swift; sourceTree = "<group>"; };
 		C012C50A270EC6B600A3A7AD /* RankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewModel.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 			children = (
 				C012C511270EC86300A3A7AD /* RankViewController.swift */,
 				C012C519270ECC5F00A3A7AD /* RecordCellController.swift */,
+				C00B4AE02718087E0099D754 /* RankTypeSelectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1181,6 +1184,7 @@
 				C012C51A270ECC5F00A3A7AD /* RecordCellController.swift in Sources */,
 				C012C510270EC7CE00A3A7AD /* PlayerRecordCell.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
+				C00B4AE12718087E0099D754 /* RankTypeSelectionViewController.swift in Sources */,
 				C0CA890E26F70BD80025F9E5 /* HintViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
