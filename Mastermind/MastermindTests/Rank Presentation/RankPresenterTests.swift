@@ -25,6 +25,15 @@ class RankPresenterTests: XCTestCase {
         XCTAssertEqual(view.receivedMessages, [.display(records: records)])
     }
     
+    func test_didLoadWithError_displaysErrorMessage() {
+        let error = anyNSError()
+        let (sut, view) = makeSUT()
+        
+        sut.didLoad(with: error)
+        
+        XCTAssertEqual(view.receivedMessages, [.display(errorMessage: localized("LOAD_ERROR"), errorDescription: error.localizedDescription)])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RankPresenter, ViewSpy) {
@@ -36,16 +45,31 @@ class RankPresenterTests: XCTestCase {
         
         return (sut, view)
     }
+    
+    private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+        let table = "Rank"
+        let bundle = Bundle(for: RankPresenter.self)
+        let value = bundle.localizedString(forKey: key, value: nil, table: table)
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        return value
+    }
  
     private final class ViewSpy: RankView {
         enum Message: Hashable {
             case display(records: [PlayerRecord])
+            case display(errorMessage: String, errorDescription: String)
         }
         
         private(set) var receivedMessages = Set<Message>()
         
         func display(_ viewModel: RankViewModel) {
             receivedMessages.insert(.display(records: viewModel.records))
+        }
+        
+        func display(_ viewModel: LoadRankErrorViewModel) {
+            receivedMessages.insert(.display(errorMessage: viewModel.message, errorDescription: viewModel.description))
         }
     }
 }

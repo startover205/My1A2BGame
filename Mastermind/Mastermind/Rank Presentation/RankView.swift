@@ -7,4 +7,5 @@
 
 public protocol RankView {
     func display(_ viewModel: RankViewModel)
+    func display(_ viewModel: LoadRankErrorViewModel)
 }
