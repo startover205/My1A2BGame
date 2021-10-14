@@ -70,7 +70,8 @@ class RankUIIntegrationTests: XCTestCase {
     
     private func makeSUT(requestRecords: RecordLoader = RecordLoaderSpy(stub: []), requestAdvancedRecords: RecordLoader = RecordLoaderSpy(stub: []), file: StaticString = #filePath, line: UInt = #line) -> RankViewController {
         
-        let sut = RankUIComposer.rankComposedWith(requestRecords: requestRecords, requestAdvancedRecords: requestAdvancedRecords)
+        let sut = RankUIComposer.rankComposedWith(ranks: [Rank(title: "Basic", loader: requestRecords),
+                                                          Rank(title: "Advanced", loader: requestAdvancedRecords)])
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

@@ -10,18 +10,29 @@ import UIKit
 import Mastermind
 import MastermindiOS
 
+public struct Rank {
+    public let title: String
+    public let loader: RecordLoader
+    
+    public init(title: String, loader: RecordLoader) {
+        self.title = title
+        self.loader = loader
+    }
+}
+
 public final class RankTypeSelectionViewController {
     private(set) lazy var view: UISegmentedControl = {
-        let items = ["Basic", "Advanced"]
-        let view = UISegmentedControl(items: items)
+        let view = UISegmentedControl(items: types)
         view.selectedSegmentIndex = 0
         view.addTarget(self, action: #selector(didChangeSelection), for: .valueChanged)
         return view
     }()
     
+    private let types: [String]
     private let onChangeSelection: (Int) -> Void?
     
-    public init(onChangeSelection: @escaping (Int) -> Void) {
+    public init(types: [String], onChangeSelection: @escaping (Int) -> Void) {
+        self.types = types
         self.onChangeSelection = onChangeSelection
     }
     
@@ -34,17 +45,15 @@ public final class RankTypeSelectionViewController {
 public final class RankUIComposer {
     private init() {}
     
-    public static func rankComposedWith(requestRecords: RecordLoader, requestAdvancedRecords: RecordLoader) -> RankViewController {
+    public static func rankComposedWith(ranks: [Rank]) -> RankViewController {
         let rankController = makeRankViewController()
         
         let rankViewAdapter = RankViewAdapter(controller: rankController)
         
-        let presentationAdapter = RankPresentationAdapter(
-            requestRecords: requestRecords,
-            requestAdvancedRecord: requestAdvancedRecords)
+        let presentationAdapter = RankPresentationAdapter(ranks: ranks)
         presentationAdapter.presenter = RankPresenter(rankView: rankViewAdapter)
         
-        let rankTypeSelectionController = RankTypeSelectionViewController(onChangeSelection: presentationAdapter.loadRank(from:))
+        let rankTypeSelectionController = RankTypeSelectionViewController(types: ranks.map(\.title), onChangeSelection: presentationAdapter.loadRank)
         rankController.navigationItem.titleView = rankTypeSelectionController.view
         
         rankController.loadRank = {
@@ -61,17 +70,15 @@ public final class RankUIComposer {
 }
 
 private final class RankPresentationAdapter {
-    private let requestRecords: RecordLoader
-    private let requestAdvancedRecord: RecordLoader
+    private let ranks: [Rank]
     var presenter: RankPresenter?
     
-    init(requestRecords: RecordLoader, requestAdvancedRecord: RecordLoader) {
-        self.requestRecords = requestRecords
-        self.requestAdvancedRecord = requestAdvancedRecord
+    init(ranks: [Rank]) {
+        self.ranks = ranks
     }
     
     @objc func loadRank(from index: Int) {
-        let records = index == 1 ? try! requestAdvancedRecord.load() : try! requestRecords.load()
+        let records = try! ranks[index].loader.load()
         
         presenter?.didLoad(records)
     }

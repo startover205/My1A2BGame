@@ -115,9 +115,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ("Rank", "baseline_format_list_numbered_black_24pt"),
             ("More", "baseline_settings_black_24pt"),
         ]
-        let rankNav = UINavigationController(rootViewController: RankUIComposer.rankComposedWith(requestRecords: basicRecordLoader, requestAdvancedRecords: advancedRecordLoader))
+        let rankNav = UINavigationController(rootViewController: RankUIComposer.rankComposedWith(ranks: [
+                                                                                                    Rank(title: "Basic",
+                                                                                                         loader: basicRecordLoader),
+                                                                                                    Rank(title: "Advanced",
+                                                                                                         loader: advancedRecordLoader)]))
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
-
+        
         tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
         
         tabController.tabBar.items!.enumerated().forEach { index, item in
