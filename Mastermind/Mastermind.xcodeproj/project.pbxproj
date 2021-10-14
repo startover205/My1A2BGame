@@ -10,8 +10,9 @@
 		C000341B270C3AAD0037E5B8 /* GameSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */; };
 		C00B4AE12718087E0099D754 /* RankTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00B4AE02718087E0099D754 /* RankTypeSelectionViewController.swift */; };
 		C00B4AE3271809060099D754 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00B4AE2271809060099D754 /* Rank.swift */; };
-		C00B4AE5271810020099D754 /* Rank.strings in Resources */ = {isa = PBXBuildFile; fileRef = C00B4AE4271810020099D754 /* Rank.strings */; };
 		C00B4AE7271810410099D754 /* LoadRankErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00B4AE6271810410099D754 /* LoadRankErrorViewModel.swift */; };
+		C00B4AE92718107C0099D754 /* RankLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00B4AE82718107C0099D754 /* RankLocalizationTests.swift */; };
+		C00B4AEA271810AD0099D754 /* Rank.strings in Resources */ = {isa = PBXBuildFile; fileRef = C00B4AEC271810AD0099D754 /* Rank.strings */; };
 		C012C505270EC2FD00A3A7AD /* RankPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */; };
 		C012C509270EC6A600A3A7AD /* RankPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C508270EC6A600A3A7AD /* RankPresenter.swift */; };
 		C012C50B270EC6B600A3A7AD /* RankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C50A270EC6B600A3A7AD /* RankViewModel.swift */; };
@@ -188,8 +189,11 @@
 		C000341A270C3AAD0037E5B8 /* GameSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneViewModel.swift; sourceTree = "<group>"; };
 		C00B4AE02718087E0099D754 /* RankTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		C00B4AE2271809060099D754 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
-		C00B4AE4271810020099D754 /* Rank.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Rank.strings; sourceTree = "<group>"; };
 		C00B4AE6271810410099D754 /* LoadRankErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRankErrorViewModel.swift; sourceTree = "<group>"; };
+		C00B4AE82718107C0099D754 /* RankLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankLocalizationTests.swift; sourceTree = "<group>"; };
+		C00B4AEB271810AD0099D754 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Rank.strings; sourceTree = "<group>"; };
+		C00B4AED271810B00099D754 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Rank.strings"; sourceTree = "<group>"; };
+		C00B4AEE271810B10099D754 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Rank.strings"; sourceTree = "<group>"; };
 		C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankPresenterTests.swift; sourceTree = "<group>"; };
 		C012C508270EC6A600A3A7AD /* RankPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankPresenter.swift; sourceTree = "<group>"; };
 		C012C50A270EC6B600A3A7AD /* RankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewModel.swift; sourceTree = "<group>"; };
@@ -428,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				C012C504270EC2FD00A3A7AD /* RankPresenterTests.swift */,
+				C00B4AE82718107C0099D754 /* RankLocalizationTests.swift */,
 				C012C51D270EDC4B00A3A7AD /* PlayerRecordPresenterTests.swift */,
 			);
 			path = "Rank Presentation";
@@ -443,7 +448,7 @@
 				C00B4AE6271810410099D754 /* LoadRankErrorViewModel.swift */,
 				C012C51F270EFE6B00A3A7AD /* PlayerRecordPresenter.swift */,
 				C012C521270EFE8500A3A7AD /* RecordViewModel.swift */,
-				C00B4AE4271810020099D754 /* Rank.strings */,
+				C00B4AEC271810AD0099D754 /* Rank.strings */,
 			);
 			path = "Rank Presentation";
 			sourceTree = "<group>";
@@ -1150,7 +1155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C00B4AE5271810020099D754 /* Rank.strings in Resources */,
+				C00B4AEA271810AD0099D754 /* Rank.strings in Resources */,
 				C057097D2706C0BB005D2603 /* Win.strings in Resources */,
 				C0137FFB2701902A00D3F4A8 /* VoicePrompt.strings in Resources */,
 				C09D16E927044C84002F49A3 /* Record.strings in Resources */,
@@ -1284,6 +1289,7 @@
 				C09FAB9026C63F8700A15B9E /* SharedTestHelpers.swift in Sources */,
 				C04B5B2026C609830056DDA8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C012C505270EC2FD00A3A7AD /* RankPresenterTests.swift in Sources */,
+				C00B4AE92718107C0099D754 /* RankLocalizationTests.swift in Sources */,
 				C013800C27019C1600D3F4A8 /* HelperLocalizationTests.swift in Sources */,
 				C0F984F226FC58A1001DAB38 /* GamePresenterTests.swift in Sources */,
 				C09D16E827044C49002F49A3 /* RecordLocalizationTests.swift in Sources */,
@@ -1328,6 +1334,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C00B4AEC271810AD0099D754 /* Rank.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C00B4AEB271810AD0099D754 /* en */,
+				C00B4AED271810B00099D754 /* zh-Hans */,
+				C00B4AEE271810B10099D754 /* zh-Hant */,
+			);
+			name = Rank.strings;
+			sourceTree = "<group>";
+		};
 		C0137FFD2701902A00D3F4A8 /* VoicePrompt.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
