@@ -10,13 +10,32 @@ import UIKit
 import Mastermind
 import MastermindiOS
 
+public final class RankTypeSelectionViewController {
+    private(set) lazy var view: UISegmentedControl = {
+        let items = ["Basic", "Advanced"]
+        let view = UISegmentedControl(items: items)
+        view.selectedSegmentIndex = 0
+        view.addTarget(self, action: #selector(didChangeSelection), for: .valueChanged)
+        return view
+    }()
+    
+    private let onChangeSelection: (Int) -> Void?
+    
+    public init(onChangeSelection: @escaping (Int) -> Void) {
+        self.onChangeSelection = onChangeSelection
+    }
+    
+    @objc func didChangeSelection(sender: UISegmentedControl) {
+        onChangeSelection(sender.selectedSegmentIndex)
+    }
+}
+
+
 public final class RankUIComposer {
     private init() {}
     
     public static func rankComposedWith(requestRecords: RecordLoader, requestAdvancedRecords: RecordLoader) -> RankViewController {
         let rankController = makeRankViewController()
-        let items = ["Basic", "Advanced"]
-        
         
         let rankViewAdapter = RankViewAdapter(controller: rankController)
         
@@ -25,13 +44,11 @@ public final class RankUIComposer {
             requestAdvancedRecord: requestAdvancedRecords)
         presentationAdapter.presenter = RankPresenter(rankView: rankViewAdapter)
         
-        let gameTypeSegmentedControl = UISegmentedControl(items: items)
-        gameTypeSegmentedControl.selectedSegmentIndex = 0
-        gameTypeSegmentedControl.addTarget(presentationAdapter, action: #selector(presentationAdapter.loadRank(sender:)), for: .valueChanged)
-        rankController.navigationItem.titleView = gameTypeSegmentedControl
+        let rankTypeSelectionController = RankTypeSelectionViewController(onChangeSelection: presentationAdapter.loadRank(from:))
+        rankController.navigationItem.titleView = rankTypeSelectionController.view
         
-        rankController.loadRank = { [unowned gameTypeSegmentedControl] in
-            presentationAdapter.loadRank(sender: gameTypeSegmentedControl)
+        rankController.loadRank = {
+            presentationAdapter.loadRank(from: rankTypeSelectionController.view.selectedSegmentIndex)
         }
         
         return rankController
@@ -53,8 +70,8 @@ private final class RankPresentationAdapter {
         self.requestAdvancedRecord = requestAdvancedRecord
     }
     
-    @objc func loadRank(sender: UISegmentedControl) {
-        let records = sender.selectedSegmentIndex == 1 ? try! requestAdvancedRecord.load() : try! requestRecords.load()
+    @objc func loadRank(from index: Int) {
+        let records = index == 1 ? try! requestAdvancedRecord.load() : try! requestRecords.load()
         
         presenter?.didLoad(records)
     }
