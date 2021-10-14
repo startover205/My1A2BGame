@@ -15,6 +15,8 @@ public final class RankUIComposer {
     
     public static func rankComposedWith(requestRecords: RecordLoader, requestAdvancedRecords: RecordLoader) -> RankViewController {
         let rankController = makeRankViewController()
+        let items = ["Basic", "Advanced"]
+        
         
         let rankViewAdapter = RankViewAdapter(controller: rankController)
         
@@ -23,7 +25,14 @@ public final class RankUIComposer {
             requestAdvancedRecord: requestAdvancedRecords)
         presentationAdapter.presenter = RankPresenter(rankView: rankViewAdapter)
         
-        rankController.loadRank = presentationAdapter.loadRank
+        let gameTypeSegmentedControl = UISegmentedControl(items: items)
+        gameTypeSegmentedControl.selectedSegmentIndex = 0
+        gameTypeSegmentedControl.addTarget(presentationAdapter, action: #selector(presentationAdapter.loadRank(sender:)), for: .valueChanged)
+        rankController.navigationItem.titleView = gameTypeSegmentedControl
+        
+        rankController.loadRank = { [unowned gameTypeSegmentedControl] in
+            presentationAdapter.loadRank(sender: gameTypeSegmentedControl)
+        }
         
         return rankController
     }
@@ -44,8 +53,8 @@ private final class RankPresentationAdapter {
         self.requestAdvancedRecord = requestAdvancedRecord
     }
     
-    func loadRank(isAdvancedVersion: Bool) {
-        let records = isAdvancedVersion ? try! requestAdvancedRecord.load() : try! requestRecords.load()
+    @objc func loadRank(sender: UISegmentedControl) {
+        let records = sender.selectedSegmentIndex == 1 ? try! requestAdvancedRecord.load() : try! requestRecords.load()
         
         presenter?.didLoad(records)
     }

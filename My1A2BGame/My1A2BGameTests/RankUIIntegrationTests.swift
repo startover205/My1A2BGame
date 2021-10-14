@@ -130,10 +130,11 @@ private extension RankViewController {
     }
     
     func simulateChangeSegmentIndex(to index: Int) {
-        let currentIndex = gameTypeSegmentedControl.selectedSegmentIndex
-        gameTypeSegmentedControl.selectedSegmentIndex = index
+        let segmentedControl = navigationItem.titleView as? UISegmentedControl
+        let currentIndex = segmentedControl?.selectedSegmentIndex
+        segmentedControl?.selectedSegmentIndex = index
         if index != currentIndex {
-            gameTypeSegmentedControl.sendActions(for: .valueChanged)
+            segmentedControl?.sendActions(for: .valueChanged)
         }
     }
     
