@@ -295,14 +295,6 @@ class WinUIIntegrationTests: XCTestCase {
         return value
     }
     
-    private func clearModalPresentationReference(_ sut: UIViewController) {
-        let exp = expectation(description: "wait for dismiss")
-        sut.dismiss(animated: false) {
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 3)
-    }
-    
     private final class UIViewControllerSpy: UIViewController {
         var presentCallCount = 0
         

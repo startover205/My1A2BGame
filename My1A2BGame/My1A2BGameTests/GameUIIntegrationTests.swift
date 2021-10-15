@@ -473,14 +473,6 @@ class GameUIIntegrationTests: XCTestCase {
         return value
     }
     
-    private func clearModalPresentationReference(_ sut: UIViewController) {
-        let exp = expectation(description: "wait for dismiss")
-        sut.dismiss(animated: false) {
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 3)
-    }
-    
     private final class ReplenishChanceDelegateSpy: ReplenishChanceDelegate {
         private(set) var completions = [((Int) -> Void)]()
         
