@@ -18,15 +18,21 @@ public final class RankPresenter {
         NSLocalizedString("LOAD_ERROR",
                           tableName: "Rank",
                           bundle: Bundle(for: RankPresenter.self),
-                          comment: "Error message when erro while loading rank.")
+                          comment: "Error message when error while loading rank.")
     }
-
+    
+    public static var loadErrorMessageDismissAction: String {
+        NSLocalizedString("LOAD_ERROR_DISMISS_ACTION",
+                          tableName: "Rank",
+                          bundle: Bundle(for: RankPresenter.self),
+                          comment: "Button to dismiss the load error message.")
+    }
     
     public func didLoad(_ records: [PlayerRecord]) {
         rankView.display(RankViewModel(records: records))
     }
     
     public func didLoad(with error: Error) {
-        rankView.display(LoadRankErrorViewModel(message: Self.loadError, description: error.localizedDescription))
+        rankView.display(LoadRankErrorViewModel(message: Self.loadError, description: error.localizedDescription, dismissAction: Self.loadErrorMessageDismissAction))
     }
 }

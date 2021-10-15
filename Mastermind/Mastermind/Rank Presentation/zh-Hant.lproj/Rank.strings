@@ -1,2 +1,4 @@
 
 "LOAD_ERROR" = "無法讀取排名";
+
+"LOAD_ERROR_DISMISS_ACTION" = "確認";

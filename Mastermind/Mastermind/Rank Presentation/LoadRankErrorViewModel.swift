@@ -8,4 +8,5 @@
 public struct LoadRankErrorViewModel {
     public let message: String
     public let description: String
+    public let dismissAction: String
 }

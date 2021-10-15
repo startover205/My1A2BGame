@@ -1,2 +1,4 @@
 
 "LOAD_ERROR" = "Failed to Load Rank";
+
+"LOAD_ERROR_DISMISS_ACTION" = "OK";

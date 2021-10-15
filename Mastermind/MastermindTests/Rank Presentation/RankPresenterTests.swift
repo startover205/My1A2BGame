@@ -31,7 +31,7 @@ class RankPresenterTests: XCTestCase {
         
         sut.didLoad(with: error)
         
-        XCTAssertEqual(view.receivedMessages, [.display(errorMessage: localized("LOAD_ERROR"), errorDescription: error.localizedDescription)])
+        XCTAssertEqual(view.receivedMessages, [.display(errorMessage: localized("LOAD_ERROR"), errorDescription: error.localizedDescription, dismissAction: localized("LOAD_ERROR_DISMISS_ACTION"))])
     }
     
     // MARK: - Helpers
@@ -59,7 +59,7 @@ class RankPresenterTests: XCTestCase {
     private final class ViewSpy: RankView {
         enum Message: Hashable {
             case display(records: [PlayerRecord])
-            case display(errorMessage: String, errorDescription: String)
+            case display(errorMessage: String, errorDescription: String, dismissAction: String)
         }
         
         private(set) var receivedMessages = Set<Message>()
@@ -69,7 +69,7 @@ class RankPresenterTests: XCTestCase {
         }
         
         func display(_ viewModel: LoadRankErrorViewModel) {
-            receivedMessages.insert(.display(errorMessage: viewModel.message, errorDescription: viewModel.description))
+            receivedMessages.insert(.display(errorMessage: viewModel.message, errorDescription: viewModel.description, dismissAction: viewModel.dismissAction))
         }
     }
 }
