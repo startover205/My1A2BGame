@@ -14,7 +14,7 @@ public final class RankPresenter {
         self.rankView = rankView
     }
     
-    private static var loadError: String {
+    public static var loadError: String {
         NSLocalizedString("LOAD_ERROR",
                           tableName: "Rank",
                           bundle: Bundle(for: RankPresenter.self),
