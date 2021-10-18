@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Mastermind
 import MastermindiOS
 
 class GuessNumberViewControllerSnapshotTests: XCTestCase {
@@ -69,6 +70,7 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
             animations()
             completion?(true)
         }
+        controller.viewModel = GamePresenter.sceneViewModel
         controller.animate = animate
         
         controller.loadViewIfNeeded()
