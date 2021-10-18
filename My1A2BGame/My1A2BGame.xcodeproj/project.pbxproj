@@ -17,7 +17,6 @@
 		C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */; };
 		C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */; };
 		C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0259F08234AC7F000FE1F6A /* AdControl.swift */; };
-		C02FDE7F26F85AC0009D8E89 /* NumberInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02FDE7E26F85AC0009D8E89 /* NumberInputViewControllerTests.swift */; };
 		C034AAC626B690F3006AABE6 /* MastermindiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034AAC526B690F3006AABE6 /* MastermindiOS.framework */; };
 		C034AAC726B690F3006AABE6 /* MastermindiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C034AAC526B690F3006AABE6 /* MastermindiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0362D0C268C169200E6299B /* AppDelegateTests.swift */; };
@@ -111,7 +110,6 @@
 		C0196E98261C0DAB007D936C /* GoogleRewardAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdManager.swift; sourceTree = "<group>"; };
 		C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewController.swift; sourceTree = "<group>"; };
 		C0259F08234AC7F000FE1F6A /* AdControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdControl.swift; sourceTree = "<group>"; };
-		C02FDE7E26F85AC0009D8E89 /* NumberInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewControllerTests.swift; sourceTree = "<group>"; };
 		C034AAC526B690F3006AABE6 /* MastermindiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastermindiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0362D0C268C169200E6299B /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		C0570988270808A2005D2603 /* RankUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIComposer.swift; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
 				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
 				C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */,
-				C02FDE7E26F85AC0009D8E89 /* NumberInputViewControllerTests.swift */,
 				C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */,
 				C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */,
 				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
@@ -596,7 +593,6 @@
 				C01380132701A24200D3F4A8 /* RewardAdViewControllerTests.swift in Sources */,
 				C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */,
 				C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */,
-				C02FDE7F26F85AC0009D8E89 /* NumberInputViewControllerTests.swift in Sources */,
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
