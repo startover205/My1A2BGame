@@ -40,6 +40,7 @@
 		C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420426D4768500AE72F4 /* SharedTestHelpers.swift */; };
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
+		C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F318F271D20590038B18B /* UIViewControllerSpy.swift */; };
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
 		C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */; };
@@ -136,6 +137,7 @@
 		C098420426D4768500AE72F4 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
+		C09F318F271D20590038B18B /* UIViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerSpy.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
 		C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				C088A65026BE7855005FC389 /* UserDefaultsMock.swift */,
 				C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */,
 				C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */,
+				C09F318F271D20590038B18B /* UIViewControllerSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				C07C16AF2702F52B00451060 /* RewardAdPresenterTests.swift in Sources */,
 				C01380152701A8A400D3F4A8 /* RewardAdLoaderStub.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
+				C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */,
 				C09841FF26D0DE9100AE72F4 /* WinUIIntegrationTests.swift in Sources */,
 				C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */,
 			);

@@ -295,14 +295,6 @@ class WinUIIntegrationTests: XCTestCase {
         return value
     }
     
-    private final class UIViewControllerSpy: UIViewController {
-        var presentCallCount = 0
-        
-        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-            presentCallCount += 1
-        }
-    }
-    
     private final class RecordLoaderSpy: RecordLoader {
         enum Message: Equatable {
             case load
