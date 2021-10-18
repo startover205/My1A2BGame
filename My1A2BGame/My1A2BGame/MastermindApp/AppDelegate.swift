@@ -119,7 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                                                     Rank(title: "Basic",
                                                                                                          loader: basicRecordLoader),
                                                                                                     Rank(title: "Advanced",
-                                                                                                         loader: advancedRecordLoader)]))
+                                                                                                         loader: advancedRecordLoader)],
+                                                                                                 alertHost: tabController))
         let moreNav = UINavigationController(rootViewController: makeMoreVC())
         
         tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)

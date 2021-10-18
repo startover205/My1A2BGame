@@ -66,13 +66,29 @@ class RankUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00")])
     }
     
+    func test_loadRank_rendersErrorMessageOnError() {
+        let loadError = anyNSError()
+        let recordLoader = RecordLoaderSpy(stubbedError: loadError)
+        let hostVC = UIViewControllerSpy()
+        let sut = makeSUT(requestRecords: recordLoader, requestAdvancedRecords: recordLoader, hostVC: hostVC)
+        
+        sut.loadViewIfNeeded()
+        sut.viewWillAppear(false)
+        
+        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? UIAlertController)
+        XCTAssertEqual(alert?.title, RankPresenter.loadError)
+        XCTAssertEqual(alert?.message, loadError.localizedDescription)
+        XCTAssertEqual(alert?.actions.first?.title, RankPresenter.loadErrorMessageDismissAction)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(requestRecords: RecordLoader = RecordLoaderSpy(stub: []), requestAdvancedRecords: RecordLoader = RecordLoaderSpy(stub: []), file: StaticString = #filePath, line: UInt = #line) -> RankViewController {
-        
+    private func makeSUT(requestRecords: RecordLoader = RecordLoaderSpy(stub: []), requestAdvancedRecords: RecordLoader = RecordLoaderSpy(stub: []), hostVC: UIViewController = UIViewControllerSpy(), file: StaticString = #filePath, line: UInt = #line) -> RankViewController {
         let sut = RankUIComposer.rankComposedWith(ranks: [Rank(title: "Basic", loader: requestRecords),
-                                                          Rank(title: "Advanced", loader: requestAdvancedRecords)])
+                                                          Rank(title: "Advanced", loader: requestAdvancedRecords)],
+                                                  alertHost: hostVC)
         
+        trackForMemoryLeaks(hostVC, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
@@ -101,13 +117,19 @@ class RankUIIntegrationTests: XCTestCase {
     
     private final class RecordLoaderSpy: RecordLoader {
         var stub: [PlayerRecord]
+        private let stubbedError: Error?
         private(set) var loadCallCount = 0
         
-        init(stub: [PlayerRecord]) {
+        init(stub: [PlayerRecord] = [], stubbedError: Error? = nil) {
             self.stub = stub
+            self.stubbedError = stubbedError
         }
         
         func load() throws -> [PlayerRecord] {
+            if let error = stubbedError {
+                throw error
+            }
+            
             loadCallCount += 1
             return stub
         }

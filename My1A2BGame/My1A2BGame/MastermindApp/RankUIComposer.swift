@@ -13,10 +13,10 @@ import MastermindiOS
 public final class RankUIComposer {
     private init() {}
     
-    public static func rankComposedWith(ranks: [Rank]) -> RankViewController {
+    public static func rankComposedWith(ranks: [Rank], alertHost: UIViewController) -> RankViewController {
         let rankController = makeRankViewController()
         
-        let rankViewAdapter = RankViewAdapter(controller: rankController)
+        let rankViewAdapter = RankViewAdapter(controller: rankController, alertHost: alertHost)
         
         let presentationAdapter = RankPresentationAdapter(ranks: ranks)
         presentationAdapter.presenter = RankPresenter(rankView: rankViewAdapter)
@@ -46,14 +46,19 @@ private final class RankPresentationAdapter {
     }
     
     @objc func loadRank(from index: Int) {
-        let records = try! ranks[index].loader.load()
-        
-        presenter?.didLoad(records)
+        do {
+            let records = try ranks[index].loader.load()
+            
+            presenter?.didLoad(records)
+        } catch {
+            presenter?.didLoad(with: error)
+        }
     }
 }
 
 private final class RankViewAdapter: RankView {
-    private weak var controller: RankViewController?
+    private weak var viewController: RankViewController?
+    private weak var alertHost: UIViewController?
     private let guessTimeFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
@@ -61,21 +66,27 @@ private final class RankViewAdapter: RankView {
         return formatter
     }()
     
-    init(controller: RankViewController) {
-        self.controller = controller
+    init(controller: RankViewController, alertHost: UIViewController) {
+        self.viewController = controller
+        self.alertHost = alertHost
     }
     
     func display(_ viewModel: RankViewModel) {
         if viewModel.records.isEmpty {
-            controller?.tableModel = [RecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: nil).viewModel)]
+            viewController?.tableModel = [RecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: nil).viewModel)]
         } else {
-            controller?.tableModel = viewModel.records.map {
+            viewController?.tableModel = viewModel.records.map {
                 RecordCellController(viewModel: PlayerRecordPresenter(formatter: guessTimeFormatter, record: $0).viewModel)
             }
         }
     }
     
     func display(_ viewModel: LoadRankErrorViewModel) {
+        let alert = UIAlertController(title: viewModel.message, message: viewModel.description, preferredStyle: .alert)
+        let action = UIAlertAction(title: viewModel.dismissAction, style: .default, handler: nil)
         
+        alert.addAction(action)
+        
+        alertHost?.present(alert, animated: true)
     }
 }
