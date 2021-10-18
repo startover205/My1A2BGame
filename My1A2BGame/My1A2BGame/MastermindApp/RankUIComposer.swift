@@ -74,4 +74,8 @@ private final class RankViewAdapter: RankView {
             }
         }
     }
+    
+    func display(_ viewModel: LoadRankErrorViewModel) {
+        
+    }
 }
