@@ -550,15 +550,15 @@ private extension GuessNumberViewController {
     func simulateViewAppear() { viewWillAppear(false) }
     
     func simulateUserInitiateGuess() {
-        inputDelegate?.didFinishEntering(numberTexts: ["1", "2", "3", "4"])
+        inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: ["1", "2", "3", "4"])
     }
     
     func simulateGuess(with guess: [String]) {
-        inputDelegate?.didFinishEntering(numberTexts: guess)
+        inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: guess)
     }
     
     func simulateGuess(with guess: DigitSecret) {
-        inputDelegate?.didFinishEntering(numberTexts: guess.content.compactMap(String.init))
+        inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: guess.content.compactMap(String.init))
     }
     
     func simulateTapHelperButton() {

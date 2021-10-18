@@ -184,12 +184,13 @@ private extension GuessNumberViewController {
     private var inputDelegate: NumberInputViewControllerDelegate? { delegate as? GamePresentationAdapter }
     
     func simulatePlayerWin(with guess: DigitSecret){
-        inputDelegate?.didFinishEntering(numberTexts: guess.content.compactMap(String.init))
+        inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: guess.content.compactMap(String.init))
     }
     
     func simulateGameLose(guessChanceCount: Int) {
+        let inputVCFake = NumberInputViewController()
         for _ in 0..<guessChanceCount {
-            inputDelegate?.didFinishEntering(numberTexts: [])
+            inputDelegate?.numberInputViewController(inputVCFake, didFinishEntering: [])
         }
         
         RunLoop.current.run(until: Date())
@@ -208,7 +209,7 @@ private extension GuessNumberViewController {
     }
     
     func simulateOneWrongGuess() {
-        inputDelegate?.didFinishEntering(numberTexts: [])
+        inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: [])
     }
 }
 

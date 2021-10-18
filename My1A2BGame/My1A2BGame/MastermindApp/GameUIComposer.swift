@@ -151,7 +151,9 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
 }
 
 extension GamePresentationAdapter: NumberInputViewControllerDelegate {
-    public func didFinishEntering(numberTexts: [String]) {
+    public func numberInputViewController(_ numberInputViewController: NumberInputViewController, didFinishEntering numberTexts: [String]) {
+        numberInputViewController.presentingViewController?.dismiss(animated: true, completion: nil)
+        
         let guess = DigitSecret(digits: numberTexts.compactMap(Int.init))!
         let matchResult = DigitSecretMatcher.match(guess, with: secret)
         
