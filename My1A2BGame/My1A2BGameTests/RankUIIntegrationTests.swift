@@ -40,7 +40,7 @@ class RankUIIntegrationTests: XCTestCase {
     }
     
     func test_loadRecordsCompletion_rendersSuccessfullyLoadedRecordsAndPlaceholderForEmptyRecords() {
-        let placeholder = CellViewModel(name: "-----", guessCount: "--", guessTime: "--:--:--")
+        let placeholder = RecordViewModel(playerName: "-----", guessCount: "--", guessTime: "--:--:--")
         let record0 = makeRecord(name: "a name", guessCount: 10, guessTime: 300)
         let record1 = makeRecord(name: "another name", guessCount: 13, guessTime: 123.3)
         let record2 = makeRecord(name: "a name", guessCount: 1, guessTime: 5.1)
@@ -94,7 +94,7 @@ class RankUIIntegrationTests: XCTestCase {
         return sut
     }
     
-    private func assertThat(_ sut: RankViewController, isRendering records: [CellViewModel], file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: RankViewController, isRendering records: [RecordViewModel], file: StaticString = #filePath, line: UInt = #line) {
         guard sut.numberOfRenderedRecordViews() == records.count else {
             return XCTFail("Expected \(records.count) records, got \(sut.numberOfRenderedRecordViews()) instead.", file: file, line: line)
         }
@@ -104,9 +104,9 @@ class RankUIIntegrationTests: XCTestCase {
         }
     }
 
-    private func assertThat(_ sut: RankViewController, hasViewConfiguredFor record: CellViewModel, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: RankViewController, hasViewConfiguredFor record: RecordViewModel, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
         let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: index, section: 0)) as? PlayerRecordCell
-        XCTAssertEqual(cell?.playerNameLabel.text, record.name, "Expected `name` to be \(record.name) for image view at index (\(index))", file: file, line: line)
+        XCTAssertEqual(cell?.playerNameLabel.text, record.playerName, "Expected `name` to be \(record.playerName) for image view at index (\(index))", file: file, line: line)
         XCTAssertEqual(cell?.guessCountLabel.text, record.guessCount, "Expected `guessCount` to be \(record.guessCount) for image view at index (\(index))", file: file, line: line)
         XCTAssertEqual(cell?.guessTimeLabel.text, record.guessTime, "Expected `guessTime` to be \(record.guessTime) for image view at index (\(index))", file: file, line: line)
     }
@@ -164,15 +164,8 @@ private extension RankViewController {
     private var recordsSection: Int { 0 }
 }
 
-
-private struct CellViewModel {
-    let name: String
-    let guessCount: String
-    let guessTime: String
-}
-
 private extension PlayerRecord {
-    func toModel(guessTime: String) -> CellViewModel {
-        CellViewModel(name: playerName, guessCount: guessCount.description, guessTime: guessTime)
+    func toModel(guessTime: String) -> RecordViewModel {
+        RecordViewModel(playerName: playerName, guessCount: guessCount.description, guessTime: guessTime)
     }
 }
