@@ -33,7 +33,7 @@ class PromptAppReviewControllerTests: XCTestCase {
         let appVersion = "version1"
         let (sut, userDefaults) = makeSUT(appVersion: appVersion)
         
-        sut.askForAppReviewIfAppropriate()
+        sut.askForReviewIfAppropriate()
         
         XCTAssertEqual(userDefaults.receivedMessages, [.setLastPromptAppVersion(appVersion)])
     }
@@ -45,7 +45,7 @@ class PromptAppReviewControllerTests: XCTestCase {
         }, targetProcessCompletedCount: 1)
 
         userDefaults.completeProcessCompleteCountRetrieval(with: 0)
-        sut.askForAppReviewIfAppropriate()
+        sut.askForReviewIfAppropriate()
         XCTAssertEqual(reviewCallCount, 0)
     }
     
@@ -56,7 +56,7 @@ class PromptAppReviewControllerTests: XCTestCase {
         }, appVersion: "version1")
         
         userDefaults.completeAppVersionRetrieval(with: "version1")
-        sut.askForAppReviewIfAppropriate()
+        sut.askForReviewIfAppropriate()
         XCTAssertEqual(reviewCallCount, 0)
     }
     
@@ -68,7 +68,7 @@ class PromptAppReviewControllerTests: XCTestCase {
         
         userDefaults.completeProcessCompleteCountRetrieval(with: 10)
         userDefaults.completeAppVersionRetrieval(with: "version1")
-        sut.askForAppReviewIfAppropriate()
+        sut.askForReviewIfAppropriate()
         XCTAssertEqual(reviewCallCount, 1)
     }
     

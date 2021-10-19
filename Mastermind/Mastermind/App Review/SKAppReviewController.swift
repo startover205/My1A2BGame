@@ -7,7 +7,7 @@
 
 import StoreKit
 
-public class SKAppReviewController {
+public class SKAppReviewController: AppReviewController {
     private let userDefaults: UserDefaults
     private let processCompleteCountKey: String = "processCompleteCount"
     private let lastPromptAppVersionKey: String = "lastPromptAppVersion"
@@ -28,7 +28,7 @@ public class SKAppReviewController {
         userDefaults.set(processCompletedCount, forKey: processCompleteCountKey)
     }
     
-    public func askForAppReviewIfAppropriate() {
+    public func askForReviewIfAppropriate() {
         let processCompletedCount = userDefaults.integer(forKey: processCompleteCountKey)
         guard processCompletedCount >= targetProcessCompletedCount else { return }
         
