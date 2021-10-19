@@ -51,7 +51,21 @@ class CounterAppReviewControllerTests: XCTestCase {
         XCTAssertEqual(reviewCallCount, 0)
     }
     
-    func test_askForAppReviewIfAppropriate_requestReviewAndSetCurrentAppVersion_ifProcessCompleteCountEqualOrGreaterThanTargetCountAndCurrentVersionNotYetAskedForReview() {
+    func test_askForAppReviewIfAppropriate_requestReviewAndSetCurrentAppVersion_ifProcessCompleteCountEqualTargetCountAndCurrentVersionNotYetAskedForReview() {
+        let currentVersion = "version2"
+        var reviewCallCount = 0
+        let (sut, userDefaults) = makeSUT(askForReview: {
+            reviewCallCount += 1
+        }, targetProcessCompletedCount: 10, appVersion: currentVersion)
+        
+        userDefaults.completeProcessCompleteCountRetrieval(with: 9)
+        userDefaults.completeAppVersionRetrieval(with: "version1")
+        sut.askForReviewIfAppropriate()
+        XCTAssertEqual(reviewCallCount, 1, "Expect request review when call count is equal or greater than the target call count")
+        XCTAssertTrue(userDefaults.receivedMessages.contains(.setLastPromptAppVersion(currentVersion)), "Expect saving current version on request review")
+    }
+    
+    func test_askForAppReviewIfAppropriate_requestReviewAndSetCurrentAppVersion_ifProcessCompleteCountGreaterThanTargetCountAndCurrentVersionNotYetAskedForReview() {
         let currentVersion = "version2"
         var reviewCallCount = 0
         let (sut, userDefaults) = makeSUT(askForReview: {
