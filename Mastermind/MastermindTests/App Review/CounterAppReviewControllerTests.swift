@@ -29,15 +29,6 @@ class CounterAppReviewControllerTests: XCTestCase {
         XCTAssertEqual(userDefaults.receivedMessages, [.setProcessCount(1), .setProcessCount(2)])
     }
     
-    func test_askForAppReviewIfAppropriate_setCurrntAppVersionAsLastPromptAppVersionAfterAskForReview() {
-        let appVersion = "version1"
-        let (sut, userDefaults) = makeSUT(targetProcessCompletedCount: 0, appVersion: appVersion)
-        
-        sut.askForReviewIfAppropriate()
-        
-        XCTAssertTrue(userDefaults.receivedMessages.contains(.setLastPromptAppVersion(appVersion)))
-    }
-    
     func test_askForAppReviewIfAppropriate_doesNotRequestReviewIfProcessCompleteCountNotEqualOrGreaterThanTargetCount() {
         var reviewCallCount = 0
         let (sut, userDefaults) = makeSUT(askForReview: {
@@ -60,16 +51,18 @@ class CounterAppReviewControllerTests: XCTestCase {
         XCTAssertEqual(reviewCallCount, 0)
     }
     
-    func test_askForAppReviewIfAppropriate_requestReviewIfProcessCompleteCountEqualOrGreaterThanTargetCountAndCurrentVersionNotYetAskedForReview() {
+    func test_askForAppReviewIfAppropriate_requestReviewAndSetCurrentAppVersion_ifProcessCompleteCountEqualOrGreaterThanTargetCountAndCurrentVersionNotYetAskedForReview() {
+        let currentVersion = "version2"
         var reviewCallCount = 0
         let (sut, userDefaults) = makeSUT(askForReview: {
             reviewCallCount += 1
-        }, targetProcessCompletedCount: 10, appVersion: "version2")
+        }, targetProcessCompletedCount: 10, appVersion: currentVersion)
         
         userDefaults.completeProcessCompleteCountRetrieval(with: 10)
         userDefaults.completeAppVersionRetrieval(with: "version1")
         sut.askForReviewIfAppropriate()
-        XCTAssertEqual(reviewCallCount, 1)
+        XCTAssertEqual(reviewCallCount, 1, "Expect request review when call count is equal or greater than the target call count")
+        XCTAssertTrue(userDefaults.receivedMessages.contains(.setLastPromptAppVersion(currentVersion)), "Expect saving current version on request review")
     }
     
     // MARK: Helpers
