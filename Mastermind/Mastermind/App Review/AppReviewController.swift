@@ -5,6 +5,6 @@
 //  Created by Ming-Ta Yang on 2021/10/19.
 //
 
-protocol AppReviewController {
+public protocol AppReviewController {
     func askForReviewIfAppropriate()
 }
