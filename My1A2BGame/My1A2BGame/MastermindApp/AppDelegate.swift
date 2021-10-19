@@ -48,24 +48,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdManager.shared
     
+    private lazy var requestReview: () -> Void = {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            SKStoreReviewController.requestReview()
+        }
+    }
+    
+    private lazy var userDefaults: UserDefaults = .standard
+    
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
         return CounterAppReviewController(
-            userDefaults: .standard,
-            askForReview: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    SKStoreReviewController.requestReview()
-                }
-            },
+            userDefaults: userDefaults,
+            askForReview: requestReview,
             targetProcessCompletedCount: 3,
             appVersion: appVersion)
     }()
     
-    convenience init(secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader, appReviewController: AppReviewController) {
+    convenience init(userDefaults: UserDefaults, secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader, requestReview: @escaping () -> Void) {
         self.init()
+        
+        self.userDefaults = userDefaults
         self.secretGenerator = secretGenerator
         self.rewardAdLoader = rewardAdLoader
-        self.appReviewController = appReviewController
+        self.requestReview = requestReview
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -167,12 +173,14 @@ private extension AppDelegate {
         let controller = GameUIComposer.gameComposedWith(
             title: gameVersion.title,
             gameVersion: gameVersion,
-            userDefaults: .standard,
+            userDefaults: userDefaults,
             secret: secret,
             delegate: rewardAdViewController,
             onWin: { score in
                 let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader, appDownloadURL: Constants.appStoreDownloadUrl)
                 navigationController.pushViewController(winController, animated: true)
+                
+                self.appReviewController?.askForReviewIfAppropriate()
             },
             onLose: {
                 navigationController.pushViewController(LoseUIComposer.loseScene(), animated: true)

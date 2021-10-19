@@ -18,6 +18,23 @@ class GameAcceptanceTests: XCTestCase{
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForBasicGame())
     }
     
+    func test_onGameWin_requestsReviewOnThirdWin_basicGame() {
+        let userDefaults = UserDefaultsMock()
+        var reviewCallCount = 0
+        let requestReview: () -> Void = {
+            reviewCallCount += 1
+        }
+        
+        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview), digitCount: 4)
+        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
+        
+        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 4)
+        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
+        
+        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 4)
+        XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
+    }
+    
     func test_onGameLose_displayLoseScene_basicGame() {
         assertDisplayingLoseSceneOnGameLose(game: launchBasicGame(), guessChanceCount: GameVersion.basic.maxGuessCount)
     }
@@ -27,7 +44,9 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onNoGameChanceLeft_displaysAd_basicGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: launchBasicGame, guessChanceCount: 10)
+        assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
+            launchBasicGame(rewardAdLoader: adLoader)
+        }, guessChanceCount: 10)
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
@@ -44,21 +63,23 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onNoGameChanceLeft_displaysAd_advancedGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: launchAdvancedGame, guessChanceCount: 15)
+        assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
+            launchAdvancedGame(rewardAdLoader: adLoader)
+        }, guessChanceCount: 15)
     }
     
     // MARK: - Helpers
     
-    private func launch(rewardAdLoader: RewardAdLoaderStub) -> UITabBarController {
-        let sut = AppDelegate(secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, appReviewController: AppReviewControllerSpy())
+    private func launch(userDefaults: UserDefaults, rewardAdLoader: RewardAdLoaderStub, requestReview: @escaping () -> Void) -> UITabBarController {
+        let sut = AppDelegate(userDefaults: userDefaults, secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, requestReview: requestReview)
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
         
         return sut.window?.rootViewController as! UITabBarController
     }
     
-    private func launchBasicGame(rewardAdLoader: RewardAdLoaderStub = .null) -> GuessNumberViewController {
-        let tab = launch(rewardAdLoader: rewardAdLoader)
+    private func launchBasicGame(userDefaults: UserDefaults = UserDefaultsMock(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> GuessNumberViewController {
+        let tab = launch(userDefaults: userDefaults, rewardAdLoader: rewardAdLoader, requestReview: requestReview)
         tab.selectedIndex = 0
         
         RunLoop.current.run(until: Date())
@@ -67,8 +88,8 @@ class GameAcceptanceTests: XCTestCase{
         return nav?.topViewController as! GuessNumberViewController
     }
 
-    private func launchAdvancedGame(rewardAdLoader: RewardAdLoaderStub = .null) -> GuessNumberViewController {
-        let tab = launch(rewardAdLoader: rewardAdLoader)
+    private func launchAdvancedGame(userDefaults: UserDefaults = UserDefaultsMock(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> GuessNumberViewController {
+        let tab = launch(userDefaults: userDefaults, rewardAdLoader: rewardAdLoader, requestReview: requestReview)
         tab.selectedIndex = 1
         
         RunLoop.current.run(until: Date())
