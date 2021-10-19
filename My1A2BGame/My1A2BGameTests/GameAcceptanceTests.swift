@@ -54,6 +54,23 @@ class GameAcceptanceTests: XCTestCase{
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
     }
     
+    func test_onGameWin_requestsAppReviewOnThirdWin_advancedGame() {
+        let userDefaults = UserDefaultsMock()
+        var reviewCallCount = 0
+        let requestReview: () -> Void = {
+            reviewCallCount += 1
+        }
+        
+        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults, requestReview: requestReview), digitCount: 5)
+        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
+        
+        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 5)
+        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
+        
+        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 5)
+        XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
+    }
+    
     func test_onGameLose_displayLoseScene_advancedGame() {
         assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame(), guessChanceCount: GameVersion.advanced.maxGuessCount)
     }
