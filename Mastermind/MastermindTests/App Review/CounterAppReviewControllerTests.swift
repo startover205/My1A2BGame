@@ -17,32 +17,32 @@ class CounterAppReviewControllerTests: XCTestCase {
         XCTAssertEqual(userDefaults.receivedMessages, [])
     }
     
-    func test_markProcessCompleteOnce_setProcessCountAddOne() {
+    func test_askForAppReviewIfAppropriate_setProcessCountAddOne() {
         let (sut, userDefaults) = makeSUT()
         
-        sut.markProcessCompleteOneTime()
+        sut.askForReviewIfAppropriate()
         
         XCTAssertEqual(userDefaults.receivedMessages, [.setProcessCount(1)])
         
-        sut.markProcessCompleteOneTime()
+        sut.askForReviewIfAppropriate()
         
         XCTAssertEqual(userDefaults.receivedMessages, [.setProcessCount(1), .setProcessCount(2)])
     }
     
-    func test_askForAppReviewIfAppropriate_setCurrntAppVersionAsLastPromptAppVersion() {
+    func test_askForAppReviewIfAppropriate_setCurrntAppVersionAsLastPromptAppVersionAfterAskForReview() {
         let appVersion = "version1"
-        let (sut, userDefaults) = makeSUT(appVersion: appVersion)
+        let (sut, userDefaults) = makeSUT(targetProcessCompletedCount: 0, appVersion: appVersion)
         
         sut.askForReviewIfAppropriate()
         
-        XCTAssertEqual(userDefaults.receivedMessages, [.setLastPromptAppVersion(appVersion)])
+        XCTAssertTrue(userDefaults.receivedMessages.contains(.setLastPromptAppVersion(appVersion)))
     }
     
     func test_askForAppReviewIfAppropriate_doesNotRequestReviewIfProcessCompleteCountNotEqualOrGreaterThanTargetCount() {
         var reviewCallCount = 0
         let (sut, userDefaults) = makeSUT(askForReview: {
             reviewCallCount += 1
-        }, targetProcessCompletedCount: 1)
+        }, targetProcessCompletedCount: 2)
 
         userDefaults.completeProcessCompleteCountRetrieval(with: 0)
         sut.askForReviewIfAppropriate()
@@ -74,7 +74,7 @@ class CounterAppReviewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(askForReview: @escaping () -> () = { }, targetProcessCompletedCount: Int = 0, appVersion: String = "", file: StaticString = #filePath, line: UInt = #line) -> (CounterAppReviewController, UserDefaultsSpy) {
+    private func makeSUT(askForReview: @escaping () -> () = { }, targetProcessCompletedCount: Int = 10, appVersion: String = "", file: StaticString = #filePath, line: UInt = #line) -> (CounterAppReviewController, UserDefaultsSpy) {
         let userDefaults = UserDefaultsSpy()
         let sut = CounterAppReviewController(userDefaults: userDefaults, askForReview: askForReview, targetProcessCompletedCount: targetProcessCompletedCount, appVersion: appVersion)
         

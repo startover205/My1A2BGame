@@ -22,14 +22,10 @@ public class CounterAppReviewController: AppReviewController {
         self.appVersion = appVersion
     }
     
-    public func markProcessCompleteOneTime() {
+    public func askForReviewIfAppropriate() {
         var processCompletedCount = userDefaults.integer(forKey: processCompleteCountKey)
         processCompletedCount += 1
         userDefaults.set(processCompletedCount, forKey: processCompleteCountKey)
-    }
-    
-    public func askForReviewIfAppropriate() {
-        let processCompletedCount = userDefaults.integer(forKey: processCompleteCountKey)
         guard processCompletedCount >= targetProcessCompletedCount else { return }
         
         let lastPromptAppVersion = userDefaults.string(forKey: lastPromptAppVersionKey)
