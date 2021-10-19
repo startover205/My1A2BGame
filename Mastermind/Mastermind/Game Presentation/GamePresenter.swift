@@ -119,11 +119,10 @@ public final class GamePresenter {
         utteranceView.display(VoiceMessageViewModel(message: Self.voiceMessageForLosing))
     }
 
-    public func didTapGiveUpButton(confirmCallback: @escaping () -> Void) {
+    public func didTapGiveUpButton() {
         gameView.display(GiveUpConfirmViewModel(
                             message: Self.giveUpConfirmMessage,
                             confirmAction: Self.confirmGiveUpAction,
-                            cancelAction: Self.cancelGiveUpAction,
-                            confirmCallback: confirmCallback))
+                            cancelAction: Self.cancelGiveUpAction))
     }
 }

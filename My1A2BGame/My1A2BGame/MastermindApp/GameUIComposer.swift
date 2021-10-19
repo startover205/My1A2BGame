@@ -70,9 +70,10 @@ public final class GameUIComposer {
             onWin: onWin,
             onLose: onLose)
         gameViewController.delegate = gamePresentationAdapter
-        gamePresentationAdapter.presenter = GamePresenter(
+        let presenter = GamePresenter(
             gameView: WeakRefVirtualProxy(gameViewController),
             utteranceView: voicePromptViewController)
+        gamePresentationAdapter.presenter = presenter
         
         gameViewController.onGuessButtonPressed = { [unowned gamePresentationAdapter, unowned gameViewController] in
             
@@ -81,6 +82,12 @@ public final class GameUIComposer {
             inputVC.delegate = gamePresentationAdapter
 
             gameViewController.present(UINavigationController(rootViewController: inputVC), animated: true)
+        }
+        
+        gameViewController.onConfirmGiveUp = { [weak presenter] in
+            presenter?.didLoseGame()
+            
+            onLose()
         }
         
         return gameViewController
@@ -142,11 +149,7 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     }
     
     func didTapGiveUpButton() {
-        presenter?.didTapGiveUpButton(confirmCallback: { [weak self] in
-            self?.presenter?.didLoseGame()
-            
-            self?.onLose()
-        })
+        presenter?.didTapGiveUpButton()
     }
 }
 

@@ -16,6 +16,7 @@ public protocol GuessNumberViewControllerDelegate {
 
 public class GuessNumberViewController: UIViewController {
     public var onRestart: (() -> Void)?
+    public var onConfirmGiveUp: (() -> Void)?
     public var onGuessButtonPressed: (() -> Void)?
     public var delegate: GuessNumberViewControllerDelegate?
     public var viewModel: GameSceneViewModel?
@@ -105,8 +106,8 @@ extension GuessNumberViewController: GameView {
         
         let confirm = UIAlertAction(
             title: viewModel.confirmAction,
-            style: .destructive) {  _ in
-            viewModel.confirmCallback()
+            style: .destructive) { [weak self]  _ in
+            self?.onConfirmGiveUp?()
         }
         
         let cancel = UIAlertAction(
