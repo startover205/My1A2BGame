@@ -1,5 +1,5 @@
 //
-//  PromptAppReviewControllerTests.swift
+//  SKAppReviewControllerTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/8/19.
@@ -9,7 +9,7 @@
 import XCTest
 import Mastermind
 
-class PromptAppReviewControllerTests: XCTestCase {
+class SKAppReviewControllerTests: XCTestCase {
     
     func test_init_doesNotRequestUserDefaults() {
         let (_, userDefaults) = makeSUT()
