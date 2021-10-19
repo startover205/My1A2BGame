@@ -902,8 +902,8 @@
 		C0D5DE6E26E9EF5B001F4A0D /* App Review */ = {
 			isa = PBXGroup;
 			children = (
+				C0DBEE37271E951D009213A0 /* Infrastructure */,
 				C0D5DE6C26E9EEE1001F4A0D /* AppReviewHandler.swift */,
-				C0D5DE8926E9F2A6001F4A0D /* SKAppReviewController.swift */,
 				C0DBEE35271E93E9009213A0 /* AppReviewController.swift */,
 			);
 			path = "App Review";
@@ -931,6 +931,22 @@
 				C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C0DBEE37271E951D009213A0 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				C0DBEE38271E952E009213A0 /* Store Kit */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		C0DBEE38271E952E009213A0 /* Store Kit */ = {
+			isa = PBXGroup;
+			children = (
+				C0D5DE8926E9F2A6001F4A0D /* SKAppReviewController.swift */,
+			);
+			path = "Store Kit";
 			sourceTree = "<group>";
 		};
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
