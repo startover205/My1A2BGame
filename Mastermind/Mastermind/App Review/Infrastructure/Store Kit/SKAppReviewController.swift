@@ -5,7 +5,7 @@
 //  Created by Ming-Ta Yang on 2021/9/9.
 //
 
-import StoreKit
+import Foundation
 
 public class SKAppReviewController: AppReviewController {
     private let userDefaults: UserDefaults
