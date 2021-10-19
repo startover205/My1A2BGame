@@ -153,7 +153,7 @@
 		C0D5DE6B26E9BA24001F4A0D /* RecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */; };
 		C0D5DE7126E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE7026E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift */; };
 		C0D5DE7226E9F028001F4A0D /* AppReviewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6C26E9EEE1001F4A0D /* AppReviewHandler.swift */; };
-		C0D5DE8A26E9F2A6001F4A0D /* AppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8926E9F2A6001F4A0D /* AppReviewController.swift */; };
+		C0D5DE8A26E9F2A6001F4A0D /* SKAppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8926E9F2A6001F4A0D /* SKAppReviewController.swift */; };
 		C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 		C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */; };
@@ -351,7 +351,7 @@
 		C0D5DE6926E9B977001F4A0D /* RecordSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSaveView.swift; sourceTree = "<group>"; };
 		C0D5DE6C26E9EEE1001F4A0D /* AppReviewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewHandler.swift; sourceTree = "<group>"; };
 		C0D5DE7026E9EFBF001F4A0D /* PromptAppReviewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptAppReviewControllerTests.swift; sourceTree = "<group>"; };
-		C0D5DE8926E9F2A6001F4A0D /* AppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewController.swift; sourceTree = "<group>"; };
+		C0D5DE8926E9F2A6001F4A0D /* SKAppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKAppReviewController.swift; sourceTree = "<group>"; };
 		C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -901,7 +901,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D5DE6C26E9EEE1001F4A0D /* AppReviewHandler.swift */,
-				C0D5DE8926E9F2A6001F4A0D /* AppReviewController.swift */,
+				C0D5DE8926E9F2A6001F4A0D /* SKAppReviewController.swift */,
 			);
 			path = "App Review";
 			sourceTree = "<group>";
@@ -1229,7 +1229,7 @@
 				C033BC3526C7A64600E6AA77 /* Winner.swift in Sources */,
 				C0D5DE6826E9B968001F4A0D /* RecordSaveResultAlertViewModel.swift in Sources */,
 				C0D5DE6626E9B953001F4A0D /* RecordValidationView.swift in Sources */,
-				C0D5DE8A26E9F2A6001F4A0D /* AppReviewController.swift in Sources */,
+				C0D5DE8A26E9F2A6001F4A0D /* SKAppReviewController.swift in Sources */,
 				C0D5DE6A26E9B977001F4A0D /* RecordSaveView.swift in Sources */,
 				C012C509270EC6A600A3A7AD /* RankPresenter.swift in Sources */,
 				C000341B270C3AAD0037E5B8 /* GameSceneViewModel.swift in Sources */,

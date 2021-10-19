@@ -95,9 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startNewAdvancedGame()
     }
     
-    private lazy var appReviewController: AppReviewController? = {
+    private lazy var appReviewController: SKAppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
-        return AppReviewController(
+        return SKAppReviewController(
             userDefaults: .standard,
             askForReview: {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

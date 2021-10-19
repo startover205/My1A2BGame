@@ -1,5 +1,5 @@
 //
-//  AppReviewController.swift
+//  SKAppReviewController.swift
 //  Mastermind
 //
 //  Created by Ming-Ta Yang on 2021/9/9.
@@ -7,7 +7,7 @@
 
 import StoreKit
 
-public class AppReviewController {
+public class SKAppReviewController {
     private let userDefaults: UserDefaults
     private let processCompleteCountKey: String = "processCompleteCount"
     private let lastPromptAppVersionKey: String = "lastPromptAppVersion"

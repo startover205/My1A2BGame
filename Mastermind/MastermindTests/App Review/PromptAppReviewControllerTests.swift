@@ -74,9 +74,9 @@ class PromptAppReviewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(askForReview: @escaping () -> () = { }, targetProcessCompletedCount: Int = 0, appVersion: String = "", file: StaticString = #filePath, line: UInt = #line) -> (AppReviewController, UserDefaultsSpy) {
+    private func makeSUT(askForReview: @escaping () -> () = { }, targetProcessCompletedCount: Int = 0, appVersion: String = "", file: StaticString = #filePath, line: UInt = #line) -> (SKAppReviewController, UserDefaultsSpy) {
         let userDefaults = UserDefaultsSpy()
-        let sut = AppReviewController(userDefaults: userDefaults, askForReview: askForReview, targetProcessCompletedCount: targetProcessCompletedCount, appVersion: appVersion)
+        let sut = SKAppReviewController(userDefaults: userDefaults, askForReview: askForReview, targetProcessCompletedCount: targetProcessCompletedCount, appVersion: appVersion)
         
         trackForMemoryLeaks(userDefaults, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
