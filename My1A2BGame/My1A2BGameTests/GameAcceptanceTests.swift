@@ -14,16 +14,16 @@ import MastermindiOS
 class GameAcceptanceTests: XCTestCase{
     
     func test_onGameWin_displaysWinScene_basicGame() {
-        let win = showWinScene(from: launchBasicGame(rewardAdLoader: .null), digitCount: 4)
+        let win = showWinScene(from: launchBasicGame(), digitCount: 4)
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForBasicGame())
     }
     
     func test_onGameLose_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame(rewardAdLoader: .null), guessChanceCount: GameVersion.basic.maxGuessCount)
+        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame(), guessChanceCount: GameVersion.basic.maxGuessCount)
     }
     
     func test_onGiveUpGame_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchBasicGame(rewardAdLoader: .null))
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchBasicGame())
     }
     
     func test_onNoGameChanceLeft_displaysAd_basicGame() {
@@ -31,16 +31,16 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
-        let win = showWinScene(from: launchAdvancedGame(rewardAdLoader: .null), digitCount: 5)
+        let win = showWinScene(from: launchAdvancedGame(), digitCount: 5)
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
     }
     
     func test_onGameLose_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame(rewardAdLoader: .null), guessChanceCount: GameVersion.advanced.maxGuessCount)
+        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame(), guessChanceCount: GameVersion.advanced.maxGuessCount)
     }
     
     func test_onGiveUpGame_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchAdvancedGame(rewardAdLoader: .null))
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchAdvancedGame())
     }
     
     func test_onNoGameChanceLeft_displaysAd_advancedGame() {
@@ -57,7 +57,7 @@ class GameAcceptanceTests: XCTestCase{
         return sut.window?.rootViewController as! UITabBarController
     }
     
-    private func launchBasicGame(rewardAdLoader: RewardAdLoaderStub) -> GuessNumberViewController {
+    private func launchBasicGame(rewardAdLoader: RewardAdLoaderStub = .null) -> GuessNumberViewController {
         let tab = launch(rewardAdLoader: rewardAdLoader)
         tab.selectedIndex = 0
         
@@ -67,7 +67,7 @@ class GameAcceptanceTests: XCTestCase{
         return nav?.topViewController as! GuessNumberViewController
     }
 
-    private func launchAdvancedGame(rewardAdLoader: RewardAdLoaderStub) -> GuessNumberViewController {
+    private func launchAdvancedGame(rewardAdLoader: RewardAdLoaderStub = .null) -> GuessNumberViewController {
         let tab = launch(rewardAdLoader: rewardAdLoader)
         tab.selectedIndex = 1
         
