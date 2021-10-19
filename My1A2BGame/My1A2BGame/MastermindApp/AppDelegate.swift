@@ -48,10 +48,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdManager.shared
     
-    convenience init(secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader) {
+    private lazy var appReviewController: AppReviewController? = {
+        guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
+        return SKAppReviewController(
+            userDefaults: .standard,
+            askForReview: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    SKStoreReviewController.requestReview()
+                }
+            },
+            targetProcessCompletedCount: 3,
+            appVersion: appVersion)
+    }()
+    
+    convenience init(secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader, appReviewController: AppReviewController) {
         self.init()
         self.secretGenerator = secretGenerator
         self.rewardAdLoader = rewardAdLoader
+        self.appReviewController = appReviewController
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -94,19 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         startNewAdvancedGame()
     }
-    
-    private lazy var appReviewController: SKAppReviewController? = {
-        guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
-        return SKAppReviewController(
-            userDefaults: .standard,
-            askForReview: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    SKStoreReviewController.requestReview()
-                }
-            },
-            targetProcessCompletedCount: 3,
-            appVersion: appVersion)
-    }()
     
     private func makeTabController() -> UITabBarController {
         let tabConfigurations: [(title: String, imageName: String)] = [

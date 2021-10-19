@@ -50,7 +50,7 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - Helpers
     
     private func launch(rewardAdLoader: RewardAdLoaderStub) -> UITabBarController {
-        let sut = AppDelegate(secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader)
+        let sut = AppDelegate(secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, appReviewController: AppReviewControllerSpy())
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
         
@@ -121,6 +121,11 @@ class GameAcceptanceTests: XCTestCase{
         
         func replenishChance(completion: @escaping (Int) -> Void) {
             capturedCompletions.append(completion)
+        }
+    }
+    
+    private final class AppReviewControllerSpy: AppReviewController {
+        func askForReviewIfAppropriate() {
         }
     }
 }
