@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
-        return SKAppReviewController(
+        return CounterAppReviewController(
             userDefaults: .standard,
             askForReview: {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

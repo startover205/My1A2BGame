@@ -1,5 +1,5 @@
 //
-//  SKAppReviewControllerTests.swift
+//  CounterAppReviewControllerTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/8/19.
@@ -9,7 +9,7 @@
 import XCTest
 import Mastermind
 
-class SKAppReviewControllerTests: XCTestCase {
+class CounterAppReviewControllerTests: XCTestCase {
     
     func test_init_doesNotRequestUserDefaults() {
         let (_, userDefaults) = makeSUT()
@@ -74,9 +74,9 @@ class SKAppReviewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(askForReview: @escaping () -> () = { }, targetProcessCompletedCount: Int = 0, appVersion: String = "", file: StaticString = #filePath, line: UInt = #line) -> (SKAppReviewController, UserDefaultsSpy) {
+    private func makeSUT(askForReview: @escaping () -> () = { }, targetProcessCompletedCount: Int = 0, appVersion: String = "", file: StaticString = #filePath, line: UInt = #line) -> (CounterAppReviewController, UserDefaultsSpy) {
         let userDefaults = UserDefaultsSpy()
-        let sut = SKAppReviewController(userDefaults: userDefaults, askForReview: askForReview, targetProcessCompletedCount: targetProcessCompletedCount, appVersion: appVersion)
+        let sut = CounterAppReviewController(userDefaults: userDefaults, askForReview: askForReview, targetProcessCompletedCount: targetProcessCompletedCount, appVersion: appVersion)
         
         trackForMemoryLeaks(userDefaults, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
