@@ -167,7 +167,7 @@ class WinUIIntegrationTests: XCTestCase {
         window.addSubview(sut.view)
         
         sut.loadViewIfNeeded()
-        sut.simulateKeyboardShowing()
+        sut.simulateUserStartTyping()
         
         XCTAssertTrue(sut.isKeyboardShowing, "expect keyboard showing when user start to enter player name")
         
@@ -252,7 +252,7 @@ class WinUIIntegrationTests: XCTestCase {
         let window = UIWindow()
         window.addSubview(sut.view)
         
-        sut.simulateKeyboardShowing()
+        sut.simulateUserStartTyping()
         
         XCTAssertTrue(sut.isKeyboardShowing)
 
@@ -384,7 +384,7 @@ private extension WinViewController {
         recordViewController?.confirmButton.sendActions(for: .touchUpInside)
     }
     
-    func simulateKeyboardShowing() {
+    func simulateUserStartTyping() {
         recordViewController.inputTextField.becomeFirstResponder()
     }
     
