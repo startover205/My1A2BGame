@@ -14,7 +14,7 @@ import MastermindiOS
 class GameAcceptanceTests: XCTestCase{
     
     func test_onGameWin_displaysWinScene_basicGame() {
-        let win = showWinScene(from: launchBasicGame())
+        let win = showWinScene(from: launch().basicGame())
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForBasicGame())
     }
     
@@ -25,32 +25,32 @@ class GameAcceptanceTests: XCTestCase{
             reviewCallCount += 1
         }
         
-        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview))
+        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).basicGame())
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview))
+        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).basicGame())
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview))
+        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).basicGame())
         XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
     }
     
     func test_onGameLose_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchBasicGame(), guessChanceCount: GameVersion.basic.maxGuessCount)
+        assertDisplayingLoseSceneOnGameLose(game: launch().basicGame(), guessChanceCount: GameVersion.basic.maxGuessCount)
     }
     
     func test_onGiveUpGame_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchBasicGame())
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launch().basicGame())
     }
     
     func test_onNoGameChanceLeft_displaysAd_basicGame() {
         assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
-            launchBasicGame(rewardAdLoader: adLoader)
+            launch(rewardAdLoader: adLoader).basicGame()
         }, guessChanceCount: 10)
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
-        let win = showWinScene(from: launchAdvancedGame())
+        let win = showWinScene(from: launch().advancedGame())
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
     }
     
@@ -61,58 +61,38 @@ class GameAcceptanceTests: XCTestCase{
             reviewCallCount += 1
         }
         
-        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults, requestReview: requestReview))
+        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).advancedGame())
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview))
+        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).advancedGame())
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview))
+        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).advancedGame())
         XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
     }
     
     func test_onGameLose_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnGameLose(game: launchAdvancedGame(), guessChanceCount: GameVersion.advanced.maxGuessCount)
+        assertDisplayingLoseSceneOnGameLose(game: launch().advancedGame(), guessChanceCount: GameVersion.advanced.maxGuessCount)
     }
     
     func test_onGiveUpGame_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launchAdvancedGame())
+        assertDisplayingLoseSceneOnUserGiveUpGame(game: launch().advancedGame())
     }
     
     func test_onNoGameChanceLeft_displaysAd_advancedGame() {
         assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
-            launchAdvancedGame(rewardAdLoader: adLoader)
+            launch(rewardAdLoader: adLoader).advancedGame()
         }, guessChanceCount: 15)
     }
     
     // MARK: - Helpers
     
-    private func launch(userDefaults: UserDefaults, rewardAdLoader: RewardAdLoaderStub, requestReview: @escaping () -> Void) -> UITabBarController {
+    private func launch(userDefaults: UserDefaults = UserDefaultsMock(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> UITabBarController {
         let sut = AppDelegate(userDefaults: userDefaults, secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, requestReview: requestReview)
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
         
         return sut.window?.rootViewController as! UITabBarController
-    }
-    
-    private func launchBasicGame(userDefaults: UserDefaults = UserDefaultsMock(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> GuessNumberViewController {
-        let tab = launch(userDefaults: userDefaults, rewardAdLoader: rewardAdLoader, requestReview: requestReview)
-        tab.selectedIndex = 0
-        
-        RunLoop.current.run(until: Date())
-        
-        let nav = tab.viewControllers?.first as? UINavigationController
-        return nav?.topViewController as! GuessNumberViewController
-    }
-
-    private func launchAdvancedGame(userDefaults: UserDefaults = UserDefaultsMock(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> GuessNumberViewController {
-        let tab = launch(userDefaults: userDefaults, rewardAdLoader: rewardAdLoader, requestReview: requestReview)
-        tab.selectedIndex = 1
-        
-        RunLoop.current.run(until: Date())
-        
-        let nav = tab.viewControllers?[1] as? UINavigationController
-        return nav?.topViewController as! GuessNumberViewController
     }
     
     private func showWinScene(from game: GuessNumberViewController) -> WinViewController {
@@ -270,4 +250,19 @@ private extension UIAlertController {
         let handler = unsafeBitCast(block as AnyObject, to: AlertHandler.self)
         handler(actions[index])
     }
+}
+
+private extension UITabBarController {
+    private func selectTab<T>(at index: Int) -> T {
+        selectedIndex = index
+        
+        RunLoop.current.run(until: Date())
+        
+        let nav = viewControllers?[index] as? UINavigationController
+        return nav?.topViewController as! T
+    }
+    
+    func basicGame() -> GuessNumberViewController { selectTab(at: 0) }
+    
+    func advancedGame() -> GuessNumberViewController { selectTab(at: 1) }
 }
