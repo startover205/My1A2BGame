@@ -14,7 +14,7 @@ import MastermindiOS
 class GameAcceptanceTests: XCTestCase{
     
     func test_onGameWin_displaysWinScene_basicGame() {
-        let win = showWinScene(from: launchBasicGame(), digitCount: 4)
+        let win = showWinScene(from: launchBasicGame())
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForBasicGame())
     }
     
@@ -25,13 +25,13 @@ class GameAcceptanceTests: XCTestCase{
             reviewCallCount += 1
         }
         
-        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview), digitCount: 4)
+        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview))
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 4)
+        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview))
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 4)
+        let _ = showWinScene(from: launchBasicGame(userDefaults: userDefaults, requestReview: requestReview))
         XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
     }
     
@@ -50,7 +50,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
-        let win = showWinScene(from: launchAdvancedGame(), digitCount: 5)
+        let win = showWinScene(from: launchAdvancedGame())
         assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
     }
     
@@ -61,13 +61,13 @@ class GameAcceptanceTests: XCTestCase{
             reviewCallCount += 1
         }
         
-        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults, requestReview: requestReview), digitCount: 5)
+        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults, requestReview: requestReview))
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 5)
+        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview))
         XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
         
-        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview), digitCount: 5)
+        let _ = showWinScene(from: launchAdvancedGame(userDefaults: userDefaults,requestReview: requestReview))
         XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
     }
     
@@ -115,10 +115,10 @@ class GameAcceptanceTests: XCTestCase{
         return nav?.topViewController as! GuessNumberViewController
     }
     
-    private func showWinScene(from game: GuessNumberViewController, digitCount: Int) -> WinViewController {
+    private func showWinScene(from game: GuessNumberViewController) -> WinViewController {
         RunLoop.current.run(until: Date())
         
-        game.simulatePlayerWin(with: makeGuess(digitCount: digitCount))
+        game.simulatePlayerGuessCorrectly()
         
         RunLoop.current.run(until: Date())
         
@@ -226,8 +226,8 @@ private extension GameAcceptanceTests {
 private extension GuessNumberViewController {
     private var inputDelegate: NumberInputViewControllerDelegate? { delegate as? GamePresentationAdapter }
     
-    func simulatePlayerWin(with guess: DigitSecret){
-        inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: guess.content.compactMap(String.init))
+    func simulatePlayerGuessCorrectly() {
+        inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: quizLabelViewController.answer.compactMap(String.init))
     }
     
     func simulateGameLose(guessChanceCount: Int) {
