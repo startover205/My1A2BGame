@@ -18,20 +18,9 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onGameWin_requestsReviewOnThirdWin_basicGame() {
-        let userDefaults = UserDefaultsMock()
-        var reviewCallCount = 0
-        let requestReview: () -> Void = {
-            reviewCallCount += 1
+        assertRequestAppReviewOnThirdWin {
+            $0.basicGame()
         }
-        
-        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).basicGame())
-        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
-        
-        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).basicGame())
-        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
-        
-        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).basicGame())
-        XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
     }
     
     func test_onGameLose_displayLoseScene_basicGame() {
@@ -53,20 +42,9 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onGameWin_requestsAppReviewOnThirdWin_advancedGame() {
-        let userDefaults = UserDefaultsMock()
-        var reviewCallCount = 0
-        let requestReview: () -> Void = {
-            reviewCallCount += 1
+        assertRequestAppReviewOnThirdWin {
+            $0.advancedGame()
         }
-        
-        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).advancedGame())
-        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
-        
-        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).advancedGame())
-        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win")
-        
-        let _ = showWinScene(from: launch(userDefaults: userDefaults, requestReview: requestReview).advancedGame())
-        XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win")
     }
     
     func test_onGameLose_displayLoseScene_advancedGame() {
@@ -153,6 +131,23 @@ private extension GameAcceptanceTests {
         RunLoop.current.run(until: Date())
         
         XCTAssertNotNil(game.navigationController?.topViewController as? WinViewController, file: file, line: line)
+    }
+    
+    func assertRequestAppReviewOnThirdWin(for game: (UITabBarController) -> GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
+        let userDefaults = UserDefaultsMock()
+        var reviewCallCount = 0
+        let requestReview: () -> Void = {
+            reviewCallCount += 1
+        }
+        
+        game(launch(userDefaults: userDefaults, requestReview: requestReview)).simulatePlayerGuessCorrectly()
+        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win", file: file, line: line)
+        
+        game(launch(userDefaults: userDefaults, requestReview: requestReview)).simulatePlayerGuessCorrectly()
+        XCTAssertEqual(reviewCallCount, 0, "Expect no request until the third win", file: file, line: line)
+        
+        game(launch(userDefaults: userDefaults, requestReview: requestReview)).simulatePlayerGuessCorrectly()
+        XCTAssertEqual(reviewCallCount, 1, "Expect review request on the third win", file: file, line: line)
     }
     
     func assertDisplayingLoseSceneOnGameLose(game: GuessNumberViewController, guessChanceCount: Int, file: StaticString = #filePath, line: UInt = #line) {
