@@ -162,19 +162,20 @@ class WinUIIntegrationTests: XCTestCase {
     }
     
     func test_saveRecordButton_dismissKeyboardOnButtonPressed() {
-        let (sut, _) = makeSUT(trackMemoryLeak: false)
+        let (sut, _) = makeSUT()
         let window = UIWindow()
         window.addSubview(sut.view)
-        
-        sut.loadViewIfNeeded()
+
         sut.simulateUserStartTyping()
-        
+
         XCTAssertTrue(sut.isKeyboardShowing, "expect keyboard showing when user start to enter player name")
-        
+
         sut.simulateUserEnterPlayerName(name: "any name")
         sut.simulateUserSendInput()
-        
+
         XCTAssertFalse(sut.isKeyboardShowing, "expect keyboard dismiss after user sent out input")
+        
+        clearModalPresentationReference(sut)
     }
     
     func test_saveRecord_requestStoreToSavePlayerRecord() {
