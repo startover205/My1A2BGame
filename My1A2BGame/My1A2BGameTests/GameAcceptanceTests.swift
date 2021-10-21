@@ -14,8 +14,7 @@ import MastermindiOS
 class GameAcceptanceTests: XCTestCase{
     
     func test_onGameWin_displaysWinScene_basicGame() {
-        let win = showWinScene(from: launch().basicGame())
-        assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForBasicGame())
+        assertDisplayingWinSceneOnGameWin(game: launch().basicGame())
     }
     
     func test_onGameWin_requestsReviewOnThirdWin_basicGame() {
@@ -50,8 +49,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     func test_onGameWin_displaysWinScene_advancedGame() {
-        let win = showWinScene(from: launch().advancedGame())
-        assertDisplayingWinSceneOnGameWin(win: win, winMessage: makeWinMessageForAdvancedGame())
+        assertDisplayingWinSceneOnGameWin(game: launch().advancedGame())
     }
     
     func test_onGameWin_requestsAppReviewOnThirdWin_advancedGame() {
@@ -149,9 +147,12 @@ class GameAcceptanceTests: XCTestCase{
 }
 
 private extension GameAcceptanceTests {
-    func assertDisplayingWinSceneOnGameWin(win: WinViewController, winMessage: String, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertEqual(win.winMessage(), winMessage, file: file, line: line)
-        XCTAssertEqual(win.gameResultMessage(), makeGameResultMessage(), file: file, line: line)
+    func assertDisplayingWinSceneOnGameWin(game: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
+        
+        game.simulatePlayerGuessCorrectly()
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertNotNil(game.navigationController?.topViewController as? WinViewController, file: file, line: line)
     }
     
     func assertDisplayingLoseSceneOnGameLose(game: GuessNumberViewController, guessChanceCount: Int, file: StaticString = #filePath, line: UInt = #line) {
