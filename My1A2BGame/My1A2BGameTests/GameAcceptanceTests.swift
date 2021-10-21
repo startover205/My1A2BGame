@@ -71,17 +71,6 @@ class GameAcceptanceTests: XCTestCase{
         return sut.window?.rootViewController as! UITabBarController
     }
     
-    private func showWinScene(from game: GuessNumberViewController) -> WinViewController {
-        RunLoop.current.run(until: Date())
-        
-        game.simulatePlayerGuessCorrectly()
-        
-        RunLoop.current.run(until: Date())
-        
-        let nav = game.navigationController
-        return nav?.topViewController as! WinViewController
-    }
-    
     private func makeSecretGenerator() -> (Int) -> DigitSecret {
         return { digitCount in
             
@@ -94,14 +83,6 @@ class GameAcceptanceTests: XCTestCase{
         }
     }
     
-    private func makeGuess(digitCount: Int) -> DigitSecret { makeSecretGenerator()(digitCount) }
-    
-    private func makeWinMessageForBasicGame() -> String { "4A0B!! You won!!" }
-    
-    private func makeWinMessageForAdvancedGame() -> String { "5A0B!! You won!!" }
-    
-    private func makeGameResultMessage() -> String { "You guessed 1 time" }
-    
     private final class RewardAdSpy: RewardAd {
         var capturedPresentation: ((viewController: UIViewController, handler: () -> Void))?
         
@@ -109,24 +90,10 @@ class GameAcceptanceTests: XCTestCase{
             capturedPresentation = (rootViewController, userDidEarnRewardHandler)
         }
     }
-    
-    private final class ReplenishChanceDelegateSpy: ReplenishChanceDelegate {
-        private(set) var capturedCompletions = [(Int) -> Void]()
-        
-        func replenishChance(completion: @escaping (Int) -> Void) {
-            capturedCompletions.append(completion)
-        }
-    }
-    
-    private final class AppReviewControllerSpy: AppReviewController {
-        func askForReviewIfAppropriate() {
-        }
-    }
 }
 
 private extension GameAcceptanceTests {
     func assertDisplayingWinSceneOnGameWin(game: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
-        
         game.simulatePlayerGuessCorrectly()
         RunLoop.current.run(until: Date())
         
@@ -230,12 +197,6 @@ private extension GuessNumberViewController {
     func simulateOneWrongGuess() {
         inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: [])
     }
-}
-
-private extension WinViewController {
-    func winMessage() -> String? { winLabel.text }
-    
-    func gameResultMessage() -> String? { guessCountLabel.text }
 }
 
 private extension UIAlertController {
