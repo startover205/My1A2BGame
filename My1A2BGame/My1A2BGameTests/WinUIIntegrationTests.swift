@@ -249,7 +249,7 @@ class WinUIIntegrationTests: XCTestCase {
     }
     
     func test_tapOnScreen_dismissKeyboard() {
-        let (sut, _) = makeSUT(trackMemoryLeak: false)
+        let (sut, _) = makeSUT()
         let window = UIWindow()
         window.addSubview(sut.view)
         
@@ -260,19 +260,19 @@ class WinUIIntegrationTests: XCTestCase {
         sut.simulateOnTapScreen()
         
         XCTAssertFalse(sut.isKeyboardShowing)
+        
+        RunLoop.current.run(until: Date())
     }
     
     // MARK: Helpers
     
-    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, appDownloadURL: String = "", activityViewControllerFactory: @escaping ActivityViewControllerFactory = UIActivityViewController.init, trackMemoryLeak: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
+    private func makeSUT(digitCount: Int = 4, guessCount: Int = 1, guessTime: TimeInterval = 60.0, currentDate: @escaping () -> Date = Date.init, showFireworkAnimation: @escaping (UIView) -> Void = { _ in }, appDownloadURL: String = "", activityViewControllerFactory: @escaping ActivityViewControllerFactory = UIActivityViewController.init, file: StaticString = #filePath, line: UInt = #line) -> (WinViewController, RecordLoaderSpy) {
         let loader = RecordLoaderSpy()
         let sut = WinUIComposer.winComposedWith(score: (guessCount, guessTime), digitCount: digitCount, recordLoader: loader, currentDate: currentDate, appDownloadURL: appDownloadURL, activityViewControllerFactory: activityViewControllerFactory)
         sut.showFireworkAnimation = showFireworkAnimation
         
-        if trackMemoryLeak {
-            trackForMemoryLeaks(loader, file: file, line: line)
-            trackForMemoryLeaks(sut, file: file, line: line)
-        }
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, loader)
     }
