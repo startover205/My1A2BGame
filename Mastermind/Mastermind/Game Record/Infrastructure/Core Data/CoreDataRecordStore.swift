@@ -43,6 +43,9 @@ extension CoreDataRecordStore: RecordStore {
             Result {
                 let request = NSFetchRequest<T>(entityName: T.entity().name!)
                 request.returnsObjectsAsFaults = false
+                request.sortDescriptors = [
+                    NSSortDescriptor(key: "guessTimes", ascending: true),
+                    NSSortDescriptor(key: "spentTime", ascending: true)]
                 return try context.fetch(request).map {
                     LocalPlayerRecord(playerName: $0.name, guessCount: Int($0.guessTimes), guessTime: $0.spentTime, timestamp: $0.date)
                 }

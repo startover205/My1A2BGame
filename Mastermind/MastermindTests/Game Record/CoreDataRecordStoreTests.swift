@@ -28,14 +28,18 @@ class CoreDataRecordStoreTests: XCTestCase {
         XCTAssertEqual(secondResult, [])
     }
     
-    func test_retrieve_deliversFoundValueOnNonEmptyStore() {
+    func test_retrieve_deliversFoundValueOrderedByGuessCountAndGuessTimeOnNonEmptyStore() {
         let sut = makeSUT()
-        let record = anyPlayerRecord().local
-        
-        try? sut.insert(record)
+        let recordWithLowestGuessCount = LocalPlayerRecord(playerName: "a name", guessCount: 1, guessTime: 600.0, timestamp: Date())
+        let recordWithModerateGuessCountAndLowestGuessTime = LocalPlayerRecord(playerName: "another name", guessCount: 3, guessTime: 30.0, timestamp: Date())
+        let recordWithModerateGuessCountAndLongesGuessTime = LocalPlayerRecord(playerName: "and another name", guessCount: 3, guessTime: 30.1, timestamp: Date())
+
+        try? sut.insert(recordWithModerateGuessCountAndLowestGuessTime)
+        try? sut.insert(recordWithLowestGuessCount)
+        try? sut.insert(recordWithModerateGuessCountAndLongesGuessTime)
         
         let result = try? sut.retrieve()
-        XCTAssertEqual(result, [record])
+        XCTAssertEqual(result, [recordWithLowestGuessCount, recordWithModerateGuessCountAndLowestGuessTime, recordWithModerateGuessCountAndLongesGuessTime])
     }
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyStore() {
