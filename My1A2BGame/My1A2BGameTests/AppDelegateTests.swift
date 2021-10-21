@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import MastermindiOS
 @testable import My1A2BGame
 
 class AppDelegateTests: XCTestCase {
@@ -31,7 +32,7 @@ class AppDelegateTests: XCTestCase {
         XCTAssertNotNil(window.rootViewController as? BannerAdTabBarViewController)
     }
     
-    func test_configureWindow_configuresRootViewController() {
+    func test_configureWindow_configuresTabs() {
         let window = UIWindow()
         let appDelegate = AppDelegate()
         appDelegate.window = window
@@ -40,13 +41,24 @@ class AppDelegateTests: XCTestCase {
         
         appDelegate.configureWindow()
         
-        let tab = window.rootViewController as! UITabBarController
-        XCTAssertEqual(tab.viewControllers?.count, 4, "expect correct tab count")
+        let tab = try? XCTUnwrap(window.rootViewController as? UITabBarController)
+        XCTAssertEqual(tab?.viewControllers?.count, 4, "expect correct tab count")
         
-        tab.tabBar.items!.enumerated().forEach { index, item in
-            
+        tab?.tabBar.items!.enumerated().forEach { index, item in
             XCTAssertEqual(item.title, tabItemTitles[index], "expect correct tab title")
             XCTAssertEqual(item.image?.pngData(), UIImage(named: tabItemImageNames[index])?.pngData(), "expect correct tab image")
         }
+        
+        XCTAssertEqual(tab?.viewControllers?.count, 4)
+        XCTAssertTrue(tab?.viewControllers?[0].embedViewController() is GuessNumberViewController)
+        XCTAssertTrue(tab?.viewControllers?[1].embedViewController() is GuessNumberViewController)
+        XCTAssertTrue(tab?.viewControllers?[2].embedViewController() is RankViewController)
+        XCTAssertTrue(tab?.viewControllers?[3].embedViewController() is SettingsTableViewController)
+    }
+}
+
+private extension UIViewController {
+    func embedViewController() -> UIViewController? {
+        (self as? UINavigationController)?.topViewController
     }
 }
