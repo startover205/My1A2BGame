@@ -11,7 +11,7 @@ import XCTest
 extension XCTestCase {
     func clearModalPresentationReference(_ sut: UIViewController) {
         let exp = expectation(description: "wait for dismiss")
-        sut.dismiss(animated: false) {
+        sut.dismiss(animated: true) {
             exp.fulfill()
         }
         waitForExpectations(timeout: 3)
