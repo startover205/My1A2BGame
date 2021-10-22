@@ -63,6 +63,7 @@
 		C0ED626A22648B9700892A80 /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626922648B9700892A80 /* IAP.swift */; };
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
 		C0EFCBF226B54C4B0041A622 /* Mastermind.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0F7D15C272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7D15B272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift */; };
 		C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */; };
 		DF35789FEE4E03F7F56F3F0B /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
 /* End PBXBuildFile section */
@@ -163,6 +164,7 @@
 		C0ED626622608FFD00892A80 /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0F7D15B272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		C0F984F526FC6081001DAB38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */,
 				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
 				C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */,
+				C0F7D15D272254F8003DDB09 /* More UI */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
@@ -382,6 +385,14 @@
 				C09F318F271D20590038B18B /* UIViewControllerSpy.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C0F7D15D272254F8003DDB09 /* More UI */ = {
+			isa = PBXGroup;
+			children = (
+				C0F7D15B272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift */,
+			);
+			path = "More UI";
 			sourceTree = "<group>";
 		};
 		C1ACF5BC0592EF53CC18CB7A /* Frameworks */ = {
@@ -594,6 +605,7 @@
 				C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */,
 				C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */,
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,
+				C0F7D15C272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift in Sources */,
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
