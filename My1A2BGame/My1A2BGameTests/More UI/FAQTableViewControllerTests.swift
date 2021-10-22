@@ -43,6 +43,15 @@ class FAQTableViewControllerTests: XCTestCase {
         }
     }
     
+    func test_onTapQuestion_unfoldsAnswer() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        sut.simulateTappingQuestion(at: 0)
+        
+        XCTAssertNotEqual(sut.heightForAnswer(at: 0), 0.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
@@ -73,6 +82,10 @@ private extension FAQTableViewController {
     
     func question(at section: Int) -> UITableViewCell? {
         tableView.cellForRow(at: IndexPath(row: questionRow, section: section))
+    }
+    
+    func simulateTappingQuestion(at section: Int) {
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: questionRow, section: section))
     }
     
     private var questionRow: Int { 0 }
