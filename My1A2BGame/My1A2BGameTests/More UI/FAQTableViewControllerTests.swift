@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import UIKit
 @testable import My1A2BGame
 
 class FAQTableViewControllerTests: XCTestCase {
@@ -31,10 +32,21 @@ class FAQTableViewControllerTests: XCTestCase {
         }
     }
     
+    func test_loadView_rendersQuestionWithFoldingIndicator() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        for section in 0..<sut.numberOfQuestions() {
+            let imageView = try? XCTUnwrap(sut.question(at: section)?.accessoryView as? UIImageView)
+            XCTAssertEqual(imageView?.image?.pngData(), UIImage(named: "baseline_keyboard_arrow_left_black_18pt")?.pngData())
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
-        let sut = FAQTableViewController()
+        let sut = UIStoryboard(name: "More", bundle: .main).instantiateViewController(withIdentifier: "FAQTableViewController") as! FAQTableViewController
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -57,6 +69,10 @@ private extension FAQTableViewController {
     
     func heightForAnswer(at section: Int) -> CGFloat? {
         tableView.delegate?.tableView?(tableView, heightForRowAt: IndexPath(row: answerRow, section: section))
+    }
+    
+    func question(at section: Int) -> UITableViewCell? {
+        tableView.cellForRow(at: IndexPath(row: questionRow, section: section))
     }
     
     private var questionRow: Int { 0 }
