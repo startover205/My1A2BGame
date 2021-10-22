@@ -1,5 +1,5 @@
 //
-//  QuestionsTableViewController.swift
+//  CommonQuestionsTableViewController.swift
 //  EasyTimer
 //
 //  Created by Ming-Ta Yang on 2019/3/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionsTableViewController: UITableViewController {
+class CommonQuestionsTableViewController: UITableViewController {
     
     var sectionOpenStatus: [Int: Bool] = [:]
     var cachedScrollPosition : CGFloat?
@@ -60,7 +60,7 @@ class QuestionsTableViewController: UITableViewController {
     }
 }
 
-private extension QuestionsTableViewController {
+private extension CommonQuestionsTableViewController {
     
     func initSectionOpenStatus(){
         for i in 0..<tableView.numberOfSections {
