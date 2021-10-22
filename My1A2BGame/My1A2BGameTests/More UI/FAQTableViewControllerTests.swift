@@ -1,5 +1,5 @@
 //
-//  CommonQuestionsTableViewControllerTests.swift
+//  FAQTableViewControllerTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/10/22.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import My1A2BGame
 
-class CommonQuestionsTableViewControllerTests: XCTestCase {
+class FAQTableViewControllerTests: XCTestCase {
     
     func test_loadView_allQuestionsUnfolded() {
         let sut = makeSUT()
@@ -33,8 +33,8 @@ class CommonQuestionsTableViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CommonQuestionsTableViewController {
-        let sut = CommonQuestionsTableViewController()
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
+        let sut = FAQTableViewController()
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -42,7 +42,7 @@ class CommonQuestionsTableViewControllerTests: XCTestCase {
     }
 }
 
-private extension CommonQuestionsTableViewController {
+private extension FAQTableViewController {
     func numberOfQuestions() -> Int {
         tableView.numberOfSections
     }

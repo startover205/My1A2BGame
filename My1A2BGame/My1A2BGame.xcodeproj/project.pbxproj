@@ -43,7 +43,7 @@
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
 		C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */; };
-		C0A1F4A826B62A1200536D73 /* CommonQuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* CommonQuestionsTableViewController.swift */; };
+		C0A1F4A826B62A1200536D73 /* FAQTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* FAQTableViewController.swift */; };
 		C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F48926B62A1100536D73 /* More.storyboard */; };
 		C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */; };
 		C0A1F4AC26B62A1200536D73 /* BannerAdTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */; };
@@ -63,7 +63,7 @@
 		C0ED626A22648B9700892A80 /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626922648B9700892A80 /* IAP.swift */; };
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
 		C0EFCBF226B54C4B0041A622 /* Mastermind.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C0F7D15C272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7D15B272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift */; };
+		C0F7D15C272254F2003DDB09 /* FAQTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7D15B272254F2003DDB09 /* FAQTableViewControllerTests.swift */; };
 		C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */; };
 		DF35789FEE4E03F7F56F3F0B /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
 /* End PBXBuildFile section */
@@ -140,7 +140,7 @@
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
 		C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
-		C0A1F48726B62A1100536D73 /* CommonQuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestionsTableViewController.swift; sourceTree = "<group>"; };
+		C0A1F48726B62A1100536D73 /* FAQTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48926B62A1100536D73 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
 		C0A1F48E26B62A1100536D73 /* BannerAdTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdTabBarViewController.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		C0ED626622608FFD00892A80 /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0F7D15B272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		C0F7D15B272254F2003DDB09 /* FAQTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQTableViewControllerTests.swift; sourceTree = "<group>"; };
 		C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		C0F984F526FC6081001DAB38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F67B031FF182F9535AC0E44F /* Pods-My1A2BGameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameTests/Pods-My1A2BGameTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 				C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */,
 				C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */,
 				C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */,
-				C0A1F48726B62A1100536D73 /* CommonQuestionsTableViewController.swift */,
+				C0A1F48726B62A1100536D73 /* FAQTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -390,7 +390,7 @@
 		C0F7D15D272254F8003DDB09 /* More UI */ = {
 			isa = PBXGroup;
 			children = (
-				C0F7D15B272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift */,
+				C0F7D15B272254F2003DDB09 /* FAQTableViewControllerTests.swift */,
 			);
 			path = "More UI";
 			sourceTree = "<group>";
@@ -570,7 +570,7 @@
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
-				C0A1F4A826B62A1200536D73 /* CommonQuestionsTableViewController.swift in Sources */,
+				C0A1F4A826B62A1200536D73 /* FAQTableViewController.swift in Sources */,
 				C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */,
 				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
@@ -605,7 +605,7 @@
 				C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */,
 				C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */,
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,
-				C0F7D15C272254F2003DDB09 /* CommonQuestionsTableViewControllerTests.swift in Sources */,
+				C0F7D15C272254F2003DDB09 /* FAQTableViewControllerTests.swift in Sources */,
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
