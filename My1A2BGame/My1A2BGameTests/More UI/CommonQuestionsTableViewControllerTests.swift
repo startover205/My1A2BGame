@@ -21,6 +21,16 @@ class CommonQuestionsTableViewControllerTests: XCTestCase {
         }
     }
     
+    func test_loadView_allAnswersFolded() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        for section in 0..<sut.numberOfAnswers() {
+            XCTAssertEqual(sut.heightForAnswer(at: section), 0.0)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CommonQuestionsTableViewController {
@@ -37,9 +47,19 @@ private extension CommonQuestionsTableViewController {
         tableView.numberOfSections
     }
     
+    func numberOfAnswers() -> Int {
+        numberOfQuestions()
+    }
+    
     func heightForQuestion(at section: Int) -> CGFloat? {
         tableView.delegate?.tableView?(tableView, heightForRowAt: IndexPath(row: questionRow, section: section))
     }
     
+    func heightForAnswer(at section: Int) -> CGFloat? {
+        tableView.delegate?.tableView?(tableView, heightForRowAt: IndexPath(row: answerRow, section: section))
+    }
+    
     private var questionRow: Int { 0 }
+    
+    private var answerRow: Int { 1 }
 }
