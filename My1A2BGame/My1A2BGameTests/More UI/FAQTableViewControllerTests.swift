@@ -22,14 +22,20 @@ class FAQTableViewControllerTests: XCTestCase {
         }
     }
     
-    func test_loadView_allAnswersFolded() {
+    func test_onTapQuestion_controlsFoldingOfAnswer() {
         let sut = makeSUT()
         
         sut.loadViewIfNeeded()
         
         for section in 0..<sut.numberOfAnswers() {
-            XCTAssertEqual(sut.heightForAnswer(at: section), 0.0)
+            XCTAssertEqual(sut.heightForAnswer(at: section), 0.0, "Expect answer to be folded upon view load")
         }
+        
+        sut.simulateTappingQuestion(at: 0)
+        XCTAssertNotEqual(sut.heightForAnswer(at: 0), 0.0, "Expect answer to be collpased upon tapping the question")
+        
+        sut.simulateTappingQuestion(at: 0)
+        XCTAssertEqual(sut.heightForAnswer(at: 0), 0.0, "Expect answer to be folded again upon another tap on the question")
     }
     
     func test_loadView_rendersQuestionWithFoldingIndicator() {
@@ -41,15 +47,6 @@ class FAQTableViewControllerTests: XCTestCase {
             let imageView = try? XCTUnwrap(sut.question(at: section)?.accessoryView as? UIImageView)
             XCTAssertEqual(imageView?.image?.pngData(), UIImage(named: "baseline_keyboard_arrow_left_black_18pt")?.pngData())
         }
-    }
-    
-    func test_onTapQuestion_unfoldsAnswer() {
-        let sut = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        sut.simulateTappingQuestion(at: 0)
-        
-        XCTAssertNotEqual(sut.heightForAnswer(at: 0), 0.0)
     }
     
     // MARK: - Helpers
