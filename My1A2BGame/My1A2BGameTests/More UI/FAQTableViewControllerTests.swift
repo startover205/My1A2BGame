@@ -49,6 +49,19 @@ class FAQTableViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.heightForAnswer(at: 0), 0.0, "Expect answer to be folded again upon another tap on the question")
     }
     
+    func test_onTapQuestion_rendersFoldingIndicator() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(sut.foldingIndicatorView(at: 0)?.transform, .identity, "Expect the indicator to be pointing leftward upon view load")
+        
+        sut.simulateTappingQuestion(at: 0)
+        XCTAssertEqual(sut.foldingIndicatorView(at: 0)?.transform, .init(rotationAngle: CGFloat(-Float.pi / 2)), "Expect the indicator to be pointing downward after tapping the question")
+        
+        sut.simulateTappingQuestion(at: 0)
+        XCTAssertEqual(sut.foldingIndicatorView(at: 0)?.transform, .identity, "Expect the indicator to be back to pointing leftward after tapping the question again")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
@@ -83,6 +96,10 @@ private extension FAQTableViewController {
     
     func simulateTappingQuestion(at section: Int) {
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: questionRow, section: section))
+    }
+    
+    func foldingIndicatorView(at section: Int) -> UIView? {
+        question(at: section)?.accessoryView
     }
     
     private var questionRow: Int { 0 }
