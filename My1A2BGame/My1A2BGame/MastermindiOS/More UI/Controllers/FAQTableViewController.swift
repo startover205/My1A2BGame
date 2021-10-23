@@ -17,8 +17,6 @@ class FAQTableViewController: UITableViewController {
         super.viewDidLoad()
         
         initSectionOpenStatus()
-        
-        addAccessoryViewOnHeaderCells()
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -58,6 +56,15 @@ class FAQTableViewController: UITableViewController {
 
         return sectionOpenStatus[indexPath.section]! ? defaultHeight : 0
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        cell.accessoryView = indexPath.row == 0 ? UIImageView(image: #imageLiteral(resourceName: "baseline_keyboard_arrow_left_black_18pt")) : nil
+        cell.accessoryView?.transform = sectionOpenStatus[indexPath.section]! ? .init(rotationAngle: CGFloat(-Float.pi / 2)) :.identity
+
+        return cell
+    }
 }
 
 private extension FAQTableViewController {
@@ -65,14 +72,6 @@ private extension FAQTableViewController {
     func initSectionOpenStatus(){
         for i in 0..<tableView.numberOfSections {
             sectionOpenStatus[i] = false
-        }
-    }
-    
-    private func addAccessoryViewOnHeaderCells(){
-        for i in 0..<numberOfSections(in: tableView){
-            let headerCell = tableView.cellForRow(at: IndexPath(row: 0, section: i))
-            let accessoryView = UIImageView(image: #imageLiteral(resourceName: "baseline_keyboard_arrow_left_black_18pt"))
-            headerCell?.accessoryView = accessoryView
         }
     }
 }
