@@ -27,10 +27,8 @@ class FAQTableViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        for section in 0..<sut.numberOfQuestions() {
-            let imageView = try? XCTUnwrap(sut.question(at: section)?.accessoryView as? UIImageView)
-            XCTAssertEqual(imageView?.image?.pngData(), UIImage(named: "baseline_keyboard_arrow_left_black_18pt")?.pngData())
-        }
+        let imageView = try? XCTUnwrap(sut.question(at: 0)?.accessoryView as? UIImageView)
+        XCTAssertEqual(imageView?.image?.pngData(), UIImage(named: "baseline_keyboard_arrow_left_black_18pt")?.pngData())
     }
     
     func test_onTapQuestion_controlsFoldingOfAnswer() {
