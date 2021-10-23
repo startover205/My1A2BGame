@@ -50,7 +50,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_voicePrompt_canShareSettingsFromDiffetentSUT() {
-        let userDefaults = UserDefaultsMock()
+        let userDefaults = InMemoryUserDefaults()
         let sut = makeSUT(userDefaults: userDefaults)
         let anotherSut = makeSUT(userDefaults: userDefaults)
 
@@ -66,7 +66,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     func test_voicePrompt_showsIllustrationAlertOnTurningOn() {
-        let userDefaults = UserDefaultsMock()
+        let userDefaults = InMemoryUserDefaults()
         let sut = makeSUT(userDefaults: userDefaults)
         let window = UIWindow()
         window.addSubview(sut.view)
@@ -233,7 +233,7 @@ class GameUIIntegrationTests: XCTestCase {
     func test_gameWin_playsMatchResultAndWinMessageIfNeeded() {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
         let synthesizer = AVSpeechSynthesizerSpy()
-        let userDefaults = UserDefaultsMock()
+        let userDefaults = InMemoryUserDefaults()
         let sut = makeSUT(userDefaults: userDefaults, speechSynthesizer: synthesizer, secret: secret)
         
         sut.loadViewIfNeeded()
@@ -253,7 +253,7 @@ class GameUIIntegrationTests: XCTestCase {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
         let gameVersion = makeGameVersion(maxGuessCount: 1)
         let synthesizer = AVSpeechSynthesizerSpy()
-        let userDefaults = UserDefaultsMock()
+        let userDefaults = InMemoryUserDefaults()
         let delegate = ReplenishChanceDelegateSpy()
         let sut = makeSUT(gameVersion: gameVersion, userDefaults: userDefaults, speechSynthesizer: synthesizer, secret: secret, delegate: delegate)
         
@@ -416,7 +416,7 @@ class GameUIIntegrationTests: XCTestCase {
     
     private func makeSUT(title: String = "",
                          gameVersion: GameVersion = .basic,
-                         userDefaults: UserDefaults = UserDefaultsMock(),
+                         userDefaults: UserDefaults = InMemoryUserDefaults(),
                          speechSynthesizer: AVSpeechSynthesizer = AVSpeechSynthesizerSpy(),
                          secret: DigitSecret = DigitSecret(digits: [])!,
                          delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(),

@@ -63,7 +63,7 @@ class GameAcceptanceTests: XCTestCase{
     
     // MARK: - Helpers
     
-    private func launch(userDefaults: UserDefaults = UserDefaultsMock(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> UITabBarController {
+    private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> UITabBarController {
         let sut = AppDelegate(userDefaults: userDefaults, secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, requestReview: requestReview)
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
@@ -101,7 +101,7 @@ private extension GameAcceptanceTests {
     }
     
     func assertRequestAppReviewOnThirdWin(for game: (UITabBarController) -> GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
-        let userDefaults = UserDefaultsMock()
+        let userDefaults = InMemoryUserDefaults()
         var reviewCallCount = 0
         let requestReview: () -> Void = {
             reviewCallCount += 1

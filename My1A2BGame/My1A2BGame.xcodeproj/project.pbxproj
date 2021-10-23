@@ -33,7 +33,7 @@
 		C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082F16826CF4B1F0091E44B /* WinUIComposer.swift */; };
 		C085BE6A2254974700320563 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* Constants.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
-		C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088A65026BE7855005FC389 /* UserDefaultsMock.swift */; };
+		C088A65126BE7855005FC389 /* InMemoryUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */; };
 		C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */; };
 		C09841FF26D0DE9100AE72F4 /* WinUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */; };
 		C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420426D4768500AE72F4 /* SharedTestHelpers.swift */; };
@@ -130,7 +130,7 @@
 		C082F16826CF4B1F0091E44B /* WinUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinUIComposer.swift; sourceTree = "<group>"; };
 		C085BE692254974700320563 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
-		C088A65026BE7855005FC389 /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
+		C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserDefaults.swift; sourceTree = "<group>"; };
 		C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAcceptanceTests.swift; sourceTree = "<group>"; };
 		C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420426D4768500AE72F4 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 				C098420426D4768500AE72F4 /* SharedTestHelpers.swift */,
 				C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */,
 				C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */,
-				C088A65026BE7855005FC389 /* UserDefaultsMock.swift */,
+				C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */,
 				C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */,
 				C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */,
 				C09F318F271D20590038B18B /* UIViewControllerSpy.swift */,
@@ -607,7 +607,7 @@
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,
 				C0F7D15C272254F2003DDB09 /* FAQTableViewControllerTests.swift in Sources */,
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				C088A65126BE7855005FC389 /* UserDefaultsMock.swift in Sources */,
+				C088A65126BE7855005FC389 /* InMemoryUserDefaults.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
 				C07C16AF2702F52B00451060 /* RewardAdPresenterTests.swift in Sources */,
 				C01380152701A8A400D3F4A8 /* RewardAdLoaderStub.swift in Sources */,

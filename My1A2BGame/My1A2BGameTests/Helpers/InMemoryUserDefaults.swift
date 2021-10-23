@@ -1,5 +1,5 @@
 //
-//  UserDefaultsMock.swift
+//  InMemoryUserDefaults.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/8/7.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class UserDefaultsMock: UserDefaults {
+final class InMemoryUserDefaults: UserDefaults {
     private var values = [String: Any]()
 
     override func object(forKey defaultName: String) -> Any? {
