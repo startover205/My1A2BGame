@@ -22,30 +22,32 @@ class RankUIIntegrationTests: XCTestCase {
     }
     
     func test_loadRecordsActions_requestsRecordsFromLoader() {
-        let basicRecordLoader = RecordLoaderSpy(stub: [])
-        let advancedRecordLoader = RecordLoaderSpy(stub: [])
-        let sut = makeSUT(requestRecords: basicRecordLoader, requestAdvancedRecords: advancedRecordLoader)
+        let loader = RecordLoaderSpy(stub: [])
+        let anotherLoader = RecordLoaderSpy(stub: [])
+        let rank = Rank(title: "a title", loader: loader)
+        let anotherRank = Rank(title: "another title", loader: anotherLoader)
+        let sut = makeSUT(ranks: [rank, anotherRank])
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(basicRecordLoader.loadCallCount, 0, "Expect no loading requests after view is loaded")
+        XCTAssertEqual(loader.loadCallCount, 0, "Expect no loading requests after view is loaded")
         
         sut.viewWillAppear(false)
-        XCTAssertEqual(basicRecordLoader.loadCallCount, 1, "Expect a loading request on will view appear")
+        XCTAssertEqual(loader.loadCallCount, 1, "Expect a loading request on will view appear")
         
         sut.viewWillAppear(false)
-        XCTAssertEqual(basicRecordLoader.loadCallCount, 2, "Expect another loading request on will view appear")
+        XCTAssertEqual(loader.loadCallCount, 2, "Expect another loading request on will view appear")
         
         sut.simulateChangeRankSelection(to: 0)
-        XCTAssertEqual(basicRecordLoader.loadCallCount, 2, "Expect no loading requests on tapping the current segment")
+        XCTAssertEqual(loader.loadCallCount, 2, "Expect no loading requests on tapping the current segment")
         
         sut.simulateChangeRankSelection(to: 1)
-        XCTAssertEqual(advancedRecordLoader.loadCallCount, 1, "Expect a loading request on tapping other segments")
+        XCTAssertEqual(anotherLoader.loadCallCount, 1, "Expect a loading request on tapping other segments")
         
         sut.viewWillAppear(false)
-        XCTAssertEqual(advancedRecordLoader.loadCallCount, 2, "Expect another loading request on will view appear")
+        XCTAssertEqual(anotherLoader.loadCallCount, 2, "Expect another loading request on will view appear")
         
         sut.simulateChangeRankSelection(to: 0)
-        XCTAssertEqual(basicRecordLoader.loadCallCount, 3, "Expect a loading request on tapping other segments")
+        XCTAssertEqual(loader.loadCallCount, 3, "Expect a loading request on tapping other segments")
     }
     
     func test_loadRecordsCompletion_rendersSuccessfullyLoadedRecordsAndPlaceholderForEmptyRecords() {
@@ -54,7 +56,8 @@ class RankUIIntegrationTests: XCTestCase {
         let record1 = makeRecord(name: "another name", guessCount: 13, guessTime: 123.3)
         let record2 = makeRecord(name: "a name", guessCount: 1, guessTime: 5.1)
         let recordLoader = RecordLoaderSpy(stub: [])
-        let sut = makeSUT(requestRecords: recordLoader)
+        let rank = Rank(title: "a title", loader: recordLoader)
+        let sut = makeSUT(ranks: [rank])
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
@@ -79,7 +82,8 @@ class RankUIIntegrationTests: XCTestCase {
         let loadError = anyNSError()
         let recordLoader = RecordLoaderSpy(stubbedError: loadError)
         let hostVC = UIViewControllerSpy()
-        let sut = makeSUT(requestRecords: recordLoader, requestAdvancedRecords: recordLoader, hostVC: hostVC)
+        let rank = Rank(title: "a title", loader: recordLoader)
+        let sut = makeSUT(ranks: [rank], hostVC: hostVC)
         
         sut.loadViewIfNeeded()
         sut.viewWillAppear(false)
@@ -92,9 +96,8 @@ class RankUIIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(requestRecords: RecordLoader = RecordLoaderSpy(stub: []), requestAdvancedRecords: RecordLoader = RecordLoaderSpy(stub: []), hostVC: UIViewController = UIViewControllerSpy(), file: StaticString = #filePath, line: UInt = #line) -> RankViewController {
-        let sut = RankUIComposer.rankComposedWith(ranks: [Rank(title: "Basic", loader: requestRecords),
-                                                          Rank(title: "Advanced", loader: requestAdvancedRecords)],
+    private func makeSUT(ranks: [Rank] = [], hostVC: UIViewController = UIViewControllerSpy(), file: StaticString = #filePath, line: UInt = #line) -> RankViewController {
+        let sut = RankUIComposer.rankComposedWith(ranks: ranks,
                                                   alertHost: hostVC)
         
         trackForMemoryLeaks(hostVC, file: file, line: line)
