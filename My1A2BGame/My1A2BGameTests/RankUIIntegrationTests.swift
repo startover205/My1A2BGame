@@ -12,6 +12,15 @@ import MastermindiOS
 import My1A2BGame
 
 class RankUIIntegrationTests: XCTestCase {
+    
+    func test_rankView_hasRankSelectionView() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.hasRankSelectionView)
+    }
+    
     func test_loadRecordsActions_requestsRecordsFromLoader() {
         let basicRecordLoader = RecordLoaderSpy(stub: [])
         let advancedRecordLoader = RecordLoaderSpy(stub: [])
@@ -26,16 +35,16 @@ class RankUIIntegrationTests: XCTestCase {
         sut.viewWillAppear(false)
         XCTAssertEqual(basicRecordLoader.loadCallCount, 2, "Expect another loading request on will view appear")
         
-        sut.simulateChangeSegmentIndex(to: 0)
+        sut.simulateChangeRankSelection(to: 0)
         XCTAssertEqual(basicRecordLoader.loadCallCount, 2, "Expect no loading requests on tapping the current segment")
         
-        sut.simulateChangeSegmentIndex(to: 1)
+        sut.simulateChangeRankSelection(to: 1)
         XCTAssertEqual(advancedRecordLoader.loadCallCount, 1, "Expect a loading request on tapping other segments")
         
         sut.viewWillAppear(false)
         XCTAssertEqual(advancedRecordLoader.loadCallCount, 2, "Expect another loading request on will view appear")
         
-        sut.simulateChangeSegmentIndex(to: 0)
+        sut.simulateChangeRankSelection(to: 0)
         XCTAssertEqual(basicRecordLoader.loadCallCount, 3, "Expect a loading request on tapping other segments")
     }
     
@@ -144,6 +153,14 @@ class RankUIIntegrationTests: XCTestCase {
 }
 
 private extension RankViewController {
+    private func rankSelectionView() -> UISegmentedControl? {
+        navigationItem.titleView as? UISegmentedControl
+    }
+    
+    var hasRankSelectionView: Bool {
+        rankSelectionView() != nil
+    }
+    
     func numberOfRows(in section: Int) -> Int {
         tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
     }
@@ -152,8 +169,8 @@ private extension RankViewController {
         numberOfRows(in: recordsSection)
     }
     
-    func simulateChangeSegmentIndex(to index: Int) {
-        let segmentedControl = navigationItem.titleView as? UISegmentedControl
+    func simulateChangeRankSelection(to index: Int) {
+        let segmentedControl = rankSelectionView()
         let currentIndex = segmentedControl?.selectedSegmentIndex
         segmentedControl?.selectedSegmentIndex = index
         if index != currentIndex {
