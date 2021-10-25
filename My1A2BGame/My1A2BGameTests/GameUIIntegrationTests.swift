@@ -65,6 +65,14 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off, matching the user preferance updated by `sut`")
     }
     
+    func test_gameView_hasVoicePromptSwitch() {
+        let sut = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.hasVoicePromptSwitch)
+    }
+    
     func test_voicePrompt_showsIllustrationAlertOnTurningOn() {
         let userDefaults = InMemoryUserDefaults()
         let sut = makeSUT(userDefaults: userDefaults)
@@ -503,7 +511,11 @@ private extension GuessNumberViewController {
     
     var resultMessage: String? { hintViewController.hintLabel.text }
     
-    var voicePromptOn: Bool { (navigationItem.leftBarButtonItem?.customView as? UISwitch)?.isOn == true }
+    private func voicePromptSwitch() -> UISwitch? { navigationItem.leftBarButtonItem?.customView as? UISwitch }
+    
+    var voicePromptOn: Bool { voicePromptSwitch()?.isOn == true }
+    
+    var hasVoicePromptSwitch: Bool { voicePromptSwitch() != nil }
     
     var showingHelperView: Bool {
         if let helperView = helperViewController?.helperBoardView {
