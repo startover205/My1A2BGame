@@ -21,6 +21,18 @@ class RankUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.hasRankSelectionView)
     }
     
+    func test_rankSelectionView_rendersRankTitles() {
+        let anyLoader = RecordLoaderSpy()
+        let rank = Rank(title: "a title", loader: anyLoader)
+        let anotherRank = Rank(title: "another title", loader: anyLoader)
+        let sut = makeSUT(ranks: [rank, anotherRank])
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.selectionTitle(at: 0), "a title")
+        XCTAssertEqual(sut.selectionTitle(at: 1), "another title")
+    }
+    
     func test_loadRecordsActions_requestsRecordsFromLoader() {
         let loader = RecordLoaderSpy(stub: [])
         let anotherLoader = RecordLoaderSpy(stub: [])
@@ -158,6 +170,10 @@ class RankUIIntegrationTests: XCTestCase {
 private extension RankViewController {
     private func rankSelectionView() -> UISegmentedControl? {
         navigationItem.titleView as? UISegmentedControl
+    }
+    
+    func selectionTitle(at index: Int) -> String? {
+        rankSelectionView()?.titleForSegment(at: index)
     }
     
     var hasRankSelectionView: Bool {
