@@ -503,7 +503,7 @@ private extension GuessNumberViewController {
     
     var resultMessage: String? { hintViewController.hintLabel.text }
     
-    var voicePromptOn: Bool { (navigationItem.leftBarButtonItem!.customView as! UISwitch).isOn }
+    var voicePromptOn: Bool { (navigationItem.leftBarButtonItem?.customView as? UISwitch)?.isOn == true }
     
     var showingHelperView: Bool {
         if let helperView = helperViewController?.helperBoardView {
