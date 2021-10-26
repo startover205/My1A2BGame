@@ -20,6 +20,16 @@ class FAQTableViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [])
     }
     
+    func test_loadView_rendersQuestionsAndAnswers() {
+        let question = Question(content: "a piece of content", answer: "an answer")
+        let anotherQuestion = Question(content: "another piece ofcontent", answer: "another answer")
+        let sut = makeSUT(questions: [question, anotherQuestion])
+
+        sut.loadViewIfNeeded()
+        
+        assertThat(sut, isRendering: [question, anotherQuestion])
+    }
+    
     func test_loadView_allQuestionsUnfolded() {
         let sut = makeSUT()
         
