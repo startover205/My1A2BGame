@@ -23,7 +23,8 @@ class FAQTableViewControllerTests: XCTestCase {
     }
     
     func test_loadView_rendersQuestionWithFoldingIndicator() {
-        let sut = makeSUT()
+        let question = anyQuestion()
+        let sut = makeSUT(questions: [question])
         
         sut.loadViewIfNeeded()
         
@@ -32,7 +33,8 @@ class FAQTableViewControllerTests: XCTestCase {
     }
     
     func test_onTapQuestion_controlsFoldingOfAnswer() {
-        let sut = makeSUT()
+        let question = anyQuestion()
+        let sut = makeSUT(questions: [question])
         
         sut.loadViewIfNeeded()
         
@@ -48,7 +50,8 @@ class FAQTableViewControllerTests: XCTestCase {
     }
     
     func test_onTapQuestion_rendersFoldingIndicator() {
-        let sut = makeSUT()
+        let question = anyQuestion()
+        let sut = makeSUT(questions: [question])
         
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.foldingIndicatorView(at: 0)?.transform, .identity, "Expect the indicator to be pointing leftward upon view load")
@@ -62,8 +65,8 @@ class FAQTableViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
-        let sut = FAQTableViewController()
+    private func makeSUT(questions: [Question] = [], file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
+        let sut = FAQTableViewController(tableModel: questions)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -103,4 +106,8 @@ private extension FAQTableViewController {
     private var questionRow: Int { 0 }
     
     private var answerRow: Int { 1 }
+}
+
+private func anyQuestion() -> Question {
+    .init(content: "any content", answer: "any answer")
 }

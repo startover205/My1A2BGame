@@ -22,9 +22,12 @@ public final class FAQTableViewController: UITableViewController {
     
     private var sectionOpenStatus: [Int: Bool] = [:]
     private var cachedScrollPosition : CGFloat?
-    private var tableModel = [Question(
-                                content: "How come sometimes there's no reward ad when we are out of guess chances?",
-                                answer: "The reward ad will only show if an ad is loaded completely.")]
+    private var tableModel = [Question]()
+    
+    public convenience init(tableModel: [Question]) {
+        self.init()
+        self.tableModel = tableModel
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
