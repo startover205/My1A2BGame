@@ -8,15 +8,32 @@
 
 import UIKit
 
+public struct Question {
+    public let content: String
+    public let answer: String
+    
+    public init(content: String, answer: String) {
+        self.content = content
+        self.answer = answer
+    }
+}
+
 public final class FAQTableViewController: UITableViewController {
     
     private var sectionOpenStatus: [Int: Bool] = [:]
     private var cachedScrollPosition : CGFloat?
+    private var tableModel = [Question(
+                                content: "How come sometimes there's no reward ad when we are out of guess chances?",
+                                answer: "The reward ad will only show if an ad is loaded completely.")]
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
         initSectionOpenStatus()
+        
+        tableView.reloadData()
     }
 
     public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -25,6 +42,10 @@ public final class FAQTableViewController: UITableViewController {
             tableView.setContentOffset(CGPoint(x: 0, y: cachedScrollPosition!), animated: false)
         }
     }
+    
+    public override func numberOfSections(in tableView: UITableView) -> Int { tableModel.count }
+    
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 2 }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
@@ -57,10 +78,12 @@ public final class FAQTableViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+        let question = tableModel[indexPath.section]
         
+        cell.textLabel?.text = indexPath.row == 0 ? question.content : question.answer
         cell.accessoryView = indexPath.row == 0 ? UIImageView(image: #imageLiteral(resourceName: "baseline_keyboard_arrow_left_black_18pt")) : nil
-        cell.accessoryView?.transform = sectionOpenStatus[indexPath.section]! ? .init(rotationAngle: CGFloat(-Float.pi / 2)) :.identity
+        cell.accessoryView?.transform = sectionOpenStatus[indexPath.section]! ? .init(rotationAngle: CGFloat(-Float.pi / 2)) : .identity
 
         return cell
     }
@@ -69,7 +92,7 @@ public final class FAQTableViewController: UITableViewController {
 private extension FAQTableViewController {
     
     func initSectionOpenStatus(){
-        for i in 0..<tableView.numberOfSections {
+        for i in 0..<tableModel.count {
             sectionOpenStatus[i] = false
         }
     }

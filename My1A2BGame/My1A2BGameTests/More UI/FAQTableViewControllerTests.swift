@@ -63,7 +63,7 @@ class FAQTableViewControllerTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
-        let sut = UIStoryboard(name: "More", bundle: .main).instantiateViewController(withIdentifier: "FAQTableViewController") as! FAQTableViewController
+        let sut = FAQTableViewController()
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
