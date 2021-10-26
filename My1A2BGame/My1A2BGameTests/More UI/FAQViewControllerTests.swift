@@ -97,15 +97,16 @@ class FAQViewControllerTests: XCTestCase {
         }
 
         questions.enumerated().forEach { section, question in
-            assertThat(sut, hasViewConfiguredFor: question, at: section)
+            assertThat(sut, hasViewConfiguredFor: question, at: section, file: file, line: line)
         }
     }
-
+    
     private func assertThat(_ sut: FAQViewController, hasViewConfiguredFor question: Question, at section: Int, file: StaticString = #filePath, line: UInt = #line) {
-        let questionCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: section))
-        let answerCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 1, section: section))
-        XCTAssertEqual(questionCell?.textLabel?.text, question.content, "Expected the question content to be \(question.content) for question at section (\(section))", file: file, line: line)
-        XCTAssertEqual(answerCell?.textLabel?.text, question.answer, "Expected the answer to be \(question.answer) for question at section (\(section))", file: file, line: line)
+        let questionCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: section)) as? MultiLineContentCell
+        XCTAssertEqual(questionCell?.contentLabel?.text, question.content, "Expected the question content to be \(question.content) for question at section (\(section))", file: file, line: line)
+        
+        let answerCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 1, section: section))  as? MultiLineContentCell
+        XCTAssertEqual(answerCell?.contentLabel?.text, question.answer, "Expected the answer to be \(question.answer) for question at section (\(section))", file: file, line: line)
     }
 }
 
