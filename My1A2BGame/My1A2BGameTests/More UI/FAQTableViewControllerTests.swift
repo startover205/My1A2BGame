@@ -8,7 +8,7 @@
 
 import XCTest
 import UIKit
-@testable import My1A2BGame
+import My1A2BGame
 
 class FAQTableViewControllerTests: XCTestCase {
     
