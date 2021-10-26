@@ -35,7 +35,7 @@ class FAQTableViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        for section in 0..<sut.numberOfQuestions() {
+        for section in 0..<sut.numberOfRenderedQuestionViews() {
             XCTAssertNotEqual(sut.heightForQuestion(at: section), 0.0)
         }
     }
@@ -56,7 +56,7 @@ class FAQTableViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        for section in 0..<sut.numberOfAnswers() {
+        for section in 0..<sut.numberOfRenderedAnswerViews() {
             XCTAssertEqual(sut.heightForAnswer(at: section), 0.0, "Expect answer to be folded upon view load")
         }
         
@@ -110,18 +110,14 @@ class FAQTableViewControllerTests: XCTestCase {
 }
 
 private extension FAQTableViewController {
-    func numberOfQuestions() -> Int {
-        tableView.numberOfSections
-    }
-    
-    func numberOfAnswers() -> Int {
-        numberOfQuestions()
-    }
-    
     func numberOfRenderedQuestionViews() -> Int {
         tableView.numberOfSections
     }
     
+    func numberOfRenderedAnswerViews() -> Int {
+        numberOfRenderedQuestionViews()
+    }
+
     func heightForQuestion(at section: Int) -> CGFloat? {
         tableView.delegate?.tableView?(tableView, heightForRowAt: IndexPath(row: questionRow, section: section))
     }
