@@ -21,7 +21,7 @@ class FAQViewControllerTests: XCTestCase {
     
     func test_loadView_rendersQuestionsAndAnswers() {
         let question = Question(content: "a piece of content", answer: "an answer")
-        let anotherQuestion = Question(content: "another piece ofcontent", answer: "another answer")
+        let anotherQuestion = Question(content: "another piece of content", answer: "another answer")
         let sut = makeSUT(questions: [question, anotherQuestion])
 
         sut.loadViewIfNeeded()
@@ -83,7 +83,8 @@ class FAQViewControllerTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(questions: [Question] = [], file: StaticString = #filePath, line: UInt = #line) -> FAQViewController {
-        let sut = FAQViewController(tableModel: questions)
+        let sut = UIStoryboard(name: "More", bundle: .main).instantiateViewController(withIdentifier: "FAQViewController") as! FAQViewController
+        sut.tableModel = questions
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

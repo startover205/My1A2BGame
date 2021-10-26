@@ -22,12 +22,7 @@ public final class FAQViewController: UITableViewController {
     
     private var sectionOpenStatus: [Int: Bool] = [:]
     private var cachedScrollPosition : CGFloat?
-    var tableModel = [Question]()
-    
-    public convenience init(tableModel: [Question]) {
-        self.init()
-        self.tableModel = tableModel
-    }
+    public var tableModel = [Question]()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +30,6 @@ public final class FAQViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         initSectionOpenStatus()
-        
-        tableView.reloadData()
     }
 
     public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
