@@ -9,6 +9,15 @@
 import UIKit
 import MessageUI
 
+let faq = [Question(content: NSLocalizedString("QUESTION_AD_NOT_SHOWING",
+                                               tableName: "Localizable",
+                                               bundle: .main,
+                                               comment: "A question about why an ad is not always showing when the player is out of chances"),
+                    answer:  NSLocalizedString("ANSWER_AD_NOT_SHOWING",
+                                               tableName: "Localizable",
+                                               bundle: .main,
+                                               comment: "An answer to why an ad is not always showing when the player is out of chances"))]
+
 class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var feedBackCell: UITableViewCell!
     @IBOutlet weak var reviewCell: UITableViewCell!
@@ -16,6 +25,14 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? FAQViewController {
+            controller.tableModel = faq
+        }
     }
     
     // MARK: - Table view delegate

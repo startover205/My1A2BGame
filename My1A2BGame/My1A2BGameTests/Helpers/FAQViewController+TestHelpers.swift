@@ -28,7 +28,19 @@ extension FAQViewController {
     }
     
     func questionView(at section: Int) -> UITableViewCell? {
-        tableView.cellForRow(at: IndexPath(row: questionRow, section: section))
+        tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: questionRow, section: section))
+    }
+    
+    func question(at section: Int) -> String? {
+        questionView(at: section)?.textLabel?.text
+    }
+    
+    func answerView(at section: Int) -> UITableViewCell? {
+        tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: answerRow, section: section))
+    }
+    
+    func answer(at section: Int) -> String? {
+        answerView(at: section)?.textLabel?.text
     }
     
     func simulateTappingQuestion(at section: Int) {

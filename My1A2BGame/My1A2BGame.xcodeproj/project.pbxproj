@@ -54,6 +54,7 @@
 		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
 		C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */; };
 		C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */; };
+		C0C271912727A1E700A565C6 /* MoreUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C271902727A1E700A565C6 /* MoreUIIntegrationTests.swift */; };
 		C0C271932727A8D600A565C6 /* FAQViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C271922727A8D600A565C6 /* FAQViewController+TestHelpers.swift */; };
 		C0C3143127192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3143027192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift */; };
 		C0CB93AB225C90F400278B08 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB93A9225C90F400278B08 /* Reachability.m */; };
@@ -155,6 +156,7 @@
 		C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVersion.swift; sourceTree = "<group>"; };
 		C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplenishChanceDelegate.swift; sourceTree = "<group>"; };
 		C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
+		C0C271902727A1E700A565C6 /* MoreUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C0C271922727A8D600A565C6 /* FAQViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FAQViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		C0C3143027192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ClearModalPresentationReference.swift"; sourceTree = "<group>"; };
 		C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My1A2BGame-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
 				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
 				C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */,
+				C0C271902727A1E700A565C6 /* MoreUIIntegrationTests.swift */,
 				C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */,
 				C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */,
 				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
@@ -600,6 +603,7 @@
 			files = (
 				C07C16B52702F8F900451060 /* SharedLocalizationTestHelpers.swift in Sources */,
 				C07C16B32702F89900451060 /* RewardAdLocalizationTests.swift in Sources */,
+				C0C271912727A1E700A565C6 /* MoreUIIntegrationTests.swift in Sources */,
 				C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */,
 				C0C3143127192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift in Sources */,
 				C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */,
