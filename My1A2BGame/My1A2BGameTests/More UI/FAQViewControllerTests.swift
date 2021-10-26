@@ -1,5 +1,5 @@
 //
-//  FAQTableViewControllerTests.swift
+//  FAQViewControllerTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/10/22.
@@ -9,7 +9,7 @@
 import XCTest
 import My1A2BGame
 
-class FAQTableViewControllerTests: XCTestCase {
+class FAQViewControllerTests: XCTestCase {
     
     func test_loadView_rendersEmptyListOnEmptyTableModel() {
         let sut = makeSUT(questions: [])
@@ -82,15 +82,15 @@ class FAQTableViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(questions: [Question] = [], file: StaticString = #filePath, line: UInt = #line) -> FAQTableViewController {
-        let sut = FAQTableViewController(tableModel: questions)
+    private func makeSUT(questions: [Question] = [], file: StaticString = #filePath, line: UInt = #line) -> FAQViewController {
+        let sut = FAQViewController(tableModel: questions)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
     }
     
-    private func assertThat(_ sut: FAQTableViewController, isRendering questions: [Question], file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: FAQViewController, isRendering questions: [Question], file: StaticString = #filePath, line: UInt = #line) {
         guard sut.numberOfRenderedQuestionViews() == questions.count else {
             return XCTFail("Expected \(questions.count) questions, got \(sut.numberOfRenderedQuestionViews()) instead.", file: file, line: line)
         }
@@ -100,7 +100,7 @@ class FAQTableViewControllerTests: XCTestCase {
         }
     }
 
-    private func assertThat(_ sut: FAQTableViewController, hasViewConfiguredFor question: Question, at section: Int, file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: FAQViewController, hasViewConfiguredFor question: Question, at section: Int, file: StaticString = #filePath, line: UInt = #line) {
         let questionCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: section))
         let answerCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 1, section: section))
         XCTAssertEqual(questionCell?.textLabel?.text, question.content, "Expected the question content to be \(question.content) for question at section (\(section))", file: file, line: line)
@@ -108,7 +108,7 @@ class FAQTableViewControllerTests: XCTestCase {
     }
 }
 
-private extension FAQTableViewController {
+private extension FAQViewController {
     func numberOfRenderedQuestionViews() -> Int {
         tableView.numberOfSections
     }

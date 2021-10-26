@@ -1,5 +1,5 @@
 //
-//  FAQTableViewController.swift
+//  FAQViewController.swift
 //  EasyTimer
 //
 //  Created by Ming-Ta Yang on 2019/3/20.
@@ -18,7 +18,7 @@ public struct Question {
     }
 }
 
-public final class FAQTableViewController: UITableViewController {
+public final class FAQViewController: UITableViewController {
     
     private var sectionOpenStatus: [Int: Bool] = [:]
     private var cachedScrollPosition : CGFloat?
@@ -92,7 +92,7 @@ public final class FAQTableViewController: UITableViewController {
     }
 }
 
-private extension FAQTableViewController {
+private extension FAQViewController {
     
     func initSectionOpenStatus(){
         for i in 0..<tableModel.count {
