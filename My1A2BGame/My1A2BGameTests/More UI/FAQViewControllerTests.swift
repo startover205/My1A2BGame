@@ -45,7 +45,7 @@ class FAQViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        let imageView = try? XCTUnwrap(sut.question(at: 0)?.accessoryView as? UIImageView)
+        let imageView = try? XCTUnwrap(sut.questionView(at: 0)?.accessoryView as? UIImageView)
         XCTAssertEqual(imageView?.image?.pngData(), UIImage(named: "baseline_keyboard_arrow_left_black_18pt")?.pngData())
     }
     
@@ -125,7 +125,7 @@ private extension FAQViewController {
         tableView.delegate?.tableView?(tableView, heightForRowAt: IndexPath(row: answerRow, section: section))
     }
     
-    func question(at section: Int) -> UITableViewCell? {
+    func questionView(at section: Int) -> UITableViewCell? {
         tableView.cellForRow(at: IndexPath(row: questionRow, section: section))
     }
     
@@ -134,7 +134,7 @@ private extension FAQViewController {
     }
     
     func foldingIndicatorView(at section: Int) -> UIView? {
-        question(at: section)?.accessoryView
+        questionView(at: section)?.accessoryView
     }
     
     private var questionRow: Int { 0 }
