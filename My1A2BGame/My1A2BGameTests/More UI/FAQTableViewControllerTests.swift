@@ -12,6 +12,14 @@ import UIKit
 
 class FAQTableViewControllerTests: XCTestCase {
     
+    func test_loadView_rendersEmptyListOnEmptyTableModel() {
+        let sut = makeSUT(questions: [])
+        
+        sut.loadViewIfNeeded()
+        
+        assertThat(sut, isRendering: [])
+    }
+    
     func test_loadView_allQuestionsUnfolded() {
         let sut = makeSUT()
         
@@ -72,6 +80,23 @@ class FAQTableViewControllerTests: XCTestCase {
         
         return sut
     }
+    
+    private func assertThat(_ sut: FAQTableViewController, isRendering questions: [Question], file: StaticString = #filePath, line: UInt = #line) {
+        guard sut.numberOfRenderedQuestionViews() == questions.count else {
+            return XCTFail("Expected \(questions.count) questions, got \(sut.numberOfRenderedQuestionViews()) instead.", file: file, line: line)
+        }
+
+        questions.enumerated().forEach { section, question in
+            assertThat(sut, hasViewConfiguredFor: question, at: section)
+        }
+    }
+
+    private func assertThat(_ sut: FAQTableViewController, hasViewConfiguredFor question: Question, at section: Int, file: StaticString = #filePath, line: UInt = #line) {
+        let questionCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: section))
+        let answerCell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 1, section: section))
+        XCTAssertEqual(questionCell?.textLabel?.text, question.content, "Expected the question content to be \(question.content) for question at section (\(section))", file: file, line: line)
+        XCTAssertEqual(answerCell?.textLabel?.text, question.answer, "Expected the answer to be \(question.answer) for question at section (\(section))", file: file, line: line)
+    }
 }
 
 private extension FAQTableViewController {
@@ -81,6 +106,10 @@ private extension FAQTableViewController {
     
     func numberOfAnswers() -> Int {
         numberOfQuestions()
+    }
+    
+    func numberOfRenderedQuestionViews() -> Int {
+        tableView.numberOfSections
     }
     
     func heightForQuestion(at section: Int) -> CGFloat? {
