@@ -22,7 +22,7 @@ public final class FAQViewController: UITableViewController {
     
     private var sectionOpenStatus: [Int: Bool] = [:]
     private var cachedScrollPosition : CGFloat?
-    private var tableModel = [Question]()
+    var tableModel = [Question]()
     
     public convenience init(tableModel: [Question]) {
         self.init()
