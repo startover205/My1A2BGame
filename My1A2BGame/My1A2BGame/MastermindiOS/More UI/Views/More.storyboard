@@ -214,58 +214,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="MainBackground"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestionCell" id="4Bp-OK-zjJ" customClass="MultiLineContentCell" customModule="My1A2BGame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestionCell" textLabel="jc2-FH-kVT" style="IBUITableViewCellStyleDefault" id="vMq-kh-mEJ">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Bp-OK-zjJ" id="h4L-tv-zIx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vMq-kh-mEJ" id="aqG-vs-9Qc">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How come sometimes there's no reward ad when we are out of guess chances?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2O-Bo-0n9">
-                                            <rect key="frame" x="8" y="8" width="398" height="74"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="How come sometimes there's no reward ad when we are out of guess chances?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jc2-FH-kVT">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="20"/>
                                             <color key="textColor" systemColor="systemRedColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="R2O-Bo-0n9" firstAttribute="leading" secondItem="h4L-tv-zIx" secondAttribute="leading" constant="8" id="FNB-1v-oab"/>
-                                        <constraint firstAttribute="trailing" secondItem="R2O-Bo-0n9" secondAttribute="trailing" constant="8" id="Nff-LE-3fO"/>
-                                        <constraint firstItem="R2O-Bo-0n9" firstAttribute="top" secondItem="h4L-tv-zIx" secondAttribute="top" constant="8" id="tWj-mE-QBW"/>
-                                        <constraint firstAttribute="bottom" secondItem="R2O-Bo-0n9" secondAttribute="bottom" constant="8" id="wL6-BJ-EkH"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.46666666670000001" green="0.36470588240000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="contentLabel" destination="R2O-Bo-0n9" id="5Tc-bg-PiQ"/>
-                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerCell" id="sR6-dQ-xoL" customClass="MultiLineContentCell" customModule="My1A2BGame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114.5" width="414" height="57"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationLevel="1" indentationWidth="10" reuseIdentifier="AnswerCell" textLabel="Avn-Cr-HGB" style="IBUITableViewCellStyleDefault" id="D0m-xk-vsJ">
+                                <rect key="frame" x="0.0" y="123.5" width="414" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sR6-dQ-xoL" id="TNs-33-8Zp">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D0m-xk-vsJ" id="L4c-7O-ekz">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The reward ad will only show if an ad is loaded completely." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiR-dW-bdX">
-                                            <rect key="frame" x="16" y="8" width="390" height="41"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="The reward ad will only show if an ad is loaded completely." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Avn-Cr-HGB">
+                                            <rect key="frame" x="30" y="0.0" width="364" height="62"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="systemRedColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="BiR-dW-bdX" secondAttribute="trailing" constant="8" id="0hu-5D-EcS"/>
-                                        <constraint firstAttribute="bottom" secondItem="BiR-dW-bdX" secondAttribute="bottom" priority="999" constant="8" id="3nN-xL-QbN"/>
-                                        <constraint firstItem="BiR-dW-bdX" firstAttribute="top" secondItem="TNs-33-8Zp" secondAttribute="top" priority="999" constant="8" id="ChW-yd-gGh"/>
-                                        <constraint firstItem="BiR-dW-bdX" firstAttribute="leading" secondItem="TNs-33-8Zp" secondAttribute="leading" constant="16" id="pBf-Of-Vk5"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="contentLabel" destination="BiR-dW-bdX" id="DWZ-Ca-34O"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

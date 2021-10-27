@@ -74,10 +74,10 @@ public final class FAQViewController: UITableViewController {
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let isQuestion = indexPath.row == 0
-        let cell = tableView.dequeueReusableCell(withIdentifier: isQuestion ? "QuestionCell" : "AnswerCell") as! MultiLineContentCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: isQuestion ? "QuestionCell" : "AnswerCell") ?? UITableViewCell()
         let question = tableModel[indexPath.section]
         
-        cell.contentLabel.text = isQuestion ? question.content : question.answer
+        cell.textLabel?.text = isQuestion ? question.content : question.answer
         cell.accessoryView = isQuestion ? UIImageView(image: #imageLiteral(resourceName: "baseline_keyboard_arrow_left_black_18pt")) : nil
         cell.accessoryView?.transform = sectionOpenStatus[indexPath.section]! ? .init(rotationAngle: CGFloat(-Float.pi / 2)) : .identity
 

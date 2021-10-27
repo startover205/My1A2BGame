@@ -56,7 +56,6 @@
 		C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */; };
 		C0C271912727A1E700A565C6 /* MoreUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C271902727A1E700A565C6 /* MoreUIIntegrationTests.swift */; };
 		C0C271932727A8D600A565C6 /* FAQViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C271922727A8D600A565C6 /* FAQViewController+TestHelpers.swift */; };
-		C0C27195272809C000A565C6 /* MultiLineContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C27194272809C000A565C6 /* MultiLineContentCell.swift */; };
 		C0C3143127192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3143027192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift */; };
 		C0CB93AB225C90F400278B08 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB93A9225C90F400278B08 /* Reachability.m */; };
 		C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -159,7 +158,6 @@
 		C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		C0C271902727A1E700A565C6 /* MoreUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C0C271922727A8D600A565C6 /* FAQViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FAQViewController+TestHelpers.swift"; sourceTree = "<group>"; };
-		C0C27194272809C000A565C6 /* MultiLineContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineContentCell.swift; sourceTree = "<group>"; };
 		C0C3143027192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ClearModalPresentationReference.swift"; sourceTree = "<group>"; };
 		C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My1A2BGame-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0CB93A9225C90F400278B08 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 				C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */,
 				C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */,
 				C0A1F48726B62A1100536D73 /* FAQViewController.swift */,
-				C0C27194272809C000A565C6 /* MultiLineContentCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -583,7 +580,6 @@
 				C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */,
 				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
-				C0C27195272809C000A565C6 /* MultiLineContentCell.swift in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
