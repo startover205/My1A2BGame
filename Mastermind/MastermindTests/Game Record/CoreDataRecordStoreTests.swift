@@ -10,48 +10,48 @@ import Mastermind
 
 class CoreDataRecordStoreTests: XCTestCase {
     
-    func test_retrieve_deliversEmptyOnEmptyStore() {
+    func test_retrieve_deliversEmptyOnEmptyStore() throws {
         let sut = makeSUT()
         
-        let result = try? sut.retrieve()
+        let result = try sut.retrieve()
         
         XCTAssertEqual(result, [])
     }
     
-    func test_retrieve_hasNoSideEffectsOnEmptyStore() {
+    func test_retrieve_hasNoSideEffectsOnEmptyStore() throws {
         let sut = makeSUT()
         
-        let firstResult = try? sut.retrieve()
+        let firstResult = try sut.retrieve()
         XCTAssertEqual(firstResult, [])
 
-        let secondResult = try? sut.retrieve()
+        let secondResult = try sut.retrieve()
         XCTAssertEqual(secondResult, [])
     }
     
-    func test_retrieve_deliversFoundValueOrderedByGuessCountAndGuessTimeOnNonEmptyStore() {
+    func test_retrieve_deliversFoundValueOrderedByGuessCountAndGuessTimeOnNonEmptyStore() throws {
         let sut = makeSUT()
         let recordWithLowestGuessCount = LocalPlayerRecord(playerName: "a name", guessCount: 1, guessTime: 600.0, timestamp: Date())
         let recordWithModerateGuessCountAndLowestGuessTime = LocalPlayerRecord(playerName: "another name", guessCount: 3, guessTime: 30.0, timestamp: Date())
         let recordWithModerateGuessCountAndLongesGuessTime = LocalPlayerRecord(playerName: "and another name", guessCount: 3, guessTime: 30.1, timestamp: Date())
 
-        try? sut.insert(recordWithModerateGuessCountAndLowestGuessTime)
-        try? sut.insert(recordWithLowestGuessCount)
-        try? sut.insert(recordWithModerateGuessCountAndLongesGuessTime)
+        try sut.insert(recordWithModerateGuessCountAndLowestGuessTime)
+        try sut.insert(recordWithLowestGuessCount)
+        try sut.insert(recordWithModerateGuessCountAndLongesGuessTime)
         
-        let result = try? sut.retrieve()
+        let result = try sut.retrieve()
         XCTAssertEqual(result, [recordWithLowestGuessCount, recordWithModerateGuessCountAndLowestGuessTime, recordWithModerateGuessCountAndLongesGuessTime])
     }
     
-    func test_retrieve_hasNoSideEffectsOnNonEmptyStore() {
+    func test_retrieve_hasNoSideEffectsOnNonEmptyStore() throws {
         let sut = makeSUT()
         let record = anyPlayerRecord().local
         
-        try? sut.insert(record)
+        try sut.insert(record)
         
-        let firstResult = try? sut.retrieve()
+        let firstResult = try sut.retrieve()
         XCTAssertEqual(firstResult, [record])
 
-        let secondResult = try? sut.retrieve()
+        let secondResult = try sut.retrieve()
         XCTAssertEqual(secondResult, [record])
     }
     
@@ -108,7 +108,7 @@ class CoreDataRecordStoreTests: XCTestCase {
         let sut = makeSUT()
         try? sut.insert(record)
         
-        XCTAssertEqual(try? sut.retrieve(), [])
+        XCTAssertEqual(try sut.retrieve(), [])
     }
     
     func test_delete_deliversNoErrorOnEmptyCache() {
@@ -124,7 +124,7 @@ class CoreDataRecordStoreTests: XCTestCase {
         
         try! sut.delete(records)
         
-        XCTAssertEqual(try? sut.retrieve(), [])
+        XCTAssertEqual(try sut.retrieve(), [])
     }
     
     func test_delete_deliversNoErrorOnNonEmptyCache() {
@@ -176,7 +176,7 @@ class CoreDataRecordStoreTests: XCTestCase {
         
         try? sut.delete([record])
         
-        XCTAssertEqual(try? sut.retrieve(), [record])
+        XCTAssertEqual(try sut.retrieve(), [record])
     }
     
     // MARK: Helpers

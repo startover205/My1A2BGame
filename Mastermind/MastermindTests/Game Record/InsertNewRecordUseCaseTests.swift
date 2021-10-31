@@ -26,13 +26,13 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_insertNewRecord_doesNotInsertRecordWhenRankPositionUnavailableAndNewRecordNotBeatingOldRecords() {
+    func test_insertNewRecord_doesNotInsertRecordWhenRankPositionUnavailableAndNewRecordNotBeatingOldRecords() throws {
         let (sut, store) = makeSUT()
         let oldRecords = Array(repeating: oneOfTheBestRecord().local, count: 10)
         let newPlayerRecord = oneWorstRecord()
         
         store.completeRecordsRetrieval(with: oldRecords)
-        try? sut.insertNewRecord(newPlayerRecord.model)
+        try sut.insertNewRecord(newPlayerRecord.model)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -50,24 +50,24 @@ class InsertNewRecordUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve, .delete([worstRecord])])
     }
     
-    func test_insertNewRecord_requestRecordInsertionIfRankPositionUnavailableAndBeatingOldRecords() {
+    func test_insertNewRecord_requestRecordInsertionIfRankPositionUnavailableAndBeatingOldRecords() throws {
         let (sut, store) = makeSUT()
         let (oldRecords, worstRecord) = recordsWithOneWorstRecord()
         let newPlayerRecord = oneOfTheBestRecord()
         
         store.completeRecordsRetrieval(with: oldRecords)
-        try? sut.insertNewRecord(newPlayerRecord.model)
+        try sut.insertNewRecord(newPlayerRecord.model)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve, .delete([worstRecord]), .insert(newPlayerRecord.local)])
     }
     
-    func test_insertNewRecord_requestRecordInsertionIfRankPositionsAvailable() {
+    func test_insertNewRecord_requestRecordInsertionIfRankPositionsAvailable() throws {
         let (sut, store) = makeSUT()
         let nineExistingRecords = Array(repeating: anyPlayerRecord().local, count: 9)
         let record = anyPlayerRecord()
         
         store.completeRecordsRetrieval(with: nineExistingRecords)
-        try? sut.insertNewRecord(record.model)
+        try sut.insertNewRecord(record.model)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve, .insert(record.local)])
     }
