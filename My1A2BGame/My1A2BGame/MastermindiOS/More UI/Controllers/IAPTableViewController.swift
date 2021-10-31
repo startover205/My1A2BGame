@@ -11,7 +11,7 @@ import StoreKit
 
 class IAPTableViewController: UITableViewController {
     
-    @IBOutlet weak var restorePurchaeBtn: UIBarButtonItem!
+    @IBOutlet weak var restorePurchaseButton: UIBarButtonItem!
     
     var objects = [SKProduct]()
     var productIdList = [String]()
@@ -23,7 +23,7 @@ class IAPTableViewController: UITableViewController {
         
         StoreObserver.shared.delegate = self
         
-        restorePurchaeBtn.isEnabled = SKPaymentQueue.canMakePayments()
+        restorePurchaseButton.isEnabled = SKPaymentQueue.canMakePayments()
         
         refresh()
     }
