@@ -13,7 +13,7 @@ import My1A2BGame
 
 class LoseUIIntegrationTests: XCTestCase {
     
-    func test_loadView_rendersLoseMessageAndEncouragementMessage() {
+    func test_viewDidLoad_rendersLoseMessageAndEncouragementMessage() {
         let sut = makeSUT()
         
         sut.loadViewIfNeeded()

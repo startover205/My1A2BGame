@@ -13,7 +13,7 @@ import My1A2BGame
 
 class WinUIIntegrationTests: XCTestCase {
     
-    func test_loadView_rendersWinResultMessage() {
+    func test_viewDidLoad_rendersWinResultMessage() {
         let digitCount = 3
         let guessCount = 11
         let (sut, _) = makeSUT(digitCount: 3, guessCount: 11)
@@ -26,7 +26,7 @@ class WinUIIntegrationTests: XCTestCase {
         
     }
     
-    func test_loadView_reqeustLoaderValidatePlayerScore() {
+    func test_viewDidLoad_reqeustLoaderValidatePlayerScore() {
         let guessCount = 3
         let guessTime = 10.0
         let (sut, loader) = makeSUT(guessCount: guessCount, guessTime: guessTime)
@@ -36,7 +36,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.receivedMessages, [.validate(guessCount, guessTime)])
     }
     
-    func test_loadView_rendersBreakRecordViewsIfBreakRecord() {
+    func test_viewDidLoad_rendersBreakRecordViewsIfBreakRecord() {
         let (sut, loader) = makeSUT()
         
         loader.completeValidation(with: true)
@@ -47,7 +47,7 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.saveRecordButtonTitle, RecordPresenter.saveRecordButtonTitle, "Expect localized title")
     }
     
-    func test_loadView_doesNotRendersNewRecordViewsIfRecordNotBroken() {
+    func test_viewDidLoad_doesNotRendersNewRecordViewsIfRecordNotBroken() {
         let (sut, loader) = makeSUT()
         
         loader.completeValidation(with: false)

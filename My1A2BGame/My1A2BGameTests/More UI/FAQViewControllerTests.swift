@@ -11,7 +11,7 @@ import My1A2BGame
 
 class FAQViewControllerTests: XCTestCase {
     
-    func test_loadView_rendersEmptyListOnEmptyTableModel() {
+    func test_viewDidLoad_rendersEmptyListOnEmptyTableModel() {
         let sut = makeSUT(questions: [])
         
         sut.loadViewIfNeeded()
@@ -19,7 +19,7 @@ class FAQViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [])
     }
     
-    func test_loadView_rendersQuestionsAndAnswers() {
+    func test_viewDidLoad_rendersQuestionsAndAnswers() {
         let question = Question(content: "a piece of content", answer: "an answer")
         let anotherQuestion = Question(content: "another piece of content", answer: "another answer")
         let sut = makeSUT(questions: [question, anotherQuestion])
@@ -29,7 +29,7 @@ class FAQViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [question, anotherQuestion])
     }
     
-    func test_loadView_allQuestionsUnfolded() {
+    func test_viewDidLoad_allQuestionsUnfolded() {
         let sut = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -39,7 +39,7 @@ class FAQViewControllerTests: XCTestCase {
         }
     }
     
-    func test_loadView_rendersQuestionWithFoldingIndicator() {
+    func test_viewDidLoad_rendersQuestionWithFoldingIndicator() {
         let question = anyQuestion()
         let sut = makeSUT(questions: [question])
         
