@@ -35,7 +35,7 @@ public final class GameUIComposer {
                         style: .default)
                     
                     alertController.addAction(okAction)
-                    gameViewController.present(alertController, animated: true)
+                    gameViewController.showDetailViewController(alertController, sender: self)
                 }
             })
         gameViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)

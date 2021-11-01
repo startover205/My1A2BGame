@@ -73,11 +73,10 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.hasVoicePromptSwitch)
     }
     
-    func test_voicePrompt_showsIllustrationAlertOnTurningOn() throws {
+    func test_voicePrompt_showsExplanationOnTurningOn() throws {
         let userDefaults = InMemoryUserDefaults()
         let sut = makeSUT(userDefaults: userDefaults)
-        let window = UIWindow()
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
 
         userDefaults.setVoicePromptOn()
         
@@ -85,12 +84,10 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertNil(sut.presentedViewController, "Expect no alert shown on turning off voice prompt")
         
         sut.simulateToggleVoicePrompt()
-        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown on turning on voice prompt")
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController, "Expect alert shown on turning on voice prompt")
         XCTAssertEqual(alert.title, VoicePromptOnAlertPresenter.alertTitle)
         XCTAssertEqual(alert.message, VoicePromptOnAlertPresenter.alertMessage)
         XCTAssertEqual(alert.actions.first?.title, VoicePromptOnAlertPresenter.alertConfirmTitle)
-        
-        clearModalPresentationReference(sut)
     }
     
     func test_guess_showsRenderedInputView() {
@@ -630,5 +627,28 @@ private extension UIAlertController {
     
     func tapCancelButton() {
         tapButton(atIndex: 1)
+    }
+}
+
+private class TestingContainerViewController: UIViewController {
+    convenience init(_ rootViewController: UIViewController) {
+        self.init()
+                
+        addChild(rootViewController)
+        rootViewController.view.frame = view.frame
+        view.addSubview(rootViewController.view)
+        rootViewController.didMove(toParent: self)
+    }
+
+    private var capturedPresentedViewController: UIViewController?
+
+    override var presentedViewController: UIViewController? { capturedPresentedViewController }
+
+    override func show(_ vc: UIViewController, sender: Any?) {
+        capturedPresentedViewController = vc
+    }
+
+    override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+        capturedPresentedViewController = vc
     }
 }
