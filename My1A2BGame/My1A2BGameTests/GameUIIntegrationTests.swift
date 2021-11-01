@@ -90,7 +90,7 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(alert.actions.first?.title, VoicePromptOnAlertPresenter.alertConfirmTitle)
     }
     
-    func test_guess_showsRenderedInputView() {
+    func test_guess_showsLocalizedInputView() {
         let sut = makeSUT()
         let window = UIWindow()
         window.addSubview(sut.view)
