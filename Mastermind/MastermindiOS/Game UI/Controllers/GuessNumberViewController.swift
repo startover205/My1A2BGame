@@ -117,7 +117,7 @@ extension GuessNumberViewController: GameView {
         alert.addAction(confirm)
         alert.addAction(cancel)
         
-        present(alert, animated: true)
+        showDetailViewController(alert, sender: self)
     }
     
     private func configureViewsForGameResult()  {

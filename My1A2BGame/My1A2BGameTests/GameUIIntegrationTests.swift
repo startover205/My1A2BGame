@@ -316,17 +316,14 @@ class GameUIIntegrationTests: XCTestCase {
     
     func test_giveUp_showAlertWithProperDescriptionOnTapGiveUpButton() throws {
         let sut = makeSUT()
-        let window = UIWindow()
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
 
         sut.simulateTapGiveUpButton()
         
-        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert.title, GamePresenter.giveUpConfirmMessage)
-        XCTAssertEqual(alert.actions.first?.title, GamePresenter.confirmGiveUpAction)
-        XCTAssertEqual(alert.actions.last?.title, GamePresenter.cancelGiveUpAction)
-        
-        clearModalPresentationReference(sut)
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, GamePresenter.giveUpConfirmMessage, "alert title")
+        XCTAssertEqual(alert.actions.first?.title, GamePresenter.confirmGiveUpAction, "alert confirm action")
+        XCTAssertEqual(alert.actions.last?.title, GamePresenter.cancelGiveUpAction, "alert cancel action")
     }
     
     func test_giveUp_notifiesLoseHandlerOnConfirmingGiveUp() throws {
@@ -334,37 +331,31 @@ class GameUIIntegrationTests: XCTestCase {
         let sut = makeSUT(onLose: {
             loseCallCount += 1
         })
-        let window = UIWindow()
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
 
         XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called on view load")
 
         sut.simulateTapGiveUpButton()
-        let alert1 = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        let alert1 = try XCTUnwrap(container.presentedViewController as? UIAlertController)
         alert1.tapCancelButton()
         XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called on cancel alert")
         
         sut.simulateTapGiveUpButton()
-        let alert2 = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        let alert2 = try XCTUnwrap(container.presentedViewController as? UIAlertController)
         alert2.tapConfirmButton()
         XCTAssertEqual(loseCallCount, 1, "Expect give up called on confirming")
-        
-        clearModalPresentationReference(sut)
     }
     
     func test_giveUp_rendersGameEndedOnConfirmingGiveUp() throws {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
         let sut = makeSUT(secret: secret)
-        let window = UIWindow()
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
 
         sut.simulateTapGiveUpButton()
-        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController)
         alert.tapConfirmButton()
 
         assertGameEnd(sut, secret: secret)
-        
-        clearModalPresentationReference(sut)
     }
     
     func test_helperView_showsByTogglingHelperButton() {
