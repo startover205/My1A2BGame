@@ -81,7 +81,7 @@ public final class GameUIComposer {
             inputVC.digitCount = gameVersion.digitCount
             inputVC.delegate = gamePresentationAdapter
 
-            gameViewController.present(UINavigationController(rootViewController: inputVC), animated: true)
+            gameViewController.showDetailViewController(UINavigationController(rootViewController: inputVC), sender: self)
         }
         
         gameViewController.onConfirmGiveUp = { [weak presenter] in

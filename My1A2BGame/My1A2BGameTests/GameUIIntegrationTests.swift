@@ -90,21 +90,17 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(alert.actions.first?.title, VoicePromptOnAlertPresenter.alertConfirmTitle)
     }
     
-    func test_guess_showsLocalizedInputView() {
+    func test_guess_showsLocalizedInputView() throws {
         let sut = makeSUT()
-        let window = UIWindow()
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
         
         sut.onGuessButtonPressed?()
         
-        RunLoop.current.run(until: Date())
+        let inputVC = try XCTUnwrap((container.presentedViewController as? UINavigationController)?.topViewController as? NumberInputViewController)
+        inputVC.loadViewIfNeeded()
         
-        let inputVC = (sut.presentedViewController as? UINavigationController)?.topViewController as? NumberInputViewController
-        
-        XCTAssertEqual(inputVC?.title, NumberInputPresenter.viewModel.viewTitle)
-        XCTAssertEqual(inputVC?.clearButton.title(for: .normal), NumberInputPresenter.viewModel.clearInputAction)
-        
-        clearModalPresentationReference(sut)
+        XCTAssertEqual(inputVC.title, NumberInputPresenter.viewModel.viewTitle, "input view title")
+        XCTAssertEqual(inputVC.clearButton.title(for: .normal), NumberInputPresenter.viewModel.clearInputAction, "clear button title")
     }
     
     func test_guess_rendersResult() {
