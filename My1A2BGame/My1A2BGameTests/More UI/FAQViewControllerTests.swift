@@ -29,7 +29,7 @@ class FAQViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [question, anotherQuestion])
     }
     
-    func test_viewDidLoad_allQuestionsUnfolded() {
+    func test_viewDidLoad_allQuestionsUnfolded() throws {
         let sut = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -39,14 +39,14 @@ class FAQViewControllerTests: XCTestCase {
         }
     }
     
-    func test_viewDidLoad_rendersQuestionWithFoldingIndicator() {
+    func test_viewDidLoad_rendersQuestionWithFoldingIndicator() throws {
         let question = anyQuestion()
         let sut = makeSUT(questions: [question])
         
         sut.loadViewIfNeeded()
         
-        let imageView = try? XCTUnwrap(sut.questionView(at: 0)?.accessoryView as? UIImageView)
-        XCTAssertEqual(imageView?.image?.pngData(), UIImage(named: "baseline_keyboard_arrow_left_black_18pt")?.pngData())
+        let imageView = try XCTUnwrap(sut.questionView(at: 0)?.accessoryView as? UIImageView)
+        XCTAssertEqual(imageView.image?.pngData(), UIImage(named: "baseline_keyboard_arrow_left_black_18pt")?.pngData())
     }
     
     func test_onTapQuestion_controlsFoldingOfAnswer() {

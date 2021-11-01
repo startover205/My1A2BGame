@@ -10,5 +10,7 @@ import XCTest
 @testable import My1A2BGame
 
 class IAPViewControllerTests: XCTestCase {
-
+    func test_viewDidLoad_configuresRestorePuchaseButton() {
+        
+    }
 }

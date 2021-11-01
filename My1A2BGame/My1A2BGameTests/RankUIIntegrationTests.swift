@@ -90,7 +90,7 @@ class RankUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00")])
     }
     
-    func test_loadRank_rendersErrorMessageOnError() {
+    func test_loadRank_rendersErrorMessageOnError() throws {
         let loadError = anyNSError()
         let recordLoader = RecordLoaderSpy(stubbedError: loadError)
         let hostVC = UIViewControllerSpy()
@@ -100,10 +100,10 @@ class RankUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.viewWillAppear(false)
         
-        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? UIAlertController)
-        XCTAssertEqual(alert?.title, RankPresenter.loadError)
-        XCTAssertEqual(alert?.message, loadError.localizedDescription)
-        XCTAssertEqual(alert?.actions.first?.title, RankPresenter.loadErrorMessageDismissAction)
+        let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? UIAlertController)
+        XCTAssertEqual(alert.title, RankPresenter.loadError)
+        XCTAssertEqual(alert.message, loadError.localizedDescription)
+        XCTAssertEqual(alert.actions.first?.title, RankPresenter.loadErrorMessageDismissAction)
     }
     
     // MARK: - Helpers

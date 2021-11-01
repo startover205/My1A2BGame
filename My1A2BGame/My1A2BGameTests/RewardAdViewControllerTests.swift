@@ -36,7 +36,7 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(capturedChanceCount, 0)
     }
 
-    func test_replenishChance_requestHostViewControllerToPresentAlertWithProperContentAnimatedlyIfRewardAdAvailable() {
+    func test_replenishChance_requestHostViewControllerToPresentAlertWithProperContentAnimatedlyIfRewardAdAvailable() throws {
         let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdSpy())
         let (sut, hostVC) = makeSUT(loader: rewardAdLoader, rewardChanceCount: 10)
 
@@ -44,28 +44,28 @@ class RewardAdViewControllerTests: XCTestCase {
 
         XCTAssertEqual(hostVC.capturedPresentations.count, 1, "Expect exactly one presentation")
         XCTAssertEqual(hostVC.capturedPresentations.first?.animated, true, "Expect presenation is animated")
-        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
 
-        XCTAssertEqual(alert?.alertTitle, RewardAdPresenter.alertTitle)
-        XCTAssertEqual(alert?.message, String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10))
-        XCTAssertEqual(alert?.cancelMessage, RewardAdPresenter.alertCancelTitle)
-        XCTAssertEqual(alert?.countDownTime, RewardAdPresenter.alertCountDownTime)
+        XCTAssertEqual(alert.alertTitle, RewardAdPresenter.alertTitle)
+        XCTAssertEqual(alert.message, String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10))
+        XCTAssertEqual(alert.cancelMessage, RewardAdPresenter.alertCancelTitle)
+        XCTAssertEqual(alert.countDownTime, RewardAdPresenter.alertCountDownTime)
     }
 
-    func test_replenishChance_deliversZeroOnCancelAlert() {
+    func test_replenishChance_deliversZeroOnCancelAlert() throws {
         let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdSpy())
         let (sut, hostVC) = makeSUT(loader: rewardAdLoader)
         var capturedChanceCount: Int?
         
         sut.replenishChance { capturedChanceCount = $0 }
 
-        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
-        alert?.cancelHandler?()
+        let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        alert.cancelHandler?()
         
         XCTAssertEqual(capturedChanceCount, 0)
     }
     
-    func test_replenishChance_displaysRewardAdAndReplenishOnDisplayCompletionWhenUserConfirmsAlert() {
+    func test_replenishChance_displaysRewardAdAndReplenishOnDisplayCompletionWhenUserConfirmsAlert() throws {
         let ad = RewardAdSpy()
         let rewardAdLoader = RewardAdLoaderStub(ad: ad)
         let (sut, hostVC) = makeSUT(loader: rewardAdLoader, rewardChanceCount: 5)
@@ -73,10 +73,10 @@ class RewardAdViewControllerTests: XCTestCase {
         
         sut.replenishChance { capturedChanceCount = $0 }
 
-        let alert = try? XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
         
         XCTAssertTrue(ad.capturedPresentations.isEmpty, "Expect ad presententation not used before comfirm alert")
-        alert?.confirmHandler?()
+        alert.confirmHandler?()
         
         XCTAssertEqual(ad.capturedPresentations.first?.vc, hostVC, "Expect ad presents using host view controller")
         XCTAssertNil(capturedChanceCount, "Expect replenish completion not called before ad presentation completes")

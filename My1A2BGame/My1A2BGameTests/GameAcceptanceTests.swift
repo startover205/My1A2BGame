@@ -27,12 +27,12 @@ class GameAcceptanceTests: XCTestCase{
         assertDisplayingLoseSceneOnGameLose(game: launch().basicGame(), guessChanceCount: GameVersion.basic.maxGuessCount)
     }
     
-    func test_onGiveUpGame_displayLoseScene_basicGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launch().basicGame())
+    func test_onGiveUpGame_displayLoseScene_basicGame() throws {
+        try assertDisplayingLoseSceneOnUserGiveUpGame(game: launch().basicGame())
     }
     
-    func test_onNoGameChanceLeft_displaysAd_basicGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
+    func test_onNoGameChanceLeft_displaysAd_basicGame() throws {
+        try assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
             launch(rewardAdLoader: adLoader).basicGame()
         }, guessChanceCount: 10)
     }
@@ -51,12 +51,12 @@ class GameAcceptanceTests: XCTestCase{
         assertDisplayingLoseSceneOnGameLose(game: launch().advancedGame(), guessChanceCount: GameVersion.advanced.maxGuessCount)
     }
     
-    func test_onGiveUpGame_displayLoseScene_advancedGame() {
-        assertDisplayingLoseSceneOnUserGiveUpGame(game: launch().advancedGame())
+    func test_onGiveUpGame_displayLoseScene_advancedGame() throws {
+        try assertDisplayingLoseSceneOnUserGiveUpGame(game: launch().advancedGame())
     }
     
-    func test_onNoGameChanceLeft_displaysAd_advancedGame() {
-        assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
+    func test_onNoGameChanceLeft_displaysAd_advancedGame() throws {
+        try assertDisplayingAdOnNoGameChanceLeft(game: { adLoader in
             launch(rewardAdLoader: adLoader).advancedGame()
         }, guessChanceCount: 15)
     }
@@ -125,10 +125,10 @@ private extension GameAcceptanceTests {
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
     }
     
-    func assertDisplayingLoseSceneOnUserGiveUpGame(game: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) {
+    func assertDisplayingLoseSceneOnUserGiveUpGame(game: GuessNumberViewController, file: StaticString = #filePath, line: UInt = #line) throws {
         let exp = expectation(description: "wait for presentation complete")
         
-        try? game.simulateUserGiveUp(completion: {
+        try game.simulateUserGiveUp(completion: {
             exp.fulfill()
         })
         
@@ -137,7 +137,7 @@ private extension GameAcceptanceTests {
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
     }
     
-    func assertDisplayingAdOnNoGameChanceLeft(game: (RewardAdLoaderStub) -> GuessNumberViewController, guessChanceCount: Int, file: StaticString = #filePath, line: UInt = #line) {
+    func assertDisplayingAdOnNoGameChanceLeft(game: (RewardAdLoaderStub) -> GuessNumberViewController, guessChanceCount: Int, file: StaticString = #filePath, line: UInt = #line) throws {
         let ad = RewardAdSpy()
         let game = game(RewardAdLoaderStub.init(ad: ad))
         
@@ -151,7 +151,7 @@ private extension GameAcceptanceTests {
         game.simulateOneWrongGuess()
         RunLoop.current.run(until: Date())
         
-        let alert = try? XCTUnwrap(game.presentedViewController as? AlertAdCountdownController, "Expect ad alert shown when out of chance", file: file, line: line)
+        let alert = try XCTUnwrap(game.presentedViewController as? AlertAdCountdownController, "Expect ad alert shown when out of chance", file: file, line: line)
         
         let exp = expectation(description: "wait for dismissal complete")
         game.dismiss(animated: false) {
@@ -159,7 +159,7 @@ private extension GameAcceptanceTests {
         }
         wait(for: [exp], timeout: 10.0)
         
-        alert?.tapConfirmButton()
+        alert.tapConfirmButton()
         RunLoop.current.run(until: Date())
 
         XCTAssertNotNil(ad.capturedPresentation, file: file, line: line)

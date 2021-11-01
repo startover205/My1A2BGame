@@ -73,7 +73,7 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.hasVoicePromptSwitch)
     }
     
-    func test_voicePrompt_showsIllustrationAlertOnTurningOn() {
+    func test_voicePrompt_showsIllustrationAlertOnTurningOn() throws {
         let userDefaults = InMemoryUserDefaults()
         let sut = makeSUT(userDefaults: userDefaults)
         let window = UIWindow()
@@ -85,10 +85,10 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertNil(sut.presentedViewController, "Expect no alert shown on turning off voice prompt")
         
         sut.simulateToggleVoicePrompt()
-        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown on turning on voice prompt")
-        XCTAssertEqual(alert?.title, VoicePromptOnAlertPresenter.alertTitle)
-        XCTAssertEqual(alert?.message, VoicePromptOnAlertPresenter.alertMessage)
-        XCTAssertEqual(alert?.actions.first?.title, VoicePromptOnAlertPresenter.alertConfirmTitle)
+        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown on turning on voice prompt")
+        XCTAssertEqual(alert.title, VoicePromptOnAlertPresenter.alertTitle)
+        XCTAssertEqual(alert.message, VoicePromptOnAlertPresenter.alertMessage)
+        XCTAssertEqual(alert.actions.first?.title, VoicePromptOnAlertPresenter.alertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
@@ -317,22 +317,22 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(restartCallCount, 1, "Expect restart called after user restarts the game")
     }
     
-    func test_giveUp_showAlertWithProperDescriptionOnTapGiveUpButton() {
+    func test_giveUp_showAlertWithProperDescriptionOnTapGiveUpButton() throws {
         let sut = makeSUT()
         let window = UIWindow()
         window.addSubview(sut.view)
 
         sut.simulateTapGiveUpButton()
         
-        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert?.title, GamePresenter.giveUpConfirmMessage)
-        XCTAssertEqual(alert?.actions.first?.title, GamePresenter.confirmGiveUpAction)
-        XCTAssertEqual(alert?.actions.last?.title, GamePresenter.cancelGiveUpAction)
+        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, GamePresenter.giveUpConfirmMessage)
+        XCTAssertEqual(alert.actions.first?.title, GamePresenter.confirmGiveUpAction)
+        XCTAssertEqual(alert.actions.last?.title, GamePresenter.cancelGiveUpAction)
         
         clearModalPresentationReference(sut)
     }
     
-    func test_giveUp_notifiesLoseHandlerOnConfirmingGiveUp() {
+    func test_giveUp_notifiesLoseHandlerOnConfirmingGiveUp() throws {
         var loseCallCount = 0
         let sut = makeSUT(onLose: {
             loseCallCount += 1
@@ -343,27 +343,27 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called on view load")
 
         sut.simulateTapGiveUpButton()
-        let alert1 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        alert1?.tapCancelButton()
+        let alert1 = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        alert1.tapCancelButton()
         XCTAssertEqual(loseCallCount, 0, "Expect lose handler not called on cancel alert")
         
         sut.simulateTapGiveUpButton()
-        let alert2 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        alert2?.tapConfirmButton()
+        let alert2 = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        alert2.tapConfirmButton()
         XCTAssertEqual(loseCallCount, 1, "Expect give up called on confirming")
         
         clearModalPresentationReference(sut)
     }
     
-    func test_giveUp_rendersGameEndedOnConfirmingGiveUp() {
+    func test_giveUp_rendersGameEndedOnConfirmingGiveUp() throws {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
         let sut = makeSUT(secret: secret)
         let window = UIWindow()
         window.addSubview(sut.view)
 
         sut.simulateTapGiveUpButton()
-        let alert2 = try? XCTUnwrap(sut.presentedViewController as? UIAlertController)
-        alert2?.tapConfirmButton()
+        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        alert.tapConfirmButton()
 
         assertGameEnd(sut, secret: secret)
         
@@ -385,7 +385,7 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingHelperView, "Expect helper view to be hidden again when user toggle helper button")
     }
     
-    func test_helperView_showsIllustrationAlertOnTappingInfoButton() {
+    func test_helperView_showsIllustrationAlertOnTappingInfoButton() throws {
         let sut = makeSUT(animate: { _, _, completion in
             completion?(true)
         })
@@ -398,15 +398,15 @@ class GameUIIntegrationTests: XCTestCase {
         
         sut.simulateTapHelperViewInfoButton()
         
-        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown after tapping info button")
-        XCTAssertEqual(alert?.title, HelperPresenter.infoAlertTitle)
-        XCTAssertEqual(alert?.message, HelperPresenter.infoAlertMessage)
-        XCTAssertEqual(alert?.actions.first?.title, HelperPresenter.infoAlertConfirmTitle)
+        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown after tapping info button")
+        XCTAssertEqual(alert.title, HelperPresenter.infoAlertTitle)
+        XCTAssertEqual(alert.message, HelperPresenter.infoAlertMessage)
+        XCTAssertEqual(alert.actions.first?.title, HelperPresenter.infoAlertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
     
-    func test_instruction_showsByTappingInstructionButton() {
+    func test_instruction_showsByTappingInstructionButton() throws {
         let sut = makeSUT()
         let nav = UINavigationController(rootViewController: sut)
         
@@ -415,9 +415,9 @@ class GameUIIntegrationTests: XCTestCase {
         
         sut.simulateTapInstructionButton()
         RunLoop.current.run(until: Date())
-        let instructionVC = try? XCTUnwrap(nav.topViewController as? InstructionViewController)
-        instructionVC?.loadViewIfNeeded()
-        XCTAssertEqual(instructionVC?.instructionTextView.text, GameInstructionPresenter.instruction)
+        let instructionVC = try XCTUnwrap(nav.topViewController as? InstructionViewController)
+        instructionVC.loadViewIfNeeded()
+        XCTAssertEqual(instructionVC.instructionTextView.text, GameInstructionPresenter.instruction)
     }
 
     // MARK: Helpers

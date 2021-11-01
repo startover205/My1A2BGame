@@ -21,7 +21,7 @@ public final class MoreUIComposer {
 
 class MoreUIIntegrationTests: XCTestCase {
 
-    func test_selectFAQ_navigatesToFAQView() {
+    func test_selectFAQ_navigatesToFAQView() throws {
         let sut = makeSUT()
         let nav = UINavigationController(rootViewController: sut)
         
@@ -29,9 +29,9 @@ class MoreUIIntegrationTests: XCTestCase {
         sut.simulateSelectFAQ()
         RunLoop.current.run(until: Date())
         
-        let faq = try? XCTUnwrap(nav.topViewController as? FAQViewController)
-        XCTAssertEqual(faq?.question(at: 0), localized("QUESTION_AD_NOT_SHOWING"))
-        XCTAssertEqual(faq?.answer(at: 0), localized("ANSWER_AD_NOT_SHOWING"))
+        let faq = try XCTUnwrap(nav.topViewController as? FAQViewController)
+        XCTAssertEqual(faq.question(at: 0), localized("QUESTION_AD_NOT_SHOWING"))
+        XCTAssertEqual(faq.answer(at: 0), localized("ANSWER_AD_NOT_SHOWING"))
     }
     
     // MARK: - Helpers

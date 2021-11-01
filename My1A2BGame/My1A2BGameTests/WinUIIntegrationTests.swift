@@ -205,7 +205,7 @@ class WinUIIntegrationTests: XCTestCase {
         ], "Expect another save message when user trys to save again")
     }
     
-    func test_saveRecord_showsErrorAlertOnError() {
+    func test_saveRecord_showsErrorAlertOnError() throws {
         let playerRecord = anyPlayerRecord()
         let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
         let saveError = anyNSError()
@@ -220,15 +220,15 @@ class WinUIIntegrationTests: XCTestCase {
         
         XCTAssertTrue(sut.showingSaveRecordViews, "Expect still showing save record views on save error")
 
-        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save error")
-        XCTAssertEqual(alert?.title, RecordPresenter.saveFailureAlertTitle)
-        XCTAssertEqual(alert?.message, saveError.localizedDescription)
-        XCTAssertEqual(alert?.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
+        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save error")
+        XCTAssertEqual(alert.title, RecordPresenter.saveFailureAlertTitle)
+        XCTAssertEqual(alert.message, saveError.localizedDescription)
+        XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
     
-    func test_saveRecord_showsCompletionAlertAndHidesSaveRecordViewsOnSuccess() {
+    func test_saveRecord_showsCompletionAlertAndHidesSaveRecordViewsOnSuccess() throws {
         let playerRecord = anyPlayerRecord()
         let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
         let window = UIWindow()
@@ -241,9 +241,9 @@ class WinUIIntegrationTests: XCTestCase {
         sut.simulateUserSendInput()
         XCTAssertFalse(sut.showingSaveRecordViews, "Expect not showing save record views on save success")
         
-        let alert = try? XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save sucess")
-        XCTAssertEqual(alert?.title, RecordPresenter.saveSuccessAlertTitle)
-        XCTAssertEqual(alert?.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
+        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save sucess")
+        XCTAssertEqual(alert.title, RecordPresenter.saveSuccessAlertTitle)
+        XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
         
         clearModalPresentationReference(sut)
     }
