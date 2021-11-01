@@ -18,8 +18,8 @@ class LoseUIIntegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.loseMessage(), LosePresenter.loseViewModel.loseMessage)
-        XCTAssertEqual(sut.encouragementMessage(), LosePresenter.loseViewModel.encouragementMessage)
+        XCTAssertEqual(sut.loseMessage(), LosePresenter.loseViewModel.loseMessage, "lose message")
+        XCTAssertEqual(sut.encouragementMessage(), LosePresenter.loseViewModel.encouragementMessage, "encouragement message")
     }
         
     func test_rainAnimation_showsOnLoadView() {

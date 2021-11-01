@@ -21,7 +21,7 @@ public final class MoreUIComposer {
 
 class MoreUIIntegrationTests: XCTestCase {
 
-    func test_selectFAQ_navigatesToFAQView() throws {
+    func test_selectFAQ_navigatesToLocalizedFAQView() throws {
         let sut = makeSUT()
         let nav = UINavigationController(rootViewController: sut)
         
@@ -30,8 +30,8 @@ class MoreUIIntegrationTests: XCTestCase {
         RunLoop.current.run(until: Date())
         
         let faq = try XCTUnwrap(nav.topViewController as? FAQViewController)
-        XCTAssertEqual(faq.question(at: 0), localized("QUESTION_AD_NOT_SHOWING"))
-        XCTAssertEqual(faq.answer(at: 0), localized("ANSWER_AD_NOT_SHOWING"))
+        XCTAssertEqual(faq.question(at: 0), localized("QUESTION_AD_NOT_SHOWING"), "question at 0")
+        XCTAssertEqual(faq.answer(at: 0), localized("ANSWER_AD_NOT_SHOWING"), "answer at 0")
     }
     
     // MARK: - Helpers

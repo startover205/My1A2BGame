@@ -46,10 +46,10 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(hostVC.capturedPresentations.first?.animated, true, "Expect presenation is animated")
         let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
 
-        XCTAssertEqual(alert.alertTitle, RewardAdPresenter.alertTitle)
-        XCTAssertEqual(alert.message, String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10))
-        XCTAssertEqual(alert.cancelMessage, RewardAdPresenter.alertCancelTitle)
-        XCTAssertEqual(alert.countDownTime, RewardAdPresenter.alertCountDownTime)
+        XCTAssertEqual(alert.alertTitle, RewardAdPresenter.alertTitle, "alert title")
+        XCTAssertEqual(alert.message, String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10), "alert message")
+        XCTAssertEqual(alert.cancelMessage, RewardAdPresenter.alertCancelTitle, "alert cancel title")
+        XCTAssertEqual(alert.countDownTime, RewardAdPresenter.alertCountDownTime, "alert count down time")
     }
 
     func test_replenishChance_deliversZeroOnCancelAlert() throws {
@@ -62,7 +62,7 @@ class RewardAdViewControllerTests: XCTestCase {
         let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
         alert.cancelHandler?()
         
-        XCTAssertEqual(capturedChanceCount, 0)
+        XCTAssertEqual(capturedChanceCount, 0, "captureed chance count")
     }
     
     func test_replenishChance_displaysRewardAdAndReplenishOnDisplayCompletionWhenUserConfirmsAlert() throws {

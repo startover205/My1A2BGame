@@ -29,8 +29,8 @@ class RankUIIntegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.selectionTitle(at: 0), "a title")
-        XCTAssertEqual(sut.selectionTitle(at: 1), "another title")
+        XCTAssertEqual(sut.selectionTitle(at: 0), "a title", "title at 0 not matching")
+        XCTAssertEqual(sut.selectionTitle(at: 1), "another title", "title at 1 not matching")
     }
     
     func test_loadRecordsActions_requestsRecordsFromLoader() {

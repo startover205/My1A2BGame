@@ -27,10 +27,10 @@ class GameUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         let viewModel = GamePresenter.sceneViewModel
-        XCTAssertEqual(sut.guessHistoryViewTitle(), viewModel.guessHistoryViewTitle)
-        XCTAssertEqual(sut.guessButtonTitle(), viewModel.guessAction)
-        XCTAssertEqual(sut.giveUpButtonTitle(), viewModel.giveUpAction)
-        XCTAssertEqual(sut.restartButtonTitle(), viewModel.restartAction)
+        XCTAssertEqual(sut.guessHistoryViewTitle(), viewModel.guessHistoryViewTitle, "guessHistoryViewTitle")
+        XCTAssertEqual(sut.guessButtonTitle(), viewModel.guessAction, "guess button title")
+        XCTAssertEqual(sut.giveUpButtonTitle(), viewModel.giveUpAction, "give up button title")
+        XCTAssertEqual(sut.restartButtonTitle(), viewModel.restartAction, "restart button title")
     }
     
     func test_viewComponents_fadeInOnAppear() {
@@ -40,12 +40,12 @@ class GameUIIntegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         sut.fadeInCompoenents.forEach {
-            XCTAssertTrue($0.alpha == 0, "Expect components hidden before view appear")
+            XCTAssertTrue($0.alpha == 0, "Expect \($0) to be hidden before view appear")
         }
         
         sut.simulateViewAppear()
         sut.fadeInCompoenents.forEach {
-            XCTAssertTrue($0.alpha != 0, "Expect components shown after view appear")
+            XCTAssertTrue($0.alpha != 0, "Expect \($0) to be shown after view appear")
         }
     }
     
@@ -58,11 +58,11 @@ class GameUIIntegrationTests: XCTestCase {
         anotherSut.loadViewIfNeeded()
         
         userDefaults.setVoicePromptOn()
-        XCTAssertTrue(sut.voicePromptOn, "expect voice switch is on, matching the user preferance")
-        XCTAssertTrue(anotherSut.voicePromptOn, "expect voice switch is on, matching the user preferance")
+        XCTAssertTrue(sut.voicePromptOn, "Expect voice switch is on, matching the user preferance")
+        XCTAssertTrue(anotherSut.voicePromptOn, "Expect voice switch is on, matching the user preferance")
 
         sut.simulateToggleVoicePrompt()
-        XCTAssertFalse(anotherSut.voicePromptOn, "expect voice switch is off, matching the user preferance updated by `sut`")
+        XCTAssertFalse(anotherSut.voicePromptOn, "Expect voice switch is off, matching the user preferance updated by `sut`")
     }
     
     func test_gameView_hasVoicePromptSwitch() {
@@ -118,13 +118,13 @@ class GameUIIntegrationTests: XCTestCase {
         let sut = makeSUT(secret: secret)
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(sut.resultMessage, "", "expected no text after loading")
+        XCTAssertEqual(sut.resultMessage, "", "Expect no text after loading")
         
         sut.simulateGuess(with: guess1)
-        XCTAssertEqual(sut.resultMessage, "5234          3A0B\n", "expected latest result after matching")
+        XCTAssertEqual(sut.resultMessage, "5234          3A0B\n", "Expect latest result after matching")
         
         sut.simulateGuess(with: guess2)
-        XCTAssertEqual(sut.resultMessage, "5634          2A0B\n", "expected latest result after matching")
+        XCTAssertEqual(sut.resultMessage, "5634          2A0B\n", "Expect latest result after matching")
     }
     
     func test_gameOutOfChance_requestsReplenishChanceDelegateToReplenish() {

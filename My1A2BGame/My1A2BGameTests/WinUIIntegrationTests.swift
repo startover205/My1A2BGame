@@ -21,8 +21,8 @@ class WinUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         let viewModel = WinPresenter(digitCount: digitCount, guessCount: guessCount).resultViewModel
-        XCTAssertEqual(sut.winMessage, viewModel.winMessage)
-        XCTAssertEqual(sut.guessCountMessage, viewModel.guessCountMessage)
+        XCTAssertEqual(sut.winMessage, viewModel.winMessage, "win message")
+        XCTAssertEqual(sut.guessCountMessage, viewModel.guessCountMessage, "guess count message")
         
     }
     
@@ -221,9 +221,9 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.showingSaveRecordViews, "Expect still showing save record views on save error")
 
         let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save error")
-        XCTAssertEqual(alert.title, RecordPresenter.saveFailureAlertTitle)
-        XCTAssertEqual(alert.message, saveError.localizedDescription)
-        XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
+        XCTAssertEqual(alert.title, RecordPresenter.saveFailureAlertTitle, "alert title")
+        XCTAssertEqual(alert.message, saveError.localizedDescription, "alert message")
+        XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle, "alert action title")
         
         clearModalPresentationReference(sut)
     }
@@ -242,8 +242,8 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingSaveRecordViews, "Expect not showing save record views on save success")
         
         let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save sucess")
-        XCTAssertEqual(alert.title, RecordPresenter.saveSuccessAlertTitle)
-        XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle)
+        XCTAssertEqual(alert.title, RecordPresenter.saveSuccessAlertTitle, "alert title")
+        XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle, "alert action title")
         
         clearModalPresentationReference(sut)
     }
