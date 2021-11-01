@@ -41,6 +41,7 @@
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
 		C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F318F271D20590038B18B /* UIViewControllerSpy.swift */; };
+		C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */; };
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
 		C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */; };
@@ -141,6 +142,7 @@
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
 		C09F318F271D20590038B18B /* UIViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerSpy.swift; sourceTree = "<group>"; };
+		C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingContainerViewController.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
 		C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */,
 				C09F318F271D20590038B18B /* UIViewControllerSpy.swift */,
 				C0C271922727A8D600A565C6 /* FAQViewController+TestHelpers.swift */,
+				C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				C0F7D15C272254F2003DDB09 /* FAQViewControllerTests.swift in Sources */,
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C088A65126BE7855005FC389 /* InMemoryUserDefaults.swift in Sources */,
+				C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
 				C0C271932727A8D600A565C6 /* FAQViewController+TestHelpers.swift in Sources */,
 				C07C16AF2702F52B00451060 /* RewardAdPresenterTests.swift in Sources */,
