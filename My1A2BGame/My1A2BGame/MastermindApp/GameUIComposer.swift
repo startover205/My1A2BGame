@@ -56,7 +56,7 @@ public final class GameUIComposer {
                 handler: nil)
             
             alertController.addAction(okAction)
-            gameViewController.present(alertController, animated: true, completion: nil)
+            gameViewController.showDetailViewController(alertController, sender: self)
         }
         
         gameViewController.quizLabelViewController.answer = secret.content

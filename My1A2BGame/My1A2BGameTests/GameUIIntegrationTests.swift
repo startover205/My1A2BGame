@@ -377,8 +377,7 @@ class GameUIIntegrationTests: XCTestCase {
         let sut = makeSUT(animate: { _, _, completion in
             completion?(true)
         })
-        let window = UIWindow()
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
         
         sut.simulateTapHelperButton()
         
@@ -386,12 +385,10 @@ class GameUIIntegrationTests: XCTestCase {
         
         sut.simulateTapHelperViewInfoButton()
         
-        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect alert shown after tapping info button")
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController, "Expect alert shown after tapping info button")
         XCTAssertEqual(alert.title, HelperPresenter.infoAlertTitle)
         XCTAssertEqual(alert.message, HelperPresenter.infoAlertMessage)
         XCTAssertEqual(alert.actions.first?.title, HelperPresenter.infoAlertConfirmTitle)
-        
-        clearModalPresentationReference(sut)
     }
     
     func test_instruction_showsByTappingInstructionButton() throws {
