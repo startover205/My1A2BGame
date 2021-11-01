@@ -77,7 +77,7 @@ public final class GameUIComposer {
         
         gameViewController.onGuessButtonPressed = { [unowned gamePresentationAdapter, unowned gameViewController] in
             
-            let inputVC = makeInputPadUI(title: NumberInputPresenter.viewModel.viewTitle)
+            let inputVC = makeInputController(title: NumberInputPresenter.viewModel.viewTitle)
             inputVC.digitCount = gameVersion.digitCount
             inputVC.delegate = gamePresentationAdapter
 
@@ -99,7 +99,7 @@ public final class GameUIComposer {
         return gameViewController
     }
     
-    private static func makeInputPadUI(title: String) -> NumberInputViewController {
+    private static func makeInputController(title: String) -> NumberInputViewController {
         let controller = UIStoryboard(name: "Game", bundle: .init(for: NumberInputViewController.self)).instantiateViewController(withIdentifier: "NumberInputViewController") as! NumberInputViewController
         controller.title = title
         
