@@ -74,6 +74,6 @@ extension RecordViewController: RecordSaveView {
         
         alert.addAction(confirm)
         
-        hostViewController?.present(alert, animated: true)
+        hostViewController?.showDetailViewController(alert, sender: self)
     }
 }

@@ -175,7 +175,7 @@ class WinUIIntegrationTests: XCTestCase {
 
         XCTAssertFalse(sut.isKeyboardShowing, "expect keyboard dismiss after user sent out input")
         
-        clearModalPresentationReference(sut)
+        RunLoop.current.run(until: Date())
     }
     
     func test_saveRecord_requestStoreToSavePlayerRecord() {
@@ -208,11 +208,10 @@ class WinUIIntegrationTests: XCTestCase {
     func test_saveRecord_showsErrorAlertOnError() throws {
         let playerRecord = anyPlayerRecord()
         let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
-        let saveError = anyNSError()
-        let window = UIWindow()
-        
         loader.completeValidation(with: true)
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
+        let saveError = anyNSError()
+        
         sut.simulateUserEnterPlayerName(name: playerRecord.playerName)
         
         loader.completeSave(with: anyNSError())
@@ -220,32 +219,27 @@ class WinUIIntegrationTests: XCTestCase {
         
         XCTAssertTrue(sut.showingSaveRecordViews, "Expect still showing save record views on save error")
 
-        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save error")
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController, "Expect showing alert on save error")
         XCTAssertEqual(alert.title, RecordPresenter.saveFailureAlertTitle, "alert title")
         XCTAssertEqual(alert.message, saveError.localizedDescription, "alert message")
         XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle, "alert action title")
-        
-        clearModalPresentationReference(sut)
     }
     
     func test_saveRecord_showsCompletionAlertAndHidesSaveRecordViewsOnSuccess() throws {
         let playerRecord = anyPlayerRecord()
         let (sut, loader) = makeSUT(guessCount: playerRecord.guessCount, guessTime: playerRecord.guessTime, currentDate: { playerRecord.timestamp })
-        let window = UIWindow()
-        
         loader.completeValidation(with: true)
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
+        
         sut.simulateUserEnterPlayerName(name: playerRecord.playerName)
         
         loader.completeSaveSuccesfully()
         sut.simulateUserSendInput()
         XCTAssertFalse(sut.showingSaveRecordViews, "Expect not showing save record views on save success")
         
-        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController, "Expect showing alert on save sucess")
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController, "Expect showing alert on save sucess")
         XCTAssertEqual(alert.title, RecordPresenter.saveSuccessAlertTitle, "alert title")
         XCTAssertEqual(alert.actions.first?.title, RecordPresenter.saveResultAlertConfirmTitle, "alert action title")
-        
-        clearModalPresentationReference(sut)
     }
     
     func test_tapOnScreen_dismissKeyboard() {
