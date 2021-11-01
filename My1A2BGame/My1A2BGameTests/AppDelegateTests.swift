@@ -42,18 +42,17 @@ class AppDelegateTests: XCTestCase {
         appDelegate.configureWindow()
         
         let tab = try XCTUnwrap(window.rootViewController as? UITabBarController)
-        XCTAssertEqual(tab.viewControllers?.count, 4, "expect correct tab count")
+        XCTAssertEqual(tab.viewControllers?.count, 4, "Expect correct tab count")
         
         tab.tabBar.items!.enumerated().forEach { index, item in
-            XCTAssertEqual(item.title, tabItemTitles[index], "expect correct tab title")
-            XCTAssertEqual(item.image?.pngData(), UIImage(named: tabItemImageNames[index])?.pngData(), "expect correct tab image")
+            XCTAssertEqual(item.title, tabItemTitles[index], "Expect tab title \(tabItemTitles[index]) at \(index), got \(String(describing: item.title)) instead")
+            XCTAssertEqual(item.image?.pngData(), UIImage(named: tabItemImageNames[index])?.pngData(), "Expect correct tab image at \(index)")
         }
         
-        XCTAssertEqual(tab.viewControllers?.count, 4)
-        XCTAssertTrue(tab.viewControllers?[0].embedViewController() is GuessNumberViewController)
-        XCTAssertTrue(tab.viewControllers?[1].embedViewController() is GuessNumberViewController)
-        XCTAssertTrue(tab.viewControllers?[2].embedViewController() is RankViewController)
-        XCTAssertTrue(tab.viewControllers?[3].embedViewController() is SettingsTableViewController)
+        XCTAssertTrue(tab.viewControllers?[0].embedViewController() is GuessNumberViewController, "Expect GuessNumberViewController at tab index 0")
+        XCTAssertTrue(tab.viewControllers?[1].embedViewController() is GuessNumberViewController, "Expect GuessNumberViewController at tab index 1")
+        XCTAssertTrue(tab.viewControllers?[2].embedViewController() is RankViewController, "Expect RankViewController at tab index 2")
+        XCTAssertTrue(tab.viewControllers?[3].embedViewController() is SettingsTableViewController, "Expect SettingsTableViewController at tab index 3")
     }
 }
 
