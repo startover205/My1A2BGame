@@ -84,6 +84,10 @@ public final class GameUIComposer {
             gameViewController.showDetailViewController(UINavigationController(rootViewController: inputVC), sender: self)
         }
         
+        gameViewController.onTapGiveUp = { [weak presenter] in
+            presenter?.didTapGiveUpButton()
+        }
+        
         gameViewController.onConfirmGiveUp = { [weak presenter] in
             presenter?.didLoseGame()
             
@@ -146,10 +150,6 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
                 self.presenter?.didUpdateLeftChanceCount(self.leftChanceCount)
             }
         }
-    }
-    
-    func didTapGiveUpButton() {
-        presenter?.didTapGiveUpButton()
     }
 }
 

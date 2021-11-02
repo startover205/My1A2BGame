@@ -11,11 +11,11 @@ import Mastermind
 
 public protocol GuessNumberViewControllerDelegate {
     func didRequestLeftChanceCountUpdate()
-    func didTapGiveUpButton()
 }
 
 public class GuessNumberViewController: UIViewController {
     public var onRestart: (() -> Void)?
+    public var onTapGiveUp: (() -> Void)?
     public var onConfirmGiveUp: (() -> Void)?
     public var onGuessButtonPressed: (() -> Void)?
     public var delegate: GuessNumberViewControllerDelegate?
@@ -66,7 +66,7 @@ public class GuessNumberViewController: UIViewController {
     }
     
     @IBAction func giveUpBtnPressed(_ sender: Any) {
-        delegate?.didTapGiveUpButton()
+        onTapGiveUp?()
     }
     
     @IBAction func restartBtnPressed(_ sender: Any) {
