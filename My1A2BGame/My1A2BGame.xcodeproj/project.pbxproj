@@ -44,7 +44,7 @@
 		C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */; };
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
-		C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */; };
+		C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPViewController.swift */; };
 		C0A1F4A826B62A1200536D73 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* FAQViewController.swift */; };
 		C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F48926B62A1100536D73 /* More.storyboard */; };
 		C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */; };
@@ -145,7 +145,7 @@
 		C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingContainerViewController.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
-		C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewController.swift; sourceTree = "<group>"; };
+		C0A1F48626B62A1100536D73 /* IAPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPViewController.swift; sourceTree = "<group>"; };
 		C0A1F48726B62A1100536D73 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		C0A1F48926B62A1100536D73 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 			children = (
 				C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */,
 				C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */,
-				C0A1F48626B62A1100536D73 /* IAPTableViewController.swift */,
+				C0A1F48626B62A1100536D73 /* IAPViewController.swift */,
 				C0A1F48726B62A1100536D73 /* FAQViewController.swift */,
 			);
 			path = Controllers;
@@ -578,7 +578,7 @@
 				C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */,
 				C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */,
 				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
-				C0A1F4A726B62A1200536D73 /* IAPTableViewController.swift in Sources */,
+				C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,

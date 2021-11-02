@@ -1,5 +1,5 @@
 //
-//  IAPTableViewController.swift
+//  IAPViewController.swift
 //  My1A2BGame
 //
 //  Created by Ming-Ta Yang on 2019/4/11.
@@ -9,9 +9,9 @@
 import UIKit
 import StoreKit
 
-class IAPTableViewController: UITableViewController {
+class IAPViewController: UITableViewController {
     
-    @IBOutlet weak var restorePurchaseButton: UIBarButtonItem!
+    @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
     var objects = [SKProduct]()
     var productIdList = [String]()
@@ -60,7 +60,7 @@ class IAPTableViewController: UITableViewController {
     }
 }
 
-extension IAPTableViewController: SKProductsRequestDelegate {
+extension IAPViewController: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         objects = response.products
         
@@ -84,7 +84,7 @@ extension IAPTableViewController: SKProductsRequestDelegate {
     }
 }
 
-extension IAPTableViewController: StoreObserverDelegate {
+extension IAPViewController: StoreObserverDelegate {
     func didPuarchaseIAP(productIdenifer: String) {
         refresh()
     }
@@ -94,7 +94,7 @@ extension IAPTableViewController: StoreObserverDelegate {
 }
 
 // MARK: - Private
-private extension IAPTableViewController {
+private extension IAPViewController {
     func refresh(){
         if !objects.isEmpty{
             objects.removeAll()
