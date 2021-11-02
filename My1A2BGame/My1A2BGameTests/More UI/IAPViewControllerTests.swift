@@ -10,7 +10,22 @@ import XCTest
 @testable import My1A2BGame
 
 class IAPViewControllerTests: XCTestCase {
-    func test_viewDidLoad_configuresRestorePuchaseButton() {
+    
+    func test_viewDidLoad_configuresRestorePurchaseButton() {
+        let sut = makeSUT()
         
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.restorePurchaseButton.isEnabled)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPViewController {
+        let sut = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return sut
     }
 }
