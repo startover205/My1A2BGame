@@ -10,13 +10,23 @@
       "internalID" : "8E396089",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Permanently remove the bottom ad for you.",
+          "displayName" : "Remove Bottom Ad",
           "locale" : "en_US"
+        },
+        {
+          "description" : "幫您永久去除底部廣告。",
+          "displayName" : "去除底部廣告",
+          "locale" : "zh_TW"
+        },
+        {
+          "description" : "帮您永久去除底部广告。",
+          "displayName" : "去除底部广告",
+          "locale" : "zh_CN"
         }
       ],
       "productID" : "remove_bottom_ad",
-      "referenceName" : "Remove button ADs",
+      "referenceName" : "Remove button AD",
       "type" : "NonConsumable"
     }
   ],
