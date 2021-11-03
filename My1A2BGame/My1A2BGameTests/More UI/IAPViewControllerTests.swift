@@ -18,6 +18,14 @@ private struct Product {
 @available(iOS 14.0, *)
 class IAPViewControllerTests: XCTestCase {
     
+    override func setUp() {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    }
+    
+    override func tearDown() {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    }
+    
     func test_viewDidLoad_configuresRestorePurchaseButton() {
         let sut = makeSUT()
         
@@ -58,6 +66,31 @@ class IAPViewControllerTests: XCTestCase {
         wait(for: [exp], timeout: 1)
         
         assertThat(sut, isRendering: [product])
+    }
+    
+    func test_buyProduct_refreshProductList() throws {
+        let sut = makeSUT()
+        let product = Product(name: "Remove Bottom Ad", price: "$0.99")
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: [])
+        
+        let exp = expectation(description: "wait for product loading")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 1)
+        
+        assertThat(sut, isRendering: [product])
+        
+        sut.simulateOnTapProduct(at: 0)
+        
+        let exp2 = expectation(description: "wait for product purchase")
+        exp2.isInverted = true
+        wait(for: [exp2], timeout: 1)
+        
+        assertThat(sut, isRendering: [])
     }
     
     // MARK: - Helpers
@@ -102,6 +135,10 @@ class IAPViewControllerTests: XCTestCase {
 }
 
 private extension IAPViewController {
+    func simulateOnTapProduct(at row: Int) {
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: productSection))
+    }
+    
     var isShowingLoadingIndicator: Bool {
         guard let indicator = activityIndicator else { return false }
         
