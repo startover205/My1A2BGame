@@ -20,7 +20,7 @@ public final class VoicePromptViewController: NSObject {
         view.addTarget(self, action: #selector(voicePromptToggled), for: .valueChanged)
         
         userDefaultsObservation = userDefaults.observe(\.VOICE_PROMPT, options: [.new], changeHandler: { (defaults, change) in
-            view.isOn = change.newValue!
+            view.isOn = change.newValue ?? false
         })
         
         return view
