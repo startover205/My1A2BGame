@@ -7,8 +7,10 @@
 //
 
 import XCTest
+import StoreKitTest
 @testable import My1A2BGame
 
+@available(iOS 14.0, *)
 class IAPViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_configuresRestorePurchaseButton() {
@@ -17,6 +19,22 @@ class IAPViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         XCTAssertTrue(sut.restorePurchaseButton.isEnabled)
+    }
+    
+    func test_loadProductCompletion_rendersSuccessfullyLoadedProducts() throws {
+        let sut = makeSUT()
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(sut.numberOfRenderedProducts(), 0, "Expect empty list upon view load")
+        
+        let exp = expectation(description: "wait for product loading")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 1)
+        
+        XCTAssertEqual(sut.numberOfRenderedProducts(), 1, "Expect rendered products after loading")
     }
     
     // MARK: - Helpers
@@ -28,4 +46,12 @@ class IAPViewControllerTests: XCTestCase {
         
         return sut
     }
+}
+
+private extension IAPViewController {
+    func numberOfRenderedProducts() -> Int {
+        tableView.numberOfRows(inSection: productSection)
+    }
+    
+    private var productSection: Int { 0 }
 }
