@@ -26,6 +26,23 @@ class IAPViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.restorePurchaseButton.isEnabled)
     }
     
+    func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
+        let sut = makeSUT()
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
+        
+        let exp = expectation(description: "wait for product loading")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 1)
+        
+        sut.loadViewIfNeeded()
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
+    }
+    
     func test_loadProductCompletion_rendersSuccessfullyLoadedProducts() throws {
         let sut = makeSUT()
         let product = Product(name: "Remove Bottom Ad", price: "$0.99")
@@ -85,6 +102,12 @@ class IAPViewControllerTests: XCTestCase {
 }
 
 private extension IAPViewController {
+    var isShowingLoadingIndicator: Bool {
+        guard let indicator = activityIndicator else { return false }
+        
+        return view.subviews.contains(indicator) && indicator.isAnimating
+    }
+    
     func numberOfRows(in section: Int) -> Int {
         tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
     }
