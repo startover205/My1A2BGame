@@ -41,6 +41,7 @@
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
 		C099257E27318A6D003E322D /* NonConsumable.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C099257D2731893F003E322D /* NonConsumable.storekit */; };
+		C09925802733B0BD003E322D /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */; };
 		C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F318F271D20590038B18B /* UIViewControllerSpy.swift */; };
 		C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */; };
 		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
@@ -143,6 +144,7 @@
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
 		C099257D2731893F003E322D /* NonConsumable.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = NonConsumable.storekit; sourceTree = "<group>"; };
+		C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		C09F318F271D20590038B18B /* UIViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerSpy.swift; sourceTree = "<group>"; };
 		C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingContainerViewController.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */,
 				C091F1082728F7820065482F /* IAPViewControllerTests.swift */,
 				C099257D2731893F003E322D /* NonConsumable.storekit */,
+				C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */,
 			);
 			path = "More UI";
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C099257E27318A6D003E322D /* NonConsumable.storekit in Resources */,
+				C09925802733B0BD003E322D /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
