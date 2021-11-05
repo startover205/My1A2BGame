@@ -69,7 +69,7 @@ extension IAPViewController: SKProductsRequestDelegate {
             self.activityIndicator?.removeFromSuperview()
             
             if self.objects.isEmpty {
-                let alert = UIAlertController(title: NSLocalizedString("Currently No Product Available", comment: "3nd"), message: nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
                 

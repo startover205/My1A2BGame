@@ -8,8 +8,10 @@
 /* 3nd */
 "Confirm" = "确认";
 
+"NO_PRODUCT_CONFIRM_ACTION" = "确认";
+
 /* 3nd */
-"Currently No Product Available" = "目前没有可购买的商品";
+"NO_PRODUCT_MESSAGE" = "目前没有可购买的商品";
 
 /* 3nd */
 "Error" = "错误";

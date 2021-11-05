@@ -8,8 +8,10 @@
 /* 3nd */
 "Confirm" = "Confirm";
 
+"NO_PRODUCT_CONFIRM_ACTION" = "Confirm";
+
 /* 3nd */
-"Currently No Product Available" = "Currently No Product Available";
+"NO_PRODUCT_MESSAGE" = "Currently No Product Available";
 
 /* 3nd */
 "Error" = "Error";
