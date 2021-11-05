@@ -68,6 +68,32 @@ class IAPViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [product])
     }
     
+    func test_loadProductCompletion_displaysMessageOnEmptyResult() throws {
+        let sut = makeSUT()
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        let window = UIWindow()
+        
+        window.addSubview(sut.view)
+        
+        let exp = expectation(description: "wait for product loading")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 1)
+        
+        sut.simulateOnTapProduct(at: 0)
+        
+        let exp2 = expectation(description: "wait for product purchase")
+        exp2.isInverted = true
+        wait(for: [exp2], timeout: 1)
+        
+        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, localized("NO_PRODUCT_MESSAGE"), "alert title")
+        XCTAssertEqual(alert.actions.first?.title, localized("NO_PRODUCT_CONFIRM_ACTION"), "confirm title")
+        
+        clearModalPresentationReference(sut)
+    }
+    
     func test_buyProduct_refreshProductList() throws {
         let sut = makeSUT()
         let product = Product(name: "Remove Bottom Ad", price: "$0.99")
@@ -148,6 +174,16 @@ class IAPViewControllerTests: XCTestCase {
     
     private func clearPurchaseRecordsInDevice() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    }
+    
+    private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+        let table = "Localizable"
+        let bundle = Bundle(for: IAPViewController.self)
+        let value = bundle.localizedString(forKey: key, value: nil, table: table)
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        return value
     }
     
     private func assertThat(_ sut: IAPViewController, isRendering products: [Product], file: StaticString = #filePath, line: UInt = #line) {
