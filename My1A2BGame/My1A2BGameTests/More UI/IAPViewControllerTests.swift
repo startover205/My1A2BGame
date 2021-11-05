@@ -93,6 +93,49 @@ class IAPViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [])
     }
     
+    func test_restorePurchase_refreshesProductList() throws {
+        let sut = makeSUT()
+        let anotherSut = makeSUT()
+        let product = Product(name: "Remove Bottom Ad", price: "$0.99")
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: [])
+        
+        let exp = expectation(description: "wait for product loading")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 1)
+        
+        assertThat(sut, isRendering: [product])
+        
+        sut.simulateOnTapProduct(at: 0)
+        
+        let exp2 = expectation(description: "wait for product purchase")
+        exp2.isInverted = true
+        wait(for: [exp2], timeout: 1)
+        
+        clearPurchaseRecordsInDevice()
+        
+        anotherSut.loadViewIfNeeded()
+        assertThat(anotherSut, isRendering: [])
+
+        let exp3 = expectation(description: "wait for product loading")
+        exp3.isInverted = true
+        wait(for: [exp3], timeout: 1)
+        
+        assertThat(anotherSut, isRendering: [product])
+        
+        anotherSut.simulateRestoreProduct()
+        
+        let exp4 = expectation(description: "wait for product restore")
+        exp4.isInverted = true
+        wait(for: [exp4], timeout: 1)
+        
+        assertThat(anotherSut, isRendering: [])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPViewController {
@@ -101,6 +144,10 @@ class IAPViewControllerTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
+    }
+    
+    private func clearPurchaseRecordsInDevice() {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
     
     private func assertThat(_ sut: IAPViewController, isRendering products: [Product], file: StaticString = #filePath, line: UInt = #line) {
@@ -137,6 +184,10 @@ class IAPViewControllerTests: XCTestCase {
 private extension IAPViewController {
     func simulateOnTapProduct(at row: Int) {
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: productSection))
+    }
+    
+    func simulateRestoreProduct() {
+        restorePurchaseButton.simulateTap()
     }
     
     var isShowingLoadingIndicator: Bool {
