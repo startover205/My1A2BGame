@@ -590,12 +590,6 @@ private extension UserDefaults {
     func setVoicePromptOff() { set(false, forKey: "VOICE_PROMPT") }
 }
 
-private extension UIBarButtonItem {
-    func simulateTap() {
-        target!.performSelector(onMainThread: action!, with: nil, waitUntilDone: true)
-    }
-}
-
 private extension UIAlertController {
     typealias AlertHandler = @convention(block) (UIAlertAction) -> Void
 
