@@ -34,6 +34,17 @@ class MoreUIIntegrationTests: XCTestCase {
         XCTAssertEqual(faq.answer(at: 0), localized("ANSWER_AD_NOT_SHOWING"), "answer at 0")
     }
     
+    func test_selectIAP_navigatesToIAPView() {
+        let sut = makeSUT()
+        let nav = UINavigationController(rootViewController: sut)
+        
+        sut.loadViewIfNeeded()
+        sut.simulateSelectIAP()
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertTrue(nav.topViewController is IAPViewController)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> SettingsTableViewController {
@@ -58,5 +69,9 @@ class MoreUIIntegrationTests: XCTestCase {
 private extension SettingsTableViewController {
     func simulateSelectFAQ() {
         performSegue(withIdentifier: "faq", sender: self)
+    }
+    
+    func simulateSelectIAP() {
+        performSegue(withIdentifier: "iap", sender: self)
     }
 }
