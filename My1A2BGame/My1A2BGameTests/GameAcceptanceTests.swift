@@ -61,6 +61,14 @@ class GameAcceptanceTests: XCTestCase{
         }, guessChanceCount: 15)
     }
     
+    func test_hasFAQView() {
+        let more = launch().moreController()
+        
+        more.simulateSelectNavigateToFAQ()
+        
+        XCTAssertTrue(more.navigationController?.topViewController is FAQViewController)
+    }
+    
     // MARK: - Helpers
     
     private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> UITabBarController {
@@ -199,6 +207,12 @@ private extension GuessNumberViewController {
     }
 }
 
+private extension MoreViewController {
+    func simulateSelectNavigateToFAQ() {
+        performSegue(withIdentifier: "faq", sender: self)
+    }
+}
+
 private extension UIAlertController {
     typealias AlertHandler = @convention(block) (UIAlertAction) -> Void
 
@@ -222,4 +236,6 @@ private extension UITabBarController {
     func basicGame() -> GuessNumberViewController { selectTab(at: 0) }
     
     func advancedGame() -> GuessNumberViewController { selectTab(at: 1) }
+    
+    func moreController() -> MoreViewController { selectTab(at: 3) }
 }
