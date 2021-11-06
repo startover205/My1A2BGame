@@ -77,11 +77,19 @@ class GameAcceptanceTests: XCTestCase{
         XCTAssertTrue(more.navigationController?.topViewController is IAPViewController)
     }
     
+    func test_canShareAppInfo() throws {
+        let more = launch().moreController()
+        
+        more.simulateOnShareButton()
+        
+        XCTAssertTrue(more.presentedViewController is UIActivityViewController)
+    }
+    
     // MARK: - Helpers
     
     private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> UITabBarController {
         let sut = AppDelegate(userDefaults: userDefaults, secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, requestReview: requestReview)
-        sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        sut.window = UIWindow()
         sut.configureWindow()
         
         return sut.window?.rootViewController as! UITabBarController
@@ -223,6 +231,12 @@ private extension MoreViewController {
     func simulateSelectNavigateToIAP() {
         performSegue(withIdentifier: "iap", sender: self)
     }
+    
+    func simulateOnShareButton() {
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: shareCellIndexPath)
+    }
+    
+    private var shareCellIndexPath: IndexPath { [0, 4] }
 }
 
 private extension UIAlertController {
