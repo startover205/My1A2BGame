@@ -106,11 +106,7 @@ private extension MoreViewController {
     private func openAppStoreReview(){
         guard let writeReviewURL = URL(string: Constants.appStoreReviewUrl)
             else { fatalError("Expected a valid URL") }
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(writeReviewURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(writeReviewURL)
-        }
+        UIApplication.shared.open(writeReviewURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
     }
 }
 
