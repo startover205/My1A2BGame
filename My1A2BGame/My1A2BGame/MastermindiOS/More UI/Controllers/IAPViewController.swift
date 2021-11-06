@@ -75,7 +75,7 @@ extension IAPViewController: SKProductsRequestDelegate {
                 
                 alert.addAction(ok)
                 
-                self.present(alert, animated: true, completion: nil)
+                self.showDetailViewController(alert, sender: self)
             }
         }
         

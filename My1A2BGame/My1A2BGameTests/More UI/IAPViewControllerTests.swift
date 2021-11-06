@@ -73,9 +73,7 @@ class IAPViewControllerTests: XCTestCase {
         let session = try SKTestSession(configurationFileNamed: "NonConsumable")
         session.disableDialogs = true
         session.clearTransactions()
-        let window = UIWindow()
-        
-        window.addSubview(sut.view)
+        let container = TestingContainerViewController(sut)
         
         let exp = expectation(description: "wait for product loading")
         exp.isInverted = true
@@ -87,7 +85,7 @@ class IAPViewControllerTests: XCTestCase {
         exp2.isInverted = true
         wait(for: [exp2], timeout: 1)
         
-        let alert = try XCTUnwrap(sut.presentedViewController as? UIAlertController)
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, localized("NO_PRODUCT_MESSAGE"), "alert title")
         XCTAssertEqual(alert.actions.first?.title, localized("NO_PRODUCT_CONFIRM_ACTION"), "confirm title")
         
