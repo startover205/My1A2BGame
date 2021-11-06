@@ -12,8 +12,8 @@ import XCTest
 public final class MoreUIComposer {
     private init() {}
     
-    static func more() -> SettingsTableViewController {
-        let settingsController = UIStoryboard(name: "More", bundle: .main).instantiateViewController(withIdentifier: "SettingsTableViewController") as! SettingsTableViewController
+    static func more() -> MoreViewController {
+        let settingsController = UIStoryboard(name: "More", bundle: .main).instantiateViewController(withIdentifier: "MoreViewController") as! MoreViewController
         
         return settingsController
     }
@@ -47,7 +47,7 @@ class MoreUIIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> SettingsTableViewController {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> MoreViewController {
         let sut = MoreUIComposer.more()
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -66,7 +66,7 @@ class MoreUIIntegrationTests: XCTestCase {
     }
 }
 
-private extension SettingsTableViewController {
+private extension MoreViewController {
     func simulateSelectFAQ() {
         performSegue(withIdentifier: "faq", sender: self)
     }

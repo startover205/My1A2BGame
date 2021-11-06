@@ -197,7 +197,7 @@ private extension AppDelegate {
 
 private extension AppDelegate {
      func makeMoreVC() -> UIViewController {
-        let vc = UIStoryboard(name: "More", bundle: .init(for: SettingsTableViewController.self)).instantiateViewController(withIdentifier: "SettingsTableViewController")
+        let vc = UIStoryboard(name: "More", bundle: .init(for: MoreViewController.self)).instantiateViewController(withIdentifier: "MoreViewController")
         vc.title = "More"
         return vc
     }

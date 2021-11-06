@@ -1,5 +1,5 @@
 //
-//  SettingsTableViewController.swift
+//  MoreViewController.swift
 //  EasyTimer
 //
 //  Created by Ming-Ta Yang on 2019/3/20.
@@ -18,7 +18,7 @@ let faq = [Question(content: NSLocalizedString("QUESTION_AD_NOT_SHOWING",
                                                bundle: .main,
                                                comment: "An answer to why an ad is not always showing when the player is out of chances"))]
 
-class SettingsTableViewController: UITableViewController {
+class MoreViewController: UITableViewController {
     @IBOutlet weak var feedBackCell: UITableViewCell!
     @IBOutlet weak var reviewCell: UITableViewCell!
     @IBOutlet weak var tellFriendsCell: UITableViewCell!
@@ -51,14 +51,14 @@ class SettingsTableViewController: UITableViewController {
     }
 }
 
-extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
+extension MoreViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
 }
 
 // MARK: - Private
-private extension SettingsTableViewController {
+private extension MoreViewController {
     func presentShareAlert(){
         var activityItems: [Any] = [NSLocalizedString("Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!", comment: "9th")]
         activityItems.append(Constants.appStoreDownloadUrl)

@@ -45,7 +45,7 @@
 		C09925822734D497003E322D /* UIBarButtonItem+TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */; };
 		C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F318F271D20590038B18B /* UIViewControllerSpy.swift */; };
 		C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */; };
-		C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */; };
+		C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* MoreViewController.swift */; };
 		C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */; };
 		C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPViewController.swift */; };
 		C0A1F4A826B62A1200536D73 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* FAQViewController.swift */; };
@@ -149,7 +149,7 @@
 		C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+TestHelper.swift"; sourceTree = "<group>"; };
 		C09F318F271D20590038B18B /* UIViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerSpy.swift; sourceTree = "<group>"; };
 		C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingContainerViewController.swift; sourceTree = "<group>"; };
-		C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		C0A1F48426B62A1100536D73 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPTableViewCell.swift; sourceTree = "<group>"; };
 		C0A1F48626B62A1100536D73 /* IAPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPViewController.swift; sourceTree = "<group>"; };
 		C0A1F48726B62A1100536D73 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 		C0A1F48326B62A1100536D73 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F48426B62A1100536D73 /* SettingsTableViewController.swift */,
+				C0A1F48426B62A1100536D73 /* MoreViewController.swift */,
 				C0A1F48526B62A1100536D73 /* IAPTableViewCell.swift */,
 				C0A1F48626B62A1100536D73 /* IAPViewController.swift */,
 				C0A1F48726B62A1100536D73 /* FAQViewController.swift */,
@@ -605,7 +605,7 @@
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
 				C0259F09234AC7F000FE1F6A /* AdControl.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
-				C0A1F4A526B62A1200536D73 /* SettingsTableViewController.swift in Sources */,
+				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
 				C0A1F4A626B62A1200536D73 /* IAPTableViewCell.swift in Sources */,
 				C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */,

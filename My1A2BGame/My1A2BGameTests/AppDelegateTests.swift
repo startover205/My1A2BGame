@@ -52,7 +52,7 @@ class AppDelegateTests: XCTestCase {
         XCTAssertTrue(tab.viewControllers?[0].embedViewController() is GuessNumberViewController, "Expect GuessNumberViewController at tab index 0")
         XCTAssertTrue(tab.viewControllers?[1].embedViewController() is GuessNumberViewController, "Expect GuessNumberViewController at tab index 1")
         XCTAssertTrue(tab.viewControllers?[2].embedViewController() is RankViewController, "Expect RankViewController at tab index 2")
-        XCTAssertTrue(tab.viewControllers?[3].embedViewController() is SettingsTableViewController, "Expect SettingsTableViewController at tab index 3")
+        XCTAssertTrue(tab.viewControllers?[3].embedViewController() is MoreViewController, "Expect MoreViewController at tab index 3")
     }
 }
 
