@@ -69,6 +69,14 @@ class GameAcceptanceTests: XCTestCase{
         XCTAssertTrue(more.navigationController?.topViewController is FAQViewController)
     }
     
+    func test_hasIAPView() {
+        let more = launch().moreController()
+        
+        more.simulateSelectNavigateToIAP()
+        
+        XCTAssertTrue(more.navigationController?.topViewController is IAPViewController)
+    }
+    
     // MARK: - Helpers
     
     private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> UITabBarController {
@@ -210,6 +218,10 @@ private extension GuessNumberViewController {
 private extension MoreViewController {
     func simulateSelectNavigateToFAQ() {
         performSegue(withIdentifier: "faq", sender: self)
+    }
+    
+    func simulateSelectNavigateToIAP() {
+        performSegue(withIdentifier: "iap", sender: self)
     }
 }
 
