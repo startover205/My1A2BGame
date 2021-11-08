@@ -12,7 +12,14 @@ public struct MoreItem {
     public let name: String
     public let image: UIImage
     public let selection: (_ anchorView: UIView?) -> Void
+    
+    public init(name: String, image: UIImage, selection: @escaping (UIView?) -> Void) {
+        self.name = name
+        self.image = image
+        self.selection = selection
+    }
 }
+
 
 public class MoreViewController: UITableViewController {
     
