@@ -10,13 +10,23 @@ import XCTest
 import My1A2BGame
 
 class MoreViewControllerTests: XCTestCase {
-
+    
     func test_viewDidLoad_rendersEmptyListOnEmptyItems() {
         let sut = makeSUT(items: [])
         
         sut.loadViewIfNeeded()
         
         assertThat(sut, isRendering: [])
+    }
+    
+    func test_viewDidLoad_rendersItemsOnNonEmptyItems() {
+        let item1 = makeItem(name: "a name", image: UIImage.make(withColor: .red))
+        let item2 = makeItem(name: "another name", image: UIImage.make(withColor: .green))
+        let sut = makeSUT(items: [item1, item2])
+        
+        sut.loadViewIfNeeded()
+        
+        assertThat(sut, isRendering: [item1, item2])
     }
     
     // MARK: - Helpers
@@ -44,13 +54,17 @@ class MoreViewControllerTests: XCTestCase {
         
         executeRunLoopToCleanUpReferences()
     }
-
+    
     private func assertThat(_ sut: MoreViewController, hasViewConfiguredFor item: MoreItem, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
         let cell = sut.itemView(at: index)
         
         XCTAssertEqual(cell?.textLabel?.text, item.name, "Expected name text to be \(String(describing: item.name)) for item view at index (\(index))", file: file, line: line)
-
+        
         XCTAssertEqual(cell?.imageView?.image?.pngData(), item.image.pngData(), "Expected image to be \(String(describing: item.image)) for item view at index (\(index))", file: file, line: line)
+    }
+    
+    private func makeItem(name: String, image: UIImage) -> MoreItem {
+        .init(name: name, image: image, selection: { _ in })
     }
 }
 
@@ -85,4 +99,17 @@ private extension MoreViewController {
     }
     
     private var itemSection: Int { 0 }
+}
+
+extension UIImage {
+    static func make(withColor color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
 }
