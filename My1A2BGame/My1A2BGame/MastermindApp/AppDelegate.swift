@@ -13,7 +13,7 @@ import AppTrackingTransparency
 import AdSupport
 import Mastermind
 import MastermindiOS
-
+import MessageUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var tabController = BannerAdTabBarViewController()
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
+    private lazy var moreNavigationController = UINavigationController()
 
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced
@@ -128,9 +129,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                                                     Rank(title: "Advanced",
                                                                                                          loader: advancedRecordLoader)],
                                                                                                  alertHost: tabController))
-        let moreNav = UINavigationController(rootViewController: makeMoreVC())
         
-        tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, moreNav], animated: false)
+        tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, makeMoreVC()], animated: false)
         
         tabController.tabBar.items!.enumerated().forEach { index, item in
             item.title = tabConfigurations[index].title
@@ -197,8 +197,100 @@ private extension AppDelegate {
 
 private extension AppDelegate {
      func makeMoreVC() -> UIViewController {
-        let vc = UIStoryboard(name: "More", bundle: .init(for: MoreViewController.self)).instantiateViewController(withIdentifier: "MoreViewController")
-        vc.title = "More"
-        return vc
+        let moreController = UIStoryboard(name: "More", bundle: .init(for: MoreViewController.self)).instantiateViewController(withIdentifier: "MoreViewController") as! MoreViewController
+        moreController.title = "More"
+        moreController.tableModel = [
+            .init(name: "Q & A", image: #imageLiteral(resourceName: "baseline_help_black_24pt"), selection: { _ in self.selectFAQ() }),
+            .init(name: "In-App Purchase", image: #imageLiteral(resourceName: "baseline_shopping_basket_black_24pt"), selection: { _ in self.selectIAP() }),
+            .init(name: "Feedback & Bug Report", image: #imageLiteral(resourceName: "baseline_bug_report_black_24pt"), selection: { _ in self.selectFeedback() }),
+            .init(name: "Rate the App", image: #imageLiteral(resourceName: "baseline_star_rate_black_24pt"), selection: { _ in self.selectReviewApp() }),
+            .init(name: "Tell Friends", image: #imageLiteral(resourceName: "baseline_share_black_24pt"), selection: selectTellFriends)
+        ]
+        
+        moreNavigationController.setViewControllers([moreController], animated: false)
+
+        return moreNavigationController
+    }
+    
+    private func selectFAQ() {
+        let faqController = UIStoryboard(name: "More", bundle: .init(for: FAQViewController.self)).instantiateViewController(withIdentifier: "FAQViewController") as! FAQViewController
+        faqController.tableModel = faq
+        moreNavigationController.pushViewController(faqController, animated: true)
+    }
+    
+    private func selectIAP() {
+        let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController")
+        moreNavigationController.pushViewController(iapController, animated: true)
+    }
+    
+    private func selectFeedback() {
+        guard MFMailComposeViewController.canSendMail() else {
+            let alert = UIAlertController(title: NSLocalizedString("No Email Function Available", comment: "6th"), message: NSLocalizedString("We're sorry. Please leave a review in the AppStore instead.", comment: "6th"), preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: NSLocalizedString("Here we go!", comment: "6th"), style: .default) { _ in
+                self.selectReviewApp()
+            }
+            
+            let cancel = UIAlertAction(title: NSLocalizedString("Maybe later", comment: "6th"), style: .cancel)
+            
+            alert.addAction(ok)
+            alert.addAction(cancel)
+            
+            moreNavigationController.showDetailViewController(alert, sender: self)
+            return
+        }
+        
+        let deviece = UIDevice.current
+        var messageBody = ""
+        messageBody.append("\n\n\n\n\n")
+        messageBody.append("System version: ")
+        messageBody.append(deviece.systemName)
+        messageBody.append(" " + deviece.systemVersion + "\n")
+        messageBody.append(ErrorManager.loadErrorMessage())
+        let composeVC = MFMailComposeViewController()
+        
+        composeVC.mailComposeDelegate = self
+        composeVC.setSubject("[Feed Back]-1A2B Fun!")
+        composeVC.setToRecipients(["samsapplab@gmail.com"])
+        composeVC.setMessageBody("\(messageBody)", isHTML: false)
+        moreNavigationController.present(composeVC, animated: true) {
+        }
+    }
+  
+    private func selectReviewApp() {
+        guard let writeReviewURL = URL(string: Constants.appStoreReviewUrl)
+            else { fatalError("Expected a valid URL") }
+        UIApplication.shared.open(writeReviewURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+    }
+    
+    func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    }
+    
+    func selectTellFriends(anchorView: UIView?){
+        var activityItems: [Any] = [NSLocalizedString("Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!", comment: "9th")]
+        activityItems.append(Constants.appStoreDownloadUrl)
+
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        controller.popoverPresentationController?.sourceView = anchorView ?? moreNavigationController.view
+            controller.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 22, width: 56, height: 0)
+        moreNavigationController.showDetailViewController(controller, sender: self)
     }
 }
+
+extension AppDelegate: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}
+
+
+private let faq = [Question(
+                    content: NSLocalizedString("QUESTION_AD_NOT_SHOWING",
+                                               tableName: "Localizable",
+                                               bundle: .main,
+                                               comment: "A question about why an ad is not always showing when the player is out of chances"),
+                    answer:  NSLocalizedString("ANSWER_AD_NOT_SHOWING",
+                                               tableName: "Localizable",
+                                               bundle: .main,
+                                               comment: "An answer to why an ad is not always showing when the player is out of chances"))]

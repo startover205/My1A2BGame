@@ -225,11 +225,11 @@ private extension GuessNumberViewController {
 
 private extension MoreViewController {
     func simulateSelectNavigateToFAQ() {
-        performSegue(withIdentifier: "faq", sender: self)
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: [0, 0])
     }
     
     func simulateSelectNavigateToIAP() {
-        performSegue(withIdentifier: "iap", sender: self)
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: [0, 1])
     }
     
     func simulateOnShareButton() {
