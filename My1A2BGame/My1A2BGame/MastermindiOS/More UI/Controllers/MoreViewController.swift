@@ -8,10 +8,10 @@
 
 import UIKit
 
-struct MoreItem {
-    let name: String
-    let image: UIImage
-    let selection: (_ anchorView: UIView?) -> Void
+public struct MoreItem {
+    public let name: String
+    public let image: UIImage
+    public let selection: (_ anchorView: UIView?) -> Void
 }
 
 public class MoreViewController: UITableViewController {
