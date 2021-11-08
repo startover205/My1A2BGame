@@ -16,7 +16,7 @@ public struct MoreItem {
 
 public class MoreViewController: UITableViewController {
     
-    var tableModel = [MoreItem]()
+    public var tableModel = [MoreItem]()
     
     // MARK: - Table view data source
     public override func numberOfSections(in tableView: UITableView) -> Int { 1 }
