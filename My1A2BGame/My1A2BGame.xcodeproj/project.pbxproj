@@ -44,6 +44,7 @@
 		C09925802733B0BD003E322D /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */; };
 		C09925822734D497003E322D /* UIBarButtonItem+TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */; };
 		C09925872738F7EB003E322D /* MoreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09925862738F7EB003E322D /* MoreViewControllerTests.swift */; };
+		C099258927391F0A003E322D /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C099258827391F0A003E322D /* UIView+TestHelpers.swift */; };
 		C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F318F271D20590038B18B /* UIViewControllerSpy.swift */; };
 		C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */; };
 		C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* MoreViewController.swift */; };
@@ -148,6 +149,7 @@
 		C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+TestHelper.swift"; sourceTree = "<group>"; };
 		C09925862738F7EB003E322D /* MoreViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewControllerTests.swift; sourceTree = "<group>"; };
+		C099258827391F0A003E322D /* UIView+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TestHelpers.swift"; sourceTree = "<group>"; };
 		C09F318F271D20590038B18B /* UIViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerSpy.swift; sourceTree = "<group>"; };
 		C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingContainerViewController.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */,
 				C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */,
 				C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */,
+				C099258827391F0A003E322D /* UIView+TestHelpers.swift */,
 				C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */,
 				C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */,
 				C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */,
@@ -638,6 +641,7 @@
 				C0C271932727A8D600A565C6 /* FAQViewController+TestHelpers.swift in Sources */,
 				C07C16AF2702F52B00451060 /* RewardAdPresenterTests.swift in Sources */,
 				C01380152701A8A400D3F4A8 /* RewardAdLoaderStub.swift in Sources */,
+				C099258927391F0A003E322D /* UIView+TestHelpers.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
 				C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */,
 				C09925822734D497003E322D /* UIBarButtonItem+TestHelper.swift in Sources */,

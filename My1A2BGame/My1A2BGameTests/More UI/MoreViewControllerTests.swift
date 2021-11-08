@@ -86,10 +86,3 @@ private extension MoreViewController {
     
     private var itemSection: Int { 0 }
 }
-
-private extension UIView {
-    func enforceLayoutCycle() {
-        layoutIfNeeded()
-        RunLoop.current.run(until: Date())
-    }
-}

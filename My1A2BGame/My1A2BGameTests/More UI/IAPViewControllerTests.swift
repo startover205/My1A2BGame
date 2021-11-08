@@ -254,13 +254,6 @@ private extension IAPViewController {
     private var productSection: Int { 0 }
 }
 
-private extension UIView {
-    func enforceLayoutCycle() {
-        layoutIfNeeded()
-        RunLoop.current.run(until: Date())
-    }
-}
-
 extension IAPTableViewCell {
     var nameText: String? {
         productNameLabel.text
