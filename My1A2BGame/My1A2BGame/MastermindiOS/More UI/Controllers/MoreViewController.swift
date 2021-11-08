@@ -14,18 +14,18 @@ struct MoreItem {
     let selection: (_ anchorView: UIView?) -> Void
 }
 
-class MoreViewController: UITableViewController {
+public class MoreViewController: UITableViewController {
     
     var tableModel = [MoreItem]()
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int { 1 }
+    public override func numberOfSections(in tableView: UITableView) -> Int { 1 }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableModel.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = tableModel[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
         cell.textLabel?.text = item.name
@@ -36,7 +36,7 @@ class MoreViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         tableModel[indexPath.row].selection(cell)
     }
