@@ -93,9 +93,9 @@ class MoreViewControllerTests: XCTestCase {
     private func assertThat(_ sut: MoreViewController, hasViewConfiguredFor item: MoreItem, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
         let cell = sut.itemView(at: index)
         
-        XCTAssertEqual(cell?.textLabel?.text, item.name, "Expected name text to be \(String(describing: item.name)) for item view at index (\(index))", file: file, line: line)
+        XCTAssertEqual(cell?.nameText, item.name, "Expected name text to be \(String(describing: item.name)) for item view at index (\(index))", file: file, line: line)
         
-        XCTAssertEqual(cell?.imageView?.image?.pngData(), item.image.pngData(), "Expected image to be \(String(describing: item.image)) for item view at index (\(index))", file: file, line: line)
+        XCTAssertEqual(cell?.renderedImage, item.image.pngData(), "Expected image to be \(String(describing: item.image)) for item view at index (\(index))", file: file, line: line)
     }
     
     private func makeItem(name: String = "a name", image: UIImage = .make(withColor: .red), selection: @escaping (UIView?) -> Void = { _ in }) -> MoreItem {
@@ -151,4 +151,10 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return img!
     }
+}
+
+private extension UITableViewCell {
+    var nameText: String? { textLabel?.text }
+    
+    var renderedImage: Data? { imageView?.image?.pngData() }
 }
