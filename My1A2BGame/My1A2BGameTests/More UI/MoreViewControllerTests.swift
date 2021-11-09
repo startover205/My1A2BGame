@@ -49,6 +49,21 @@ class MoreViewControllerTests: XCTestCase {
         XCTAssertEqual(item2CallCount, 1, "Expect item2 handler called upon selection")
     }
     
+    func test_itemSelection_passRenderedViewAsInput() {
+        var capturedView: UIView?
+        let item1 = makeItem(selection: { capturedView = $0 })
+        let item2 = makeItem(selection: { capturedView = $0 })
+        let sut = makeSUT(items: [item1, item2])
+        
+        sut.loadViewIfNeeded()
+        
+        sut.simulateOnTapItem(at: 0)
+        XCTAssertEqual(capturedView, sut.visibleItemView(at: 0), "Expect captured view to be the item view at 0")
+        
+        sut.simulateOnTapItem(at: 1)
+        XCTAssertEqual(capturedView, sut.visibleItemView(at: 1), "Expect captured view to be the item view at 1")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(items: [MoreItem], file: StaticString = #filePath, line: UInt = #line) -> MoreViewController {
@@ -116,6 +131,10 @@ private extension MoreViewController {
     
     func itemView(at row: Int) -> UITableViewCell? {
         cell(row: row, section: itemSection)
+    }
+    
+    func visibleItemView(at row: Int) -> UITableViewCell? {
+        tableView.cellForRow(at: IndexPath(row: row, section: itemSection))
     }
     
     private var itemSection: Int { 0 }
