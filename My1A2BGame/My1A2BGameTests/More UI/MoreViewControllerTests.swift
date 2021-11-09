@@ -29,6 +29,26 @@ class MoreViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [item1, item2])
     }
     
+    func test_itemSelection_notifiesCorrespondingSelectionHandler() {
+        var item1CallCount = 0
+        var item2CallCount = 0
+        let item1 = makeItem(selection: { _ in item1CallCount += 1 })
+        let item2 = makeItem(selection: { _ in item2CallCount += 1 })
+        let sut = makeSUT(items: [item1, item2])
+        
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(item1CallCount, 0, "Expect handler not called after view load")
+        XCTAssertEqual(item2CallCount, 0, "Expect handler not called after view load")
+        
+        sut.simulateOnTapItem(at: 0)
+        XCTAssertEqual(item1CallCount, 1, "Expect item1 handler called upon selection")
+        XCTAssertEqual(item2CallCount, 0, "Expect item2 handler not called when not tapped")
+        
+        sut.simulateOnTapItem(at: 1)
+        XCTAssertEqual(item1CallCount, 1, "Expect item1 handler not called when not tapped")
+        XCTAssertEqual(item2CallCount, 1, "Expect item2 handler called upon selection")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(items: [MoreItem], file: StaticString = #filePath, line: UInt = #line) -> MoreViewController {
@@ -63,8 +83,8 @@ class MoreViewControllerTests: XCTestCase {
         XCTAssertEqual(cell?.imageView?.image?.pngData(), item.image.pngData(), "Expected image to be \(String(describing: item.image)) for item view at index (\(index))", file: file, line: line)
     }
     
-    private func makeItem(name: String, image: UIImage) -> MoreItem {
-        .init(name: name, image: image, selection: { _ in })
+    private func makeItem(name: String = "a name", image: UIImage = .make(withColor: .red), selection: @escaping (UIView?) -> Void = { _ in }) -> MoreItem {
+        .init(name: name, image: image, selection: selection)
     }
 }
 
