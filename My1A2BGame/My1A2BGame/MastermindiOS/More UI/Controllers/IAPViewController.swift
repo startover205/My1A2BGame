@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 
-class IAPViewController: UITableViewController {
+public class IAPViewController: UITableViewController {
     
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
@@ -18,7 +18,7 @@ class IAPViewController: UITableViewController {
     var productRequest: SKProductsRequest?
     weak var activityIndicator: UIActivityIndicatorView?
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         StoreObserver.shared.delegate = self
@@ -33,17 +33,17 @@ class IAPViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    public override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
     
     // MARK: - Table view delegate
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IAPProductCell", for: indexPath) as! IAPTableViewCell
         
         let object = objects[indexPath.row]
@@ -53,7 +53,7 @@ class IAPViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let object = objects[indexPath.row]
         let payment = SKPayment(product: object)
         SKPaymentQueue.default().add(payment)
@@ -61,7 +61,7 @@ class IAPViewController: UITableViewController {
 }
 
 extension IAPViewController: SKProductsRequestDelegate {
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         objects = response.products
         
         DispatchQueue.main.async {
