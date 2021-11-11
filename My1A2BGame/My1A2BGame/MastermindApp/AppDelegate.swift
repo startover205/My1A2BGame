@@ -219,7 +219,7 @@ private extension AppDelegate {
     }
     
     private func selectIAP() {
-        let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController")
+        let iapController = IAPUIComposer.iap()
         moreNavigationController.pushViewController(iapController, animated: true)
     }
     
