@@ -15,17 +15,6 @@ private struct Product {
     let price: String
 }
 
-public final class IAPUIComposer {
-    private init() {}
-    
-    public static func iap() -> IAPViewController {
-        let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
-        
-        return iapController
-    }
-}
-
-
 @available(iOS 14.0, *)
 class IAPViewControllerTests: XCTestCase {
     

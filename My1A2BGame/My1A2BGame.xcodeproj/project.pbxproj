@@ -71,6 +71,7 @@
 		C0ED626A22648B9700892A80 /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626922648B9700892A80 /* IAP.swift */; };
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
 		C0EFCBF226B54C4B0041A622 /* Mastermind.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0F4ACC2273CF38000FAFC2A /* IAPUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */; };
 		C0F7D15C272254F2003DDB09 /* FAQViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */; };
 		C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */; };
 		DF35789FEE4E03F7F56F3F0B /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
@@ -180,6 +181,7 @@
 		C0ED626622608FFD00892A80 /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPUIComposer.swift; sourceTree = "<group>"; };
 		C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewControllerTests.swift; sourceTree = "<group>"; };
 		C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		C0F984F526FC6081001DAB38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
 				C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */,
 				C0570988270808A2005D2603 /* RankUIComposer.swift */,
+				C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
 				C07C16B82702F94E00451060 /* RewardAd.strings */,
 			);
@@ -591,6 +594,7 @@
 			files = (
 				C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */,
 				C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */,
+				C0F4ACC2273CF38000FAFC2A /* IAPUIComposer.swift in Sources */,
 				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
 				C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
