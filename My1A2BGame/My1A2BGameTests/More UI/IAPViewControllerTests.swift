@@ -15,6 +15,17 @@ private struct Product {
     let price: String
 }
 
+public final class IAPUIComposer {
+    private init() {}
+    
+    public static func iap() -> IAPViewController {
+        let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
+        
+        return iapController
+    }
+}
+
+
 @available(iOS 14.0, *)
 class IAPViewControllerTests: XCTestCase {
     
@@ -163,7 +174,7 @@ class IAPViewControllerTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPViewController {
-        let sut = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
+        let sut = IAPUIComposer.iap()
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
