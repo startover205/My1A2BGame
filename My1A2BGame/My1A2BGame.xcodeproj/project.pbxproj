@@ -410,12 +410,20 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		C0F4ACC3273E03BF00FAFC2A /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				C091F1082728F7820065482F /* IAPViewControllerTests.swift */,
+			);
+			path = IAP;
+			sourceTree = "<group>";
+		};
 		C0F7D15D272254F8003DDB09 /* More UI */ = {
 			isa = PBXGroup;
 			children = (
+				C0F4ACC3273E03BF00FAFC2A /* IAP */,
 				C09925862738F7EB003E322D /* MoreViewControllerTests.swift */,
 				C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */,
-				C091F1082728F7820065482F /* IAPViewControllerTests.swift */,
 				C099257D2731893F003E322D /* NonConsumable.storekit */,
 				C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */,
 			);
