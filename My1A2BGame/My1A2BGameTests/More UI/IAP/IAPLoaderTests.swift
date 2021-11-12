@@ -20,7 +20,7 @@ final class IAPLoader {
         self.canMakePayments = canMakePayments
     }
     
-    func load(productIDs: [String], completion: @escaping (Result<[SKProduct], Error>) -> Void) {
+    func load(productIDs: [String], completion: @escaping (Result<[Product], Error>) -> Void) {
         guard canMakePayments() else {
             completion(.failure(.canNotMakePayment))
             return

@@ -10,7 +10,7 @@ import XCTest
 import StoreKitTest
 @testable import My1A2BGame
 
-private struct Product {
+struct Product {
     let name: String
     let price: String
 }
