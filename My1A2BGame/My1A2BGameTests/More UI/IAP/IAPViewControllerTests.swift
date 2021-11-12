@@ -10,7 +10,7 @@ import XCTest
 import StoreKitTest
 @testable import My1A2BGame
 
-struct Product {
+struct Product: Hashable {
     let name: String
     let price: String
 }
