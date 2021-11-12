@@ -8,9 +8,11 @@
 
 import XCTest
 import StoreKit
+import StoreKitTest
 
-final class IAPLoader {
-    let canMakePayments: () -> Bool
+final class IAPLoader: NSObject {
+    private let canMakePayments: () -> Bool
+    private var loadingRequest: (request: SKProductsRequest, completion:  (Result<[Product], Error>) -> Void)?
     
     enum Error: Swift.Error {
         case canNotMakePayment
@@ -26,9 +28,36 @@ final class IAPLoader {
             return
         }
         
-        completion(.success([]))
+        let request = SKProductsRequest(productIdentifiers: Set(productIDs))
+        request.delegate = self
+        loadingRequest = (request, completion)
+        
+        request.start()
     }
 }
+
+extension IAPLoader: SKProductsRequestDelegate {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        loadingRequest?.completion(.success(response.products.model()))
+    }
+}
+
+private extension Array where Element == SKProduct {
+    func model() -> [Product] {
+        map { Product(name: $0.localizedTitle, price: $0.localizedPrice) }
+    }
+}
+
+private extension SKProduct {
+    var localizedPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = priceLocale
+        return formatter.string(from: price)!
+    }
+}
+
+
 
 class IAPLoaderTests: XCTestCase {
     
@@ -67,7 +96,29 @@ class IAPLoaderTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
     }
-
+    
+    @available(iOS 14.0, *)
+    func test_load_deliversProductsOnLoadingSuccesfully() throws {
+        let loader = makeSUT()
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        
+        let exp = expectation(description: "wait for load")
+        
+        loader.load(productIDs: allProductIDs()) { result in
+            switch result {
+            case let .success(products):
+                XCTAssertEqual(Set(products), Set(allProducts()))
+            default:
+                XCTFail("Expect success case")
+            }
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(canMakePayments: @escaping () -> Bool = { true }, file: StaticString = #filePath, line: UInt = #line) -> IAPLoader {
@@ -77,4 +128,12 @@ class IAPLoaderTests: XCTestCase {
         
         return sut
     }
+}
+
+private func allProductIDs() -> [String] {
+    ["remove_bottom_ad"]
+}
+
+private func allProducts() -> [Product] {
+    [.init(name: "Remove Bottom Ad", price: "$0.99")]
 }
