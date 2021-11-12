@@ -72,6 +72,7 @@
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
 		C0EFCBF226B54C4B0041A622 /* Mastermind.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0F4ACC2273CF38000FAFC2A /* IAPUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */; };
+		C0F4ACC5273E03D800FAFC2A /* IAPLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4ACC4273E03D800FAFC2A /* IAPLoaderTests.swift */; };
 		C0F7D15C272254F2003DDB09 /* FAQViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */; };
 		C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */; };
 		DF35789FEE4E03F7F56F3F0B /* Pods_My1A2BGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7CCFCB7B09BDE27F8850A1 /* Pods_My1A2BGame.framework */; };
@@ -182,6 +183,7 @@
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPUIComposer.swift; sourceTree = "<group>"; };
+		C0F4ACC4273E03D800FAFC2A /* IAPLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPLoaderTests.swift; sourceTree = "<group>"; };
 		C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewControllerTests.swift; sourceTree = "<group>"; };
 		C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		C0F984F526FC6081001DAB38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				C091F1082728F7820065482F /* IAPViewControllerTests.swift */,
+				C0F4ACC4273E03D800FAFC2A /* IAPLoaderTests.swift */,
 			);
 			path = IAP;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0F4ACC5273E03D800FAFC2A /* IAPLoaderTests.swift in Sources */,
 				C07C16B52702F8F900451060 /* SharedLocalizationTestHelpers.swift in Sources */,
 				C07C16B32702F89900451060 /* RewardAdLocalizationTests.swift in Sources */,
 				C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */,
