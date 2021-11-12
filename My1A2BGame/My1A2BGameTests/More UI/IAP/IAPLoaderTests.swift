@@ -7,57 +7,8 @@
 //
 
 import XCTest
-import StoreKit
 import StoreKitTest
-
-final class IAPLoader: NSObject {
-    private let canMakePayments: () -> Bool
-    private var loadingRequest: (request: SKProductsRequest, completion:  (Result<[Product], Error>) -> Void)?
-    
-    enum Error: Swift.Error {
-        case canNotMakePayment
-    }
-    
-    init(canMakePayments: @escaping () -> Bool) {
-        self.canMakePayments = canMakePayments
-    }
-    
-    func load(productIDs: [String], completion: @escaping (Result<[Product], Error>) -> Void) {
-        guard canMakePayments() else {
-            completion(.failure(.canNotMakePayment))
-            return
-        }
-        
-        let request = SKProductsRequest(productIdentifiers: Set(productIDs))
-        request.delegate = self
-        loadingRequest = (request, completion)
-        
-        request.start()
-    }
-}
-
-extension IAPLoader: SKProductsRequestDelegate {
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        loadingRequest?.completion(.success(response.products.model()))
-    }
-}
-
-private extension Array where Element == SKProduct {
-    func model() -> [Product] {
-        map { Product(name: $0.localizedTitle, price: $0.localizedPrice) }
-    }
-}
-
-private extension SKProduct {
-    var localizedPrice: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = priceLocale
-        return formatter.string(from: price)!
-    }
-}
-
-
+import My1A2BGame
 
 class IAPLoaderTests: XCTestCase {
     

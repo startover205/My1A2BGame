@@ -10,11 +10,6 @@ import XCTest
 import StoreKitTest
 @testable import My1A2BGame
 
-struct Product: Hashable {
-    let name: String
-    let price: String
-}
-
 @available(iOS 14.0, *)
 class IAPViewControllerTests: XCTestCase {
     
