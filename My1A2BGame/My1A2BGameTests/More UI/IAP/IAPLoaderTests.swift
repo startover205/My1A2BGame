@@ -17,37 +17,15 @@ class IAPLoaderTests: XCTestCase {
         
         let exp = expectation(description: "wait for load")
         
-        loader.load(productIDs: []) { result in
-            switch result {
-            case let .success(products):
-                XCTAssertTrue(products.isEmpty)
-            default:
-                XCTFail("Expect success case")
-            }
+        loader.load(productIDs: []) { products in
+            XCTAssertTrue(products.isEmpty)
+            
             exp.fulfill()
         }
         
         wait(for: [exp], timeout: 1.0)
     }
 
-    func test_load_deliversErrorWhenCanNotMakePayments() {
-        let loader = makeSUT(canMakePayments: { false })
-        
-        let exp = expectation(description: "wait for load")
-        
-        loader.load(productIDs: []) { result in
-            switch result {
-            case let .failure(error):
-                XCTAssertEqual(error, IAPLoader.Error.canNotMakePayment)
-            default:
-                XCTFail("Expect failure case")
-            }
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
-    }
-    
     @available(iOS 14.0, *)
     func test_load_deliversProductsOnLoadingSuccesfully() throws {
         let loader = makeSUT()
@@ -57,13 +35,9 @@ class IAPLoaderTests: XCTestCase {
         
         let exp = expectation(description: "wait for load")
         
-        loader.load(productIDs: allProductIDs()) { result in
-            switch result {
-            case let .success(products):
-                XCTAssertEqual(Set(products.model()), Set(allProducts()))
-            default:
-                XCTFail("Expect success case")
-            }
+        loader.load(productIDs: allProductIDs()) { products in
+            XCTAssertEqual(Set(products.model()), Set(allProducts()))
+            
             exp.fulfill()
         }
         
@@ -72,8 +46,8 @@ class IAPLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(canMakePayments: @escaping () -> Bool = { true }, file: StaticString = #filePath, line: UInt = #line) -> IAPLoader {
-        let sut = IAPLoader(canMakePayments: canMakePayments)
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPLoader {
+        let sut = IAPLoader()
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

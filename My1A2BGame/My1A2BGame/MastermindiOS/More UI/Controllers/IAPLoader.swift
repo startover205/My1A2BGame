@@ -9,25 +9,11 @@
 import StoreKit
 
 public final class IAPLoader: NSObject {
-    private let canMakePayments: () -> Bool
-    private var loadingRequest: (request: SKProductsRequest, completion: (Result<[SKProduct], Error>) -> Void)?
+    private var loadingRequest: (request: SKProductsRequest, completion: ([SKProduct]) -> Void)?
     
-    public enum Error: Swift.Error {
-        case canNotMakePayment
-    }
-    
-    public init(canMakePayments: @escaping () -> Bool) {
-        self.canMakePayments = canMakePayments
-    }
-    
-    public func load(productIDs: [String], completion: @escaping (Result<[SKProduct], Error>) -> Void) {
-        guard canMakePayments() else {
-            completion(.failure(.canNotMakePayment))
-            return
-        }
-        
+    public func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
         guard !productIDs.isEmpty else {
-            completion(.success([]))
+            completion([])
             return
         }
         
@@ -41,6 +27,6 @@ public final class IAPLoader: NSObject {
 
 extension IAPLoader: SKProductsRequestDelegate {
     public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        loadingRequest?.completion(.success(response.products))
+        loadingRequest?.completion(response.products)
     }
 }
