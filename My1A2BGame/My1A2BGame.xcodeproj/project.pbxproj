@@ -45,6 +45,7 @@
 		C09925822734D497003E322D /* UIBarButtonItem+TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */; };
 		C09925872738F7EB003E322D /* MoreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09925862738F7EB003E322D /* MoreViewControllerTests.swift */; };
 		C099258927391F0A003E322D /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C099258827391F0A003E322D /* UIView+TestHelpers.swift */; };
+		C09ADD3D2743A88000222B71 /* NonConsumable.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C099257D2731893F003E322D /* NonConsumable.storekit */; };
 		C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F318F271D20590038B18B /* UIViewControllerSpy.swift */; };
 		C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */; };
 		C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* MoreViewController.swift */; };
@@ -359,6 +360,7 @@
 				C0A1F48726B62A1100536D73 /* FAQViewController.swift */,
 				C0DC06E4273E5CB70033982F /* IAPLoader.swift */,
 				C0DC06E6273E5CEE0033982F /* Product.swift */,
+				C099257D2731893F003E322D /* NonConsumable.storekit */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -433,7 +435,6 @@
 				C0F4ACC3273E03BF00FAFC2A /* IAP */,
 				C09925862738F7EB003E322D /* MoreViewControllerTests.swift */,
 				C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */,
-				C099257D2731893F003E322D /* NonConsumable.storekit */,
 				C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */,
 			);
 			path = "More UI";
@@ -546,6 +547,7 @@
 			files = (
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C07C16B62702F94E00451060 /* RewardAd.strings in Resources */,
+				C09ADD3D2743A88000222B71 /* NonConsumable.storekit in Resources */,
 				C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */,
 				C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
