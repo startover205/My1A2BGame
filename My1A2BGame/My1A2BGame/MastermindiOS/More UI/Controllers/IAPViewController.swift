@@ -17,6 +17,7 @@ public class IAPViewController: UITableViewController {
     var productIdList = [String]()
     var productRequest: SKProductsRequest?
     weak var activityIndicator: UIActivityIndicatorView?
+    var productLoader: IAPLoader?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,30 +61,6 @@ public class IAPViewController: UITableViewController {
     }
 }
 
-extension IAPViewController: SKProductsRequestDelegate {
-    public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        tableModel = response.products
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-            self.activityIndicator?.removeFromSuperview()
-            
-            if self.tableModel.isEmpty {
-                let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
-                
-                let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-                
-                alert.addAction(ok)
-                
-                self.showDetailViewController(alert, sender: self)
-            }
-        }
-        
-        
-        print("invalidProductIdentifiers: \(response.invalidProductIdentifiers.description)")
-    }
-}
-
 extension IAPViewController: StoreObserverDelegate {
     func didPuarchaseIAP(productIdenifer: String) {
         refresh()
@@ -120,10 +97,26 @@ private extension IAPViewController {
     
     func requestProductInfo(){
         if SKPaymentQueue.canMakePayments() {
-            let productRequest = SKProductsRequest(productIdentifiers: Set(productIdList))
-            self.productRequest = productRequest
-            productRequest.delegate = self
-            productRequest.start()
+            productLoader?.load(productIDs: productIdList, completion: { [weak self] products in
+                guard let self = self else { return }
+                
+                self.tableModel = products
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
+                    self.activityIndicator?.removeFromSuperview()
+                    
+                    if self.tableModel.isEmpty {
+                        let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
+                        
+                        let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                        
+                        alert.addAction(ok)
+                        
+                        self.showDetailViewController(alert, sender: self)
+                    }
+                }
+            })
             
         } else {
             let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not available on this device or within this app.", comment: "4th"), preferredStyle: .alert)
