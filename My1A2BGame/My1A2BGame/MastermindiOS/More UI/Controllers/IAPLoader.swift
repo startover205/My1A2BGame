@@ -8,7 +8,7 @@
 
 import StoreKit
 
-public final class IAPLoader: NSObject {
+public class IAPLoader: NSObject {
     private var loadingRequest: (request: SKProductsRequest, completion: ([SKProduct]) -> Void)?
     
     public func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
