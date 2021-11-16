@@ -102,19 +102,17 @@ private extension IAPViewController {
                 
                 self.tableModel = products
                 
-                DispatchQueue.main.async {
-                    self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-                    self.activityIndicator?.removeFromSuperview()
+                self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
+                self.activityIndicator?.removeFromSuperview()
+                
+                if self.tableModel.isEmpty {
+                    let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
                     
-                    if self.tableModel.isEmpty {
-                        let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
-                        
-                        let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-                        
-                        alert.addAction(ok)
-                        
-                        self.showDetailViewController(alert, sender: self)
-                    }
+                    let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                    
+                    alert.addAction(ok)
+                    
+                    self.showDetailViewController(alert, sender: self)
                 }
             })
             
