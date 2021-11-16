@@ -133,10 +133,10 @@ protocol StoreObserverDelegate: AnyObject {
 }
 
 extension SKProduct {
-    var localPrice: String? {
+    var localPrice: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        formatter.locale = self.priceLocale
-        return formatter.string(from: self.price)
+        formatter.locale = priceLocale
+        return formatter.string(from: price)!
     }
 }
