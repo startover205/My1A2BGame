@@ -42,7 +42,6 @@ class IAPViewControllerTests: XCTestCase {
         exp.isInverted = true
         wait(for: [exp], timeout: 1)
         
-        sut.loadViewIfNeeded()
         XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
     
