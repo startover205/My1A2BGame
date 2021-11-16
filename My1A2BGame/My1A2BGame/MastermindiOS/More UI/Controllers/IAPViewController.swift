@@ -9,11 +9,40 @@
 import UIKit
 import StoreKit
 
+final class IAPCellController: NSObject {
+    private let product: Product
+    private let selection: () -> Void
+    
+    internal init(product: Product, selection: @escaping () -> Void) {
+        self.product = product
+        self.selection = selection
+    }
+}
+
+extension IAPCellController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IAPProductCell", for: indexPath) as! IAPTableViewCell
+        
+        cell.productNameLabel.text = product.name
+        cell.productPriceLabel.text = product.price
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection()
+    }
+}
+
 public class IAPViewController: UITableViewController {
     
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
-    var tableModel = [SKProduct]()
+    var tableModel = [IAPCellController]()
     var productIdList = [String]()
     var productRequest: SKProductsRequest?
     weak var activityIndicator: UIActivityIndicatorView?
@@ -45,19 +74,15 @@ public class IAPViewController: UITableViewController {
     // MARK: - Table view delegate
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IAPProductCell", for: indexPath) as! IAPTableViewCell
-        
-        let object = tableModel[indexPath.row]
-        cell.productNameLabel.text = object.localizedTitle
-        cell.productPriceLabel.text = object.localPrice
-        
-        return cell
+        cellController(at: indexPath).tableView(tableView, cellForRowAt: indexPath)
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let object = tableModel[indexPath.row]
-        let payment = SKPayment(product: object)
-        SKPaymentQueue.default().add(payment)
+        cellController(at: indexPath).tableView(tableView, didSelectRowAt: indexPath)
+    }
+    
+    private func cellController(at indexPath: IndexPath) -> IAPCellController {
+       tableModel[indexPath.row]
     }
 }
 
@@ -100,7 +125,7 @@ private extension IAPViewController {
             productLoader?.load(productIDs: productIdList, completion: { [weak self] products in
                 guard let self = self else { return }
                 
-                self.tableModel = products
+                self.tableModel = self.adaptProductsToCellControllers(products)
                 
                 self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
                 self.activityIndicator?.removeFromSuperview()
@@ -124,6 +149,15 @@ private extension IAPViewController {
             alert.addAction(ok)
             
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private func adaptProductsToCellControllers(_ products: [SKProduct]) -> [IAPCellController] {
+        products.map { product in
+            IAPCellController(product: Product(name: product.localizedTitle, price: product.localPrice)) {
+                 let payment = SKPayment(product: product)
+                 SKPaymentQueue.default().add(payment)
+            }
         }
     }
 }
