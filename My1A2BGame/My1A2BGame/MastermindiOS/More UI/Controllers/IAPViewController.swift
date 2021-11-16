@@ -14,7 +14,6 @@ public class IAPViewController: UITableViewController {
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
     var tableModel = [IAPCellController]()
-    weak var activityIndicator: UIActivityIndicatorView?
     var productLoader: IAPLoader?
     
     public override func viewDidLoad() {
@@ -26,6 +25,11 @@ public class IAPViewController: UITableViewController {
         
         refresh()
     }
+    
+    @IBAction func reloadProducts(_ sender: Any) {
+        refresh()
+    }
+    
     @IBAction func restoreBtnPressed(_ sender: Any) {
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
@@ -74,17 +78,7 @@ private extension IAPViewController {
         
         let productIDs = IAP.getAvailableProductsId()
         
-        let activityIndicator:  UIActivityIndicatorView
-        if #available(iOS 13.0, *) {
-            activityIndicator = UIActivityIndicatorView(style: .large)
-        } else {
-            activityIndicator = UIActivityIndicatorView(style: .gray)        }
-        self.activityIndicator = activityIndicator
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        refreshControl?.beginRefreshing()
         
         if SKPaymentQueue.canMakePayments() {
             productLoader?.load(productIDs: productIDs, completion: { [weak self] products in
@@ -93,7 +87,7 @@ private extension IAPViewController {
                 self.tableModel = self.adaptProductsToCellControllers(products)
                 
                 self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-                self.activityIndicator?.removeFromSuperview()
+                self.refreshControl?.endRefreshing()
                 
                 if self.tableModel.isEmpty {
                     let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)

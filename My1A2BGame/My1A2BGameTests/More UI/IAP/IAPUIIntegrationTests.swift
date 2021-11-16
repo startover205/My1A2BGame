@@ -43,6 +43,15 @@ class IAPUIIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1)
         
         XCTAssertFalse(sut.isShowingLoadingIndicator)
+        
+        sut.simulateUserInitiatedReload()
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
+        
+        let exp2 = expectation(description: "wait for product loading")
+        exp2.isInverted = true
+        wait(for: [exp2], timeout: 1)
+        
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
     
     func test_loadProductCompletion_rendersSuccessfullyLoadedProducts() throws {
@@ -210,6 +219,10 @@ class IAPUIIntegrationTests: XCTestCase {
 }
 
 private extension IAPViewController {
+    func simulateUserInitiatedReload() {
+        refreshControl?.sendActions(for: .valueChanged)
+    }
+    
     func simulateOnTapProduct(at row: Int) {
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: productSection))
     }
@@ -219,9 +232,7 @@ private extension IAPViewController {
     }
     
     var isShowingLoadingIndicator: Bool {
-        guard let indicator = activityIndicator else { return false }
-        
-        return view.subviews.contains(indicator) && indicator.isAnimating
+        refreshControl?.isRefreshing ?? false
     }
     
     func numberOfRows(in section: Int) -> Int {
