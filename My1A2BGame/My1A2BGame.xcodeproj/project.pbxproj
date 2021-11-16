@@ -34,7 +34,7 @@
 		C085BE6A2254974700320563 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* Constants.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C088A65126BE7855005FC389 /* InMemoryUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */; };
-		C091F1092728F7820065482F /* IAPViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C091F1082728F7820065482F /* IAPViewControllerTests.swift */; };
+		C091F1092728F7820065482F /* IAPUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */; };
 		C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */; };
 		C09841FF26D0DE9100AE72F4 /* WinUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */; };
 		C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420426D4768500AE72F4 /* SharedTestHelpers.swift */; };
@@ -144,7 +144,7 @@
 		C085BE692254974700320563 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserDefaults.swift; sourceTree = "<group>"; };
-		C091F1082728F7820065482F /* IAPViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPViewControllerTests.swift; sourceTree = "<group>"; };
+		C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAcceptanceTests.swift; sourceTree = "<group>"; };
 		C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420426D4768500AE72F4 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -423,7 +423,7 @@
 		C0F4ACC3273E03BF00FAFC2A /* IAP */ = {
 			isa = PBXGroup;
 			children = (
-				C091F1082728F7820065482F /* IAPViewControllerTests.swift */,
+				C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */,
 				C0F4ACC4273E03D800FAFC2A /* IAPLoaderTests.swift */,
 			);
 			path = IAP;
@@ -652,7 +652,7 @@
 				C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */,
 				C0C3143127192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift in Sources */,
 				C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */,
-				C091F1092728F7820065482F /* IAPViewControllerTests.swift in Sources */,
+				C091F1092728F7820065482F /* IAPUIIntegrationTests.swift in Sources */,
 				C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */,
 				C01380132701A24200D3F4A8 /* RewardAdViewControllerTests.swift in Sources */,
 				C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */,

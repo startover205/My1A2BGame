@@ -1,5 +1,5 @@
 //
-//  IAPViewControllerTests.swift
+//  IAPUIIntegrationTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/10/27.
@@ -11,7 +11,7 @@ import StoreKitTest
 @testable import My1A2BGame
 
 @available(iOS 14.0, *)
-class IAPViewControllerTests: XCTestCase {
+class IAPUIIntegrationTests: XCTestCase {
     
     override func setUp() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
