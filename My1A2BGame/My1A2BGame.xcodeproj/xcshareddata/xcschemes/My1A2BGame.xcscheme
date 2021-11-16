@@ -80,6 +80,9 @@
             ReferencedContainer = "container:My1A2BGame.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../My1A2BGame/MastermindiOS/More UI/Controllers/NonConsumable.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
