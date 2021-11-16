@@ -60,7 +60,7 @@ class IAPLoaderTests: XCTestCase {
         loader.load(productIDs: allProductIDs()) { result in
             switch result {
             case let .success(products):
-                XCTAssertEqual(Set(products), Set(allProducts()))
+                XCTAssertEqual(Set(products.model()), Set(allProducts()))
             default:
                 XCTFail("Expect success case")
             }
@@ -87,4 +87,19 @@ private func allProductIDs() -> [String] {
 
 private func allProducts() -> [Product] {
     [.init(name: "Remove Bottom Ad", price: "$0.99")]
+}
+
+private extension Array where Element == SKProduct {
+    func model() -> [Product] {
+        map { Product(name: $0.localizedTitle, price: $0.localizedPrice) }
+    }
+}
+
+private extension SKProduct {
+    var localizedPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = priceLocale
+        return formatter.string(from: price)!
+    }
 }

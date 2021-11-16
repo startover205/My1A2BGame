@@ -10,7 +10,7 @@ import StoreKit
 
 public final class IAPLoader: NSObject {
     private let canMakePayments: () -> Bool
-    private var loadingRequest: (request: SKProductsRequest, completion: (Result<[Product], Error>) -> Void)?
+    private var loadingRequest: (request: SKProductsRequest, completion: (Result<[SKProduct], Error>) -> Void)?
     
     public enum Error: Swift.Error {
         case canNotMakePayment
@@ -20,9 +20,14 @@ public final class IAPLoader: NSObject {
         self.canMakePayments = canMakePayments
     }
     
-    public func load(productIDs: [String], completion: @escaping (Result<[Product], Error>) -> Void) {
+    public func load(productIDs: [String], completion: @escaping (Result<[SKProduct], Error>) -> Void) {
         guard canMakePayments() else {
             completion(.failure(.canNotMakePayment))
+            return
+        }
+        
+        guard !productIDs.isEmpty else {
+            completion(.success([]))
             return
         }
         
@@ -36,21 +41,6 @@ public final class IAPLoader: NSObject {
 
 extension IAPLoader: SKProductsRequestDelegate {
     public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        loadingRequest?.completion(.success(response.products.model()))
-    }
-}
-
-private extension Array where Element == SKProduct {
-    func model() -> [Product] {
-        map { Product(name: $0.localizedTitle, price: $0.localizedPrice) }
-    }
-}
-
-private extension SKProduct {
-    var localizedPrice: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = priceLocale
-        return formatter.string(from: price)!
+        loadingRequest?.completion(.success(response.products))
     }
 }
