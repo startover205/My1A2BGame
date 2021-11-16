@@ -13,7 +13,7 @@ public class IAPViewController: UITableViewController {
     
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
-    var objects = [SKProduct]()
+    var tableModel = [SKProduct]()
     var productIdList = [String]()
     var productRequest: SKProductsRequest?
     weak var activityIndicator: UIActivityIndicatorView?
@@ -38,7 +38,7 @@ public class IAPViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return tableModel.count
     }
     
     // MARK: - Table view delegate
@@ -46,7 +46,7 @@ public class IAPViewController: UITableViewController {
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IAPProductCell", for: indexPath) as! IAPTableViewCell
         
-        let object = objects[indexPath.row]
+        let object = tableModel[indexPath.row]
         cell.productNameLabel.text = object.localizedTitle
         cell.productPriceLabel.text = object.localPrice
         
@@ -54,7 +54,7 @@ public class IAPViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let object = objects[indexPath.row]
+        let object = tableModel[indexPath.row]
         let payment = SKPayment(product: object)
         SKPaymentQueue.default().add(payment)
     }
@@ -62,13 +62,13 @@ public class IAPViewController: UITableViewController {
 
 extension IAPViewController: SKProductsRequestDelegate {
     public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        objects = response.products
+        tableModel = response.products
         
         DispatchQueue.main.async {
             self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
             self.activityIndicator?.removeFromSuperview()
             
-            if self.objects.isEmpty {
+            if self.tableModel.isEmpty {
                 let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
@@ -96,8 +96,8 @@ extension IAPViewController: StoreObserverDelegate {
 // MARK: - Private
 private extension IAPViewController {
     func refresh(){
-        if !objects.isEmpty{
-            objects.removeAll()
+        if !tableModel.isEmpty{
+            tableModel.removeAll()
             tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
         }
         
