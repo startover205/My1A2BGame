@@ -44,7 +44,6 @@ public class IAPViewController: UITableViewController {
     
     var tableModel = [IAPCellController]()
     var productIdList = [String]()
-    var productRequest: SKProductsRequest?
     weak var activityIndicator: UIActivityIndicatorView?
     var productLoader: IAPLoader?
     
