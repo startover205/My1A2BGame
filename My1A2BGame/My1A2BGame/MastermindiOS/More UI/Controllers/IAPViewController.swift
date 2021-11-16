@@ -43,7 +43,6 @@ public class IAPViewController: UITableViewController {
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
     var tableModel = [IAPCellController]()
-    var productIdList = [String]()
     weak var activityIndicator: UIActivityIndicatorView?
     var productLoader: IAPLoader?
     
@@ -102,7 +101,7 @@ private extension IAPViewController {
             tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
         }
         
-        productIdList = IAP.getAvailableProductsId()
+        let productIDs = IAP.getAvailableProductsId()
         
         let activityIndicator:  UIActivityIndicatorView
         if #available(iOS 13.0, *) {
@@ -116,12 +115,8 @@ private extension IAPViewController {
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        requestProductInfo()
-    }
-    
-    func requestProductInfo(){
         if SKPaymentQueue.canMakePayments() {
-            productLoader?.load(productIDs: productIdList, completion: { [weak self] products in
+            productLoader?.load(productIDs: productIDs, completion: { [weak self] products in
                 guard let self = self else { return }
                 
                 self.tableModel = self.adaptProductsToCellControllers(products)
