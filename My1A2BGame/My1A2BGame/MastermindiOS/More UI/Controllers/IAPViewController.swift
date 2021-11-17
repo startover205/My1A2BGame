@@ -19,7 +19,7 @@ public class IAPViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        StoreObserver.shared.delegate = self
+        IAPTransactionObserver.shared.delegate = self
         
         restorePurchaseButton.isEnabled = SKPaymentQueue.canMakePayments()
         
@@ -59,7 +59,7 @@ public class IAPViewController: UITableViewController {
     }
 }
 
-extension IAPViewController: StoreObserverDelegate {
+extension IAPViewController: IAPTransactionObserverDelegate {
     func didPuarchaseIAP(productIdenifer: String) {
         refresh()
     }

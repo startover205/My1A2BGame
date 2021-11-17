@@ -71,7 +71,7 @@
 		C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */; };
 		C0ED625F225DF63500892A80 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0ED625E225DF63500892A80 /* StoreKit.framework */; };
 		C0ED62652260416300892A80 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED62642260416300892A80 /* ErrorManager.swift */; };
-		C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626622608FFD00892A80 /* StoreObserver.swift */; };
+		C0ED626722608FFD00892A80 /* IAPTransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */; };
 		C0ED626A22648B9700892A80 /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626922648B9700892A80 /* IAP.swift */; };
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
 		C0EFCBF226B54C4B0041A622 /* Mastermind.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -186,7 +186,7 @@
 		C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		C0ED625E225DF63500892A80 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C0ED62642260416300892A80 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
-		C0ED626622608FFD00892A80 /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
+		C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPTransactionObserver.swift; sourceTree = "<group>"; };
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPUIComposer.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		C01BC5D026A85B5000FA0636 /* In-App Purchase */ = {
 			isa = PBXGroup;
 			children = (
-				C0ED626622608FFD00892A80 /* StoreObserver.swift */,
+				C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */,
 				C0ED626922648B9700892A80 /* IAP.swift */,
 			);
 			path = "In-App Purchase";
@@ -621,7 +621,7 @@
 				C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
-				C0ED626722608FFD00892A80 /* StoreObserver.swift in Sources */,
+				C0ED626722608FFD00892A80 /* IAPTransactionObserver.swift in Sources */,
 				C0A1F4A826B62A1200536D73 /* FAQViewController.swift in Sources */,
 				C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */,
 				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,

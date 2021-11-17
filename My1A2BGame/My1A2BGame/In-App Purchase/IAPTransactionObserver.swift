@@ -1,5 +1,5 @@
 //
-//  StoreObserver.swift
+//  IAPTransactionObserver.swift
 //  My1A2BGame
 //
 //  Created by Ming-Ta Yang on 2019/4/12.
@@ -9,17 +9,17 @@
 import Foundation
 import StoreKit
 
-class StoreObserver: NSObject, SKPaymentTransactionObserver {
+class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     
-    static let shared = StoreObserver()
-    weak var delegate: StoreObserverDelegate?
+    static let shared = IAPTransactionObserver()
+    weak var delegate: IAPTransactionObserverDelegate?
     var hasRestorableContent = false
     
     private override init() {
         super.init()
     }
     
-    func paymentQueue(_ queue: SKPaymentQueue,updatedTransactions transactions: [SKPaymentTransaction]) {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             
             switch transaction.transactionState {
@@ -100,7 +100,7 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
 }
 
 // MARK: - Private
-private extension StoreObserver {
+private extension IAPTransactionObserver {
     func handlePurchase(productIdentifier: String){
         
         guard let product = IAP(rawValue: productIdentifier) else {
@@ -127,7 +127,7 @@ private extension StoreObserver {
     }
 }
 
-protocol StoreObserverDelegate: AnyObject {
+protocol IAPTransactionObserverDelegate: AnyObject {
     func didPuarchaseIAP(productIdenifer: String)
     func didRestoreIAP()
 }

@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        SKPaymentQueue.default().add(StoreObserver.shared)
+        SKPaymentQueue.default().add(IAPTransactionObserver.shared)
         
         // 設定廣告
         if #available(iOS 14, *) {
@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        SKPaymentQueue.default().remove(StoreObserver.shared)
+        SKPaymentQueue.default().remove(IAPTransactionObserver.shared)
     }
     
     func configureWindow() {
