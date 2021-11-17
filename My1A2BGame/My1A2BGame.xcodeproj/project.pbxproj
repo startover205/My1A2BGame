@@ -47,6 +47,7 @@
 		C099258927391F0A003E322D /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C099258827391F0A003E322D /* UIView+TestHelpers.swift */; };
 		C09ADD3D2743A88000222B71 /* NonConsumable.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C099257D2731893F003E322D /* NonConsumable.storekit */; };
 		C09ADD3F2743B17100222B71 /* IAPCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09ADD3E2743B17100222B71 /* IAPCellController.swift */; };
+		C09ADD412744916F00222B71 /* IAPTransactionObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09ADD402744916F00222B71 /* IAPTransactionObserverTests.swift */; };
 		C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F318F271D20590038B18B /* UIViewControllerSpy.swift */; };
 		C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */; };
 		C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48426B62A1100536D73 /* MoreViewController.swift */; };
@@ -157,6 +158,7 @@
 		C09925862738F7EB003E322D /* MoreViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewControllerTests.swift; sourceTree = "<group>"; };
 		C099258827391F0A003E322D /* UIView+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TestHelpers.swift"; sourceTree = "<group>"; };
 		C09ADD3E2743B17100222B71 /* IAPCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPCellController.swift; sourceTree = "<group>"; };
+		C09ADD402744916F00222B71 /* IAPTransactionObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPTransactionObserverTests.swift; sourceTree = "<group>"; };
 		C09F318F271D20590038B18B /* UIViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerSpy.swift; sourceTree = "<group>"; };
 		C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingContainerViewController.swift; sourceTree = "<group>"; };
 		C0A1F48426B62A1100536D73 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */,
+				C09ADD402744916F00222B71 /* IAPTransactionObserverTests.swift */,
 				C0F4ACC4273E03D800FAFC2A /* IAPLoaderTests.swift */,
 			);
 			path = IAP;
@@ -671,6 +674,7 @@
 				C0C271932727A8D600A565C6 /* FAQViewController+TestHelpers.swift in Sources */,
 				C07C16AF2702F52B00451060 /* RewardAdPresenterTests.swift in Sources */,
 				C01380152701A8A400D3F4A8 /* RewardAdLoaderStub.swift in Sources */,
+				C09ADD412744916F00222B71 /* IAPTransactionObserverTests.swift in Sources */,
 				C099258927391F0A003E322D /* UIView+TestHelpers.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
 				C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */,
