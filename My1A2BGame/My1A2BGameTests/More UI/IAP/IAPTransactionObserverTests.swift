@@ -19,7 +19,7 @@ class IAPTransactionObserverTests: XCTestCase {
         XCTAssertTrue(delegate.receivedMessages.isEmpty)
     }
     
-    func test_handleTransaction_doesNotMessageDelegateOnFailedTransaction() throws {
+    func test_handleTransaction_doesNotMessageDelegate_OnFailedTransaction() throws {
         let (_, delegate) = makeSUT()
         
         try simulateFailedTransaction()
