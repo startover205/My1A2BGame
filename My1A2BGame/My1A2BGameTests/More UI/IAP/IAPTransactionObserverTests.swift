@@ -7,8 +7,10 @@
 //
 
 import XCTest
+import StoreKitTest
 @testable import My1A2BGame
 
+@available(iOS 14.0, *)
 class IAPTransactionObserverTests: XCTestCase {
     
     func test_init_doesNotMessageDelegate() {
@@ -16,6 +18,15 @@ class IAPTransactionObserverTests: XCTestCase {
         
         XCTAssertTrue(delegate.receivedMessages.isEmpty)
     }
+    
+    func test_handleTransaction_doesNotMessageDelegateOnFailedTransaction() throws {
+        let (_, delegate) = makeSUT()
+        
+        try simulateFailedTransaction()
+        
+        XCTAssertTrue(delegate.receivedMessages.isEmpty)
+    }
+    
     
     // MARK: - Helpers
     
@@ -27,6 +38,19 @@ class IAPTransactionObserverTests: XCTestCase {
         trackForMemoryLeaks(delegate, file: file, line: line)
         
         return (sut, delegate)
+    }
+    
+    private func simulateFailedTransaction() throws {
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        session.failTransactionsEnabled = true
+        
+        SKPaymentQueue.default().add(SKPayment(product: aProduct()))
+        
+        let exp = expectation(description: "wait for request")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 3.0)
     }
     
     private final class IAPTransactionObserverDelegateSpy: IAPTransactionObserverDelegate {
@@ -44,5 +68,10 @@ class IAPTransactionObserverTests: XCTestCase {
             receivedMessages.append(.didRestoreIAP)
         }
     }
-
+    
+    private func aProduct() -> SKProduct {
+        let product = SKProduct()
+        product.setValue("remove_bottom_ad", forKey: "productIdentifier")
+        return product
+    }
 }
