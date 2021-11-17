@@ -58,7 +58,7 @@ class IAPTransactionObserverTests: XCTestCase {
         
         let exp = expectation(description: "wait for request")
         exp.isInverted = true
-        wait(for: [exp], timeout: 3.0)
+        wait(for: [exp], timeout: 0.5)
     }
     
     private func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
@@ -70,7 +70,7 @@ class IAPTransactionObserverTests: XCTestCase {
         
         let exp = expectation(description: "wait for request")
         exp.isInverted = true
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 0.5)
     }
     
     private final class IAPTransactionObserverDelegateSpy: IAPTransactionObserverDelegate {
