@@ -27,6 +27,14 @@ class IAPTransactionObserverTests: XCTestCase {
         XCTAssertTrue(delegate.receivedMessages.isEmpty)
     }
     
+    func test_handleTransaction_messagesDelegatePurchasedProduct_onSuccessfullyPurchasedTransaction() throws {
+        let (_, delegate) = makeSUT()
+        let product = aProduct()
+        
+        try simulateSuccessfullyPurchasedTransaction(product: product)
+        
+        XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier)])
+    }
     
     // MARK: - Helpers
     
@@ -51,6 +59,18 @@ class IAPTransactionObserverTests: XCTestCase {
         let exp = expectation(description: "wait for request")
         exp.isInverted = true
         wait(for: [exp], timeout: 3.0)
+    }
+    
+    private func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        
+        SKPaymentQueue.default().add(SKPayment(product: product))
+        
+        let exp = expectation(description: "wait for request")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 1.0)
     }
     
     private final class IAPTransactionObserverDelegateSpy: IAPTransactionObserverDelegate {
