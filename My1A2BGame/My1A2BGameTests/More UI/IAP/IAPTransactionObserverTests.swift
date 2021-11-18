@@ -51,7 +51,7 @@ class IAPTransactionObserverTests: XCTestCase {
         let product = aProduct()
         
         try simulateSuccessfullyPurchasedTransaction(product: product)
-        try simulateSuccessfulRestoration()
+        simulateSuccessfulRestoration()
         
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier), .didRestoreIAP])
     }
@@ -81,26 +81,6 @@ class IAPTransactionObserverTests: XCTestCase {
         wait(for: [exp], timeout: 0.5)
     }
     
-    private func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
-        
-        SKPaymentQueue.default().add(SKPayment(product: product))
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-    }
-    
-    private func simulateSuccessfulRestoration() throws {
-        SKPaymentQueue.default().restoreCompletedTransactions()
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-    }
-    
     private final class IAPTransactionObserverDelegateSpy: IAPTransactionObserverDelegate {
         enum Message: Equatable {
             case didPurchaseIAP(productIdentifier: String)
@@ -115,12 +95,6 @@ class IAPTransactionObserverTests: XCTestCase {
         func didRestoreIAP() {
             receivedMessages.append(.didRestoreIAP)
         }
-    }
-    
-    private func aProduct() -> SKProduct {
-        let product = SKProduct()
-        product.setValue("remove_bottom_ad", forKey: "productIdentifier")
-        return product
     }
 }
 

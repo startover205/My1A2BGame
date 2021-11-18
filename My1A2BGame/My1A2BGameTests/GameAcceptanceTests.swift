@@ -93,7 +93,7 @@ class GameAcceptanceTests: XCTestCase{
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
         try simulateSuccessfullyPurchasedTransaction(product: aProduct())
-        try simulateSuccessfulRestoration()
+        simulateSuccessfulRestoration()
         
         RunLoop.current.run(until: Date())
         
@@ -208,34 +208,6 @@ private extension GameAcceptanceTests {
 
         XCTAssertNotNil(ad.capturedPresentation, file: file, line: line)
     }
-    
-    @available(iOS 14.0, *)
-    private func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
-        
-        SKPaymentQueue.default().add(SKPayment(product: product))
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-    }
-
-    private func simulateSuccessfulRestoration() throws {
-        SKPaymentQueue.default().restoreCompletedTransactions()
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-    }
-
-    private func aProduct() -> SKProduct {
-        let product = SKProduct()
-        product.setValue("remove_bottom_ad", forKey: "productIdentifier")
-        return product
-    }
-
 }
 
 private extension GuessNumberViewController {
