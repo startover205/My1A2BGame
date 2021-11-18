@@ -36,6 +36,16 @@ class IAPTransactionObserverTests: XCTestCase {
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier)])
     }
     
+    func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
+        let (sut, delegate) = makeSUT()
+        let product = aProduct()
+        
+        try simulateSuccessfullyPurchasedTransaction(product: product)
+        sut.simulateRestoreCompletedTransactionFailedWithError()
+        
+        XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier)])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPTransactionObserver, IAPTransactionObserverDelegateSpy) {
@@ -93,5 +103,11 @@ class IAPTransactionObserverTests: XCTestCase {
         let product = SKProduct()
         product.setValue("remove_bottom_ad", forKey: "productIdentifier")
         return product
+    }
+}
+
+private extension IAPTransactionObserver {
+    func simulateRestoreCompletedTransactionFailedWithError() {
+        paymentQueue(SKPaymentQueue(), restoreCompletedTransactionsFailedWithError: anyNSError())
     }
 }
