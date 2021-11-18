@@ -80,9 +80,8 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
         
         alert.addAction(ok)
         
-        presentAlertOnRootController(alertController: alert, animated: true) {
-            self.delegate?.didRestoreIAP()
-        }
+        presentAlertOnRootController(alertController: alert, animated: true)
+        delegate?.didRestoreIAP()
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
