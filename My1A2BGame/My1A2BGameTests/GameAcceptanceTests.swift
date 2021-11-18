@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import StoreKitTest
 import Mastermind
 import MastermindiOS
 @testable import My1A2BGame
@@ -83,6 +84,25 @@ class GameAcceptanceTests: XCTestCase{
         more.simulateOnShareButton()
         
         XCTAssertTrue(more.presentedViewController is UIActivityViewController)
+    }
+    
+    // MARK: - In-App Purchase
+    
+    @available(iOS 14.0, *)
+    func test_iap_restoreCompletedTransactions_showsMessageOnSuccess() throws {
+        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        
+        try simulateSuccessfullyPurchasedTransaction(product: aProduct())
+        try simulateSuccessfulRestoration()
+        
+        RunLoop.current.run(until: Date())
+        
+        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, "Successfully Restored Purchase", "alert title")
+        XCTAssertEqual(alert.message, "Certain content will only be available after restarting the app.", "alert message")
+        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        
+        clearModalPresentationReference(rootVC)
     }
     
     // MARK: - Helpers
@@ -188,6 +208,34 @@ private extension GameAcceptanceTests {
 
         XCTAssertNotNil(ad.capturedPresentation, file: file, line: line)
     }
+    
+    @available(iOS 14.0, *)
+    private func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
+        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+        session.disableDialogs = true
+        session.clearTransactions()
+        
+        SKPaymentQueue.default().add(SKPayment(product: product))
+        
+        let exp = expectation(description: "wait for request")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.5)
+    }
+
+    private func simulateSuccessfulRestoration() throws {
+        SKPaymentQueue.default().restoreCompletedTransactions()
+        
+        let exp = expectation(description: "wait for request")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.5)
+    }
+
+    private func aProduct() -> SKProduct {
+        let product = SKProduct()
+        product.setValue("remove_bottom_ad", forKey: "productIdentifier")
+        return product
+    }
+
 }
 
 private extension GuessNumberViewController {
