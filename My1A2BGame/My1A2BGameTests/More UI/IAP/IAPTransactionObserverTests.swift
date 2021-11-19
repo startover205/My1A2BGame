@@ -69,9 +69,7 @@ class IAPTransactionObserverTests: XCTestCase {
     }
     
     private func simulateFailedTransaction() throws {
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
+        let session = try createLocalTestSession()
         session.failTransactionsEnabled = true
         
         SKPaymentQueue.default().add(SKPayment(product: aProduct()))

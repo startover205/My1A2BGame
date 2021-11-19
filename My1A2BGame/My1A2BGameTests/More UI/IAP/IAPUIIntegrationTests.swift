@@ -31,9 +31,8 @@ class IAPUIIntegrationTests: XCTestCase {
     
     func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
         let sut = makeSUT()
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
+        
+        try createLocalTestSession()
         
         sut.loadViewIfNeeded()
         XCTAssertTrue(sut.isShowingLoadingIndicator)
@@ -57,9 +56,7 @@ class IAPUIIntegrationTests: XCTestCase {
     func test_loadProductCompletion_rendersSuccessfullyLoadedProducts() throws {
         let sut = makeSUT()
         let product = Product(name: "Remove Bottom Ad", price: "$0.99")
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
+        try createLocalTestSession()
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
@@ -73,9 +70,7 @@ class IAPUIIntegrationTests: XCTestCase {
     
     func test_loadProductCompletion_displaysMessageOnEmptyResult() throws {
         let sut = makeSUT()
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
+        try createLocalTestSession()
         let container = TestingContainerViewController(sut)
         
         let exp = expectation(description: "wait for product loading")
@@ -98,9 +93,7 @@ class IAPUIIntegrationTests: XCTestCase {
     func test_buyProduct_refreshProductList() throws {
         let sut = makeSUT()
         let product = Product(name: "Remove Bottom Ad", price: "$0.99")
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
+        try createLocalTestSession()
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
@@ -124,9 +117,7 @@ class IAPUIIntegrationTests: XCTestCase {
         let sut = makeSUT()
         let anotherSut = makeSUT()
         let product = Product(name: "Remove Bottom Ad", price: "$0.99")
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
+        try createLocalTestSession()
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])

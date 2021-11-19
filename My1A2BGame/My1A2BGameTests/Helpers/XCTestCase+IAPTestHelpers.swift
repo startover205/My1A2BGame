@@ -11,7 +11,8 @@ import StoreKitTest
 
 extension XCTestCase {
     @available(iOS 14.0, *)
-    func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
+    @discardableResult
+    func createLocalTestSession() throws -> SKTestSession {
         let session = try SKTestSession(configurationFileNamed: "NonConsumable")
         session.disableDialogs = true
         session.clearTransactions()
@@ -19,6 +20,13 @@ extension XCTestCase {
         addTeardownBlock {
             session.clearTransactions()
         }
+        
+        return session
+    }
+    
+    @available(iOS 14.0, *)
+    func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
+        try createLocalTestSession()
         
         SKPaymentQueue.default().add(SKPayment(product: product))
         

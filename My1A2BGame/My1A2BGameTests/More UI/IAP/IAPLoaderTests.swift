@@ -29,9 +29,7 @@ class IAPLoaderTests: XCTestCase {
     @available(iOS 14.0, *)
     func test_load_deliversProductsOnLoadingSuccesfully() throws {
         let loader = makeSUT()
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
-        session.disableDialogs = true
-        session.clearTransactions()
+        try createLocalTestSession()
         
         let exp = expectation(description: "wait for load")
         
