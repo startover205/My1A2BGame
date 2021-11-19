@@ -13,6 +13,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     
     static let shared = IAPTransactionObserver()
     weak var delegate: IAPTransactionObserverDelegate?
+    private var finishedTransactionIDs = [String]()
     var hasRestorableContent = false
     
     private override init() {
@@ -25,11 +26,19 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
             switch transaction.transactionState {
             case .purchased :
                 
+                if let id = transaction.transactionIdentifier, finishedTransactionIDs.contains(id) {
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    continue
+                }
+                
                 let productIdentifier = transaction.payment.productIdentifier
                 
                 handlePurchase(productIdentifier: productIdentifier)
                 
                 SKPaymentQueue.default().finishTransaction(transaction)
+                
+                transaction.transactionIdentifier.map { finishedTransactionIDs.append($0) }
+                
                 delegate?.didPuarchaseIAP(productIdenifer: productIdentifier)
                 
             case .failed :
