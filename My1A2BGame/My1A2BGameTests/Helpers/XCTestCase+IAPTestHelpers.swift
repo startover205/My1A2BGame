@@ -16,6 +16,10 @@ extension XCTestCase {
         session.disableDialogs = true
         session.clearTransactions()
         
+        addTeardownBlock {
+            session.clearTransactions()
+        }
+        
         SKPaymentQueue.default().add(SKPayment(product: product))
         
         let exp = expectation(description: "wait for request")
