@@ -62,6 +62,7 @@
 		C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49426B62A1200536D73 /* AlertAdController.xib */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
+		C0AA3E3A274890E200F75D95 /* Unknown.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C0AA3E39274882BD00F75D95 /* Unknown.storekit */; };
 		C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */; };
 		C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */; };
 		C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */; };
@@ -177,6 +178,7 @@
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2962333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C0AA3E39274882BD00F75D95 /* Unknown.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Unknown.storekit; sourceTree = "<group>"; };
 		C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVersion.swift; sourceTree = "<group>"; };
 		C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplenishChanceDelegate.swift; sourceTree = "<group>"; };
 		C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				C0E601A326ADB00A006C8D6D /* Helpers */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
 				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
+				C0AA3E39274882BD00F75D95 /* Unknown.storekit */,
 				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
 				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
 				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
@@ -572,6 +575,7 @@
 			files = (
 				C099257E27318A6D003E322D /* NonConsumable.storekit in Resources */,
 				C09925802733B0BD003E322D /* StoreKitTestCertificate.cer in Resources */,
+				C0AA3E3A274890E200F75D95 /* Unknown.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
