@@ -89,6 +89,26 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - In-App Purchase
     
     @available(iOS 14.0, *)
+    func test_iap_handlePruchase_showsMessageOnPurchasingUnknownProduct() throws {
+        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        let unknownProduct = unknownProdcut()
+        try createLocalTestSession("Unknown")
+        
+        SKPaymentQueue.default().add(SKPayment(product: unknownProduct))
+        
+        let exp = expectation(description: "wait for request")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.5)
+        
+        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, "Error", "alert title")
+        XCTAssertEqual(alert.message, "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", "alert message")
+        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        
+        clearModalPresentationReference(rootVC)
+    }
+    
+    @available(iOS 14.0, *)
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccess() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
@@ -279,4 +299,11 @@ private extension UITabBarController {
     func advancedGame() -> GuessNumberViewController { selectTab(at: 1) }
     
     func moreController() -> MoreViewController { selectTab(at: 3) }
+}
+
+
+private func unknownProdcut() -> SKProduct {
+    let product = SKProduct()
+    product.setValue("com.temporary.id", forKey: "productIdentifier")
+    return product
 }
