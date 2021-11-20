@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return LocalRecordLoader(store: store)
     }()
     
-    private lazy var tabController = BannerAdTabBarViewController()
+    private lazy var tabController = BannerAdTabBarViewController(isBottomADRemoved: { AdControl.isBottomAdRemoved(userDefaults: .standard) })
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
