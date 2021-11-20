@@ -12,8 +12,8 @@ import StoreKitTest
 extension XCTestCase {
     @available(iOS 14.0, *)
     @discardableResult
-    func createLocalTestSession() throws -> SKTestSession {
-        let session = try SKTestSession(configurationFileNamed: "NonConsumable")
+    func createLocalTestSession(_ configurationFileNamed: String = "NonConsumable") throws -> SKTestSession {
+        let session = try SKTestSession(configurationFileNamed: configurationFileNamed)
         session.disableDialogs = true
         session.clearTransactions()
         
