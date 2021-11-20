@@ -126,7 +126,7 @@ private extension IAPTransactionObserver {
             return
         }
         
-        IAP.didPurchase(product: product)
+        IAP.didPurchase(product: product, userDefaults: .standard)
     }
     
     func presentAlertOnRootController(alertController: UIAlertController, animated: Bool, completion: (()->())? = nil){

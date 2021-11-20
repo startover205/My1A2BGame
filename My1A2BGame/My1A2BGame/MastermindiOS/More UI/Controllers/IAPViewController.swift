@@ -76,7 +76,7 @@ private extension IAPViewController {
             tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
         }
         
-        let productIDs = IAP.getAvailableProductsId()
+        let productIDs = IAP.getAvailableProductsId(userDefaults: .standard)
         
         refreshControl?.beginRefreshing()
         
