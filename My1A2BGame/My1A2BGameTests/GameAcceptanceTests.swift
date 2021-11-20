@@ -89,7 +89,7 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - In-App Purchase
     
     @available(iOS 14.0, *)
-    func test_iap_handlePruchase_showsMessageOnPurchasingUnknownProduct() throws {
+    func test_iap_handlePurchase_showsMessageOnPurchasingUnknownProduct() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         let unknownProduct = unknownProdcut()
         try createLocalTestSession("Unknown")
@@ -106,6 +106,23 @@ class GameAcceptanceTests: XCTestCase{
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
         
         clearModalPresentationReference(rootVC)
+    }
+    
+    @available(iOS 14.0, *)
+    func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchase() throws {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        let tabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
+        let removeBottomADProduct = removeBottomADProduct()
+        tabController.triggerLifecycleForcefully()
+        
+        let initialInset = tabController.children.first?.additionalSafeAreaInsets
+
+        try simulateSuccessfullyPurchasedTransaction(product: removeBottomADProduct)
+        
+        let anotherTabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
+        anotherTabController.triggerLifecycleForcefully()
+        let finalInset = anotherTabController.children.first?.additionalSafeAreaInsets
+        XCTAssertNotEqual(initialInset, finalInset)
     }
     
     @available(iOS 14.0, *)
@@ -301,9 +318,43 @@ private extension UITabBarController {
     func moreController() -> MoreViewController { selectTab(at: 3) }
 }
 
+private extension BannerAdTabBarViewController {
+    var isShowingAD: Bool {
+        if let tabBar = children.first {
+            print("Date: \(Date()), File: \(#filePath), Line: \(#line), Func: \(#function) -additionalSafeAreaInsets--\(tabBar.additionalSafeAreaInsets)----")
+
+            return tabBar.additionalSafeAreaInsets != .zero
+        } else {
+            return true
+        }
+    }
+}
+
+extension UIViewController {
+    func triggerLifecycleIfNeeded() {
+        guard !isViewLoaded else { return }
+        
+        loadViewIfNeeded()
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
+    
+    func triggerLifecycleForcefully() {
+        loadViewIfNeeded()
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
+}
 
 private func unknownProdcut() -> SKProduct {
     let product = SKProduct()
     product.setValue("com.temporary.id", forKey: "productIdentifier")
     return product
 }
+
+private func removeBottomADProduct() -> SKProduct {
+    let product = SKProduct()
+    product.setValue("remove_bottom_ad", forKey: "productIdentifier")
+    return product
+}
+
