@@ -89,6 +89,20 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - In-App Purchase
     
     @available(iOS 14.0, *)
+    func test_iap_handleTransactions_showsMessageOnPurchaseFailed() throws {
+        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        
+        try simulateFailedTransaction()
+        
+        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, "Failed to Purchase", "alert title")
+        XCTAssertEqual(alert.message, "UNKNOWN_ERROR", "alert message")
+        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        
+        clearModalPresentationReference(rootVC)
+    }
+    
+    @available(iOS 14.0, *)
     func test_iap_handlePurchase_showsMessageOnPurchasingUnknownProduct() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         let unknownProduct = unknownProdcut()
@@ -357,4 +371,3 @@ private func removeBottomADProduct() -> SKProduct {
     product.setValue("remove_bottom_ad", forKey: "productIdentifier")
     return product
 }
-
