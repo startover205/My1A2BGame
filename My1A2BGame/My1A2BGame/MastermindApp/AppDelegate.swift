@@ -260,13 +260,9 @@ private extension AppDelegate {
     private func selectReviewApp() {
         guard let writeReviewURL = URL(string: Constants.appStoreReviewUrl)
             else { fatalError("Expected a valid URL") }
-        UIApplication.shared.open(writeReviewURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+        UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
     }
-    
-    func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
-    }
-    
+   
     func selectTellFriends(anchorView: UIView?){
         var activityItems: [Any] = [NSLocalizedString("Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!", comment: "9th")]
         activityItems.append(Constants.appStoreDownloadUrl)
