@@ -149,7 +149,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     @available(iOS 14.0, *)
-    func test_iap_restoreCompletedTransactions_showsMessageOnSuccess() throws {
+    func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulNonEmptyRestoration() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
         try simulateSuccessfullyPurchasedTransaction(product: aProduct())
