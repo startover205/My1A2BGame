@@ -9,8 +9,8 @@
 import XCTest
 import StoreKitTest
 
+@available(iOS 14.0, *)
 extension XCTestCase {
-    @available(iOS 14.0, *)
     @discardableResult
     func createLocalTestSession(_ configurationFileNamed: String = "NonConsumable") throws -> SKTestSession {
         let session = try SKTestSession(configurationFileNamed: configurationFileNamed)
@@ -23,8 +23,18 @@ extension XCTestCase {
         
         return session
     }
-    
-    @available(iOS 14.0, *)
+
+    func simulateFailedTransaction() throws {
+        let session = try createLocalTestSession()
+        session.failTransactionsEnabled = true
+        
+        SKPaymentQueue.default().add(SKPayment(product: aProduct()))
+        
+        let exp = expectation(description: "wait for request")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.5)
+    }
+
     func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
         try createLocalTestSession()
         

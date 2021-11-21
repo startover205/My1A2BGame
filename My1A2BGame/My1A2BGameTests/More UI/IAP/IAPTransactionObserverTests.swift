@@ -68,17 +68,6 @@ class IAPTransactionObserverTests: XCTestCase {
         return (sut, delegate)
     }
     
-    private func simulateFailedTransaction() throws {
-        let session = try createLocalTestSession()
-        session.failTransactionsEnabled = true
-        
-        SKPaymentQueue.default().add(SKPayment(product: aProduct()))
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-    }
-    
     private final class IAPTransactionObserverDelegateSpy: IAPTransactionObserverDelegate {
         enum Message: Equatable {
             case didPurchaseIAP(productIdentifier: String)
