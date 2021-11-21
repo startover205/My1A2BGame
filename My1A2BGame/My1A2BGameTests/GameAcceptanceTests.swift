@@ -123,7 +123,7 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     @available(iOS 14.0, *)
-    func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchase() throws {
+    func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchaseOrRestoration() throws {
         cleanPurchaseRecordInApp()
         let tabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
         let removeBottomADProduct = removeBottomADProduct()
@@ -138,6 +138,14 @@ class GameAcceptanceTests: XCTestCase{
         anotherTabController.triggerLifecycleForcefully()
         let finalInset = anotherTabController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
+        
+        cleanPurchaseRecordInApp()
+        simulateSuccessfulRestoration()
+        
+        let andAnotherTabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
+        andAnotherTabController.triggerLifecycleForcefully()
+        let insetAfterRestoration = andAnotherTabController.children.first?.additionalSafeAreaInsets
+        XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
     }
     
     @available(iOS 14.0, *)
