@@ -149,6 +149,16 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     @available(iOS 14.0, *)
+    func test_iap_restoreCompletedTransactions_doesNotShowsMessageOnPaymenCancelledError() throws {
+        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        let restorationError = SKError(.paymentCancelled)
+        
+        simulateRestoreCompletedTransactionFailed(with: restorationError)
+        
+        XCTAssertNil(rootVC.presentedViewController)
+    }
+    
+    @available(iOS 14.0, *)
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulEmptyRestoration() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
@@ -188,6 +198,10 @@ class GameAcceptanceTests: XCTestCase{
     
     private func cleanPurchaseRecordInApp() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    }
+    
+    func simulateRestoreCompletedTransactionFailed(with error: Error) {
+        IAPTransactionObserver.shared.paymentQueue(SKPaymentQueue(), restoreCompletedTransactionsFailedWithError: error)
     }
     
     private func makeSecretGenerator() -> (Int) -> DigitSecret {
