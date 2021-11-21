@@ -124,19 +124,20 @@ class GameAcceptanceTests: XCTestCase{
     
     @available(iOS 14.0, *)
     func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchase() throws {
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        cleanPurchaseRecordInApp()
         let tabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
         let removeBottomADProduct = removeBottomADProduct()
         tabController.triggerLifecycleForcefully()
         
         let initialInset = tabController.children.first?.additionalSafeAreaInsets
-
+        XCTAssertNotEqual(initialInset, .zero, "Expect addtional insets not zero due to spacing for AD")
+        
         try simulateSuccessfullyPurchasedTransaction(product: removeBottomADProduct)
         
         let anotherTabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
         anotherTabController.triggerLifecycleForcefully()
         let finalInset = anotherTabController.children.first?.additionalSafeAreaInsets
-        XCTAssertNotEqual(initialInset, finalInset)
+        XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
     }
     
     @available(iOS 14.0, *)
@@ -162,6 +163,10 @@ class GameAcceptanceTests: XCTestCase{
         sut.configureWindow()
         
         return sut.window?.rootViewController as! UITabBarController
+    }
+    
+    private func cleanPurchaseRecordInApp() {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
     
     private func makeSecretGenerator() -> (Int) -> DigitSecret {
