@@ -149,6 +149,19 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     @available(iOS 14.0, *)
+    func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulEmptyRestoration() throws {
+        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        
+        simulateSuccessfulRestoration()
+        
+        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, "No Restorable Products", "alert title")
+        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        
+        clearModalPresentationReference(rootVC)
+    }
+    
+    @available(iOS 14.0, *)
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulNonEmptyRestoration() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
