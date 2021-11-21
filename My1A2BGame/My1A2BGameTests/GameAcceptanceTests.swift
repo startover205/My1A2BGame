@@ -159,6 +159,21 @@ class GameAcceptanceTests: XCTestCase{
     }
     
     @available(iOS 14.0, *)
+    func test_iap_restoreCompletedTransactions_showsMessageOnRestorationError() throws {
+        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        let restorationError = anyNSError()
+        
+        simulateRestoreCompletedTransactionFailed(with: restorationError)
+        
+        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, "Failed to Restore Purchase", "alert title")
+        XCTAssertEqual(alert.message, restorationError.localizedDescription, "alert message")
+        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        
+        clearModalPresentationReference(rootVC)
+    }
+    
+    @available(iOS 14.0, *)
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulEmptyRestoration() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         

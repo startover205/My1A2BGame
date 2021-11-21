@@ -94,16 +94,16 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        
+        guard (error as? SKError)?.code != .paymentCancelled else { return }
        
-        if let error = error as? SKError, error.code != .paymentCancelled {
-            let alert = UIAlertController(title: NSLocalizedString("Failed to Restore Purchase", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-            
-            alert.addAction(ok)
-            
-            presentAlertOnRootController(alertController: alert, animated: true)
-        }
+        let alert = UIAlertController(title: NSLocalizedString("Failed to Restore Purchase", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+        
+        alert.addAction(ok)
+        
+        presentAlertOnRootController(alertController: alert, animated: true)
     }
 }
 
