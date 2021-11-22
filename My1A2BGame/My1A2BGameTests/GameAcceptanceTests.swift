@@ -177,6 +177,7 @@ class GameAcceptanceTests: XCTestCase{
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulEmptyRestoration() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
+        try createLocalTestSession()
         simulateSuccessfulRestoration()
         
         let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
