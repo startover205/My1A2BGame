@@ -114,6 +114,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startNewBasicGame()
         
         startNewAdvancedGame()
+        
+        configureIAPTransactionObserver()
+    }
+    
+    private func configureIAPTransactionObserver() {
+        IAPTransactionObserver.shared.restorationDelegate = RestorationDelegateAdapter(hostViewController: tabController)
+    }
+    
+    private final class RestorationDelegateAdapter: IAPRestorationDelegate {
+        init(hostViewController: UIViewController) {
+            self.hostViewController = hostViewController
+        }
+        
+        weak var hostViewController: UIViewController?
+        
+        func restorationFinished(with error: Error) {
+            let alert = UIAlertController(title: NSLocalizedString("Failed to Restore Purchase", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+            
+            alert.addAction(ok)
+            
+            hostViewController?.showDetailViewController(alert, sender: self)
+        }
+        
+        func restorationFinished(hasRestorableContent: Bool) {
+            let (title, message) = hasRestorableContent ? (NSLocalizedString("Successfully Restored Purchase", comment: "3nd"), NSLocalizedString("Certain content will only be available after restarting the app.", comment: "3nd")) : (NSLocalizedString("No Restorable Products", comment: "3nd"), nil)
+        
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+
+            alert.addAction(ok)
+
+            hostViewController?.showDetailViewController(alert, sender: self)
+        }
     }
     
     private func makeTabController() -> UITabBarController {

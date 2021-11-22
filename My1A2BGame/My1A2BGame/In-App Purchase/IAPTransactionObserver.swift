@@ -15,6 +15,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     weak var delegate: IAPTransactionObserverDelegate?
     private var finishedTransactionIDs = [String]()
     var hasRestorableContent = false
+    var restorationDelegate: IAPRestorationDelegate?
     
     private override init() {
         super.init()
@@ -71,39 +72,15 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     }
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        restorationDelegate?.restorationFinished(hasRestorableContent: hasRestorableContent)
         
-        guard hasRestorableContent else {
-            let alert = UIAlertController(title: NSLocalizedString("No Restorable Products", comment: "3nd"), message: nil, preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-            
-            alert.addAction(ok)
-            
-            presentAlertOnRootController(alertController: alert, animated: true)
-            return
-        }
-        
-        let alert = UIAlertController(title: NSLocalizedString("Successfully Restored Purchase", comment: "3nd"), message: NSLocalizedString("Certain content will only be available after restarting the app.", comment: "3nd"), preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-        
-        alert.addAction(ok)
-        
-        presentAlertOnRootController(alertController: alert, animated: true)
         delegate?.didRestoreIAP()
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        
         guard (error as? SKError)?.code != .paymentCancelled else { return }
-       
-        let alert = UIAlertController(title: NSLocalizedString("Failed to Restore Purchase", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-        
-        alert.addAction(ok)
-        
-        presentAlertOnRootController(alertController: alert, animated: true)
+
+        restorationDelegate?.restorationFinished(with: error)
     }
 }
 
@@ -138,6 +115,11 @@ private extension IAPTransactionObserver {
 protocol IAPTransactionObserverDelegate: AnyObject {
     func didPuarchaseIAP(productIdenifer: String)
     func didRestoreIAP()
+}
+
+protocol IAPRestorationDelegate {
+    func restorationFinished(with error: Error)
+    func restorationFinished(hasRestorableContent: Bool)
 }
 
 extension SKProduct {
