@@ -19,8 +19,6 @@ public class IAPViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        IAPTransactionObserver.shared.delegate = self
-        
         restorePurchaseButton.isEnabled = SKPaymentQueue.canMakePayments()
         
         refresh()

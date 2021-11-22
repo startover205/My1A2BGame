@@ -115,7 +115,6 @@ class IAPUIIntegrationTests: XCTestCase {
     
     func test_restorePurchase_refreshesProductList() throws {
         let sut = makeSUT()
-        let anotherSut = makeSUT()
         let product = Product(name: "Remove Bottom Ad", price: "$0.99")
         try createLocalTestSession()
         
@@ -136,6 +135,7 @@ class IAPUIIntegrationTests: XCTestCase {
         
         clearPurchaseRecordsInDevice()
         
+        let anotherSut = makeSUT()
         anotherSut.loadViewIfNeeded()
         assertThat(anotherSut, isRendering: [])
 
@@ -158,6 +158,7 @@ class IAPUIIntegrationTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPViewController {
         let sut = IAPUIComposer.iap()
+        IAPTransactionObserver.shared.delegate = sut
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

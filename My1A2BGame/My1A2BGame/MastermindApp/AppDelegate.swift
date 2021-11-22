@@ -220,6 +220,7 @@ private extension AppDelegate {
     
     private func selectIAP() {
         let iapController = IAPUIComposer.iap()
+        IAPTransactionObserver.shared.delegate = iapController
         moreNavigationController.pushViewController(iapController, animated: true)
     }
     
