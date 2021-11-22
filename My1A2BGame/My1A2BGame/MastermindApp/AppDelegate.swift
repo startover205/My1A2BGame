@@ -283,7 +283,6 @@ private extension AppDelegate {
         messageBody.append("System version: ")
         messageBody.append(deviece.systemName)
         messageBody.append(" " + deviece.systemVersion + "\n")
-        messageBody.append(ErrorManager.loadErrorMessage())
         let composeVC = MFMailComposeViewController()
         
         composeVC.mailComposeDelegate = self

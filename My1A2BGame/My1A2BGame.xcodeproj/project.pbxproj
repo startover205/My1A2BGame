@@ -73,7 +73,6 @@
 		C0DC06E7273E5CEE0033982F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DC06E6273E5CEE0033982F /* Product.swift */; };
 		C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */; };
 		C0ED625F225DF63500892A80 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0ED625E225DF63500892A80 /* StoreKit.framework */; };
-		C0ED62652260416300892A80 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED62642260416300892A80 /* ErrorManager.swift */; };
 		C0ED626722608FFD00892A80 /* IAPTransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */; };
 		C0ED626A22648B9700892A80 /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626922648B9700892A80 /* IAP.swift */; };
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
@@ -191,7 +190,6 @@
 		C0DC06E6273E5CEE0033982F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		C0ED625E225DF63500892A80 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		C0ED62642260416300892A80 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPTransactionObserver.swift; sourceTree = "<group>"; };
 		C0ED626922648B9700892A80 /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,7 +292,6 @@
 				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
 				C085BE692254974700320563 /* Constants.swift */,
 				C075760E224C7A7D007A1F9E /* Global.swift */,
-				C0ED62642260416300892A80 /* ErrorManager.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
 				C0CB93A8225C90F300278B08 /* My1A2BGame-Bridging-Header.h */,
@@ -638,7 +635,6 @@
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C0DC06E7273E5CEE0033982F /* Product.swift in Sources */,
-				C0ED62652260416300892A80 /* ErrorManager.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
 				C0DC06E5273E5CB70033982F /* IAPLoader.swift in Sources */,
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,

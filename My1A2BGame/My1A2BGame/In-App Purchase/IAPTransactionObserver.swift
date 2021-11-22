@@ -50,8 +50,6 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 
                 let message = skError.localizedDescription
                 
-                ErrorManager.saveError(description: message)
-                
                 let alert = UIAlertController(title: NSLocalizedString("Failed to Purchase", comment: "5th"), message: message, preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
@@ -89,8 +87,6 @@ private extension IAPTransactionObserver {
     func handlePurchase(productIdentifier: String){
         
         guard let product = IAP(rawValue: productIdentifier) else {
-            
-            ErrorManager.saveError(description: "\(#function)-invalid productionIdentifier")
             
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", comment: "3nd"), preferredStyle: .alert)
             
