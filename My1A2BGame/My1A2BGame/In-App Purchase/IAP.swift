@@ -11,17 +11,11 @@ import UIKit
 
 enum IAP: String {
     case remove_bottom_ad
-    static weak var bottomAdHightConstraint: NSLayoutConstraint?
     
     static func didPurchase(product: IAP, userDefaults: UserDefaults) {
         switch product {
         case .remove_bottom_ad:
             userDefaults.set(true, forKey: UserDefaults.Key.remove_bottom_ad)
-            bottomAdHightConstraint?.firstItem?.superview?.layoutIfNeeded()
-            UIView.animate(withDuration: 0.4) {
-                bottomAdHightConstraint?.constant = 0
-                bottomAdHightConstraint?.firstItem?.superview?.layoutIfNeeded()
-            }
         }
     }
     
