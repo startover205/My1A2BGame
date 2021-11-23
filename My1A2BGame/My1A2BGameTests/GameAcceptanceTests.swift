@@ -441,9 +441,3 @@ private func simulateFailedTransactionWithCancellation() {
     IAPTransactionObserver.shared.paymentQueue(SKPaymentQueue(), updatedTransactions: [makeFailedTransaction(with: .paymentCancelled)])
 }
 
-private func makeFailedTransaction(with error: SKError.Code) -> SKPaymentTransaction {
-    let transaction = SKPaymentTransaction()
-    transaction.setValue(SKPaymentTransactionState.failed.rawValue, forKey: "transactionState")
-    transaction.setValue(SKError(error), forKey: "error")
-    return transaction
-}
