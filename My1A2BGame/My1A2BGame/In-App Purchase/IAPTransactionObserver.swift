@@ -48,10 +48,10 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
             case .failed :
                 guard (transaction.error as? SKError)?.code != .paymentCancelled else {
                     SKPaymentQueue.default().finishTransaction(transaction)
-                    return
+                    continue
                 }
                 
-                guard let handler = onTransactionError else { return }
+                guard let handler = onTransactionError else { continue }
                 
                 handler(transaction.error)
                 

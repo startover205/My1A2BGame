@@ -27,6 +27,17 @@ class IAPTransactionObserverTests: XCTestCase {
         XCTAssertTrue(delegate.receivedMessages.isEmpty)
     }
     
+    func test_handleTransaction_stillHandlesOtherTransactionsAfterCancelledTransaction() throws {
+        let (sut, delegate) = makeSUT()
+        let failedTransaction = makeFailedTransaction(with: .paymentCancelled)
+        let product = aProduct()
+        let purchasedTransaction = makePurchasedTransaction(with: product)
+        
+        sut.paymentQueue(SKPaymentQueue(), updatedTransactions: [failedTransaction, purchasedTransaction])
+        
+        XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: aProduct().productIdentifier)])
+    }
+    
     func test_handleTransaction_messagesDelegatePurchasedProduct_onSuccessfullyPurchasedTransaction() throws {
         let (_, delegate) = makeSUT()
         let product = aProduct()

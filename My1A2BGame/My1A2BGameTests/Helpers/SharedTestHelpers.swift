@@ -22,3 +22,20 @@ func makeFailedTransaction(with error: SKError.Code) -> SKPaymentTransaction {
     transaction.setValue(SKError(error), forKey: "error")
     return transaction
 }
+
+func makePurchasedTransaction(with product: SKProduct) -> SKPaymentTransaction {
+    PurchasedTransaction(product: product)
+}
+
+private final class PurchasedTransaction: SKPaymentTransaction {
+    private let _transactionState: SKPaymentTransactionState = .purchased
+    private let _payment: SKPayment
+    
+    init(product: SKProduct) {
+        self._payment = SKPayment(product: product)
+    }
+    
+    override var transactionState: SKPaymentTransactionState { _transactionState }
+    
+    override var payment: SKPayment { _payment }
+}
