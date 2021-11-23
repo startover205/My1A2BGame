@@ -24,9 +24,10 @@ extension XCTestCase {
         return session
     }
 
-    func simulateFailedTransaction() throws {
+    func simulateFailedTransaction(_ error: SKError.Code = .unknown) throws {
         let session = try createLocalTestSession()
         session.failTransactionsEnabled = true
+        session.failureError = .unknown
         
         SKPaymentQueue.default().add(SKPayment(product: aProduct()))
         

@@ -89,6 +89,15 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - In-App Purchase
     
     @available(iOS 14.0, *)
+    func test_iap_handleTransactions_doesNotShowMessageOnPurchaseFailedWithCancellation() throws {
+        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        
+        try simulateFailedTransaction(.paymentCancelled)
+        
+        XCTAssertNil(rootVC.presentedViewController)
+    }
+    
+    @available(iOS 14.0, *)
     func test_iap_handleTransactions_showsMessageOnPurchaseFailed() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
