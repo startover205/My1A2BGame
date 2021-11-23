@@ -57,9 +57,9 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 
             case .restored:
                 hasRestorableContent = true
-                 let productIdentifier = transaction.payment.productIdentifier
+                let productIdentifier = transaction.payment.productIdentifier
                 
-                 handlePurchase(productIdentifier: productIdentifier)
+                handlePurchase(productIdentifier: productIdentifier)
                 SKPaymentQueue.default().finishTransaction(transaction)
             default:
                 break
