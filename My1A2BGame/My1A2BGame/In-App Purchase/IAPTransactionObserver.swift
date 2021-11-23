@@ -17,6 +17,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     var hasRestorableContent = false
     var restorationDelegate: IAPRestorationDelegate?
     var onTransactionError: ((Error?) -> Void)?
+    var onPurchaseProduct: ((String) -> Void)?
     
     private override init() {
         super.init()
@@ -27,15 +28,16 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
             
             switch transaction.transactionState {
             case .purchased :
-                
                 if let id = transaction.transactionIdentifier, finishedTransactionIDs.contains(id) {
                     SKPaymentQueue.default().finishTransaction(transaction)
                     continue
                 }
                 
+                guard let handler = onPurchaseProduct else { continue }
+                
                 let productIdentifier = transaction.payment.productIdentifier
                 
-                handlePurchase(productIdentifier: productIdentifier)
+                handler(productIdentifier)
                 
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
@@ -56,11 +58,14 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
             case .restored:
-                hasRestorableContent = true
-                let productIdentifier = transaction.payment.productIdentifier
+                guard let handler = onPurchaseProduct else { continue }
                 
-                handlePurchase(productIdentifier: productIdentifier)
+                hasRestorableContent = true
+                
+                let productIdentifier = transaction.payment.productIdentifier
+                handler(productIdentifier)
                 SKPaymentQueue.default().finishTransaction(transaction)
+                
             default:
                 break
             }
@@ -82,24 +87,6 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
 
 // MARK: - Private
 private extension IAPTransactionObserver {
-    func handlePurchase(productIdentifier: String){
-        
-        guard let product = IAP(rawValue: productIdentifier) else {
-            
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", comment: "3nd"), preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-            
-            alert.addAction(ok)
-            
-            presentAlertOnRootController(alertController: alert, animated: true)
-            
-            return
-        }
-        
-        IAP.didPurchase(product: product, userDefaults: .standard)
-    }
-    
     func presentAlertOnRootController(alertController: UIAlertController, animated: Bool, completion: (()->())? = nil){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController?.present(alertController, animated: animated, completion: completion)

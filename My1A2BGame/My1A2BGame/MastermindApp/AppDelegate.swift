@@ -130,6 +130,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.tabController.showDetailViewController(alert, sender: self)
         }
+        
+        IAPTransactionObserver.shared.onPurchaseProduct = { productIdentifier in
+            guard let product = IAP(rawValue: productIdentifier) else {
+                
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", comment: "3nd"), preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                
+                alert.addAction(ok)
+                
+                self.tabController.showDetailViewController(alert, sender: self)
+                
+                return
+            }
+            
+            IAP.didPurchase(product: product, userDefaults: .standard)
+        }
     }
     
     private final class RestorationDelegateAdapter: IAPRestorationDelegate {
