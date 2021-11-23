@@ -120,6 +120,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureIAPTransactionObserver() {
         IAPTransactionObserver.shared.restorationDelegate = RestorationDelegateAdapter(hostViewController: tabController)
+        
+        IAPTransactionObserver.shared.onTransactionError = { error in
+            let alert = UIAlertController(title: NSLocalizedString("Failed to Purchase", comment: "5th"), message: error?.localizedDescription, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+            
+            alert.addAction(ok)
+            
+            self.tabController.showDetailViewController(alert, sender: self)
+        }
     }
     
     private final class RestorationDelegateAdapter: IAPRestorationDelegate {

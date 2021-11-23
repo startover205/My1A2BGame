@@ -16,6 +16,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     private var finishedTransactionIDs = [String]()
     var hasRestorableContent = false
     var restorationDelegate: IAPRestorationDelegate?
+    var onTransactionError: ((Error?) -> Void)?
     
     private override init() {
         super.init()
@@ -43,20 +44,17 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 delegate?.didPuarchaseIAP(productIdenifer: productIdentifier)
                 
             case .failed :
+                guard (transaction.error as? SKError)?.code != .clientInvalid else {
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    return
+                }
+                
+                guard let handler = onTransactionError else { return }
+                
+                handler(transaction.error)
                 
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
-                guard let skError = transaction.error as? SKError, skError.code != .paymentCancelled else { return }
-                
-                let message = skError.localizedDescription
-                
-                let alert = UIAlertController(title: NSLocalizedString("Failed to Purchase", comment: "5th"), message: message, preferredStyle: .alert)
-                
-                let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-                
-                alert.addAction(ok)
-                
-                presentAlertOnRootController(alertController: alert, animated: true)
             case .restored:
                 hasRestorableContent = true
                  let productIdentifier = transaction.payment.productIdentifier
