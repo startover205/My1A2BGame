@@ -46,7 +46,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 delegate?.didPuarchaseIAP(productIdenifer: productIdentifier)
                 
             case .failed :
-                guard (transaction.error as? SKError)?.code != .clientInvalid else {
+                guard (transaction.error as? SKError)?.code != .paymentCancelled else {
                     SKPaymentQueue.default().finishTransaction(transaction)
                     return
                 }

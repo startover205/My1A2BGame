@@ -92,7 +92,7 @@ class GameAcceptanceTests: XCTestCase{
     func test_iap_handleTransactions_doesNotShowMessageOnPurchaseFailedWithCancellation() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
-        try simulateFailedTransaction(.paymentCancelled)
+        simulateFailedTransactionWithCancellation()
         
         XCTAssertNil(rootVC.presentedViewController)
     }
@@ -435,4 +435,15 @@ private func removeBottomADProduct() -> SKProduct {
     let product = SKProduct()
     product.setValue("remove_bottom_ad", forKey: "productIdentifier")
     return product
+}
+
+private func simulateFailedTransactionWithCancellation() {
+    IAPTransactionObserver.shared.paymentQueue(SKPaymentQueue(), updatedTransactions: [makeFailedTransaction(with: .paymentCancelled)])
+}
+
+private func makeFailedTransaction(with error: SKError.Code) -> SKPaymentTransaction {
+    let transaction = SKPaymentTransaction()
+    transaction.setValue(SKPaymentTransactionState.failed.rawValue, forKey: "transactionState")
+    transaction.setValue(SKError(error), forKey: "error")
+    return transaction
 }
