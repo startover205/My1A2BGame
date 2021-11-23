@@ -101,7 +101,7 @@ class GameAcceptanceTests: XCTestCase{
     func test_iap_handleTransactions_showsMessageOnPurchaseFailed() throws {
         let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
         
-        try simulateFailedTransaction(.unknown)
+        try simulateFailedTransaction()
         
         let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, "Failed to Purchase", "alert title")
