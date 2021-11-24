@@ -85,14 +85,6 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     }
 }
 
-// MARK: - Private
-private extension IAPTransactionObserver {
-    func presentAlertOnRootController(alertController: UIAlertController, animated: Bool, completion: (()->())? = nil){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController?.present(alertController, animated: animated, completion: completion)
-    }
-}
-
 protocol IAPTransactionObserverDelegate: AnyObject {
     func didPuarchaseIAP(productIdenifer: String)
     func didRestoreIAP()
