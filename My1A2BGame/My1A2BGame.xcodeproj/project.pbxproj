@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C008E2D7274DD05A0036E2A0 /* SKProduct+LocalPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */; };
 		C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */; };
 		C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009191F26AD5E0500544115 /* GameUIComposer.swift */; };
 		C01380132701A24200D3F4A8 /* RewardAdViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */; };
@@ -115,6 +116,7 @@
 		7D0D5F088E656F4E268961C3 /* Pods_My1A2BGameUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My1A2BGameUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF1E3E6EA4430D225BA48FA /* Pods-My1A2BGameUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGameUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGameUITests/Pods-My1A2BGameUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B56A471A41384F80BBF1F55C /* Pods-My1A2BGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My1A2BGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My1A2BGame/Pods-My1A2BGame.debug.xcconfig"; sourceTree = "<group>"; };
+		C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalPrice.swift"; sourceTree = "<group>"; };
 		C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C009191F26AD5E0500544115 /* GameUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIComposer.swift; sourceTree = "<group>"; };
 		C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewControllerTests.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				C0A1F48726B62A1100536D73 /* FAQViewController.swift */,
 				C0DC06E4273E5CB70033982F /* IAPLoader.swift */,
 				C0DC06E6273E5CEE0033982F /* Product.swift */,
+				C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */,
 				C099257D2731893F003E322D /* NonConsumable.storekit */,
 			);
 			path = Controllers;
@@ -635,6 +638,7 @@
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
 				C0DC06E7273E5CEE0033982F /* Product.swift in Sources */,
+				C008E2D7274DD05A0036E2A0 /* SKProduct+LocalPrice.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
 				C0DC06E5273E5CB70033982F /* IAPLoader.swift in Sources */,
 				C0ED626A22648B9700892A80 /* IAP.swift in Sources */,

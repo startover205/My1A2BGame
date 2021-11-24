@@ -102,12 +102,3 @@ protocol IAPRestorationDelegate {
     func restorationFinished(with error: Error)
     func restorationFinished(hasRestorableContent: Bool)
 }
-
-extension SKProduct {
-    var localPrice: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = priceLocale
-        return formatter.string(from: price)!
-    }
-}
