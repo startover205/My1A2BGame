@@ -15,9 +15,10 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     weak var delegate: IAPTransactionObserverDelegate?
     private var finishedTransactionIDs = [String]()
     var hasRestorableContent = false
-    var restorationDelegate: IAPRestorationDelegate?
     var onTransactionError: ((Error?) -> Void)?
     var onPurchaseProduct: ((String) -> Void)?
+    var onRestorationFinishedWithError: ((Error) -> Void)?
+    var onRestorationFinished: ((_ hasRestorableContent: Bool) -> Void)?
     
     private override init() {
         super.init()
@@ -73,24 +74,19 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     }
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        restorationDelegate?.restorationFinished(hasRestorableContent: hasRestorableContent)
+        onRestorationFinished?(hasRestorableContent)
         
         delegate?.didRestoreIAP()
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         guard (error as? SKError)?.code != .paymentCancelled else { return }
-
-        restorationDelegate?.restorationFinished(with: error)
+        
+        onRestorationFinishedWithError?(error)
     }
 }
 
 protocol IAPTransactionObserverDelegate: AnyObject {
     func didPuarchaseIAP(productIdenifer: String)
     func didRestoreIAP()
-}
-
-protocol IAPRestorationDelegate {
-    func restorationFinished(with error: Error)
-    func restorationFinished(hasRestorableContent: Bool)
 }
