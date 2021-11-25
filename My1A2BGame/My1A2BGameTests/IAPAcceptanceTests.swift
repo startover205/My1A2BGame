@@ -130,8 +130,8 @@ class IAPAcceptanceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func launch() -> UITabBarController {
-        let sut = AppDelegate()
+    private func launch(transactionObserver: IAPTransactionObserver = IAPTransactionObserver(), paymentQueue: SKPaymentQueue = .init()) -> UITabBarController {
+        let sut = AppDelegate(transactionObserver: transactionObserver, paymentQueue: paymentQueue)
         sut.window = UIWindow()
         sut.configureWindow()
         

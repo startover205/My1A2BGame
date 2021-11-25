@@ -57,6 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var userDefaults: UserDefaults = .standard
     
+    private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
+    private lazy var paymentQueue: SKPaymentQueue = .default()
+    
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
         return CounterAppReviewController(
@@ -75,9 +78,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.requestReview = requestReview
     }
     
+    convenience init(transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue) {
+        self.init()
+        
+        self.transactionObserver = transactionObserver
+        self.paymentQueue = paymentQueue
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        SKPaymentQueue.default().add(IAPTransactionObserver.shared)
+        paymentQueue.add(transactionObserver)
         
         // 設定廣告
         if #available(iOS 14, *) {
@@ -103,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        SKPaymentQueue.default().remove(IAPTransactionObserver.shared)
+        paymentQueue.remove(transactionObserver)
     }
     
     func configureWindow() {
@@ -119,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func configureIAPTransactionObserver() {
-        IAPTransactionObserver.shared.onTransactionError = { error in
+        transactionObserver.onTransactionError = { error in
             let alert = UIAlertController(title: NSLocalizedString("Failed to Purchase", comment: "5th"), message: error?.localizedDescription, preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
@@ -146,11 +156,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             IAP.didPurchase(product: product, userDefaults: .standard)
         }
         
-        IAPTransactionObserver.shared.onPurchaseProduct = buyingProductHandler
+        transactionObserver.onPurchaseProduct = buyingProductHandler
         
-        IAPTransactionObserver.shared.onRestoreProduct = buyingProductHandler
+        transactionObserver.onRestoreProduct = buyingProductHandler
         
-        IAPTransactionObserver.shared.onRestorationFinishedWithError = { error in
+        transactionObserver.onRestorationFinishedWithError = { error in
             let alert = UIAlertController(title: NSLocalizedString("Failed to Restore Purchase", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
@@ -160,7 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.tabController.showDetailViewController(alert, sender: self)
         }
         
-        IAPTransactionObserver.shared.onRestorationFinished = { hasRestorableContent in
+        transactionObserver.onRestorationFinished = { hasRestorableContent in
             let (title, message) = hasRestorableContent ? (NSLocalizedString("Successfully Restored Purchase", comment: "3nd"), NSLocalizedString("Certain content will only be available after restarting the app.", comment: "3nd")) : (NSLocalizedString("No Restorable Products", comment: "3nd"), nil)
         
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -277,7 +287,7 @@ private extension AppDelegate {
     
     private func selectIAP() {
         let iapController = IAPUIComposer.iap()
-        IAPTransactionObserver.shared.delegate = iapController
+        transactionObserver.delegate = iapController
         moreNavigationController.pushViewController(iapController, animated: true)
     }
     
