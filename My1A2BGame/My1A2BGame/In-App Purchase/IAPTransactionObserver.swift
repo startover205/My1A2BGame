@@ -27,7 +27,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
             switch transaction.transactionState {
             case .purchased :
                 if let id = transaction.transactionIdentifier, finishedTransactionIDs.contains(id) {
-                    SKPaymentQueue.default().finishTransaction(transaction)
+                    queue.finishTransaction(transaction)
                     continue
                 }
                 
@@ -37,7 +37,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 
                 handler(productIdentifier)
                 
-                SKPaymentQueue.default().finishTransaction(transaction)
+                queue.finishTransaction(transaction)
                 
                 transaction.transactionIdentifier.map { finishedTransactionIDs.append($0) }
                 
@@ -45,7 +45,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 
             case .failed :
                 guard (transaction.error as? SKError)?.code != .paymentCancelled else {
-                    SKPaymentQueue.default().finishTransaction(transaction)
+                    queue.finishTransaction(transaction)
                     continue
                 }
                 
@@ -53,7 +53,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 
                 handler(transaction.error)
                 
-                SKPaymentQueue.default().finishTransaction(transaction)
+                queue.finishTransaction(transaction)
                 
             case .restored:
                 guard let handler = onRestoreProduct else { continue }
@@ -62,7 +62,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 
                 let productIdentifier = transaction.payment.productIdentifier
                 handler(productIdentifier)
-                SKPaymentQueue.default().finishTransaction(transaction)
+                queue.finishTransaction(transaction)
                 
             default:
                 break
