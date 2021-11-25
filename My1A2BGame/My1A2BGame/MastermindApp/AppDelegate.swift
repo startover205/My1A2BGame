@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.tabController.showDetailViewController(alert, sender: self)
         }
         
-        IAPTransactionObserver.shared.onPurchaseProduct = { productIdentifier in
+        let buyingProductHandler = { (productIdentifier: String) in
             guard let product = IAP(rawValue: productIdentifier) else {
                 
                 let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", comment: "3nd"), preferredStyle: .alert)
@@ -145,6 +145,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             IAP.didPurchase(product: product, userDefaults: .standard)
         }
+        
+        IAPTransactionObserver.shared.onPurchaseProduct = buyingProductHandler
+        
+        IAPTransactionObserver.shared.onRestoreProduct = buyingProductHandler
         
         IAPTransactionObserver.shared.onRestorationFinishedWithError = { error in
             let alert = UIAlertController(title: NSLocalizedString("Failed to Restore Purchase", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)

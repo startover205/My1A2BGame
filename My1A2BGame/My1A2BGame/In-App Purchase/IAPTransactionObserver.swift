@@ -17,6 +17,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     var hasRestorableContent = false
     var onTransactionError: ((Error?) -> Void)?
     var onPurchaseProduct: ((String) -> Void)?
+    var onRestoreProduct: ((String) -> Void)?
     var onRestorationFinishedWithError: ((Error) -> Void)?
     var onRestorationFinished: ((_ hasRestorableContent: Bool) -> Void)?
     
@@ -55,7 +56,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
             case .restored:
-                guard let handler = onPurchaseProduct else { continue }
+                guard let handler = onRestoreProduct else { continue }
                 
                 hasRestorableContent = true
                 
