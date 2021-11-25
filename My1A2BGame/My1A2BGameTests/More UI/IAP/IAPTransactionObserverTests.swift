@@ -32,6 +32,7 @@ class IAPTransactionObserverTests: XCTestCase {
         let failedTransaction = makeFailedTransaction(with: .paymentCancelled)
         let product = aProduct()
         let purchasedTransaction = makePurchasedTransaction(with: product)
+        sut.onPurchaseProduct = { _ in }
         
         sut.paymentQueue(SKPaymentQueue(), updatedTransactions: [failedTransaction, purchasedTransaction])
         
@@ -39,31 +40,34 @@ class IAPTransactionObserverTests: XCTestCase {
     }
     
     func test_handleTransaction_messagesDelegatePurchasedProduct_onSuccessfullyPurchasedTransaction() throws {
-        let (_, delegate) = makeSUT()
+        let (sut, delegate) = makeSUT()
         let product = aProduct()
-        
+        sut.onPurchaseProduct = { _ in }
+
         try simulateSuccessfullyPurchasedTransaction(product: product)
-        
+
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier)])
     }
     
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate) = makeSUT()
         let product = aProduct()
-        
+        sut.onPurchaseProduct = { _ in }
+
         try simulateSuccessfullyPurchasedTransaction(product: product)
         sut.simulateRestoreCompletedTransactionFailedWithError()
-        
+
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier)])
     }
     
     func test_restoreCompletedTransactions_messagesDelegateOnSuccessfulRestoration() throws {
-        let (_, delegate) = makeSUT()
+        let (sut, delegate) = makeSUT()
         let product = aProduct()
-        
+        sut.onPurchaseProduct = { _ in }
+
         try simulateSuccessfullyPurchasedTransaction(product: product)
         simulateSuccessfulRestoration()
-        
+
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier), .didRestoreIAP])
     }
     
@@ -71,8 +75,10 @@ class IAPTransactionObserverTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPTransactionObserver, IAPTransactionObserverDelegateSpy) {
         let delegate = IAPTransactionObserverDelegateSpy()
-        let sut = IAPTransactionObserver.shared
+        let sut = IAPTransactionObserver()
         sut.delegate = delegate
+        
+        SKPaymentQueue.default().add(sut)
         
         trackForMemoryLeaks(delegate, file: file, line: line)
         
