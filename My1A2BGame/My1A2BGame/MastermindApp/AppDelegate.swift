@@ -87,8 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        paymentQueue.add(transactionObserver)
-        
         // 設定廣告
         if #available(iOS 14, *) {
             // requestIDFA
@@ -181,6 +179,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             self.tabController.showDetailViewController(alert, sender: self)
         }
+        
+        paymentQueue.add(transactionObserver)
     }
     
     private func makeTabController() -> UITabBarController {
