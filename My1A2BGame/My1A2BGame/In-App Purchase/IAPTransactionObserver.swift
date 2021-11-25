@@ -20,10 +20,6 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     var onRestorationFinishedWithError: ((Error) -> Void)?
     var onRestorationFinished: ((_ hasRestorableContent: Bool) -> Void)?
     
-    private override init() {
-        super.init()
-    }
-    
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             
