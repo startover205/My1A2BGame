@@ -22,75 +22,69 @@ class IAPUIIntegrationTests: XCTestCase {
     }
     
     func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
-        let sut = makeSUT()
-        
-        try createLocalTestSession()
+        let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expect showing indicator while loading")
         
-        let exp = expectation(description: "wait for product loading")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 1)
-        
-        XCTAssertFalse(sut.isShowingLoadingIndicator)
+        loader.completeLoading(with: [], at: 0)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expect not showing indicator while not loading")
         
         sut.simulateUserInitiatedReload()
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expect showing indicator again while loading")
         
-        let exp2 = expectation(description: "wait for product loading")
-        exp2.isInverted = true
-        wait(for: [exp2], timeout: 1)
-        
-        XCTAssertFalse(sut.isShowingLoadingIndicator)
+        loader.completeLoading(with: [aProduct()], at: 1)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expect not showing indicator again while not loading")
     }
     
     func test_loadProductCompletion_rendersSuccessfullyLoadedProducts() throws {
-        let sut = makeSUT()
-        let product = Product(name: "Remove Bottom Ad", price: "$0.99")
-        try createLocalTestSession()
+        let (sut, loader) = makeSUT()
+        let product1 = makeProduct(identifier: "a product identifier", name: "a product name", price: 0.99)
+        let product2 = makeProduct(identifier: "another product identifier", name: "another product name", price: 1.99)
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
+
+        loader.completeLoading(with: [product1, product2], at: 0)
+        assertThat(sut, isRendering: [product1, product2].toModel())
         
-        let exp = expectation(description: "wait for product loading")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 1)
+        sut.simulateUserInitiatedReload()
+        assertThat(sut, isRendering: [product1, product2].toModel())
+
+        loader.completeLoading(with: [product1], at: 1)
+        assertThat(sut, isRendering: [product1].toModel())
         
-        assertThat(sut, isRendering: [product])
+        sut.simulateUserInitiatedReload()
+        assertThat(sut, isRendering: [product1].toModel())
+        
+        loader.completeLoading(with: [], at: 2)
+        assertThat(sut, isRendering: [])
     }
-    
+
     func test_loadProductCompletion_displaysMessageOnEmptyResult() throws {
-        let sut = makeSUT()
-        try createLocalTestSession()
+        let (sut, loader) = makeSUT()
         let container = TestingContainerViewController(sut)
-        
-        let exp = expectation(description: "wait for product loading")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 1)
-        
-        sut.simulateOnTapProduct(at: 0)
-        
-        let exp2 = expectation(description: "wait for product purchase")
-        exp2.isInverted = true
-        wait(for: [exp2], timeout: 1)
-        
+
+        loader.completeLoading(with: [])
+
         let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, localized("NO_PRODUCT_MESSAGE"), "alert title")
         XCTAssertEqual(alert.actions.first?.title, localized("NO_PRODUCT_CONFIRM_ACTION"), "confirm title")
-        
+
         clearModalPresentationReference(sut)
     }
-    
+
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPViewController {
-        let sut = IAPUIComposer.iapComposedWith(productLoader: MainQueueDispatchIAPLoader())
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPViewController, IAPProductLoaderSpy) {
+        let loader = IAPProductLoaderSpy()
+        let sut = IAPUIComposer.iapComposedWith(productLoader: loader)
         IAPTransactionObserver.shared.delegate = sut
         
+        trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return sut
+        return (sut, loader)
     }
     
     private func clearPurchaseRecordsInDevice() {
@@ -135,6 +129,18 @@ class IAPUIIntegrationTests: XCTestCase {
     
     private func executeRunLoopToCleanUpReferences() {
         RunLoop.current.run(until: Date())
+    }
+    
+    private final class IAPProductLoaderSpy: IAPProductLoader {
+        private var completions = [([SKProduct]) -> Void]()
+        
+        override func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
+            completions.append(completion)
+        }
+        
+        func completeLoading(with products: [SKProduct], at index: Int = 0) {
+            completions[index](products)
+        }
     }
 }
 
@@ -186,5 +192,11 @@ extension IAPTableViewCell {
     
     var priceText: String? {
         productPriceLabel.text
+    }
+}
+
+private extension Array where Element == SKProduct {
+    func toModel() -> [Product] {
+        map { Product(name: $0.localizedTitle, price: $0.localPrice) }
     }
 }

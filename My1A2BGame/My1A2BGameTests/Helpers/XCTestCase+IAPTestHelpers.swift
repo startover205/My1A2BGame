@@ -55,7 +55,21 @@ extension XCTestCase {
 
     func aProduct() -> SKProduct {
         let product = SKProduct()
+        product.setValue("a product name", forKey: "localizedTitle")
         product.setValue("remove_bottom_ad", forKey: "productIdentifier")
+        product.setValue(0.99, forKey: "price")
+        product.setValue(Locale(identifier: "en_US_POSIX"), forKey: "priceLocale")
+
+        return product
+    }
+    
+    func makeProduct(identifier: String = "product identifier", name: String = "product name", locale: Locale = Locale(identifier: "en_US_POSIX"), price: NSDecimalNumber = 0.99) -> SKProduct {
+        let product = SKProduct()
+        product.setValue(name, forKey: "localizedTitle")
+        product.setValue(identifier, forKey: "productIdentifier")
+        product.setValue(price, forKey: "price")
+        product.setValue(locale, forKey: "priceLocale")
+        
         return product
     }
 }
