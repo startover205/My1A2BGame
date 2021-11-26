@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return LocalRecordLoader(store: store)
     }()
     
-    private lazy var tabController = BannerAdTabBarViewController(isBottomADRemoved: { AdControl.isBottomAdRemoved(userDefaults: .standard) })
+    private lazy var tabController = BannerAdTabBarViewController(isBottomADRemoved: { AdControl.isBottomAdRemoved(userDefaults: self.userDefaults) })
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
@@ -153,7 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return
             }
             
-            IAP.didPurchase(product: product, userDefaults: .standard)
+            IAP.didPurchase(product: product, userDefaults: self.userDefaults)
         }
         
         transactionObserver.onPurchaseProduct = buyingProductHandler
