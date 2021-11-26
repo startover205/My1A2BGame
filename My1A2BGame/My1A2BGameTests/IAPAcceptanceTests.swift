@@ -93,8 +93,8 @@ class IAPAcceptanceTests: XCTestCase {
     // MARK: - Product
 
     func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchaseOrRestoration() throws {
-        cleanPurchaseRecordInApp()
-        var (adController, transactionObserver, paymentQueue) = try launchWithAdControl()
+        let userDefaults = InMemoryUserDefaults()
+        var (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
         let removeBottomADProduct = removeBottomADProduct()
         adController.triggerLifecycleForcefully()
 
@@ -104,15 +104,15 @@ class IAPAcceptanceTests: XCTestCase {
         try createLocalTestSession()
         simulateBuying(removeBottomADProduct, observer: transactionObserver, paymentQueue: paymentQueue)
 
-        (adController, transactionObserver, paymentQueue) = try launchWithAdControl()
+        (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
         adController.triggerLifecycleForcefully()
         let finalInset = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
 
-        cleanPurchaseRecordInApp()
+        userDefaults.cleanPurchaseRecordInApp()
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
 
-        (adController, transactionObserver, paymentQueue) = try launchWithAdControl()
+        (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
         adController.triggerLifecycleForcefully()
         let insetAfterRestoration = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
@@ -139,24 +139,20 @@ class IAPAcceptanceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func launch(productLoader: IAPProductLoader = MainQueueDispatchIAPLoader()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
+    private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), productLoader: IAPProductLoader = MainQueueDispatchIAPLoader()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
         let transactionObserver = IAPTransactionObserver()
         let paymentQueue = SKPaymentQueue()
-        let sut = AppDelegate(transactionObserver: transactionObserver, paymentQueue: paymentQueue, productLoader: productLoader)
+        let sut = AppDelegate(userDefaults: userDefaults, transactionObserver: transactionObserver, paymentQueue: paymentQueue, productLoader: productLoader)
         sut.window = UIWindow()
         sut.configureWindow()
         
         return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
     }
     
-    private func launchWithAdControl(file: StaticString = #filePath, line: UInt = #line) throws -> (BannerAdTabBarViewController, IAPTransactionObserver, SKPaymentQueue) {
-        let (tabController, transactionObserver, paymentQueue) = launch()
+    private func launchWithAdControl(userDefaults: UserDefaults, file: StaticString = #filePath, line: UInt = #line) throws -> (BannerAdTabBarViewController, IAPTransactionObserver, SKPaymentQueue) {
+        let (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         
         return (try XCTUnwrap(tabController as? BannerAdTabBarViewController, file: file, line: line), transactionObserver, paymentQueue)
-    }
-
-    private func cleanPurchaseRecordInApp() {
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
     
     private final class IAPProductLoaderSpy: IAPProductLoader {
@@ -216,5 +212,11 @@ private extension UITabBarController {
         RunLoop.current.run(until: Date())
         
         return (moreController.navigationController?.topViewController as! IAPViewController)
+    }
+}
+
+private extension InMemoryUserDefaults {
+    func cleanPurchaseRecordInApp() {
+        clearAllValues()
     }
 }

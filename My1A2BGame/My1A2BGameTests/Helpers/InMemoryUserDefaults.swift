@@ -20,4 +20,8 @@ final class InMemoryUserDefaults: UserDefaults {
         values[defaultName] = value
         didChangeValue(forKey: defaultName)
     }
+    
+    func clearAllValues() {
+        values.removeAll()
+    }
 }

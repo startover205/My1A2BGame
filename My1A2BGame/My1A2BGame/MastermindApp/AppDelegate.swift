@@ -79,9 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.requestReview = requestReview
     }
     
-    convenience init(transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: IAPProductLoader) {
+    convenience init(userDefaults: UserDefaults, transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: IAPProductLoader) {
         self.init()
         
+        self.userDefaults = userDefaults
         self.transactionObserver = transactionObserver
         self.paymentQueue = paymentQueue
         self.productLoader = productLoader
