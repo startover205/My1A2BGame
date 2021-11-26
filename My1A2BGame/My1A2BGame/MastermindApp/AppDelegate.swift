@@ -79,11 +79,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.requestReview = requestReview
     }
     
-    convenience init(transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue) {
+    convenience init(transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: IAPProductLoader) {
         self.init()
         
         self.transactionObserver = transactionObserver
         self.paymentQueue = paymentQueue
+        self.productLoader = productLoader
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

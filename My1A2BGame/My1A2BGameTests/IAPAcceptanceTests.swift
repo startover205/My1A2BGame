@@ -118,12 +118,31 @@ class IAPAcceptanceTests: XCTestCase {
         XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
     }
     
+    // MARK: - Composable View
+    
+    func test_handlePurchase_refreshesIAPViewOnPurchaseOrRestoreProducts() throws {
+        let loader = IAPProductLoaderSpy()
+        let (tabController, transactionObserver, paymentQueue) = launch(productLoader: loader)
+        try createLocalTestSession()
+        let _ = tabController.iapController()
+        
+        XCTAssertEqual(loader.loadCallCount, 1, "Expect refresh after view load")
+
+        simulateBuying(aProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
+
+        XCTAssertEqual(loader.loadCallCount, 2, "Expect refresh after product purchase")
+
+        simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
+
+        XCTAssertEqual(loader.loadCallCount, 3, "Expect refresh after product restoration")
+    }
+    
     // MARK: - Helpers
     
-    private func launch() -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
+    private func launch(productLoader: IAPProductLoader = MainQueueDispatchIAPLoader()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
         let transactionObserver = IAPTransactionObserver()
         let paymentQueue = SKPaymentQueue()
-        let sut = AppDelegate(transactionObserver: transactionObserver, paymentQueue: paymentQueue)
+        let sut = AppDelegate(transactionObserver: transactionObserver, paymentQueue: paymentQueue, productLoader: productLoader)
         sut.window = UIWindow()
         sut.configureWindow()
         
@@ -164,6 +183,15 @@ class IAPAcceptanceTests: XCTestCase {
 
     private func cleanPurchaseRecordInApp() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    }
+    
+    private final class IAPProductLoaderSpy: IAPProductLoader {
+        private(set) var loadCallCount = 0
+        
+        override func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
+            loadCallCount += 1
+            completion([])
+        }
     }
 }
 
@@ -206,5 +234,27 @@ private extension IAPTransactionObserver {
     
     func simulateRestoreCompletedTransactionFailed(with error: Error, from queue: SKPaymentQueue) {
         paymentQueue(queue, restoreCompletedTransactionsFailedWithError: error)
+    }
+}
+
+private extension UITabBarController {
+    private func selectTab<T>(at index: Int) -> T {
+        selectedIndex = index
+        
+        RunLoop.current.run(until: Date())
+        
+        let nav = viewControllers?[index] as? UINavigationController
+        return nav?.topViewController as! T
+    }
+    
+    func moreController() -> MoreViewController { selectTab(at: 3) }
+    
+    func iapController() -> IAPViewController {
+        let moreController = moreController()
+        moreController.tableView(moreController.tableView, didSelectRowAt: [0, 1])
+        
+        RunLoop.current.run(until: Date())
+        
+        return (moreController.navigationController?.topViewController as! IAPViewController)
     }
 }
