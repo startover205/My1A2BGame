@@ -15,6 +15,7 @@ public class IAPViewController: UITableViewController {
     
     var tableModel = [IAPCellController]()
     var productLoader: IAPProductLoader?
+    var onRefresh: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,44 +34,7 @@ public class IAPViewController: UITableViewController {
     }
     
     func refresh(){
-        if !tableModel.isEmpty{
-            tableModel.removeAll()
-            tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-        }
-        
-        let productIDs = IAP.getAvailableProductsId(userDefaults: .standard)
-        
-        refreshControl?.beginRefreshing()
-        
-        if SKPaymentQueue.canMakePayments() {
-            productLoader?.load(productIDs: productIDs, completion: { [weak self] products in
-                guard let self = self else { return }
-                
-                self.tableModel = self.adaptProductsToCellControllers(products)
-                
-                self.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-                self.refreshControl?.endRefreshing()
-                
-                if self.tableModel.isEmpty {
-                    let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
-                    
-                    let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-                    
-                    alert.addAction(ok)
-                    
-                    self.showDetailViewController(alert, sender: self)
-                }
-            })
-            
-        } else {
-            let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not available on this device or within this app.", comment: "4th"), preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-            
-            alert.addAction(ok)
-            
-            self.present(alert, animated: true, completion: nil)
-        }
+        onRefresh?()
     }
     
     // MARK: - Table view data source
@@ -106,15 +70,3 @@ extension IAPViewController: IAPTransactionObserverDelegate {
         refresh()
     }
 }
-
-extension IAPViewController {
-    private func adaptProductsToCellControllers(_ products: [SKProduct]) -> [IAPCellController] {
-        products.map { product in
-            IAPCellController(product: Product(name: product.localizedTitle, price: product.localPrice)) {
-                 let payment = SKPayment(product: product)
-                 SKPaymentQueue.default().add(payment)
-            }
-        }
-    }
-}
-
