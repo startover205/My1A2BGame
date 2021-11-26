@@ -87,10 +87,6 @@ class IAPUIIntegrationTests: XCTestCase {
         return (sut, loader)
     }
     
-    private func clearPurchaseRecordsInDevice() {
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-    }
-    
     private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "Localizable"
         let bundle = Bundle(for: IAPViewController.self)
