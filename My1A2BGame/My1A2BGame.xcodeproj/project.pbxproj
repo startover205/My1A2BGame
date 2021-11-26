@@ -36,6 +36,7 @@
 		C085BE6A2254974700320563 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* Constants.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C0863A57274F8C0500A799D1 /* IAPAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0863A56274F8C0500A799D1 /* IAPAcceptanceTests.swift */; };
+		C0863A5927508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0863A5827508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift */; };
 		C088A65126BE7855005FC389 /* InMemoryUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */; };
 		C091F1092728F7820065482F /* IAPUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */; };
 		C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */; };
@@ -151,6 +152,7 @@
 		C085BE692254974700320563 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C0863A56274F8C0500A799D1 /* IAPAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPAcceptanceTests.swift; sourceTree = "<group>"; };
+		C0863A5827508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IAPTransactionObserver+TestHelpers.swift"; sourceTree = "<group>"; };
 		C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserDefaults.swift; sourceTree = "<group>"; };
 		C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAcceptanceTests.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */,
 				C099258827391F0A003E322D /* UIView+TestHelpers.swift */,
 				C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */,
+				C0863A5827508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift */,
 				C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */,
 				C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */,
 				C09F318F271D20590038B18B /* UIViewControllerSpy.swift */,
@@ -663,6 +666,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0863A5927508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift in Sources */,
 				C0F4ACC5273E03D800FAFC2A /* IAPLoaderTests.swift in Sources */,
 				C07C16B52702F8F900451060 /* SharedLocalizationTestHelpers.swift in Sources */,
 				C07C16B32702F89900451060 /* RewardAdLocalizationTests.swift in Sources */,
