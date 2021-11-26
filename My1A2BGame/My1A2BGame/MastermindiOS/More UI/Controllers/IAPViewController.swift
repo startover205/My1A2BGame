@@ -32,42 +32,6 @@ public class IAPViewController: UITableViewController {
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
-    // MARK: - Table view data source
-    
-    public override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableModel.count
-    }
-    
-    // MARK: - Table view delegate
-    
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cellController(at: indexPath).tableView(tableView, cellForRowAt: indexPath)
-    }
-    
-    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cellController(at: indexPath).tableView(tableView, didSelectRowAt: indexPath)
-    }
-    
-    private func cellController(at indexPath: IndexPath) -> IAPCellController {
-       tableModel[indexPath.row]
-    }
-}
-
-extension IAPViewController: IAPTransactionObserverDelegate {
-    func didPuarchaseIAP(productIdenifer: String) {
-        refresh()
-    }
-    func didRestoreIAP() {
-        refresh()
-    }
-}
-
-// MARK: - Private
-private extension IAPViewController {
     func refresh(){
         if !tableModel.isEmpty{
             tableModel.removeAll()
@@ -109,6 +73,41 @@ private extension IAPViewController {
         }
     }
     
+    // MARK: - Table view data source
+    
+    public override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableModel.count
+    }
+    
+    // MARK: - Table view delegate
+    
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        cellController(at: indexPath).tableView(tableView, cellForRowAt: indexPath)
+    }
+    
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellController(at: indexPath).tableView(tableView, didSelectRowAt: indexPath)
+    }
+    
+    private func cellController(at indexPath: IndexPath) -> IAPCellController {
+       tableModel[indexPath.row]
+    }
+}
+
+extension IAPViewController: IAPTransactionObserverDelegate {
+    func didPuarchaseIAP(productIdenifer: String) {
+        refresh()
+    }
+    func didRestoreIAP() {
+        refresh()
+    }
+}
+
+extension IAPViewController {
     private func adaptProductsToCellControllers(_ products: [SKProduct]) -> [IAPCellController] {
         products.map { product in
             IAPCellController(product: Product(name: product.localizedTitle, price: product.localPrice)) {
