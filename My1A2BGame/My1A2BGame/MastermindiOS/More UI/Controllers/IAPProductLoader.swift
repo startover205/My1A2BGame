@@ -1,5 +1,5 @@
 //
-//  IAPLoader.swift
+//  IAPProductLoader.swift
 //  My1A2BGame
 //
 //  Created by Ming-Ta Yang on 2021/11/12.
@@ -8,7 +8,7 @@
 
 import StoreKit
 
-public class IAPLoader: NSObject {
+public class IAPProductLoader: NSObject {
     private var loadingRequest: (request: SKProductsRequest, completion: ([SKProduct]) -> Void)?
     
     public func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
@@ -25,7 +25,7 @@ public class IAPLoader: NSObject {
     }
 }
 
-extension IAPLoader: SKProductsRequestDelegate {
+extension IAPProductLoader: SKProductsRequestDelegate {
     public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         loadingRequest?.completion(response.products)
     }

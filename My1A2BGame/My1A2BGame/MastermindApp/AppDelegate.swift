@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
     private lazy var paymentQueue: SKPaymentQueue = .default()
-    private lazy var productLoader: IAPLoader = MainQueueDispatchIAPLoader()
+    private lazy var productLoader: IAPProductLoader = MainQueueDispatchIAPLoader()
     
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
@@ -359,7 +359,7 @@ private let faq = [Question(
                                                bundle: .main,
                                                comment: "An answer to why an ad is not always showing when the player is out of chances"))]
 
-public final class MainQueueDispatchIAPLoader: IAPLoader {
+public final class MainQueueDispatchIAPLoader: IAPProductLoader {
     public override func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
         super.load(productIDs: productIDs) { result in
             if Thread.isMainThread {

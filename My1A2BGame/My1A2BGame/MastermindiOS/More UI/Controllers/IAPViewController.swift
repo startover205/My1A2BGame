@@ -14,7 +14,7 @@ public class IAPViewController: UITableViewController {
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
     var tableModel = [IAPCellController]()
-    var productLoader: IAPLoader?
+    var productLoader: IAPProductLoader?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
