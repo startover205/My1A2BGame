@@ -17,10 +17,6 @@ extension XCTestCase {
         session.disableDialogs = true
         session.clearTransactions()
         
-        addTeardownBlock {
-            session.clearTransactions()
-        }
-        
         return session
     }
 }
