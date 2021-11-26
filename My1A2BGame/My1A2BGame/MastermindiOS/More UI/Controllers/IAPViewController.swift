@@ -20,8 +20,6 @@ public class IAPViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        restorePurchaseButton.isEnabled = SKPaymentQueue.canMakePayments()
-        
         refresh()
     }
     

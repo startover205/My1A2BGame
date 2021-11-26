@@ -21,14 +21,6 @@ class IAPUIIntegrationTests: XCTestCase {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
     
-    func test_viewDidLoad_configuresRestorePurchaseButton() {
-        let sut = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertTrue(sut.restorePurchaseButton.isEnabled)
-    }
-    
     func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
         let sut = makeSUT()
         
