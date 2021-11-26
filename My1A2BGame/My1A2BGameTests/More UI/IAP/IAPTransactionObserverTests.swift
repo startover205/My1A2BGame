@@ -30,18 +30,18 @@ class IAPTransactionObserverTests: XCTestCase {
     func test_handleTransaction_stillHandlesOtherTransactionsAfterCancelledTransaction() {
         let (sut, delegate, paymentQueue) = makeSUT()
         let cancelledTransaction = makeFailedTransaction(with: .paymentCancelled)
-        let product = aProduct()
+        let product = oneValidProduct()
         let purchasedTransaction = makePurchasedTransaction(with: product)
         sut.onPurchaseProduct = { _ in }
 
         sut.paymentQueue(paymentQueue, updatedTransactions: [cancelledTransaction, purchasedTransaction])
 
-        XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: aProduct().productIdentifier)])
+        XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: oneValidProduct().productIdentifier)])
     }
 
     func test_handleTransaction_messagesDelegatePurchasedProduct_onSuccessfullyPurchasedTransaction() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
-        let product = aProduct()
+        let product = oneValidProduct()
         try createLocalTestSession()
         
         simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
@@ -51,7 +51,7 @@ class IAPTransactionObserverTests: XCTestCase {
 
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
-        let product = aProduct()
+        let product = oneValidProduct()
         try createLocalTestSession()
         
         simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
@@ -62,7 +62,7 @@ class IAPTransactionObserverTests: XCTestCase {
 
     func test_restoreCompletedTransactions_messagesDelegateOnSuccessfulRestoration() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
-        let product = aProduct()
+        let product = oneValidProduct()
         try createLocalTestSession()
         
         simulateBuying(product, observer: sut, paymentQueue: paymentQueue)

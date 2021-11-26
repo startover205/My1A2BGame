@@ -25,7 +25,7 @@ class IAPUIIntegrationTests: XCTestCase {
         sut.simulateUserInitiatedReload()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expect showing indicator again while loading")
         
-        loader.completeLoading(with: [aProduct()], at: 1)
+        loader.completeLoading(with: [oneValidProduct()], at: 1)
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expect not showing indicator again while not loading")
     }
     

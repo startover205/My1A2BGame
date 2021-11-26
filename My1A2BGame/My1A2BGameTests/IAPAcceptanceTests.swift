@@ -81,7 +81,7 @@ class IAPAcceptanceTests: XCTestCase {
         let (tabController, transactionObserver, paymentQueue) = launch()
         
         try createLocalTestSession()
-        simulateBuying(aProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
+        simulateBuying(oneValidProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
@@ -128,7 +128,7 @@ class IAPAcceptanceTests: XCTestCase {
         
         XCTAssertEqual(loader.loadCallCount, 1, "Expect refresh after view load")
 
-        simulateBuying(aProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
+        simulateBuying(oneValidProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
 
         XCTAssertEqual(loader.loadCallCount, 2, "Expect refresh after product purchase")
 

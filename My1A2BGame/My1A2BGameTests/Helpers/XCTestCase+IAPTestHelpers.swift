@@ -28,7 +28,7 @@ extension XCTestCase {
         let session = try createLocalTestSession()
         session.failTransactionsEnabled = true
         
-        SKPaymentQueue.default().add(SKPayment(product: aProduct()))
+        SKPaymentQueue.default().add(SKPayment(product: oneValidProduct()))
         
         let exp = expectation(description: "wait for request")
         exp.isInverted = true
@@ -53,7 +53,7 @@ extension XCTestCase {
         wait(for: [exp], timeout: 1.5)
     }
 
-    func aProduct() -> SKProduct {
+    func oneValidProduct() -> SKProduct {
         let product = SKProduct()
         product.setValue("a product name", forKey: "localizedTitle")
         product.setValue("remove_bottom_ad", forKey: "productIdentifier")
