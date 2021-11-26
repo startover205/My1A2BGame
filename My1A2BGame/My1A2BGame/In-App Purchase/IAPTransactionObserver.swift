@@ -14,7 +14,7 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     static let shared = IAPTransactionObserver()
     weak var delegate: IAPTransactionObserverDelegate?
     private var finishedTransactionIDs = [String]()
-    var hasRestorableContent = false
+    private var hasRestorableContent = false
     var onTransactionError: ((Error?) -> Void)?
     var onPurchaseProduct: ((String) -> Void)?
     var onRestoreProduct: ((String) -> Void)?
