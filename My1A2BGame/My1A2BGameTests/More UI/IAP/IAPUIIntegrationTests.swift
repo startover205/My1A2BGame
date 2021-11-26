@@ -13,14 +13,6 @@ import StoreKitTest
 @available(iOS 14.0, *)
 class IAPUIIntegrationTests: XCTestCase {
     
-    override func setUp() {
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-    }
-    
-    override func tearDown() {
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-    }
-    
     func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
         let (sut, loader) = makeSUT()
         
