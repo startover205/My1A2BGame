@@ -13,137 +13,157 @@ import StoreKitTest
 @available(iOS 14.0, *)
 class IAPAcceptanceTests: XCTestCase {
 
-    func test_iap_handleTransactions_doesNotShowMessageOnPurchaseFailedWithCancellation() throws {
-        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+    func test_iap_handleTransactions_doesNotShowMessageOnPurchaseFailedWithCancellation() {
+        let (tabController, transactionObserver, paymentQueue) = launch()
         
-        simulateFailedTransactionWithCancellation()
+        transactionObserver.simulateFailedTransactionWithCancellation(from: paymentQueue)
         
-        XCTAssertNil(rootVC.presentedViewController)
+        XCTAssertNil(tabController.presentedViewController)
     }
     
     func test_iap_handleTransactions_showsMessageOnPurchaseFailed() throws {
-        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        let (tabController, transactionObserver, paymentQueue) = launch()
         
-        try simulateFailedTransaction()
+        transactionObserver.simulateFailedTransaction(with: .unknown, from: paymentQueue)
         
-        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, "Failed to Purchase", "alert title")
-        XCTAssertEqual(alert.message, "UNKNOWN_ERROR", "alert message")
+        XCTAssertEqual(alert.message, "The operation couldn’t be completed. (SKErrorDomain error 0.)", "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
-        
-        clearModalPresentationReference(rootVC)
     }
     
     func test_iap_handlePurchase_showsMessageOnPurchasingUnknownProduct() throws {
-        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        let (tabController, transactionObserver, paymentQueue) = launch()
         let unknownProduct = unknownProdcut()
+        
         try createLocalTestSession("Unknown")
+        simulateBuying(unknownProduct, observer: transactionObserver, paymentQueue: paymentQueue)
         
-        SKPaymentQueue.default().add(SKPayment(product: unknownProduct))
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-        
-        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, "Error", "alert title")
         XCTAssertEqual(alert.message, "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
-        
-        clearModalPresentationReference(rootVC)
     }
-    
-    func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchaseOrRestoration() throws {
-        cleanPurchaseRecordInApp()
-        let tabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
-        let removeBottomADProduct = removeBottomADProduct()
-        tabController.triggerLifecycleForcefully()
-        
-        let initialInset = tabController.children.first?.additionalSafeAreaInsets
-        XCTAssertNotEqual(initialInset, .zero, "Expect addtional insets not zero due to spacing for AD")
-        
-        try simulateSuccessfullyPurchasedTransaction(product: removeBottomADProduct)
-        
-        let anotherTabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
-        anotherTabController.triggerLifecycleForcefully()
-        let finalInset = anotherTabController.children.first?.additionalSafeAreaInsets
-        XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
-        
-        cleanPurchaseRecordInApp()
-        simulateSuccessfulRestoration()
-        
-        let andAnotherTabController = try XCTUnwrap(launch() as? BannerAdTabBarViewController)
-        andAnotherTabController.triggerLifecycleForcefully()
-        let insetAfterRestoration = andAnotherTabController.children.first?.additionalSafeAreaInsets
-        XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
-    }
-    
-    func test_iap_restoreCompletedTransactions_doesNotShowsMessageOnPaymenCancelledError() throws {
-        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+
+    func test_iap_restoreCompletedTransactions_doesNotShowsMessageOnPaymenCancelledError() {
+        let (tabController, transactionObserver, paymentQueue) = launch()
         let restorationError = SKError(.paymentCancelled)
-        
-        simulateRestoreCompletedTransactionFailed(with: restorationError)
-        
-        XCTAssertNil(rootVC.presentedViewController)
+
+        transactionObserver.simulateRestoreCompletedTransactionFailed(with: restorationError, from: paymentQueue)
+
+        XCTAssertNil(tabController.presentedViewController)
     }
-    
+
     func test_iap_restoreCompletedTransactions_showsMessageOnRestorationError() throws {
-        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        let (tabController, transactionObserver, paymentQueue) = launch()
         let restorationError = anyNSError()
-        
-        simulateRestoreCompletedTransactionFailed(with: restorationError)
-        
-        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+
+        transactionObserver.simulateRestoreCompletedTransactionFailed(with: restorationError, from: paymentQueue)
+
+        let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, "Failed to Restore Purchase", "alert title")
         XCTAssertEqual(alert.message, restorationError.localizedDescription, "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
-        
-        clearModalPresentationReference(rootVC)
     }
-    
+
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulEmptyRestoration() throws {
-        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
-        
+        let (tabController, transactionObserver, paymentQueue) = launch()
+
         try createLocalTestSession()
-        simulateSuccessfulRestoration()
-        
-        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
+
+        let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, "No Restorable Products", "alert title")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
-        
-        clearModalPresentationReference(rootVC)
     }
     
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulNonEmptyRestoration() throws {
-        let rootVC = try XCTUnwrap((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)
+        let (tabController, transactionObserver, paymentQueue) = launch()
         
-        try simulateSuccessfullyPurchasedTransaction(product: aProduct())
-        simulateSuccessfulRestoration()
+        try createLocalTestSession()
+        simulateBuying(aProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
+        simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
         
-        let alert = try XCTUnwrap(rootVC.presentedViewController as? UIAlertController)
+        let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, "Successfully Restored Purchase", "alert title")
         XCTAssertEqual(alert.message, "Certain content will only be available after restarting the app.", "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+    }
+    
+    // MARK: - Product
+
+    func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchaseOrRestoration() throws {
+        cleanPurchaseRecordInApp()
+        var (adController, transactionObserver, paymentQueue) = try launchWithAdControl()
+        let removeBottomADProduct = removeBottomADProduct()
+        adController.triggerLifecycleForcefully()
+
+        let initialInset = adController.children.first?.additionalSafeAreaInsets
+        XCTAssertNotEqual(initialInset, .zero, "Expect addtional insets not zero due to spacing for AD")
         
-        clearModalPresentationReference(rootVC)
+        try createLocalTestSession()
+        simulateBuying(removeBottomADProduct, observer: transactionObserver, paymentQueue: paymentQueue)
+
+        (adController, transactionObserver, paymentQueue) = try launchWithAdControl()
+        adController.triggerLifecycleForcefully()
+        let finalInset = adController.children.first?.additionalSafeAreaInsets
+        XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
+
+        cleanPurchaseRecordInApp()
+        simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
+
+        (adController, transactionObserver, paymentQueue) = try launchWithAdControl()
+        adController.triggerLifecycleForcefully()
+        let insetAfterRestoration = adController.children.first?.additionalSafeAreaInsets
+        XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
     }
     
     // MARK: - Helpers
     
-    private func launch(transactionObserver: IAPTransactionObserver = IAPTransactionObserver(), paymentQueue: SKPaymentQueue = .init()) -> UITabBarController {
+    private func launch() -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
+        let transactionObserver = IAPTransactionObserver()
+        let paymentQueue = SKPaymentQueue()
         let sut = AppDelegate(transactionObserver: transactionObserver, paymentQueue: paymentQueue)
         sut.window = UIWindow()
         sut.configureWindow()
         
-        return sut.window?.rootViewController as! UITabBarController
+        return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
+    }
+    
+    private func launchWithAdControl(file: StaticString = #filePath, line: UInt = #line) throws -> (BannerAdTabBarViewController, IAPTransactionObserver, SKPaymentQueue) {
+        let (tabController, transactionObserver, paymentQueue) = launch()
+        
+        return (try XCTUnwrap(tabController as? BannerAdTabBarViewController, file: file, line: line), transactionObserver, paymentQueue)
+    }
+    
+    private func simulateRestoringCompletedTransactions(observer: IAPTransactionObserver, paymentQueue: SKPaymentQueue) {
+        let exp = expectation(description: "wait for transaction")
+        
+        let originalHandler = observer.onRestorationFinished
+        observer.onRestorationFinished = {
+            originalHandler?($0)
+
+            exp.fulfill()
+        }
+        paymentQueue.restoreCompletedTransactions()
+        wait(for: [exp], timeout: 5.0)
+    }
+    
+    private func simulateBuying(_ product: SKProduct, observer: IAPTransactionObserver, paymentQueue: SKPaymentQueue) {
+        let exp = expectation(description: "wait for transaction")
+        
+        let originalHandler = observer.onPurchaseProduct
+        observer.onPurchaseProduct = {
+            originalHandler?($0)
+            
+            exp.fulfill()
+        }
+        paymentQueue.add(SKPayment(product: product))
+        wait(for: [exp], timeout: 5.0)
     }
 
     private func cleanPurchaseRecordInApp() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-    }
-    
-    func simulateRestoreCompletedTransactionFailed(with error: Error) {
-        IAPTransactionObserver.shared.paymentQueue(SKPaymentQueue(), restoreCompletedTransactionsFailedWithError: error)
     }
 }
 
@@ -175,7 +195,16 @@ private func removeBottomADProduct() -> SKProduct {
     return product
 }
 
-private func simulateFailedTransactionWithCancellation() {
-    IAPTransactionObserver.shared.paymentQueue(SKPaymentQueue(), updatedTransactions: [makeFailedTransaction(with: .paymentCancelled)])
+private extension IAPTransactionObserver {
+    func simulateFailedTransactionWithCancellation(from queue: SKPaymentQueue) {
+        paymentQueue(queue, updatedTransactions: [makeFailedTransaction(with: .paymentCancelled)])
+    }
+    
+    func simulateFailedTransaction(with error: SKError.Code, from queue: SKPaymentQueue) {
+        paymentQueue(queue, updatedTransactions: [makeFailedTransaction(with: error)])
+    }
+    
+    func simulateRestoreCompletedTransactionFailed(with error: Error, from queue: SKPaymentQueue) {
+        paymentQueue(queue, restoreCompletedTransactionsFailedWithError: error)
+    }
 }
-
