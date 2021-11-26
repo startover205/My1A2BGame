@@ -24,35 +24,6 @@ extension XCTestCase {
         return session
     }
 
-    func simulateFailedTransaction() throws {
-        let session = try createLocalTestSession()
-        session.failTransactionsEnabled = true
-        
-        SKPaymentQueue.default().add(SKPayment(product: oneValidProduct()))
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-    }
-
-    func simulateSuccessfullyPurchasedTransaction(product: SKProduct) throws {
-        try createLocalTestSession()
-        
-        SKPaymentQueue.default().add(SKPayment(product: product))
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
-    }
-
-    func simulateSuccessfulRestoration() {
-        SKPaymentQueue.default().restoreCompletedTransactions()
-        
-        let exp = expectation(description: "wait for request")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 1.5)
-    }
-
     func oneValidProduct() -> SKProduct {
         let product = SKProduct()
         product.setValue("a product name", forKey: "localizedTitle")
