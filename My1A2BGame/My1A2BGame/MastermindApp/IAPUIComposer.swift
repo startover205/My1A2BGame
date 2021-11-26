@@ -15,6 +15,10 @@ public final class IAPUIComposer {
     public static func iapComposedWith(productLoader: IAPProductLoader) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
         iapController.productLoader = productLoader
+        iapController.onRestoreCompletedTransactions = {
+            SKPaymentQueue.default().restoreCompletedTransactions()
+        }
+        
         iapController.onRefresh = { [weak iapController] in
             guard let iapController = iapController else { return }
             

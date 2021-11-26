@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import StoreKit
 
 public class IAPViewController: UITableViewController {
     
@@ -16,6 +15,7 @@ public class IAPViewController: UITableViewController {
     var tableModel = [IAPCellController]()
     var productLoader: IAPProductLoader?
     var onRefresh: (() -> Void)?
+    var onRestoreCompletedTransactions: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ public class IAPViewController: UITableViewController {
     }
     
     @IBAction func restoreBtnPressed(_ sender: Any) {
-        SKPaymentQueue.default().restoreCompletedTransactions()
+        onRestoreCompletedTransactions?()
     }
     
     func refresh(){
