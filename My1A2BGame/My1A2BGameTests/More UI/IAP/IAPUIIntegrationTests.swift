@@ -157,7 +157,7 @@ class IAPUIIntegrationTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPViewController {
-        let sut = IAPUIComposer.iap()
+        let sut = IAPUIComposer.iapComposedWith(productLoader: MainQueueDispatchIAPLoader())
         IAPTransactionObserver.shared.delegate = sut
         
         trackForMemoryLeaks(sut, file: file, line: line)

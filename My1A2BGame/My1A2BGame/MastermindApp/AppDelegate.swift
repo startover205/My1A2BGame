@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
     private lazy var paymentQueue: SKPaymentQueue = .default()
+    private lazy var productLoader: IAPLoader = MainQueueDispatchIAPLoader()
     
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
@@ -286,7 +287,7 @@ private extension AppDelegate {
     }
     
     private func selectIAP() {
-        let iapController = IAPUIComposer.iap()
+        let iapController = IAPUIComposer.iapComposedWith(productLoader: productLoader)
         transactionObserver.delegate = iapController
         moreNavigationController.pushViewController(iapController, animated: true)
     }
@@ -357,3 +358,17 @@ private let faq = [Question(
                                                tableName: "Localizable",
                                                bundle: .main,
                                                comment: "An answer to why an ad is not always showing when the player is out of chances"))]
+
+public final class MainQueueDispatchIAPLoader: IAPLoader {
+    public override func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
+        super.load(productIDs: productIDs) { result in
+            if Thread.isMainThread {
+                completion(result)
+            } else {
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
+    }
+}
