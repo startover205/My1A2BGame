@@ -14,75 +14,76 @@ import StoreKitTest
 class IAPTransactionObserverTests: XCTestCase {
     
     func test_init_doesNotMessageDelegate() {
-        let (_, delegate) = makeSUT()
+        let (_, delegate, _) = makeSUT()
         
         XCTAssertTrue(delegate.receivedMessages.isEmpty)
     }
     
-    func test_handleTransaction_doesNotMessageDelegate_OnFailedTransaction() throws {
-        let (_, delegate) = makeSUT()
+    func test_handleTransaction_doesNotMessageDelegate_OnFailedTransaction() {
+        let (sut, delegate, paymentQueue) = makeSUT()
         
-        try simulateFailedTransaction()
-        
+        sut.simulateFailedTransaction(with: .unknown, from: paymentQueue)
+
         XCTAssertTrue(delegate.receivedMessages.isEmpty)
     }
-    
-    func test_handleTransaction_stillHandlesOtherTransactionsAfterCancelledTransaction() throws {
-        let (sut, delegate) = makeSUT()
-        let failedTransaction = makeFailedTransaction(with: .paymentCancelled)
+
+    func test_handleTransaction_stillHandlesOtherTransactionsAfterCancelledTransaction() {
+        let (sut, delegate, paymentQueue) = makeSUT()
+        let cancelledTransaction = makeFailedTransaction(with: .paymentCancelled)
         let product = aProduct()
         let purchasedTransaction = makePurchasedTransaction(with: product)
         sut.onPurchaseProduct = { _ in }
-        
-        sut.paymentQueue(SKPaymentQueue(), updatedTransactions: [failedTransaction, purchasedTransaction])
-        
+
+        sut.paymentQueue(paymentQueue, updatedTransactions: [cancelledTransaction, purchasedTransaction])
+
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: aProduct().productIdentifier)])
     }
-    
+
     func test_handleTransaction_messagesDelegatePurchasedProduct_onSuccessfullyPurchasedTransaction() throws {
-        let (sut, delegate) = makeSUT()
+        let (sut, delegate, paymentQueue) = makeSUT()
         let product = aProduct()
-        sut.onPurchaseProduct = { _ in }
-
-        try simulateSuccessfullyPurchasedTransaction(product: product)
+        try createLocalTestSession()
+        
+        simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
 
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier)])
     }
-    
+
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
-        let (sut, delegate) = makeSUT()
+        let (sut, delegate, paymentQueue) = makeSUT()
         let product = aProduct()
-        sut.onPurchaseProduct = { _ in }
-
-        try simulateSuccessfullyPurchasedTransaction(product: product)
-        sut.simulateRestoreCompletedTransactionFailedWithError()
+        try createLocalTestSession()
+        
+        simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
+        sut.simulateRestoreCompletedTransactionFailedWithError(on: paymentQueue)
 
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier)])
     }
-    
-    func test_restoreCompletedTransactions_messagesDelegateOnSuccessfulRestoration() throws {
-        let (sut, delegate) = makeSUT()
-        let product = aProduct()
-        sut.onPurchaseProduct = { _ in }
 
-        try simulateSuccessfullyPurchasedTransaction(product: product)
-        simulateSuccessfulRestoration()
+    func test_restoreCompletedTransactions_messagesDelegateOnSuccessfulRestoration() throws {
+        let (sut, delegate, paymentQueue) = makeSUT()
+        let product = aProduct()
+        try createLocalTestSession()
+        
+        simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
+        simulateRestoringCompletedTransactions(observer: sut, paymentQueue: paymentQueue)
 
         XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: product.productIdentifier), .didRestoreIAP])
     }
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPTransactionObserver, IAPTransactionObserverDelegateSpy) {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPTransactionObserver, IAPTransactionObserverDelegateSpy, SKPaymentQueue) {
+        let paymentQueue = SKPaymentQueue()
         let delegate = IAPTransactionObserverDelegateSpy()
         let sut = IAPTransactionObserver()
         sut.delegate = delegate
         
-        SKPaymentQueue.default().add(sut)
+        paymentQueue.add(sut)
         
         trackForMemoryLeaks(delegate, file: file, line: line)
         
-        return (sut, delegate)
+        return (sut, delegate, paymentQueue)
     }
     
     private final class IAPTransactionObserverDelegateSpy: IAPTransactionObserverDelegate {
@@ -103,7 +104,7 @@ class IAPTransactionObserverTests: XCTestCase {
 }
 
 private extension IAPTransactionObserver {
-    func simulateRestoreCompletedTransactionFailedWithError() {
-        paymentQueue(SKPaymentQueue(), restoreCompletedTransactionsFailedWithError: anyNSError())
+    func simulateRestoreCompletedTransactionFailedWithError(on queue: SKPaymentQueue) {
+        paymentQueue(queue, restoreCompletedTransactionsFailedWithError: anyNSError())
     }
 }
