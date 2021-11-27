@@ -89,7 +89,7 @@ class IAPUIIntegrationTests: XCTestCase {
         return value
     }
     
-    private func assertThat(_ sut: IAPViewController, isRendering products: [Product], file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: IAPViewController, isRendering products: [My1A2BGame.Product], file: StaticString = #filePath, line: UInt = #line) {
         sut.view.enforceLayoutCycle()
         
         guard sut.numberOfRenderedProductViews() == products.count else {
@@ -103,7 +103,7 @@ class IAPUIIntegrationTests: XCTestCase {
         executeRunLoopToCleanUpReferences()
     }
     
-    private func assertThat(_ sut: IAPViewController, hasViewConfiguredFor product: Product, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: IAPViewController, hasViewConfiguredFor product: My1A2BGame.Product, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
         let view = sut.productView(at: index)
         
         guard let cell = view as? IAPTableViewCell else {
@@ -184,7 +184,7 @@ extension IAPTableViewCell {
 }
 
 private extension Array where Element == SKProduct {
-    func toModel() -> [Product] {
+    func toModel() -> [My1A2BGame.Product] {
         map { Product(name: $0.localizedTitle, price: $0.localPrice) }
     }
 }

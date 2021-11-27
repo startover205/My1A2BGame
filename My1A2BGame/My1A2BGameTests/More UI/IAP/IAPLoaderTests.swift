@@ -57,12 +57,12 @@ private func allProductIDs() -> [String] {
     ["remove_bottom_ad"]
 }
 
-private func allProducts() -> [Product] {
+private func allProducts() -> [My1A2BGame.Product] {
     [.init(name: "Remove Bottom Ad", price: "$0.99")]
 }
 
 private extension Array where Element == SKProduct {
-    func model() -> [Product] {
+    func model() -> [My1A2BGame.Product] {
         map { Product(name: $0.localizedTitle, price: $0.localizedPrice) }
     }
 }
