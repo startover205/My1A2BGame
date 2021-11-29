@@ -173,7 +173,7 @@ private extension IAPViewController {
     private var productSection: Int { 0 }
 }
 
-extension IAPTableViewCell {
+private extension IAPTableViewCell {
     var nameText: String? {
         productNameLabel.text
     }
