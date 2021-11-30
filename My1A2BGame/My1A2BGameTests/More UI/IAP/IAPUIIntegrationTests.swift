@@ -38,16 +38,16 @@ class IAPUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [])
 
         loader.completeLoading(with: [product1, product2], at: 0)
-        assertThat(sut, isRendering: [product1, product2].toModel())
+        assertThat(sut, isRendering: [product1, product2].toModels())
         
         sut.simulateUserInitiatedReload()
-        assertThat(sut, isRendering: [product1, product2].toModel())
+        assertThat(sut, isRendering: [product1, product2].toModels())
 
         loader.completeLoading(with: [product1], at: 1)
-        assertThat(sut, isRendering: [product1].toModel())
+        assertThat(sut, isRendering: [product1].toModels())
         
         sut.simulateUserInitiatedReload()
-        assertThat(sut, isRendering: [product1].toModel())
+        assertThat(sut, isRendering: [product1].toModels())
         
         loader.completeLoading(with: [], at: 2)
         assertThat(sut, isRendering: [])
@@ -184,7 +184,7 @@ private extension IAPTableViewCell {
 }
 
 private extension Array where Element == SKProduct {
-    func toModel() -> [My1A2BGame.Product] {
+    func toModels() -> [My1A2BGame.Product] {
         map { Product(name: $0.localizedTitle, price: $0.localPrice) }
     }
 }
