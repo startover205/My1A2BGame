@@ -47,8 +47,6 @@ class IAPLoaderTests: XCTestCase {
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> IAPProductLoader {
         let sut = IAPProductLoader()
         
-        trackForMemoryLeaks(sut, file: file, line: line)
-        
         return sut
     }
 }
