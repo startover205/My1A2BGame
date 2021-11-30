@@ -13,11 +13,11 @@ import My1A2BGame
 class IAPLoaderTests: XCTestCase {
     
     func test_load_deliversEmptyResultOnEmptyProductIDs() {
-        let loader = makeSUT()
+        let sut = makeSUT()
         
         let exp = expectation(description: "wait for load")
         
-        loader.load(productIDs: []) { products in
+        sut.load(productIDs: []) { products in
             XCTAssertTrue(products.isEmpty)
             
             exp.fulfill()
@@ -28,12 +28,12 @@ class IAPLoaderTests: XCTestCase {
 
     @available(iOS 14.0, *)
     func test_load_deliversProductsOnLoadingSuccesfully() throws {
-        let loader = makeSUT()
+        let sut = makeSUT()
         try createLocalTestSession()
         
         let exp = expectation(description: "wait for load")
         
-        loader.load(productIDs: allProductIDs()) { products in
+        sut.load(productIDs: allProductIDs()) { products in
             XCTAssertEqual(Set(products.model()), Set(allProducts()))
             
             exp.fulfill()
