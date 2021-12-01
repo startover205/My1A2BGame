@@ -43,19 +43,22 @@ func makeProduct(identifier: String = "product identifier", name: String = "prod
     return product
 }
 
-func makePurchasedTransaction(with product: SKProduct) -> SKPaymentTransaction {
-    PurchasedTransaction(product: product)
+func makePurchasedTransaction(with product: SKProduct, transactionIdentifier: String? = nil) -> SKPaymentTransaction {
+    PurchasedTransaction(product: product, transactionidentifier: transactionIdentifier)
 }
 
 private final class PurchasedTransaction: SKPaymentTransaction {
     private let _transactionState: SKPaymentTransactionState = .purchased
     private let _payment: SKPayment
+    private let _transactionIdentifier: String?
     
-    init(product: SKProduct) {
+    init(product: SKProduct, transactionidentifier: String?) {
         self._payment = SKPayment(product: product)
+        self._transactionIdentifier = transactionidentifier
     }
     
     override var transactionState: SKPaymentTransactionState { _transactionState }
+    override var transactionIdentifier: String? { _transactionIdentifier }
     
     override var payment: SKPayment { _payment }
 }

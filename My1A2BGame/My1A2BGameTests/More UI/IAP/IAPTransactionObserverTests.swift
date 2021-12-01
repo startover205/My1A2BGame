@@ -65,6 +65,20 @@ class IAPTransactionObserverTests: XCTestCase {
         wait(for: [exp], timeout: 5.0)
     }
 
+    func test_handleTransaction_doesNotNotifyHandlerPurchasedProductTwice_onDuplicatedPurchasedTransactions() throws {
+        let (sut, _, paymentQueue) = makeSUT()
+        let product = oneValidProduct()
+        let duplicatedTransaction = makePurchasedTransaction(with: product, transactionIdentifier: "a transaction ID")
+        try createLocalTestSession()
+        let exp = expectation(description: "wait for transaction")
+        
+        sut.onPurchaseProduct = { productIdentifier in
+            exp.fulfill()
+        }
+        sut.paymentQueue(paymentQueue, updatedTransactions: [duplicatedTransaction, duplicatedTransaction])
+        wait(for: [exp], timeout: 5.0)
+    }
+
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
         let product = oneValidProduct()
