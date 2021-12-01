@@ -78,6 +78,23 @@ class IAPTransactionObserverTests: XCTestCase {
         sut.paymentQueue(paymentQueue, updatedTransactions: [duplicatedTransaction, duplicatedTransaction])
         wait(for: [exp], timeout: 5.0)
     }
+    
+    func test_handleTransaction_finishesTransactionAfterNotifyingHandler_onPurchasedTransaction() throws {
+        let (sut, _, paymentQueue) = makeSUT()
+        let product = oneValidProduct()
+        try createLocalTestSession()
+        let exp = expectation(description: "wait for transaction")
+        
+        sut.onPurchaseProduct = { productIdentifier in
+            exp.fulfill()
+        }
+        paymentQueue.add(SKPayment(product: product))
+        XCTAssertEqual(paymentQueue.transactions.count, 1)
+
+        wait(for: [exp], timeout: 5.0)
+        
+        XCTAssertEqual(paymentQueue.finishedTransaction?.payment.productIdentifier, product.productIdentifier)
+    }
 
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
@@ -103,8 +120,8 @@ class IAPTransactionObserverTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPTransactionObserver, IAPTransactionObserverDelegateSpy, SKPaymentQueue) {
-        let paymentQueue = SKPaymentQueue()
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPTransactionObserver, IAPTransactionObserverDelegateSpy, SKPaymentQueueSpy) {
+        let paymentQueue = SKPaymentQueueSpy()
         let delegate = IAPTransactionObserverDelegateSpy()
         let sut = IAPTransactionObserver()
         sut.delegate = delegate
@@ -129,6 +146,16 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         func didRestoreIAP() {
             receivedMessages.append(.didRestoreIAP)
+        }
+    }
+    
+    private final class SKPaymentQueueSpy: SKPaymentQueue {
+        private(set) var finishedTransaction: SKPaymentTransaction?
+        
+        override func finishTransaction(_ transaction: SKPaymentTransaction) {
+            finishedTransaction = transaction
+            
+            super.finishTransaction(transaction)
         }
     }
 }
