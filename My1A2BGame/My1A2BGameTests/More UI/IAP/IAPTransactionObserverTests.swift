@@ -107,7 +107,19 @@ class IAPTransactionObserverTests: XCTestCase {
         
         XCTAssertEqual(paymentQueue.finishedTransaction?.payment.productIdentifier, product.productIdentifier)
     }
-
+    
+    func test_handleTransaction_doesNotNotifyHandler_onFailedTransactionWithCancellation() throws {
+        let (sut, _, paymentQueue) = makeSUT()
+        var handlerCallCount = 0
+        
+        sut.onTransactionError = { _ in
+            handlerCallCount += 1
+        }
+        sut.paymentQueue(paymentQueue, updatedTransactions: [makeFailedTransaction(with: .paymentCancelled)])
+        
+        XCTAssertEqual(handlerCallCount, 0)
+    }
+    
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
         let product = oneValidProduct()
