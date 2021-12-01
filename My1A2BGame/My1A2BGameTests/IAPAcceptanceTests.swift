@@ -82,6 +82,11 @@ class IAPAcceptanceTests: XCTestCase {
         
         try createLocalTestSession()
         simulateBuying(oneValidProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
+        
+        let exp = expectation(description: "wait for finishing transaction")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.1)
+        
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
