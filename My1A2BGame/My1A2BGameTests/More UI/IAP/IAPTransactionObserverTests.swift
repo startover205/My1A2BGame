@@ -120,6 +120,27 @@ class IAPTransactionObserverTests: XCTestCase {
         XCTAssertEqual(handlerCallCount, 0)
     }
     
+    func test_handleTransaction_notifiesHandlerError_onFailedTransaction() throws {
+        let (sut, _, paymentQueue) = makeSUT()
+        let failureError = SKError(.invalidOfferIdentifier)
+        let session = try createLocalTestSession()
+        session.failTransactionsEnabled = true
+        session.failureError = failureError.code
+        let exp = expectation(description: "wait for transaction")
+        
+        sut.onTransactionError = { error in
+            let error = error! as NSError
+            let failureError = failureError as NSError
+            XCTAssertEqual(error.domain, failureError.domain)
+            XCTAssertEqual(error.code, failureError.code)
+            
+            exp.fulfill()
+        }
+        paymentQueue.add(SKPayment(product: oneValidProduct()))
+        
+        wait(for: [exp], timeout: 5.0)
+    }
+    
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
         let product = oneValidProduct()
