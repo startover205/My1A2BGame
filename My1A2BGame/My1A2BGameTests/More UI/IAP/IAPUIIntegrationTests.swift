@@ -13,6 +13,14 @@ import StoreKitTest
 @available(iOS 14.0, *)
 class IAPUIIntegrationTests: XCTestCase {
     
+    func test_restoreButton_enabled() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.restorePurchaseButton.isEnabled)
+    }
+    
     func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
         let (sut, loader) = makeSUT()
         
