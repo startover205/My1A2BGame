@@ -142,11 +142,9 @@ class IAPTransactionObserverTests: XCTestCase {
     
     func test_handleTransaction_doesNotFinishesTransactionWithNoHandler_onFailedTransaction() throws {
         let (sut, _, paymentQueue) = makeSUT()
-        let product = oneValidProduct()
         
         sut.onTransactionError = nil
         sut.paymentQueue(paymentQueue, updatedTransactions: [makeFailedTransaction(with: .clientInvalid)])
-        paymentQueue.add(SKPayment(product: product))
         
         XCTAssertNil(paymentQueue.finishedTransaction)
     }
