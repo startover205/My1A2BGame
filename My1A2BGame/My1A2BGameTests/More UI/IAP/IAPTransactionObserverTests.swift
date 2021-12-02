@@ -82,7 +82,6 @@ class IAPTransactionObserverTests: XCTestCase {
     func test_handleTransaction_doesNotFinishesTransactionWithNoHandler_onPurchasedTransaction() throws {
         let (sut, _, paymentQueue) = makeSUT()
         let product = oneValidProduct()
-        try createLocalTestSession()
         
         sut.onPurchaseProduct = nil
         sut.paymentQueue(paymentQueue, updatedTransactions: [makePurchasedTransaction(with: product)])
