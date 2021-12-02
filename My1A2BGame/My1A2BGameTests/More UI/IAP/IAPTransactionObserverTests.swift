@@ -186,6 +186,15 @@ class IAPTransactionObserverTests: XCTestCase {
         wait(for: [exp], timeout: 5.0)
     }
     
+    func test_handleTransaction_doesNotFinishTransactionWithNoHandler_onSuccessfullyRestoredTransaction() throws {
+        let (sut, _, paymentQueue) = makeSUT()
+        
+        sut.onRestoreProduct = nil
+        sut.paymentQueue(paymentQueue, updatedTransactions: [makeRestoredTransaction()])
+        
+        XCTAssertNil(paymentQueue.finishedTransaction)
+    }
+    
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
         let product = oneValidProduct()
