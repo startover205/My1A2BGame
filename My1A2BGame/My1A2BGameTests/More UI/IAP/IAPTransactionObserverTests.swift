@@ -69,13 +69,13 @@ class IAPTransactionObserverTests: XCTestCase {
         let (sut, _, paymentQueue) = makeSUT()
         let product = oneValidProduct()
         let duplicatedTransaction = makePurchasedTransaction(with: product, transactionIdentifier: "a transaction ID")
-        try createLocalTestSession()
         let exp = expectation(description: "wait for transaction")
         
         sut.onPurchaseProduct = { productIdentifier in
             exp.fulfill()
         }
         sut.paymentQueue(paymentQueue, updatedTransactions: [duplicatedTransaction, duplicatedTransaction])
+        
         wait(for: [exp], timeout: 5.0)
     }
     
