@@ -14,6 +14,7 @@ extension XCTestCase {
     @discardableResult
     func createLocalTestSession(_ configurationFileNamed: String = "NonConsumable") throws -> SKTestSession {
         let session = try SKTestSession(configurationFileNamed: configurationFileNamed)
+        session.resetToDefaultState()
         session.disableDialogs = true
         session.clearTransactions()
         
