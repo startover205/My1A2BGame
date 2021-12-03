@@ -56,9 +56,9 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 queue.finishTransaction(transaction)
                 
             case .restored:
-                guard let handler = onRestoreProduct else { continue }
-                
                 hasRestorableContent = true
+
+                guard let handler = onRestoreProduct else { continue }
                 
                 let productIdentifier = transaction.payment.productIdentifier
                 handler(productIdentifier)

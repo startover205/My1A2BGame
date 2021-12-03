@@ -240,6 +240,23 @@ class IAPTransactionObserverTests: XCTestCase {
         wait(for: [exp], timeout: 5.0)
     }
     
+    func test_restoreCompletedTransactionsFinished_notifiesHandlerWhenThereIsRestorableContent() throws {
+        let (sut, _, paymentQueue) = makeSUT()
+        try createLocalTestSession()
+        
+        simulateBuying(oneValidProduct(), observer: sut, paymentQueue: paymentQueue)
+        
+        let exp = expectation(description: "wait for transaction")
+        sut.onRestorationFinished = { hasRestorableContent in
+            XCTAssertTrue(hasRestorableContent)
+            
+            exp.fulfill()
+        }
+        paymentQueue.restoreCompletedTransactions()
+        
+        wait(for: [exp], timeout: 5.0)
+    }
+    
     func test_restoreCompletedTransactions_doesNotMessageDelegateOnRestorationFailedWithError() throws {
         let (sut, delegate, paymentQueue) = makeSUT()
         let product = oneValidProduct()
