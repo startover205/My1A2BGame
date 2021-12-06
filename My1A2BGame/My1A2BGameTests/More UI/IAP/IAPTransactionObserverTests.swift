@@ -269,9 +269,3 @@ class IAPTransactionObserverTests: XCTestCase {
         }
     }
 }
-
-private extension IAPTransactionObserver {
-    func simulateRestoreCompletedTransactionFailedWithError(on queue: SKPaymentQueue) {
-        paymentQueue(queue, restoreCompletedTransactionsFailedWithError: anyNSError())
-    }
-}
