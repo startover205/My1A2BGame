@@ -71,7 +71,7 @@ class IAPTransactionObserverTests: XCTestCase {
         let duplicatedPurchasedTransaction = makePurchasedTransaction(with: product, transactionIdentifier: "a transaction ID")
         let exp = expectation(description: "wait for transaction")
         
-        sut.onPurchaseProduct = { productIdentifier in
+        sut.onPurchaseProduct = { _ in
             exp.fulfill()
         }
         sut.paymentQueue(paymentQueue, updatedTransactions: [duplicatedPurchasedTransaction, duplicatedPurchasedTransaction])
@@ -155,7 +155,7 @@ class IAPTransactionObserverTests: XCTestCase {
         session.failTransactionsEnabled = true
         let exp = expectation(description: "wait for transaction")
         
-        sut.onTransactionError = { productIdentifier in
+        sut.onTransactionError = { _ in
             exp.fulfill()
         }
         paymentQueue.add(SKPayment(product: product))
