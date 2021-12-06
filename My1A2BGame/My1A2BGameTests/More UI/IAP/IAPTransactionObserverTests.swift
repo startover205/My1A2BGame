@@ -85,7 +85,6 @@ class IAPTransactionObserverTests: XCTestCase {
         
         sut.onPurchaseProduct = nil
         sut.paymentQueue(paymentQueue, updatedTransactions: [makePurchasedTransaction(with: product)])
-        paymentQueue.add(SKPayment(product: product))
         
         XCTAssertNil(paymentQueue.finishedTransaction)
     }
