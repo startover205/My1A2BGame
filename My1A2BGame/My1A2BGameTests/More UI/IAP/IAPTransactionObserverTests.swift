@@ -170,9 +170,12 @@ class IAPTransactionObserverTests: XCTestCase {
         let (sut, _, paymentQueue) = makeSUT()
         let product = oneValidProduct()
         try createLocalTestSession()
-        let exp = expectation(description: "wait for transaction")
         
         simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
+        
+        waitForTransactionFinished()
+
+        let exp = expectation(description: "wait for transaction")
         sut.onRestoreProduct = { productIdentifier in
             XCTAssertEqual(productIdentifier, product.productIdentifier)
             
@@ -196,9 +199,12 @@ class IAPTransactionObserverTests: XCTestCase {
         let (sut, _, paymentQueue) = makeSUT()
         let product = oneValidProduct()
         try createLocalTestSession()
-        let exp = expectation(description: "wait for transaction")
         
         simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
+        
+        waitForTransactionFinished()
+
+        let exp = expectation(description: "wait for transaction")
         sut.onRestoreProduct = { _ in
             exp.fulfill()
         }
@@ -244,6 +250,8 @@ class IAPTransactionObserverTests: XCTestCase {
         try createLocalTestSession()
         
         simulateBuying(oneValidProduct(), observer: sut, paymentQueue: paymentQueue)
+        
+        waitForTransactionFinished()
         
         let exp = expectation(description: "wait for transaction")
         sut.onRestorationFinished = { hasRestorableContent in
@@ -291,6 +299,12 @@ class IAPTransactionObserverTests: XCTestCase {
         trackForMemoryLeaks(delegate, file: file, line: line)
         
         return (sut, delegate, paymentQueue)
+    }
+    
+    private func waitForTransactionFinished() {
+        let exp = expectation(description: "wait for transaction to be finished")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.1)
     }
     
     private final class IAPTransactionObserverDelegateSpy: IAPTransactionObserverDelegate {
