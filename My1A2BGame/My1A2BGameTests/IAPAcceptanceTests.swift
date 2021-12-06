@@ -45,15 +45,6 @@ class IAPAcceptanceTests: XCTestCase {
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
 
-    func test_iap_restoreCompletedTransactions_doesNotShowsMessageOnPaymenCancelledError() {
-        let (tabController, transactionObserver, paymentQueue) = launch()
-        let restorationError = SKError(.paymentCancelled)
-
-        transactionObserver.simulateRestoreCompletedTransactionFailed(with: restorationError, from: paymentQueue)
-
-        XCTAssertNil(tabController.presentedViewController)
-    }
-
     func test_iap_restoreCompletedTransactions_showsMessageOnRestorationError() throws {
         let (tabController, transactionObserver, paymentQueue) = launch()
         let restorationError = anyNSError()

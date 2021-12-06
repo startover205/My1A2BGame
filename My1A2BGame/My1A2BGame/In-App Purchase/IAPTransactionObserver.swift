@@ -77,8 +77,6 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        guard (error as? SKError)?.code != .paymentCancelled else { return }
-        
         onRestorationFinishedWithError?(error)
     }
 }
