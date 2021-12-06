@@ -12,7 +12,6 @@ import StoreKit
 class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     
     static let shared = IAPTransactionObserver()
-    weak var delegate: IAPTransactionObserverDelegate?
     private var finishedTransactionIDs = [String]()
     private var hasRestorableContent = false
     var onTransactionError: ((Error?) -> Void)?
@@ -34,14 +33,10 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
                 guard let handler = onPurchaseProduct else { continue }
                 
                 let productIdentifier = transaction.payment.productIdentifier
-                
                 handler(productIdentifier)
-                
                 queue.finishTransaction(transaction)
                 
                 transaction.transactionIdentifier.map { finishedTransactionIDs.append($0) }
-                
-                delegate?.didPuarchaseIAP(productIdenifer: productIdentifier)
                 
             case .failed :
                 guard (transaction.error as? SKError)?.code != .paymentCancelled else {
@@ -72,16 +67,9 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         onRestorationFinished?(hasRestorableContent)
-        
-        delegate?.didRestoreIAP()
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         onRestorationFinishedWithError?(error)
     }
-}
-
-protocol IAPTransactionObserverDelegate: AnyObject {
-    func didPuarchaseIAP(productIdenifer: String)
-    func didRestoreIAP()
 }
