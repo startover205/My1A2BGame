@@ -77,7 +77,6 @@ class IAPTransactionObserverTests: XCTestCase {
             exp.fulfill()
         }
         paymentQueue.add(SKPayment(product: product))
-        XCTAssertEqual(paymentQueue.transactions.count, 1)
 
         wait(for: [exp], timeout: 5.0)
         
@@ -137,7 +136,6 @@ class IAPTransactionObserverTests: XCTestCase {
             exp.fulfill()
         }
         paymentQueue.add(SKPayment(product: product))
-        XCTAssertEqual(paymentQueue.transactions.count, 1)
 
         wait(for: [exp], timeout: 5.0)
         
