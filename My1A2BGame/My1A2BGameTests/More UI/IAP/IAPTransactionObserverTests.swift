@@ -28,15 +28,17 @@ class IAPTransactionObserverTests: XCTestCase {
     }
 
     func test_handleTransaction_stillHandlesOtherTransactionsAfterCancelledTransaction() {
-        let (sut, delegate, paymentQueue) = makeSUT()
+        let (sut, _, paymentQueue) = makeSUT()
         let cancelledTransaction = makeFailedTransaction(with: .paymentCancelled)
-        let product = oneValidProduct()
-        let purchasedTransaction = makePurchasedTransaction(with: product)
-        sut.onPurchaseProduct = { _ in }
-
+        let purchasedTransaction = makePurchasedTransaction(with: oneValidProduct())
+        
+        let exp = expectation(description: "wait for purchased transaction to be handled")
+        sut.onPurchaseProduct = { _ in
+            exp.fulfill()
+        }
         sut.paymentQueue(paymentQueue, updatedTransactions: [cancelledTransaction, purchasedTransaction])
-
-        XCTAssertEqual(delegate.receivedMessages, [.didPurchaseIAP(productIdentifier: oneValidProduct().productIdentifier)])
+        
+        wait(for: [exp], timeout: 0.1)
     }
 
     func test_handleTransaction_messagesDelegatePurchasedProduct_onSuccessfullyPurchasedTransaction() throws {
