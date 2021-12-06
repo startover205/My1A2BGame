@@ -68,13 +68,13 @@ class IAPTransactionObserverTests: XCTestCase {
     func test_handleTransaction_doesNotNotifyHandlerPurchasedProductTwice_onDuplicatedPurchasedTransactions() throws {
         let (sut, _, paymentQueue) = makeSUT()
         let product = oneValidProduct()
-        let duplicatedTransaction = makePurchasedTransaction(with: product, transactionIdentifier: "a transaction ID")
+        let duplicatedPurchasedTransaction = makePurchasedTransaction(with: product, transactionIdentifier: "a transaction ID")
         let exp = expectation(description: "wait for transaction")
         
         sut.onPurchaseProduct = { productIdentifier in
             exp.fulfill()
         }
-        sut.paymentQueue(paymentQueue, updatedTransactions: [duplicatedTransaction, duplicatedTransaction])
+        sut.paymentQueue(paymentQueue, updatedTransactions: [duplicatedPurchasedTransaction, duplicatedPurchasedTransaction])
         
         wait(for: [exp], timeout: 5.0)
     }
