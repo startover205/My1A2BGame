@@ -128,6 +128,10 @@ class IAPAcceptanceTests: XCTestCase {
 
         XCTAssertEqual(loader.loadCallCount, 2, "Expect refresh after product purchase")
 
+        let exp = expectation(description: "wait for purchased transaction to be finished")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.1)
+        
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
 
         XCTAssertEqual(loader.loadCallCount, 3, "Expect refresh after product restoration")

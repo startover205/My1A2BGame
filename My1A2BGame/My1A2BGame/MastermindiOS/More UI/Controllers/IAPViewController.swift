@@ -59,12 +59,3 @@ public class IAPViewController: UITableViewController {
        tableModel[indexPath.row]
     }
 }
-
-extension IAPViewController: IAPTransactionObserverDelegate {
-    func didPuarchaseIAP(productIdenifer: String) {
-        refresh()
-    }
-    func didRestoreIAP() {
-        refresh()
-    }
-}

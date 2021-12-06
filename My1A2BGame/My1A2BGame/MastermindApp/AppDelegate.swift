@@ -70,6 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appVersion: appVersion)
     }()
     
+    private weak var iapController: IAPViewController?
+    
     convenience init(userDefaults: UserDefaults, secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader, requestReview: @escaping () -> Void) {
         self.init()
         
@@ -155,6 +157,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             IAP.didPurchase(product: product, userDefaults: self.userDefaults)
+            
+            self.iapController?.refresh()
         }
         
         transactionObserver.onPurchaseProduct = buyingProductHandler
@@ -290,7 +294,7 @@ private extension AppDelegate {
     
     private func selectIAP() {
         let iapController = IAPUIComposer.iapComposedWith(productLoader: productLoader)
-        transactionObserver.delegate = iapController
+        self.iapController = iapController
         moreNavigationController.pushViewController(iapController, animated: true)
     }
     
