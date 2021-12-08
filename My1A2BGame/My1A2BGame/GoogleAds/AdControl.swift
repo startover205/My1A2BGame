@@ -18,16 +18,7 @@ extension AdControl {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
     static func setBannerAd(onTopOf view: UIView, rootController: UIViewController) -> CGFloat {
-        let frame = { () -> CGRect in
-          // Here safe area is taken into account, hence the view frame is used
-          // after the view has been laid out.
-          if #available(iOS 11.0, *) {
-            return view.frame.inset(by: view.safeAreaInsets)
-          } else {
-            return view.frame
-          }
-        }()
-        let viewWidth = frame.size.width
+        let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
         
         let googleBannerView = GADBannerView()
         googleBannerView.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)

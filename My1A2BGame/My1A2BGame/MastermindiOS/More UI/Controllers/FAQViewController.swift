@@ -50,12 +50,7 @@ public final class FAQViewController: UITableViewController {
             
             cachedScrollPosition = tableView.contentOffset.y
             
-            if #available(iOS 11.0, *) {
-                tableView.performBatchUpdates(nil, completion: nil)
-            } else {
-                tableView.beginUpdates()
-                tableView.endUpdates()
-            }
+            tableView.performBatchUpdates(nil, completion: nil)
             
             cachedScrollPosition = nil
         }
