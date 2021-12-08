@@ -72,13 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private weak var iapController: IAPViewController?
     
-    convenience init(userDefaults: UserDefaults, secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader, requestReview: @escaping () -> Void) {
+    convenience init(userDefaults: UserDefaults, secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader, requestReview: @escaping () -> Void, basicRecordLoader: RecordLoader, advancedRecordLoader: RecordLoader) {
         self.init()
         
         self.userDefaults = userDefaults
         self.secretGenerator = secretGenerator
         self.rewardAdLoader = rewardAdLoader
         self.requestReview = requestReview
+        self.basicRecordLoader = basicRecordLoader
+        self.advancedRecordLoader = advancedRecordLoader
     }
     
     convenience init(userDefaults: UserDefaults, transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: IAPProductLoader) {
@@ -91,6 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+
         
         // 設定廣告
         if #available(iOS 14, *) {

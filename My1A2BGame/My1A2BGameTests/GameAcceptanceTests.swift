@@ -88,7 +88,7 @@ class GameAcceptanceTests: XCTestCase{
     // MARK: - Helpers
     
     private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), rewardAdLoader: RewardAdLoaderStub = .null, requestReview: @escaping () -> Void = {}) -> UITabBarController {
-        let sut = AppDelegate(userDefaults: userDefaults, secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, requestReview: requestReview)
+        let sut = AppDelegate(userDefaults: userDefaults, secretGenerator: makeSecretGenerator(), rewardAdLoader: rewardAdLoader, requestReview: requestReview, basicRecordLoader: InMemoryRecordLoader(), advancedRecordLoader: InMemoryRecordLoader())
         sut.window = UIWindow()
         sut.configureWindow()
         
@@ -272,5 +272,26 @@ private extension BannerAdTabBarViewController {
         } else {
             return true
         }
+    }
+}
+
+class InMemoryRecordLoader: RecordLoader {
+    private var records = [PlayerRecord]()
+    
+    func load() throws -> [PlayerRecord] { records }
+    
+    func validate(score: Score) -> Bool {
+        for record in records {
+            if  score.guessCount < record.guessCount {
+                return true
+            } else if score.guessCount == record.guessCount, score.guessTime < record.guessTime {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func insertNewRecord(_ record: PlayerRecord) throws {
+        records.append(record)
     }
 }
