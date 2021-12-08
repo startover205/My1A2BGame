@@ -274,24 +274,3 @@ private extension BannerAdTabBarViewController {
         }
     }
 }
-
-class InMemoryRecordLoader: RecordLoader {
-    private var records = [PlayerRecord]()
-    
-    func load() throws -> [PlayerRecord] { records }
-    
-    func validate(score: Score) -> Bool {
-        for record in records {
-            if  score.guessCount < record.guessCount {
-                return true
-            } else if score.guessCount == record.guessCount, score.guessTime < record.guessTime {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func insertNewRecord(_ record: PlayerRecord) throws {
-        records.append(record)
-    }
-}

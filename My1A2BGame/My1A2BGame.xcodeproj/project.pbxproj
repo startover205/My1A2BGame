@@ -10,6 +10,7 @@
 		C008E2D7274DD05A0036E2A0 /* SKProduct+LocalPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */; };
 		C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */; };
 		C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009191F26AD5E0500544115 /* GameUIComposer.swift */; };
+		C00FA8B92760A9B60098E4E1 /* InMemoryRecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00FA8B82760A9B60098E4E1 /* InMemoryRecordLoader.swift */; };
 		C01380132701A24200D3F4A8 /* RewardAdViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */; };
 		C01380152701A8A400D3F4A8 /* RewardAdLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */; };
 		C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C014619E20BE6BD20023EEB6 /* AppDelegate.swift */; };
@@ -121,6 +122,7 @@
 		C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalPrice.swift"; sourceTree = "<group>"; };
 		C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C009191F26AD5E0500544115 /* GameUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIComposer.swift; sourceTree = "<group>"; };
+		C00FA8B82760A9B60098E4E1 /* InMemoryRecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRecordLoader.swift; sourceTree = "<group>"; };
 		C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewControllerTests.swift; sourceTree = "<group>"; };
 		C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdLoaderStub.swift; sourceTree = "<group>"; };
 		C014619B20BE6BD20023EEB6 /* My1A2BGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My1A2BGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -433,6 +435,7 @@
 				C09F318F271D20590038B18B /* UIViewControllerSpy.swift */,
 				C0C271922727A8D600A565C6 /* FAQViewController+TestHelpers.swift */,
 				C0A05CA6272FB84B00E345C6 /* TestingContainerViewController.swift */,
+				C00FA8B82760A9B60098E4E1 /* InMemoryRecordLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				C09ADD412744916F00222B71 /* IAPTransactionObserverTests.swift in Sources */,
 				C099258927391F0A003E322D /* UIView+TestHelpers.swift in Sources */,
 				C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */,
+				C00FA8B92760A9B60098E4E1 /* InMemoryRecordLoader.swift in Sources */,
 				C09F3190271D20590038B18B /* UIViewControllerSpy.swift in Sources */,
 				C09925822734D497003E322D /* UIBarButtonItem+TestHelper.swift in Sources */,
 				C09841FF26D0DE9100AE72F4 /* WinUIIntegrationTests.swift in Sources */,
