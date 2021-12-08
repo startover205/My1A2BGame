@@ -74,7 +74,6 @@ public final class AlertAdCountdownController: UIViewController {
     }
     
     deinit {
-        print("deinit file: \(#file)")
         progressCountDownTimer?.invalidate()
         adCountDownTimer?.invalidate()
     }
