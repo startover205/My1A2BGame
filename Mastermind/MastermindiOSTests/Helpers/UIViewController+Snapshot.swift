@@ -34,6 +34,25 @@ struct SnapshotConfiguration {
                 .init(userInterfaceStyle: style)
             ]))
     }
+    
+    static func iPodTouch7th(style: UIUserInterfaceStyle, contentSize: UIContentSizeCategory = .medium) -> SnapshotConfiguration {
+        return SnapshotConfiguration(
+            size: CGSize(width: 320, height: 568),
+            safeAreaInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
+            layoutMargins: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8),
+            traitCollection: UITraitCollection(traitsFrom: [
+                .init(forceTouchCapability: .unavailable),
+                .init(layoutDirection: .leftToRight),
+                .init(preferredContentSizeCategory: contentSize),
+                .init(userInterfaceIdiom: .phone),
+                .init(horizontalSizeClass: .compact),
+                .init(verticalSizeClass: .regular),
+                .init(displayScale: 2),
+                .init(accessibilityContrast: .normal),
+                .init(displayGamut: .P3),
+                .init(userInterfaceStyle: style)
+            ]))
+    }
 }
 
 private final class SnapshotWindow: UIWindow {
