@@ -32,6 +32,8 @@ public class WinViewController: UIViewController {
         recordViewController?.configureViews()
         
         prepareEmoji()
+        
+        view.sendSubviewToBack(emojiLabel)
     }
     
     public override func viewDidAppear(_ animated: Bool) {

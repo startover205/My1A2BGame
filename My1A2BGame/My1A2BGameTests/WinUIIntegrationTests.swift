@@ -56,6 +56,14 @@ class WinUIIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.showingSaveRecordViews)
     }
     
+    func test_emojiAnimation_emojiAtTheViewBottomNotBlockingOtherViews() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.view.subviews.first, sut.emojiLabel)
+    }
+    
     func test_emojiAnimation_showsOnTheFirstTimeOnly() {
         let (sut, _) = makeSUT()
         
