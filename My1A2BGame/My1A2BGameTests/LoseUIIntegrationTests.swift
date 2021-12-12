@@ -37,16 +37,15 @@ class LoseUIIntegrationTests: XCTestCase {
         let sut = makeSUT()
 
         sut.loadViewIfNeeded()
-
         var capturedTransform = sut.emojiViewTransform
-
-        sut.viewDidAppear(true)
-
+        
+        sut.simulateViewAppear()
         XCTAssertNotEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform changed after view did appear")
 
         capturedTransform = sut.emojiViewTransform
-        sut.viewDidAppear(true)
-
+        
+        sut.simulateViewDisappear()
+        sut.simulateViewAppear()
         XCTAssertEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform does not change when the view appeared the second time")
     }
     

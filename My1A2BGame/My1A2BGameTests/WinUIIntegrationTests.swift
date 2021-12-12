@@ -71,13 +71,13 @@ class WinUIIntegrationTests: XCTestCase {
         
         var capturedTransform = sut.emojiViewTransform
         
-        sut.viewDidAppear(true)
-        
+        sut.simulateViewAppear()
         XCTAssertNotEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform changed after view did appear")
         
         capturedTransform = sut.emojiViewTransform
-        sut.viewDidAppear(true)
         
+        sut.simulateViewDisappear()
+        sut.simulateViewAppear()
         XCTAssertEqual(sut.emojiViewTransform, capturedTransform, "Expect emoji view transform does not change when the view appeared the second time")
     }
     
@@ -88,15 +88,13 @@ class WinUIIntegrationTests: XCTestCase {
         })
 
         sut.loadViewIfNeeded()
-        
         XCTAssertEqual(fireworkCallCount, 0, "expect no call until view appear")
 
-        sut.viewDidAppear(true)
-
+        sut.simulateViewAppear()
         XCTAssertEqual(fireworkCallCount, 1, "expect 1 call after view appear")
-
-        sut.viewDidAppear(true)
-
+        
+        sut.simulateViewDisappear()
+        sut.simulateViewAppear()
         XCTAssertEqual(fireworkCallCount, 1, "expect no more calls after view already appear once")
     }
     
