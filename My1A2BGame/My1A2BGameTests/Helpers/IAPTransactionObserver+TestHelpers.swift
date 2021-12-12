@@ -35,7 +35,7 @@ extension XCTestCase {
             exp.fulfill()
         }
         paymentQueue.restoreCompletedTransactions()
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: 20.0)
     }
     
     func simulateBuying(_ product: SKProduct, observer: IAPTransactionObserver, paymentQueue: SKPaymentQueue) {
@@ -48,6 +48,6 @@ extension XCTestCase {
             exp.fulfill()
         }
         paymentQueue.add(SKPayment(product: product))
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: 20.0)
     }
 }

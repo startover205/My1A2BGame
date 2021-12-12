@@ -40,7 +40,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.add(SKPayment(product: product))
         
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 20.0)
     }
 
     func test_handleTransaction_doesNotNotifyHandlerPurchasedProductTwice_onDuplicatedPurchasedTransactions() throws {
@@ -78,7 +78,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.add(SKPayment(product: product))
 
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: 20.0)
         
         XCTAssertEqual(paymentQueue.finishedTransaction?.payment.productIdentifier, product.productIdentifier)
     }
@@ -113,7 +113,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.add(SKPayment(product: oneValidProduct()))
         
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 20.0)
     }
     
     func test_handleTransaction_doesNotFinishesTransactionWithNoHandler_onFailedTransaction() throws {
@@ -137,7 +137,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.add(SKPayment(product: product))
 
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 20.0)
         
         XCTAssertEqual(paymentQueue.finishedTransaction?.payment.productIdentifier, product.productIdentifier)
     }
@@ -159,7 +159,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.restoreCompletedTransactions()
         
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 20.0)
     }
     
     func test_handleTransaction_doesNotFinishTransactionWithNoHandler_onSuccessfullyRestoredTransaction() throws {
@@ -186,7 +186,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.restoreCompletedTransactions()
         
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 20.0)
         
         XCTAssertEqual(paymentQueue.finishedTransaction?.payment.productIdentifier, product.productIdentifier)
     }
@@ -218,7 +218,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.restoreCompletedTransactions()
         
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 20.0)
     }
     
     func test_restoreCompletedTransactionsFinished_notifiesHandlerWhenThereIsRestorableContent() throws {
@@ -237,7 +237,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.restoreCompletedTransactions()
         
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 20.0)
     }
     
     // MARK: - Helpers
