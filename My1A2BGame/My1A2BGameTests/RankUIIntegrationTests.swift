@@ -83,19 +83,23 @@ class RankUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
 
-        sut.viewWillAppear(false)
+        recordLoader.stub = []
+        sut.simulateViewAppear()
         assertThat(sut, isRendering: [placeholder])
 
+        sut.simulateViewDisappear()
         recordLoader.stub = [record0, record1]
-        sut.viewWillAppear(false)
+        sut.simulateViewAppear()
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00"), record1.toModel(guessTime: "00:02:03")])
 
+        sut.simulateViewDisappear()
         recordLoader.stub = [record0, record1, record2]
-        sut.viewWillAppear(false)
+        sut.simulateViewAppear()
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00"), record1.toModel(guessTime: "00:02:03"), record2.toModel(guessTime: "00:00:05")])
 
+        sut.simulateViewDisappear()
         recordLoader.stub = [record0]
-        sut.viewWillAppear(false)
+        sut.simulateViewAppear()
         assertThat(sut, isRendering: [record0.toModel(guessTime: "00:05:00")])
     }
     
@@ -107,7 +111,7 @@ class RankUIIntegrationTests: XCTestCase {
         let sut = makeSUT(ranks: [rank], hostVC: hostVC)
         
         sut.loadViewIfNeeded()
-        sut.viewWillAppear(false)
+        sut.simulateViewAppear()
         
         let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? UIAlertController)
         XCTAssertEqual(alert.title, RankPresenter.loadError)
