@@ -185,16 +185,6 @@ private extension RankViewController {
         navigationItem.titleView as? UISegmentedControl
     }
     
-    func simulateViewAppear() {
-        beginAppearanceTransition(true, animated: false)
-        endAppearanceTransition()
-    }
-    
-    func simulateViewDisappear() {
-        beginAppearanceTransition(false, animated: false)
-        endAppearanceTransition()
-    }
-    
     func selectionTitle(at index: Int) -> String? {
         rankSelectionView()?.titleForSegment(at: index)
     }
