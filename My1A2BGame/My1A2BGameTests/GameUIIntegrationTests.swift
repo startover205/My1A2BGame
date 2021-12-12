@@ -43,7 +43,7 @@ class GameUIIntegrationTests: XCTestCase {
             XCTAssertTrue($0.alpha == 0, "Expect \($0) to be hidden before view appear")
         }
         
-        sut.simulateViewAppear()
+        sut.simulateViewWillAppear()
         sut.fadeInCompoenents.forEach {
             XCTAssertTrue($0.alpha != 0, "Expect \($0) to be shown after view appear")
         }
@@ -540,7 +540,9 @@ private extension GuessNumberViewController {
         restartButton.title(for: .normal)
     }
     
-    func simulateViewAppear() { viewWillAppear(false) }
+    func simulateViewWillAppear() {
+        beginAppearanceTransition(true, animated: false)
+    }
     
     func simulateUserInitiateGuess() {
         inputDelegate?.numberInputViewController(NumberInputViewController(), didFinishEntering: ["1", "2", "3", "4"])
