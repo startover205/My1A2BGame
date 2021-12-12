@@ -14,7 +14,17 @@ import AVFoundation
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String, gameVersion: GameVersion, userDefaults: UserDefaults, speechSynthesizer: AVSpeechSynthesizer = .init(), secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void, onRestart: @escaping () -> Void, animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
+    public static func gameComposedWith(title: String,
+                                        gameVersion: GameVersion,
+                                        userDefaults: UserDefaults,
+                                        speechSynthesizer: AVSpeechSynthesizer = .init(),
+                                        secret: DigitSecret,
+                                        delegate: ReplenishChanceDelegate,
+                                        currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
+                                        onWin: @escaping (Score) -> Void,
+                                        onLose: @escaping () -> Void,
+                                        onRestart: @escaping () -> Void,
+                                        animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
         
         let gameViewController = makeGameViewController()
         gameViewController.title = title
