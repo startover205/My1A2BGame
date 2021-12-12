@@ -639,6 +639,7 @@
                 <customObject id="5Az-zZ-TMl" customClass="HelperViewController" customModule="MastermindiOS" customModuleProvider="target">
                     <connections>
                         <outlet property="helperBoardView" destination="ujz-41-3mP" id="k7Q-bO-RVL"/>
+                        <outlet property="resetButton" destination="1ow-oT-Vjr" id="HW4-hK-hSC"/>
                         <outletCollection property="helperNumberButtons" destination="CJh-v6-coS" collectionClass="NSMutableArray" id="uuM-2r-NTB"/>
                         <outletCollection property="helperNumberButtons" destination="LQd-y9-cXR" collectionClass="NSMutableArray" id="ch9-Ve-K6e"/>
                         <outletCollection property="helperNumberButtons" destination="bAI-ze-Gji" collectionClass="NSMutableArray" id="ac9-Cj-Rev"/>
@@ -670,7 +671,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilm-d5-Xqp">
                                 <rect key="frame" x="20" y="20" width="374" height="768"/>
                                 <color key="backgroundColor" name="MainBackgroundOffset"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

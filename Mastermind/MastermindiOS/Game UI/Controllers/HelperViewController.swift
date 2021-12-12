@@ -10,10 +10,15 @@ import UIKit
 
 public final class HelperViewController: NSObject {
     @IBOutlet private(set) public weak var helperBoardView: UIView!
+    @IBOutlet private(set) public weak var resetButton: UIButton!
     @IBOutlet private(set) public var helperNumberButtons: [HelperButton]!
     
     public var animate: Animate?
     public var onTapHelperInfo: (() -> Void)?
+    
+    func configureViews() {
+        resetButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    }
     
     @IBAction public func helperBtnPressed(_ sender: Any) {
         if helperBoardView.isHidden {

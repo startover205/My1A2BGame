@@ -46,6 +46,7 @@ public class GuessNumberViewController: UIViewController {
         
         hintViewController.configureViews()
         quizLabelViewController.configureViews()
+        helperViewController.configureViews()
         
         fadeOutViews.forEach { $0.alpha = 0 }
         

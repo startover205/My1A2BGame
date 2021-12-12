@@ -32,6 +32,7 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GAME_HELPER_light")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GAME_HELPER_dark")
+        assert(snapshot: sut.snapshot(for: .iPodTouch7th(style: .light)), named: "GAME_HELPER_light_iPodTouch")
     }
     
     func test_gameWithOneWrongGuess() {
