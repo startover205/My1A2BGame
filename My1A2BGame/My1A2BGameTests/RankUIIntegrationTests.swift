@@ -35,31 +35,40 @@ class RankUIIntegrationTests: XCTestCase {
     
     func test_loadRecordsActions_requestsRecordsFromLoader() {
         let loader = RecordLoaderSpy(stub: [])
-        let anotherLoader = RecordLoaderSpy(stub: [])
+        let secondLoader = RecordLoaderSpy(stub: [])
         let rank = Rank(title: "a title", loader: loader)
-        let anotherRank = Rank(title: "another title", loader: anotherLoader)
+        let anotherRank = Rank(title: "another title", loader: secondLoader)
         let sut = makeSUT(ranks: [rank, anotherRank])
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(loader.loadCallCount, 0, "Expect no loading requests after view is loaded")
+        XCTAssertEqual(loader.loadCallCount, 0, "Expect no loading request to the first loader after view is loaded")
+        XCTAssertEqual(secondLoader.loadCallCount, 0, "Expect no loading request to the second loader after view is loaded")
         
-        sut.viewWillAppear(false)
-        XCTAssertEqual(loader.loadCallCount, 1, "Expect a loading request on will view appear")
+        sut.simulateViewAppear()
+        XCTAssertEqual(loader.loadCallCount, 1, "Expect a loading request to the first loader when view appear")
         
-        sut.viewWillAppear(false)
-        XCTAssertEqual(loader.loadCallCount, 2, "Expect another loading request on will view appear")
+        sut.simulateViewDisappear()
+        XCTAssertEqual(loader.loadCallCount, 1, "Expect no loading request to the first loader on view disappear")
+        
+        sut.simulateViewAppear()
+        XCTAssertEqual(loader.loadCallCount, 2, "Expect another loading request to the first loader when view appear again")
         
         sut.simulateChangeRankSelection(to: 0)
         XCTAssertEqual(loader.loadCallCount, 2, "Expect no loading requests on tapping the current segment")
         
-        sut.simulateChangeRankSelection(to: 1)
-        XCTAssertEqual(anotherLoader.loadCallCount, 1, "Expect a loading request on tapping other segments")
+        XCTAssertEqual(secondLoader.loadCallCount, 0, "Expect no loading request to the second loader before the corresponding segment is selected")
         
-        sut.viewWillAppear(false)
-        XCTAssertEqual(anotherLoader.loadCallCount, 2, "Expect another loading request on will view appear")
+        sut.simulateChangeRankSelection(to: 1)
+        XCTAssertEqual(secondLoader.loadCallCount, 1, "Expect a loading request to the second loader on tapping the other segment")
+        
+        sut.simulateViewDisappear()
+        XCTAssertEqual(secondLoader.loadCallCount, 1, "Expect no loading request to the second loader on view disappear")
+
+        sut.simulateViewAppear()
+        XCTAssertEqual(secondLoader.loadCallCount, 2, "Expect another loading request to the second loader on tapping view appear")
         
         sut.simulateChangeRankSelection(to: 0)
-        XCTAssertEqual(loader.loadCallCount, 3, "Expect a loading request on tapping other segments")
+        XCTAssertEqual(loader.loadCallCount, 3, "Expect a new loading request to the first loader on tapping the original segment")
     }
     
     func test_loadRecordsCompletion_rendersSuccessfullyLoadedRecordsAndPlaceholderForEmptyRecords() {
@@ -170,6 +179,16 @@ class RankUIIntegrationTests: XCTestCase {
 private extension RankViewController {
     private func rankSelectionView() -> UISegmentedControl? {
         navigationItem.titleView as? UISegmentedControl
+    }
+    
+    func simulateViewAppear() {
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
+    
+    func simulateViewDisappear() {
+        beginAppearanceTransition(false, animated: false)
+        endAppearanceTransition()
     }
     
     func selectionTitle(at index: Int) -> String? {
