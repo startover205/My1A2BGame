@@ -10,7 +10,7 @@ import CoreData
 extension NSManagedObjectContext {
     static func alwaysFailingFetchStub() -> Stub {
         Stub(
-            #selector(NSManagedObjectContext.fetch(_:)),
+            #selector(NSManagedObjectContext.execute(_:)),
             #selector(Stub.fetch(_:))
         )
     }
