@@ -92,7 +92,7 @@ class IAPAcceptanceTests: XCTestCase {
         let userDefaults = InMemoryUserDefaults()
         var (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
         let removeBottomADProduct = removeBottomADProduct()
-        adController.triggerLifecycleForcefully()
+        adController.simulateViewAppear()
 
         let initialInset = adController.children.first?.additionalSafeAreaInsets
         XCTAssertNotEqual(initialInset, .zero, "Expect addtional insets not zero due to spacing for AD")
@@ -101,7 +101,7 @@ class IAPAcceptanceTests: XCTestCase {
         simulateBuying(removeBottomADProduct, observer: transactionObserver, paymentQueue: paymentQueue)
 
         (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
-        adController.triggerLifecycleForcefully()
+        adController.simulateViewAppear()
         let finalInset = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
 
@@ -109,7 +109,7 @@ class IAPAcceptanceTests: XCTestCase {
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
 
         (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
-        adController.triggerLifecycleForcefully()
+        adController.simulateViewAppear()
         let insetAfterRestoration = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
     }
@@ -162,22 +162,6 @@ class IAPAcceptanceTests: XCTestCase {
             loadCallCount += 1
             completion([])
         }
-    }
-}
-
-extension UIViewController {
-    func triggerLifecycleIfNeeded() {
-        guard !isViewLoaded else { return }
-        
-        loadViewIfNeeded()
-        beginAppearanceTransition(true, animated: false)
-        endAppearanceTransition()
-    }
-    
-    func triggerLifecycleForcefully() {
-        loadViewIfNeeded()
-        beginAppearanceTransition(true, animated: false)
-        endAppearanceTransition()
     }
 }
 
