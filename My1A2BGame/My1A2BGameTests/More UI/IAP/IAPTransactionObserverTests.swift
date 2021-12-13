@@ -8,7 +8,7 @@
 
 import XCTest
 import StoreKitTest
-@testable import My1A2BGame
+import My1A2BGame
 
 @available(iOS 14.0, *)
 class IAPTransactionObserverTests: XCTestCase {

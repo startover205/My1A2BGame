@@ -9,18 +9,18 @@
 import Foundation
 import StoreKit
 
-class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
+public class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     
     static let shared = IAPTransactionObserver()
     private var finishedTransactionIDs = [String]()
     private var hasRestorableContent = false
-    var onTransactionError: ((Error?) -> Void)?
-    var onPurchaseProduct: ((String) -> Void)?
-    var onRestoreProduct: ((String) -> Void)?
-    var onRestorationFinishedWithError: ((Error) -> Void)?
-    var onRestorationFinished: ((_ hasRestorableContent: Bool) -> Void)?
+    public var onTransactionError: ((Error?) -> Void)?
+    public var onPurchaseProduct: ((String) -> Void)?
+    public var onRestoreProduct: ((String) -> Void)?
+    public var onRestorationFinishedWithError: ((Error) -> Void)?
+    public var onRestorationFinished: ((_ hasRestorableContent: Bool) -> Void)?
     
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             
             switch transaction.transactionState {
@@ -65,11 +65,11 @@ class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
         }
     }
     
-    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+    public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         onRestorationFinished?(hasRestorableContent)
     }
     
-    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+    public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         onRestorationFinishedWithError?(error)
     }
 }
