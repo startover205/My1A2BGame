@@ -18,7 +18,11 @@ class BannerAdTabBarViewController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
+        didUpdateBottomADSubscription()
+    }
+    
+    func didUpdateBottomADSubscription() {
         if !isBottomADRemoved() {
             var newSafeArea = UIEdgeInsets()
             let bannerHeight = AdControl.setBannerAd(onTopOf: tabBar, rootController: self)
