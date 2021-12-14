@@ -34,8 +34,4 @@ extension AdControl {
         
         return googleBannerView
     }
-    
-    static func isBottomAdRemoved(userDefaults: UserDefaults) -> Bool {
-        return userDefaults.bool(forKey: UserDefaults.Key.remove_bottom_ad)
-    }
 }

@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
     private weak var bannerAD: UIView?
+    private var hasPurchasedRemovingAD: Bool { userDefaults.bool(forKey: UserDefaults.Key.remove_bottom_ad) }
 
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced
@@ -137,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureBannerAD() {
-        if !AdControl.isBottomAdRemoved(userDefaults: userDefaults) {
+        if !hasPurchasedRemovingAD {
             let bannerAD = AdControl.setBannerAd(onTopOf: tabController.tabBar, rootController: tabController)
             let newInset = UIEdgeInsets(top: 0, left: 0, bottom: bannerAD.bounds.height, right: 0)
             for child in tabController.children {
