@@ -40,6 +40,7 @@ extension XCTestCase {
     
     func simulateBuying(_ product: SKProduct, observer: IAPTransactionObserver, paymentQueue: SKPaymentQueue) {
         let exp = expectation(description: "wait for transaction")
+        exp.assertForOverFulfill = false
         
         let originalHandler = observer.onPurchaseProduct
         observer.onPurchaseProduct = {

@@ -102,6 +102,7 @@ class IAPTransactionObserverTests: XCTestCase {
         session.failTransactionsEnabled = true
         session.failureError = failureError.code
         let exp = expectation(description: "wait for transaction")
+        exp.assertForOverFulfill = false
         
         sut.onTransactionError = { error in
             let error = error! as NSError
