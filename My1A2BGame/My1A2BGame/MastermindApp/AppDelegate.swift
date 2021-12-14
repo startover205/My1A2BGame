@@ -131,6 +131,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startNewAdvancedGame()
         
         configureIAPTransactionObserver()
+        
+        configureBannerAD()
+    }
+    
+    func configureBannerAD() {
+        if !AdControl.isBottomAdRemoved(userDefaults: userDefaults) {
+            let adHeight = AdControl.setBannerAd(onTopOf: tabController.tabBar, rootController: tabController)
+            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: adHeight, right: 0)
+            for child in tabController.children {
+                child.additionalSafeAreaInsets = newInset
+            }
+        }
     }
     
     private func configureIAPTransactionObserver() {
@@ -211,14 +223,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabController.tabBar.items!.enumerated().forEach { index, item in
             item.title = tabConfigurations[index].title
             item.image = UIImage(named: tabConfigurations[index].imageName)
-        }
-        
-        if !AdControl.isBottomAdRemoved(userDefaults: userDefaults) {
-            let adHeight = AdControl.setBannerAd(onTopOf: tabController.tabBar, rootController: tabController)
-            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: adHeight, right: 0)
-            for child in tabController.children {
-                child.additionalSafeAreaInsets = newInset
-            }
         }
         
         return tabController
