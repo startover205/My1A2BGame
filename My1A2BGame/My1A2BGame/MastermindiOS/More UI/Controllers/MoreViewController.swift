@@ -34,7 +34,7 @@ public class MoreViewController: UITableViewController {
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = tableModel[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.textLabel?.text = item.name
         cell.imageView?.image = item.image
         

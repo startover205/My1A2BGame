@@ -69,7 +69,8 @@ public final class FAQViewController: UITableViewController {
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let isQuestion = indexPath.row == 0
-        let cell = tableView.dequeueReusableCell(withIdentifier: isQuestion ? "QuestionCell" : "AnswerCell") ?? UITableViewCell()
+        let reuseIdentifier = isQuestion ? "QuestionCell" : "AnswerCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: reuseIdentifier)
         let question = tableModel[indexPath.section]
         
         cell.textLabel?.text = isQuestion ? question.content : question.answer
