@@ -22,16 +22,6 @@ class AppDelegateTests: XCTestCase {
         XCTAssertFalse(window.isHidden)
     }
     
-    func test_configureWindow_configureTabBarWithAd() {
-        let window = UIWindow()
-        let appDelegate = AppDelegate()
-        appDelegate.window = window
-        
-        appDelegate.configureWindow()
-        
-        XCTAssertNotNil(window.rootViewController as? BannerAdTabBarViewController)
-    }
-    
     func test_configureWindow_configuresTabs() throws {
         let window = UIWindow()
         let appDelegate = AppDelegate()

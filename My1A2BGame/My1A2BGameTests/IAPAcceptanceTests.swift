@@ -90,7 +90,7 @@ class IAPAcceptanceTests: XCTestCase {
 
     func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchaseOrRestoration() throws {
         let userDefaults = InMemoryUserDefaults()
-        var (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
+        var (adController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         let removeBottomADProduct = removeBottomADProduct()
         adController.simulateViewAppear()
 
@@ -100,7 +100,7 @@ class IAPAcceptanceTests: XCTestCase {
         try createLocalTestSession()
         simulateBuying(removeBottomADProduct, observer: transactionObserver, paymentQueue: paymentQueue)
 
-        (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
+        (adController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         adController.simulateViewAppear()
         let finalInset = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
@@ -108,7 +108,7 @@ class IAPAcceptanceTests: XCTestCase {
         userDefaults.cleanPurchaseRecordInApp()
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
 
-        (adController, transactionObserver, paymentQueue) = try launchWithAdControl(userDefaults: userDefaults)
+        (adController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         adController.simulateViewAppear()
         let insetAfterRestoration = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
@@ -147,12 +147,6 @@ class IAPAcceptanceTests: XCTestCase {
         sut.configureWindow()
         
         return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
-    }
-    
-    private func launchWithAdControl(userDefaults: UserDefaults, file: StaticString = #filePath, line: UInt = #line) throws -> (BannerAdTabBarViewController, IAPTransactionObserver, SKPaymentQueue) {
-        let (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
-        
-        return (try XCTUnwrap(tabController as? BannerAdTabBarViewController, file: file, line: line), transactionObserver, paymentQueue)
     }
     
     private final class IAPProductLoaderSpy: IAPProductLoader {

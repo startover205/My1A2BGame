@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return LocalRecordLoader(store: store)
     }()
     
-    private lazy var tabController = BannerAdTabBarViewController(isBottomADRemoved: { AdControl.isBottomAdRemoved(userDefaults: self.userDefaults) })
+    private lazy var tabController = UITabBarController()
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
@@ -211,6 +211,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabController.tabBar.items!.enumerated().forEach { index, item in
             item.title = tabConfigurations[index].title
             item.image = UIImage(named: tabConfigurations[index].imageName)
+        }
+        
+        if !AdControl.isBottomAdRemoved(userDefaults: userDefaults) {
+            let adHeight = AdControl.setBannerAd(onTopOf: tabController.tabBar, rootController: tabController)
+            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: adHeight, right: 0)
+            for child in tabController.children {
+                child.additionalSafeAreaInsets = newInset
+            }
         }
         
         return tabController
