@@ -193,6 +193,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if productIdentifier == IAP.remove_bottom_ad.rawValue {
                 self.bannerAD?.alpha = 0
+                self.tabController.children.forEach {
+                    $0.additionalSafeAreaInsets = .zero
+                }
             }
         }
         

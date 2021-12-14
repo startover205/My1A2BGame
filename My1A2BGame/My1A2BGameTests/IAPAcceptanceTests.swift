@@ -91,32 +91,44 @@ class IAPAcceptanceTests: XCTestCase {
 
     func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchaseOrRestoration() throws {
         let userDefaults = InMemoryUserDefaults()
-        var (adController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
+        var (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         let removeBottomADProduct = removeBottomADProduct()
-        adController.simulateViewAppear()
+        tabController.simulateViewAppear()
 
-        let initialInset = adController.children.first?.additionalSafeAreaInsets
-        XCTAssertNotEqual(initialInset, .zero, "Expect addtional insets not zero due to spacing for AD")
-        XCTAssertEqual(adController.adView()?.alpha, 1, "Expect showing AD before purchase")
+        assertNonZeroInsetsForAllChildController(of: tabController)
+        XCTAssertEqual(tabController.adView()?.alpha, 1, "Expect showing AD before purchase")
         
         try createLocalTestSession()
         simulateBuying(removeBottomADProduct, observer: transactionObserver, paymentQueue: paymentQueue)
-        XCTAssertEqual(adController.adView()?.alpha, 0, "Expect hiding AD after purchase")
+        assertZeroInsetsForAllChildController(of: tabController)
+        XCTAssertEqual(tabController.adView()?.alpha, 0, "Expect hiding AD after purchase")
 
-        (adController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
-        adController.simulateViewAppear()
-        let finalInset = adController.children.first?.additionalSafeAreaInsets
-        XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
-        XCTAssertNil(adController.adView(), "Expect no AD loaded after purchase")
+        (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
+        tabController.simulateViewAppear()
+        assertZeroInsetsForAllChildController(of: tabController)
+        XCTAssertNil(tabController.adView(), "Expect no AD loaded since now the AD is removed")
 
         userDefaults.cleanPurchaseRecordInApp()
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
 
-        (adController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
-        adController.simulateViewAppear()
-        let insetAfterRestoration = adController.children.first?.additionalSafeAreaInsets
-        XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
-        XCTAssertNil(adController.adView(), "Expect no AD loaded after restore")
+        (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
+        tabController.simulateViewAppear()
+        assertZeroInsetsForAllChildController(of: tabController)
+        XCTAssertNil(tabController.adView(), "Expect no AD loaded after purhcase restored")
+    }
+    
+    private func assertZeroInsetsForAllChildController(of tabController: UITabBarController, file: StaticString = #filePath, line: UInt = #line) {
+        
+        for (index, controller) in tabController.children.enumerated() {
+            XCTAssertEqual(controller.additionalSafeAreaInsets, .zero, "Expect controller at \(index) to be zero", file: file, line: line)
+        }
+    }
+    
+    private func assertNonZeroInsetsForAllChildController(of tabController: UITabBarController, file: StaticString = #filePath, line: UInt = #line) {
+        
+        for (index, controller) in tabController.children.enumerated() {
+            XCTAssertNotEqual(controller.additionalSafeAreaInsets, .zero, "Expect controller at \(index) to be non-zero", file: file, line: line)
+        }
     }
     
     // MARK: - Composable View
