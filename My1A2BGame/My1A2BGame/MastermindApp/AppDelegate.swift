@@ -137,8 +137,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configureBannerAD() {
         if !AdControl.isBottomAdRemoved(userDefaults: userDefaults) {
-            let adHeight = AdControl.setBannerAd(onTopOf: tabController.tabBar, rootController: tabController)
-            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: adHeight, right: 0)
+            let bannerAD = AdControl.setBannerAd(onTopOf: tabController.tabBar, rootController: tabController)
+            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: bannerAD.bounds.height, right: 0)
             for child in tabController.children {
                 child.additionalSafeAreaInsets = newInset
             }

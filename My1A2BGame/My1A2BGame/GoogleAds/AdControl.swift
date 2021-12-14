@@ -17,7 +17,7 @@ extension AdControl {
     static func setupAd(){
         GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
-    static func setBannerAd(onTopOf view: UIView, rootController: UIViewController) -> CGFloat {
+    static func setBannerAd(onTopOf view: UIView, rootController: UIViewController) -> UIView {
         let viewWidth = view.frame.inset(by: view.safeAreaInsets).size.width
         
         let googleBannerView = GADBannerView()
@@ -32,7 +32,7 @@ extension AdControl {
         view.leftAnchor.constraint(equalTo: googleBannerView.leftAnchor).isActive = true
         view.rightAnchor.constraint(equalTo: googleBannerView.rightAnchor).isActive = true
         
-        return googleBannerView.frame.height
+        return googleBannerView
     }
     
     static func isBottomAdRemoved(userDefaults: UserDefaults) -> Bool {
