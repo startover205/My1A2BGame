@@ -139,7 +139,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configureBannerAD() {
         if !hasPurchasedRemovingAD {
-            let bannerAD = AdControl.setBannerAd(onTopOf: tabController.tabBar, rootController: tabController)
+            let tabBar = tabController.tabBar
+            let bannerWidth = tabBar.frame.inset(by: tabBar.safeAreaInsets).size.width
+            
+            let bannerAD = GADBannerView()
+            bannerAD.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(bannerWidth)
+            bannerAD.rootViewController = tabController
+            bannerAD.adUnitID = Constants.bottomAdId
+            bannerAD.load(GADRequest())
+            
+            tabBar.addSubview(bannerAD)
+            bannerAD.translatesAutoresizingMaskIntoConstraints = false
+            tabBar.topAnchor.constraint(equalTo: bannerAD.bottomAnchor).isActive = true
+            tabBar.leftAnchor.constraint(equalTo: bannerAD.leftAnchor).isActive = true
+            tabBar.rightAnchor.constraint(equalTo: bannerAD.rightAnchor).isActive = true
+            
             let newInset = UIEdgeInsets(top: 0, left: 0, bottom: bannerAD.bounds.height, right: 0)
             for child in tabController.children {
                 child.additionalSafeAreaInsets = newInset
