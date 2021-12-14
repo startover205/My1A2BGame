@@ -132,6 +132,7 @@ class IAPTransactionObserverTests: XCTestCase {
         let session = try createLocalTestSession()
         session.failTransactionsEnabled = true
         let exp = expectation(description: "wait for transaction")
+        exp.assertForOverFulfill = false
         
         sut.onTransactionError = { _ in
             exp.fulfill()
