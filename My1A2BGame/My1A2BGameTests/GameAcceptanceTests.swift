@@ -262,15 +262,3 @@ private extension UITabBarController {
     
     func moreController() -> MoreViewController { selectTab(at: 3) }
 }
-
-private extension BannerAdTabBarViewController {
-    var isShowingAD: Bool {
-        if let tabBar = children.first {
-            print("Date: \(Date()), File: \(#filePath), Line: \(#line), Func: \(#function) -additionalSafeAreaInsets--\(tabBar.additionalSafeAreaInsets)----")
-
-            return tabBar.additionalSafeAreaInsets != .zero
-        } else {
-            return true
-        }
-    }
-}
