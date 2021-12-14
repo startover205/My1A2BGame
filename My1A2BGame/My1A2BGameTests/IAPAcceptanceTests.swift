@@ -8,6 +8,7 @@
 
 import XCTest
 import StoreKitTest
+import GoogleMobileAds
 @testable import My1A2BGame
 
 @available(iOS 14.0, *)
@@ -96,14 +97,17 @@ class IAPAcceptanceTests: XCTestCase {
 
         let initialInset = adController.children.first?.additionalSafeAreaInsets
         XCTAssertNotEqual(initialInset, .zero, "Expect addtional insets not zero due to spacing for AD")
+        XCTAssertEqual(adController.adView()?.alpha, 1, "Expect showing AD before purchase")
         
         try createLocalTestSession()
         simulateBuying(removeBottomADProduct, observer: transactionObserver, paymentQueue: paymentQueue)
+        XCTAssertEqual(adController.adView()?.alpha, 0, "Expect hiding AD after purchase")
 
         (adController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         adController.simulateViewAppear()
         let finalInset = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(finalInset, .zero, "Expect addtional insets zero now the AD is removed")
+        XCTAssertNil(adController.adView(), "Expect no AD loaded after purchase")
 
         userDefaults.cleanPurchaseRecordInApp()
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
@@ -112,6 +116,7 @@ class IAPAcceptanceTests: XCTestCase {
         adController.simulateViewAppear()
         let insetAfterRestoration = adController.children.first?.additionalSafeAreaInsets
         XCTAssertEqual(insetAfterRestoration, .zero, "Expect addtional insets zero because the AD is removed again")
+        XCTAssertNil(adController.adView(), "Expect no AD loaded after restore")
     }
     
     // MARK: - Composable View
@@ -190,6 +195,13 @@ private extension UITabBarController {
         RunLoop.current.run(until: Date())
         
         return (moreController.navigationController?.topViewController as! IAPViewController)
+    }
+    
+    func adView() -> UIView? {
+        for view in tabBar.subviews {
+            if view is GADBannerView { return view }
+        }
+        return nil
     }
 }
 

@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
+    private weak var bannerAD: UIView?
 
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced
@@ -142,6 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for child in tabController.children {
                 child.additionalSafeAreaInsets = newInset
             }
+            self.bannerAD = bannerAD
         }
     }
     
@@ -173,6 +175,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             IAP.didPurchase(product: product, userDefaults: self.userDefaults)
             
             self.iapController?.refresh()
+            
+            if productIdentifier == IAP.remove_bottom_ad.rawValue {
+                self.bannerAD?.alpha = 0
+            }
         }
         
         transactionObserver.onPurchaseProduct = buyingProductHandler
