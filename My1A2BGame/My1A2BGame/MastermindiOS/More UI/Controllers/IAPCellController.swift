@@ -24,10 +24,10 @@ extension IAPCellController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IAPProductCell", for: indexPath) as! IAPTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) 
         
-        cell.productNameLabel.text = product.name
-        cell.productPriceLabel.text = product.price
+        cell.textLabel?.text = product.name
+        cell.detailTextLabel?.text = product.price
         
         return cell
     }

@@ -122,40 +122,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="MainBackground"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IAPProductCell" id="rei-2E-EkA" customClass="IAPTableViewCell" customModule="My1A2BGame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductCell" textLabel="h0W-l6-EUV" detailTextLabel="1Kp-tf-SyL" style="IBUITableViewCellStyleValue1" id="o7L-ES-QwR">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rei-2E-EkA" id="iJT-52-n9X">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o7L-ES-QwR" id="MlE-fw-rhd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OV-Y4-bnT">
-                                            <rect key="frame" x="8" y="8" width="144" height="25"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h0W-l6-EUV">
+                                            <rect key="frame" x="20" y="13" width="48.5" height="25"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="20"/>
                                             <color key="textColor" systemColor="systemRedColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSC-8o-YIv">
-                                            <rect key="frame" x="345" y="8" width="53" height="25"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Kp-tf-SyL">
+                                            <rect key="frame" x="333" y="13" width="61" height="25"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="20"/>
                                             <color key="textColor" systemColor="systemRedColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="2OV-Y4-bnT" firstAttribute="leading" secondItem="iJT-52-n9X" secondAttribute="leading" constant="8" id="2Mg-rS-FQQ"/>
-                                        <constraint firstItem="xSC-8o-YIv" firstAttribute="centerY" secondItem="iJT-52-n9X" secondAttribute="centerY" id="8Jb-Ui-zoM"/>
-                                        <constraint firstAttribute="trailing" secondItem="xSC-8o-YIv" secondAttribute="trailing" constant="16" id="9aR-ml-Oma"/>
-                                        <constraint firstAttribute="bottom" secondItem="2OV-Y4-bnT" secondAttribute="bottom" constant="8" id="W50-y6-21I"/>
-                                        <constraint firstItem="xSC-8o-YIv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2OV-Y4-bnT" secondAttribute="trailing" constant="8" id="fXw-bj-JKq"/>
-                                        <constraint firstItem="2OV-Y4-bnT" firstAttribute="top" secondItem="iJT-52-n9X" secondAttribute="top" constant="8" id="qnP-R4-JPq"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="productNameLabel" destination="2OV-Y4-bnT" id="Iwa-PM-Pv8"/>
-                                    <outlet property="productPriceLabel" destination="xSC-8o-YIv" id="VxB-Tq-64r"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -186,7 +176,7 @@
     <resources>
         <image name="baseline_help_black_24pt" width="24" height="24"/>
         <namedColor name="MainBackground">
-            <color red="1" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

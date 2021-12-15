@@ -113,13 +113,9 @@ class IAPUIIntegrationTests: XCTestCase {
     private func assertThat(_ sut: IAPViewController, hasViewConfiguredFor product: My1A2BGame.Product, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
         let view = sut.productView(at: index)
         
-        guard let cell = view as? IAPTableViewCell else {
-            return XCTFail("Expected \(IAPTableViewCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
-        }
+        XCTAssertEqual(view?.textLabel?.text, product.name, "Expected name text to be \(String(describing: product.name)) for product view at index (\(index))", file: file, line: line)
         
-        XCTAssertEqual(cell.nameText, product.name, "Expected name text to be \(String(describing: product.name)) for product view at index (\(index))", file: file, line: line)
-        
-        XCTAssertEqual(cell.priceText, product.price, "Expected price text to be \(String(describing: product.price)) for product view at index (\(index))", file: file, line: line)
+        XCTAssertEqual(view?.detailTextLabel?.text, product.price, "Expected price text to be \(String(describing: product.price)) for product view at index (\(index))", file: file, line: line)
     }
     
     private func executeRunLoopToCleanUpReferences() {
@@ -178,16 +174,6 @@ private extension IAPViewController {
     }
     
     private var productSection: Int { 0 }
-}
-
-private extension IAPTableViewCell {
-    var nameText: String? {
-        productNameLabel.text
-    }
-    
-    var priceText: String? {
-        productPriceLabel.text
-    }
 }
 
 private extension Array where Element == SKProduct {
