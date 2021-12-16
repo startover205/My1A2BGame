@@ -71,6 +71,15 @@ class IAPUIIntegrationTests: XCTestCase {
         loader.completeLoading(with: [], at: 2)
         assertThat(sut, isRendering: [])
     }
+    
+    func test_loadProductCompletion_doesNotDisplaysMessageOnNonEmptyResult() throws {
+        let (sut, loader) = makeSUT()
+        let container = TestingContainerViewController(sut)
+
+        loader.completeLoading(with: [makeProduct()])
+        
+        XCTAssertNil(container.presentedViewController)
+    }
 
     func test_loadProductCompletion_displaysMessageOnEmptyResult() throws {
         let (sut, loader) = makeSUT()
