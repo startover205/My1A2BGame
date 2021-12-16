@@ -21,6 +21,17 @@ class IAPUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.restorePurchaseButton.isEnabled)
     }
     
+    func test_restorePurchaseActions_requestPaymentQueueRestore() {
+        let paymentQueue = SKPaymentQueueSpy()
+        let (sut, _) = makeSUT(paymentQueue: paymentQueue)
+        
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(paymentQueue.restoreCallCount, 0, "precondition")
+        
+        sut.simulateUserInitiatedRestoration()
+        XCTAssertEqual(paymentQueue.restoreCallCount, 1, "precondition")
+    }
+    
     func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
         let (sut, loader) = makeSUT()
         
@@ -76,9 +87,9 @@ class IAPUIIntegrationTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (IAPViewController, IAPProductLoaderSpy) {
+    private func makeSUT(paymentQueue: SKPaymentQueue = .init(), file: StaticString = #filePath, line: UInt = #line) -> (IAPViewController, IAPProductLoaderSpy) {
         let loader = IAPProductLoaderSpy()
-        let sut = IAPUIComposer.iapComposedWith(productLoader: loader)
+        let sut = IAPUIComposer.iapComposedWith(productLoader: loader, paymentQueue: paymentQueue)
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -122,6 +133,14 @@ class IAPUIIntegrationTests: XCTestCase {
         RunLoop.current.run(until: Date())
     }
     
+    private final class SKPaymentQueueSpy: SKPaymentQueue {
+        private(set) var restoreCallCount = 0
+        
+        override func restoreCompletedTransactions() {
+            restoreCallCount += 1
+        }
+    }
+    
     private final class IAPProductLoaderSpy: IAPProductLoader {
         private var completions = [([SKProduct]) -> Void]()
         
@@ -144,7 +163,7 @@ private extension IAPViewController {
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: productSection))
     }
     
-    func simulateRestoreProduct() {
+    func simulateUserInitiatedRestoration() {
         restorePurchaseButton.simulateTap()
     }
     

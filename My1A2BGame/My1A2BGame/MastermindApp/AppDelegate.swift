@@ -331,7 +331,7 @@ private extension AppDelegate {
     }
     
     private func selectIAP() {
-        let iapController = IAPUIComposer.iapComposedWith(productLoader: productLoader)
+        let iapController = IAPUIComposer.iapComposedWith(productLoader: productLoader, paymentQueue: paymentQueue)
         self.iapController = iapController
         moreNavigationController.pushViewController(iapController, animated: true)
     }

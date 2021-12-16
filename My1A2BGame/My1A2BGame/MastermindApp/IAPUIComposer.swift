@@ -12,12 +12,10 @@ import StoreKit
 public final class IAPUIComposer {
     private init() {}
     
-    public static func iapComposedWith(productLoader: IAPProductLoader) -> IAPViewController {
+    public static func iapComposedWith(productLoader: IAPProductLoader, paymentQueue: SKPaymentQueue) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
         iapController.productLoader = productLoader
-        iapController.onRestoreCompletedTransactions = {
-            SKPaymentQueue.default().restoreCompletedTransactions()
-        }
+        iapController.onRestoreCompletedTransactions = paymentQueue.restoreCompletedTransactions
         
         iapController.onRefresh = { [weak iapController] in
             guard let iapController = iapController else { return }
