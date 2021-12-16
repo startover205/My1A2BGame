@@ -84,12 +84,31 @@ class IAPUIIntegrationTests: XCTestCase {
 
         clearModalPresentationReference(sut)
     }
+    
+    func test_purchaseActions_doNotRequestPaymentQueueAndshowMessage_whenPaymentUnavailable() throws {
+        let paymentQueue = SKPaymentQueueSpy()
+        let (sut, loader) = makeSUT(paymentQueue: paymentQueue, canMakePayment: { false })
+        let container = TestingContainerViewController(sut)
+        let product = makeProduct()
 
+        loader.completeLoading(with: [product])
+
+        sut.simulateOnTapProduct(at: 0)
+        
+        XCTAssertNil(paymentQueue.capturedProductID, "Expect no purchase made")
+        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController)
+        XCTAssertEqual(alert.title, localized("NO_PAYMENT_MESSAGE"), "alert title")
+        XCTAssertEqual(alert.message, localized("NO_PAYMENT_MESSAGE_DETAILED"), "alert title")
+        XCTAssertEqual(alert.actions.first?.title, localized("NO_PAYMENT_CONFIRM_ACTION"), "confirm title")
+
+        clearModalPresentationReference(sut)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(paymentQueue: SKPaymentQueue = .init(), file: StaticString = #filePath, line: UInt = #line) -> (IAPViewController, IAPProductLoaderSpy) {
+    private func makeSUT(paymentQueue: SKPaymentQueue = .init(), canMakePayment: @escaping () -> Bool = { true }, file: StaticString = #filePath, line: UInt = #line) -> (IAPViewController, IAPProductLoaderSpy) {
         let loader = IAPProductLoaderSpy()
-        let sut = IAPUIComposer.iapComposedWith(productLoader: loader, paymentQueue: paymentQueue)
+        let sut = IAPUIComposer.iapComposedWith(productLoader: loader, paymentQueue: paymentQueue, canMakePayment: canMakePayment)
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -135,9 +154,14 @@ class IAPUIIntegrationTests: XCTestCase {
     
     private final class SKPaymentQueueSpy: SKPaymentQueue {
         private(set) var restoreCallCount = 0
+        private(set) var capturedProductID: String?
         
         override func restoreCompletedTransactions() {
             restoreCallCount += 1
+        }
+        
+        override func add(_ payment: SKPayment) {
+            capturedProductID = payment.productIdentifier
         }
     }
     

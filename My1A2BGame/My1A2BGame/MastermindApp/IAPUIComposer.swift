@@ -12,7 +12,10 @@ import StoreKit
 public final class IAPUIComposer {
     private init() {}
     
-    public static func iapComposedWith(productLoader: IAPProductLoader, paymentQueue: SKPaymentQueue) -> IAPViewController {
+    public static func iapComposedWith(
+        productLoader: IAPProductLoader,
+        paymentQueue: SKPaymentQueue,
+        canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
         iapController.productLoader = productLoader
         iapController.onRestoreCompletedTransactions = paymentQueue.restoreCompletedTransactions
@@ -28,7 +31,20 @@ public final class IAPUIComposer {
                 productLoader.load(productIDs: productIDs, completion: { [weak iapController] products in
                     guard let iapController = iapController else { return }
                     
-                    iapController.tableModel = self.adaptProductsToCellControllers(products)
+                    iapController.tableModel = self.adaptProductsToCellControllers(products, selection: { [weak iapController] in
+                        if canMakePayment() {
+                            let payment = SKPayment(product: $0)
+                            SKPaymentQueue.default().add(payment)
+                        } else {
+                            let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: ""), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: ""), preferredStyle: .alert)
+                            
+                            let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: ""), style: .default)
+                            
+                            alert.addAction(ok)
+                            
+                            iapController?.showDetailViewController(alert, sender: self)
+                        }
+                    })
                     
                     iapController.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
                     iapController.refreshControl?.endRefreshing()
@@ -61,11 +77,10 @@ public final class IAPUIComposer {
 
 
 extension IAPUIComposer {
-    private static func adaptProductsToCellControllers(_ products: [SKProduct]) -> [IAPCellController] {
+    private static func adaptProductsToCellControllers(_ products: [SKProduct], selection: @escaping (SKProduct) -> Void) -> [IAPCellController] {
         products.map { product in
             IAPCellController(product: Product(name: product.localizedTitle, price: product.localPrice)) {
-                 let payment = SKPayment(product: product)
-                 SKPaymentQueue.default().add(payment)
+               selection(product)
             }
         }
     }
