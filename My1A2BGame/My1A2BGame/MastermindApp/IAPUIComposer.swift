@@ -45,9 +45,9 @@ public final class IAPUIComposer {
                 })
                 
             } else {
-                let alert = UIAlertController(title: NSLocalizedString("Purchase not available", comment: "4th"), message: NSLocalizedString("Sorry, it seems purchase is not available on this device or within this app.", comment: "4th"), preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: "4th"), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: "4th"), preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: "3nd"), style: .default)
                 
                 alert.addAction(ok)
                 
