@@ -72,24 +72,22 @@ class IAPUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [])
     }
     
-    func test_loadProductCompletion_doesNotDisplaysMessageOnNonEmptyResult() throws {
+    func test_resultMessage_displaysMessageOnEmptyResult() {
         let (sut, loader) = makeSUT()
 
         sut.loadViewIfNeeded()
-        loader.completeLoading(with: [makeProduct()])
+        XCTAssertEqual(sut.resultMessage(), nil)
+
+        loader.completeLoading(with: [], at: 0)
+        XCTAssertEqual(sut.resultMessage(), localized("NO_PRODUCT_MESSAGE"))
+
+        sut.simulateUserInitiatedReload()
+        XCTAssertEqual(sut.resultMessage(), nil)
         
+        loader.completeLoading(with: [makeProduct()], at: 1)
         XCTAssertEqual(sut.resultMessage(), nil)
     }
 
-    func test_loadProductCompletion_displaysMessageOnEmptyResult() throws {
-        let (sut, loader) = makeSUT()
-
-        sut.loadViewIfNeeded()
-        loader.completeLoading(with: [])
-        
-        XCTAssertEqual(sut.resultMessage(), localized("NO_PRODUCT_MESSAGE"))
-    }
-    
     func test_purchaseActions_doNotRequestPaymentQueueAndshowMessage_whenPaymentUnavailable() throws {
         let paymentQueue = SKPaymentQueueSpy()
         let (sut, loader) = makeSUT(paymentQueue: paymentQueue, canMakePayment: { false })
