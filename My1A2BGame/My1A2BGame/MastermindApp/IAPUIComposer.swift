@@ -27,48 +27,37 @@ public final class IAPUIComposer {
             
             iapController.refreshControl?.beginRefreshing()
             
-            if SKPaymentQueue.canMakePayments() {
-                productLoader.load(productIDs: productIDs, completion: { [weak iapController] products in
-                    guard let iapController = iapController else { return }
-                    
-                    iapController.tableModel = self.adaptProductsToCellControllers(products, selection: { [weak iapController] in
-                        if canMakePayment() {
-                            let payment = SKPayment(product: $0)
-                            SKPaymentQueue.default().add(payment)
-                        } else {
-                            let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: ""), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: ""), preferredStyle: .alert)
-                            
-                            let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: ""), style: .default)
-                            
-                            alert.addAction(ok)
-                            
-                            iapController?.showDetailViewController(alert, sender: self)
-                        }
-                    })
-                    
-                    iapController.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-                    iapController.refreshControl?.endRefreshing()
-                    
-                    if iapController.tableModel.isEmpty {
-                        let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
+            productLoader.load(productIDs: productIDs, completion: { [weak iapController] products in
+                guard let iapController = iapController else { return }
+                
+                iapController.tableModel = self.adaptProductsToCellControllers(products, selection: { [weak iapController] in
+                    if canMakePayment() {
+                        let payment = SKPayment(product: $0)
+                        SKPaymentQueue.default().add(payment)
+                    } else {
+                        let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: ""), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: ""), preferredStyle: .alert)
                         
-                        let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                        let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: ""), style: .default)
                         
                         alert.addAction(ok)
                         
-                        iapController.showDetailViewController(alert, sender: self)
+                        iapController?.showDetailViewController(alert, sender: self)
                     }
                 })
                 
-            } else {
-                let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: "4th"), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: "4th"), preferredStyle: .alert)
+                iapController.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
+                iapController.refreshControl?.endRefreshing()
                 
-                let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: "3nd"), style: .default)
-                
-                alert.addAction(ok)
-                
-                iapController.present(alert, animated: true)
-            }
+                if iapController.tableModel.isEmpty {
+                    let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                    
+                    alert.addAction(ok)
+                    
+                    iapController.showDetailViewController(alert, sender: self)
+                }
+            })
         }
         
         return iapController
