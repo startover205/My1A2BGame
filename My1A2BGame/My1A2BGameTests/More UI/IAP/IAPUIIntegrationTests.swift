@@ -104,6 +104,19 @@ class IAPUIIntegrationTests: XCTestCase {
         clearModalPresentationReference(sut)
     }
     
+    func test_purchaseActions_requestPaymentQueue_whenPaymentAvailable() throws {
+        let paymentQueue = SKPaymentQueueSpy()
+        let (sut, loader) = makeSUT(paymentQueue: paymentQueue, canMakePayment: { true })
+        let container = TestingContainerViewController(sut)
+        let product = makeProduct()
+
+        loader.completeLoading(with: [product])
+        sut.simulateOnTapProduct(at: 0)
+        
+        XCTAssertEqual(paymentQueue.capturedProductID, product.productIdentifier, "Expect purchase made")
+        XCTAssertNil(container.presentedViewController, "Expect no message")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(paymentQueue: SKPaymentQueue = .init(), canMakePayment: @escaping () -> Bool = { true }, file: StaticString = #filePath, line: UInt = #line) -> (IAPViewController, IAPProductLoaderSpy) {

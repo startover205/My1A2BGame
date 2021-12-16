@@ -33,7 +33,7 @@ public final class IAPUIComposer {
                 iapController.tableModel = self.adaptProductsToCellControllers(products, selection: { [weak iapController] in
                     if canMakePayment() {
                         let payment = SKPayment(product: $0)
-                        SKPaymentQueue.default().add(payment)
+                        paymentQueue.add(payment)
                     } else {
                         let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: ""), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: ""), preferredStyle: .alert)
                         
