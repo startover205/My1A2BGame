@@ -23,6 +23,8 @@ public final class IAPUIComposer {
         iapController.onRefresh = { [weak iapController] in
             guard let iapController = iapController else { return }
             
+            iapController.tableView.tableHeaderView = nil
+            
             let productIDs = IAP.getAvailableProductsId(userDefaults: .standard)
             
             iapController.refreshControl?.beginRefreshing()
@@ -49,18 +51,22 @@ public final class IAPUIComposer {
                 iapController.refreshControl?.endRefreshing()
                 
                 if iapController.tableModel.isEmpty {
-                    let alert = UIAlertController(title: NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
-                    
-                    let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
-                    
-                    alert.addAction(ok)
-                    
-                    iapController.showDetailViewController(alert, sender: self)
+                    iapController.tableView.tableHeaderView = makeNoProductLabel()
                 }
             })
         }
         
         return iapController
+    }
+    
+    private static func makeNoProductLabel() -> UILabel {
+        let label = UILabel()
+        label.text = NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd")
+        label.textColor = .white
+        label.backgroundColor = .lightGray
+        label.textAlignment = .center
+        label.sizeToFit()
+        return label
     }
 }
 

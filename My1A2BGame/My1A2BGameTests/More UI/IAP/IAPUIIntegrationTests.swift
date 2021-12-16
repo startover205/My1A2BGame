@@ -74,24 +74,20 @@ class IAPUIIntegrationTests: XCTestCase {
     
     func test_loadProductCompletion_doesNotDisplaysMessageOnNonEmptyResult() throws {
         let (sut, loader) = makeSUT()
-        let container = TestingContainerViewController(sut)
 
+        sut.loadViewIfNeeded()
         loader.completeLoading(with: [makeProduct()])
         
-        XCTAssertNil(container.presentedViewController)
+        XCTAssertEqual(sut.resultMessage(), nil)
     }
 
     func test_loadProductCompletion_displaysMessageOnEmptyResult() throws {
         let (sut, loader) = makeSUT()
-        let container = TestingContainerViewController(sut)
 
+        sut.loadViewIfNeeded()
         loader.completeLoading(with: [])
-
-        let alert = try XCTUnwrap(container.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert.title, localized("NO_PRODUCT_MESSAGE"), "alert title")
-        XCTAssertEqual(alert.actions.first?.title, localized("NO_PRODUCT_CONFIRM_ACTION"), "confirm title")
-
-        clearModalPresentationReference(sut)
+        
+        XCTAssertEqual(sut.resultMessage(), localized("NO_PRODUCT_MESSAGE"))
     }
     
     func test_purchaseActions_doNotRequestPaymentQueueAndshowMessage_whenPaymentUnavailable() throws {
@@ -215,6 +211,10 @@ private extension IAPViewController {
     
     var isShowingLoadingIndicator: Bool {
         refreshControl?.isRefreshing ?? false
+    }
+    
+    func resultMessage() -> String? {
+        (tableView.tableHeaderView as? UILabel)?.text
     }
     
     func numberOfRows(in section: Int) -> Int {
