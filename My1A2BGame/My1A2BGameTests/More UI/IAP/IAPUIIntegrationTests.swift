@@ -181,7 +181,7 @@ class IAPUIIntegrationTests: XCTestCase {
         }
     }
     
-    private final class IAPProductLoaderSpy: ProductLoader {
+    private final class IAPProductLoaderSpy: IAPProductLoader {
         private var completions = [([SKProduct]) -> Void]()
         
         convenience init() {

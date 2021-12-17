@@ -26,7 +26,7 @@
 		C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0570988270808A2005D2603 /* RankUIComposer.swift */; };
 		C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */; };
 		C074813F276C26F80047A188 /* ProductLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074813E276C26F80047A188 /* ProductLoaderTests.swift */; };
-		C0748141276C674B0047A188 /* ProductLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0748140276C674B0047A188 /* ProductLoader.swift */; };
+		C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0748140276C674B0047A188 /* IAPProductLoader.swift */; };
 		C075760F224C7A7D007A1F9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760E224C7A7D007A1F9E /* Global.swift */; };
 		C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */; };
 		C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */; };
@@ -137,7 +137,7 @@
 		C0570988270808A2005D2603 /* RankUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIComposer.swift; sourceTree = "<group>"; };
 		C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C074813E276C26F80047A188 /* ProductLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoaderTests.swift; sourceTree = "<group>"; };
-		C0748140276C674B0047A188 /* ProductLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoader.swift; sourceTree = "<group>"; };
+		C0748140276C674B0047A188 /* IAPProductLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProductLoader.swift; sourceTree = "<group>"; };
 		C075760E224C7A7D007A1F9E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 				C09ADD3E2743B17100222B71 /* IAPCellController.swift */,
 				C0A1F48726B62A1100536D73 /* FAQViewController.swift */,
 				C0DC06E6273E5CEE0033982F /* Product.swift */,
-				C0748140276C674B0047A188 /* ProductLoader.swift */,
+				C0748140276C674B0047A188 /* IAPProductLoader.swift */,
 				C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */,
 				C099257D2731893F003E322D /* NonConsumable.storekit */,
 			);
@@ -649,7 +649,7 @@
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
-				C0748141276C674B0047A188 /* ProductLoader.swift in Sources */,
+				C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */,
 				C09ADD3F2743B17100222B71 /* IAPCellController.swift in Sources */,
 				C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */,
 				C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */,

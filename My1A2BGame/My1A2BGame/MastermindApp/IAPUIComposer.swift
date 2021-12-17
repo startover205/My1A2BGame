@@ -13,7 +13,7 @@ public final class IAPUIComposer {
     private init() {}
     
     public static func iapComposedWith(
-        productLoader: ProductLoader,
+        productLoader: IAPProductLoader,
         paymentQueue: SKPaymentQueue,
         canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController

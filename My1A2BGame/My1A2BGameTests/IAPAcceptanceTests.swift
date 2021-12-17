@@ -156,7 +156,7 @@ class IAPAcceptanceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), productLoader: ProductLoader = IAPProductLoaderSpy()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
+    private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), productLoader: IAPProductLoader = IAPProductLoaderSpy()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
         let transactionObserver = IAPTransactionObserver()
         let paymentQueue = SKPaymentQueue()
         let sut = AppDelegate(userDefaults: userDefaults, transactionObserver: transactionObserver, paymentQueue: paymentQueue, productLoader: productLoader)
@@ -166,7 +166,7 @@ class IAPAcceptanceTests: XCTestCase {
         return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
     }
     
-    private final class IAPProductLoaderSpy: ProductLoader {
+    private final class IAPProductLoaderSpy: IAPProductLoader {
         private(set) var loadCallCount = 0
         
         convenience init() {

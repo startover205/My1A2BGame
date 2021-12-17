@@ -1,5 +1,5 @@
 //
-//  ProductLoaderTests.swift
+//  IAPProductLoaderTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/12/17.
@@ -10,7 +10,7 @@ import XCTest
 import StoreKit
 import My1A2BGame
 
-class ProductLoaderTests: XCTestCase {
+class IAPProductLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestProduct() {
         let _ = makeSUT(makeRequest: { _ in
@@ -126,8 +126,8 @@ class ProductLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(makeRequest: @escaping (Set<String>) -> SKProductsRequest = { _ in SKProductsRequest() }, getProductIDs: @escaping () ->  Set<String> = { [] }, file: StaticString = #filePath, line: UInt = #line) -> ProductLoader {
-        let sut = ProductLoader(makeRequest: makeRequest, getProductIDs: getProductIDs)
+    private func makeSUT(makeRequest: @escaping (Set<String>) -> SKProductsRequest = { _ in SKProductsRequest() }, getProductIDs: @escaping () ->  Set<String> = { [] }, file: StaticString = #filePath, line: UInt = #line) -> IAPProductLoader {
+        let sut = IAPProductLoader(makeRequest: makeRequest, getProductIDs: getProductIDs)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
