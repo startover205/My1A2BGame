@@ -13,9 +13,9 @@ public class ProductLoader: NSObject {
     private let getProductIDs: () -> Set<String>
     private var loadingRequest: (request: SKProductsRequest, completion: ([SKProduct]) -> Void)?
     
-    public init(makeRequest: @escaping (Set<String>) -> SKProductsRequest, productIDs: @escaping () -> Set<String>) {
+    public init(makeRequest: @escaping (Set<String>) -> SKProductsRequest, getProductIDs: @escaping () -> Set<String>) {
         self.makeRequest = makeRequest
-        self.getProductIDs = productIDs
+        self.getProductIDs = getProductIDs
     }
     
     public func load(completion: @escaping ([SKProduct]) -> Void) {

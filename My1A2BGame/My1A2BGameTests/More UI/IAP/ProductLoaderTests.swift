@@ -25,13 +25,13 @@ class ProductLoaderTests: XCTestCase {
                 XCTFail("Should not make request when productIDs are empty")
                 return SKProductsRequest()
             },
-            productIDs: { [] })
+            getProductIDs: { [] })
         
         sut.load { _ in }
     }
     
     func test_load_deliversEmptyResultOnEmptyProductIDs() {
-        let sut = makeSUT(productIDs: { [] })
+        let sut = makeSUT(getProductIDs: { [] })
         let exp = expectation(description: "wait for request")
         
         var result = [SKProduct]()
@@ -47,7 +47,7 @@ class ProductLoaderTests: XCTestCase {
     @available(iOS 14.0, *)
     func test_load_deliversEmptyResultOnInvalidProductIDs() throws {
         try createLocalTestSession()
-        let sut = makeSUT(productIDs: { ["an invalid ID", "another invalid ID"] })
+        let sut = makeSUT(getProductIDs: { ["an invalid ID", "another invalid ID"] })
         let exp = expectation(description: "wait for request")
         
         var result = [SKProduct]()
@@ -68,7 +68,7 @@ class ProductLoaderTests: XCTestCase {
         let sut = makeSUT(makeRequest: {
             capturedProductIDs = $0
             return SKProductsRequest()
-        }, productIDs: { productIDs })
+        }, getProductIDs: { productIDs })
         
         sut.load { _ in }
         
@@ -77,7 +77,7 @@ class ProductLoaderTests: XCTestCase {
     
     @available(iOS 14.0, *)
     func test_load_deliversOnlyValidProductsOnNonEmptyProductIDs() throws {
-        let sut = makeSUT(makeRequest: SKProductsRequest.init, productIDs: { [validProductID(), "an invalid ID"] })
+        let sut = makeSUT(makeRequest: SKProductsRequest.init, getProductIDs: { [validProductID(), "an invalid ID"] })
         try createLocalTestSession()
         let exp = expectation(description: "wait for request")
         
@@ -96,8 +96,8 @@ class ProductLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(makeRequest: @escaping (Set<String>) -> SKProductsRequest = { _ in SKProductsRequest() }, productIDs: @escaping () ->  Set<String> = { [] }, file: StaticString = #filePath, line: UInt = #line) -> ProductLoader {
-        let sut = ProductLoader(makeRequest: makeRequest, productIDs: productIDs)
+    private func makeSUT(makeRequest: @escaping (Set<String>) -> SKProductsRequest = { _ in SKProductsRequest() }, getProductIDs: @escaping () ->  Set<String> = { [] }, file: StaticString = #filePath, line: UInt = #line) -> ProductLoader {
+        let sut = ProductLoader(makeRequest: makeRequest, getProductIDs: getProductIDs)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
