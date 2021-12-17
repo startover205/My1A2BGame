@@ -19,6 +19,8 @@ public class ProductLoader: NSObject {
     }
     
     public func load(completion: @escaping ([SKProduct]) -> Void) {
+        loadingRequest?.request.cancel()
+        
         let productIDs = getProductIDs()
         guard !productIDs.isEmpty else {
             completion([])

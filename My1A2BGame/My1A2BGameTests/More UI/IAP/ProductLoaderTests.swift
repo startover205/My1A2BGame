@@ -94,6 +94,36 @@ class ProductLoaderTests: XCTestCase {
         waitForRefereceRemoval()
     }
     
+    @available(iOS 14.0, *)
+    func test_loadTwice_deliversOnlyLatestResult() throws {
+        var isFirstTime = true
+        let getProductIDs: () -> Set<String> = {
+            if isFirstTime {
+                isFirstTime = false
+                return [validProductID()]
+            } else {
+                return ["an invalid ID"]
+            }
+        }
+        let sut = makeSUT(makeRequest: SKProductsRequest.init, getProductIDs: getProductIDs)
+        try createLocalTestSession()
+        let exp = expectation(description: "wait for request")
+        
+        var result = [SKProduct]()
+        sut.load { _ in
+            XCTFail("Expect the first call not responded")
+        }
+        sut.load {
+            result.append(contentsOf: $0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertTrue(result.isEmpty)
+        
+        waitForRefereceRemoval()
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(makeRequest: @escaping (Set<String>) -> SKProductsRequest = { _ in SKProductsRequest() }, getProductIDs: @escaping () ->  Set<String> = { [] }, file: StaticString = #filePath, line: UInt = #line) -> ProductLoader {
