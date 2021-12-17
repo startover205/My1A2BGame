@@ -137,7 +137,7 @@ class ProductLoaderTests: XCTestCase {
     private func waitForRefereceRemoval() {
         let exp = expectation(description: "wait for reference removal")
         exp.isInverted = true
-        wait(for: [exp], timeout: 0.01)
+        wait(for: [exp], timeout: 0.05)
     }
 }
 

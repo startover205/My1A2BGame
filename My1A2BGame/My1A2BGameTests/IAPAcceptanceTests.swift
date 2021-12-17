@@ -156,7 +156,7 @@ class IAPAcceptanceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), productLoader: IAPProductLoader = MainQueueDispatchIAPLoader()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
+    private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), productLoader: ProductLoader = IAPProductLoaderSpy()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
         let transactionObserver = IAPTransactionObserver()
         let paymentQueue = SKPaymentQueue()
         let sut = AppDelegate(userDefaults: userDefaults, transactionObserver: transactionObserver, paymentQueue: paymentQueue, productLoader: productLoader)
@@ -166,10 +166,14 @@ class IAPAcceptanceTests: XCTestCase {
         return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
     }
     
-    private final class IAPProductLoaderSpy: IAPProductLoader {
+    private final class IAPProductLoaderSpy: ProductLoader {
         private(set) var loadCallCount = 0
         
-        override func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
+        convenience init() {
+            self.init(makeRequest: { _ in SKProductsRequest() }, getProductIDs: { [] })
+        }
+        
+        override func load(completion: @escaping ([SKProduct]) -> Void) {
             loadCallCount += 1
             completion([])
         }

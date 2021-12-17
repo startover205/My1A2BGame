@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
     private lazy var paymentQueue: SKPaymentQueue = .default()
-    private lazy var productLoader: IAPProductLoader = MainQueueDispatchIAPLoader()
+    private lazy var productLoader: ProductLoader = MainQueueDispatchProductLoader(makeRequest: SKProductsRequest.init, getProductIDs: { Set(IAP.getAvailableProductsId(userDefaults: self.userDefaults)) })
     
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.advancedRecordLoader = advancedRecordLoader
     }
     
-    convenience init(userDefaults: UserDefaults, transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: IAPProductLoader) {
+    convenience init(userDefaults: UserDefaults, transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: ProductLoader) {
         self.init()
         
         self.userDefaults = userDefaults
@@ -403,9 +403,9 @@ private let faq = [Question(
                                                bundle: .main,
                                                comment: "An answer to why an ad is not always showing when the player is out of chances"))]
 
-public final class MainQueueDispatchIAPLoader: IAPProductLoader {
-    public override func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
-        super.load(productIDs: productIDs) { result in
+public final class MainQueueDispatchProductLoader: ProductLoader {
+    public override func load(completion: @escaping ([SKProduct]) -> Void) {
+        super.load { result in
             if Thread.isMainThread {
                 completion(result)
             } else {

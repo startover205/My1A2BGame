@@ -181,10 +181,14 @@ class IAPUIIntegrationTests: XCTestCase {
         }
     }
     
-    private final class IAPProductLoaderSpy: IAPProductLoader {
+    private final class IAPProductLoaderSpy: ProductLoader {
         private var completions = [([SKProduct]) -> Void]()
         
-        override func load(productIDs: [String], completion: @escaping ([SKProduct]) -> Void) {
+        convenience init() {
+            self.init(makeRequest: { _ in SKProductsRequest() }, getProductIDs: { [] })
+        }
+        
+        override func load(completion: @escaping ([SKProduct]) -> Void) {
             completions.append(completion)
         }
         

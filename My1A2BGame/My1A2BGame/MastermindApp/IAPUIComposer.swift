@@ -13,7 +13,7 @@ public final class IAPUIComposer {
     private init() {}
     
     public static func iapComposedWith(
-        productLoader: IAPProductLoader,
+        productLoader: ProductLoader,
         paymentQueue: SKPaymentQueue,
         canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
@@ -25,11 +25,9 @@ public final class IAPUIComposer {
             
             iapController.tableView.tableHeaderView = nil
             
-            let productIDs = IAP.getAvailableProductsId(userDefaults: .standard)
-            
             iapController.refreshControl?.beginRefreshing()
             
-            productLoader.load(productIDs: productIDs, completion: { [weak iapController] products in
+            productLoader.load(completion: { [weak iapController] products in
                 guard let iapController = iapController else { return }
                 
                 iapController.tableModel = self.adaptProductsToCellControllers(products, selection: { [weak iapController] in

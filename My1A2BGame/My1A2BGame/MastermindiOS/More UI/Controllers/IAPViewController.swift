@@ -13,7 +13,7 @@ public class IAPViewController: UITableViewController {
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
     var tableModel = [IAPCellController]()
-    var productLoader: IAPProductLoader?
+    var productLoader: ProductLoader?
     var onRefresh: (() -> Void)?
     var onRestoreCompletedTransactions: (() -> Void)?
     
