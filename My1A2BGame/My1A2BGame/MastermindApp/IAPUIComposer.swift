@@ -17,7 +17,6 @@ public final class IAPUIComposer {
         paymentQueue: SKPaymentQueue,
         canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
-        iapController.productLoader = productLoader
         iapController.onRestoreCompletedTransactions = paymentQueue.restoreCompletedTransactions
         
         iapController.onRefresh = { [weak iapController] in
