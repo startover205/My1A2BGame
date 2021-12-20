@@ -12,7 +12,11 @@ public class IAPViewController: UITableViewController {
     
     @IBOutlet private(set) public weak var restorePurchaseButton: UIBarButtonItem!
     
-    var tableModel = [IAPCellController]()
+    var tableModel = [IAPCellController]() {
+        didSet {
+            tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
+        }
+    }
     var onRefresh: (() -> Void)?
     var onRestoreCompletedTransactions: (() -> Void)?
     

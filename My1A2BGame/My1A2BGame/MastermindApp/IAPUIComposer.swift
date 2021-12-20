@@ -9,54 +9,121 @@
 import UIKit
 import StoreKit
 
+protocol ProductLoadingView {
+    func display(_ viewModel: ProductLoadingViewModel)
+}
+
+struct ProductLoadingViewModel {
+    let isLoading: Bool
+}
+
+protocol ProductView {
+    func display(_ viewModel: ProductViewModel)
+}
+
+struct ProductViewModel {
+    let products: [SKProduct]
+}
+
+public final class ProductPresenter {
+    private let loader: IAPProductLoader
+    private let loadingView: ProductLoadingView
+    private let productView: ProductView
+    
+    init(loader: IAPProductLoader, loadingView: ProductLoadingView, productView: ProductView) {
+        self.loader = loader
+        self.loadingView = loadingView
+        self.productView = productView
+    }
+    
+    func retrieveAvailableProducts() {
+        loadingView.display(ProductLoadingViewModel(isLoading: true))
+        
+        loader.load { [weak self] products in
+            guard let self = self else { return }
+            
+            self.loadingView.display(ProductLoadingViewModel(isLoading: false))
+            
+            self.productView.display(ProductViewModel(products: products))
+        }
+    }
+}
+
+
 public final class IAPUIComposer {
     private init() {}
     
-    public static func iapComposedWith(
-        productLoader: IAPProductLoader,
-        paymentQueue: SKPaymentQueue,
-        canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments) -> IAPViewController {
+    public static func iapComposedWith(productLoader: IAPProductLoader,
+                                       paymentQueue: SKPaymentQueue,
+                                       canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
         iapController.onRestoreCompletedTransactions = paymentQueue.restoreCompletedTransactions
         
-        iapController.onRefresh = { [weak iapController] in
-            guard let iapController = iapController else { return }
-            
-            iapController.tableView.tableHeaderView = nil
-            
-            iapController.refreshControl?.beginRefreshing()
-            
-            productLoader.load(completion: { [weak iapController] products in
-                guard let iapController = iapController else { return }
-                
-                iapController.tableModel = self.adaptProductsToCellControllers(products, selection: { [weak iapController] in
-                    if canMakePayment() {
-                        let payment = SKPayment(product: $0)
-                        paymentQueue.add(payment)
-                    } else {
-                        let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: ""), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: ""), preferredStyle: .alert)
-                        
-                        let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: ""), style: .default)
-                        
-                        alert.addAction(ok)
-                        
-                        iapController?.showDetailViewController(alert, sender: self)
-                    }
-                })
-                
-                iapController.tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .left)
-                iapController.refreshControl?.endRefreshing()
-                
-                if iapController.tableModel.isEmpty {
-                    iapController.tableView.tableHeaderView = makeNoProductLabel()
-                }
-            })
-        }
+        let presentationAdapter = ProductViewAdapter(iapViewController: iapController,
+                                                             canMakePayment: canMakePayment,
+                                                             paymentQueue: paymentQueue)
         
+        let presenter = ProductPresenter(loader: productLoader,
+                                         loadingView: presentationAdapter,
+                                         productView: presentationAdapter)
+        
+        iapController.onRefresh = presenter.retrieveAvailableProducts
         return iapController
     }
+}
+
+
+final class ProductViewAdapter {
+    private weak var iapViewController: IAPViewController?
+    private let canMakePayment: () -> Bool
+    private let paymentQueue: SKPaymentQueue
     
-    private static func makeNoProductLabel() -> UILabel {
+    init(iapViewController: IAPViewController, canMakePayment: @escaping () -> Bool, paymentQueue: SKPaymentQueue) {
+        self.iapViewController = iapViewController
+        self.canMakePayment = canMakePayment
+        self.paymentQueue = paymentQueue
+    }
+}
+
+
+extension ProductViewAdapter: ProductLoadingView {
+    func display(_ viewModel: ProductLoadingViewModel) {
+        if viewModel.isLoading {
+            iapViewController?.tableView.tableHeaderView = nil
+            iapViewController?.refreshControl?.beginRefreshing()
+        } else {
+            iapViewController?.refreshControl?.endRefreshing()
+        }
+    }
+}
+
+extension ProductViewAdapter: ProductView {
+    func display(_ viewModel: ProductViewModel) {
+        if viewModel.products.isEmpty {
+            iapViewController?.tableView.tableHeaderView = makeNoProductLabel()
+        }
+        
+        iapViewController?.tableModel = viewModel.products.map { product in
+            IAPCellController(product: Product(name: product.localizedTitle, price: product.localPrice)) { [weak self] in
+                guard let self = self else { return }
+                
+                if self.canMakePayment() {
+                    let payment = SKPayment(product: product)
+                    self.paymentQueue.add(payment)
+                } else {
+                    let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: ""), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: ""), preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: ""), style: .default)
+                    
+                    alert.addAction(ok)
+                    
+                    self.iapViewController?.showDetailViewController(alert, sender: self)
+                }
+            }
+        }
+    }
+    
+    private func makeNoProductLabel() -> UILabel {
         let label = UILabel()
         label.text = NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd")
         label.textColor = .white
@@ -64,17 +131,6 @@ public final class IAPUIComposer {
         label.textAlignment = .center
         label.sizeToFit()
         return label
-    }
-}
-
-
-extension IAPUIComposer {
-    private static func adaptProductsToCellControllers(_ products: [SKProduct], selection: @escaping (SKProduct) -> Void) -> [IAPCellController] {
-        products.map { product in
-            IAPCellController(product: Product(name: product.localizedTitle, price: product.localPrice)) {
-               selection(product)
-            }
-        }
     }
 }
 
