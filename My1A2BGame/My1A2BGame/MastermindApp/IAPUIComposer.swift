@@ -49,6 +49,36 @@ public final class ProductPresenter {
     }
 }
 
+extension ProductPresenter {
+    public static var noPaymentMessage: String {
+        NSLocalizedString("NO_PAYMENT_MESSAGE",
+                          tableName: nil,
+                          bundle: Bundle(for: ProductPresenter.self),
+                          comment: "The message for user payment not available")
+    }
+    
+    public static var noPaymentDetailedMessage: String {
+        NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED",
+                          tableName: nil,
+                          bundle: Bundle(for: ProductPresenter.self),
+                          comment: "The detailed message for user payment not available")
+    }
+    
+    public static var noPaymentMessageDismissAction: String {
+        NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION",
+                          tableName: nil,
+                          bundle: Bundle(for: ProductPresenter.self),
+                          comment: "The button for dismissing the no payment message")
+    }
+    
+    public static var noProductMessage: String {
+        NSLocalizedString("NO_PRODUCT_MESSAGE",
+                          tableName: nil,
+                          bundle: Bundle(for: ProductPresenter.self),
+                          comment: "The message when there are no products to buy")
+    }
+}
+
 
 public final class IAPUIComposer {
     private init() {}
@@ -111,9 +141,9 @@ extension ProductViewAdapter: ProductView {
                     let payment = SKPayment(product: product)
                     self.paymentQueue.add(payment)
                 } else {
-                    let alert = UIAlertController(title: NSLocalizedString("NO_PAYMENT_MESSAGE", comment: ""), message: NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED", comment: ""), preferredStyle: .alert)
+                    let alert = UIAlertController(title: ProductPresenter.noPaymentMessage, message: ProductPresenter.noPaymentDetailedMessage, preferredStyle: .alert)
                     
-                    let ok = UIAlertAction(title: NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION", comment: ""), style: .default)
+                    let ok = UIAlertAction(title: ProductPresenter.noPaymentMessageDismissAction, style: .default)
                     
                     alert.addAction(ok)
                     
@@ -125,7 +155,7 @@ extension ProductViewAdapter: ProductView {
     
     private func makeNoProductLabel() -> UILabel {
         let label = UILabel()
-        label.text = NSLocalizedString("NO_PRODUCT_MESSAGE", comment: "3nd")
+        label.text = ProductPresenter.noProductMessage
         label.textColor = .white
         label.backgroundColor = .lightGray
         label.textAlignment = .center
