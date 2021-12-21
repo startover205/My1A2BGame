@@ -28,6 +28,11 @@
 		C074813F276C26F80047A188 /* ProductLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074813E276C26F80047A188 /* ProductLoaderTests.swift */; };
 		C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0748140276C674B0047A188 /* IAPProductLoader.swift */; };
 		C075760F224C7A7D007A1F9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760E224C7A7D007A1F9E /* Global.swift */; };
+		C077B5D62771A7F40022F9CF /* ProductPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5D52771A7F40022F9CF /* ProductPresenter.swift */; };
+		C077B5D82771A8150022F9CF /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5D72771A8150022F9CF /* ProductViewModel.swift */; };
+		C077B5DA2771A81B0022F9CF /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5D92771A81B0022F9CF /* ProductView.swift */; };
+		C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5DB2771A8240022F9CF /* ProductLoadingViewModel.swift */; };
+		C077B5DE2771A82B0022F9CF /* ProductLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */; };
 		C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */; };
 		C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */; };
 		C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */; };
@@ -139,6 +144,11 @@
 		C074813E276C26F80047A188 /* ProductLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoaderTests.swift; sourceTree = "<group>"; };
 		C0748140276C674B0047A188 /* IAPProductLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProductLoader.swift; sourceTree = "<group>"; };
 		C075760E224C7A7D007A1F9E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		C077B5D52771A7F40022F9CF /* ProductPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresenter.swift; sourceTree = "<group>"; };
+		C077B5D72771A8150022F9CF /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		C077B5D92771A81B0022F9CF /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		C077B5DB2771A8240022F9CF /* ProductLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoadingViewModel.swift; sourceTree = "<group>"; };
+		C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoadingView.swift; sourceTree = "<group>"; };
 		C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdPresenter.swift; sourceTree = "<group>"; };
@@ -271,6 +281,7 @@
 				C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */,
 				C01BC5D026A85B5000FA0636 /* In-App Purchase */,
 				C01BC5C826A84B9400FA0636 /* GoogleAds */,
+				C077B5D42771A7CE0022F9CF /* IAPProduct */,
 				C0A1F47626B62A1100536D73 /* MastermindiOS */,
 				C01BC5CC26A84BF600FA0636 /* MastermindApp */,
 			);
@@ -319,6 +330,18 @@
 				C0ED626922648B9700892A80 /* IAP.swift */,
 			);
 			path = "In-App Purchase";
+			sourceTree = "<group>";
+		};
+		C077B5D42771A7CE0022F9CF /* IAPProduct */ = {
+			isa = PBXGroup;
+			children = (
+				C077B5D52771A7F40022F9CF /* ProductPresenter.swift */,
+				C077B5D72771A8150022F9CF /* ProductViewModel.swift */,
+				C077B5D92771A81B0022F9CF /* ProductView.swift */,
+				C077B5DB2771A8240022F9CF /* ProductLoadingViewModel.swift */,
+				C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */,
+			);
+			path = IAPProduct;
 			sourceTree = "<group>";
 		};
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
@@ -628,10 +651,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */,
+				C077B5DA2771A81B0022F9CF /* ProductView.swift in Sources */,
 				C0C0D76F26F477A500A1B16E /* WeakRefVirtualProxy.swift in Sources */,
 				C0F4ACC2273CF38000FAFC2A /* IAPUIComposer.swift in Sources */,
 				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
 				C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */,
+				C077B5DE2771A82B0022F9CF /* ProductLoadingView.swift in Sources */,
+				C077B5D62771A7F40022F9CF /* ProductPresenter.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C0C08E6A26E1F138001A1CF5 /* ReplenishChanceDelegate.swift in Sources */,
 				C0ED626722608FFD00892A80 /* IAPTransactionObserver.swift in Sources */,
@@ -640,6 +666,7 @@
 				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
 				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
+				C077B5D82771A8150022F9CF /* ProductViewModel.swift in Sources */,
 				C0DC06E7273E5CEE0033982F /* Product.swift in Sources */,
 				C008E2D7274DD05A0036E2A0 /* SKProduct+LocalPrice.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
@@ -649,6 +676,7 @@
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
+				C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */,
 				C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */,
 				C09ADD3F2743B17100222B71 /* IAPCellController.swift in Sources */,
 				C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */,
