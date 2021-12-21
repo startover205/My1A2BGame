@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GoogleRewardAdManager.shared.begin()
         }
         
-        window = UIWindow()
+        window = UIWindow(frame: UIScreen.main.bounds)
         configureWindow()
         
         return true
