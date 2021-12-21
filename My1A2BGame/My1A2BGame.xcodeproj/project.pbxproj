@@ -344,22 +344,38 @@
 			path = IAPProduct;
 			sourceTree = "<group>";
 		};
+		C077B5DF2771AA700022F9CF /* Game UI */ = {
+			isa = PBXGroup;
+			children = (
+				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
+				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
+				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
+				C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */,
+				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
+				C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */,
+			);
+			path = "Game UI";
+			sourceTree = "<group>";
+		};
+		C077B5E02771AAC80022F9CF /* Rank UI */ = {
+			isa = PBXGroup;
+			children = (
+				C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */,
+			);
+			path = "Rank UI";
+			sourceTree = "<group>";
+		};
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
 			isa = PBXGroup;
 			children = (
 				C0E601A326ADB00A006C8D6D /* Helpers */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
+				C09ADD402744916F00222B71 /* IAPTransactionObserverTests.swift */,
 				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
 				C0863A56274F8C0500A799D1 /* IAPAcceptanceTests.swift */,
-				C0AA3E39274882BD00F75D95 /* Unknown.storekit */,
-				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
-				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
-				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
-				C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */,
 				C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */,
-				C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */,
-				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
-				C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */,
+				C077B5DF2771AA700022F9CF /* Game UI */,
+				C077B5E02771AAC80022F9CF /* Rank UI */,
 				C0F7D15D272254F8003DDB09 /* More UI */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
@@ -436,6 +452,7 @@
 		C0E601A326ADB00A006C8D6D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C0AA3E39274882BD00F75D95 /* Unknown.storekit */,
 				C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */,
 				C0C3143027192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift */,
 				C03F32D12746536C008C2461 /* XCTestCase+IAPTestHelpers.swift */,
@@ -461,7 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */,
-				C09ADD402744916F00222B71 /* IAPTransactionObserverTests.swift */,
 				C074813E276C26F80047A188 /* ProductLoaderTests.swift */,
 			);
 			path = IAP;
