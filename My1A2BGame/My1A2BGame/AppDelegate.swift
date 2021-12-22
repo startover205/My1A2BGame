@@ -15,11 +15,6 @@ import Mastermind
 import MastermindiOS
 import MessageUI
 
-enum IAPProduct {
-    static let removeBottomAd = "remove_bottom_ad"
-}
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

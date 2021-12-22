@@ -34,6 +34,7 @@
 		C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5DB2771A8240022F9CF /* ProductLoadingViewModel.swift */; };
 		C077B5DE2771A82B0022F9CF /* ProductLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */; };
 		C077B5E6277340770022F9CF /* UserDefaultsPurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5E5277340770022F9CF /* UserDefaultsPurchaseStore.swift */; };
+		C077B5E8277340B10022F9CF /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5E7277340B10022F9CF /* IAPProduct.swift */; };
 		C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */; };
 		C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */; };
 		C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */; };
@@ -150,6 +151,7 @@
 		C077B5DB2771A8240022F9CF /* ProductLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoadingViewModel.swift; sourceTree = "<group>"; };
 		C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoadingView.swift; sourceTree = "<group>"; };
 		C077B5E5277340770022F9CF /* UserDefaultsPurchaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPurchaseStore.swift; sourceTree = "<group>"; };
+		C077B5E7277340B10022F9CF /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
 		C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdPresenter.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				C077B5D42771A7CE0022F9CF /* In-App Purchase Presentation */,
 				C01BC5C826A84B9400FA0636 /* GoogleAds */,
 				C014619E20BE6BD20023EEB6 /* AppDelegate.swift */,
+				C077B5E7277340B10022F9CF /* IAPProduct.swift */,
 				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
 				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
 				C085BE692254974700320563 /* Constants.swift */,
@@ -664,6 +667,7 @@
 				C0F4ACC2273CF38000FAFC2A /* IAPUIComposer.swift in Sources */,
 				C0BF9A7426DDC15F006BD7C1 /* GameVersion.swift in Sources */,
 				C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */,
+				C077B5E8277340B10022F9CF /* IAPProduct.swift in Sources */,
 				C077B5DE2771A82B0022F9CF /* ProductLoadingView.swift in Sources */,
 				C077B5D62771A7F40022F9CF /* ProductPresenter.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
