@@ -9,11 +9,11 @@
 import UIKit
 
 final class IAPCellController: NSObject {
-    private let product: Product
+    private let viewModel: ProductViewModel
     private let selection: () -> Void
     
-    internal init(product: Product, selection: @escaping () -> Void) {
-        self.product = product
+    internal init(product: ProductViewModel, selection: @escaping () -> Void) {
+        self.viewModel = product
         self.selection = selection
     }
 }
@@ -26,8 +26,8 @@ extension IAPCellController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) 
         
-        cell.textLabel?.text = product.name
-        cell.detailTextLabel?.text = product.price
+        cell.textLabel?.text = viewModel.name
+        cell.detailTextLabel?.text = viewModel.price
         
         return cell
     }

@@ -63,7 +63,7 @@ extension ProductViewAdapter: ProductView {
         }
         
         iapViewController?.tableModel = viewModel.products.map { product in
-            IAPCellController(product: Product(name: product.localizedTitle, price: product.localPrice)) { [weak self] in
+            IAPCellController(product: ProductViewModel(name: product.localizedTitle, price: product.localPrice)) { [weak self] in
                 guard let self = self else { return }
                 
                 if self.canMakePayment() {

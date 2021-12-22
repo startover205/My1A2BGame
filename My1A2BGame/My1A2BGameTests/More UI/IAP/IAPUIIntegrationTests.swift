@@ -142,7 +142,7 @@ class IAPUIIntegrationTests: XCTestCase {
         return value
     }
     
-    private func assertThat(_ sut: IAPViewController, isRendering products: [My1A2BGame.Product], file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: IAPViewController, isRendering products: [ProductViewModel], file: StaticString = #filePath, line: UInt = #line) {
         sut.view.enforceLayoutCycle()
         
         guard sut.numberOfRenderedProductViews() == products.count else {
@@ -156,7 +156,7 @@ class IAPUIIntegrationTests: XCTestCase {
         executeRunLoopToCleanUpReferences()
     }
     
-    private func assertThat(_ sut: IAPViewController, hasViewConfiguredFor product: My1A2BGame.Product, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
+    private func assertThat(_ sut: IAPViewController, hasViewConfiguredFor product: ProductViewModel, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
         let view = sut.productView(at: index)
         
         XCTAssertEqual(view?.textLabel?.text, product.name, "Expected name text to be \(String(describing: product.name)) for product view at index (\(index))", file: file, line: line)
@@ -244,7 +244,7 @@ private extension IAPViewController {
 }
 
 private extension Array where Element == SKProduct {
-    func toModels() -> [My1A2BGame.Product] {
-        map { Product(name: $0.localizedTitle, price: $0.localPrice) }
+    func toModels() -> [ProductViewModel] {
+        map { ProductViewModel(name: $0.localizedTitle, price: $0.localPrice) }
     }
 }
