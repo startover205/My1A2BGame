@@ -15,6 +15,27 @@ import Mastermind
 import MastermindiOS
 import MessageUI
 
+struct UserDefaultsPurchaseRecordStore {
+    private let userDefaults: UserDefaults
+
+    init(userDefaults: UserDefaults) {
+        self.userDefaults = userDefaults
+    }
+    
+    func hasPurchaseProduct(productIdentifier: String) -> Bool {
+        userDefaults.bool(forKey: productIdentifier)
+    }
+    
+    func insertPurchaseRecord(productIdentifier: String) {
+        userDefaults.set(true, forKey: productIdentifier)
+    }
+}
+
+enum IAPProduct {
+    static let removeBottomAd = "remove_bottom_ad"
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -59,9 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var userDefaults: UserDefaults = .standard
     
+    private lazy var allProductIDs: [String] = [IAPProduct.removeBottomAd]
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
     private lazy var paymentQueue: SKPaymentQueue = .default()
-    private lazy var productLoader: IAPProductLoader = MainQueueDispatchProductLoader(makeRequest: SKProductsRequest.init, getProductIDs: { Set(IAP.getAvailableProductsId(userDefaults: self.userDefaults)) })
+    private lazy var productLoader: IAPProductLoader = MainQueueDispatchProductLoader(makeRequest: SKProductsRequest.init, getProductIDs: { [allProductIDs, purhcaseRecordStore] in
+        Set(allProductIDs.filter(purhcaseRecordStore.hasPurchaseProduct(productIdentifier:)))
+    })
+    private lazy var purhcaseRecordStore: UserDefaultsPurchaseRecordStore = .init(userDefaults: userDefaults)
     
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
@@ -174,8 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let buyingProductHandler = { (productIdentifier: String) in
-            guard let product = IAP(rawValue: productIdentifier) else {
-                
+            guard self.allProductIDs.contains(productIdentifier) else {
                 let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", comment: "3nd"), preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
@@ -187,16 +211,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return
             }
             
-            IAP.didPurchase(product: product, userDefaults: self.userDefaults)
+            self.purhcaseRecordStore.insertPurchaseRecord(productIdentifier: productIdentifier)
             
-            self.iapController?.refresh()
-            
-            if productIdentifier == IAP.remove_bottom_ad.rawValue {
+            if productIdentifier == IAPProduct.removeBottomAd {
                 self.bannerAd?.alpha = 0
                 self.tabController.children.forEach {
                     $0.additionalSafeAreaInsets = .zero
                 }
             }
+            
+            self.iapController?.refresh()
         }
         
         transactionObserver.onPurchaseProduct = buyingProductHandler
