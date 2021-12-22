@@ -89,24 +89,24 @@ class IAPAcceptanceTests: XCTestCase {
     
     // MARK: - Product
 
-    func test_iap_handlePurchase_removesBottomADOnSuccessfulPurchaseOrRestoration() throws {
+    func test_iap_handlePurchase_removesBottomAdOnSuccessfulPurchaseOrRestoration() throws {
         let userDefaults = InMemoryUserDefaults()
         var (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
-        let removeBottomADProduct = removeBottomADProduct()
+        let removeBottomAdProduct = removeBottomAdProduct()
         tabController.simulateViewAppear()
 
         assertNonZeroInsetsForAllChildController(of: tabController)
-        XCTAssertEqual(tabController.adView()?.alpha, 1, "Expect showing AD before purchase")
+        XCTAssertEqual(tabController.adView()?.alpha, 1, "Expect showing Ad before purchase")
         
         try createLocalTestSession()
-        simulateBuying(removeBottomADProduct, observer: transactionObserver, paymentQueue: paymentQueue)
+        simulateBuying(removeBottomAdProduct, observer: transactionObserver, paymentQueue: paymentQueue)
         assertZeroInsetsForAllChildController(of: tabController)
-        XCTAssertEqual(tabController.adView()?.alpha, 0, "Expect hiding AD after purchase")
+        XCTAssertEqual(tabController.adView()?.alpha, 0, "Expect hiding Ad after purchase")
 
         (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         tabController.simulateViewAppear()
         assertZeroInsetsForAllChildController(of: tabController)
-        XCTAssertNil(tabController.adView(), "Expect no AD loaded since now the AD is removed")
+        XCTAssertNil(tabController.adView(), "Expect no Ad loaded since now the Ad is removed")
 
         userDefaults.cleanPurchaseRecordInApp()
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
@@ -114,7 +114,7 @@ class IAPAcceptanceTests: XCTestCase {
         (tabController, transactionObserver, paymentQueue) = launch(userDefaults: userDefaults)
         tabController.simulateViewAppear()
         assertZeroInsetsForAllChildController(of: tabController)
-        XCTAssertNil(tabController.adView(), "Expect no AD loaded after purhcase restored")
+        XCTAssertNil(tabController.adView(), "Expect no Ad loaded after purhcase restored")
     }
     
     private func assertZeroInsetsForAllChildController(of tabController: UITabBarController, file: StaticString = #filePath, line: UInt = #line) {
@@ -186,7 +186,7 @@ private func unknownProdcut() -> SKProduct {
     return product
 }
 
-private func removeBottomADProduct() -> SKProduct {
+private func removeBottomAdProduct() -> SKProduct {
     let product = SKProduct()
     product.setValue("remove_bottom_ad", forKey: "productIdentifier")
     return product

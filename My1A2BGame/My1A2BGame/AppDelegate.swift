@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
-    private weak var bannerAD: UIView?
-    private var hasPurchasedRemovingAD: Bool { userDefaults.bool(forKey: UserDefaults.Key.remove_bottom_ad) }
+    private weak var bannerAd: UIView?
+    private var hasPurchasedRemovingAd: Bool { userDefaults.bool(forKey: UserDefaults.Key.remove_bottom_ad) }
 
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced
@@ -134,31 +134,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureIAPTransactionObserver()
         
-        configureBannerAD()
+        configureBannerAd()
     }
     
-    func configureBannerAD() {
-        if !hasPurchasedRemovingAD {
+    func configureBannerAd() {
+        if !hasPurchasedRemovingAd {
             let tabBar = tabController.tabBar
             let bannerWidth = tabBar.frame.inset(by: tabBar.safeAreaInsets).size.width
             
-            let bannerAD = GADBannerView()
-            bannerAD.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(bannerWidth)
-            bannerAD.rootViewController = tabController
-            bannerAD.adUnitID = Constants.bottomAdId
-            bannerAD.load(GADRequest())
+            let bannerAd = GADBannerView()
+            bannerAd.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(bannerWidth)
+            bannerAd.rootViewController = tabController
+            bannerAd.adUnitID = Constants.bottomAdId
+            bannerAd.load(GADRequest())
             
-            tabBar.addSubview(bannerAD)
-            bannerAD.translatesAutoresizingMaskIntoConstraints = false
-            tabBar.topAnchor.constraint(equalTo: bannerAD.bottomAnchor).isActive = true
-            tabBar.leftAnchor.constraint(equalTo: bannerAD.leftAnchor).isActive = true
-            tabBar.rightAnchor.constraint(equalTo: bannerAD.rightAnchor).isActive = true
+            tabBar.addSubview(bannerAd)
+            bannerAd.translatesAutoresizingMaskIntoConstraints = false
+            tabBar.topAnchor.constraint(equalTo: bannerAd.bottomAnchor).isActive = true
+            tabBar.leftAnchor.constraint(equalTo: bannerAd.leftAnchor).isActive = true
+            tabBar.rightAnchor.constraint(equalTo: bannerAd.rightAnchor).isActive = true
             
-            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: bannerAD.bounds.height, right: 0)
+            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: bannerAd.bounds.height, right: 0)
             for child in tabController.children {
                 child.additionalSafeAreaInsets = newInset
             }
-            self.bannerAD = bannerAD
+            self.bannerAd = bannerAd
         }
     }
     
@@ -192,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.iapController?.refresh()
             
             if productIdentifier == IAP.remove_bottom_ad.rawValue {
-                self.bannerAD?.alpha = 0
+                self.bannerAd?.alpha = 0
                 self.tabController.children.forEach {
                     $0.additionalSafeAreaInsets = .zero
                 }
