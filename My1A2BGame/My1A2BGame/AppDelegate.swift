@@ -15,22 +15,6 @@ import Mastermind
 import MastermindiOS
 import MessageUI
 
-struct UserDefaultsPurchaseRecordStore {
-    private let userDefaults: UserDefaults
-
-    init(userDefaults: UserDefaults) {
-        self.userDefaults = userDefaults
-    }
-    
-    func hasPurchaseProduct(productIdentifier: String) -> Bool {
-        userDefaults.bool(forKey: productIdentifier)
-    }
-    
-    func insertPurchaseRecord(productIdentifier: String) {
-        userDefaults.set(true, forKey: productIdentifier)
-    }
-}
-
 enum IAPProduct {
     static let removeBottomAd = "remove_bottom_ad"
 }
