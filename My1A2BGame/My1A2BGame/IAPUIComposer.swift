@@ -57,7 +57,7 @@ extension ProductViewAdapter: ProductLoadingView {
 }
 
 extension ProductViewAdapter: ProductView {
-    func display(_ viewModel: ProductViewModel) {
+    func display(_ viewModel: ProductListViewModel) {
         if viewModel.products.isEmpty {
             iapViewController?.tableView.tableHeaderView = makeNoProductLabel()
         }

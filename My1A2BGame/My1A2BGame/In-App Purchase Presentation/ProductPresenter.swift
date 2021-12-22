@@ -25,7 +25,7 @@ final class ProductPresenter {
             
             self.loadingView.display(ProductLoadingViewModel(isLoading: false))
             
-            self.productView.display(ProductViewModel(products: products))
+            self.productView.display(ProductListViewModel(products: products))
         }
     }
 }

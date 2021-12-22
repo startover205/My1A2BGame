@@ -7,5 +7,5 @@
 //
 
 protocol ProductView {
-    func display(_ viewModel: ProductViewModel)
+    func display(_ viewModel: ProductListViewModel)
 }

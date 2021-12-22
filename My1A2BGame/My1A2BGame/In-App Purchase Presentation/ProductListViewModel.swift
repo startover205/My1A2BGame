@@ -8,6 +8,6 @@
 
 import StoreKit
 
-struct ProductViewModel {
+struct ProductListViewModel {
     let products: [SKProduct]
 }
