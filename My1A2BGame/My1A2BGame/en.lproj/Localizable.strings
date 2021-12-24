@@ -21,8 +21,6 @@
 
 "APP_REVIEW_SUGGESTION_MESSAGE" = "We're sorry. Please leave a review in the AppStore instead.";
 
-"SAVE_RECORD_BUTTON_TITLE" = "Confirm";
-
 "QUESTION_AD_NOT_SHOWING" = "How come sometimes there's no reward ad when we are out of guess chances?";
 
 "ANSWER_AD_NOT_SHOWING" = "The reward ad will only show if an ad is loaded completely.";
