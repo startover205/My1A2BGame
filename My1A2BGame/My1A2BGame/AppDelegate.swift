@@ -170,7 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         transactionObserver.onTransactionError = { error in
             let alert = UIAlertController(title: NSLocalizedString("PURCHASE_ERROR", comment: "5th"), message: error?.localizedDescription, preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("MESSAGE_DISMISS_ACTION", comment: "3nd"), style: .default)
             
             alert.addAction(ok)
             
@@ -181,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard self.allProductIDs.contains(productIdentifier) else {
                 let alert = UIAlertController(title: NSLocalizedString("UNKNOWN_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+                let ok = UIAlertAction(title: NSLocalizedString("MESSAGE_DISMISS_ACTION", comment: "3nd"), style: .default)
                 
                 alert.addAction(ok)
                 
@@ -209,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         transactionObserver.onRestorationFinishedWithError = { error in
             let alert = UIAlertController(title: NSLocalizedString("RESTORE_PURCHASE_ERROR", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("MESSAGE_DISMISS_ACTION", comment: "3nd"), style: .default)
             
             alert.addAction(ok)
             
@@ -221,7 +221,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
             let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
+            let ok = UIAlertAction(title: NSLocalizedString("MESSAGE_DISMISS_ACTION", comment: "3nd"), style: .default)
 
             alert.addAction(ok)
 

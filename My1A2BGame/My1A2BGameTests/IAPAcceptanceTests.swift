@@ -30,7 +30,7 @@ class IAPAcceptanceTests: XCTestCase {
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title,  localized("PURCHASE_ERROR"), "alert title")
         XCTAssertEqual(alert.message, SKError(.unknown).localizedDescription, "alert message")
-        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        XCTAssertEqual(alert.actions.first?.title, localized("MESSAGE_DISMISS_ACTION"), "confirm title")
     }
     
     func test_iap_handlePurchase_showsMessageOnPurchasingUnknownProduct() throws {
@@ -42,7 +42,7 @@ class IAPAcceptanceTests: XCTestCase {
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, localized("UNKNOWN_PRODUCT_MESSAGE"), "alert title")
-        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        XCTAssertEqual(alert.actions.first?.title, localized("MESSAGE_DISMISS_ACTION"), "confirm title")
     }
 
     func test_iap_restoreCompletedTransactions_showsMessageOnRestorationError() throws {
@@ -54,7 +54,7 @@ class IAPAcceptanceTests: XCTestCase {
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, localized("RESTORE_PURCHASE_ERROR"), "alert title")
         XCTAssertEqual(alert.message, restorationError.localizedDescription, "alert message")
-        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        XCTAssertEqual(alert.actions.first?.title, localized("MESSAGE_DISMISS_ACTION"), "confirm title")
     }
 
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulEmptyRestoration() throws {
@@ -65,7 +65,7 @@ class IAPAcceptanceTests: XCTestCase {
 
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, localized("NO_RESTORABLE_PRODUCT_MESSAGE"), "alert title")
-        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        XCTAssertEqual(alert.actions.first?.title, localized("MESSAGE_DISMISS_ACTION"), "confirm title")
     }
     
     func test_iap_restoreCompletedTransactions_showsMessageOnSuccessfulNonEmptyRestoration() throws {
@@ -82,7 +82,7 @@ class IAPAcceptanceTests: XCTestCase {
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, localized("RESTORE_PURCHASE_SUCCESS"), "alert title")
-        XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
+        XCTAssertEqual(alert.actions.first?.title, localized("MESSAGE_DISMISS_ACTION"), "confirm title")
     }
     
     // MARK: - Product

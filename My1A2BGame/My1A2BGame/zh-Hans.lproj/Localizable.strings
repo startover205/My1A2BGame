@@ -3,7 +3,7 @@
 "APP_PROMOTIONAL_MESSAGE" = "来玩“1A2B Fun!”吧！不需花大量时间，就能享受动脑的乐趣！";
 
 /* 3nd */
-"Confirm" = "确认";
+"MESSAGE_DISMISS_ACTION" = "确认";
 
 /* 5th */
 "PURCHASE_ERROR" = "无法购买";

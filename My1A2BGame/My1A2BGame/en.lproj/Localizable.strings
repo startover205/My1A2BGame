@@ -3,7 +3,7 @@
 "APP_PROMOTIONAL_MESSAGE" = "Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!";
 
 /* 3nd */
-"Confirm" = "Confirm";
+"MESSAGE_DISMISS_ACTION" = "Confirm";
 
 /* 5th */
 "PURCHASE_ERROR" = "Failed to Purchase";

@@ -3,7 +3,7 @@
 "APP_PROMOTIONAL_MESSAGE" = "來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！";
 
 /* 3nd */
-"Confirm" = "確認";
+"MESSAGE_DISMISS_ACTION" = "確認";
 
 /* 5th */
 "PURCHASE_ERROR" = "無法購買";
