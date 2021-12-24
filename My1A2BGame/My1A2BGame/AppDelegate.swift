@@ -217,9 +217,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         transactionObserver.onRestorationFinished = { hasRestorableContent in
-            let (title, message) = hasRestorableContent ? (NSLocalizedString("RESTORE_PURCHASE_SUCCESS", comment: "3nd"), NSLocalizedString("Certain content will only be available after restarting the app.", comment: "3nd")) : (NSLocalizedString("NO_RESTORABLE_PRODUCT_MESSAGE", comment: "3nd"), nil)
+            let title = hasRestorableContent ? NSLocalizedString("RESTORE_PURCHASE_SUCCESS", comment: "") : NSLocalizedString("NO_RESTORABLE_PRODUCT_MESSAGE", comment: "")
         
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
 

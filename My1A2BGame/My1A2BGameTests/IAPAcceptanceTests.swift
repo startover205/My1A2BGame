@@ -83,7 +83,6 @@ class IAPAcceptanceTests: XCTestCase {
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, localized("RESTORE_PURCHASE_SUCCESS"), "alert title")
-        XCTAssertEqual(alert.message, "Certain content will only be available after restarting the app.", "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
     
