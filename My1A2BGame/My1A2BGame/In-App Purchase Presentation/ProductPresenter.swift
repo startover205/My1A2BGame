@@ -33,28 +33,28 @@ final class ProductPresenter {
 extension ProductPresenter {
     public static var noPaymentMessage: String {
         NSLocalizedString("NO_PAYMENT_MESSAGE",
-                          tableName: nil,
+                          tableName: "InAppPurchase",
                           bundle: Bundle(for: ProductPresenter.self),
                           comment: "The message for user payment not available")
     }
     
     public static var noPaymentDetailedMessage: String {
         NSLocalizedString("NO_PAYMENT_MESSAGE_DETAILED",
-                          tableName: nil,
+                          tableName: "InAppPurchase",
                           bundle: Bundle(for: ProductPresenter.self),
                           comment: "The detailed message for user payment not available")
     }
     
     public static var noPaymentMessageDismissAction: String {
         NSLocalizedString("NO_PAYMENT_CONFIRM_ACTION",
-                          tableName: nil,
+                          tableName: "InAppPurchase",
                           bundle: Bundle(for: ProductPresenter.self),
                           comment: "The button for dismissing the no payment message")
     }
     
     public static var noProductMessage: String {
         NSLocalizedString("NO_PRODUCT_MESSAGE",
-                          tableName: nil,
+                          tableName: "InAppPurchase",
                           bundle: Bundle(for: ProductPresenter.self),
                           comment: "The message when there are no products to buy")
     }
