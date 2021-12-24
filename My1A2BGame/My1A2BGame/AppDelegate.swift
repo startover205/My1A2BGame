@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let buyingProductHandler = { (productIdentifier: String) in
             guard self.allProductIDs.contains(productIdentifier) else {
-                let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("UNKNOWN_PRODUCT_MESSAGE", comment: "3nd"), preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("UNKNOWN_PRODUCT_MESSAGE", comment: "3nd"), message: nil, preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
                 
