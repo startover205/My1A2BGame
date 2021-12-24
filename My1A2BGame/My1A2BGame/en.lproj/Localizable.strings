@@ -1,35 +1,24 @@
 
-/* 9th */
 "APP_PROMOTIONAL_MESSAGE" = "Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!";
 
-/* 3nd */
 "MESSAGE_DISMISS_ACTION" = "Confirm";
 
-/* 5th */
 "PURCHASE_ERROR" = "Failed to Purchase";
 
-/* 3nd */
 "RESTORE_PURCHASE_ERROR" = "Failed to Restore Purchase";
 
-/* 6th */
 "APP_REVIEW_ACTION" = "Here we go!";
 
-/* 6th */
 "APP_REVIEW_CANCEL_ACTION" = "Maybe later";
 
-/* 6th */
 "EMAIL_UNAVAILABLE_MESSAGE" = "No Email Function Available";
 
-/* 3nd */
 "NO_RESTORABLE_PRODUCT_MESSAGE" = "No Restorable Products";
 
-/* 3nd */
 "RESTORE_PURCHASE_SUCCESS" = "Successfully Restored Purchase";
 
-/* 3nd */
 "UNKNOWN_PRODUCT_MESSAGE" = "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.";
 
-/* 6th */
 "APP_REVIEW_SUGGESTION_MESSAGE" = "We're sorry. Please leave a review in the AppStore instead.";
 
 "SAVE_RECORD_BUTTON_TITLE" = "Confirm";

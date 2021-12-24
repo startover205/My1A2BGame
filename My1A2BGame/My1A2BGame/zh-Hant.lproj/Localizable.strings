@@ -1,33 +1,22 @@
 
-/* 9th */
 "APP_PROMOTIONAL_MESSAGE" = "來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！";
 
-/* 3nd */
 "MESSAGE_DISMISS_ACTION" = "確認";
 
-/* 5th */
 "PURCHASE_ERROR" = "無法購買";
 
-/* 3nd */
 "RESTORE_PURCHASE_ERROR" = "無法恢復購買";
 
-/* 6th */
 "APP_REVIEW_ACTION" = "立即評論";
 
-/* 6th */
 "APP_REVIEW_CANCEL_ACTION" = "稍後再說";
 
-/* 6th */
 "EMAIL_UNAVAILABLE_MESSAGE" = "未在裝置上找到電子郵件功能";
 
-/* 3nd */
 "NO_RESTORABLE_PRODUCT_MESSAGE" = "沒有可以恢復的商品";
 
-/* 3nd */
 "RESTORE_PURCHASE_SUCCESS" = "成功恢復購買";
 
-/* 3nd */
 "UNKNOWN_PRODUCT_MESSAGE" = "未知產品識別碼，如果扣款已成功，請聯繫 Apple 尋求退款或是送出錯誤回報。";
 
-/* 6th */
 "APP_REVIEW_SUGGESTION_MESSAGE" = "很抱歉，您可以另外用App Store的評論功能來回報。";
