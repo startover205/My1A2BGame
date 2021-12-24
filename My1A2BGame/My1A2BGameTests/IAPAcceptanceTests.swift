@@ -116,20 +116,6 @@ class IAPAcceptanceTests: XCTestCase {
         XCTAssertNil(tabController.adView(), "Expect no Ad loaded after purhcase restored")
     }
     
-    private func assertZeroInsetsForAllChildController(of tabController: UITabBarController, file: StaticString = #filePath, line: UInt = #line) {
-        
-        for (index, controller) in tabController.children.enumerated() {
-            XCTAssertEqual(controller.additionalSafeAreaInsets, .zero, "Expect controller at \(index) to be zero", file: file, line: line)
-        }
-    }
-    
-    private func assertNonZeroInsetsForAllChildController(of tabController: UITabBarController, file: StaticString = #filePath, line: UInt = #line) {
-        
-        for (index, controller) in tabController.children.enumerated() {
-            XCTAssertNotEqual(controller.additionalSafeAreaInsets, .zero, "Expect controller at \(index) to be non-zero", file: file, line: line)
-        }
-    }
-    
     // MARK: - Composable View
     
     func test_handlePurchase_refreshesIAPViewOnPurchaseOrRestoreProducts() throws {
@@ -173,6 +159,20 @@ class IAPAcceptanceTests: XCTestCase {
             XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
         }
         return value
+    }
+    
+    private func assertZeroInsetsForAllChildController(of tabController: UITabBarController, file: StaticString = #filePath, line: UInt = #line) {
+        
+        for (index, controller) in tabController.children.enumerated() {
+            XCTAssertEqual(controller.additionalSafeAreaInsets, .zero, "Expect controller at \(index) to be zero", file: file, line: line)
+        }
+    }
+    
+    private func assertNonZeroInsetsForAllChildController(of tabController: UITabBarController, file: StaticString = #filePath, line: UInt = #line) {
+        
+        for (index, controller) in tabController.children.enumerated() {
+            XCTAssertNotEqual(controller.additionalSafeAreaInsets, .zero, "Expect controller at \(index) to be non-zero", file: file, line: line)
+        }
     }
     
     private final class IAPProductLoaderSpy: IAPProductLoader {
