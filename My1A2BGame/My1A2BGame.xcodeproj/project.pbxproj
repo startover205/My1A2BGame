@@ -35,6 +35,7 @@
 		C077B5DE2771A82B0022F9CF /* ProductLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */; };
 		C077B5E6277340770022F9CF /* UserDefaultsPurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5E5277340770022F9CF /* UserDefaultsPurchaseStore.swift */; };
 		C077B5E8277340B10022F9CF /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5E7277340B10022F9CF /* IAPProduct.swift */; };
+		C077B5EC277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5EB277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift */; };
 		C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */; };
 		C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */; };
 		C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */; };
@@ -152,6 +153,7 @@
 		C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoadingView.swift; sourceTree = "<group>"; };
 		C077B5E5277340770022F9CF /* UserDefaultsPurchaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPurchaseStore.swift; sourceTree = "<group>"; };
 		C077B5E7277340B10022F9CF /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
+		C077B5EB277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPurchaseRecordStoreTests.swift; sourceTree = "<group>"; };
 		C078417126B385C90008A5FA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		C078417326B385E50008A5FA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdPresenter.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
 				C0863A56274F8C0500A799D1 /* IAPAcceptanceTests.swift */,
 				C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */,
+				C077B5EB277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift */,
 				C077B5DF2771AA700022F9CF /* Game UI */,
 				C077B5E02771AAC80022F9CF /* Rank UI */,
 				C0F7D15D272254F8003DDB09 /* More UI */,
@@ -720,6 +723,7 @@
 				C088A65126BE7855005FC389 /* InMemoryUserDefaults.swift in Sources */,
 				C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */,
 				C09925872738F7EB003E322D /* MoreViewControllerTests.swift in Sources */,
+				C077B5EC277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift in Sources */,
 				C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */,
 				C0C271932727A8D600A565C6 /* FAQViewController+TestHelpers.swift in Sources */,
 				C07C16AF2702F52B00451060 /* RewardAdPresenterTests.swift in Sources */,
