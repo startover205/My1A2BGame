@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
     private lazy var paymentQueue: SKPaymentQueue = .default()
     private lazy var productLoader: IAPProductLoader = MainQueueDispatchProductLoader(makeRequest: SKProductsRequest.init, getProductIDs: { [allProductIDs, purhcaseRecordStore] in
-        Set(allProductIDs.filter(purhcaseRecordStore.hasPurchaseProduct(productIdentifier:)))
+        Set(allProductIDs.filter { !purhcaseRecordStore.hasPurchaseProduct(productIdentifier: $0) })
     })
     private lazy var purhcaseRecordStore: UserDefaultsPurchaseRecordStore = .init(userDefaults: userDefaults)
     
@@ -89,13 +89,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.advancedRecordLoader = advancedRecordLoader
     }
     
-    convenience init(userDefaults: UserDefaults, transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: IAPProductLoader) {
+    convenience init(userDefaults: UserDefaults, transactionObserver: IAPTransactionObserver, paymentQueue: SKPaymentQueue, productLoader: IAPProductLoader?) {
         self.init()
         
         self.userDefaults = userDefaults
         self.transactionObserver = transactionObserver
         self.paymentQueue = paymentQueue
-        self.productLoader = productLoader
+        if let loader = productLoader {
+            self.productLoader = loader
+        }
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

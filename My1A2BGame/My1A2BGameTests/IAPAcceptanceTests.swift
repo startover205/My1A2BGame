@@ -139,6 +139,36 @@ class IAPAcceptanceTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 3, "Expect refresh after product restoration")
     }
     
+    func test_IAPView_hidesPurchasedProducts() throws {
+        let userDefaults = InMemoryUserDefaults()
+        var (tabController, transactionObserver, paymentQueue) = launchWithDefaultLoader(userDefaults: userDefaults)
+        try createLocalTestSession()
+        var iapView = tabController.iapController()
+        
+        waitForProductLoading()
+        
+        XCTAssertEqual(iapView.numberOfRenderedProductViews(), allProducts().count, "Expect \(allProducts().count) products on no purchase record")
+        
+        simulateBuying(removeBottomAdProduct(), observer: transactionObserver, paymentQueue: paymentQueue)
+        
+        XCTAssertEqual(iapView.numberOfRenderedProductViews(), allProducts().count-1, "Expect \(allProducts().count-1) products after buying one product")
+        
+        (tabController, transactionObserver, paymentQueue) = launchWithDefaultLoader(userDefaults: userDefaults)
+        iapView = tabController.iapController()
+        
+        waitForProductLoading()
+
+        XCTAssertEqual(iapView.numberOfRenderedProductViews(), allProducts().count-1, "Expect \(allProducts().count-1) products after buying one product across launch")
+
+        userDefaults.cleanPurchaseRecordInApp()
+        (tabController, transactionObserver, paymentQueue) = launchWithDefaultLoader(userDefaults: userDefaults)
+        iapView = tabController.iapController()
+        
+        waitForProductLoading()
+        
+        XCTAssertEqual(iapView.numberOfRenderedProductViews(), allProducts().count, "Expect \(allProducts().count) products now the purchase record is removed")
+    }
+    
     // MARK: - Helpers
     
     private func launch(userDefaults: UserDefaults = InMemoryUserDefaults(), productLoader: IAPProductLoader = IAPProductLoaderSpy()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
@@ -149,6 +179,26 @@ class IAPAcceptanceTests: XCTestCase {
         sut.configureWindow()
         
         return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
+    }
+    
+    private func launchWithDefaultLoader(userDefaults: UserDefaults = InMemoryUserDefaults()) -> (UITabBarController, IAPTransactionObserver, SKPaymentQueue) {
+        let transactionObserver = IAPTransactionObserver()
+        let paymentQueue = SKPaymentQueue()
+        let sut = AppDelegate(userDefaults: userDefaults, transactionObserver: transactionObserver, paymentQueue: paymentQueue, productLoader: nil)
+        sut.window = UIWindow()
+        sut.configureWindow()
+        
+        return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
+    }
+    
+    private func waitForProductLoading() {
+        let exp = expectation(description: "wait for product loading")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 0.5)
+    }
+    
+    private func allProducts() -> [SKProduct] {
+        [removeBottomAdProduct()]
     }
     
     private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
