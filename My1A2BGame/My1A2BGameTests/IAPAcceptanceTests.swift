@@ -29,7 +29,7 @@ class IAPAcceptanceTests: XCTestCase {
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title,  localized("PURCHASE_ERROR"), "alert title")
-        XCTAssertEqual(alert.message, "The operation couldn’t be completed. (SKErrorDomain error 0.)", "alert message")
+        XCTAssertEqual(alert.message, SKError(.unknown).localizedDescription, "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
     
