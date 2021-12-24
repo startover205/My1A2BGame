@@ -20,3 +20,7 @@
 "UNKNOWN_PRODUCT_MESSAGE_FOR_%@" = "未知產品識別碼(%@)，如果扣款已成功，請聯繫 Apple 尋求退款或是送出錯誤回報。";
 
 "APP_REVIEW_SUGGESTION_MESSAGE" = "很抱歉，您可以另外用App Store的評論功能來回報。";
+
+"QUESTION_AD_NOT_SHOWING" = "獎勵廣告只會在廣告讀取完成時出現。";
+
+"ANSWER_AD_NOT_SHOWING" = "為什麼猜的次數沒有時，有時有獎勵廣告可看、有時沒有？";

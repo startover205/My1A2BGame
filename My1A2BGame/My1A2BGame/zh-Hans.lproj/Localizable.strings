@@ -21,3 +21,6 @@
 
 "APP_REVIEW_SUGGESTION_MESSAGE" = "很抱歉，您可以另外用App Store的评论功能来回报。";
 
+"QUESTION_AD_NOT_SHOWING" = "为什么猜的次数没有时，有时有奖励广告可看、有时没有？";
+
+"ANSWER_AD_NOT_SHOWING" = "奖励广告只会在广告读取完成时出现。";
