@@ -8,13 +8,6 @@
 /* 3nd */
 "Confirm" = "确认";
 
-"NO_PAYMENT_CONFIRM_ACTION" = "确认";
-
-"NO_PRODUCT_CONFIRM_ACTION" = "确认";
-
-/* 3nd */
-"NO_PRODUCT_MESSAGE" = "目前没有可购买的商品";
-
 /* 3nd */
 "Error" = "错误";
 
@@ -35,12 +28,6 @@
 
 /* 3nd */
 "No Restorable Products" = "没有可以恢复的商品";
-
-/* 4th */
-"NO_PAYMENT_MESSAGE" = "无法购买";
-
-/* 4th */
-"NO_PAYMENT_MESSAGE_DETAILED" = "很抱歉，您的装置似乎不支持App内购买或被设定限制无法购买。";
 
 /* 3nd */
 "Successfully Restored Purchase" = "成功恢复购买";

@@ -8,13 +8,6 @@
 /* 3nd */
 "Confirm" = "Confirm";
 
-"NO_PAYMENT_CONFIRM_ACTION" = "Confirm";
-
-"NO_PRODUCT_CONFIRM_ACTION" = "Confirm";
-
-/* 3nd */
-"NO_PRODUCT_MESSAGE" = "Currently No Product Available";
-
 /* 3nd */
 "Error" = "Error";
 
@@ -35,12 +28,6 @@
 
 /* 3nd */
 "No Restorable Products" = "No Restorable Products";
-
-/* 4th */
-"NO_PAYMENT_MESSAGE" = "Purchase not available";
-
-/* 4th */
-"NO_PAYMENT_MESSAGE_DETAILED" = "Sorry, it seems purchase is not available on this device or within this app.";
 
 /* 3nd */
 "Successfully Restored Purchase" = "Successfully Restored Purchase";
