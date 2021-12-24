@@ -23,6 +23,7 @@
 		C034AAC726B690F3006AABE6 /* MastermindiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C034AAC526B690F3006AABE6 /* MastermindiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0362D0C268C169200E6299B /* AppDelegateTests.swift */; };
 		C03F32D22746536C008C2461 /* XCTestCase+IAPTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F32D12746536C008C2461 /* XCTestCase+IAPTestHelpers.swift */; };
+		C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */ = {isa = PBXBuildFile; fileRef = C04587C7277570C90003B0E7 /* InAppPurchase.strings */; };
 		C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0570988270808A2005D2603 /* RankUIComposer.swift */; };
 		C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */; };
 		C074813F276C26F80047A188 /* ProductLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074813E276C26F80047A188 /* ProductLoaderTests.swift */; };
@@ -141,6 +142,9 @@
 		C034AAC526B690F3006AABE6 /* MastermindiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastermindiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0362D0C268C169200E6299B /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		C03F32D12746536C008C2461 /* XCTestCase+IAPTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+IAPTestHelpers.swift"; sourceTree = "<group>"; };
+		C04587C6277570C90003B0E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InAppPurchase.strings; sourceTree = "<group>"; };
+		C04587C8277570CD0003B0E7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
+		C04587C9277570D00003B0E7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
 		C0570988270808A2005D2603 /* RankUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIComposer.swift; sourceTree = "<group>"; };
 		C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C074813E276C26F80047A188 /* ProductLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoaderTests.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 				C077B5D92771A81B0022F9CF /* ProductView.swift */,
 				C077B5DB2771A8240022F9CF /* ProductLoadingViewModel.swift */,
 				C077B5DD2771A82B0022F9CF /* ProductLoadingView.swift */,
+				C04587C7277570C90003B0E7 /* InAppPurchase.strings */,
 			);
 			path = "In-App Purchase Presentation";
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */,
 				C07C16B62702F94E00451060 /* RewardAd.strings in Resources */,
 				C09ADD3D2743A88000222B71 /* NonConsumable.storekit in Resources */,
+				C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */,
 				C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */,
 				C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
@@ -757,6 +763,16 @@
 				C01461A820BE6BD30023EEB6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C04587C7277570C90003B0E7 /* InAppPurchase.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C04587C6277570C90003B0E7 /* en */,
+				C04587C8277570CD0003B0E7 /* zh-Hans */,
+				C04587C9277570D00003B0E7 /* zh-Hant */,
+			);
+			name = InAppPurchase.strings;
 			sourceTree = "<group>";
 		};
 		C07C16B82702F94E00451060 /* RewardAd.strings */ = {

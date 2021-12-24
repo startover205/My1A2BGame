@@ -1,0 +1,8 @@
+
+"NO_PAYMENT_MESSAGE" = "无法购买";
+
+"NO_PAYMENT_MESSAGE_DETAILED" = "很抱歉，您的装置似乎不支持App内购买或被设定限制无法购买。";
+
+"NO_PAYMENT_CONFIRM_ACTION" = "确认";
+
+"NO_PRODUCT_MESSAGE" = "目前没有可购买的商品";
