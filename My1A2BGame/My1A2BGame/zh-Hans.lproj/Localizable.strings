@@ -17,7 +17,7 @@
 
 "RESTORE_PURCHASE_SUCCESS" = "成功恢复购买";
 
-"UNKNOWN_PRODUCT_MESSAGE" = "未知产品标识符，如果扣款已成功，请联系 Apple 寻求退款或是送出错误回报。";
+"UNKNOWN_PRODUCT_MESSAGE_FOR_%@" = "未知产品标识符(%@)，如果扣款已成功，请联系 Apple 寻求退款或是送出错误回报。";
 
 "APP_REVIEW_SUGGESTION_MESSAGE" = "很抱歉，您可以另外用App Store的评论功能来回报。";
 

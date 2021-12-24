@@ -179,7 +179,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let buyingProductHandler = { (productIdentifier: String) in
             guard self.allProductIDs.contains(productIdentifier) else {
-                let alert = UIAlertController(title: NSLocalizedString("UNKNOWN_PRODUCT_MESSAGE", comment: "The message shown when the app receives an unknown product identifier"), message: nil, preferredStyle: .alert)
+                let format = NSLocalizedString("UNKNOWN_PRODUCT_MESSAGE_FOR_%@", comment: "The format for message shown when the app receives an unknown product identifier")
+                let alert = UIAlertController(title: String.localizedStringWithFormat(format, productIdentifier),message: nil, preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("MESSAGE_DISMISS_ACTION", comment: "The dismiss button title"), style: .default)
                 

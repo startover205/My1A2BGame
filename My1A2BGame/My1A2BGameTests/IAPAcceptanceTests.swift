@@ -41,7 +41,8 @@ class IAPAcceptanceTests: XCTestCase {
         simulateBuying(unknownProduct, observer: transactionObserver, paymentQueue: paymentQueue)
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert.title, localized("UNKNOWN_PRODUCT_MESSAGE"), "alert title")
+        let format = localized("UNKNOWN_PRODUCT_MESSAGE_FOR_%@")
+        XCTAssertEqual(alert.title, String.localizedStringWithFormat(format, unknownProduct.productIdentifier), "alert title")
         XCTAssertEqual(alert.actions.first?.title, localized("MESSAGE_DISMISS_ACTION"), "confirm title")
     }
 

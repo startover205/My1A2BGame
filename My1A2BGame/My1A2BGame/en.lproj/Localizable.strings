@@ -17,7 +17,7 @@
 
 "RESTORE_PURCHASE_SUCCESS" = "Successfully Restored Purchase";
 
-"UNKNOWN_PRODUCT_MESSAGE" = "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.";
+"UNKNOWN_PRODUCT_MESSAGE_FOR_%@" = "Unknown product identifier(%@), please contact Apple for refund if payment is complete or send a bug report.";
 
 "APP_REVIEW_SUGGESTION_MESSAGE" = "We're sorry. Please leave a review in the AppStore instead.";
 
