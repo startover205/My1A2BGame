@@ -168,7 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureIAPTransactionObserver() {
         transactionObserver.onTransactionError = { error in
-            let alert = UIAlertController(title: NSLocalizedString("Failed to Purchase", comment: "5th"), message: error?.localizedDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("PURCHASE_ERROR", comment: "5th"), message: error?.localizedDescription, preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let buyingProductHandler = { (productIdentifier: String) in
             guard self.allProductIDs.contains(productIdentifier) else {
-                let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", comment: "3nd"), preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: "3nd"), message: NSLocalizedString("UNKNOWN_PRODUCT_MESSAGE", comment: "3nd"), preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
                 
@@ -207,7 +207,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         transactionObserver.onRestoreProduct = buyingProductHandler
         
         transactionObserver.onRestorationFinishedWithError = { error in
-            let alert = UIAlertController(title: NSLocalizedString("Failed to Restore Purchase", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("RESTORE_PURCHASE_ERROR", comment: "3nd"), message: error.localizedDescription, preferredStyle: .alert)
             
             let ok = UIAlertAction(title: NSLocalizedString("Confirm", comment: "3nd"), style: .default)
             
@@ -217,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         transactionObserver.onRestorationFinished = { hasRestorableContent in
-            let (title, message) = hasRestorableContent ? (NSLocalizedString("Successfully Restored Purchase", comment: "3nd"), NSLocalizedString("Certain content will only be available after restarting the app.", comment: "3nd")) : (NSLocalizedString("No Restorable Products", comment: "3nd"), nil)
+            let (title, message) = hasRestorableContent ? (NSLocalizedString("RESTORE_PURCHASE_SUCCESS", comment: "3nd"), NSLocalizedString("Certain content will only be available after restarting the app.", comment: "3nd")) : (NSLocalizedString("NO_RESTORABLE_PRODUCT_MESSAGE", comment: "3nd"), nil)
         
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
@@ -341,13 +341,13 @@ private extension AppDelegate {
     
     private func selectFeedback() {
         guard MFMailComposeViewController.canSendMail() else {
-            let alert = UIAlertController(title: NSLocalizedString("No Email Function Available", comment: "6th"), message: NSLocalizedString("We're sorry. Please leave a review in the AppStore instead.", comment: "6th"), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("EMAIL_UNAVAILABLE_MESSAGE", comment: "6th"), message: NSLocalizedString("APP_REVIEW_SUGGESTION_MESSAGE", comment: "6th"), preferredStyle: .alert)
             
-            let ok = UIAlertAction(title: NSLocalizedString("Here we go!", comment: "6th"), style: .default) { _ in
+            let ok = UIAlertAction(title: NSLocalizedString("APP_REVIEW_ACTION", comment: "6th"), style: .default) { _ in
                 self.selectReviewApp()
             }
             
-            let cancel = UIAlertAction(title: NSLocalizedString("Maybe later", comment: "6th"), style: .cancel)
+            let cancel = UIAlertAction(title: NSLocalizedString("APP_REVIEW_CANCEL_ACTION", comment: "6th"), style: .cancel)
             
             alert.addAction(ok)
             alert.addAction(cancel)
@@ -379,7 +379,7 @@ private extension AppDelegate {
     }
    
     func selectTellFriends(anchorView: UIView?){
-        var activityItems: [Any] = [NSLocalizedString("Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!", comment: "9th")]
+        var activityItems: [Any] = [NSLocalizedString("APP_PROMOTIONAL_MESSAGE", comment: "9th")]
         activityItems.append(Constants.appStoreDownloadUrl)
 
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)

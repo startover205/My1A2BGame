@@ -28,7 +28,7 @@ class IAPAcceptanceTests: XCTestCase {
         transactionObserver.simulateFailedTransaction(with: .unknown, from: paymentQueue)
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert.title, "Failed to Purchase", "alert title")
+        XCTAssertEqual(alert.title,  localized("PURCHASE_ERROR"), "alert title")
         XCTAssertEqual(alert.message, "The operation couldn’t be completed. (SKErrorDomain error 0.)", "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
@@ -42,7 +42,7 @@ class IAPAcceptanceTests: XCTestCase {
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
         XCTAssertEqual(alert.title, "Error", "alert title")
-        XCTAssertEqual(alert.message, "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.", "alert message")
+        XCTAssertEqual(alert.message, localized("UNKNOWN_PRODUCT_MESSAGE"), "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
 
@@ -53,7 +53,7 @@ class IAPAcceptanceTests: XCTestCase {
         transactionObserver.simulateRestoreCompletedTransactionFailed(with: restorationError, from: paymentQueue)
 
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert.title, "Failed to Restore Purchase", "alert title")
+        XCTAssertEqual(alert.title, localized("RESTORE_PURCHASE_ERROR"), "alert title")
         XCTAssertEqual(alert.message, restorationError.localizedDescription, "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
@@ -65,7 +65,7 @@ class IAPAcceptanceTests: XCTestCase {
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
 
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert.title, "No Restorable Products", "alert title")
+        XCTAssertEqual(alert.title, localized("NO_RESTORABLE_PRODUCT_MESSAGE"), "alert title")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
     
@@ -82,7 +82,7 @@ class IAPAcceptanceTests: XCTestCase {
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
         
         let alert = try XCTUnwrap(tabController.presentedViewController as? UIAlertController)
-        XCTAssertEqual(alert.title, "Successfully Restored Purchase", "alert title")
+        XCTAssertEqual(alert.title, localized("RESTORE_PURCHASE_SUCCESS"), "alert title")
         XCTAssertEqual(alert.message, "Certain content will only be available after restarting the app.", "alert message")
         XCTAssertEqual(alert.actions.first?.title, "Confirm", "confirm title")
     }
@@ -164,6 +164,16 @@ class IAPAcceptanceTests: XCTestCase {
         sut.configureWindow()
         
         return (sut.window?.rootViewController as! UITabBarController, transactionObserver, paymentQueue)
+    }
+    
+    private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+        let table = "Localizable"
+        let bundle = Bundle.main
+        let value = bundle.localizedString(forKey: key, value: nil, table: table)
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        return value
     }
     
     private final class IAPProductLoaderSpy: IAPProductLoader {

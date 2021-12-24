@@ -3,7 +3,7 @@
 "Certain content will only be available after restarting the app." = "Certain content will only be available after restarting the app.";
 
 /* 9th */
-"Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!" = "Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!";
+"APP_PROMOTIONAL_MESSAGE" = "Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!";
 
 /* 3nd */
 "Confirm" = "Confirm";
@@ -12,31 +12,31 @@
 "Error" = "Error";
 
 /* 5th */
-"Failed to Purchase" = "Failed to Purchase";
+"PURCHASE_ERROR" = "Failed to Purchase";
 
 /* 3nd */
-"Failed to Restore Purchase" = "Failed to Restore Purchase";
+"RESTORE_PURCHASE_ERROR" = "Failed to Restore Purchase";
 
 /* 6th */
-"Here we go!" = "Here we go!";
+"APP_REVIEW_ACTION" = "Here we go!";
 
 /* 6th */
-"Maybe later" = "Maybe later";
+"APP_REVIEW_CANCEL_ACTION" = "Maybe later";
 
 /* 6th */
-"No Email Function Available" = "No Email Function Available";
+"EMAIL_UNAVAILABLE_MESSAGE" = "No Email Function Available";
 
 /* 3nd */
-"No Restorable Products" = "No Restorable Products";
+"NO_RESTORABLE_PRODUCT_MESSAGE" = "No Restorable Products";
 
 /* 3nd */
-"Successfully Restored Purchase" = "Successfully Restored Purchase";
+"RESTORE_PURCHASE_SUCCESS" = "Successfully Restored Purchase";
 
 /* 3nd */
-"Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report." = "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.";
+"UNKNOWN_PRODUCT_MESSAGE" = "Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report.";
 
 /* 6th */
-"We're sorry. Please leave a review in the AppStore instead." = "We're sorry. Please leave a review in the AppStore instead.";
+"APP_REVIEW_SUGGESTION_MESSAGE" = "We're sorry. Please leave a review in the AppStore instead.";
 
 "SAVE_RECORD_BUTTON_TITLE" = "Confirm";
 

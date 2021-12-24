@@ -3,7 +3,7 @@
 "Certain content will only be available after restarting the app." = "部分內容會在App重啟後生效。";
 
 /* 9th */
-"Come play \"1A2B Fun!\". Enjoy the simple logic game without taking too much time!" = "來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！";
+"APP_PROMOTIONAL_MESSAGE" = "來玩「1A2B Fun!」吧！不需花大量時間，就能享受動腦的樂趣！";
 
 /* 3nd */
 "Confirm" = "確認";
@@ -12,28 +12,28 @@
 "Error" = "錯誤";
 
 /* 5th */
-"Failed to Purchase" = "無法購買";
+"PURCHASE_ERROR" = "無法購買";
 
 /* 3nd */
-"Failed to Restore Purchase" = "無法恢復購買";
+"RESTORE_PURCHASE_ERROR" = "無法恢復購買";
 
 /* 6th */
-"Here we go!" = "立即評論";
+"APP_REVIEW_ACTION" = "立即評論";
 
 /* 6th */
-"Maybe later" = "稍後再說";
+"APP_REVIEW_CANCEL_ACTION" = "稍後再說";
 
 /* 6th */
-"No Email Function Available" = "未在裝置上找到電子郵件功能";
+"EMAIL_UNAVAILABLE_MESSAGE" = "未在裝置上找到電子郵件功能";
 
 /* 3nd */
-"No Restorable Products" = "沒有可以恢復的商品";
+"NO_RESTORABLE_PRODUCT_MESSAGE" = "沒有可以恢復的商品";
 
 /* 3nd */
-"Successfully Restored Purchase" = "成功恢復購買";
+"RESTORE_PURCHASE_SUCCESS" = "成功恢復購買";
 
 /* 3nd */
-"Unknown product identifier, please contact Apple for refund if payment is complete or send a bug report." = "未知產品識別碼，如果扣款已成功，請聯繫 Apple 尋求退款或是送出錯誤回報。";
+"UNKNOWN_PRODUCT_MESSAGE" = "未知產品識別碼，如果扣款已成功，請聯繫 Apple 尋求退款或是送出錯誤回報。";
 
 /* 6th */
-"We're sorry. Please leave a review in the AppStore instead." = "很抱歉，您可以另外用App Store的評論功能來回報。";
+"APP_REVIEW_SUGGESTION_MESSAGE" = "很抱歉，您可以另外用App Store的評論功能來回報。";
