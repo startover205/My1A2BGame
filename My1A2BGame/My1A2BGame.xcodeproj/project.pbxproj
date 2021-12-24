@@ -24,6 +24,7 @@
 		C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0362D0C268C169200E6299B /* AppDelegateTests.swift */; };
 		C03F32D22746536C008C2461 /* XCTestCase+IAPTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F32D12746536C008C2461 /* XCTestCase+IAPTestHelpers.swift */; };
 		C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */ = {isa = PBXBuildFile; fileRef = C04587C7277570C90003B0E7 /* InAppPurchase.strings */; };
+		C04587CB277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */; };
 		C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0570988270808A2005D2603 /* RankUIComposer.swift */; };
 		C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */; };
 		C074813F276C26F80047A188 /* ProductLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074813E276C26F80047A188 /* ProductLoaderTests.swift */; };
@@ -145,6 +146,7 @@
 		C04587C6277570C90003B0E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InAppPurchase.strings; sourceTree = "<group>"; };
 		C04587C8277570CD0003B0E7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
 		C04587C9277570D00003B0E7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
+		C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseLocalizationTests.swift; sourceTree = "<group>"; };
 		C0570988270808A2005D2603 /* RankUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIComposer.swift; sourceTree = "<group>"; };
 		C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C074813E276C26F80047A188 /* ProductLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoaderTests.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 			children = (
 				C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */,
 				C074813E276C26F80047A188 /* ProductLoaderTests.swift */,
+				C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */,
 			);
 			path = IAP;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				C07C16B32702F89900451060 /* RewardAdLocalizationTests.swift in Sources */,
 				C0863A57274F8C0500A799D1 /* IAPAcceptanceTests.swift in Sources */,
 				C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */,
+				C04587CB277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift in Sources */,
 				C0C3143127192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift in Sources */,
 				C078417226B385C90008A5FA /* UIButton+TestHelpers.swift in Sources */,
 				C091F1092728F7820065482F /* IAPUIIntegrationTests.swift in Sources */,
