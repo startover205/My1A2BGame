@@ -17,15 +17,14 @@ class LocalizationTests: XCTestCase {
         
         localizationBundles.forEach { (bundle, localization) in
             localizedStringKeys.forEach { key in
-                // TODO: - Remove comment after updateing the keys
 
-//                let localizedString = bundle.localizedString(forKey: key, value: nil, table: table)
+                let localizedString = bundle.localizedString(forKey: key, value: nil, table: table)
                 
-//                if localizedString == key {
-//                    let language = Locale.current.localizedString(forLanguageCode: localization) ?? ""
-//
-//                    XCTFail("Missing \(language) (\(localization)) localized string for key: '\(key)' in table: '\(table)'")
-//                }
+                if localizedString == key {
+                    let language = Locale.current.localizedString(forLanguageCode: localization) ?? ""
+
+                    XCTFail("Missing \(language) (\(localization)) localized string for key: '\(key)' in table: '\(table)'")
+                }
             }
         }
     }
