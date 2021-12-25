@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var allProductIDs: [String] = [IAPProduct.removeBottomAd]
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
     private lazy var paymentQueue: SKPaymentQueue = .default()
-    private lazy var productLoader: IAPProductLoader = MainQueueDispatchProductLoader(makeRequest: SKProductsRequest.init, getProductIDs: { [allProductIDs, purhcaseRecordStore] in
+    private lazy var productLoader: IAPProductLoader = IAPProductLoader(makeRequest: SKProductsRequest.init, getProductIDs: { [allProductIDs, purhcaseRecordStore] in
         Set(allProductIDs.filter { !purhcaseRecordStore.hasPurchaseProduct(productIdentifier: $0) })
     })
     private lazy var purhcaseRecordStore: UserDefaultsPurchaseRecordStore = .init(userDefaults: userDefaults)
