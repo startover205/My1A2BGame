@@ -14,11 +14,11 @@ import AVFoundation
 
 class GameUIIntegrationTests: XCTestCase {
     func test_gameView_hasTitle() {
-        let sut = makeSUT(title: "a title")
+        let sut = makeSUT(gameVersion: makeGameVersion(title: "game title"))
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.title, "a title")
+        XCTAssertEqual(sut.title, "game title")
     }
     
     func test_gameScene_isLocalized() {
@@ -403,20 +403,21 @@ class GameUIIntegrationTests: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(title: String = "",
-                         gameVersion: GameVersion = .basic,
-                         userDefaults: UserDefaults = InMemoryUserDefaults(),
-                         speechSynthesizer: AVSpeechSynthesizer = AVSpeechSynthesizerSpy(),
-                         secret: DigitSecret = DigitSecret(digits: [])!,
-                         delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(),
-                         currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
-                         onWin: @escaping (Score) -> Void = { _ in },
-                         onLose: @escaping () -> Void = {},
-                         onRestart: @escaping () -> Void = {},
-                         animate: @escaping Animate = { _, _, completion in completion?(true) },
-                         file: StaticString = #filePath,
-                         line: UInt = #line) -> GuessNumberViewController {
-        let sut = GameUIComposer.gameComposedWith(title: title, gameVersion: gameVersion, userDefaults: userDefaults, speechSynthesizer: speechSynthesizer, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
+    private func makeSUT(
+        gameVersion: GameVersion = .basic,
+        userDefaults: UserDefaults = InMemoryUserDefaults(),
+        speechSynthesizer: AVSpeechSynthesizer = AVSpeechSynthesizerSpy(),
+        secret: DigitSecret = DigitSecret(digits: [])!,
+        delegate: ReplenishChanceDelegate = ReplenishChanceDelegateSpy(),
+        currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
+        onWin: @escaping (Score) -> Void = { _ in },
+        onLose: @escaping () -> Void = {},
+        onRestart: @escaping () -> Void = {},
+        animate: @escaping Animate = { _, _, completion in completion?(true) },
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> GuessNumberViewController {
+        let sut = GameUIComposer.gameComposedWith(gameVersion: gameVersion, userDefaults: userDefaults, speechSynthesizer: speechSynthesizer, secret: secret, delegate: delegate, currentDeviceTime: currentDeviceTime, onWin: onWin, onLose: onLose, onRestart: onRestart, animate: animate)
         
         trackForMemoryLeaks(userDefaults, file: file, line: line)
         trackForMemoryLeaks(speechSynthesizer, file: file, line: line)
@@ -431,8 +432,8 @@ class GameUIIntegrationTests: XCTestCase {
     
     private func answerPlaceholder(for digitCount: Int) -> [String] { Array(repeating: "?", count: digitCount) }
     
-    private func makeGameVersion(maxGuessCount: Int = 1) -> GameVersion {
-        GameVersion(digitCount: 1, title: "a title", maxGuessCount: maxGuessCount)
+    private func makeGameVersion(title: String = "a title", maxGuessCount: Int = 1) -> GameVersion {
+        GameVersion(digitCount: 1, title: title, maxGuessCount: maxGuessCount)
     }
     
     private func guessMessageFor(guessCount: Int) -> String {

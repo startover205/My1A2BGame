@@ -15,7 +15,6 @@ public final class GameUIComposer {
     private init() {}
     
     public static func gameComposedWith(
-        title: String,
         gameVersion: GameVersion,
         userDefaults: UserDefaults,
         speechSynthesizer: AVSpeechSynthesizer = .init(),
@@ -29,7 +28,7 @@ public final class GameUIComposer {
     ) -> GuessNumberViewController {
         
         let gameViewController = makeGameViewController()
-        gameViewController.title = title
+        gameViewController.title = gameVersion.title
         gameViewController.viewModel = GamePresenter.sceneViewModel
         
         let voicePromptViewController = VoicePromptViewController(

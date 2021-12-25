@@ -289,7 +289,6 @@ private extension AppDelegate {
     private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onRestart: @escaping () -> Void) -> GuessNumberViewController {
         let rewardAdViewController = RewardAdViewController(loader: rewardAdLoader, rewardChanceCount: Constants.adGrantChances, hostViewController: tabController)
         let controller = GameUIComposer.gameComposedWith(
-            title: gameVersion.title,
             gameVersion: gameVersion,
             userDefaults: userDefaults,
             secret: secret,
