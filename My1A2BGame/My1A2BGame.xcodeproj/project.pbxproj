@@ -26,6 +26,7 @@
 		C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */ = {isa = PBXBuildFile; fileRef = C04587C7277570C90003B0E7 /* InAppPurchase.strings */; };
 		C04587CB277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */; };
 		C04587CE2775C4890003B0E7 /* IAPViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04587CD2775C4890003B0E7 /* IAPViewController+TestHelpers.swift */; };
+		C04ED3082776EF57001C486A /* MainQueueDispatchProductLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04ED3072776EF57001C486A /* MainQueueDispatchProductLoader.swift */; };
 		C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0570988270808A2005D2603 /* RankUIComposer.swift */; };
 		C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */; };
 		C074813F276C26F80047A188 /* ProductLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074813E276C26F80047A188 /* ProductLoaderTests.swift */; };
@@ -149,6 +150,7 @@
 		C04587C9277570D00003B0E7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
 		C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseLocalizationTests.swift; sourceTree = "<group>"; };
 		C04587CD2775C4890003B0E7 /* IAPViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IAPViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		C04ED3072776EF57001C486A /* MainQueueDispatchProductLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchProductLoader.swift; sourceTree = "<group>"; };
 		C0570988270808A2005D2603 /* RankUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIComposer.swift; sourceTree = "<group>"; };
 		C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C074813E276C26F80047A188 /* ProductLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoaderTests.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				C077B5D42771A7CE0022F9CF /* In-App Purchase Presentation */,
 				C01BC5C826A84B9400FA0636 /* GoogleAds */,
 				C014619E20BE6BD20023EEB6 /* AppDelegate.swift */,
+				C04ED3072776EF57001C486A /* MainQueueDispatchProductLoader.swift */,
 				C077B5E7277340B10022F9CF /* IAPProduct.swift */,
 				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
 				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
@@ -698,6 +701,7 @@
 				C0DC06E7273E5CEE0033982F /* ProductViewModel.swift in Sources */,
 				C008E2D7274DD05A0036E2A0 /* SKProduct+LocalPrice.swift in Sources */,
 				C0CB93AB225C90F400278B08 /* Reachability.m in Sources */,
+				C04ED3082776EF57001C486A /* MainQueueDispatchProductLoader.swift in Sources */,
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,

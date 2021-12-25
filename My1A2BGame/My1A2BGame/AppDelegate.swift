@@ -407,17 +407,3 @@ private let faq = [Question(
                                                tableName: "Localizable",
                                                bundle: .main,
                                                comment: "An answer to why an ad is not always showing when the player is out of chances"))]
-
-public final class MainQueueDispatchProductLoader: IAPProductLoader {
-    public override func load(completion: @escaping ([SKProduct]) -> Void) {
-        super.load { result in
-            if Thread.isMainThread {
-                completion(result)
-            } else {
-                DispatchQueue.main.async {
-                    completion(result)
-                }
-            }
-        }
-    }
-}
