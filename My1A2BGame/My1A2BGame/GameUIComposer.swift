@@ -14,17 +14,19 @@ import AVFoundation
 public final class GameUIComposer {
     private init() {}
     
-    public static func gameComposedWith(title: String,
-                                        gameVersion: GameVersion,
-                                        userDefaults: UserDefaults,
-                                        speechSynthesizer: AVSpeechSynthesizer = .init(),
-                                        secret: DigitSecret,
-                                        delegate: ReplenishChanceDelegate,
-                                        currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
-                                        onWin: @escaping (Score) -> Void,
-                                        onLose: @escaping () -> Void,
-                                        onRestart: @escaping () -> Void,
-                                        animate: @escaping Animate = UIView.animate) -> GuessNumberViewController {
+    public static func gameComposedWith(
+        title: String,
+        gameVersion: GameVersion,
+        userDefaults: UserDefaults,
+        speechSynthesizer: AVSpeechSynthesizer = .init(),
+        secret: DigitSecret,
+        delegate: ReplenishChanceDelegate,
+        currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
+        onWin: @escaping (Score) -> Void,
+        onLose: @escaping () -> Void,
+        onRestart: @escaping () -> Void,
+        animate: @escaping Animate = UIView.animate
+    ) -> GuessNumberViewController {
         
         let gameViewController = makeGameViewController()
         gameViewController.title = title
@@ -49,7 +51,7 @@ public final class GameUIComposer {
                 }
             })
         gameViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)
-
+        
         gameViewController.onRestart = onRestart
         gameViewController.animate = animate
         
@@ -90,7 +92,7 @@ public final class GameUIComposer {
             let inputVC = makeInputController(title: NumberInputPresenter.viewModel.viewTitle)
             inputVC.digitCount = gameVersion.digitCount
             inputVC.delegate = gamePresentationAdapter
-
+            
             gameViewController.showDetailViewController(UINavigationController(rootViewController: inputVC), sender: self)
         }
         
@@ -109,7 +111,7 @@ public final class GameUIComposer {
     
     private static func makeGameViewController() -> GuessNumberViewController {
         let gameViewController = UIStoryboard(name: "Game", bundle: .init(for: GuessNumberViewController.self)).instantiateViewController(withIdentifier: "GuessViewController") as! GuessNumberViewController
-
+        
         return gameViewController
     }
     

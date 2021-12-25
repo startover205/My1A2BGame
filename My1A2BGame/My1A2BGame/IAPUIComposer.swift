@@ -12,15 +12,17 @@ import StoreKit
 public final class IAPUIComposer {
     private init() {}
     
-    public static func iapComposedWith(productLoader: IAPProductLoader,
-                                       paymentQueue: SKPaymentQueue,
-                                       canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments) -> IAPViewController {
+    public static func iapComposedWith(
+        productLoader: IAPProductLoader,
+        paymentQueue: SKPaymentQueue,
+        canMakePayment: @escaping () -> Bool = SKPaymentQueue.canMakePayments
+    ) -> IAPViewController {
         let iapController = UIStoryboard(name: "More", bundle: .init(for: IAPViewController.self)).instantiateViewController(withIdentifier: "IAPViewController") as! IAPViewController
         iapController.onRestoreCompletedTransactions = paymentQueue.restoreCompletedTransactions
         
         let presentationAdapter = ProductViewAdapter(iapViewController: iapController,
-                                                             canMakePayment: canMakePayment,
-                                                             paymentQueue: paymentQueue)
+                                                     canMakePayment: canMakePayment,
+                                                     paymentQueue: paymentQueue)
         
         let presenter = ProductPresenter(loader: productLoader,
                                          loadingView: presentationAdapter,

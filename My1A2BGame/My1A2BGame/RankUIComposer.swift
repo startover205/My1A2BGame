@@ -13,7 +13,10 @@ import MastermindiOS
 public final class RankUIComposer {
     private init() {}
     
-    public static func rankComposedWith(ranks: [Rank], alertHost: UIViewController) -> RankViewController {
+    public static func rankComposedWith(
+        ranks: [Rank],
+        alertHost: UIViewController
+    ) -> RankViewController {
         let rankController = makeRankViewController()
         
         let rankViewAdapter = RankViewAdapter(controller: rankController, alertHost: alertHost)

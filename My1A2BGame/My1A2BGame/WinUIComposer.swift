@@ -14,7 +14,14 @@ import MastermindiOS
 public final class WinUIComposer {
     private init() {}
     
-    public static func winComposedWith(score: Score, digitCount: Int, recordLoader: RecordLoader, currentDate: @escaping () -> Date = Date.init, appDownloadURL: String, activityViewControllerFactory: @escaping ActivityViewControllerFactory = UIActivityViewController.init) -> WinViewController {
+    public static func winComposedWith(
+        score: Score,
+        digitCount: Int,
+        recordLoader: RecordLoader,
+        currentDate: @escaping () -> Date = Date.init,
+        appDownloadURL: String,
+        activityViewControllerFactory: @escaping ActivityViewControllerFactory = UIActivityViewController.init
+    ) -> WinViewController {
         
         let winViewController = makeWinViewController()
         winViewController.showFireworkAnimation = showFireworkAnimation(on:)
