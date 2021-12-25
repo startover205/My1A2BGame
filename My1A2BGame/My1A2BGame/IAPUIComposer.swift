@@ -24,7 +24,7 @@ public final class IAPUIComposer {
                                                      canMakePayment: canMakePayment,
                                                      paymentQueue: paymentQueue)
         
-        let presenter = ProductPresenter(loader: productLoader,
+        let presenter = ProductPresenter(loader: MainQueueDispatchProductLoaderDecorator(decoratee: productLoader),
                                          loadingView: presentationAdapter,
                                          productView: presentationAdapter)
         
@@ -33,6 +33,36 @@ public final class IAPUIComposer {
     }
 }
 
+public final class MainQueueDispatchProductLoaderDecorator: IAPProductLoader {
+    private static let key = DispatchSpecificKey<UInt8>()
+    private static let value = UInt8.max
+    private let decoratee: IAPProductLoader
+    
+    init(decoratee: IAPProductLoader) {
+        self.decoratee = decoratee
+        super.init(makeRequest: { _ in SKProductsRequest() }, getProductIDs: { [] })
+        
+        DispatchQueue.main.setSpecific(key: Self.key, value: Self.value)
+    }
+    
+    private func isMainQueue() -> Bool {
+        DispatchQueue.getSpecific(key: Self.key) == Self.value
+    }
+    
+    public override func load(completion: @escaping ([SKProduct]) -> Void) {
+        decoratee.load { [weak self] result in
+            guard let self = self else { return }
+            
+            if self.isMainQueue() {
+                completion(result)
+            } else {
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
+    }
+}
 
 final class ProductViewAdapter {
     private weak var iapViewController: IAPViewController?

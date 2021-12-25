@@ -120,6 +120,19 @@ class IAPUIIntegrationTests: XCTestCase {
         XCTAssertNil(container.presentedViewController, "Expect no message")
     }
     
+    func test_loadProductCompletion_dispatchesFromBackgroundToMainQueue() {
+        let (sut, loader) = makeSUT()
+        let exp = expectation(description: "wait for product loading")
+        
+        sut.loadViewIfNeeded()
+        DispatchQueue.global().async {
+            loader.completeLoading(with: [])
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 0.5)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(paymentQueue: SKPaymentQueue = .init(), canMakePayment: @escaping () -> Bool = { true }, file: StaticString = #filePath, line: UInt = #line) -> (IAPViewController, IAPProductLoaderSpy) {
