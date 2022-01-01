@@ -146,6 +146,26 @@ class GameUIIntegrationTests: XCTestCase {
         XCTAssertEqual(delegate.completions.count, 3, "Expect another request when out of guess chance again")
     }
     
+    func test_gameOutOfChance_requestsReplenishAgainIfGuessBeforeReplenish() {
+        let secret = DigitSecret(digits: [1, 2, 3, 4])!
+        let wrongGuess = DigitSecret(digits: [4, 3, 2, 1])!
+        let gameVersion = makeGameVersion(maxGuessCount: 1)
+        let delegate = ReplenishChanceDelegateSpy()
+        var loseCallCount = 0
+        let sut = makeSUT(gameVersion: gameVersion, secret: secret, delegate: delegate, onLose: {
+            loseCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(delegate.requestCount, 0, "Expect no request when guess chance not zero")
+
+        sut.simulateGuess(with: wrongGuess)
+        XCTAssertEqual(delegate.requestCount, 1, "Expect one request when out of guess chance")
+        
+        sut.simulateUserTapGuessButton()
+        XCTAssertEqual(delegate.requestCount, 2, "Expect another request when guess with no chance")
+    }
+    
     func test_gameLose_notifiesLoseHandler() {
         let secret = DigitSecret(digits: [1, 2, 3, 4])!
         let gameVersion = makeGameVersion(maxGuessCount: 1)
@@ -464,6 +484,7 @@ class GameUIIntegrationTests: XCTestCase {
     }
     
     private final class ReplenishChanceDelegateSpy: ReplenishChanceDelegate {
+        var requestCount: Int { completions.count }
         private(set) var completions = [((Int) -> Void)]()
         
         func replenishChance(completion: @escaping (Int) -> Void) {
@@ -585,6 +606,10 @@ private extension GuessNumberViewController {
     
     func simulateTurnVoiewPrompt(on: Bool) {
         (navigationItem.leftBarButtonItem?.customView as? UISwitch)?.setOn(on, animated: false)
+    }
+    
+    func simulateUserTapGuessButton() {
+        guessButton.sendActions(for: .touchUpInside)
     }
 }
 

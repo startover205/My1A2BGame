@@ -75,6 +75,7 @@ public final class GameUIComposer {
         gameViewController.hintViewController.animate = animate
         
         let gamePresentationAdapter = GamePresentationAdapter(
+            gameController: gameViewController,
             maxGuessCount: gameVersion.maxGuessCount,
             secret: secret, delegate: delegate,
             currentDeviceTime: currentDeviceTime,
@@ -86,14 +87,7 @@ public final class GameUIComposer {
             utteranceView: voicePromptViewController)
         gamePresentationAdapter.presenter = presenter
         
-        gameViewController.onGuessButtonPressed = { [unowned gamePresentationAdapter, unowned gameViewController] in
-            
-            let inputVC = makeInputController(title: NumberInputPresenter.viewModel.viewTitle)
-            inputVC.digitCount = gameVersion.digitCount
-            inputVC.delegate = gamePresentationAdapter
-            
-            gameViewController.showDetailViewController(UINavigationController(rootViewController: inputVC), sender: self)
-        }
+        gameViewController.onGuessButtonPressed = gamePresentationAdapter.didTapGuessButton
         
         gameViewController.onTapGiveUp = { [weak presenter] in
             presenter?.didTapGiveUpButton()
@@ -113,13 +107,6 @@ public final class GameUIComposer {
         
         return gameViewController
     }
-    
-    private static func makeInputController(title: String) -> NumberInputViewController {
-        let controller = UIStoryboard(name: "Game", bundle: .init(for: NumberInputViewController.self)).instantiateViewController(withIdentifier: "NumberInputViewController") as! NumberInputViewController
-        controller.title = title
-        
-        return controller
-    }
 }
 
 final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
@@ -129,8 +116,10 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
     private let onWin: (Score) -> Void
     private let onLose: () -> Void
     var presenter: GamePresenter?
+    weak var gameController: GuessNumberViewController?
     
-    init(maxGuessCount: Int, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void) {
+    init(gameController: GuessNumberViewController, maxGuessCount: Int, secret: DigitSecret, delegate: ReplenishChanceDelegate, currentDeviceTime: @escaping () -> TimeInterval, onWin: @escaping (Score) -> Void, onLose: @escaping () -> Void) {
+        self.gameController = gameController
         self.leftChanceCount = maxGuessCount
         self.secret = secret
         self.delegate = delegate
@@ -147,6 +136,19 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
         presenter?.didUpdateLeftChanceCount(leftChanceCount)
     }
     
+    func didTapGuessButton() {
+        guard leftChanceCount > 0 else {
+            handleOutOfChance()
+            return
+        }
+        
+        let inputVC = makeInputController(title: NumberInputPresenter.viewModel.viewTitle)
+        inputVC.digitCount = secret.content.count
+        inputVC.delegate = self
+
+        gameController?.showDetailViewController(UINavigationController(rootViewController: inputVC), sender: self)
+    }
+    
     private func handleOutOfChance() {
         delegate.replenishChance { [weak self] replenishCount in
             guard let self = self else { return }
@@ -161,6 +163,13 @@ final class GamePresentationAdapter: GuessNumberViewControllerDelegate {
                 self.presenter?.didUpdateLeftChanceCount(self.leftChanceCount)
             }
         }
+    }
+    
+    private func makeInputController(title: String) -> NumberInputViewController {
+        let controller = UIStoryboard(name: "Game", bundle: .init(for: NumberInputViewController.self)).instantiateViewController(withIdentifier: "NumberInputViewController") as! NumberInputViewController
+        controller.title = title
+        
+        return controller
     }
 }
 
