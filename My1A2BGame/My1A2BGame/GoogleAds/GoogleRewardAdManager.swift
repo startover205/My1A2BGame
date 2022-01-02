@@ -10,8 +10,11 @@ import GoogleMobileAds
 import MastermindiOS
 
 class GoogleRewardAdManager: NSObject {
-    static let shared = GoogleRewardAdManager()
-    private override init() {}
+    private let adUnitID: String
+    
+    init(adUnitID: String) {
+        self.adUnitID = adUnitID
+    }
     
     private let reachability = Reachability.forInternetConnection()
     
@@ -50,7 +53,7 @@ class GoogleRewardAdManager: NSObject {
         
         print("---開始讀取廣告----", .error)
         
-        GADRewardedAd.load(withAdUnitID: Constants.rewardAdId, request: .init()) { [weak self] (ad, error) in
+        GADRewardedAd.load(withAdUnitID: adUnitID, request: .init()) { [weak self] (ad, error) in
             
             guard let self = self else { return }
             
