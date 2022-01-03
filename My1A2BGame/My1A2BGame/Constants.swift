@@ -23,8 +23,15 @@ enum Constants {
 
     static let adHintTime = 5.0
     
+    #if DEBUG
+    static let bottomAdId = "ca-app-pub-3940256099942544/2934735716"
     static let rewardAdId = "ca-app-pub-1287774922601866/3704195420"
+
+    #else
     static let bottomAdId = "ca-app-pub-1287774922601866/6524610514"
+    static let rewardAdId = "ca-app-pub-3940256099942544/1712485313"
+
+    #endif
   
     static let appStoreReviewUrl = "https://itunes.apple.com/app/id1459347669?action=write-review"
     static let appStoreDownloadUrl = "https://itunes.apple.com/app/id1459347669"
