@@ -9,6 +9,7 @@
 import UIKit
 
 public protocol RewardAdLoader {
+    @available(*, deprecated)
     var rewardAd: RewardAd? { get }
 }
 
