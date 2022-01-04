@@ -16,6 +16,9 @@ class RewardAdLoaderStub: RewardAdLoader {
     init(ad: RewardAd?) {
         self.ad = ad
     }
+    
+    func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
+    }
 }
 
 extension RewardAdLoaderStub {

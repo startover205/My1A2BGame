@@ -9,8 +9,12 @@
 import UIKit
 
 public protocol RewardAdLoader {
+    typealias Result = Swift.Result<RewardAd, Error>
+    
     @available(*, deprecated)
     var rewardAd: RewardAd? { get }
+    
+    func load(completion: @escaping (Result) -> Void)
 }
 
 public protocol RewardAd {
