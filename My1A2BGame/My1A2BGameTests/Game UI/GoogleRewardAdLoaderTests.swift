@@ -8,31 +8,7 @@
 
 import XCTest
 import GoogleMobileAds
-import MastermindiOS
-
-final class GoogleRewardAdLoader {
-    let adUnitID: String
-    
-    init(adUnitID: String) {
-        self.adUnitID = adUnitID
-    }
-    
-    private struct UnexpectedValuesRepresentation: Error {}
-    
-    func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
-        GADRewardedAd.load(withAdUnitID: adUnitID, request: nil) { ad, error in
-            completion(Result {
-                if let error = error {
-                    throw error
-                } else if let ad = ad {
-                    return ad
-                } else {
-                    throw UnexpectedValuesRepresentation()
-                }
-            })
-        }
-    }
-}
+import My1A2BGame
 
 class GoogleRewardAdLoaderTests: XCTestCase {
     
