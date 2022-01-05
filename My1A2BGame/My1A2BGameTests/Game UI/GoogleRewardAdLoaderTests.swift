@@ -14,8 +14,8 @@ class GoogleRewardAdLoaderTests: XCTestCase {
     
     func test_load_deliversFailureOnLoadError() {
         let sut = makeSUT()
-        let stub = GADRewardedAd.alwaysFailingLoadingStub()
-        stub.startIntercepting()
+        let spy = GADRewardedAd.loadingSpy()
+        spy.startIntercepting()
         let exp = expectation(description: "wait for loading")
         
         sut.load() { result in
@@ -27,14 +27,15 @@ class GoogleRewardAdLoaderTests: XCTestCase {
             }
             exp.fulfill()
         }
+        spy.completeLoadingWithError()
 
         wait(for: [exp], timeout: 1.0)
     }
     
     func test_load_deliversFailureOnEmptyAdWithNoError() {
         let sut = makeSUT()
-        let stub = GADRewardedAd.successLoadingWithEmptyAdStub()
-        stub.startIntercepting()
+        let spy = GADRewardedAd.loadingSpy()
+        spy.startIntercepting()
         let exp = expectation(description: "wait for loading")
         
         sut.load() { result in
@@ -46,6 +47,7 @@ class GoogleRewardAdLoaderTests: XCTestCase {
             }
             exp.fulfill()
         }
+        spy.completeLoadingWithEmptyAd()
 
         wait(for: [exp], timeout: 1.0)
     }
@@ -82,49 +84,49 @@ class GoogleRewardAdLoaderTests: XCTestCase {
 }
 
 extension GADRewardedAd {
-    static func alwaysFailingLoadingStub() -> Stub {
-        Stub(
+    static func loadingSpy() -> Spy {
+        Spy(
             #selector(GADRewardedAd.load(withAdUnitID:request:completionHandler:)),
-            #selector(Stub.load(withAdUnitID:request:completionHandler:))
-        )
-    }
-    
-    static func successLoadingWithEmptyAdStub() -> Stub {
-        Stub(
-            #selector(GADRewardedAd.load(withAdUnitID:request:completionHandler:)),
-            #selector(Stub.loadDeliveringEmtpyAd(withAdUnitID:request:completionHandler:))
+            #selector(Spy.load(withAdUnitID:request:completionHandler:))
         )
     }
 
-    class Stub: NSObject {
+    class Spy: NSObject {
         private let source: Selector
         private let destination: Selector
+        private static var capturedCompletion: GADRewardedAdLoadCompletionHandler?
 
         init(_ source: Selector, _ destination: Selector) {
             self.source = source
             self.destination = destination
+            Self.capturedCompletion = nil
         }
 
         @objc func load(withAdUnitID adUnitID: String, request: GADRequest?, completionHandler: @escaping GADRewardedAdLoadCompletionHandler) {
-            completionHandler(nil, anyNSError())
+            Self.capturedCompletion = completionHandler
         }
         
-        @objc func loadDeliveringEmtpyAd(withAdUnitID adUnitID: String, request: GADRequest?, completionHandler: @escaping GADRewardedAdLoadCompletionHandler) {
-            completionHandler(nil, nil)
-        }
-
         func startIntercepting() {
             method_exchangeImplementations(
                 class_getClassMethod(GADRewardedAd.self, source)!,
-                class_getInstanceMethod(Stub.self, destination)!
+                class_getInstanceMethod(Spy.self, destination)!
             )
+        }
+        
+        func completeLoadingWithError() {
+            Self.capturedCompletion?(nil, anyNSError())
+        }
+        
+        func completeLoadingWithEmptyAd() {
+            Self.capturedCompletion?(nil, nil)
         }
 
         deinit {
             method_exchangeImplementations(
-                class_getInstanceMethod(Stub.self, destination)!,
+                class_getInstanceMethod(Spy.self, destination)!,
                 class_getClassMethod(GADRewardedAd.self, source)!
             )
+            Self.capturedCompletion = nil
         }
     }
 }
