@@ -43,6 +43,25 @@ class GoogleRewardAdLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_load_deliversFailureOnEmptyAdWithNoError() {
+        let sut = makeSUT()
+        let stub = GADRewardedAd.successLoadingWithEmptyAdStub()
+        stub.startIntercepting()
+        let exp = expectation(description: "wait for loading")
+        
+        sut.load() { result in
+            switch result {
+            case .failure:
+                break
+            case .success:
+                XCTFail("Expect failure case")
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(adUnitID: String = "", file: StaticString = #filePath, line: UInt = #line) -> GoogleRewardAdLoader {
@@ -63,6 +82,13 @@ extension GADRewardedAd {
             #selector(Stub.load(withAdUnitID:request:completionHandler:))
         )
     }
+    
+    static func successLoadingWithEmptyAdStub() -> Stub {
+        Stub(
+            #selector(GADRewardedAd.load(withAdUnitID:request:completionHandler:)),
+            #selector(Stub.loadDeliveringEmtpyAd(withAdUnitID:request:completionHandler:))
+        )
+    }
 
     class Stub: NSObject {
         private let source: Selector
@@ -75,6 +101,10 @@ extension GADRewardedAd {
 
         @objc func load(withAdUnitID adUnitID: String, request: GADRequest?, completionHandler: @escaping GADRewardedAdLoadCompletionHandler) {
             completionHandler(nil, anyNSError())
+        }
+        
+        @objc func loadDeliveringEmtpyAd(withAdUnitID adUnitID: String, request: GADRequest?, completionHandler: @escaping GADRewardedAdLoadCompletionHandler) {
+            completionHandler(nil, nil)
         }
 
         func startIntercepting() {
