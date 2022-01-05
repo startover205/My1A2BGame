@@ -89,7 +89,7 @@ class GoogleRewardAdLoaderTests: XCTestCase {
             exp.fulfill()
         }
 
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: 20.0)
     }
     
     // MARK: - Helpers
