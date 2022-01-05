@@ -17,8 +17,20 @@ final class GoogleRewardAdLoader {
         self.adUnitID = adUnitID
     }
     
+    private struct UnexpectedValuesRepresentation: Error {}
+    
     func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
-        completion(.failure(anyNSError()))
+        GADRewardedAd.load(withAdUnitID: adUnitID, request: nil) { ad, error in
+            completion(Result {
+                if let error = error {
+                    throw error
+                } else if let ad = ad {
+                    return ad
+                } else {
+                    throw UnexpectedValuesRepresentation()
+                }
+            })
+        }
     }
 }
 
@@ -60,6 +72,24 @@ class GoogleRewardAdLoaderTests: XCTestCase {
         }
 
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_load_deliversAdOnSuccessfulLoading() {
+        let adUnitID = testUnitID()
+        let sut = makeSUT(adUnitID: adUnitID)
+        let exp = expectation(description: "wait for loading")
+        
+        sut.load() { result in
+            switch result {
+            case let .success(ad as GADRewardedAd):
+                XCTAssertEqual(ad.adUnitID, adUnitID)
+            default:
+                XCTFail("Expect successful case returing a GADRewardedAd instance")
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 10.0)
     }
     
     // MARK: - Helpers
