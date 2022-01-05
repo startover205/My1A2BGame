@@ -9,6 +9,7 @@
 import XCTest
 import GoogleMobileAds
 import My1A2BGame
+import MastermindiOS
 
 class GoogleRewardAdLoaderTests: XCTestCase {
     
@@ -68,6 +69,20 @@ class GoogleRewardAdLoaderTests: XCTestCase {
         }
 
         wait(for: [exp], timeout: 20.0)
+    }
+    
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        var sut: GoogleRewardAdLoader? = makeSUT()
+        let spy = GADRewardedAd.loadingSpy()
+        spy.startIntercepting()
+        var capturedResult: RewardAdLoader.Result?
+        
+        sut?.load() { capturedResult = $0 }
+        
+        sut = nil
+        spy.completeLoadingWithError()
+        
+        XCTAssertNil(capturedResult)
     }
     
     // MARK: - Helpers

@@ -21,7 +21,9 @@ public final class GoogleRewardAdLoader: RewardAdLoader {
     private struct UnexpectedValuesRepresentation: Error {}
     
     public func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
-        GADRewardedAd.load(withAdUnitID: adUnitID, request: nil) { ad, error in
+        GADRewardedAd.load(withAdUnitID: adUnitID, request: nil) { [weak self] ad, error in
+            guard self != nil else { return }
+            
             completion(Result {
                 if let error = error {
                     throw error
