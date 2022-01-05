@@ -9,12 +9,14 @@
 import MastermindiOS
 import GoogleMobileAds
 
-public final class GoogleRewardAdLoader {
+public final class GoogleRewardAdLoader: RewardAdLoader {
     private let adUnitID: String
     
     public init(adUnitID: String) {
         self.adUnitID = adUnitID
     }
+    
+    public var rewardAd: RewardAd? { nil }
     
     private struct UnexpectedValuesRepresentation: Error {}
     
