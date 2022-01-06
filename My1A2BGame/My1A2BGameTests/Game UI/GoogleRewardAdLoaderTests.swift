@@ -68,7 +68,7 @@ class GoogleRewardAdLoaderTests: XCTestCase {
             exp.fulfill()
         }
 
-        wait(for: [exp], timeout: 20.0)
+        wait(for: [exp], timeout: 90.0)
     }
     
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
