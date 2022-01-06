@@ -20,9 +20,7 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
         self.rewardChanceCount = rewardChanceCount
         self.hostViewController = hostViewController
         
-        loader.load(completion: { [weak self] result in
-            self?.ad = try? result.get()
-        })
+        loadAd()
     }
     
     public func replenishChance(completion: @escaping (Int) -> Void) {
@@ -44,10 +42,16 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
                     completion(rewardChanceCount)
                 }
                 
-                self?.loader.load(completion: { _ in })
+                self?.loadAd()
             },
             cancelHandler: { completion(0) })
         
         hostVC.present(alert, animated: false)
+    }
+    
+    private func loadAd() {
+        loader.load(completion: { [weak self] result in
+            self?.ad = try? result.get()
+        })
     }
 }

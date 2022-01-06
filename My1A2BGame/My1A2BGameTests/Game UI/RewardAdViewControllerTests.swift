@@ -107,6 +107,29 @@ class RewardAdViewControllerTests: XCTestCase {
         ad.clearCapturedInstances()
     }
     
+    func test_replenishChanceTwice_displayesTheLatestLoadedAdForEachTime() throws {
+        let adLoader = RewardAdLoaderSpy()
+        let ad1 = RewardAdSpy()
+        let ad2 = RewardAdSpy()
+        let (sut, hostVC) = makeSUT(loader: adLoader)
+        adLoader.completeLoading(with: ad1)
+        
+        sut.replenishChance(completion: { _ in })
+        try hostVC.simulateConfirmDisplayingAd()
+        XCTAssertEqual(ad1.capturedPresentations.count, 1, "Expect presenting the first loaded ad")
+        XCTAssertEqual(ad2.capturedPresentations.count, 0, "Expect ad not presented because it's not loaded yet")
+        
+        adLoader.completeLoading(with: ad2)
+
+        sut.replenishChance(completion: { _ in })
+        try hostVC.simulateConfirmDisplayingAd()
+        XCTAssertEqual(ad1.capturedPresentations.count, 1, "Expect presentation count not increased since it's already presented")
+        XCTAssertEqual(ad2.capturedPresentations.count, 1, "Expect presenting the second loaded ad")
+        
+        ad1.clearCapturedInstances()
+        ad2.clearCapturedInstances()
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
