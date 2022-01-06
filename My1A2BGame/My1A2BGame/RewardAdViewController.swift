@@ -13,17 +13,20 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
     private let loader: RewardAdLoader
     private let rewardChanceCount: Int
     private weak var hostViewController: UIViewController?
+    private var ad: RewardAd?
     
     public init(loader: RewardAdLoader, rewardChanceCount: Int, hostViewController: UIViewController) {
         self.loader = loader
         self.rewardChanceCount = rewardChanceCount
         self.hostViewController = hostViewController
         
-        loader.load(completion: { _ in })
+        loader.load(completion: { [weak self] result in
+            self?.ad = try? result.get()
+        })
     }
     
     public func replenishChance(completion: @escaping (Int) -> Void) {
-        guard let ad = loader.rewardAd, let hostVC = hostViewController else { return completion(0) }
+        guard let ad = ad, let hostVC = hostViewController else { return completion(0) }
         
         let rewardChanceCount = rewardChanceCount
 

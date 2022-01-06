@@ -11,6 +11,8 @@ import MastermindiOS
 class RewardAdLoaderStub: RewardAdLoader {
     private let ad: RewardAd?
     
+    private struct NoAdAvailable: Error {}
+    
     var rewardAd: RewardAd? { ad }
     
     init(ad: RewardAd?) {
@@ -18,6 +20,11 @@ class RewardAdLoaderStub: RewardAdLoader {
     }
     
     func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
+        if let ad = ad {
+            completion(.success(ad))
+        } else {
+            completion(.failure(NoAdAvailable()))
+        }
     }
 }
 
