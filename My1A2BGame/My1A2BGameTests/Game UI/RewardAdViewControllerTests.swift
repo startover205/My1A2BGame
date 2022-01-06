@@ -89,7 +89,7 @@ class RewardAdViewControllerTests: XCTestCase {
         
         XCTAssertEqual(capturedChanceCount, 5, "Expect replenishing after ad presentation completes")
         
-        ad.clearCapturedInstances()
+        hostVC.clearCapturedInstances()
     }
     
     func test_replenishChance_requestsAnotherAdAfterAdPresentation() throws {
@@ -104,7 +104,7 @@ class RewardAdViewControllerTests: XCTestCase {
         try hostVC.simulateConfirmDisplayingAd()
         XCTAssertEqual(adLoader.receivedMessages, [.load, .load])
         
-        ad.clearCapturedInstances()
+        hostVC.clearCapturedInstances()
     }
     
     func test_replenishChanceTwice_displayesTheLatestLoadedAdForEachTime() throws {
@@ -126,8 +126,7 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(ad1.capturedPresentations.count, 1, "Expect presentation count not increased since it's already presented")
         XCTAssertEqual(ad2.capturedPresentations.count, 1, "Expect presenting the second loaded ad")
         
-        ad1.clearCapturedInstances()
-        ad2.clearCapturedInstances()
+        hostVC.clearCapturedInstances()
     }
     
     // MARK: Helpers
@@ -159,6 +158,11 @@ class RewardAdViewControllerTests: XCTestCase {
             
             alert.confirmHandler?()
         }
+        
+        func clearCapturedInstances() {
+            capturedPresentations.removeAll()
+            capturedCompletions.removeAll()
+        }
     }
     
     private final class RewardAdLoaderSpy: RewardAdLoader {
@@ -184,10 +188,6 @@ class RewardAdViewControllerTests: XCTestCase {
 
         func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void) {
             capturedPresentations.append((rootViewController, userDidEarnRewardHandler))
-        }
-        
-        func clearCapturedInstances() {
-            capturedPresentations.removeAll()
         }
     }
 }
