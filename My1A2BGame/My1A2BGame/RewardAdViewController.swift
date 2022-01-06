@@ -18,6 +18,8 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
         self.loader = loader
         self.rewardChanceCount = rewardChanceCount
         self.hostViewController = hostViewController
+        
+        loader.load(completion: { _ in })
     }
     
     public func replenishChance(completion: @escaping (Int) -> Void) {

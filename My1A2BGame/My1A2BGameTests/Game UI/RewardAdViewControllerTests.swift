@@ -17,6 +17,13 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertTrue(hostVC.capturedPresentations.isEmpty)
     }
     
+    func test_init_requestsAdFromAdLoader() {
+        let adLoader = RewardAdLoaderSpy()
+        let (_, _) = makeSUT(loader: adLoader)
+        
+        XCTAssertEqual(adLoader.receivedMessages, [.load])
+    }
+    
     func test_replenishChance_deliversZeroIfHostVCIsNil() {
         let (sut, _) = makeSUT()
         var capturedChanceCount: Int?
@@ -90,13 +97,15 @@ class RewardAdViewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(loader: RewardAdLoaderStub = .null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
+    private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
         let hostVC = UIViewControllerPresentationSpy()
         let sut = RewardAdViewController(loader: loader, rewardChanceCount: rewardChanceCount, hostViewController: hostVC)
         
         trackForMemoryLeaks(hostVC, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
-        trackForMemoryLeaks(loader, file: file, line: line)
+        if let loader = loader as? RewardAdLoaderStub {
+            trackForMemoryLeaks(loader, file: file, line: line)
+        }
         
         return (sut, hostVC)
     }
@@ -108,6 +117,20 @@ class RewardAdViewControllerTests: XCTestCase {
         override func present(_ vc: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
             capturedPresentations.append((vc, animated))
             capturedCompletions.append(completion)
+        }
+    }
+    
+    private final class RewardAdLoaderSpy: RewardAdLoader {
+        enum Message: Equatable {
+            case load
+        }
+        
+        private(set) var receivedMessages = [Message]()
+        
+        var rewardAd: RewardAd?
+        
+        func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
+            receivedMessages.append(.load)
         }
     }
     
