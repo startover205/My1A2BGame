@@ -79,12 +79,9 @@ class RewardAdViewControllerTests: XCTestCase {
         var capturedChanceCount: Int?
         
         sut.replenishChance { capturedChanceCount = $0 }
-
-        let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
-        
         XCTAssertTrue(ad.capturedPresentations.isEmpty, "Expect ad presententation not used before comfirm alert")
-        alert.confirmHandler?()
         
+        try hostVC.simulateConfirmDisplayingAd()
         XCTAssertEqual(ad.capturedPresentations.first?.vc, hostVC, "Expect ad presents using host view controller")
         XCTAssertNil(capturedChanceCount, "Expect replenish completion not called before ad presentation completes")
         
@@ -117,6 +114,12 @@ class RewardAdViewControllerTests: XCTestCase {
         override func present(_ vc: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
             capturedPresentations.append((vc, animated))
             capturedCompletions.append(completion)
+        }
+        
+        func simulateConfirmDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
+            let alert = try XCTUnwrap(capturedPresentations.last?.vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            
+            alert.confirmHandler?()
         }
     }
     
