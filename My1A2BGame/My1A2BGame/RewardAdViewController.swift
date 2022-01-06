@@ -37,15 +37,17 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
             message: alertMessage,
             cancelMessage: RewardAdPresenter.alertCancelTitle,
             countDownTime: RewardAdPresenter.alertCountDownTime,
-            confirmHandler: { [weak hostVC] in
+            confirmHandler: { [weak hostVC, weak self] in
                 guard let hostVC = hostVC else { return }
                 
                 ad.present(fromRootViewController: hostVC) {
                     completion(rewardChanceCount)
                 }
+                
+                self?.loader.load(completion: { _ in })
             },
             cancelHandler: { completion(0) })
         
-        hostVC.present(alert, animated: true)
+        hostVC.present(alert, animated: false)
     }
 }

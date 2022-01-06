@@ -92,6 +92,21 @@ class RewardAdViewControllerTests: XCTestCase {
         ad.clearCapturedInstances()
     }
     
+    func test_replenishChance_requestsAnotherAdAfterAdPresentation() throws {
+        let adLoader = RewardAdLoaderSpy()
+        let ad = RewardAdSpy()
+        let (sut, hostVC) = makeSUT(loader: adLoader)
+        adLoader.completeLoading(with: ad)
+        
+        sut.replenishChance(completion: { _ in })
+        XCTAssertEqual(adLoader.receivedMessages, [.load], "precondition")
+        
+        try hostVC.simulateConfirmDisplayingAd()
+        XCTAssertEqual(adLoader.receivedMessages, [.load, .load])
+        
+        ad.clearCapturedInstances()
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
@@ -129,9 +144,15 @@ class RewardAdViewControllerTests: XCTestCase {
         }
         
         private(set) var receivedMessages = [Message]()
+        private(set) var capturedCompletions = [(RewardAdLoader.Result) -> Void]()
         
         func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
             receivedMessages.append(.load)
+            capturedCompletions.append(completion)
+        }
+        
+        func completeLoading(with ad: RewardAd, at index: Int = 0) {
+            capturedCompletions[index](.success(ad))
         }
     }
     
