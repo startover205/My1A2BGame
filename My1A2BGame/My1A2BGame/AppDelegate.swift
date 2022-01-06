@@ -49,8 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
     
-    private lazy var adManager: GoogleRewardAdManager = GoogleRewardAdManager(adUnitID: Constants.rewardAdId)
-    private lazy var rewardAdLoader: RewardAdLoader = adManager
+    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: Constants.rewardAdId)
     
     private lazy var requestReview: () -> Void = {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -110,14 +109,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 // setup ad
                 GADMobileAds.sharedInstance().start(completionHandler: nil)
-                
-                self.adManager.begin()
-                
             })
         } else {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
-            
-            adManager.begin()
         }
         
         window = UIWindow(frame: UIScreen.main.bounds)
