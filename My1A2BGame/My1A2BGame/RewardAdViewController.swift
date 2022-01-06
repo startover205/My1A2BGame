@@ -46,7 +46,7 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
             },
             cancelHandler: { completion(0) })
         
-        hostVC.present(alert, animated: false)
+        hostVC.present(alert, animated: true)
     }
     
     private func loadAd() {
