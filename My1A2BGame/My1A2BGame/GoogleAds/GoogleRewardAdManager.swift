@@ -98,8 +98,6 @@ extension GoogleRewardAdManager: GADFullScreenContentDelegate {
 extension GoogleRewardAdManager: RewardAdLoader {
     func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
     }
-    
-    var rewardAd: RewardAd? { gadRewardAd }
 }
 
 extension GADRewardedAd: RewardAd { }

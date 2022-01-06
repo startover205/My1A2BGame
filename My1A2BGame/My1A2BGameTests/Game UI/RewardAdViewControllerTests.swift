@@ -127,8 +127,6 @@ class RewardAdViewControllerTests: XCTestCase {
         
         private(set) var receivedMessages = [Message]()
         
-        var rewardAd: RewardAd?
-        
         func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
             receivedMessages.append(.load)
         }

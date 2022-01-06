@@ -13,8 +13,6 @@ class RewardAdLoaderStub: RewardAdLoader {
     
     private struct NoAdAvailable: Error {}
     
-    var rewardAd: RewardAd? { ad }
-    
     init(ad: RewardAd?) {
         self.ad = ad
     }

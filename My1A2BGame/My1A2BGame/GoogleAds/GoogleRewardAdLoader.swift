@@ -16,8 +16,6 @@ public final class GoogleRewardAdLoader: RewardAdLoader {
         self.adUnitID = adUnitID
     }
     
-    public var rewardAd: RewardAd? { nil }
-    
     private struct UnexpectedValuesRepresentation: Error {}
     
     public func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
