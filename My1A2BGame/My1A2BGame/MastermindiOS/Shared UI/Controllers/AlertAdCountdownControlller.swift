@@ -95,9 +95,13 @@ public final class AlertAdCountdownController: UIViewController {
 private extension AlertAdCountdownController {
     
     func startCounting(){
-        adCountDownTimer = Timer.scheduledTimer(timeInterval: countDownTime, target: self, selector: #selector(adDidCountDown), userInfo: nil, repeats: false)
-        
-        progressCountDownTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(progressDidCountDown), userInfo: nil, repeats: true)
+        adCountDownTimer = Timer.scheduledTimer(withTimeInterval: countDownTime, repeats: false, block: { [weak self]  _ in
+            self?.adDidCountDown()
+        })
+
+        progressCountDownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
+            self?.progressDidCountDown()
+        })
     }
     
     /// 計時結束
