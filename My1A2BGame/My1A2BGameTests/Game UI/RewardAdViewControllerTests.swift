@@ -88,8 +88,6 @@ class RewardAdViewControllerTests: XCTestCase {
         ad.capturedPresentations.first?.handler()
         
         XCTAssertEqual(capturedChanceCount, 5, "Expect replenishing after ad presentation completes")
-        
-        hostVC.clearCapturedInstances()
     }
     
     func test_replenishChance_requestsAnotherAdAfterAdPresentation() throws {
@@ -103,8 +101,6 @@ class RewardAdViewControllerTests: XCTestCase {
         
         try hostVC.simulateConfirmDisplayingAd()
         XCTAssertEqual(adLoader.receivedMessages, [.load, .load])
-        
-        hostVC.clearCapturedInstances()
     }
     
     func test_replenishChanceTwice_displayesTheLatestLoadedAdForEachTime() throws {
@@ -125,8 +121,6 @@ class RewardAdViewControllerTests: XCTestCase {
         try hostVC.simulateConfirmDisplayingAd()
         XCTAssertEqual(ad1.capturedPresentations.count, 1, "Expect presentation count not increased since it's already presented")
         XCTAssertEqual(ad2.capturedPresentations.count, 1, "Expect presenting the second loaded ad")
-        
-        hostVC.clearCapturedInstances()
     }
     
     // MARK: Helpers
@@ -154,14 +148,9 @@ class RewardAdViewControllerTests: XCTestCase {
         }
         
         func simulateConfirmDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
-            let alert = try XCTUnwrap(capturedPresentations.last?.vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            let alert = try XCTUnwrap(capturedPresentations.removeLast().vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
             
             alert.confirmHandler?()
-        }
-        
-        func clearCapturedInstances() {
-            capturedPresentations.removeAll()
-            capturedCompletions.removeAll()
         }
     }
     
