@@ -112,14 +112,14 @@ class RewardAdViewControllerTests: XCTestCase {
         let ad1 = RewardAdSpy()
         let ad2 = RewardAdSpy()
         let (sut, hostVC) = makeSUT(loader: adLoader)
-        adLoader.completeLoading(with: ad1)
+        adLoader.completeLoading(with: ad1, at: 0)
         
         sut.replenishChance(completion: { _ in })
         try hostVC.simulateConfirmDisplayingAd()
         XCTAssertEqual(ad1.capturedPresentations.count, 1, "Expect presenting the first loaded ad")
         XCTAssertEqual(ad2.capturedPresentations.count, 0, "Expect ad not presented because it's not loaded yet")
         
-        adLoader.completeLoading(with: ad2)
+        adLoader.completeLoading(with: ad2, at: 1)
 
         sut.replenishChance(completion: { _ in })
         try hostVC.simulateConfirmDisplayingAd()
