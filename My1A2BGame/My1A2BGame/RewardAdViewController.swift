@@ -13,7 +13,8 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
     private let loader: RewardAdLoader
     private let rewardChanceCount: Int
     private weak var hostViewController: UIViewController?
-    private var ad: RewardAd?
+    private var preparedAd: RewardAd?
+    private var currentDisplayingAd: RewardAd?
     
     public init(loader: RewardAdLoader, rewardChanceCount: Int, hostViewController: UIViewController) {
         self.loader = loader
@@ -24,7 +25,7 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
     }
     
     public func replenishChance(completion: @escaping (Int) -> Void) {
-        guard let ad = ad, let hostVC = hostViewController else { return completion(0) }
+        guard let ad = preparedAd, let hostVC = hostViewController else { return completion(0) }
         
         let rewardChanceCount = rewardChanceCount
 
@@ -36,13 +37,18 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
             cancelMessage: RewardAdPresenter.alertCancelTitle,
             countDownTime: RewardAdPresenter.alertCountDownTime,
             confirmHandler: { [weak hostVC, weak self] in
-                guard let hostVC = hostVC else { return }
+                guard let hostVC = hostVC, let self = self else { return }
                 
-                ad.present(fromRootViewController: hostVC) {
+                self.currentDisplayingAd = ad
+                self.preparedAd = nil
+                
+                ad.present(fromRootViewController: hostVC) { [weak self] in
                     completion(rewardChanceCount)
+                    
+                    self?.currentDisplayingAd = nil
                 }
                 
-                self?.loadAd()
+                self.loadAd()
             },
             cancelHandler: { completion(0) })
         
@@ -51,7 +57,7 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
     
     private func loadAd() {
         loader.load(completion: { [weak self] result in
-            self?.ad = try? result.get()
+            self?.preparedAd = try? result.get()
         })
     }
 }

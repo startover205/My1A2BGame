@@ -122,6 +122,23 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(ad1.capturedPresentations.count, 1, "Expect presentation count not increased since it's already presented")
         XCTAssertEqual(ad2.capturedPresentations.count, 1, "Expect presenting the second loaded ad")
     }
+
+    func test_displayAd_doesNotDeallocateAdUntilAdRewardGiven() throws {
+        let adLoader = RewardAdLoaderSpy()
+        var ad: RewardAdSpy? = RewardAdSpy()
+        let (sut, hostVC) = makeSUT(loader: adLoader)
+        adLoader.completeLoading(with: ad!, at: 0)
+        weak var weakAd = ad
+        ad = nil
+
+        sut.replenishChance(completion: { _ in })
+        try hostVC.simulateConfirmDisplayingAd()
+        adLoader.completeLoading(with: RewardAdSpy(), at: 1)
+        XCTAssertNotNil(weakAd, "Expect ad not deallocated because the reward has not yet been given")
+
+        weakAd?.completeGivingReward()
+        XCTAssertNil(weakAd, "Expect ad deallocated now the ad has been displayed and the reward has been given")
+    }
     
     // MARK: Helpers
     
@@ -177,6 +194,10 @@ class RewardAdViewControllerTests: XCTestCase {
 
         func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void) {
             capturedPresentations.append((rootViewController, userDidEarnRewardHandler))
+        }
+        
+        func completeGivingReward() {
+            capturedPresentations.last?.handler()
         }
     }
 }
