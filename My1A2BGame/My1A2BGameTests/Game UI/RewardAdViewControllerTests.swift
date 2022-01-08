@@ -24,6 +24,16 @@ class RewardAdViewControllerTests: XCTestCase {
         XCTAssertEqual(adLoader.receivedMessages, [.load])
     }
     
+    func test_loadAd_doesNotRetryUponLoadError() {
+        let adLoader = RewardAdLoaderSpy()
+        let (sut, _) = makeSUT(loader: adLoader)
+        _ = sut
+        
+        adLoader.completeLoading(with: anyNSError(), at: 0)
+        
+        XCTAssertEqual(adLoader.receivedMessages, [.load])
+    }
+    
     func test_replenishChance_deliversZeroIfHostVCIsNil() {
         let (sut, _) = makeSUT()
         var capturedChanceCount: Int?
@@ -186,6 +196,10 @@ class RewardAdViewControllerTests: XCTestCase {
         
         func completeLoading(with ad: RewardAd, at index: Int = 0) {
             capturedCompletions[index](.success(ad))
+        }
+        
+        func completeLoading(with error: Error, at index: Int = 0) {
+            capturedCompletions[index](.failure(error))
         }
     }
     
