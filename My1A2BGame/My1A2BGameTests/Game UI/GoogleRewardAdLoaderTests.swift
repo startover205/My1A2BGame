@@ -63,7 +63,7 @@ class GoogleRewardAdLoaderTests: XCTestCase {
             case let .success(ad as GADRewardedAd):
                 XCTAssertEqual(ad.adUnitID, adUnitID)
             default:
-                XCTFail("Expect successful case returing a GADRewardedAd instance")
+                XCTFail("Expect successful case returing a GADRewardedAd instance, got \(result) instead")
             }
             exp.fulfill()
         }
