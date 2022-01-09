@@ -90,6 +90,7 @@
 		C0DC06E7273E5CEE0033982F /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DC06E6273E5CEE0033982F /* ProductViewModel.swift */; };
 		C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */; };
 		C0ECEB282789562800DA2733 /* ExponentialBackoffDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECEB272789562800DA2733 /* ExponentialBackoffDecoratorTests.swift */; };
+		C0ECEB2A278AFFC700DA2733 /* ExponentialBackoffDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECEB29278AFFC700DA2733 /* ExponentialBackoffDecorator.swift */; };
 		C0ED625F225DF63500892A80 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0ED625E225DF63500892A80 /* StoreKit.framework */; };
 		C0ED626722608FFD00892A80 /* IAPTransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */; };
 		C0EFCBF126B54C4B0041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EFCBF026B54C4B0041A622 /* Mastermind.framework */; };
@@ -225,6 +226,7 @@
 		C0DC06E6273E5CEE0033982F /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		C0ECEB272789562800DA2733 /* ExponentialBackoffDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponentialBackoffDecoratorTests.swift; sourceTree = "<group>"; };
+		C0ECEB29278AFFC700DA2733 /* ExponentialBackoffDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponentialBackoffDecorator.swift; sourceTree = "<group>"; };
 		C0ED625E225DF63500892A80 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPTransactionObserver.swift; sourceTree = "<group>"; };
 		C0EFCBF026B54C4B0041A622 /* Mastermind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mastermind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +322,7 @@
 				C0570988270808A2005D2603 /* RankUIComposer.swift */,
 				C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
+				C0ECEB29278AFFC700DA2733 /* ExponentialBackoffDecorator.swift */,
 				C07C16B82702F94E00451060 /* RewardAd.strings */,
 				C0A1F47626B62A1100536D73 /* MastermindiOS */,
 			);
@@ -714,6 +717,7 @@
 				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C0196E99261C0DAB007D936C /* GoogleRewardAdManager.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
+				C0ECEB2A278AFFC700DA2733 /* ExponentialBackoffDecorator.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
 				C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */,

@@ -7,52 +7,12 @@
 //
 
 import XCTest
+@testable import My1A2BGame
 
-typealias AsyncAfter = (TimeInterval, @escaping () -> Void) -> Void
-
-private final class ExponentialBackoffDecorator<T> {
-    private let decoratee: T
-    private let baseDelay: TimeInterval
-    private let maxDelay: TimeInterval
-    private let jitterDelay: () -> TimeInterval
-    private let asyncAfter: AsyncAfter
-    private let retryMaxCount: Int
-    private var retryCount = 0
+private protocol Loader {
+    typealias Result = Swift.Result<String, Error>
     
-    init(_ decoratee: T,
-         baseDelay: TimeInterval = 2.0,
-         maxDelay: TimeInterval = 300.0,
-         jitterDelay: @escaping () -> TimeInterval = { TimeInterval.random(in: 0...1) },
-         retryMaxCount: Int = 10,
-         asyncAfter: @escaping AsyncAfter = { time, work in
-        DispatchQueue.global().asyncAfter(deadline: .now() + time, execute: work)
-    })  {
-        self.decoratee = decoratee
-        self.baseDelay = baseDelay
-        self.maxDelay = maxDelay
-        self.retryMaxCount = retryMaxCount
-        self.jitterDelay = jitterDelay
-        self.asyncAfter = asyncAfter
-    }
-    
-    private func handle<U>(result: Result<U, Error>, completion: @escaping (Result<U, Error>) -> Void, onRetry: @escaping () -> Void) {
-        switch result {
-        case .success(let data):
-            retryCount = 0
-            completion(.success(data))
-            
-        case .failure(let error):
-            if retryCount >= retryMaxCount {
-                completion(.failure(error))
-            } else {
-                retryCount += 1
-                
-                let delay = min(TimeInterval(pow(Float(baseDelay), Float(retryCount))), maxDelay) + jitterDelay()
-                
-                asyncAfter(delay, onRetry)
-            }
-        }
-    }
+    func load(completion: @escaping (Result) -> Void)
 }
 
 extension ExponentialBackoffDecorator: Loader where T: Loader {
@@ -268,7 +228,6 @@ class ExponentialBackoffDecoratorTests: XCTestCase {
     }
 }
 
-
 private final class LoaderSpy: Loader {
     enum Message: Equatable {
         case load
@@ -302,10 +261,4 @@ private final class LoaderSpy: Loader {
     func completeAsyncTask(at index: Int = 0) {
         capturedTasks[index]()
     }
-}
-
-private protocol Loader {
-    typealias Result = Swift.Result<String, Error>
-    
-    func load(completion: @escaping (Result) -> Void)
 }
