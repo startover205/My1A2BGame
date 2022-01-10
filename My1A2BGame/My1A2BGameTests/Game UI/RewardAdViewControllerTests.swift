@@ -10,7 +10,21 @@ import XCTest
 import MastermindiOS
 import My1A2BGame
 
-class RewardAdViewControllerTests: XCTestCase {
+final class RewardAdControllerComposer {
+    static func rewardAdComposedWith(
+        loader: RewardAdLoader,
+        rewardChanceCount: Int,
+        hostViewController: UIViewController
+    ) -> RewardAdViewController {
+        let rewardAdViewController = RewardAdViewController(loader: loader, rewardChanceCount: rewardChanceCount, hostViewController: hostViewController)
+        
+        return rewardAdViewController
+    }
+}
+
+
+class RewardAdIntegrationTests: XCTestCase {
+    
     func test_init_doesNotMessageHostViewController() {
         let (_, hostVC) = makeSUT()
         
@@ -154,7 +168,10 @@ class RewardAdViewControllerTests: XCTestCase {
     
     private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
         let hostVC = UIViewControllerPresentationSpy()
-        let sut = RewardAdViewController(loader: loader, rewardChanceCount: rewardChanceCount, hostViewController: hostVC)
+        let sut = RewardAdControllerComposer.rewardAdComposedWith(
+            loader: loader,
+            rewardChanceCount: rewardChanceCount,
+            hostViewController: hostVC)
         
         trackForMemoryLeaks(hostVC, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
