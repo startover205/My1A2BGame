@@ -99,5 +99,3 @@ extension GoogleRewardAdManager: RewardAdLoader {
     func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
     }
 }
-
-extension GADRewardedAd: RewardAd { }

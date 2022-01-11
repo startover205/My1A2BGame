@@ -34,3 +34,5 @@ public final class GoogleRewardAdLoader: RewardAdLoader {
         }
     }
 }
+
+extension GADRewardedAd: RewardAd { }
