@@ -8,17 +8,31 @@
 
 import XCTest
 import MastermindiOS
-import My1A2BGame
+@testable import My1A2BGame
 
 final class RewardAdControllerComposer {
     static func rewardAdComposedWith(
         loader: RewardAdLoader,
         rewardChanceCount: Int,
-        hostViewController: UIViewController
+        hostViewController: UIViewController,
+        asyncAfter: @escaping AsyncAfter = {
+            DispatchQueue.global().asyncAfter(deadline: .now() + $0, execute: $1)
+        }
     ) -> RewardAdViewController {
-        let rewardAdViewController = RewardAdViewController(loader: loader, rewardChanceCount: rewardChanceCount, hostViewController: hostViewController)
+        let rewardAdViewController = RewardAdViewController(loader: ExponentialBackoffDecorator(loader, asyncAfter: asyncAfter)
+, rewardChanceCount: rewardChanceCount, hostViewController: hostViewController)
         
         return rewardAdViewController
+    }
+}
+
+extension ExponentialBackoffDecorator: RewardAdLoader where T == RewardAdLoader {
+    public func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
+        decoratee.load { [weak self] result in
+            self?.handle(result: result, completion: completion, onRetry: { [weak self] in
+                self?.load(completion: completion)
+            })
+        }
     }
 }
 
@@ -38,16 +52,40 @@ class RewardAdIntegrationTests: XCTestCase {
         XCTAssertEqual(adLoader.receivedMessages, [.load])
     }
     
-    func test_loadAd_doesNotRetryUponLoadError() {
-        let adLoader = RewardAdLoaderSpy()
-        let (sut, _) = makeSUT(loader: adLoader)
+    func test_loadAd_retriesAsyncOnLoadError() {
+        let (sut, loader, asyncAfter) = makeSUT()
         _ = sut
+        let loadError = anyNSError()
         
-        adLoader.completeLoading(with: anyNSError(), at: 0)
+        loader.completeLoading(with: loadError, at: 0)
+        XCTAssertEqual(loader.receivedMessages, [.load], "Expect no retry until async task executes")
         
-        XCTAssertEqual(adLoader.receivedMessages, [.load])
+        asyncAfter.completeAsyncTask(at: 0)
+        XCTAssertEqual(loader.receivedMessages, [.load, .load], "Expect another load when async task executes")
     }
     
+    func test_loadAd_retriesDelayExponentiallyWithJitterOnLoadError() throws {
+        let (sut, loader, asyncAfter) = makeSUT()
+        _ = sut
+        let loadError = anyNSError()
+
+        loader.completeLoading(with: loadError, at: 0)
+        let firstDelay = Float(try XCTUnwrap(asyncAfter.capturedDelays.last))
+        XCTAssertEqual(firstDelay, 2, accuracy: 1.0)
+
+        asyncAfter.completeAsyncTask(at: 0)
+        loader.completeLoading(with: loadError, at: 1)
+
+        let secondDelay = Float(try XCTUnwrap(asyncAfter.capturedDelays.last))
+        XCTAssertEqual(secondDelay, 4, accuracy: 1.0)
+        
+        asyncAfter.completeAsyncTask(at: 1)
+        loader.completeLoading(with: loadError, at: 2)
+        
+        let thirdDelay = Float(try XCTUnwrap(asyncAfter.capturedDelays.last))
+        XCTAssertEqual(thirdDelay, 8, accuracy: 1.0)
+    }
+
     func test_replenishChance_deliversZeroIfHostVCIsNil() {
         let (sut, _) = makeSUT()
         var capturedChanceCount: Int?
@@ -182,6 +220,22 @@ class RewardAdIntegrationTests: XCTestCase {
         return (sut, hostVC)
     }
     
+    private func makeSUT(rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, RewardAdLoaderSpy, AsyncAfterSpy) {
+        let loader = RewardAdLoaderSpy()
+        let asyncAfterSpy = AsyncAfterSpy()
+        let sut = RewardAdControllerComposer.rewardAdComposedWith(
+            loader: loader,
+            rewardChanceCount: rewardChanceCount,
+            hostViewController: UIViewController(),
+            asyncAfter: asyncAfterSpy.asyncAfter)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(asyncAfterSpy, file: file, line: line)
+        
+        return (sut, loader, asyncAfterSpy)
+    }
+    
     private final class UIViewControllerPresentationSpy: UIViewController {
         private(set) var capturedPresentations = [(vc: UIViewController, animated: Bool)]()
         private(set) var capturedCompletions = [(() -> Void)?]()
@@ -229,6 +283,20 @@ class RewardAdIntegrationTests: XCTestCase {
         
         func completeGivingReward() {
             capturedPresentations.last?.handler()
+        }
+    }
+    
+    private final class AsyncAfterSpy {
+        private(set) var capturedDelays = [TimeInterval]()
+        private(set) var capturedTasks = [() -> Void]()
+        
+        func asyncAfter(delay: TimeInterval, task: @escaping () -> Void) {
+            capturedDelays.append(delay)
+            capturedTasks.append(task)
+        }
+        
+        func completeAsyncTask(at index: Int = 0) {
+            capturedTasks[index]()
         }
     }
 }
