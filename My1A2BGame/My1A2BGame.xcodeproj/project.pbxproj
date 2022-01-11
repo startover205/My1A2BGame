@@ -21,6 +21,7 @@
 		C01F4D212783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */; };
 		C01F4D2327856747008C9E87 /* GoogleRewardAdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */; };
 		C03124DC2766450C0018CC92 /* UIViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */; };
+		C0314882278D207E00EAB263 /* RewardAdControllerComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0314881278D207E00EAB263 /* RewardAdControllerComposer.swift */; };
 		C034AAC626B690F3006AABE6 /* MastermindiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034AAC526B690F3006AABE6 /* MastermindiOS.framework */; };
 		C034AAC726B690F3006AABE6 /* MastermindiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C034AAC526B690F3006AABE6 /* MastermindiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0362D0C268C169200E6299B /* AppDelegateTests.swift */; };
@@ -148,6 +149,7 @@
 		C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoaderTests.swift; sourceTree = "<group>"; };
 		C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoader.swift; sourceTree = "<group>"; };
 		C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		C0314881278D207E00EAB263 /* RewardAdControllerComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdControllerComposer.swift; sourceTree = "<group>"; };
 		C034AAC526B690F3006AABE6 /* MastermindiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastermindiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0362D0C268C169200E6299B /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		C03F32D12746536C008C2461 /* XCTestCase+IAPTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+IAPTestHelpers.swift"; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
 				C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */,
 				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
+				C0314881278D207E00EAB263 /* RewardAdControllerComposer.swift */,
 				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
 				C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */,
 				C0570988270808A2005D2603 /* RankUIComposer.swift */,
@@ -720,6 +723,7 @@
 				C0ECEB2A278AFFC700DA2733 /* ExponentialBackoffDecorator.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
+				C0314882278D207E00EAB263 /* RewardAdControllerComposer.swift in Sources */,
 				C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */,
 				C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */,
 				C09ADD3F2743B17100222B71 /* IAPCellController.swift in Sources */,

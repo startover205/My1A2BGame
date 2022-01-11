@@ -10,33 +10,6 @@ import XCTest
 import MastermindiOS
 @testable import My1A2BGame
 
-final class RewardAdControllerComposer {
-    static func rewardAdComposedWith(
-        loader: RewardAdLoader,
-        rewardChanceCount: Int,
-        hostViewController: UIViewController,
-        asyncAfter: @escaping AsyncAfter = {
-            DispatchQueue.global().asyncAfter(deadline: .now() + $0, execute: $1)
-        }
-    ) -> RewardAdViewController {
-        let rewardAdViewController = RewardAdViewController(loader: ExponentialBackoffDecorator(loader, asyncAfter: asyncAfter)
-, rewardChanceCount: rewardChanceCount, hostViewController: hostViewController)
-        
-        return rewardAdViewController
-    }
-}
-
-extension ExponentialBackoffDecorator: RewardAdLoader where T == RewardAdLoader {
-    public func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
-        decoratee.load { [weak self] result in
-            self?.handle(result: result, completion: completion, onRetry: { [weak self] in
-                self?.load(completion: completion)
-            })
-        }
-    }
-}
-
-
 class RewardAdIntegrationTests: XCTestCase {
     
     func test_init_doesNotMessageHostViewController() {
