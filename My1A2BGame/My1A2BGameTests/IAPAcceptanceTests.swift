@@ -132,7 +132,7 @@ class IAPAcceptanceTests: XCTestCase {
 
         let exp = expectation(description: "wait for purchased transaction to be finished")
         exp.isInverted = true
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 0.5)
         
         simulateRestoringCompletedTransactions(observer: transactionObserver, paymentQueue: paymentQueue)
 
