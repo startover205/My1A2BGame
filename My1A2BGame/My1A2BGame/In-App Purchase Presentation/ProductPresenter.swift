@@ -6,6 +6,8 @@
 //  Copyright © 2021 Ming-Ta Yang. All rights reserved.
 //
 
+import Foundation
+
 public final class ProductPresenter {
     private let loader: IAPProductLoader
     private let loadingView: ProductLoadingView
