@@ -19,7 +19,6 @@ import MessageUI
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var reachability = Reachability.forInternetConnection()
     
     private lazy var basicRecordLoader: RecordLoader = {
         let modelName = "Model"
