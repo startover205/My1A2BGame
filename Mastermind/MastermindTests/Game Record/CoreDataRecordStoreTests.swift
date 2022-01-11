@@ -7,6 +7,7 @@
 
 import XCTest
 import Mastermind
+import CoreData
 
 class CoreDataRecordStoreTests: XCTestCase {
     
