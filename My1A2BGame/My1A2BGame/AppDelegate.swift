@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
     
-    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: Constants.rewardAdId)
+    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID)
     
     private lazy var requestReview: () -> Void = {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let bannerAd = GADBannerView()
             bannerAd.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(bannerWidth)
             bannerAd.rootViewController = tabController
-            bannerAd.adUnitID = Constants.bottomAdId
+            bannerAd.adUnitID = GoogleAPIKeys.bottomAdID
             bannerAd.load(GADRequest())
             
             tabBar.addSubview(bannerAd)
