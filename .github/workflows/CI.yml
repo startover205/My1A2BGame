@@ -20,9 +20,11 @@ jobs:
       - name: Update pod
         run: sudo gem update cocoapods --pre
         
-      - run: cd My1A2BGame
-      - run: pod update
-      - run: cd ..
+      - name: Install Dependencies
+        run: |
+          cd My1A2BGame
+          pod install --repo-update
+        shell: bash
 
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_13.0.app
