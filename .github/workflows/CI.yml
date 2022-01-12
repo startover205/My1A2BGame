@@ -20,9 +20,10 @@ jobs:
       - name: Update pod
         run: sudo gem update cocoapods --pre
         
-      - name: Update pod
-        run: pod update
-        
+      - run: cd My1A2BGame
+      - run: pod update
+      - run: cd ..
+
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_13.0.app
         
