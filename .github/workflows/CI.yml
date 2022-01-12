@@ -18,7 +18,9 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Update pod
-        run: sudo gem update cocoapods --pre / pod update
+        run: sudo gem update cocoapods --pre
+        
+      - name: Update pod
         run: pod update
         
       - name: Select Xcode
