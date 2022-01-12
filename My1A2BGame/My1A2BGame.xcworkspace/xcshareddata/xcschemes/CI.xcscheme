@@ -8,9 +8,9 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -22,10 +22,10 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C07D1A5F23BCDAEE00197857"
@@ -121,9 +121,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C07D1A5F23BCDAEE00197857"
-            BuildableName = "My1A2BGameTests.xctest"
-            BlueprintName = "My1A2BGameTests"
+            BlueprintIdentifier = "C014619A20BE6BD20023EEB6"
+            BuildableName = "My1A2BGame.app"
+            BlueprintName = "My1A2BGame"
             ReferencedContainer = "container:My1A2BGame.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
