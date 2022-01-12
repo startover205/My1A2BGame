@@ -17,6 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
+      - name: Update pod
+        run: sudo gem update cocoapods --pre / pod update
+        run: pod update
+        
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_13.0.app
         
