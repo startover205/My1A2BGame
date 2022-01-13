@@ -96,14 +96,9 @@ class IAPProductLoaderTests: XCTestCase {
     
     @available(iOS 14.0, *)
     func test_loadTwice_deliversOnlyLatestResult() throws {
-        var isFirstTime = true
+        var productIDLists = [[validProductID()], ["an invalid ID"]]
         let getProductIDs: () -> Set<String> = {
-            if isFirstTime {
-                isFirstTime = false
-                return [validProductID()]
-            } else {
-                return ["an invalid ID"]
-            }
+            Set(productIDLists.removeFirst())
         }
         let sut = makeSUT(makeRequest: SKProductsRequest.init, getProductIDs: getProductIDs)
         try createLocalTestSession()
