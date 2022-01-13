@@ -56,6 +56,8 @@ class GoogleRewardAdLoaderTests: XCTestCase {
     func test_load_deliversAdOnSuccessfulLoading() {
         let adUnitID = testUnitID()
         let sut = makeSUT(adUnitID: adUnitID)
+        let spy = GADRewardedAd.loadingSpy()
+        spy.startIntercepting()
         let exp = expectation(description: "wait for loading")
         
         sut.load() { result in
@@ -67,8 +69,9 @@ class GoogleRewardAdLoaderTests: XCTestCase {
             }
             exp.fulfill()
         }
+        spy.completeLoadingWithAd(adUnitID: adUnitID)
 
-        wait(for: [exp], timeout: 90.0)
+        wait(for: [exp], timeout: 1.0)
     }
     
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
@@ -135,6 +138,10 @@ extension GADRewardedAd {
         func completeLoadingWithEmptyAd() {
             Self.capturedCompletion?(nil, nil)
         }
+        
+        func completeLoadingWithAd(adUnitID: String) {
+            Self.capturedCompletion?(GADRewardedAdStub(adUnitID: adUnitID), nil)
+        }
 
         deinit {
             method_exchangeImplementations(
@@ -144,4 +151,15 @@ extension GADRewardedAd {
             Self.capturedCompletion = nil
         }
     }
+}
+
+private final class GADRewardedAdStub: GADRewardedAd {
+    private var _adUnitID: String?
+    
+    convenience init(adUnitID: String) {
+        self.init()
+        self._adUnitID = adUnitID
+    }
+    
+    override var adUnitID: String { _adUnitID ?? super.adUnitID }
 }
