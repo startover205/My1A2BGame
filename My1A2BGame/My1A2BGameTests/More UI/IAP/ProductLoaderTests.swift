@@ -117,7 +117,7 @@ class IAPProductLoaderTests: XCTestCase {
             result.append(contentsOf: $0)
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 10.0)
         
         XCTAssertTrue(result.isEmpty)
         
