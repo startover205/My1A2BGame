@@ -194,7 +194,7 @@ class IAPAcceptanceTests: XCTestCase {
     private func waitForProductLoading() {
         let exp = expectation(description: "wait for product loading")
         exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
+        wait(for: [exp], timeout: 1)
     }
     
     private func allProducts() -> [SKProduct] {
