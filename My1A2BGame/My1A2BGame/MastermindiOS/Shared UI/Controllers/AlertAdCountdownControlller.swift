@@ -8,6 +8,8 @@
 
 import UIKit
 
+public typealias TimerFactory = (TimeInterval, _ repeats: Bool, _ task: @escaping (Timer) -> Void) -> Timer
+
 /// 時間到自動消失
 public final class AlertAdCountdownController: UIViewController {
     
@@ -24,6 +26,7 @@ public final class AlertAdCountdownController: UIViewController {
     private(set) public var message: String?
     private(set) public var cancelMessage: String
     
+    private let timerFactory: TimerFactory
     private weak var adCountDownTimer: Timer?
     private weak var progressCountDownTimer: Timer?
     
@@ -38,7 +41,7 @@ public final class AlertAdCountdownController: UIViewController {
         shakeAdIcon()
     }()
     
-    public init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, confirmHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil) {
+    public init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, confirmHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer) {
         
         self.alertTitle = title
         self.message = message
@@ -46,6 +49,7 @@ public final class AlertAdCountdownController: UIViewController {
         self.countDownTime = countDownTime
         self.confirmHandler = confirmHandler
         self.cancelHandler = cancelHandler
+        self.timerFactory = timerFactory
         
         super.init(nibName: "AlertAdController", bundle: nil)
         
@@ -95,13 +99,13 @@ public final class AlertAdCountdownController: UIViewController {
 private extension AlertAdCountdownController {
     
     func startCounting(){
-        adCountDownTimer = Timer.scheduledTimer(withTimeInterval: countDownTime, repeats: false, block: { [weak self]  _ in
+        adCountDownTimer = timerFactory(countDownTime, false) { [weak self] _ in
             self?.adDidCountDown()
-        })
-
-        progressCountDownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
+        }
+        
+        progressCountDownTimer = timerFactory(0.1, true) { [weak self] _ in
             self?.progressDidCountDown()
-        })
+        }
     }
     
     /// 計時結束
