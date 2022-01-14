@@ -11,15 +11,10 @@ import My1A2BGame
 
 class AlertAdCountdownControllerTests: XCTestCase {
     
-    func test_doesNotGetRetainedAfterPresented() {
-        let hostVC = UIViewController()
-        let window = UIWindow()
-        window.addSubview(hostVC.view)
+    func test_doesNotGetRetainedAfterShown() {
         let sut = makeSUT()
         
-        hostVC.present(sut, animated: false)
-        
-        clearModalPresentationReference(hostVC)
+        sut.simulateViewAppear()
     }
     
     // MARK: - Helpers
