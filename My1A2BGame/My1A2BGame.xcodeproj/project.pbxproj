@@ -77,7 +77,6 @@
 		C0A1F4A826B62A1200536D73 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* FAQViewController.swift */; };
 		C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F48926B62A1100536D73 /* More.storyboard */; };
 		C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */; };
-		C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49226B62A1200536D73 /* AlertAdController.strings */; };
 		C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49426B62A1200536D73 /* AlertAdController.xib */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
@@ -208,9 +207,7 @@
 		C0A1F48726B62A1100536D73 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		C0A1F48926B62A1100536D73 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
-		C0A1F49326B62A1200536D73 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
 		C0A1F49526B62A1200536D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertAdController.xib; sourceTree = "<group>"; };
-		C0A1F49626B62A1200536D73 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/AlertAdController.strings"; sourceTree = "<group>"; };
 		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -461,7 +458,6 @@
 		C0A1F49126B62A1100536D73 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F49226B62A1200536D73 /* AlertAdController.strings */,
 				C0A1F49426B62A1200536D73 /* AlertAdController.xib */,
 			);
 			path = Views;
@@ -623,7 +619,6 @@
 				C07C16B62702F94E00451060 /* RewardAd.strings in Resources */,
 				C09ADD3D2743A88000222B71 /* NonConsumable.storekit in Resources */,
 				C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */,
-				C0A1F4AF26B62A1200536D73 /* AlertAdController.strings in Resources */,
 				C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
 				C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */,
@@ -807,15 +802,6 @@
 				C07C16BA2702F95200451060 /* zh-Hant */,
 			);
 			name = RewardAd.strings;
-			sourceTree = "<group>";
-		};
-		C0A1F49226B62A1200536D73 /* AlertAdController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0A1F49326B62A1200536D73 /* zh-Hans */,
-				C0A1F49626B62A1200536D73 /* zh-Hant */,
-			);
-			name = AlertAdController.strings;
 			sourceTree = "<group>";
 		};
 		C0A1F49426B62A1200536D73 /* AlertAdController.xib */ = {
