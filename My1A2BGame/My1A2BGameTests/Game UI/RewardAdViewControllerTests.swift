@@ -104,7 +104,8 @@ class RewardAdIntegrationTests: XCTestCase {
         sut.replenishChance { capturedChanceCount = $0 }
 
         let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
-        alert.cancelHandler?()
+        alert.loadViewIfNeeded()
+        alert.simulateUserDismissAlert()
         
         XCTAssertEqual(capturedChanceCount, 0, "captureed chance count")
     }
@@ -163,17 +164,22 @@ class RewardAdIntegrationTests: XCTestCase {
     func test_displayAd_doesNotDeallocateAdUntilAdRewardGiven() throws {
         let adLoader = RewardAdLoaderSpy()
         var ad: RewardAdSpy? = RewardAdSpy()
-        let (sut, hostVC) = makeSUT(loader: adLoader)
-        adLoader.completeLoading(with: ad!, at: 0)
+        var (sut, hostVC): (RewardAdViewController?, UIViewControllerPresentationSpy?)
         weak var weakAd = ad
-        ad = nil
+        
+        try autoreleasepool {
+            (sut, hostVC) = makeSUT(loader: adLoader)
+            adLoader.completeLoading(with: ad!, at: 0)
+            ad = nil
 
-        sut.replenishChance(completion: { _ in })
-        try hostVC.simulateConfirmDisplayingAd()
-        adLoader.completeLoading(with: RewardAdSpy(), at: 1)
-        XCTAssertNotNil(weakAd, "Expect ad not deallocated because the reward has not yet been given")
+            sut?.replenishChance(completion: { _ in })
+            try hostVC?.simulateConfirmDisplayingAd()
+            adLoader.completeLoading(with: RewardAdSpy(), at: 1)
+            XCTAssertNotNil(weakAd, "Expect ad not deallocated because the reward has not yet been given")
 
-        weakAd?.completeGivingReward()
+            weakAd?.completeGivingReward()
+        }
+      
         XCTAssertNil(weakAd, "Expect ad deallocated now the ad has been displayed and the reward has been given")
     }
     
@@ -222,8 +228,8 @@ class RewardAdIntegrationTests: XCTestCase {
         
         func simulateConfirmDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
             let alert = try XCTUnwrap(capturedPresentations.removeLast().vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
-            
-            alert.confirmHandler?()
+            alert.loadViewIfNeeded()
+            alert.simulateUserConfirmDisplayingAd()
         }
     }
     
@@ -250,6 +256,8 @@ class RewardAdIntegrationTests: XCTestCase {
     }
     
     private final class RewardAdSpy: RewardAd {
+        let id = UUID()
+        
         private(set) var capturedPresentations = [(vc: UIViewController, handler: () -> Void)]()
 
         func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void) {

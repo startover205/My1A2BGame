@@ -14,4 +14,12 @@ extension AlertAdCountdownController {
     func alertMessage() -> String? { messageLabel.text }
     
     func dismissAction() -> String? { cancelBtn.title(for: .normal) }
+    
+    func simulateUserDismissAlert() {
+        cancelBtn.sendActions(for: .touchUpInside)
+    }
+    
+    func simulateUserConfirmDisplayingAd() {
+        adBtn.sendActions(for: .touchUpInside)
+    }
 }
