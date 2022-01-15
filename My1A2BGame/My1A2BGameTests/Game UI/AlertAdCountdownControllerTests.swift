@@ -11,6 +11,20 @@ import My1A2BGame
 
 class AlertAdCountdownControllerTests: XCTestCase {
     
+    func test_loadView_configureAlertAppearance() {
+        let sut = makeSUT(
+            title: "a title",
+            message: "a message",
+            cancelMessage: "dismiss action"
+        )
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.alertTitle(), "a title", "alert title")
+        XCTAssertEqual(sut.alertMessage(), "a message", "alert message")
+        XCTAssertEqual(sut.dismissAction(), "dismiss action", "dismiss action")
+    }
+    
     func test_doesNotGetRetainedAfterShown() {
         let sut = makeSUT()
         
@@ -27,4 +41,12 @@ class AlertAdCountdownControllerTests: XCTestCase {
         return sut
     }
 
+}
+
+private extension AlertAdCountdownController {
+    func alertTitle() -> String? { titleLabel.text }
+    
+    func alertMessage() -> String? { messageLabel.text }
+    
+    func dismissAction() -> String? { cancelBtn.title(for: .normal) }
 }
