@@ -42,11 +42,3 @@ class AlertAdCountdownControllerTests: XCTestCase {
     }
 
 }
-
-private extension AlertAdCountdownController {
-    func alertTitle() -> String? { titleLabel.text }
-    
-    func alertMessage() -> String? { messageLabel.text }
-    
-    func dismissAction() -> String? { cancelBtn.title(for: .normal) }
-}
