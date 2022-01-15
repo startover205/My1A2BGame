@@ -87,10 +87,12 @@ class RewardAdIntegrationTests: XCTestCase {
         XCTAssertEqual(hostVC.capturedPresentations.count, 1, "Expect exactly one presentation")
         XCTAssertEqual(hostVC.capturedPresentations.first?.animated, true, "Expect presenation is animated")
         let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        
+        alert.loadViewIfNeeded()
 
-        XCTAssertEqual(alert.alertTitle, RewardAdPresenter.alertTitle, "alert title")
-        XCTAssertEqual(alert.message, String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10), "alert message")
-        XCTAssertEqual(alert.cancelMessage, RewardAdPresenter.alertCancelTitle, "alert cancel title")
+        XCTAssertEqual(alert.alertTitle(), RewardAdPresenter.alertTitle, "alert title")
+        XCTAssertEqual(alert.alertMessage(), String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10), "alert message")
+        XCTAssertEqual(alert.dismissAction(), RewardAdPresenter.alertCancelTitle, "alert cancel title")
         XCTAssertEqual(alert.countDownTime, RewardAdPresenter.alertCountDownTime, "alert count down time")
     }
 
