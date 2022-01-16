@@ -19,12 +19,12 @@ public final class AlertAdCountdownController: UIViewController {
     @IBOutlet weak private(set) public var titleLabel: UILabel!
     @IBOutlet weak private(set) public var messageLabel: UILabel!
     
-    private(set) public var confirmHandler: (() -> Void)?
-    private(set) public var cancelHandler: (() -> Void)?
+    private let confirmHandler: (() -> Void)?
+    private let cancelHandler: (() -> Void)?
     private(set) public var countDownTime = 5.0
-    private(set) public var alertTitle: String
-    private(set) public var message: String?
-    private(set) public var cancelMessage: String
+    private let alertTitle: String
+    private let message: String?
+    private let cancelMessage: String
     
     private let timerFactory: TimerFactory
     private weak var adCountDownTimer: Timer?
