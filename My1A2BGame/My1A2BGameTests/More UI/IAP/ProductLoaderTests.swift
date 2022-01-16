@@ -94,29 +94,17 @@ class IAPProductLoaderTests: XCTestCase {
         waitForRefereceRemoval()
     }
     
-    @available(iOS 14.0, *)
-    func test_loadTwice_deliversOnlyLatestResult() throws {
-        var productIDLists = [[validProductID()], ["an invalid ID"]]
-        let getProductIDs: () -> Set<String> = {
-            Set(productIDLists.removeFirst())
-        }
-        let sut = makeSUT(makeRequest: SKProductsRequest.init, getProductIDs: getProductIDs)
-        try createLocalTestSession()
-        let exp = expectation(description: "wait for request")
+    func test_loadTwice_cancelPreviousRequest() throws {
+        let firstRequest = SKProductsRequestSpy()
+        let secondRequest = SKProductsRequestSpy()
+        var requests = [firstRequest, secondRequest]
+        let sut = makeSUT(makeRequest: { _ in requests.removeFirst() }, getProductIDs: { ["a product ID"] })
+
+        sut.load { _ in }
+        XCTAssertFalse(firstRequest.isCancelled, "precondition")
         
-        var result = [SKProduct]()
-        sut.load { _ in
-            XCTFail("Expect the first call not responded")
-        }
-        sut.load {
-            result.append(contentsOf: $0)
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 10.0)
-        
-        XCTAssertTrue(result.isEmpty)
-        
-        waitForRefereceRemoval()
+        sut.load { _ in }
+        XCTAssertTrue(firstRequest.isCancelled)
     }
     
     // MARK: - Helpers
@@ -133,6 +121,17 @@ class IAPProductLoaderTests: XCTestCase {
         let exp = expectation(description: "wait for reference removal")
         exp.isInverted = true
         wait(for: [exp], timeout: 0.05)
+    }
+    
+    private final class SKProductsRequestSpy: SKProductsRequest {
+        var isCancelled = false
+        
+        override func start() {
+        }
+        
+        override func cancel() {
+            isCancelled = true
+        }
     }
 }
 
