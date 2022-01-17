@@ -1,5 +1,5 @@
 //
-//  AlertAdController.swift
+//  AlertAdCountdownController.swift
 //  EasyTimer
 //
 //  Created by Ming-Ta Yang on 2019/3/31.
@@ -51,7 +51,7 @@ public final class AlertAdCountdownController: UIViewController {
         self.cancelHandler = cancelHandler
         self.timerFactory = timerFactory
         
-        super.init(nibName: "AlertAdController", bundle: nil)
+        super.init(nibName: "AlertAdCountdownController", bundle: nil)
         
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve

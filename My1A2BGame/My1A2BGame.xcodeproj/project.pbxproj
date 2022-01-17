@@ -77,8 +77,8 @@
 		C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPViewController.swift */; };
 		C0A1F4A826B62A1200536D73 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* FAQViewController.swift */; };
 		C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F48926B62A1100536D73 /* More.storyboard */; };
-		C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */; };
-		C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49426B62A1200536D73 /* AlertAdController.xib */; };
+		C0A1F4AA26B62A1200536D73 /* AlertAdCountdownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* AlertAdCountdownController.swift */; };
+		C0A1F4B026B62A1200536D73 /* AlertAdCountdownController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49426B62A1200536D73 /* AlertAdCountdownController.xib */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0AA3E3A274890E200F75D95 /* Unknown.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C0AA3E39274882BD00F75D95 /* Unknown.storekit */; };
@@ -208,8 +208,8 @@
 		C0A1F48626B62A1100536D73 /* IAPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPViewController.swift; sourceTree = "<group>"; };
 		C0A1F48726B62A1100536D73 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		C0A1F48926B62A1100536D73 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
-		C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownControlller.swift; sourceTree = "<group>"; };
-		C0A1F49526B62A1200536D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertAdController.xib; sourceTree = "<group>"; };
+		C0A1F48C26B62A1100536D73 /* AlertAdCountdownController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAdCountdownController.swift; sourceTree = "<group>"; };
+		C0A1F49526B62A1200536D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertAdCountdownController.xib; sourceTree = "<group>"; };
 		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -452,7 +452,7 @@
 		C0A1F48B26B62A1100536D73 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F48C26B62A1100536D73 /* AlertAdCountdownControlller.swift */,
+				C0A1F48C26B62A1100536D73 /* AlertAdCountdownController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -460,7 +460,7 @@
 		C0A1F49126B62A1100536D73 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C0A1F49426B62A1200536D73 /* AlertAdController.xib */,
+				C0A1F49426B62A1200536D73 /* AlertAdCountdownController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -624,7 +624,7 @@
 				C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */,
 				C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
-				C0A1F4B026B62A1200536D73 /* AlertAdController.xib in Resources */,
+				C0A1F4B026B62A1200536D73 /* AlertAdCountdownController.xib in Resources */,
 				C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */,
 				C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */,
 			);
@@ -703,7 +703,7 @@
 				C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */,
 				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
-				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownControlller.swift in Sources */,
+				C0A1F4AA26B62A1200536D73 /* AlertAdCountdownController.swift in Sources */,
 				C077B5D82771A8150022F9CF /* ProductListViewModel.swift in Sources */,
 				C077B5E6277340770022F9CF /* UserDefaultsPurchaseStore.swift in Sources */,
 				C0DC06E7273E5CEE0033982F /* ProductViewModel.swift in Sources */,
@@ -808,12 +808,12 @@
 			name = RewardAd.strings;
 			sourceTree = "<group>";
 		};
-		C0A1F49426B62A1200536D73 /* AlertAdController.xib */ = {
+		C0A1F49426B62A1200536D73 /* AlertAdCountdownController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C0A1F49526B62A1200536D73 /* Base */,
 			);
-			name = AlertAdController.xib;
+			name = AlertAdCountdownController.xib;
 			sourceTree = "<group>";
 		};
 		C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */ = {
