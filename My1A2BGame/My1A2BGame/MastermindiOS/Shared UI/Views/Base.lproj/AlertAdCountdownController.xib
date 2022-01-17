@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertAdCountdownController" customModule="My1A2BGame" customModuleProvider="target">
             <connections>
-                <outlet property="adBtn" destination="RgE-FI-P84" id="9Kr-LX-giA"/>
-                <outlet property="cancelBtn" destination="enG-hU-vcg" id="66j-2m-Kti"/>
+                <outlet property="cancelButton" destination="enG-hU-vcg" id="m5P-pN-pXz"/>
+                <outlet property="confirmButton" destination="RgE-FI-P84" id="kld-Yb-OYF"/>
                 <outlet property="countDownProgressView" destination="t2s-LY-Vq1" id="Kfg-Oq-dUg"/>
                 <outlet property="messageLabel" destination="Gbn-Tb-P10" id="7zK-WH-xGL"/>
                 <outlet property="titleLabel" destination="o6G-WZ-I25" id="mze-hO-BPC"/>
@@ -47,7 +47,7 @@
                             </constraints>
                             <state key="normal" image="baseline_movie_filter_100px"/>
                             <connections>
-                                <action selector="adBtnPressed:" destination="-1" eventType="touchUpInside" id="UfZ-5D-9qB"/>
+                                <action selector="confirmButtonPressed:" destination="-1" eventType="touchUpInside" id="vd9-HK-lI3"/>
                             </connections>
                         </button>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t2s-LY-Vq1">
@@ -86,7 +86,7 @@
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <state key="normal" title="No, thank you"/>
                     <connections>
-                        <action selector="cancelBtnPressed:" destination="-1" eventType="touchUpInside" id="fKJ-nC-fIU"/>
+                        <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="iFC-fA-d3O"/>
                     </connections>
                 </button>
             </subviews>

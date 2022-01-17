@@ -15,14 +15,14 @@ class AlertAdCountdownControllerTests: XCTestCase {
         let sut = makeSUT(
             title: "a title",
             message: "a message",
-            cancelMessage: "dismiss action"
+            cancelAction: "dismiss action"
         )
         
         sut.loadViewIfNeeded()
         
         XCTAssertEqual(sut.alertTitle(), "a title", "alert title")
         XCTAssertEqual(sut.alertMessage(), "a message", "alert message")
-        XCTAssertEqual(sut.dismissAction(), "dismiss action", "dismiss action")
+        XCTAssertEqual(sut.cancelAction(), "dismiss action", "dismiss action")
     }
     
     func test_doesNotGetRetainedAfterShown() {
@@ -33,8 +33,8 @@ class AlertAdCountdownControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(title: String = "", message: String? = nil, cancelMessage: String = "", countDownTime: Double = 5.0, confirmHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil, file: StaticString = #filePath, line: UInt = #line) -> AlertAdCountdownController {
-        let sut = AlertAdCountdownController(title: title, message: message, cancelMessage: cancelMessage, countDownTime: countDownTime, confirmHandler: confirmHandler, cancelHandler: cancelHandler)
+    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countDownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, file: StaticString = #filePath, line: UInt = #line) -> AlertAdCountdownController {
+        let sut = AlertAdCountdownController(title: title, message: message, cancelAction: cancelAction, countDownTime: countDownTime, onConfirm: onConfirm, onCancel: onCancel)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

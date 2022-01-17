@@ -14,17 +14,17 @@ public typealias TimerFactory = (TimeInterval, _ repeats: Bool, _ task: @escapin
 public final class AlertAdCountdownController: UIViewController {
     
     @IBOutlet weak private(set) public var countDownProgressView: UIProgressView!
-    @IBOutlet weak private(set) public var cancelBtn: UIButton!
-    @IBOutlet weak private(set) public var adBtn: UIButton!
+    @IBOutlet weak private(set) public var cancelButton: UIButton!
+    @IBOutlet weak private(set) public var confirmButton: UIButton!
     @IBOutlet weak private(set) public var titleLabel: UILabel!
     @IBOutlet weak private(set) public var messageLabel: UILabel!
     
-    private let confirmHandler: (() -> Void)?
-    private let cancelHandler: (() -> Void)?
+    private let onConfirm: (() -> Void)?
+    private let onCancel: (() -> Void)?
     private(set) public var countDownTime = 5.0
     private let alertTitle: String
     private let message: String?
-    private let cancelMessage: String
+    private let cancelAction: String
     
     private let timerFactory: TimerFactory
     private weak var adCountDownTimer: Timer?
@@ -41,14 +41,14 @@ public final class AlertAdCountdownController: UIViewController {
         shakeAdIcon()
     }()
     
-    public init(title: String, message: String? = nil, cancelMessage: String, countDownTime: Double, confirmHandler: (() -> Void)? = nil, cancelHandler: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer) {
+    public init(title: String, message: String? = nil, cancelAction: String, countDownTime: Double, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer) {
         
         self.alertTitle = title
         self.message = message
-        self.cancelMessage = cancelMessage
+        self.cancelAction = cancelAction
         self.countDownTime = countDownTime
-        self.confirmHandler = confirmHandler
-        self.cancelHandler = cancelHandler
+        self.onConfirm = onConfirm
+        self.onCancel = onCancel
         self.timerFactory = timerFactory
         
         super.init(nibName: "AlertAdCountdownController", bundle: nil)
@@ -64,11 +64,11 @@ public final class AlertAdCountdownController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 //        cancelBtn.alpha = 0
-        cancelBtn.setTitle(cancelMessage, for: .normal)
+        cancelButton.setTitle(cancelAction, for: .normal)
         titleLabel.text = alertTitle
         messageLabel.text = message
         
-        self.cancelBtn.alpha = 1
+        self.cancelButton.alpha = 1
         self.addButtonBorder()
     }
     
@@ -82,15 +82,15 @@ public final class AlertAdCountdownController: UIViewController {
         adCountDownTimer?.invalidate()
     }
     
-    @IBAction func adBtnPressed(_ sender: Any) {
+    @IBAction func confirmButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: {
-            self.confirmHandler?()
+            self.onConfirm?()
         })
     }
     
-    @IBAction func cancelBtnPressed(_ sender: Any) {
+    @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.cancelHandler?()
+            self.onCancel?()
         }
     }
 }
@@ -114,7 +114,7 @@ private extension AlertAdCountdownController {
         adCountDownTimer?.invalidate()
 
         self.presentingViewController?.dismiss(animated: true) {
-            self.cancelHandler?()
+            self.onCancel?()
         }
     }
     
@@ -138,11 +138,11 @@ private extension AlertAdCountdownController {
     
     func shakeAdIcon(){
 
-            self.adBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 36)
+            self.confirmButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 36)
         
         UIView.animate(withDuration: 1.25, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, options: [], animations: {
             
-            self.adBtn.transform = .identity
+            self.confirmButton.transform = .identity
             
         }, completion: nil)
     }
@@ -150,13 +150,13 @@ private extension AlertAdCountdownController {
     func addButtonBorder(){
         let border = CALayer()
         border.backgroundColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 1)
-        border.frame = .init(x: 0, y: 0, width: cancelBtn.bounds.width, height: 1)
-        cancelBtn.layer.addSublayer(border)
+        border.frame = .init(x: 0, y: 0, width: cancelButton.bounds.width, height: 1)
+        cancelButton.layer.addSublayer(border)
     }
 }
 
 extension AlertAdCountdownController {
     func tapConfirmButton() {
-        confirmHandler?()
+        onConfirm?()
     }
 }
