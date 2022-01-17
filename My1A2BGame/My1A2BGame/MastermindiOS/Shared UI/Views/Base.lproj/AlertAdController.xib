@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertAdController" customModule="My1A2BGame" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertAdCountdownController" customModule="My1A2BGame" customModuleProvider="target">
             <connections>
                 <outlet property="adBtn" destination="RgE-FI-P84" id="9Kr-LX-giA"/>
                 <outlet property="cancelBtn" destination="enG-hU-vcg" id="66j-2m-Kti"/>
@@ -24,22 +25,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxd-Gy-Ido">
-                    <rect key="frame" x="52.5" y="213" width="270" height="241"/>
+                    <rect key="frame" x="52.5" y="216" width="270" height="235.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Are Out Of Chances..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6G-WZ-I25">
-                            <rect key="frame" x="31" y="16" width="208" height="20.5"/>
+                            <rect key="frame" x="47.5" y="16" width="175.5" height="17"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to watch a reward ad? Reward ads can grant you 5 chances!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-Tb-P10">
-                            <rect key="frame" x="29" y="44.5" width="212" height="30.5"/>
+                            <rect key="frame" x="21" y="41" width="228.5" height="26.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgE-FI-P84">
-                            <rect key="frame" x="85" y="93" width="100" height="100"/>
+                            <rect key="frame" x="85" y="87.5" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="OHH-y9-DMN"/>
                                 <constraint firstAttribute="height" constant="100" id="UMA-NS-Exs"/>
@@ -50,10 +51,10 @@
                             </connections>
                         </button>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t2s-LY-Vq1">
-                            <rect key="frame" x="0.0" y="83" width="270" height="2"/>
+                            <rect key="frame" x="0.0" y="75.5" width="270" height="4"/>
                         </progressView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="Gbn-Tb-P10" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jxd-Gy-Ido" secondAttribute="leading" constant="16" id="8Hm-s6-tOB"/>
                         <constraint firstItem="RgE-FI-P84" firstAttribute="centerX" secondItem="Jxd-Gy-Ido" secondAttribute="centerX" id="8Up-3q-VF7"/>
@@ -77,8 +78,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enG-hU-vcg">
-                    <rect key="frame" x="52.5" y="406" width="270" height="48"/>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enG-hU-vcg">
+                    <rect key="frame" x="52.5" y="403.5" width="270" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Iv8-fK-lUj"/>
                     </constraints>
@@ -89,6 +90,7 @@
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Jxd-Gy-Ido" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="0mc-au-1nd"/>
@@ -98,11 +100,13 @@
                 <constraint firstItem="enG-hU-vcg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="g9z-SS-G9P"/>
                 <constraint firstItem="Jxd-Gy-Ido" firstAttribute="bottom" secondItem="enG-hU-vcg" secondAttribute="bottom" id="td4-mV-wvu"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="151.57421289355324"/>
         </view>
     </objects>
     <resources>
         <image name="baseline_movie_filter_100px" width="100" height="100"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
