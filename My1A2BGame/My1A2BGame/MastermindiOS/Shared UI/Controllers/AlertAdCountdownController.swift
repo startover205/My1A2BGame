@@ -68,8 +68,8 @@ public final class AlertAdCountdownController: UIViewController {
         titleLabel.text = alertTitle
         messageLabel.text = message
         
-        self.cancelButton.alpha = 1
-        self.addButtonBorder()
+        cancelButton.alpha = 1
+        addButtonBorder()
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -83,13 +83,13 @@ public final class AlertAdCountdownController: UIViewController {
     }
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: {
+        dismiss(animated: true, completion: {
             self.onConfirm?()
         })
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true) {
+        dismiss(animated: true) {
             self.onCancel?()
         }
     }
@@ -113,32 +113,32 @@ private extension AlertAdCountdownController {
     func adDidCountDown(){
         adCountDownTimer?.invalidate()
 
-        self.presentingViewController?.dismiss(animated: true) {
+        presentingViewController?.dismiss(animated: true) {
             self.onCancel?()
         }
     }
     
     @objc
     func progressDidCountDown(){
-        self.currentProgress += 0.1 / countDownTime
-        self.countDownProgressView.setProgress(Float(currentProgress), animated: true)
+        currentProgress += 0.1 / countDownTime
+        countDownProgressView.setProgress(Float(currentProgress), animated: true)
         
-        if self.currentProgress >= 0.1 {
+        if currentProgress >= 0.1 {
             _ = _shakeAdIcon
         }
         
-        if self.currentProgress >= 0.5 {
+        if currentProgress >= 0.5 {
             _ = _shakeAdIconSecond
         }
         
-        if self.currentProgress >= 1 {
+        if currentProgress >= 1 {
             progressCountDownTimer?.invalidate()
         }
     }
     
     func shakeAdIcon(){
 
-            self.confirmButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 36)
+            confirmButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 36)
         
         UIView.animate(withDuration: 1.25, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, options: [], animations: {
             
