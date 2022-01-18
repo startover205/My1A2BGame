@@ -25,6 +25,21 @@ class AlertAdCountdownControllerTests: XCTestCase {
         XCTAssertEqual(sut.cancelAction(), "dismiss action", "dismiss action")
     }
     
+    func test_confirmSelection_notifiesHandler() {
+        var callbackCallCount = 0
+        let sut = makeSUT(onConfirm: {
+            callbackCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        
+        sut.confirmButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(callbackCallCount, 1)
+        
+        sut.confirmButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(callbackCallCount, 2)
+    }
+    
     func test_doesNotGetRetainedAfterShown() {
         let sut = makeSUT()
         
