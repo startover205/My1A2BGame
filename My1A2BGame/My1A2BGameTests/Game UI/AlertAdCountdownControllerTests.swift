@@ -69,7 +69,7 @@ class AlertAdCountdownControllerTests: XCTestCase {
     
     func test_countdownIndicator_setsCountdownTimeAsAnimationDuration() {
         let animator = AnimateSpy()
-        let sut = makeSUT(countDownTime: 10, animate: animator.animate)
+        let sut = makeSUT(countdownTime: 10, animate: animator.animate)
         
         sut.simulateViewAppear()
         
@@ -84,8 +84,8 @@ class AlertAdCountdownControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countDownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> AlertAdCountdownController {
-        let sut = AlertAdCountdownController(title: title, message: message, cancelAction: cancelAction, countDownTime: countDownTime, onConfirm: onConfirm, onCancel: onCancel, animate: animate)
+    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countdownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> AlertAdCountdownController {
+        let sut = AlertAdCountdownController(title: title, message: message, cancelAction: cancelAction, countdownTime: countdownTime, onConfirm: onConfirm, onCancel: onCancel, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

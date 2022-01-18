@@ -22,7 +22,7 @@ public final class AlertAdCountdownController: UIViewController {
     
     private let onConfirm: (() -> Void)?
     private let onCancel: (() -> Void)?
-    private(set) public var countDownTime = 5.0
+    private(set) public var countdownTime = 5.0
     private let alertTitle: String
     private let message: String?
     private let cancelAction: String
@@ -43,12 +43,12 @@ public final class AlertAdCountdownController: UIViewController {
         shakeAdIcon()
     }()
     
-    public init(title: String, message: String? = nil, cancelAction: String, countDownTime: Double, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer, animate: @escaping Animate = UIView.animate) {
+    public init(title: String, message: String? = nil, cancelAction: String, countdownTime: Double, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer, animate: @escaping Animate = UIView.animate) {
         
         self.alertTitle = title
         self.message = message
         self.cancelAction = cancelAction
-        self.countDownTime = countDownTime
+        self.countdownTime = countdownTime
         self.onConfirm = onConfirm
         self.onCancel = onCancel
         self.timerFactory = timerFactory
@@ -102,7 +102,7 @@ public final class AlertAdCountdownController: UIViewController {
 private extension AlertAdCountdownController {
     
     func startCounting(){
-        adCountDownTimer = timerFactory(countDownTime, false) { [weak self] _ in
+        adCountDownTimer = timerFactory(countdownTime, false) { [weak self] _ in
             self?.adDidCountDown()
         }
         
@@ -110,7 +110,7 @@ private extension AlertAdCountdownController {
             self?.progressDidCountDown()
         }
         
-        animate(countDownTime, { [weak self] in
+        animate(countdownTime, { [weak self] in
             self?.countDownProgressView.setProgress(1, animated: true)
         }, nil)
     }
@@ -127,7 +127,7 @@ private extension AlertAdCountdownController {
     
     @objc
     func progressDidCountDown(){
-        currentProgress += 0.1 / countDownTime
+        currentProgress += 0.1 / countdownTime
         
         if currentProgress >= 0.1 {
             _ = _shakeAdIcon

@@ -93,7 +93,7 @@ class RewardAdIntegrationTests: XCTestCase {
         XCTAssertEqual(alert.alertTitle(), RewardAdPresenter.alertTitle, "alert title")
         XCTAssertEqual(alert.alertMessage(), String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, 10), "alert message")
         XCTAssertEqual(alert.cancelAction(), RewardAdPresenter.alertCancelTitle, "alert cancel title")
-        XCTAssertEqual(alert.countDownTime, RewardAdPresenter.alertCountDownTime, "alert count down time")
+        XCTAssertEqual(alert.countdownTime, RewardAdPresenter.alertCountDownTime, "alert count down time")
     }
 
     func test_replenishChance_deliversZeroOnCancelAlert() throws {

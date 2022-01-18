@@ -35,7 +35,7 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
             title: RewardAdPresenter.alertTitle,
             message: alertMessage,
             cancelAction: RewardAdPresenter.alertCancelTitle,
-            countDownTime: RewardAdPresenter.alertCountDownTime,
+            countdownTime: RewardAdPresenter.alertCountDownTime,
             onConfirm: { [weak hostVC, weak self] in
                 guard let hostVC = hostVC, let self = self else { return }
                 
