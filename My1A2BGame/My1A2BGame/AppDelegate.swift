@@ -49,6 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
     
     private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID)
+    private lazy var rewardAdViewController = RewardAdControllerComposer.rewardAdComposedWith(
+        loader: rewardAdLoader,
+        rewardChanceCount: Constants.adGrantChances,
+        hostViewController: tabController)
     
     private lazy var requestReview: () -> Void = {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -281,10 +285,6 @@ private extension AppDelegate {
     }
     
     private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onRestart: @escaping () -> Void) -> GuessNumberViewController {
-        let rewardAdViewController = RewardAdControllerComposer.rewardAdComposedWith(
-            loader: rewardAdLoader,
-            rewardChanceCount: Constants.adGrantChances,
-            hostViewController: tabController)
         let controller = GameUIComposer.gameComposedWith(
             gameVersion: gameVersion,
             userDefaults: userDefaults,
