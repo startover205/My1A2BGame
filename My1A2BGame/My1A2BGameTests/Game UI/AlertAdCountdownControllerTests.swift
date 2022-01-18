@@ -67,6 +67,15 @@ class AlertAdCountdownControllerTests: XCTestCase {
         XCTAssertEqual(sut.countDownProgressView.progress, 1)
     }
     
+    func test_countdownIndicator_setsCountdownTimeAsAnimationDuration() {
+        let animator = AnimateSpy()
+        let sut = makeSUT(countDownTime: 10, animate: animator.animate)
+        
+        sut.simulateViewAppear()
+        
+        XCTAssertEqual(animator.capturedAnimationDuration, 10)
+    }
+    
     func test_doesNotGetRetainedAfterShown() {
         let sut = makeSUT()
         
@@ -85,10 +94,12 @@ class AlertAdCountdownControllerTests: XCTestCase {
     
     private final class AnimateSpy {
         private var capturedAnimations: (() -> Void)?
+        private(set) var capturedAnimationDuration: TimeInterval?
         
         func animate(_ duration: TimeInterval,
                      _ animations: @escaping () -> Void,
                      _ completion: ((Bool) -> Void)?) {
+            capturedAnimationDuration = duration
             capturedAnimations = animations
         }
         
