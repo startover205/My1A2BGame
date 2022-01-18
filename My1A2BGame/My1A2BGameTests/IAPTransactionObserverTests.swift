@@ -256,7 +256,7 @@ class IAPTransactionObserverTests: XCTestCase {
     private func waitForTransactionFinished() {
         let exp = expectation(description: "wait for transaction to be finished")
         exp.isInverted = true
-        wait(for: [exp], timeout: 0.5)
+        wait(for: [exp], timeout: 1)
     }
     
     private final class SKPaymentQueueSpy: SKPaymentQueue {
