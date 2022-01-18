@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MastermindiOS
 
 public typealias TimerFactory = (TimeInterval, _ repeats: Bool, _ task: @escaping (Timer) -> Void) -> Timer
 
@@ -27,6 +28,7 @@ public final class AlertAdCountdownController: UIViewController {
     private let cancelAction: String
     
     private let timerFactory: TimerFactory
+    private let animate: Animate
     private weak var adCountDownTimer: Timer?
     private weak var progressCountDownTimer: Timer?
     
@@ -41,7 +43,7 @@ public final class AlertAdCountdownController: UIViewController {
         shakeAdIcon()
     }()
     
-    public init(title: String, message: String? = nil, cancelAction: String, countDownTime: Double, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer) {
+    public init(title: String, message: String? = nil, cancelAction: String, countDownTime: Double, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer, animate: @escaping Animate = UIView.animate) {
         
         self.alertTitle = title
         self.message = message
@@ -50,6 +52,7 @@ public final class AlertAdCountdownController: UIViewController {
         self.onConfirm = onConfirm
         self.onCancel = onCancel
         self.timerFactory = timerFactory
+        self.animate = animate
         
         super.init(nibName: "AlertAdCountdownController", bundle: nil)
         
@@ -106,6 +109,10 @@ private extension AlertAdCountdownController {
         progressCountDownTimer = timerFactory(0.1, true) { [weak self] _ in
             self?.progressDidCountDown()
         }
+        
+        animate(countDownTime, { [weak self] in
+            self?.countDownProgressView.setProgress(1, animated: true)
+        }, nil)
     }
     
     /// 計時結束
@@ -121,7 +128,6 @@ private extension AlertAdCountdownController {
     @objc
     func progressDidCountDown(){
         currentProgress += 0.1 / countDownTime
-        countDownProgressView.setProgress(Float(currentProgress), animated: true)
         
         if currentProgress >= 0.1 {
             _ = _shakeAdIcon

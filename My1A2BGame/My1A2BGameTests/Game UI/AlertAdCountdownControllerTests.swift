@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import MastermindiOS
 import My1A2BGame
 
 class AlertAdCountdownControllerTests: XCTestCase {
@@ -55,6 +56,17 @@ class AlertAdCountdownControllerTests: XCTestCase {
         XCTAssertEqual(callbackCallCount, 2)
     }
     
+    func test_countdownIndicator_countsFrom0To1OnCountdown() {
+        let animator = AnimateSpy()
+        let sut = makeSUT(animate: animator.animate)
+        
+        sut.simulateViewAppear()
+        XCTAssertEqual(sut.countDownProgressView.progress, 0, "precondition")
+        
+        animator.completeAnimations()
+        XCTAssertEqual(sut.countDownProgressView.progress, 1)
+    }
+    
     func test_doesNotGetRetainedAfterShown() {
         let sut = makeSUT()
         
@@ -63,14 +75,27 @@ class AlertAdCountdownControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countDownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, file: StaticString = #filePath, line: UInt = #line) -> AlertAdCountdownController {
-        let sut = AlertAdCountdownController(title: title, message: message, cancelAction: cancelAction, countDownTime: countDownTime, onConfirm: onConfirm, onCancel: onCancel)
+    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countDownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> AlertAdCountdownController {
+        let sut = AlertAdCountdownController(title: title, message: message, cancelAction: cancelAction, countDownTime: countDownTime, onConfirm: onConfirm, onCancel: onCancel, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
     }
-
+    
+    private final class AnimateSpy {
+        private var capturedAnimations: (() -> Void)?
+        
+        func animate(_ duration: TimeInterval,
+                     _ animations: @escaping () -> Void,
+                     _ completion: ((Bool) -> Void)?) {
+            capturedAnimations = animations
+        }
+        
+        func completeAnimations() {
+            capturedAnimations?()
+        }
+    }
 }
 
 private extension AlertAdCountdownController {
