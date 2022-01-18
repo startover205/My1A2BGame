@@ -128,6 +128,19 @@ class RewardAdIntegrationTests: XCTestCase {
         XCTAssertEqual(capturedChanceCount, 5, "Expect replenishing after ad presentation completes")
     }
     
+    func test_replenishChance_doesNotRequestsAnotherAdIfUserChooseNotToReplenish() throws {
+        let adLoader = RewardAdLoaderSpy()
+        let ad = RewardAdSpy()
+        let (sut, hostVC) = makeSUT(loader: adLoader)
+        adLoader.completeLoading(with: ad)
+        
+        sut.replenishChance(completion: { _ in })
+        XCTAssertEqual(adLoader.receivedMessages, [.load], "precondition")
+        
+        try hostVC.simulateCancelDisplayingAd()
+        XCTAssertEqual(adLoader.receivedMessages, [.load], "Expect no new load request when loaded ad not used")
+    }
+    
     func test_replenishChance_requestsAnotherAdAfterAdPresentation() throws {
         let adLoader = RewardAdLoaderSpy()
         let ad = RewardAdSpy()
@@ -230,6 +243,12 @@ class RewardAdIntegrationTests: XCTestCase {
             let alert = try XCTUnwrap(capturedPresentations.removeLast().vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
             alert.loadViewIfNeeded()
             alert.simulateUserConfirmDisplayingAd()
+        }
+        
+        func simulateCancelDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
+            let alert = try XCTUnwrap(capturedPresentations.removeLast().vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            alert.loadViewIfNeeded()
+            alert.simulateUserDismissAlert()
         }
     }
     
