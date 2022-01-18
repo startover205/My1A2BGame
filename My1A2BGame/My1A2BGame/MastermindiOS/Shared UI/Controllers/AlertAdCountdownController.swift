@@ -110,8 +110,10 @@ private extension AlertAdCountdownController {
             self?.progressDidCountDown()
         }
         
+        countDownProgressView.progress = 1.0
+        
         animate(countdownTime, { [weak self] in
-            self?.countDownProgressView.setProgress(1, animated: true)
+            self?.countDownProgressView.layoutIfNeeded()
         }, nil)
     }
     

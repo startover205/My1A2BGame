@@ -60,10 +60,10 @@ class AlertAdCountdownControllerTests: XCTestCase {
         let animator = AnimateSpy()
         let sut = makeSUT(animate: animator.animate)
         
-        sut.simulateViewAppear()
+        sut.loadViewIfNeeded()
         XCTAssertEqual(sut.countDownProgressView.progress, 0, "precondition")
-        
-        animator.completeAnimations()
+
+        sut.simulateViewAppear()
         XCTAssertEqual(sut.countDownProgressView.progress, 1)
     }
     
@@ -93,18 +93,12 @@ class AlertAdCountdownControllerTests: XCTestCase {
     }
     
     private final class AnimateSpy {
-        private var capturedAnimations: (() -> Void)?
         private(set) var capturedAnimationDuration: TimeInterval?
         
         func animate(_ duration: TimeInterval,
                      _ animations: @escaping () -> Void,
                      _ completion: ((Bool) -> Void)?) {
             capturedAnimationDuration = duration
-            capturedAnimations = animations
-        }
-        
-        func completeAnimations() {
-            capturedAnimations?()
         }
     }
 }
