@@ -33,10 +33,10 @@ class AlertAdCountdownControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        sut.confirmButton.sendActions(for: .touchUpInside)
+        sut.simulateUserSelectConfirm()
         XCTAssertEqual(callbackCallCount, 1)
         
-        sut.confirmButton.sendActions(for: .touchUpInside)
+        sut.simulateUserSelectConfirm()
         XCTAssertEqual(callbackCallCount, 2)
     }
     
@@ -48,10 +48,10 @@ class AlertAdCountdownControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        sut.cancelButton.sendActions(for: .touchUpInside)
+        sut.simulateUserSelectCancel()
         XCTAssertEqual(callbackCallCount, 1)
         
-        sut.cancelButton.sendActions(for: .touchUpInside)
+        sut.simulateUserSelectCancel()
         XCTAssertEqual(callbackCallCount, 2)
     }
     
@@ -71,4 +71,14 @@ class AlertAdCountdownControllerTests: XCTestCase {
         return sut
     }
 
+}
+
+private extension AlertAdCountdownController {
+    func simulateUserSelectConfirm() {
+        confirmButton.sendActions(for: .touchUpInside)
+    }
+    
+    func simulateUserSelectCancel() {
+        cancelButton.sendActions(for: .touchUpInside)
+    }
 }
