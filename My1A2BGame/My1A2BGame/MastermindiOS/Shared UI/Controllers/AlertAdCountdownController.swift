@@ -126,10 +126,8 @@ private extension AlertAdCountdownController {
     @objc
     func adDidCountDown(){
         adCountDownTimer?.invalidate()
-
-        presentingViewController?.dismiss(animated: true) {
-            self.onCancel?()
-        }
+        
+        self.onCancel?()
     }
     
     func addButtonBorder(){

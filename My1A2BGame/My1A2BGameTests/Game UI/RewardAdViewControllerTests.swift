@@ -171,6 +171,21 @@ class RewardAdIntegrationTests: XCTestCase {
         XCTAssertEqual(ad1.capturedPresentations.count, 1, "Expect presentation count not increased since it's already presented")
         XCTAssertEqual(ad2.capturedPresentations.count, 1, "Expect presenting the second loaded ad")
     }
+    
+    func test_replenishChance_dismissAdAlertAfterCountdownTimePasses() throws {
+        let (sut, hostVC) = makeSUT(loader: RewardAdLoaderStub(ad: RewardAdSpy()))
+
+        sut.replenishChance(completion: { _ in })
+
+        let alert = try XCTUnwrap(hostVC.presentedViewController as? AlertAdCountdownController)
+        alert.simulateViewAppear()
+
+        let exp = expectation(description: "wait for countdown")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 6.0)
+
+        XCTAssertNil(hostVC.presentedViewController)
+    }
 
     func test_displayAd_doesNotDeallocateAdUntilAdRewardGiven() throws {
         let adLoader = RewardAdLoaderSpy()

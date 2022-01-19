@@ -50,7 +50,11 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
                 
                 self.loadAd()
             },
-            onCancel: { completion(0) })
+            onCancel: { [weak hostVC] in
+                hostVC?.dismiss(animated: true, completion: {
+                    completion(0)
+                })
+            })
         
         hostVC.present(alert, animated: true)
     }
