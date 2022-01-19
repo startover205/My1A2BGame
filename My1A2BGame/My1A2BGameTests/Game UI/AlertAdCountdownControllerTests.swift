@@ -75,7 +75,24 @@ class AlertAdCountdownControllerTests: XCTestCase {
         
         XCTAssertEqual(animator.capturedAnimationDuration, 10)
     }
-    
+
+    func test_countdown_triggersCancelHandlerUponTimeUp() {
+        var callbackCallCount = 0
+        let sut = makeSUT(countdownTime: 0.1, onCancel: {
+            callbackCallCount += 1
+        })
+
+        sut.loadViewIfNeeded()
+        waitForCountdown(duration: 0.1)
+
+        XCTAssertEqual(callbackCallCount, 0, "Expect handler not called because countdown starts after view shown")
+
+        sut.simulateViewAppear()
+        waitForCountdown(duration: 0.1)
+
+        XCTAssertEqual(callbackCallCount, 1, "Expect handler called after countdown passes")
+    }
+
     func test_doesNotGetRetainedAfterShown() {
         let sut = makeSUT()
         
@@ -90,6 +107,12 @@ class AlertAdCountdownControllerTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
+    }
+    
+    private func waitForCountdown(duration: TimeInterval) {
+        let exp = expectation(description: "wait for countdown")
+        exp.isInverted = true
+        wait(for: [exp], timeout: duration)
     }
     
     private final class AnimateSpy {
