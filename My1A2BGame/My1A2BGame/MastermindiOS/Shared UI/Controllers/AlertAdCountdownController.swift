@@ -60,12 +60,11 @@ public final class AlertAdCountdownController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-//        cancelBtn.alpha = 0
+        
         cancelButton.setTitle(cancelAction, for: .normal)
         titleLabel.text = alertTitle
         messageLabel.text = message
         
-        cancelButton.alpha = 1
         addButtonBorder()
     }
     
