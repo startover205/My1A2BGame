@@ -196,6 +196,16 @@ class RewardAdIntegrationTests: XCTestCase {
 
         XCTAssertNil(hostVC.presentedViewController)
     }
+    
+    func test_replenishChance_dismissAdAlertAfterCancelShowingAd() throws {
+        let (sut, hostVC) = makeSUT(loader: RewardAdLoaderStub(ad: RewardAdSpy()))
+
+        sut.replenishChance(completion: { _ in })
+        
+        try hostVC.simulateCancelDisplayingAd()
+
+        XCTAssertNil(hostVC.presentedViewController)
+    }
 
     func test_displayAd_doesNotDeallocateAdUntilAdRewardGiven() throws {
         let adLoader = RewardAdLoaderSpy()
