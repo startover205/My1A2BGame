@@ -109,7 +109,7 @@ private extension AlertAdCountdownController {
         
         confirmButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 36)
         
-        UIView.animate(withDuration: durationPerShake, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, options: [], animations: { [weak self] in
+        UIView.animate(withDuration: durationPerShake, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, options: [.allowUserInteraction], animations: { [weak self] in
 
             self?.confirmButton.transform = .identity
             
@@ -123,7 +123,7 @@ private extension AlertAdCountdownController {
     func adDidCountDown(){
         adCountDownTimer?.invalidate()
         
-        self.onCancel?()
+        onCancel?()
     }
     
     func addButtonBorder(){
