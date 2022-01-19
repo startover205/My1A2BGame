@@ -79,15 +79,11 @@ public final class AlertAdCountdownController: UIViewController {
     }
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: {
-            self.onConfirm?()
-        })
+        onConfirm?()
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        dismiss(animated: true) {
-            self.onCancel?()
-        }
+        onCancel?()
     }
 }
 

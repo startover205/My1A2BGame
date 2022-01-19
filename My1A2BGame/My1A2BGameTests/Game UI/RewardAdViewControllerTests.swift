@@ -281,19 +281,13 @@ class RewardAdIntegrationTests: XCTestCase {
         }
         
         func simulateConfirmDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
-            let vc = capturedPresentedViewController
-            capturedPresentedViewController = nil
-            
-            let alert = try XCTUnwrap(vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            let alert = try XCTUnwrap(capturedPresentedViewController as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
             alert.loadViewIfNeeded()
             alert.simulateUserConfirmDisplayingAd()
         }
         
         func simulateCancelDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
-            let vc = capturedPresentedViewController
-            capturedPresentedViewController = nil
-            
-            let alert = try XCTUnwrap(vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            let alert = try XCTUnwrap(capturedPresentedViewController as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
             alert.loadViewIfNeeded()
             alert.simulateUserDismissAlert()
         }

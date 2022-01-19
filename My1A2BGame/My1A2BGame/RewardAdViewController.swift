@@ -39,16 +39,18 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
             onConfirm: { [weak hostVC, weak self] in
                 guard let hostVC = hostVC, let self = self else { return }
                 
-                self.currentDisplayingAd = ad
-                self.preparedAd = nil
-                
-                ad.present(fromRootViewController: hostVC) { [weak self] in
-                    completion(rewardChanceCount)
+                hostVC.dismiss(animated: true) {
+                    self.currentDisplayingAd = ad
+                    self.preparedAd = nil
                     
-                    self?.currentDisplayingAd = nil
+                    ad.present(fromRootViewController: hostVC) { [weak self] in
+                        completion(rewardChanceCount)
+                        
+                        self?.currentDisplayingAd = nil
+                    }
+                    
+                    self.loadAd()
                 }
-                
-                self.loadAd()
             },
             onCancel: { [weak hostVC] in
                 hostVC?.dismiss(animated: true, completion: {
