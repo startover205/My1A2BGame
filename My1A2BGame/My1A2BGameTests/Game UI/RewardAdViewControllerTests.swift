@@ -15,7 +15,7 @@ class RewardAdIntegrationTests: XCTestCase {
     func test_init_doesNotMessageHostViewController() {
         let (_, hostVC) = makeSUT()
         
-        XCTAssertTrue(hostVC.capturedPresentations.isEmpty)
+        XCTAssertNil(hostVC.presentedViewController)
     }
     
     func test_init_requestsAdFromAdLoader() {
@@ -78,15 +78,13 @@ class RewardAdIntegrationTests: XCTestCase {
         XCTAssertEqual(capturedChanceCount, 0)
     }
 
-    func test_replenishChance_requestHostViewControllerToPresentAlertWithProperContentAnimatedlyIfRewardAdAvailable() throws {
+    func test_replenishChance_requestHostViewControllerToPresentAlertWithProperContentIfRewardAdAvailable() throws {
         let rewardAdLoader = RewardAdLoaderStub(ad: RewardAdSpy())
         let (sut, hostVC) = makeSUT(loader: rewardAdLoader, rewardChanceCount: 10)
 
         sut.replenishChance { _ in }
 
-        XCTAssertEqual(hostVC.capturedPresentations.count, 1, "Expect exactly one presentation")
-        XCTAssertEqual(hostVC.capturedPresentations.first?.animated, true, "Expect presenation is animated")
-        let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        let alert = try XCTUnwrap(hostVC.presentedViewController as? AlertAdCountdownController, "Expect alert to be desired type")
         
         alert.loadViewIfNeeded()
 
@@ -103,7 +101,7 @@ class RewardAdIntegrationTests: XCTestCase {
         
         sut.replenishChance { capturedChanceCount = $0 }
 
-        let alert = try XCTUnwrap(hostVC.capturedPresentations.first?.vc as? AlertAdCountdownController, "Expect alert to be desired type")
+        let alert = try XCTUnwrap(hostVC.presentedViewController as? AlertAdCountdownController, "Expect alert to be desired type")
         alert.loadViewIfNeeded()
         alert.simulateUserDismissAlert()
         
@@ -177,7 +175,7 @@ class RewardAdIntegrationTests: XCTestCase {
     func test_displayAd_doesNotDeallocateAdUntilAdRewardGiven() throws {
         let adLoader = RewardAdLoaderSpy()
         var ad: RewardAdSpy? = RewardAdSpy()
-        var (sut, hostVC): (RewardAdViewController?, UIViewControllerPresentationSpy?)
+        var (sut, hostVC): (RewardAdViewController?, UIViewControllerSpy?)
         weak var weakAd = ad
         
         try autoreleasepool {
@@ -198,8 +196,8 @@ class RewardAdIntegrationTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerPresentationSpy) {
-        let hostVC = UIViewControllerPresentationSpy()
+    private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerSpy) {
+        let hostVC = UIViewControllerSpy()
         let sut = RewardAdControllerComposer.rewardAdComposedWith(
             loader: loader,
             rewardChanceCount: rewardChanceCount,
@@ -230,23 +228,37 @@ class RewardAdIntegrationTests: XCTestCase {
         return (sut, loader, asyncAfterSpy)
     }
     
-    private final class UIViewControllerPresentationSpy: UIViewController {
-        private(set) var capturedPresentations = [(vc: UIViewController, animated: Bool)]()
-        private(set) var capturedCompletions = [(() -> Void)?]()
+    private class UIViewControllerSpy: UIViewController {
+        private var capturedPresentedViewController: UIViewController?
+
+        override var presentedViewController: UIViewController? {
+            return capturedPresentedViewController
+        }
+
+        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+            capturedPresentedViewController = viewControllerToPresent
+            completion?()
+        }
         
-        override func present(_ vc: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
-            capturedPresentations.append((vc, animated))
-            capturedCompletions.append(completion)
+        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+            capturedPresentedViewController = nil
+            completion?()
         }
         
         func simulateConfirmDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
-            let alert = try XCTUnwrap(capturedPresentations.removeLast().vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            let vc = capturedPresentedViewController
+            capturedPresentedViewController = nil
+            
+            let alert = try XCTUnwrap(vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
             alert.loadViewIfNeeded()
             alert.simulateUserConfirmDisplayingAd()
         }
         
         func simulateCancelDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
-            let alert = try XCTUnwrap(capturedPresentations.removeLast().vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            let vc = capturedPresentedViewController
+            capturedPresentedViewController = nil
+            
+            let alert = try XCTUnwrap(vc as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
             alert.loadViewIfNeeded()
             alert.simulateUserDismissAlert()
         }
