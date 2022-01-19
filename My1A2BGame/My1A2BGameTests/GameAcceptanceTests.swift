@@ -176,8 +176,12 @@ private extension GameAcceptanceTests {
         let alert = try XCTUnwrap(game.presentedViewController as? AlertAdCountdownController, "Expect ad alert shown when out of chance", file: file, line: line)
         
         alert.tapConfirmButton()
+        
+        let exp = expectation(description: "wait for alert dismiss")
+        exp.isInverted = true
+        wait(for: [exp], timeout: 5.0)
 
-        XCTAssertNotNil(ad.capturedPresentation, file: file, line: line)
+        XCTAssertNotNil(ad.capturedPresentation, "Expect showing ad", file: file, line: line)
     }
 }
 
