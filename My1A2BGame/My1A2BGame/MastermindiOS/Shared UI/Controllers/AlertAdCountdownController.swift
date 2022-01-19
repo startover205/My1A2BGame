@@ -36,12 +36,6 @@ public final class AlertAdCountdownController: UIViewController {
     private lazy var _startCounting: Void = {
         startCounting()
     }()
-    private lazy var _shakeAdIcon: Void = {
-        shakeAdIcon()
-    }()
-    private lazy var _shakeAdIconSecond: Void = {
-        shakeAdIcon()
-    }()
     
     public init(title: String, message: String? = nil, cancelAction: String, countdownTime: Double, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer, animate: @escaping Animate = UIView.animate) {
         
@@ -106,15 +100,27 @@ private extension AlertAdCountdownController {
             self?.adDidCountDown()
         }
         
-        progressCountDownTimer = timerFactory(0.1, true) { [weak self] _ in
-            self?.progressDidCountDown()
-        }
-        
         countDownProgressView.progress = 1.0
         
         animate(countdownTime, { [weak self] in
             self?.countDownProgressView.layoutIfNeeded()
         }, nil)
+        
+        shakeImage(durationPerShake: countdownTime/3, shakeCount: 3)
+    }
+    
+    func shakeImage(durationPerShake: TimeInterval, shakeCount: Int = 0) {
+        if shakeCount <= 0 { return }
+        
+        confirmButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 36)
+        
+        UIView.animate(withDuration: durationPerShake, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, options: [], animations: { [weak self] in
+
+            self?.confirmButton.transform = .identity
+            
+        }, completion: { [weak self]  _ in
+            self?.shakeImage(durationPerShake: durationPerShake, shakeCount: shakeCount-1)
+        })
     }
     
     /// 計時結束
@@ -125,34 +131,6 @@ private extension AlertAdCountdownController {
         presentingViewController?.dismiss(animated: true) {
             self.onCancel?()
         }
-    }
-    
-    @objc
-    func progressDidCountDown(){
-        currentProgress += 0.1 / countdownTime
-        
-        if currentProgress >= 0.1 {
-            _ = _shakeAdIcon
-        }
-        
-        if currentProgress >= 0.5 {
-            _ = _shakeAdIconSecond
-        }
-        
-        if currentProgress >= 1 {
-            progressCountDownTimer?.invalidate()
-        }
-    }
-    
-    func shakeAdIcon(){
-
-            confirmButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 36)
-        
-        UIView.animate(withDuration: 1.25, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, options: [], animations: {
-            
-            self.confirmButton.transform = .identity
-            
-        }, completion: nil)
     }
     
     func addButtonBorder(){
