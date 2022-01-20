@@ -83,12 +83,12 @@ class CountdownAlertControllerTests: XCTestCase {
         })
 
         sut.loadViewIfNeeded()
-        waitForCountdown(duration: 0.1)
+        waitForCountdown(duration: 0.11)
 
         XCTAssertEqual(callbackCallCount, 0, "Expect handler not called because countdown starts after view shown")
 
         sut.simulateViewAppear()
-        waitForCountdown(duration: 0.1)
+        waitForCountdown(duration: 0.11)
 
         XCTAssertEqual(callbackCallCount, 1, "Expect handler called after countdown passes")
     }
