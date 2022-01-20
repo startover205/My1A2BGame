@@ -61,10 +61,10 @@ class AlertAdCountdownControllerTests: XCTestCase {
         let sut = makeSUT(animate: animator.animate)
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(sut.countDownProgressView.progress, 0, "precondition")
+        XCTAssertEqual(sut.ountdownProgressView.progress, 0, "precondition")
 
         sut.simulateViewAppear()
-        XCTAssertEqual(sut.countDownProgressView.progress, 1)
+        XCTAssertEqual(sut.ountdownProgressView.progress, 1)
     }
     
     func test_countdownIndicator_setsCountdownTimeAsAnimationDuration() {

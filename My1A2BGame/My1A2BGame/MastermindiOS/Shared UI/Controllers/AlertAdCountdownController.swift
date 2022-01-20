@@ -11,7 +11,7 @@ import MastermindiOS
 
 public final class AlertAdCountdownController: UIViewController {
     
-    @IBOutlet weak private(set) public var countDownProgressView: UIProgressView!
+    @IBOutlet weak private(set) public var ountdownProgressView: UIProgressView!
     @IBOutlet weak private(set) public var cancelButton: UIButton!
     @IBOutlet weak private(set) public var confirmButton: UIButton!
     @IBOutlet weak private(set) public var titleLabel: UILabel!
@@ -90,10 +90,10 @@ private extension AlertAdCountdownController {
             self?.onCancel?()
         }
         
-        countDownProgressView.progress = 1.0
+        ountdownProgressView.progress = 1.0
         
         animate(countdownTime, { [weak self] in
-            self?.countDownProgressView.layoutIfNeeded()
+            self?.ountdownProgressView.layoutIfNeeded()
         }, nil)
         
         shakeImage(durationPerShake: countdownTime/3, shakeCount: 3)
