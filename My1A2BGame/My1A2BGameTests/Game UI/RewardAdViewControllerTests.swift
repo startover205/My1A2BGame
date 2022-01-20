@@ -84,7 +84,7 @@ class RewardAdIntegrationTests: XCTestCase {
 
         sut.replenishChance { _ in }
 
-        let alert = try XCTUnwrap(hostVC.presentedViewController as? AlertAdCountdownController, "Expect alert to be desired type")
+        let alert = try XCTUnwrap(hostVC.presentedViewController as? CountdownAlertController, "Expect alert to be desired type")
         
         alert.loadViewIfNeeded()
 
@@ -100,7 +100,7 @@ class RewardAdIntegrationTests: XCTestCase {
         
         sut.replenishChance { capturedChanceCount = $0 }
 
-        let alert = try XCTUnwrap(hostVC.presentedViewController as? AlertAdCountdownController, "Expect alert to be desired type")
+        let alert = try XCTUnwrap(hostVC.presentedViewController as? CountdownAlertController, "Expect alert to be desired type")
         alert.loadViewIfNeeded()
         alert.simulateUserDismissAlert()
         
@@ -176,7 +176,7 @@ class RewardAdIntegrationTests: XCTestCase {
 
         sut.replenishChance(completion: { _ in })
 
-        let alert = try XCTUnwrap(hostVC.presentedViewController as? AlertAdCountdownController)
+        let alert = try XCTUnwrap(hostVC.presentedViewController as? CountdownAlertController)
         alert.simulateViewAppear()
 
         let exp = expectation(description: "wait for countdown")
@@ -280,13 +280,13 @@ class RewardAdIntegrationTests: XCTestCase {
         }
         
         func simulateConfirmDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
-            let alert = try XCTUnwrap(capturedPresentedViewController as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            let alert = try XCTUnwrap(capturedPresentedViewController as? CountdownAlertController, "Expect alert to be the desired type", file: file, line: line)
             alert.loadViewIfNeeded()
             alert.simulateUserConfirmDisplayingAd()
         }
         
         func simulateCancelDisplayingAd(file: StaticString = #filePath, line: UInt = #line) throws {
-            let alert = try XCTUnwrap(capturedPresentedViewController as? AlertAdCountdownController, "Expect alert to be the desired type", file: file, line: line)
+            let alert = try XCTUnwrap(capturedPresentedViewController as? CountdownAlertController, "Expect alert to be the desired type", file: file, line: line)
             alert.loadViewIfNeeded()
             alert.simulateUserDismissAlert()
         }

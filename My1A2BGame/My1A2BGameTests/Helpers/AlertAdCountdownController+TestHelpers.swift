@@ -1,5 +1,5 @@
 //
-//  AlertAdCountdownController+TestHelpers.swift
+//  CountdownAlertController+TestHelpers.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2022/1/15.
@@ -8,7 +8,7 @@
 
 import My1A2BGame
 
-extension AlertAdCountdownController {
+extension CountdownAlertController {
     func alertTitle() -> String? { titleLabel.text }
     
     func alertMessage() -> String? { messageLabel.text }

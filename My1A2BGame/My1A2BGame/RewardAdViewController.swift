@@ -31,7 +31,7 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
 
         let alertMessage = String.localizedStringWithFormat(RewardAdPresenter.alertMessageFormat, rewardChanceCount)
         
-        let alert = AlertAdCountdownController(
+        let alert = CountdownAlertController(
             title: RewardAdPresenter.alertTitle,
             message: alertMessage,
             cancelAction: RewardAdPresenter.alertCancelTitle,

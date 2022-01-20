@@ -1,5 +1,5 @@
 //
-//  AlertAdCountdownController.swift
+//  CountdownAlertController.swift
 //  EasyTimer
 //
 //  Created by Ming-Ta Yang on 2019/3/31.
@@ -9,7 +9,7 @@
 import UIKit
 import MastermindiOS
 
-public final class AlertAdCountdownController: UIViewController {
+public final class CountdownAlertController: UIViewController {
     
     @IBOutlet weak private(set) public var ountdownProgressView: UIProgressView!
     @IBOutlet weak private(set) public var cancelButton: UIButton!
@@ -48,7 +48,7 @@ public final class AlertAdCountdownController: UIViewController {
         self.onCancel = onCancel
         self.animate = animate
         
-        super.init(nibName: "AlertAdCountdownController", bundle: nil)
+        super.init(nibName: "CountdownAlertController", bundle: nil)
         
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
@@ -83,7 +83,7 @@ public final class AlertAdCountdownController: UIViewController {
 }
 
 // MARK: - Private
-private extension AlertAdCountdownController {
+private extension CountdownAlertController {
     
     func startCounting(){
         DispatchQueue.main.asyncAfter(deadline: .now() + countdownTime) { [weak self] in
@@ -121,7 +121,7 @@ private extension AlertAdCountdownController {
     }
 }
 
-extension AlertAdCountdownController {
+extension CountdownAlertController {
     func tapConfirmButton() {
         onConfirm?()
     }

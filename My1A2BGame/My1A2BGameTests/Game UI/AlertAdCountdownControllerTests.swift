@@ -1,5 +1,5 @@
 //
-//  AlertAdCountdownControllerTests.swift
+//  CountdownAlertControllerTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2022/1/7.
@@ -10,7 +10,7 @@ import XCTest
 import MastermindiOS
 import My1A2BGame
 
-class AlertAdCountdownControllerTests: XCTestCase {
+class CountdownAlertControllerTests: XCTestCase {
     
     func test_loadView_configureAlertAppearance() {
         let sut = makeSUT(
@@ -101,8 +101,8 @@ class AlertAdCountdownControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countdownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> AlertAdCountdownController {
-        let sut = AlertAdCountdownController(title: title, message: message, cancelAction: cancelAction, countdownTime: countdownTime, onConfirm: onConfirm, onCancel: onCancel, animate: animate)
+    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countdownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> CountdownAlertController {
+        let sut = CountdownAlertController(title: title, message: message, cancelAction: cancelAction, countdownTime: countdownTime, onConfirm: onConfirm, onCancel: onCancel, animate: animate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -126,7 +126,7 @@ class AlertAdCountdownControllerTests: XCTestCase {
     }
 }
 
-private extension AlertAdCountdownController {
+private extension CountdownAlertController {
     func simulateUserSelectConfirm() {
         confirmButton.sendActions(for: .touchUpInside)
     }

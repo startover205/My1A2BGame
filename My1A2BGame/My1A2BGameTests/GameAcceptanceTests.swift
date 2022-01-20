@@ -169,11 +169,11 @@ private extension GameAcceptanceTests {
             game.simulateOneWrongGuess()
         }
         
-        XCTAssertNil(game.presentedViewController as? AlertAdCountdownController, "Expect ad alert not shown until out of chance", file: file, line: line)
+        XCTAssertNil(game.presentedViewController as? CountdownAlertController, "Expect ad alert not shown until out of chance", file: file, line: line)
         
         game.simulateOneWrongGuess()
         
-        let alert = try XCTUnwrap(game.presentedViewController as? AlertAdCountdownController, "Expect ad alert shown when out of chance", file: file, line: line)
+        let alert = try XCTUnwrap(game.presentedViewController as? CountdownAlertController, "Expect ad alert shown when out of chance", file: file, line: line)
         
         alert.tapConfirmButton()
         
