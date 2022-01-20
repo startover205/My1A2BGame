@@ -29,10 +29,9 @@
 		C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */ = {isa = PBXBuildFile; fileRef = C04587C7277570C90003B0E7 /* InAppPurchase.strings */; };
 		C04587CB277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */; };
 		C04587CE2775C4890003B0E7 /* IAPViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04587CD2775C4890003B0E7 /* IAPViewController+TestHelpers.swift */; };
-		C0491B9F2787D444000CB6D1 /* CountdownAlertControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0491B9E2787D444000CB6D1 /* CountdownAlertControllerTests.swift */; };
 		C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0570988270808A2005D2603 /* RankUIComposer.swift */; };
 		C057098B27080A99005D2603 /* RankUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */; };
-		C0696B202793103600580696 /* AlertAdCountdownController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0696B1F2793103600580696 /* AlertAdCountdownController+TestHelpers.swift */; };
+		C0696B202793103600580696 /* CountdownAlertController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0696B1F2793103600580696 /* CountdownAlertController+TestHelpers.swift */; };
 		C074813F276C26F80047A188 /* ProductLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074813E276C26F80047A188 /* ProductLoaderTests.swift */; };
 		C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0748140276C674B0047A188 /* IAPProductLoader.swift */; };
 		C075760F224C7A7D007A1F9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760E224C7A7D007A1F9E /* Global.swift */; };
@@ -77,8 +76,6 @@
 		C0A1F4A726B62A1200536D73 /* IAPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48626B62A1100536D73 /* IAPViewController.swift */; };
 		C0A1F4A826B62A1200536D73 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48726B62A1100536D73 /* FAQViewController.swift */; };
 		C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F48926B62A1100536D73 /* More.storyboard */; };
-		C0A1F4AA26B62A1200536D73 /* CountdownAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1F48C26B62A1100536D73 /* CountdownAlertController.swift */; };
-		C0A1F4B026B62A1200536D73 /* CountdownAlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A1F49426B62A1200536D73 /* CountdownAlertController.xib */; };
 		C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */; };
 		C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0A9E2902333E29C007F45B9 /* Localizable.strings */; };
 		C0AA3E3A274890E200F75D95 /* Unknown.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C0AA3E39274882BD00F75D95 /* Unknown.storekit */; };
@@ -157,10 +154,9 @@
 		C04587C9277570D00003B0E7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
 		C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseLocalizationTests.swift; sourceTree = "<group>"; };
 		C04587CD2775C4890003B0E7 /* IAPViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IAPViewController+TestHelpers.swift"; sourceTree = "<group>"; };
-		C0491B9E2787D444000CB6D1 /* CountdownAlertControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownAlertControllerTests.swift; sourceTree = "<group>"; };
 		C0570988270808A2005D2603 /* RankUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIComposer.swift; sourceTree = "<group>"; };
 		C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUIIntegrationTests.swift; sourceTree = "<group>"; };
-		C0696B1F2793103600580696 /* AlertAdCountdownController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertAdCountdownController+TestHelpers.swift"; sourceTree = "<group>"; };
+		C0696B1F2793103600580696 /* CountdownAlertController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CountdownAlertController+TestHelpers.swift"; path = "../../../Mastermind/MastermindiOSTests/Game UI/Main Game/CountdownAlertController+TestHelpers.swift"; sourceTree = "<group>"; };
 		C074813E276C26F80047A188 /* ProductLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoaderTests.swift; sourceTree = "<group>"; };
 		C0748140276C674B0047A188 /* IAPProductLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProductLoader.swift; sourceTree = "<group>"; };
 		C075760E224C7A7D007A1F9E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -208,8 +204,6 @@
 		C0A1F48626B62A1100536D73 /* IAPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPViewController.swift; sourceTree = "<group>"; };
 		C0A1F48726B62A1100536D73 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		C0A1F48926B62A1100536D73 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
-		C0A1F48C26B62A1100536D73 /* CountdownAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownAlertController.swift; sourceTree = "<group>"; };
-		C0A1F49526B62A1200536D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CountdownAlertController.xib; sourceTree = "<group>"; };
 		C0A9E28E2333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0A9E2912333E29C007F45B9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0A9E2952333E2AD007F45B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -367,7 +361,6 @@
 				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
 				C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */,
 				C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */,
-				C0491B9E2787D444000CB6D1 /* CountdownAlertControllerTests.swift */,
 				C0ECEB272789562800DA2733 /* ExponentialBackoffDecoratorTests.swift */,
 			);
 			path = "Game UI";
@@ -403,7 +396,6 @@
 			isa = PBXGroup;
 			children = (
 				C0A1F48226B62A1100536D73 /* More UI */,
-				C0A1F48A26B62A1100536D73 /* Shared UI */,
 			);
 			path = MastermindiOS;
 			sourceTree = "<group>";
@@ -440,31 +432,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C0A1F48A26B62A1100536D73 /* Shared UI */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F48B26B62A1100536D73 /* Controllers */,
-				C0A1F49126B62A1100536D73 /* Views */,
-			);
-			path = "Shared UI";
-			sourceTree = "<group>";
-		};
-		C0A1F48B26B62A1100536D73 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F48C26B62A1100536D73 /* CountdownAlertController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		C0A1F49126B62A1100536D73 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F49426B62A1200536D73 /* CountdownAlertController.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		C0E601A326ADB00A006C8D6D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,7 +446,7 @@
 				C099258827391F0A003E322D /* UIView+TestHelpers.swift */,
 				C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */,
 				C04587CD2775C4890003B0E7 /* IAPViewController+TestHelpers.swift */,
-				C0696B1F2793103600580696 /* AlertAdCountdownController+TestHelpers.swift */,
+				C0696B1F2793103600580696 /* CountdownAlertController+TestHelpers.swift */,
 				C088A65026BE7855005FC389 /* InMemoryUserDefaults.swift */,
 				C0863A5827508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift */,
 				C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */,
@@ -624,7 +591,6 @@
 				C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */,
 				C0A1F4A926B62A1200536D73 /* More.storyboard in Resources */,
 				C0A9E2922333E29C007F45B9 /* Localizable.strings in Resources */,
-				C0A1F4B026B62A1200536D73 /* CountdownAlertController.xib in Resources */,
 				C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */,
 				C0A9E28F2333E29C007F45B9 /* InfoPlist.strings in Resources */,
 			);
@@ -703,7 +669,6 @@
 				C0570989270808A2005D2603 /* RankUIComposer.swift in Sources */,
 				C07C16AD2702F4E600451060 /* RewardAdPresenter.swift in Sources */,
 				C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */,
-				C0A1F4AA26B62A1200536D73 /* CountdownAlertController.swift in Sources */,
 				C077B5D82771A8150022F9CF /* ProductListViewModel.swift in Sources */,
 				C077B5E6277340770022F9CF /* UserDefaultsPurchaseStore.swift in Sources */,
 				C0DC06E7273E5CEE0033982F /* ProductViewModel.swift in Sources */,
@@ -748,7 +713,6 @@
 				C0F7D15C272254F2003DDB09 /* FAQViewControllerTests.swift in Sources */,
 				C0E601A526ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				C088A65126BE7855005FC389 /* InMemoryUserDefaults.swift in Sources */,
-				C0491B9F2787D444000CB6D1 /* CountdownAlertControllerTests.swift in Sources */,
 				C0A05CA7272FB84B00E345C6 /* TestingContainerViewController.swift in Sources */,
 				C09925872738F7EB003E322D /* MoreViewControllerTests.swift in Sources */,
 				C077B5EC277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift in Sources */,
@@ -765,7 +729,7 @@
 				C09925822734D497003E322D /* UIBarButtonItem+TestHelper.swift in Sources */,
 				C09841FF26D0DE9100AE72F4 /* WinUIIntegrationTests.swift in Sources */,
 				C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */,
-				C0696B202793103600580696 /* AlertAdCountdownController+TestHelpers.swift in Sources */,
+				C0696B202793103600580696 /* CountdownAlertController+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,14 +770,6 @@
 				C07C16BA2702F95200451060 /* zh-Hant */,
 			);
 			name = RewardAd.strings;
-			sourceTree = "<group>";
-		};
-		C0A1F49426B62A1200536D73 /* CountdownAlertController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0A1F49526B62A1200536D73 /* Base */,
-			);
-			name = CountdownAlertController.xib;
 			sourceTree = "<group>";
 		};
 		C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */ = {

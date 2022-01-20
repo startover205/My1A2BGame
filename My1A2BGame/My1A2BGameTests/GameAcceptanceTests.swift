@@ -260,3 +260,9 @@ private extension UITabBarController {
     
     func moreController() -> MoreViewController { selectTab(at: 3) }
 }
+
+private extension CountdownAlertController {
+    func tapConfirmButton() {
+        confirmButton.sendActions(for: .touchUpInside)
+    }
+}

@@ -7,6 +7,7 @@
 //
 
 import My1A2BGame
+import MastermindiOS
 
 extension CountdownAlertController {
     func alertTitle() -> String? { titleLabel.text }

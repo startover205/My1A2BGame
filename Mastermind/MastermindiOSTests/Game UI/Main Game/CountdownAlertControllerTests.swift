@@ -8,7 +8,6 @@
 
 import XCTest
 import MastermindiOS
-import My1A2BGame
 
 class CountdownAlertControllerTests: XCTestCase {
     
@@ -128,10 +127,10 @@ class CountdownAlertControllerTests: XCTestCase {
 
 private extension CountdownAlertController {
     func simulateUserSelectConfirm() {
-        confirmButton.sendActions(for: .touchUpInside)
+        confirmButton.simulateTap()
     }
     
     func simulateUserSelectCancel() {
-        cancelButton.sendActions(for: .touchUpInside)
+        cancelButton.simulateTap()
     }
 }

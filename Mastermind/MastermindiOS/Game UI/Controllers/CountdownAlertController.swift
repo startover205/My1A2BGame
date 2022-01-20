@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MastermindiOS
 
 public final class CountdownAlertController: UIViewController {
     
@@ -48,7 +47,7 @@ public final class CountdownAlertController: UIViewController {
         self.onCancel = onCancel
         self.animate = animate
         
-        super.init(nibName: "CountdownAlertController", bundle: nil)
+        super.init(nibName: "CountdownAlertController", bundle: .init(for: CountdownAlertController.self))
         
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
@@ -118,11 +117,5 @@ private extension CountdownAlertController {
         border.backgroundColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 1)
         border.frame = .init(x: 0, y: 0, width: cancelButton.bounds.width, height: 1)
         cancelButton.layer.addSublayer(border)
-    }
-}
-
-extension CountdownAlertController {
-    func tapConfirmButton() {
-        onConfirm?()
     }
 }

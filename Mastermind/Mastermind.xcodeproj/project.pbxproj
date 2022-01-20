@@ -83,6 +83,12 @@
 		C0753723270048B300865482 /* UtteranceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753722270048B300865482 /* UtteranceView.swift */; };
 		C0753725270048D400865482 /* GiveUpAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0753724270048D400865482 /* GiveUpAlertViewModel.swift */; };
 		C075372F270054DD00865482 /* Game.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C0EFD30A26FD80590039E9D4 /* Game.stringsdict */; };
+		C0759C3B27994DF100F01B29 /* CountdownAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0759C3A27994DF100F01B29 /* CountdownAlertController.swift */; };
+		C0759C3F27994E7B00F01B29 /* CountdownAlertControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0759C3E27994E7A00F01B29 /* CountdownAlertControllerTests.swift */; };
+		C0759C4127994E9E00F01B29 /* CountdownAlertController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0759C4027994E9E00F01B29 /* CountdownAlertController+TestHelpers.swift */; };
+		C0759C4227994F6700F01B29 /* CountdownAlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0759C3D27994E0700F01B29 /* CountdownAlertController.xib */; };
+		C0759C462799661B00F01B29 /* UIViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0759C452799661B00F01B29 /* UIViewController+TestHelpers.swift */; };
+		C0759C482799673900F01B29 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0759C472799673900F01B29 /* XCTestCase+MemoryLeakTracking.swift */; };
 		C07C16BC2703045700451060 /* GameInstructionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */; };
 		C07C16BE2703273E00451060 /* InstructionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16BD2703273E00451060 /* InstructionPresenter.swift */; };
 		C07E289626C8A5F200967DAA /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */; };
@@ -278,6 +284,12 @@
 		C07537202700486900865482 /* VoiceMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageViewModel.swift; sourceTree = "<group>"; };
 		C0753722270048B300865482 /* UtteranceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtteranceView.swift; sourceTree = "<group>"; };
 		C0753724270048D400865482 /* GiveUpAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveUpAlertViewModel.swift; sourceTree = "<group>"; };
+		C0759C3A27994DF100F01B29 /* CountdownAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownAlertController.swift; sourceTree = "<group>"; };
+		C0759C3C27994E0700F01B29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CountdownAlertController.xib; sourceTree = "<group>"; };
+		C0759C3E27994E7A00F01B29 /* CountdownAlertControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownAlertControllerTests.swift; sourceTree = "<group>"; };
+		C0759C4027994E9E00F01B29 /* CountdownAlertController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountdownAlertController+TestHelpers.swift"; sourceTree = "<group>"; };
+		C0759C452799661B00F01B29 /* UIViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		C0759C472799673900F01B29 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		C07C16BB2703045700451060 /* GameInstructionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInstructionPresenterTests.swift; sourceTree = "<group>"; };
 		C07C16BD2703273E00451060 /* InstructionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionPresenter.swift; sourceTree = "<group>"; };
 		C07E289526C8A5F200967DAA /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
@@ -547,6 +559,7 @@
 				C0CA890F26F70C350025F9E5 /* QuizLabelViewController.swift */,
 				C0CA891126F70C8D0025F9E5 /* InstructionViewController.swift */,
 				C0CA891326F70CE30025F9E5 /* GuessNumberViewController.swift */,
+				C0759C3A27994DF100F01B29 /* CountdownAlertController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -555,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				C034AAA326B6804A006AABE6 /* Game.storyboard */,
+				C0759C3D27994E0700F01B29 /* CountdownAlertController.xib */,
 				C0CA890326F6D9B80025F9E5 /* HelperButton.swift */,
 				C0CA896526F7258A0025F9E5 /* KeyboardButton.swift */,
 				C0CA891526F70F4A0025F9E5 /* Game.xcassets */,
@@ -599,8 +613,10 @@
 			children = (
 				C034AAB226B680D6006AABE6 /* XCTestCase+Snapshot.swift */,
 				C034AAB326B680D6006AABE6 /* UIViewController+Snapshot.swift */,
+				C0759C452799661B00F01B29 /* UIViewController+TestHelpers.swift */,
 				C034AAC126B68D48006AABE6 /* UIButton+TestHelpers.swift */,
 				C034AAC226B68D48006AABE6 /* UIControl+TestHelpers.swift */,
+				C0759C472799673900F01B29 /* XCTestCase+MemoryLeakTracking.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -834,6 +850,8 @@
 			children = (
 				C0CA894C26F710A90025F9E5 /* snapshots */,
 				C0CA892626F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift */,
+				C0759C3E27994E7A00F01B29 /* CountdownAlertControllerTests.swift */,
+				C0759C4027994E9E00F01B29 /* CountdownAlertController+TestHelpers.swift */,
 			);
 			path = "Main Game";
 			sourceTree = "<group>";
@@ -1112,6 +1130,7 @@
 				C034AAA426B6804A006AABE6 /* Game.storyboard in Resources */,
 				C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */,
 				C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */,
+				C0759C4227994F6700F01B29 /* CountdownAlertController.xib in Resources */,
 				C0CA891626F70F4A0025F9E5 /* Game.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1196,6 +1215,7 @@
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
 				C098420F26D4C74B00AE72F4 /* LoseViewController.swift in Sources */,
 				C09841F326D0D50900AE72F4 /* ShareViewController.swift in Sources */,
+				C0759C3B27994DF100F01B29 /* CountdownAlertController.swift in Sources */,
 				C012C51A270ECC5F00A3A7AD /* RecordCellController.swift in Sources */,
 				C012C510270EC7CE00A3A7AD /* PlayerRecordCell.swift in Sources */,
 				C0A128D826BB79DF00FFEB61 /* VoicePromptViewController.swift in Sources */,
@@ -1208,12 +1228,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0759C4127994E9E00F01B29 /* CountdownAlertController+TestHelpers.swift in Sources */,
 				C034AABD26B680D6006AABE6 /* XCTestCase+Snapshot.swift in Sources */,
 				C034AAC326B68D48006AABE6 /* UIButton+TestHelpers.swift in Sources */,
+				C0759C462799661B00F01B29 /* UIViewController+TestHelpers.swift in Sources */,
 				C034AABE26B680D6006AABE6 /* UIViewController+Snapshot.swift in Sources */,
 				C034AAC426B68D48006AABE6 /* UIControl+TestHelpers.swift in Sources */,
+				C0759C3F27994E7B00F01B29 /* CountdownAlertControllerTests.swift in Sources */,
 				C034AABC26B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift in Sources */,
 				C0CA894B26F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
+				C0759C482799673900F01B29 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,6 +1416,14 @@
 				C05709812706C0C0005D2603 /* zh-Hant */,
 			);
 			name = Win.strings;
+			sourceTree = "<group>";
+		};
+		C0759C3D27994E0700F01B29 /* CountdownAlertController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0759C3C27994E0700F01B29 /* Base */,
+			);
+			name = CountdownAlertController.xib;
 			sourceTree = "<group>";
 		};
 		C092A1F0270A9C9E0097F0CD /* Lose.strings */ = {
