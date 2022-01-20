@@ -9,7 +9,6 @@
 import UIKit
 import MastermindiOS
 
-/// 時間到自動消失
 public final class AlertAdCountdownController: UIViewController {
     
     @IBOutlet weak private(set) public var countDownProgressView: UIProgressView!
@@ -20,7 +19,7 @@ public final class AlertAdCountdownController: UIViewController {
     
     private let onConfirm: (() -> Void)?
     private let onCancel: (() -> Void)?
-    private(set) public var countdownTime = 5.0
+    private let countdownTime: TimeInterval
     private let alertTitle: String
     private let message: String?
     private let cancelAction: String
@@ -35,7 +34,7 @@ public final class AlertAdCountdownController: UIViewController {
         title: String,
         message: String? = nil,
         cancelAction: String,
-        countdownTime: Double,
+        countdownTime: TimeInterval,
         onConfirm: (() -> Void)? = nil,
         onCancel: (() -> Void)? = nil,
         animate: @escaping Animate = UIView.animate
