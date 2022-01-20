@@ -9,8 +9,6 @@
 import UIKit
 import MastermindiOS
 
-public typealias TimerFactory = (TimeInterval, _ repeats: Bool, _ task: @escaping (Timer) -> Void) -> Timer
-
 /// 時間到自動消失
 public final class AlertAdCountdownController: UIViewController {
     
@@ -26,18 +24,22 @@ public final class AlertAdCountdownController: UIViewController {
     private let alertTitle: String
     private let message: String?
     private let cancelAction: String
-    
-    private let timerFactory: TimerFactory
     private let animate: Animate
-    private weak var adCountDownTimer: Timer?
-    private weak var progressCountDownTimer: Timer?
     
     private var currentProgress = 0.0
     private lazy var _startCounting: Void = {
         startCounting()
     }()
     
-    public init(title: String, message: String? = nil, cancelAction: String, countdownTime: Double, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, timerFactory: @escaping TimerFactory = Timer.scheduledTimer, animate: @escaping Animate = UIView.animate) {
+    public init(
+        title: String,
+        message: String? = nil,
+        cancelAction: String,
+        countdownTime: Double,
+        onConfirm: (() -> Void)? = nil,
+        onCancel: (() -> Void)? = nil,
+        animate: @escaping Animate = UIView.animate
+    ) {
         
         self.alertTitle = title
         self.message = message
@@ -45,7 +47,6 @@ public final class AlertAdCountdownController: UIViewController {
         self.countdownTime = countdownTime
         self.onConfirm = onConfirm
         self.onCancel = onCancel
-        self.timerFactory = timerFactory
         self.animate = animate
         
         super.init(nibName: "AlertAdCountdownController", bundle: nil)
@@ -73,11 +74,6 @@ public final class AlertAdCountdownController: UIViewController {
         _ = _startCounting
     }
     
-    deinit {
-        progressCountDownTimer?.invalidate()
-        adCountDownTimer?.invalidate()
-    }
-    
     @IBAction func confirmButtonPressed(_ sender: Any) {
         onConfirm?()
     }
@@ -91,8 +87,8 @@ public final class AlertAdCountdownController: UIViewController {
 private extension AlertAdCountdownController {
     
     func startCounting(){
-        adCountDownTimer = timerFactory(countdownTime, false) { [weak self] _ in
-            self?.adDidCountDown()
+        DispatchQueue.main.asyncAfter(deadline: .now() + countdownTime) { [weak self] in
+            self?.onCancel?()
         }
         
         countDownProgressView.progress = 1.0
@@ -116,14 +112,6 @@ private extension AlertAdCountdownController {
         }, completion: { [weak self]  _ in
             self?.shakeImage(durationPerShake: durationPerShake, shakeCount: shakeCount-1)
         })
-    }
-    
-    /// 計時結束
-    @objc
-    func adDidCountDown(){
-        adCountDownTimer?.invalidate()
-        
-        onCancel?()
     }
     
     func addButtonBorder(){
