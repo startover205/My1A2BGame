@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountdownAlertController" customModule="My1A2BGame" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountdownAlertController" customModule="MastermindiOS" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="enG-hU-vcg" id="m5P-pN-pXz"/>
                 <outlet property="confirmButton" destination="RgE-FI-P84" id="kld-Yb-OYF"/>
@@ -54,7 +54,7 @@
                             <rect key="frame" x="0.0" y="75.5" width="270" height="4"/>
                         </progressView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="Gbn-Tb-P10" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jxd-Gy-Ido" secondAttribute="leading" constant="16" id="8Hm-s6-tOB"/>
                         <constraint firstItem="RgE-FI-P84" firstAttribute="centerX" secondItem="Jxd-Gy-Ido" secondAttribute="centerX" id="8Up-3q-VF7"/>
@@ -105,8 +105,8 @@
     </objects>
     <resources>
         <image name="baseline_movie_filter_100px" width="100" height="100"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

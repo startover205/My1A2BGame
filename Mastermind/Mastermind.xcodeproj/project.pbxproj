@@ -162,6 +162,7 @@
 		C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */; };
 		C0DBEE36271E93E9009213A0 /* AppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBEE35271E93E9009213A0 /* AppReviewController.swift */; };
 		C0E816FB279BB0740070C58A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E816FA279BB0730070C58A /* Assets.xcassets */; };
+		C0EBE129279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EBE128279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 		C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */; };
 		C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0F984EE26FC4CAF001DAB38 /* Game.strings */; };
@@ -367,6 +368,7 @@
 		C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
 		C0DBEE35271E93E9009213A0 /* AppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewController.swift; sourceTree = "<group>"; };
 		C0E816FA279BB0730070C58A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C0EBE128279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownAlertControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0EFD30926FD80590039E9D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Game.stringsdict; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 			children = (
 				C0CA894C26F710A90025F9E5 /* snapshots */,
 				C0CA892626F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift */,
+				C0EBE128279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift */,
 				C0759C3E27994E7A00F01B29 /* CountdownAlertControllerTests.swift */,
 				C0759C4027994E9E00F01B29 /* CountdownAlertController+TestHelpers.swift */,
 			);
@@ -1239,6 +1242,7 @@
 				C034AABE26B680D6006AABE6 /* UIViewController+Snapshot.swift in Sources */,
 				C034AAC426B68D48006AABE6 /* UIControl+TestHelpers.swift in Sources */,
 				C0759C3F27994E7B00F01B29 /* CountdownAlertControllerTests.swift in Sources */,
+				C0EBE129279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift in Sources */,
 				C034AABC26B680D6006AABE6 /* NumberInputViewControllerSnapshotTests.swift in Sources */,
 				C0CA894B26F70FF60025F9E5 /* GuessNumberViewControllerSnapshotTests.swift in Sources */,
 				C0759C482799673900F01B29 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
