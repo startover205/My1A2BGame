@@ -161,6 +161,7 @@
 		C0D5DE8A26E9F2A6001F4A0D /* CounterAppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8926E9F2A6001F4A0D /* CounterAppReviewController.swift */; };
 		C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */; };
 		C0DBEE36271E93E9009213A0 /* AppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBEE35271E93E9009213A0 /* AppReviewController.swift */; };
+		C0E816FB279BB0740070C58A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E816FA279BB0730070C58A /* Assets.xcassets */; };
 		C0EFCBEA26B54BD80041A622 /* Mastermind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C034C53D26B5431300F6166E /* Mastermind.framework */; };
 		C0F984EB26FC4C8D001DAB38 /* GameLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F984EA26FC4C8D001DAB38 /* GameLocalizationTests.swift */; };
 		C0F984EC26FC4CAF001DAB38 /* Game.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0F984EE26FC4CAF001DAB38 /* Game.strings */; };
@@ -365,6 +366,7 @@
 		C0D5DE8926E9F2A6001F4A0D /* CounterAppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterAppReviewController.swift; sourceTree = "<group>"; };
 		C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
 		C0DBEE35271E93E9009213A0 /* AppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewController.swift; sourceTree = "<group>"; };
+		C0E816FA279BB0730070C58A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0EFCBE526B54BD80041A622 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EFCBE926B54BD80041A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0EFD30926FD80590039E9D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Game.stringsdict; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 				C0D5DE8B26E9F3E5001F4A0D /* Reward Ad UI */,
 				C012C50E270EC7BE00A3A7AD /* Rank UI */,
 				C034AA7926B67CEA006AABE6 /* Info.plist */,
+				C0E816FA279BB0730070C58A /* Assets.xcassets */,
 			);
 			path = MastermindiOS;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				C034AAA426B6804A006AABE6 /* Game.storyboard in Resources */,
 				C09841F926D0D56200AE72F4 /* Win.storyboard in Resources */,
 				C098421126D4C78000AE72F4 /* Lose.storyboard in Resources */,
+				C0E816FB279BB0740070C58A /* Assets.xcassets in Resources */,
 				C0759C4227994F6700F01B29 /* CountdownAlertController.xib in Resources */,
 				C0CA891626F70F4A0025F9E5 /* Game.xcassets in Resources */,
 			);
