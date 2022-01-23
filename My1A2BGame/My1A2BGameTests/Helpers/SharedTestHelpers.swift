@@ -47,8 +47,8 @@ func makePurchasedTransaction(with product: SKProduct, transactionIdentifier: St
     TransactionStub(product: product, transactionState: .purchased, transactionidentifier: transactionIdentifier)
 }
 
-func makeRestoredTransaction() -> SKPaymentTransaction {
-    TransactionStub(product: oneValidProduct(), transactionState: .restored, transactionidentifier: nil)
+func makeRestoredTransaction(with product: SKProduct = oneValidProduct()) -> SKPaymentTransaction {
+    TransactionStub(product: product, transactionState: .restored, transactionidentifier: nil)
 }
 
 private final class TransactionStub: SKPaymentTransaction {

@@ -146,22 +146,19 @@ class IAPTransactionObserverTests: XCTestCase {
     
     func test_handleTransaction_notifiesHandlerRestoredProduct_onSuccessfullyRestoredTransaction() throws {
         let (sut, paymentQueue) = makeSUT()
-        let product = oneValidProduct()
-        try createLocalTestSession()
-        
-        simulateBuying(product, observer: sut, paymentQueue: paymentQueue)
-        
-        waitForTransactionFinished()
-
+        let product = makeProduct(identifier: "an identifier")
         let exp = expectation(description: "wait for transaction")
-        sut.onRestoreProduct = { productIdentifier in
-            XCTAssertEqual(productIdentifier, product.productIdentifier)
-            
+        var capturedProductIdentifier: String?
+        sut.onRestoreProduct = {
+            capturedProductIdentifier = $0
             exp.fulfill()
         }
-        paymentQueue.restoreCompletedTransactions()
         
-        wait(for: [exp], timeout: 20.0)
+        sut.paymentQueue(paymentQueue, updatedTransactions: [makeRestoredTransaction(with: product)])
+        
+        wait(for: [exp], timeout: 0.5)
+        
+        XCTAssertEqual(capturedProductIdentifier, "an identifier")
     }
     
     func test_handleTransaction_doesNotFinishTransactionWithNoHandler_onSuccessfullyRestoredTransaction() throws {
