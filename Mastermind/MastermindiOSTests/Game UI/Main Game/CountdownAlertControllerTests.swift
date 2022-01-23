@@ -77,18 +77,19 @@ class CountdownAlertControllerTests: XCTestCase {
 
     func test_countdown_triggersCancelHandlerUponTimeUp() {
         var callbackCallCount = 0
-        let sut = makeSUT(countdownTime: 0.1, onCancel: {
+        let asyncWorker = AsyncAfterSpy()
+        let sut = makeSUT(countdownTime: 20, onCancel: {
             callbackCallCount += 1
-        })
+        }, asyncAfter: asyncWorker.asyncAfter)
 
         sut.loadViewIfNeeded()
-        waitForCountdown(duration: 0.11)
-
+        asyncWorker.simulateTimePassed(duration: 20)
+        
         XCTAssertEqual(callbackCallCount, 0, "Expect handler not called because countdown starts after view shown")
 
         sut.simulateViewAppear()
-        waitForCountdown(duration: 0.11)
-
+        asyncWorker.simulateTimePassed(duration: 20)
+        
         XCTAssertEqual(callbackCallCount, 1, "Expect handler called after countdown passes")
     }
 
@@ -100,8 +101,19 @@ class CountdownAlertControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(title: String = "", message: String? = nil, cancelAction: String = "", countdownTime: Double = 5.0, onConfirm: (() -> Void)? = nil, onCancel: (() -> Void)? = nil, animate: @escaping Animate = { _, _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> CountdownAlertController {
-        let sut = CountdownAlertController(title: title, message: message, cancelAction: cancelAction, countdownTime: countdownTime, onConfirm: onConfirm, onCancel: onCancel, animate: animate)
+    private func makeSUT(
+        title: String = "",
+        message: String? = nil,
+        cancelAction: String = "",
+        countdownTime: Double = 5.0,
+        onConfirm: (() -> Void)? = nil,
+        onCancel: (() -> Void)? = nil,
+        animate: @escaping Animate = { _, _, _ in },
+        asyncAfter: @escaping AsyncAfter = { _, _ in },
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> CountdownAlertController {
+        let sut = CountdownAlertController(title: title, message: message, cancelAction: cancelAction, countdownTime: countdownTime, onConfirm: onConfirm, onCancel: onCancel, animate: animate, asyncAfter: asyncAfter)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -121,6 +133,25 @@ class CountdownAlertControllerTests: XCTestCase {
                      _ animations: @escaping () -> Void,
                      _ completion: ((Bool) -> Void)?) {
             capturedAnimationDuration = duration
+        }
+    }
+    
+    private final class AsyncAfterSpy {
+        private var capturedDelay: TimeInterval?
+        private var capturedTask: (() -> Void)?
+        private var timePassed: TimeInterval = 0
+        
+        func asyncAfter(delay: TimeInterval, task: @escaping () -> Void) {
+            capturedDelay = delay
+            capturedTask = task
+            timePassed = 0
+        }
+        
+        func simulateTimePassed(duration: TimeInterval) {
+            timePassed += duration
+            if let capturedDelay = capturedDelay, timePassed >= capturedDelay {
+                capturedTask?()
+            }
         }
     }
 }

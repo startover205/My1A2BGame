@@ -8,6 +8,8 @@
 
 import UIKit
 
+public typealias AsyncAfter = (TimeInterval, @escaping () -> Void) -> Void
+
 public final class CountdownAlertController: UIViewController {
     
     @IBOutlet weak private(set) public var ountdownProgressView: UIProgressView!
@@ -23,6 +25,7 @@ public final class CountdownAlertController: UIViewController {
     private let message: String?
     private let cancelAction: String
     private let animate: Animate
+    private let asyncAfter: AsyncAfter
     
     private var currentProgress = 0.0
     private lazy var _startCounting: Void = {
@@ -36,7 +39,10 @@ public final class CountdownAlertController: UIViewController {
         countdownTime: TimeInterval,
         onConfirm: (() -> Void)? = nil,
         onCancel: (() -> Void)? = nil,
-        animate: @escaping Animate = UIView.animate
+        animate: @escaping Animate = UIView.animate,
+        asyncAfter: @escaping AsyncAfter = {
+            DispatchQueue.main.asyncAfter(deadline: .now() + $0, execute: $1)
+        }
     ) {
         
         self.alertTitle = title
@@ -46,6 +52,7 @@ public final class CountdownAlertController: UIViewController {
         self.onConfirm = onConfirm
         self.onCancel = onCancel
         self.animate = animate
+        self.asyncAfter = asyncAfter
         
         super.init(nibName: "CountdownAlertController", bundle: .init(for: CountdownAlertController.self))
         
@@ -85,7 +92,7 @@ public final class CountdownAlertController: UIViewController {
 private extension CountdownAlertController {
     
     func startCounting(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + countdownTime) { [weak self] in
+        asyncAfter(countdownTime) { [weak self] in
             self?.onCancel?()
         }
         
