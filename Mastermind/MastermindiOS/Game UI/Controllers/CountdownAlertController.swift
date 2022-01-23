@@ -11,7 +11,6 @@ import UIKit
 public typealias AsyncAfter = (TimeInterval, @escaping () -> Void) -> Void
 
 public final class CountdownAlertController: UIViewController {
-    
     @IBOutlet weak private(set) public var ountdownProgressView: UIProgressView!
     @IBOutlet weak private(set) public var cancelButton: UIButton!
     @IBOutlet weak private(set) public var confirmButton: UIButton!
@@ -27,10 +26,7 @@ public final class CountdownAlertController: UIViewController {
     private let animate: Animate
     private let asyncAfter: AsyncAfter
     
-    private var currentProgress = 0.0
-    private lazy var _startCounting: Void = {
-        startCounting()
-    }()
+    private var isFirstTimeAppear = true
     
     public init(
         title: String,
@@ -76,7 +72,22 @@ public final class CountdownAlertController: UIViewController {
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        _ = _startCounting
+        
+        if isFirstTimeAppear {
+            isFirstTimeAppear = false
+            
+            asyncAfter(countdownTime) { [weak self] in
+                self?.onCancel?()
+            }
+            
+            ountdownProgressView.progress = 1.0
+            
+            animate(countdownTime, { [weak self] in
+                self?.ountdownProgressView.layoutIfNeeded()
+            }, nil)
+            
+            shakeImage(durationPerShake: countdownTime/3, shakeCount: 3)
+        }
     }
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
@@ -88,23 +99,7 @@ public final class CountdownAlertController: UIViewController {
     }
 }
 
-// MARK: - Private
 private extension CountdownAlertController {
-    
-    func startCounting(){
-        asyncAfter(countdownTime) { [weak self] in
-            self?.onCancel?()
-        }
-        
-        ountdownProgressView.progress = 1.0
-        
-        animate(countdownTime, { [weak self] in
-            self?.ountdownProgressView.layoutIfNeeded()
-        }, nil)
-        
-        shakeImage(durationPerShake: countdownTime/3, shakeCount: 3)
-    }
-    
     func shakeImage(durationPerShake: TimeInterval, shakeCount: Int = 0) {
         if shakeCount <= 0 { return }
         
