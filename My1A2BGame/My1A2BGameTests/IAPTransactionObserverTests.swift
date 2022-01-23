@@ -114,7 +114,7 @@ class IAPTransactionObserverTests: XCTestCase {
         }
         paymentQueue.add(SKPayment(product: oneValidProduct()))
         
-        wait(for: [exp], timeout: 20.0)
+        wait(for: [exp], timeout: 90.0)
     }
     
     func test_handleTransaction_doesNotFinishesTransactionWithNoHandler_onFailedTransaction() throws {
