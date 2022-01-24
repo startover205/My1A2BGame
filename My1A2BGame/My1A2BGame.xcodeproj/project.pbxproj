@@ -36,7 +36,6 @@
 		C0696B202793103600580696 /* CountdownAlertController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0696B1F2793103600580696 /* CountdownAlertController+TestHelpers.swift */; };
 		C074813F276C26F80047A188 /* ProductLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074813E276C26F80047A188 /* ProductLoaderTests.swift */; };
 		C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0748140276C674B0047A188 /* IAPProductLoader.swift */; };
-		C075760F224C7A7D007A1F9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075760E224C7A7D007A1F9E /* Global.swift */; };
 		C077B5D62771A7F40022F9CF /* ProductPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5D52771A7F40022F9CF /* ProductPresenter.swift */; };
 		C077B5D82771A8150022F9CF /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5D72771A8150022F9CF /* ProductListViewModel.swift */; };
 		C077B5DA2771A81B0022F9CF /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077B5D92771A81B0022F9CF /* ProductView.swift */; };
@@ -164,7 +163,6 @@
 		C0696B1F2793103600580696 /* CountdownAlertController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CountdownAlertController+TestHelpers.swift"; path = "../../../Mastermind/MastermindiOSTests/Game UI/Main Game/CountdownAlertController+TestHelpers.swift"; sourceTree = "<group>"; };
 		C074813E276C26F80047A188 /* ProductLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLoaderTests.swift; sourceTree = "<group>"; };
 		C0748140276C674B0047A188 /* IAPProductLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProductLoader.swift; sourceTree = "<group>"; };
-		C075760E224C7A7D007A1F9E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		C077B5D52771A7F40022F9CF /* ProductPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresenter.swift; sourceTree = "<group>"; };
 		C077B5D72771A8150022F9CF /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		C077B5D92771A81B0022F9CF /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
@@ -307,7 +305,6 @@
 				C01C40E8279EA01400A863E2 /* FrequentlyAskedQuestions.swift */,
 				C085BE692254974700320563 /* UserDefaultsKeys.swift */,
 				C01C40E5279E4C5C00A863E2 /* AppStoreConfig.swift */,
-				C075760E224C7A7D007A1F9E /* Global.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
 				C009191F26AD5E0500544115 /* GameUIComposer.swift */,
@@ -681,7 +678,6 @@
 				C077B5E6277340770022F9CF /* UserDefaultsPurchaseStore.swift in Sources */,
 				C0DC06E7273E5CEE0033982F /* ProductViewModel.swift in Sources */,
 				C008E2D7274DD05A0036E2A0 /* SKProduct+LocalPrice.swift in Sources */,
-				C075760F224C7A7D007A1F9E /* Global.swift in Sources */,
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0ECEB2A278AFFC700DA2733 /* ExponentialBackoffDecorator.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
