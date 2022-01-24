@@ -17,6 +17,7 @@
 		C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01461A520BE6BD30023EEB6 /* Assets.xcassets */; };
 		C01461A920BE6BD30023EEB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */; };
 		C01A79E726DF2342000A7E7A /* RewardAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */; };
+		C01C40E6279E4C5C00A863E2 /* AppStoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C40E5279E4C5C00A863E2 /* AppStoreConfig.swift */; };
 		C01F4D212783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */; };
 		C01F4D2327856747008C9E87 /* GoogleRewardAdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */; };
 		C03124DC2766450C0018CC92 /* UIViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */; };
@@ -141,6 +142,7 @@
 		C01461A820BE6BD30023EEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C016F32F22FEB0B900918B8D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewController.swift; sourceTree = "<group>"; };
+		C01C40E5279E4C5C00A863E2 /* AppStoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreConfig.swift; sourceTree = "<group>"; };
 		C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoaderTests.swift; sourceTree = "<group>"; };
 		C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoader.swift; sourceTree = "<group>"; };
 		C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
 				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
 				C085BE692254974700320563 /* Constants.swift */,
+				C01C40E5279E4C5C00A863E2 /* AppStoreConfig.swift */,
 				C075760E224C7A7D007A1F9E /* Global.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
@@ -678,6 +681,7 @@
 				C0ECEB2A278AFFC700DA2733 /* ExponentialBackoffDecorator.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
 				C085BE6A2254974700320563 /* Constants.swift in Sources */,
+				C01C40E6279E4C5C00A863E2 /* AppStoreConfig.swift in Sources */,
 				C0314882278D207E00EAB263 /* RewardAdControllerComposer.swift in Sources */,
 				C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */,
 				C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */,

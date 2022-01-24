@@ -291,7 +291,7 @@ private extension AppDelegate {
             secret: secret,
             delegate: rewardAdViewController,
             onWin: { score in
-                let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader, appDownloadURL: Constants.appStoreDownloadUrl)
+                let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader, appDownloadURL: AppStoreConfig.appStoreDownloadUrl)
                 navigationController.pushViewController(winController, animated: true)
                 
                 self.appReviewController?.askForReviewIfAppropriate()
@@ -372,14 +372,14 @@ private extension AppDelegate {
     }
   
     private func selectReviewApp() {
-        guard let writeReviewURL = URL(string: Constants.appStoreReviewUrl)
+        guard let writeReviewURL = URL(string: AppStoreConfig.appStoreReviewUrl)
             else { fatalError("Expected a valid URL") }
         UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
     }
    
     func selectTellFriends(anchorView: UIView?){
         var activityItems: [Any] = [NSLocalizedString("APP_PROMOTIONAL_MESSAGE", comment: "The message to promote the app with friends")]
-        activityItems.append(Constants.appStoreDownloadUrl)
+        activityItems.append(AppStoreConfig.appStoreDownloadUrl)
 
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         controller.popoverPresentationController?.sourceView = anchorView ?? moreNavigationController.view

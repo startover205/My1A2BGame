@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum Constants {
-    static let appStoreReviewUrl = "https://itunes.apple.com/app/id1459347669?action=write-review"
-    static let appStoreDownloadUrl = "https://itunes.apple.com/app/id1459347669"
-}
 
 extension UserDefaults {
     enum Key {
