@@ -52,7 +52,7 @@
 		C07C16B52702F8F900451060 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C16B42702F8F900451060 /* SharedLocalizationTestHelpers.swift */; };
 		C07C16B62702F94E00451060 /* RewardAd.strings in Resources */ = {isa = PBXBuildFile; fileRef = C07C16B82702F94E00451060 /* RewardAd.strings */; };
 		C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082F16826CF4B1F0091E44B /* WinUIComposer.swift */; };
-		C085BE6A2254974700320563 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* Constants.swift */; };
+		C085BE6A2254974700320563 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE692254974700320563 /* UserDefaultsKeys.swift */; };
 		C085BE7A2257566300320563 /* UIImageView+BugFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085BE792257566300320563 /* UIImageView+BugFix.swift */; };
 		C0863A57274F8C0500A799D1 /* IAPAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0863A56274F8C0500A799D1 /* IAPAcceptanceTests.swift */; };
 		C0863A5927508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0863A5827508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift */; };
@@ -182,7 +182,7 @@
 		C07D1A6023BCDAEE00197857 /* My1A2BGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My1A2BGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07D1A6423BCDAEE00197857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C082F16826CF4B1F0091E44B /* WinUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinUIComposer.swift; sourceTree = "<group>"; };
-		C085BE692254974700320563 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C085BE692254974700320563 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		C085BE792257566300320563 /* UIImageView+BugFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BugFix.swift"; sourceTree = "<group>"; };
 		C0863A56274F8C0500A799D1 /* IAPAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPAcceptanceTests.swift; sourceTree = "<group>"; };
 		C0863A5827508CE500A799D1 /* IAPTransactionObserver+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IAPTransactionObserver+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 				C077B5E7277340B10022F9CF /* IAPProduct.swift */,
 				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
 				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
-				C085BE692254974700320563 /* Constants.swift */,
+				C085BE692254974700320563 /* UserDefaultsKeys.swift */,
 				C01C40E5279E4C5C00A863E2 /* AppStoreConfig.swift */,
 				C075760E224C7A7D007A1F9E /* Global.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
@@ -680,7 +680,7 @@
 				C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */,
 				C0ECEB2A278AFFC700DA2733 /* ExponentialBackoffDecorator.swift in Sources */,
 				C0A1F4A526B62A1200536D73 /* MoreViewController.swift in Sources */,
-				C085BE6A2254974700320563 /* Constants.swift in Sources */,
+				C085BE6A2254974700320563 /* UserDefaultsKeys.swift in Sources */,
 				C01C40E6279E4C5C00A863E2 /* AppStoreConfig.swift in Sources */,
 				C0314882278D207E00EAB263 /* RewardAdControllerComposer.swift in Sources */,
 				C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */,

@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
     private weak var bannerAd: UIView?
-    private var hasPurchasedRemovingAd: Bool { userDefaults.bool(forKey: UserDefaults.Key.remove_bottom_ad) }
+    private var hasPurchasedRemovingAd: Bool { userDefaults.bool(forKey: UserDefaultsKeys.remove_bottom_ad) }
 
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced

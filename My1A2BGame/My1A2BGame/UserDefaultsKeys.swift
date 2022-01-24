@@ -1,0 +1,14 @@
+//
+//  UserDefaultsKeys.swift
+//  My1A2BGame
+//
+//  Created by Ming-Ta Yang on 2019/4/3.
+//  Copyright © 2019年 Ming-Ta Yang. All rights reserved.
+//
+
+enum UserDefaultsKeys {
+    static let voicePromptsSwitch = "VOICE_PROMPT"
+    static let remove_bottom_ad = "remove_bottom_ad"
+    static let processCompletedCount = "processCompletedCount"
+    static let lastVersionPromptedForReview = "lastVersionPromptedForReview"
+}
