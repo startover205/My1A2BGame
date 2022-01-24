@@ -7,8 +7,5 @@
 //
 
 enum UserDefaultsKeys {
-    static let voicePromptsSwitch = "VOICE_PROMPT"
     static let remove_bottom_ad = "remove_bottom_ad"
-    static let processCompletedCount = "processCompletedCount"
-    static let lastVersionPromptedForReview = "lastVersionPromptedForReview"
 }
