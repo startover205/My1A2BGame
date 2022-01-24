@@ -34,7 +34,7 @@ public class IAPViewController: UITableViewController {
         onRestoreCompletedTransactions?()
     }
     
-    func refresh(){
+    func refresh() {
         onRefresh?()
     }
     

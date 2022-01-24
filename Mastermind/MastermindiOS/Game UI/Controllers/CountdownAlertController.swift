@@ -114,7 +114,7 @@ private extension CountdownAlertController {
         })
     }
     
-    func addButtonBorder(){
+    func addButtonBorder() {
         let border = CALayer()
         border.backgroundColor = UIColor.lightGray.cgColor
         border.frame = .init(x: 0, y: 0, width: cancelButton.bounds.width, height: 0.5)

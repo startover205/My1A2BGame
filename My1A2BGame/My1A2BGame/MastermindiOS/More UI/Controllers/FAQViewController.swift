@@ -83,7 +83,7 @@ public final class FAQViewController: UITableViewController {
 
 private extension FAQViewController {
     
-    func initSectionOpenStatus(){
+    func initSectionOpenStatus() {
         for i in 0..<tableModel.count {
             sectionOpenStatus[i] = false
         }

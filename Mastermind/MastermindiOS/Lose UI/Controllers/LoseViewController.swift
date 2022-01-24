@@ -42,7 +42,7 @@ public class LoseViewController: UIViewController {
 
 // MARK: - Private
 private extension LoseViewController {
-    func emojiAnimation(){
+    func emojiAnimation() {
         UIView.animate(withDuration: 6, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
             self.emojiLabel.transform = CGAffineTransform(translationX: 0, y: 10)
             self.emojiLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 9)

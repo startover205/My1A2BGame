@@ -172,7 +172,7 @@ public class NumberInputViewController: UIViewController {
 
 // MARK: - Private
 private extension NumberInputViewController {
-    func guess(){
+    func guess() {
         var texts = [String]()
         for label in self.digitLabels {
             texts.append(label.text!)
@@ -211,7 +211,7 @@ private extension NumberInputViewController {
             break
         }
     }
-    func enableAllButton(){
+    func enableAllButton() {
         zeroButton.isEnabled = true
         oneButton.isEnabled = true
         twoButton.isEnabled = true
@@ -223,7 +223,7 @@ private extension NumberInputViewController {
         eightButton.isEnabled = true
         nineButton.isEnabled = true
     }
-    func clearAllText(){
+    func clearAllText() {
         for label in digitLabels {
             label.text = ""
         }
