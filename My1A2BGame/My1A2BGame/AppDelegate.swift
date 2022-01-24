@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return LocalRecordLoader(store: store)
     }()
     
-    private lazy var tabController = UITabBarController()
+    private lazy var tabController = makeTabController()
     private lazy var basicGameNavigationController = UINavigationController()
     private lazy var advancedGameNavigationController = UINavigationController()
     private lazy var moreNavigationController = UINavigationController()
@@ -128,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureWindow() {
-        window?.rootViewController = makeTabController()
+        window?.rootViewController = tabController
         
         window?.makeKeyAndVisible()
         
@@ -233,18 +233,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeTabController() -> UITabBarController {
+        let tabController = UITabBarController()
         let tabConfigurations: [(title: String, imageName: String)] = [
             (basicGameVersion.title, "baseline_1A2B_24px"),
             (advancedGameVersion.title, "advanced_24px"),
             ("Rank", "baseline_format_list_numbered_black_24pt"),
             ("More", "baseline_settings_black_24pt"),
         ]
-        let rankNav = UINavigationController(rootViewController: RankUIComposer.rankComposedWith(ranks: [
-                                                                                                    Rank(title: "Basic",
-                                                                                                         loader: basicRecordLoader),
-                                                                                                    Rank(title: "Advanced",
-                                                                                                         loader: advancedRecordLoader)],
-                                                                                                 alertHost: tabController))
+        let rankNav = UINavigationController(rootViewController:
+                                                RankUIComposer.rankComposedWith(ranks: [
+                                                    Rank(title: "Basic",
+                                                         loader: basicRecordLoader),
+                                                    Rank(title: "Advanced",
+                                                         loader: advancedRecordLoader)],
+                                                                                alertHost: tabController))
         
         tabController.setViewControllers([basicGameNavigationController, advancedGameNavigationController, rankNav, makeMoreVC()], animated: false)
         
