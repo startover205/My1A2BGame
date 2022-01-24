@@ -7,5 +7,5 @@
 //
 
 enum UserDefaultsKeys {
-    static let remove_bottom_ad = "remove_bottom_ad"
+    static let removeBottomAd = "remove_bottom_ad"
 }
