@@ -362,6 +362,16 @@
 			path = "In-App Purchase UI";
 			sourceTree = "<group>";
 		};
+		C01C40EC279EAF7100A863E2 /* In-App Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				C09ADD402744916F00222B71 /* IAPTransactionObserverTests.swift */,
+				C077B5EB277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift */,
+				C074813E276C26F80047A188 /* ProductLoaderTests.swift */,
+			);
+			path = "In-App Purchase";
+			sourceTree = "<group>";
+		};
 		C077B5D42771A7CE0022F9CF /* In-App Purchase Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +385,7 @@
 			path = "In-App Purchase Presentation";
 			sourceTree = "<group>";
 		};
-		C077B5DF2771AA700022F9CF /* Game UI */ = {
+		C077B5DF2771AA700022F9CF /* Game Composer */ = {
 			isa = PBXGroup;
 			children = (
 				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
@@ -387,30 +397,22 @@
 				C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */,
 				C0ECEB272789562800DA2733 /* ExponentialBackoffDecoratorTests.swift */,
 			);
-			path = "Game UI";
-			sourceTree = "<group>";
-		};
-		C077B5E02771AAC80022F9CF /* Rank UI */ = {
-			isa = PBXGroup;
-			children = (
-				C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */,
-			);
-			path = "Rank UI";
+			path = "Game Composer";
 			sourceTree = "<group>";
 		};
 		C07D1A6123BCDAEE00197857 /* My1A2BGameTests */ = {
 			isa = PBXGroup;
 			children = (
 				C0E601A326ADB00A006C8D6D /* Helpers */,
+				C01C40EC279EAF7100A863E2 /* In-App Purchase */,
 				C0362D0C268C169200E6299B /* AppDelegateTests.swift */,
-				C09ADD402744916F00222B71 /* IAPTransactionObserverTests.swift */,
 				C09841ED26D08AB500AE72F4 /* GameAcceptanceTests.swift */,
 				C0863A56274F8C0500A799D1 /* IAPAcceptanceTests.swift */,
 				C0F984F326FC5F2A001DAB38 /* LocalizationTests.swift */,
-				C077B5EB277341D20022F9CF /* UserDefaultsPurchaseRecordStoreTests.swift */,
-				C077B5DF2771AA700022F9CF /* Game UI */,
-				C077B5E02771AAC80022F9CF /* Rank UI */,
-				C0F7D15D272254F8003DDB09 /* More UI */,
+				C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */,
+				C077B5DF2771AA700022F9CF /* Game Composer */,
+				C057098A27080A99005D2603 /* RankUIIntegrationTests.swift */,
+				C0F7D15D272254F8003DDB09 /* More Composer */,
 				C07D1A6423BCDAEE00197857 /* Info.plist */,
 			);
 			path = My1A2BGameTests;
@@ -431,6 +433,7 @@
 		C0E601A326ADB00A006C8D6D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */,
 				C0AA3E39274882BD00F75D95 /* Unknown.storekit */,
 				C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */,
 				C0C3143027192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift */,
@@ -455,25 +458,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		C0F4ACC3273E03BF00FAFC2A /* IAP */ = {
+		C0F7D15D272254F8003DDB09 /* More Composer */ = {
 			isa = PBXGroup;
 			children = (
-				C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */,
-				C074813E276C26F80047A188 /* ProductLoaderTests.swift */,
-				C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */,
-			);
-			path = IAP;
-			sourceTree = "<group>";
-		};
-		C0F7D15D272254F8003DDB09 /* More UI */ = {
-			isa = PBXGroup;
-			children = (
-				C0F4ACC3273E03BF00FAFC2A /* IAP */,
 				C09925862738F7EB003E322D /* MoreViewControllerTests.swift */,
+				C091F1082728F7820065482F /* IAPUIIntegrationTests.swift */,
 				C0F7D15B272254F2003DDB09 /* FAQViewControllerTests.swift */,
-				C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */,
 			);
-			path = "More UI";
+			path = "More Composer";
 			sourceTree = "<group>";
 		};
 		C1ACF5BC0592EF53CC18CB7A /* Frameworks */ = {
