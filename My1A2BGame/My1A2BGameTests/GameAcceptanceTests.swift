@@ -179,7 +179,7 @@ private extension GameAcceptanceTests {
         
         let exp = expectation(description: "wait for alert dismiss")
         exp.isInverted = true
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 10.0)
 
         XCTAssertNotNil(ad.capturedPresentation, "Expect showing ad", file: file, line: line)
     }
