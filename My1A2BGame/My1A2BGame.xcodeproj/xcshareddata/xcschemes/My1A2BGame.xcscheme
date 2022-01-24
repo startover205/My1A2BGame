@@ -81,7 +81,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
-         identifier = "../My1A2BGame/MastermindiOS/More UI/Controllers/NonConsumable.storekit">
+         identifier = "../My1A2BGame/More Composer/NonConsumable.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

@@ -293,33 +293,27 @@
 			isa = PBXGroup;
 			children = (
 				C016F32F22FEB0B900918B8D /* Info.plist */,
-				C0A9E2902333E29C007F45B9 /* Localizable.strings */,
 				C0A9E28D2333E29C007F45B9 /* InfoPlist.strings */,
 				C01BC5D026A85B5000FA0636 /* In-App Purchase */,
 				C077B5D42771A7CE0022F9CF /* In-App Purchase Presentation */,
+				C01C40EB279EADD700A863E2 /* In-App Purchase UI */,
 				C01BC5C826A84B9400FA0636 /* GoogleAds */,
 				C014619E20BE6BD20023EEB6 /* AppDelegate.swift */,
-				C077B5E7277340B10022F9CF /* IAPProduct.swift */,
-				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
-				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
-				C01C40E8279EA01400A863E2 /* FrequentlyAskedQuestions.swift */,
-				C085BE692254974700320563 /* UserDefaultsKeys.swift */,
 				C01C40E5279E4C5C00A863E2 /* AppStoreConfig.swift */,
-				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
-				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
-				C009191F26AD5E0500544115 /* GameUIComposer.swift */,
-				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
-				C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */,
-				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
-				C0314881278D207E00EAB263 /* RewardAdControllerComposer.swift */,
-				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
-				C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */,
+				C0BF9A7326DDC15F006BD7C1 /* GameVersion.swift */,
+				C077B5E7277340B10022F9CF /* IAPProduct.swift */,
+				C085BE692254974700320563 /* UserDefaultsKeys.swift */,
+				C01C40E8279EA01400A863E2 /* FrequentlyAskedQuestions.swift */,
+				C01C40EA279EAAE900A863E2 /* Game Composer */,
 				C0570988270808A2005D2603 /* RankUIComposer.swift */,
-				C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */,
+				C0A1F48326B62A1100536D73 /* More Composer */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
 				C0ECEB29278AFFC700DA2733 /* ExponentialBackoffDecorator.swift */,
+				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
+				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
+				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
+				C0A9E2902333E29C007F45B9 /* Localizable.strings */,
 				C07C16B82702F94E00451060 /* RewardAd.strings */,
-				C0A1F47626B62A1100536D73 /* MastermindiOS */,
 			);
 			path = My1A2BGame;
 			sourceTree = "<group>";
@@ -338,8 +332,34 @@
 			children = (
 				C0ED626622608FFD00892A80 /* IAPTransactionObserver.swift */,
 				C077B5E5277340770022F9CF /* UserDefaultsPurchaseStore.swift */,
+				C0748140276C674B0047A188 /* IAPProductLoader.swift */,
+				C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */,
 			);
 			path = "In-App Purchase";
+			sourceTree = "<group>";
+		};
+		C01C40EA279EAAE900A863E2 /* Game Composer */ = {
+			isa = PBXGroup;
+			children = (
+				C009191F26AD5E0500544115 /* GameUIComposer.swift */,
+				C082F16826CF4B1F0091E44B /* WinUIComposer.swift */,
+				C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */,
+				C0C08E6926E1F138001A1CF5 /* ReplenishChanceDelegate.swift */,
+				C0314881278D207E00EAB263 /* RewardAdControllerComposer.swift */,
+				C07C16AC2702F4E600451060 /* RewardAdPresenter.swift */,
+				C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */,
+			);
+			path = "Game Composer";
+			sourceTree = "<group>";
+		};
+		C01C40EB279EADD700A863E2 /* In-App Purchase UI */ = {
+			isa = PBXGroup;
+			children = (
+				C0A1F48626B62A1100536D73 /* IAPViewController.swift */,
+				C09ADD3E2743B17100222B71 /* IAPCellController.swift */,
+				C0DC06E6273E5CEE0033982F /* ProductViewModel.swift */,
+			);
+			path = "In-App Purchase UI";
 			sourceTree = "<group>";
 		};
 		C077B5D42771A7CE0022F9CF /* In-App Purchase Presentation */ = {
@@ -396,44 +416,16 @@
 			path = My1A2BGameTests;
 			sourceTree = "<group>";
 		};
-		C0A1F47626B62A1100536D73 /* MastermindiOS */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F48226B62A1100536D73 /* More UI */,
-			);
-			path = MastermindiOS;
-			sourceTree = "<group>";
-		};
-		C0A1F48226B62A1100536D73 /* More UI */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F48326B62A1100536D73 /* Controllers */,
-				C0A1F48826B62A1100536D73 /* Views */,
-			);
-			path = "More UI";
-			sourceTree = "<group>";
-		};
-		C0A1F48326B62A1100536D73 /* Controllers */ = {
+		C0A1F48326B62A1100536D73 /* More Composer */ = {
 			isa = PBXGroup;
 			children = (
 				C0A1F48426B62A1100536D73 /* MoreViewController.swift */,
-				C0A1F48626B62A1100536D73 /* IAPViewController.swift */,
-				C09ADD3E2743B17100222B71 /* IAPCellController.swift */,
+				C0F4ACC1273CF38000FAFC2A /* IAPUIComposer.swift */,
 				C0A1F48726B62A1100536D73 /* FAQViewController.swift */,
-				C0DC06E6273E5CEE0033982F /* ProductViewModel.swift */,
-				C0748140276C674B0047A188 /* IAPProductLoader.swift */,
-				C008E2D6274DD05A0036E2A0 /* SKProduct+LocalPrice.swift */,
+				C0A1F48926B62A1100536D73 /* More.storyboard */,
 				C099257D2731893F003E322D /* NonConsumable.storekit */,
 			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		C0A1F48826B62A1100536D73 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C0A1F48926B62A1100536D73 /* More.storyboard */,
-			);
-			path = Views;
+			path = "More Composer";
 			sourceTree = "<group>";
 		};
 		C0E601A326ADB00A006C8D6D /* Helpers */ = {
