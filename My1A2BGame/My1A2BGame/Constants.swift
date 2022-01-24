@@ -9,19 +9,7 @@
 import Foundation
 
 enum Constants {
-    #if DEBUG
-    static let maxPlayChances = 10
-    static let maxPlayChancesAdvanced = 1
-    static let adGrantChances = 1
-
-    #else
-    static let maxPlayChances = 10
-    static let maxPlayChancesAdvanced = 15
     static let adGrantChances = 5
-
-    #endif
-
-    static let adHintTime = 5.0
     static let appStoreReviewUrl = "https://itunes.apple.com/app/id1459347669?action=write-review"
     static let appStoreDownloadUrl = "https://itunes.apple.com/app/id1459347669"
 }
