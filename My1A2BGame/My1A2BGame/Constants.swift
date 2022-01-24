@@ -9,7 +9,6 @@
 import Foundation
 
 enum Constants {
-    static let adGrantChances = 5
     static let appStoreReviewUrl = "https://itunes.apple.com/app/id1459347669?action=write-review"
     static let appStoreDownloadUrl = "https://itunes.apple.com/app/id1459347669"
 }

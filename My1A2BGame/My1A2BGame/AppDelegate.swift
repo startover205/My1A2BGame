@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID)
     private lazy var rewardAdViewController = RewardAdControllerComposer.rewardAdComposedWith(
         loader: rewardAdLoader,
-        rewardChanceCount: Constants.adGrantChances,
+        rewardChanceCount: 5,
         hostViewController: tabController)
     
     private lazy var requestReview: () -> Void = {
