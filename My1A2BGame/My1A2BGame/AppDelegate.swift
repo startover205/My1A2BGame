@@ -10,7 +10,6 @@ import UIKit
 import StoreKit
 import GoogleMobileAds
 import AppTrackingTransparency
-import AdSupport
 import Mastermind
 import MastermindiOS
 import MessageUI
