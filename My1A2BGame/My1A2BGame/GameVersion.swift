@@ -9,9 +9,9 @@
 import Foundation
 
 public struct GameVersion {
-    var digitCount: Int
-    var title: String
-    var maxGuessCount: Int
+    let digitCount: Int
+    let title: String
+    let maxGuessCount: Int
     
     static let basic = GameVersion(digitCount: 4, title: "Basic", maxGuessCount: 10)
     
