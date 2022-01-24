@@ -19,6 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    private lazy var tabController = makeTabController()
+    private lazy var basicGameNavigationController = UINavigationController()
+    private lazy var advancedGameNavigationController = UINavigationController()
+    private lazy var moreNavigationController = UINavigationController()
+
+    private let basicGameVersion: GameVersion = .basic
+    private let advancedGameVersion: GameVersion = .advanced
+    private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
+    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID)
+    private lazy var rewardAdViewController = RewardAdControllerComposer.rewardAdComposedWith(
+        loader: rewardAdLoader,
+        rewardChanceCount: 5,
+        hostViewController: tabController)
+    
     private lazy var basicRecordLoader: RecordLoader = {
         let modelName = "Model"
         let store = try! CoreDataRecordStore<Winner>(
@@ -26,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             modelName: modelName)
         return LocalRecordLoader(store: store)
     }()
-    
     private lazy var advancedRecordLoader: RecordLoader = {
         let modelName = "ModelAdvanced"
         let store = try! CoreDataRecordStore<AdvancedWinner>(
@@ -35,32 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return LocalRecordLoader(store: store)
     }()
     
-    private lazy var tabController = makeTabController()
-    private lazy var basicGameNavigationController = UINavigationController()
-    private lazy var advancedGameNavigationController = UINavigationController()
-    private lazy var moreNavigationController = UINavigationController()
-    private weak var bannerAd: UIView?
-    private var hasPurchasedRemovingAd: Bool { userDefaults.bool(forKey: UserDefaultsKeys.removeBottomAd) }
-
-    private let basicGameVersion: GameVersion = .basic
-    private let advancedGameVersion: GameVersion = .advanced
-    
-    private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
-    
-    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID)
-    private lazy var rewardAdViewController = RewardAdControllerComposer.rewardAdComposedWith(
-        loader: rewardAdLoader,
-        rewardChanceCount: 5,
-        hostViewController: tabController)
-    
-    private lazy var requestReview: () -> Void = {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            SKStoreReviewController.requestReview()
-        }
-    }
-    
     private lazy var userDefaults: UserDefaults = .standard
     
+    private weak var bannerAd: UIView?
+    private var hasPurchasedRemovingAd: Bool { userDefaults.bool(forKey: UserDefaultsKeys.removeBottomAd) }
     private lazy var allProductIDs: [String] = [IAPProduct.removeBottomAd]
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
     private lazy var paymentQueue: SKPaymentQueue = .default()
@@ -68,7 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Set(allProductIDs.filter { !purhcaseRecordStore.hasPurchaseProduct(productIdentifier: $0) })
     })
     private lazy var purhcaseRecordStore: UserDefaultsPurchaseRecordStore = .init(userDefaults: userDefaults)
+    private weak var iapController: IAPViewController?
     
+    private lazy var requestReview: () -> Void = {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { SKStoreReviewController.requestReview() }
+    }
     private lazy var appReviewController: AppReviewController? = {
         guard let appVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return nil }
         return CounterAppReviewController(
@@ -77,8 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             targetProcessCompletedCount: 3,
             appVersion: appVersion)
     }()
-    
-    private weak var iapController: IAPViewController?
     
     convenience init(userDefaults: UserDefaults, secretGenerator: @escaping (Int) -> DigitSecret, rewardAdLoader: RewardAdLoader, requestReview: @escaping () -> Void, basicRecordLoader: RecordLoader, advancedRecordLoader: RecordLoader) {
         self.init()
@@ -103,17 +96,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // 設定廣告
         if #available(iOS 14, *) {
-            // requestIDFA
-            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
-                
-                // setup ad
-                GADMobileAds.sharedInstance().start(completionHandler: nil)
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
+                GADMobileAds.sharedInstance().start()
             })
         } else {
-            GADMobileAds.sharedInstance().start(completionHandler: nil)
+            GADMobileAds.sharedInstance().start()
         }
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -140,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureBannerAd()
     }
     
-    func configureBannerAd() {
+    private func configureBannerAd() {
         if !hasPurchasedRemovingAd {
             let tabBar = tabController.tabBar
             let bannerWidth = tabBar.frame.inset(by: tabBar.safeAreaInsets).size.width
@@ -258,7 +246,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-private extension AppDelegate {
+extension AppDelegate {
     private func startNewBasicGame() {
         let gameVersion = basicGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
@@ -310,8 +298,8 @@ private extension AppDelegate {
     }
 }
 
-private extension AppDelegate {
-     func makeMoreVC() -> UIViewController {
+extension AppDelegate {
+     private func makeMoreVC() -> UIViewController {
         let moreController = UIStoryboard(name: "More", bundle: .init(for: MoreViewController.self)).instantiateViewController(withIdentifier: "MoreViewController") as! MoreViewController
         moreController.title = "More"
         moreController.tableModel = [
@@ -378,7 +366,7 @@ private extension AppDelegate {
         UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
     }
    
-    func selectTellFriends(anchorView: UIView?){
+    private func selectTellFriends(anchorView: UIView?) {
         var activityItems: [Any] = [NSLocalizedString("APP_PROMOTIONAL_MESSAGE", comment: "The message to promote the app with friends")]
         activityItems.append(AppStoreConfig.appStoreDownloadUrl)
 
