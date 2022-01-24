@@ -143,6 +143,7 @@
 		C016F32F22FEB0B900918B8D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C01A79E626DF2342000A7E7A /* RewardAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewController.swift; sourceTree = "<group>"; };
 		C01C40E5279E4C5C00A863E2 /* AppStoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreConfig.swift; sourceTree = "<group>"; };
+		C01C40E7279E932100A863E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoaderTests.swift; sourceTree = "<group>"; };
 		C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoader.swift; sourceTree = "<group>"; };
 		C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -781,6 +782,7 @@
 			children = (
 				C0A9E28E2333E29C007F45B9 /* zh-Hant */,
 				C0A9E2952333E2AD007F45B9 /* zh-Hans */,
+				C01C40E7279E932100A863E2 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

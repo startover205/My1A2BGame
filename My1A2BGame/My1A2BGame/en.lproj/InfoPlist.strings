@@ -1,6 +1,6 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "";
 
-/* Bundle name */
-"CFBundleName" = "";
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Save screenshots of your glorious moments.";
 
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "You can enable user tracking for ad providers to provide customized ads for you.";
