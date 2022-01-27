@@ -36,6 +36,15 @@ jobs:
         security unlock-keychain -p "" ~/Library/Keychains/build.keychain
         security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
 
+    - name: Update pod
+      run: sudo gem update cocoapods --pre
+     
+    - name: Install Dependencies
+      run: |
+        cd My1A2BGame
+        pod install --repo-update
+      shell: bash
+      
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
       
