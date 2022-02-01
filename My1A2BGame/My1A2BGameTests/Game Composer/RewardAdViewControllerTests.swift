@@ -172,17 +172,16 @@ class RewardAdIntegrationTests: XCTestCase {
     }
     
     func test_replenishChance_dismissAdAlertAfterCountdownTimePasses() throws {
-        let (sut, hostVC) = makeSUT(loader: RewardAdLoaderStub(ad: RewardAdSpy()))
+        let asyncWorker = AsyncAfterSpy()
+        let (sut, hostVC) = makeSUT(loader: RewardAdLoaderStub(ad: RewardAdSpy()), asyncAfter: asyncWorker.asyncAfter)
 
         sut.replenishChance(completion: { _ in })
 
         let alert = try XCTUnwrap(hostVC.presentedViewController as? CountdownAlertController)
         alert.simulateViewAppear()
-
-        let exp = expectation(description: "wait for countdown")
-        exp.isInverted = true
-        wait(for: [exp], timeout: 6.0)
-
+        
+        asyncWorker.completeAsyncTask()
+        
         XCTAssertNil(hostVC.presentedViewController)
     }
     
@@ -230,12 +229,13 @@ class RewardAdIntegrationTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerSpy) {
+    private func makeSUT(loader: RewardAdLoader = RewardAdLoaderStub.null, rewardChanceCount: Int = 0, asyncAfter: @escaping AsyncAfter = { _, _ in }, file: StaticString = #filePath, line: UInt = #line) -> (RewardAdViewController, UIViewControllerSpy) {
         let hostVC = UIViewControllerSpy()
         let sut = RewardAdControllerComposer.rewardAdComposedWith(
             loader: loader,
             rewardChanceCount: rewardChanceCount,
-            hostViewController: hostVC)
+            hostViewController: hostVC,
+            asyncAfter: asyncAfter)
         
         trackForMemoryLeaks(hostVC, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

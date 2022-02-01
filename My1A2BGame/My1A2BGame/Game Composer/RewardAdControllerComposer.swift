@@ -19,7 +19,9 @@ final class RewardAdControllerComposer {
             DispatchQueue.global().asyncAfter(deadline: .now() + $0, execute: $1)
         }
     ) -> RewardAdViewController {
-        let rewardAdViewController = RewardAdViewController(loader: ExponentialBackoffDecorator(loader, asyncAfter: asyncAfter), rewardChanceCount: rewardChanceCount, hostViewController: hostViewController)
+        let rewardAdViewController = RewardAdViewController(loader: ExponentialBackoffDecorator(loader, asyncAfter: asyncAfter), rewardChanceCount: rewardChanceCount, hostViewController: hostViewController, asyncAfter: { delay, task in
+            asyncAfter(delay, { if Thread.isMainThread { task() } else { DispatchQueue.main.async { task() } } })
+        })
         
         return rewardAdViewController
     }

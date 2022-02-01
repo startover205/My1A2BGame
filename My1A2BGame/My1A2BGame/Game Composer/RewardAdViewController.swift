@@ -15,11 +15,18 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
     private weak var hostViewController: UIViewController?
     private var preparedAd: RewardAd?
     private var currentDisplayingAd: RewardAd?
+    private let asyncAfter: AsyncAfter
     
-    public init(loader: RewardAdLoader, rewardChanceCount: Int, hostViewController: UIViewController) {
+    public init(loader: RewardAdLoader,
+                rewardChanceCount: Int,
+                hostViewController: UIViewController,
+                asyncAfter: @escaping AsyncAfter = {
+        DispatchQueue.main.asyncAfter(deadline: .now() + $0, execute: $1)
+    }) {
         self.loader = loader
         self.rewardChanceCount = rewardChanceCount
         self.hostViewController = hostViewController
+        self.asyncAfter = asyncAfter
         
         loadAd()
     }
@@ -54,7 +61,8 @@ public final class RewardAdViewController: ReplenishChanceDelegate {
             },
             onCancel: { [weak hostVC] in
                 hostVC?.dismiss(animated: true) { completion(0) }
-            })
+            },
+            asyncAfter: asyncAfter)
         
         hostVC.present(alert, animated: true)
     }
