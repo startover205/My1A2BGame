@@ -11,7 +11,7 @@
 		C009191E26AD5CC400544115 /* GameUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */; };
 		C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C009191F26AD5E0500544115 /* GameUIComposer.swift */; };
 		C00FA8B92760A9B60098E4E1 /* InMemoryRecordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00FA8B82760A9B60098E4E1 /* InMemoryRecordLoader.swift */; };
-		C01380132701A24200D3F4A8 /* RewardAdViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */; };
+		C01380132701A24200D3F4A8 /* RewardAdIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380122701A24200D3F4A8 /* RewardAdIntegrationTests.swift */; };
 		C01380152701A8A400D3F4A8 /* RewardAdLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */; };
 		C014619F20BE6BD20023EEB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C014619E20BE6BD20023EEB6 /* AppDelegate.swift */; };
 		C01461A620BE6BD30023EEB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C01461A520BE6BD30023EEB6 /* Assets.xcassets */; };
@@ -135,7 +135,7 @@
 		C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C009191F26AD5E0500544115 /* GameUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIComposer.swift; sourceTree = "<group>"; };
 		C00FA8B82760A9B60098E4E1 /* InMemoryRecordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRecordLoader.swift; sourceTree = "<group>"; };
-		C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdViewControllerTests.swift; sourceTree = "<group>"; };
+		C01380122701A24200D3F4A8 /* RewardAdIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdIntegrationTests.swift; sourceTree = "<group>"; };
 		C01380142701A8A400D3F4A8 /* RewardAdLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdLoaderStub.swift; sourceTree = "<group>"; };
 		C014619B20BE6BD20023EEB6 /* My1A2BGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My1A2BGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C014619E20BE6BD20023EEB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -394,7 +394,7 @@
 				C009191D26AD5CC400544115 /* GameUIIntegrationTests.swift */,
 				C09841FE26D0DE9000AE72F4 /* WinUIIntegrationTests.swift */,
 				C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */,
-				C01380122701A24200D3F4A8 /* RewardAdViewControllerTests.swift */,
+				C01380122701A24200D3F4A8 /* RewardAdIntegrationTests.swift */,
 				C07C16AE2702F52B00451060 /* RewardAdPresenterTests.swift */,
 				C07C16B22702F89900451060 /* RewardAdLocalizationTests.swift */,
 				C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */,
@@ -697,7 +697,7 @@
 				C04587CE2775C4890003B0E7 /* IAPViewController+TestHelpers.swift in Sources */,
 				C03124DC2766450C0018CC92 /* UIViewController+TestHelpers.swift in Sources */,
 				C098420526D4768500AE72F4 /* SharedTestHelpers.swift in Sources */,
-				C01380132701A24200D3F4A8 /* RewardAdViewControllerTests.swift in Sources */,
+				C01380132701A24200D3F4A8 /* RewardAdIntegrationTests.swift in Sources */,
 				C0F984F426FC5F2A001DAB38 /* LocalizationTests.swift in Sources */,
 				C09841EE26D08AB500AE72F4 /* GameAcceptanceTests.swift in Sources */,
 				C078417426B385E50008A5FA /* UIControl+TestHelpers.swift in Sources */,

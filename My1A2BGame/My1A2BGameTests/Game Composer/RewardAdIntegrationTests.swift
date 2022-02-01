@@ -1,5 +1,5 @@
 //
-//  RewardAdViewControllerTests.swift
+//  RewardAdIntegrationTests.swift
 //  My1A2BGameTests
 //
 //  Created by Ming-Ta Yang on 2021/9/27.
