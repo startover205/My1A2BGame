@@ -8,8 +8,6 @@
 
 import Foundation
 
-public typealias AsyncAfter = (TimeInterval, @escaping () -> Void) -> Void
-
 final class ExponentialBackoffDecorator<T> {
     let decoratee: T
     private let baseDelay: TimeInterval

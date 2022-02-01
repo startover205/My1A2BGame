@@ -28,6 +28,7 @@
 		C034AAC726B690F3006AABE6 /* MastermindiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C034AAC526B690F3006AABE6 /* MastermindiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0362D0D268C169200E6299B /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0362D0C268C169200E6299B /* AppDelegateTests.swift */; };
 		C03F32D22746536C008C2461 /* XCTestCase+IAPTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03F32D12746536C008C2461 /* XCTestCase+IAPTestHelpers.swift */; };
+		C0437E3E27A99930006D4C17 /* AsyncAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0437E3D27A99930006D4C17 /* AsyncAfter.swift */; };
 		C04587C5277570C90003B0E7 /* InAppPurchase.strings in Resources */ = {isa = PBXBuildFile; fileRef = C04587C7277570C90003B0E7 /* InAppPurchase.strings */; };
 		C04587CB277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04587CA277572EF0003B0E7 /* InAppPurchaseLocalizationTests.swift */; };
 		C04587CE2775C4890003B0E7 /* IAPViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04587CD2775C4890003B0E7 /* IAPViewController+TestHelpers.swift */; };
@@ -153,6 +154,7 @@
 		C034AAC526B690F3006AABE6 /* MastermindiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastermindiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0362D0C268C169200E6299B /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		C03F32D12746536C008C2461 /* XCTestCase+IAPTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+IAPTestHelpers.swift"; sourceTree = "<group>"; };
+		C0437E3D27A99930006D4C17 /* AsyncAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAfter.swift; sourceTree = "<group>"; };
 		C04587C6277570C90003B0E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InAppPurchase.strings; sourceTree = "<group>"; };
 		C04587C8277570CD0003B0E7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
 		C04587C9277570D00003B0E7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InAppPurchase.strings"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				C0A1F48326B62A1100536D73 /* More Composer */,
 				C0C0D76E26F477A500A1B16E /* WeakRefVirtualProxy.swift */,
 				C0ECEB29278AFFC700DA2733 /* ExponentialBackoffDecorator.swift */,
+				C0437E3D27A99930006D4C17 /* AsyncAfter.swift */,
 				C085BE792257566300320563 /* UIImageView+BugFix.swift */,
 				C01461A720BE6BD30023EEB6 /* LaunchScreen.storyboard */,
 				C01461A520BE6BD30023EEB6 /* Assets.xcassets */,
@@ -669,6 +672,7 @@
 				C01C40E6279E4C5C00A863E2 /* AppStoreConfig.swift in Sources */,
 				C0314882278D207E00EAB263 /* RewardAdControllerComposer.swift in Sources */,
 				C077B5DC2771A8240022F9CF /* ProductLoadingViewModel.swift in Sources */,
+				C0437E3E27A99930006D4C17 /* AsyncAfter.swift in Sources */,
 				C0748141276C674B0047A188 /* IAPProductLoader.swift in Sources */,
 				C09ADD3F2743B17100222B71 /* IAPCellController.swift in Sources */,
 				C009192026AD5E0500544115 /* GameUIComposer.swift in Sources */,
