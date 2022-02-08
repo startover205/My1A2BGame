@@ -65,7 +65,6 @@
 		C098420826D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */; };
 		C098420A26D4C3F700AE72F4 /* LoseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */; };
 		C099257E27318A6D003E322D /* NonConsumable.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C099257D2731893F003E322D /* NonConsumable.storekit */; };
-		C09925802733B0BD003E322D /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */; };
 		C09925822734D497003E322D /* UIBarButtonItem+TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */; };
 		C09925872738F7EB003E322D /* MoreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09925862738F7EB003E322D /* MoreViewControllerTests.swift */; };
 		C099258927391F0A003E322D /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C099258827391F0A003E322D /* UIView+TestHelpers.swift */; };
@@ -197,7 +196,6 @@
 		C098420726D4BD2D00AE72F4 /* LoseUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIIntegrationTests.swift; sourceTree = "<group>"; };
 		C098420926D4C3F700AE72F4 /* LoseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseUIComposer.swift; sourceTree = "<group>"; };
 		C099257D2731893F003E322D /* NonConsumable.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = NonConsumable.storekit; sourceTree = "<group>"; };
-		C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		C09925812734D497003E322D /* UIBarButtonItem+TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+TestHelper.swift"; sourceTree = "<group>"; };
 		C09925862738F7EB003E322D /* MoreViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewControllerTests.swift; sourceTree = "<group>"; };
 		C099258827391F0A003E322D /* UIView+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -436,7 +434,6 @@
 		C0E601A326ADB00A006C8D6D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				C099257F2733B0BD003E322D /* StoreKitTestCertificate.cer */,
 				C0AA3E39274882BD00F75D95 /* Unknown.storekit */,
 				C0E601A426ADB1E4006C8D6D /* XCTestCase+MemoryLeakTracking.swift */,
 				C0C3143027192F3500D1FB9F /* XCTestCase+ClearModalPresentationReference.swift */,
@@ -592,7 +589,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C099257E27318A6D003E322D /* NonConsumable.storekit in Resources */,
-				C09925802733B0BD003E322D /* StoreKitTestCertificate.cer in Resources */,
 				C0AA3E3A274890E200F75D95 /* Unknown.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
