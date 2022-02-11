@@ -159,7 +159,7 @@
 		C0D5DE6B26E9BA24001F4A0D /* RecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE6026E883A8001F4A0D /* RecordPresenter.swift */; };
 		C0D5DE7126E9EFBF001F4A0D /* CounterAppReviewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE7026E9EFBF001F4A0D /* CounterAppReviewControllerTests.swift */; };
 		C0D5DE8A26E9F2A6001F4A0D /* CounterAppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8926E9F2A6001F4A0D /* CounterAppReviewController.swift */; };
-		C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */; };
+		C0D5DE8E26E9F4CE001F4A0D /* RewardAdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5DE8D26E9F4CE001F4A0D /* RewardAdLoader.swift */; };
 		C0DBEE36271E93E9009213A0 /* AppReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBEE35271E93E9009213A0 /* AppReviewController.swift */; };
 		C0E816FB279BB0740070C58A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E816FA279BB0730070C58A /* Assets.xcassets */; };
 		C0EBE129279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EBE128279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift */; };
@@ -365,7 +365,7 @@
 		C0D5DE6926E9B977001F4A0D /* RecordSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSaveView.swift; sourceTree = "<group>"; };
 		C0D5DE7026E9EFBF001F4A0D /* CounterAppReviewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterAppReviewControllerTests.swift; sourceTree = "<group>"; };
 		C0D5DE8926E9F2A6001F4A0D /* CounterAppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterAppReviewController.swift; sourceTree = "<group>"; };
-		C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProvider.swift; sourceTree = "<group>"; };
+		C0D5DE8D26E9F4CE001F4A0D /* RewardAdLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardAdLoader.swift; sourceTree = "<group>"; };
 		C0DBEE35271E93E9009213A0 /* AppReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewController.swift; sourceTree = "<group>"; };
 		C0E816FA279BB0730070C58A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0EBE128279BB4B7007CF410 /* CountdownAlertControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownAlertControllerSnapshotTests.swift; sourceTree = "<group>"; };
@@ -949,7 +949,7 @@
 		C0D5DE8C26E9F4C5001F4A0D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0D5DE8D26E9F4CE001F4A0D /* AdProvider.swift */,
+				C0D5DE8D26E9F4CE001F4A0D /* RewardAdLoader.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1213,7 +1213,7 @@
 				C09841F026D0D49900AE72F4 /* WinViewController.swift in Sources */,
 				C0CA890426F6D9B80025F9E5 /* HelperButton.swift in Sources */,
 				C0CA890A26F70A9C0025F9E5 /* Animate.swift in Sources */,
-				C0D5DE8E26E9F4CE001F4A0D /* AdProvider.swift in Sources */,
+				C0D5DE8E26E9F4CE001F4A0D /* RewardAdLoader.swift in Sources */,
 				C0CA890C26F70AFC0025F9E5 /* HelperViewController.swift in Sources */,
 				C0CA891226F70C8E0025F9E5 /* InstructionViewController.swift in Sources */,
 				C0CA891426F70CE40025F9E5 /* GuessNumberViewController.swift in Sources */,
