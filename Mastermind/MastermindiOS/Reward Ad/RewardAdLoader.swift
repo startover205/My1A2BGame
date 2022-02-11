@@ -6,14 +6,10 @@
 //  Copyright © 2021 Ming-Ta Yang. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public protocol RewardAdLoader {
     typealias Result = Swift.Result<RewardAd, Error>
     
     func load(completion: @escaping (Result) -> Void)
-}
-
-public protocol RewardAd {
-    func present(fromRootViewController rootViewController: UIViewController, userDidEarnRewardHandler: @escaping () -> Void)
 }

@@ -123,6 +123,7 @@
 		C0BF9A7026DC7A6C006BD7C1 /* DigitSecretMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */; };
 		C0C01EEE26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C01EED26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift */; };
 		C0C01EF026FB0EEE00794856 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C01EEF26FB0EEE00794856 /* MatchResult.swift */; };
+		C0C658BD27B6399500BC40E2 /* RewardAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C658BC27B6399500BC40E2 /* RewardAd.swift */; };
 		C0CA88EC26F6D0C60025F9E5 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */; };
 		C0CA88EE26F6D1660025F9E5 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88ED26F6D1660025F9E5 /* GameView.swift */; };
 		C0CA88F026F6D1700025F9E5 /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */; };
@@ -330,6 +331,7 @@
 		C0BF9A6F26DC7A6C006BD7C1 /* DigitSecretMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatcher.swift; sourceTree = "<group>"; };
 		C0C01EED26FB0B2D00794856 /* DigitSecretMatchGuessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSecretMatchGuessTests.swift; sourceTree = "<group>"; };
 		C0C01EEF26FB0EEE00794856 /* MatchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
+		C0C658BC27B6399500BC40E2 /* RewardAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAd.swift; sourceTree = "<group>"; };
 		C0CA88EB26F6D0C60025F9E5 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		C0CA88ED26F6D1660025F9E5 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		C0CA88EF26F6D1700025F9E5 /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
@@ -522,10 +524,10 @@
 		C034AA7726B67CEA006AABE6 /* MastermindiOS */ = {
 			isa = PBXGroup;
 			children = (
+				C0D5DE8B26E9F3E5001F4A0D /* Reward Ad */,
 				C034AA9E26B67FDA006AABE6 /* Game UI */,
 				C09841F526D0D53500AE72F4 /* Win UI */,
 				C098420B26D4C72F00AE72F4 /* Lose UI */,
-				C0D5DE8B26E9F3E5001F4A0D /* Reward Ad UI */,
 				C012C50E270EC7BE00A3A7AD /* Rank UI */,
 				C034AA7926B67CEA006AABE6 /* Info.plist */,
 				C0E816FA279BB0730070C58A /* Assets.xcassets */,
@@ -938,20 +940,13 @@
 			path = "App Review";
 			sourceTree = "<group>";
 		};
-		C0D5DE8B26E9F3E5001F4A0D /* Reward Ad UI */ = {
+		C0D5DE8B26E9F3E5001F4A0D /* Reward Ad */ = {
 			isa = PBXGroup;
 			children = (
-				C0D5DE8C26E9F4C5001F4A0D /* Controllers */,
-			);
-			path = "Reward Ad UI";
-			sourceTree = "<group>";
-		};
-		C0D5DE8C26E9F4C5001F4A0D /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
+				C0C658BC27B6399500BC40E2 /* RewardAd.swift */,
 				C0D5DE8D26E9F4CE001F4A0D /* RewardAdLoader.swift */,
 			);
-			path = Controllers;
+			path = "Reward Ad";
 			sourceTree = "<group>";
 		};
 		C0EFCBE626B54BD80041A622 /* MastermindTests */ = {
@@ -1217,6 +1212,7 @@
 				C0CA890C26F70AFC0025F9E5 /* HelperViewController.swift in Sources */,
 				C0CA891226F70C8E0025F9E5 /* InstructionViewController.swift in Sources */,
 				C0CA891426F70CE40025F9E5 /* GuessNumberViewController.swift in Sources */,
+				C0C658BD27B6399500BC40E2 /* RewardAd.swift in Sources */,
 				C034AAA126B6800F006AABE6 /* NumberInputViewController.swift in Sources */,
 				C012C512270EC86400A3A7AD /* RankViewController.swift in Sources */,
 				C09841F426D0D50900AE72F4 /* RecordViewController.swift in Sources */,
