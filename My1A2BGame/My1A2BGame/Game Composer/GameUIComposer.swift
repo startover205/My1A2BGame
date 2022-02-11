@@ -77,7 +77,8 @@ public final class GameUIComposer {
         let gamePresentationAdapter = GamePresentationAdapter(
             gameController: gameViewController,
             maxGuessCount: gameVersion.maxGuessCount,
-            secret: secret, delegate: delegate,
+            secret: secret,
+            delegate: delegate,
             currentDeviceTime: currentDeviceTime,
             onWin: onWin,
             onLose: onLose)
