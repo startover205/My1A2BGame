@@ -1,12 +1,12 @@
-# 1A2B fun!
+# 1A2B Fun!
 [![CI](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml/badge.svg)](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml) [![Deploy](https://github.com/startover205/My1A2BGame/actions/workflows/Deploy.yml/badge.svg)](https://github.com/startover205/My1A2BGame/actions/workflows/Deploy.yml)
 
-Hi! I'm Sam. "1A2B fun!" was the first project I uploaded in the app store in 2018.
+Hi! I'm Sam. **1A2B Fun!** was the first project I uploaded in the app store in 2018.
 I've refactor the code to use **modular design** to show that how we can decouple the code to create a more flexible, composable structure.
-*The project only acts as a demonstration. In reality, it depends on the use cases to decide how modular our code should be.
+> **_NOTE:_**  The project only acts as a demonstration. In reality, it depends on the use cases to decide how modular our code should be.
 
 ## What I did:
-  - Separate a single application into frameworks, so the `Mastermind`, `MastermindiOS` frameworks can be re-used.
+  - Separate a single application into frameworks, so the `Mastermind`, `MastermindiOS` frameworks can be re-used across multiple projects.
   - Separate a single project into two projects for better management.
   - UI Design with MVP pattern.
   - UI Design with MVP pattern.
@@ -25,8 +25,9 @@ I've refactor the code to use **modular design** to show that how we can decoupl
   - To run all the test, choose `CI` scheme
 
 ## App Screenshots  
-<img src="gameScene.png" width="390" alt="game scene"/>
-<img src="rankScene.png" width="390" alt="rank scene"/>
+Game Scene                 |  Rank Scene
+:-------------------------:|:-------------------------:
+![](gameScene.png)         |  ![](rankScene.png)
 
 ##  App Architecture
 ![](architecture.png)
