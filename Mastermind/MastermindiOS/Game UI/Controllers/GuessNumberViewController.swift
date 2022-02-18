@@ -33,7 +33,6 @@ public class GuessNumberViewController: UIViewController {
     
     public var animate: Animate?
     
-    // 觸覺回饋
     private var feedbackGenerator: UINotificationFeedbackGenerator?
     
     public override func viewDidLoad() {
