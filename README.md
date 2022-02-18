@@ -1,7 +1,32 @@
-# My1A2BGame
+# 1A2B fun!
+[![CI](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml/badge.svg)](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml) [![Deploy](https://github.com/startover205/My1A2BGame/actions/workflows/Deploy.yml/badge.svg)](https://github.com/startover205/My1A2BGame/actions/workflows/Deploy.yml)
 
-[![CI](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml/badge.svg)](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml)
+Hi! I'm Sam. "1A2B fun!" was the first project I uploaded in the app store in 2018.
+I've refactor the code to use **modular design** to show that how we can decouple the code to create a more flexible, composable structure.
+*The project only acts as a demonstration. In reality, it depends on the use cases to decide how modular our code should be.
 
-A sample app to demonstrate modular design and testing.
+## What I did:
+  - Separate a single application into frameworks, so the `Mastermind`, `MastermindiOS` frameworks can be re-used.
+  - Separate a single project into two projects for better management.
+  - UI Design with MVP pattern.
+  - UI Design with MVP pattern.
+  - Support Darkmode.
+  - Support multiple languages with localized string.
+  - Snapshot testing.
+  - Unit testing.
+  - Integration testing.
+  - Acceptance testing.
+  - CI/CD (using Github Action).
 
-![image](https://user-images.githubusercontent.com/37997654/40776634-e73363da-64fd-11e8-87fb-05c2d41a6f23.png)
+## How to run:
+  - Clone the repository
+  - Open My1A2BGame.xcworkspace
+  - To run the application, choose `My1A2BGame` scheme
+  - To run all the test, choose `CI` scheme
+
+## App Screenshots  
+<img src="gameScene.png" width="390" alt="game scene"/>
+<img src="rankScene.png" width="390" alt="rank scene"/>
+
+##  App Architecture
+![](architecture.png)
