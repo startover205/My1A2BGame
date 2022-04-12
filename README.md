@@ -9,7 +9,6 @@ I've refactor the code to use **modular design** to show that how we can decoupl
   - Separate a single application into frameworks, so the `Mastermind`, `MastermindiOS` frameworks can be re-used across multiple projects.
   - Separate a single project into two projects for better management.
   - UI Design with MVP pattern.
-  - UI Design with MVP pattern.
   - Support Darkmode.
   - Support multiple languages with localized string.
   - Snapshot testing.
