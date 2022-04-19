@@ -2,7 +2,9 @@
 [![CI](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml/badge.svg)](https://github.com/startover205/My1A2BGame/actions/workflows/CI.yml) [![Deploy](https://github.com/startover205/My1A2BGame/actions/workflows/Deploy.yml/badge.svg)](https://github.com/startover205/My1A2BGame/actions/workflows/Deploy.yml)
 
 Hi! I'm Sam. **1A2B Fun!** was the first project I uploaded in the app store in 2018.
-I've refactor the code to use **modular design** to show that how we can decouple the code to create a more flexible, composable structure.
+I've refactor the code to use **modular design** to show that how we can decouple the code to create a more flexible, composable structure.  
+The App Store page can be found [here](https://apps.apple.com/app/id1459347669).
+
 > **_NOTE:_**  The project only acts as a demonstration. In reality, it depends on the use cases to decide how modular our code should be.
 
 ## What I did:
