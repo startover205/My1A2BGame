@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -540,7 +540,6 @@
 			children = (
 				C034AA9C26B67EBA006AABE6 /* Info.plist */,
 				C034AAA626B680D6006AABE6 /* Game UI */,
-				C09841FD26D0D5EC00AE72F4 /* Win UI */,
 				C034AAB126B680D6006AABE6 /* Helpers */,
 			);
 			path = MastermindiOSTests;
@@ -739,13 +738,6 @@
 				C09841F826D0D56200AE72F4 /* Win.storyboard */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C09841FD26D0D5EC00AE72F4 /* Win UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Win UI";
 			sourceTree = "<group>";
 		};
 		C098420B26D4C72F00AE72F4 /* Lose UI */ = {
