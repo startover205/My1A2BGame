@@ -8,6 +8,6 @@
 
 enum GoogleAPIKeys {
     static let bottomAdID = "ca-app-pub-3940256099942544/2934735716"
-    static let rewardAdID = "ca-app-pub-1287774922601866/3704195420"
+    static let rewardAdID = "ca-app-pub-3940256099942544/1712485313"
 }
 
