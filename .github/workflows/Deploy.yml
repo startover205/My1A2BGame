@@ -46,7 +46,7 @@ jobs:
       run: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $GITHUB_RUN_NUMBER" "My1A2BGame/My1A2BGame/Info.plist"
 
     - name: Build
-      run: xcodebuild clean archive -sdk iphoneos -workspace My1A2BGame/My1A2BGame.xcworkspace -configuration "Release" -scheme "My1A2BGame" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/My1A2BGame.xcarchive"
+      run: xcodebuild clean archive -sdk iphoneos -workspace My1A2BGame.xcworkspace -configuration "Release" -scheme "My1A2BGame" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/My1A2BGame.xcarchive"
     
     - name: Export
       run: xcodebuild -exportArchive -archivePath DerivedData/Archive/My1A2BGame.xcarchive -exportOptionsPlist .github/deployment/ExportOptions.plist -exportPath DerivedData/ipa
