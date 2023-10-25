@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Mastermind/Mastermind.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:My1A2BGame/My1A2BGame.xcodeproj">
+   </FileRef>
+</Workspace>
