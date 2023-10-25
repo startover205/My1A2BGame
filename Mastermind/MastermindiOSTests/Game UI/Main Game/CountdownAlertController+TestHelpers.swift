@@ -6,7 +6,6 @@
 //  Copyright © 2022 Ming-Ta Yang. All rights reserved.
 //
 
-import My1A2BGame
 import MastermindiOS
 
 extension CountdownAlertController {
