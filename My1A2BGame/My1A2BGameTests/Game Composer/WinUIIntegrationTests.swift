@@ -127,7 +127,7 @@ class WinUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.simulateUserInitiatedShareAction()
         
-        RunLoop.current.run(until: Date())
+        RunLoop.current.run(until: Date() + 0.3)
         
         XCTAssertEqual(capturedItems?.count, 3, "Expect shared items count to be exactly 3")
         
@@ -282,7 +282,7 @@ class WinUIIntegrationTests: XCTestCase {
     }
     
     private func executeRunLoopToCleanUpReferences() {
-        RunLoop.current.run(until: Date())
+        RunLoop.current.run(until: Date() + 0.3)
     }
     
     private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
