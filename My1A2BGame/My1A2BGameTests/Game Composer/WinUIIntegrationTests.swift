@@ -127,7 +127,7 @@ class WinUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.simulateUserInitiatedShareAction()
         
-        RunLoop.current.run(until: Date() + 0.3)
+        executeRunLoopToCleanUpReferences(prolongTime: 0.3)
         
         XCTAssertEqual(capturedItems?.count, 3, "Expect shared items count to be exactly 3")
         
@@ -181,7 +181,7 @@ class WinUIIntegrationTests: XCTestCase {
 
         XCTAssertFalse(sut.isKeyboardShowing, "expect keyboard dismiss after user sent out input")
         
-        RunLoop.current.run(until: Date())
+        executeRunLoopToCleanUpReferences()
     }
     
     func test_saveRecord_requestStoreToSavePlayerRecord() {
@@ -261,7 +261,7 @@ class WinUIIntegrationTests: XCTestCase {
         
         XCTAssertFalse(sut.isKeyboardShowing)
         
-        RunLoop.current.run(until: Date())
+        executeRunLoopToCleanUpReferences()
     }
     
     // MARK: Helpers
@@ -281,8 +281,8 @@ class WinUIIntegrationTests: XCTestCase {
         Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
     
-    private func executeRunLoopToCleanUpReferences() {
-        RunLoop.current.run(until: Date() + 0.3)
+    private func executeRunLoopToCleanUpReferences(prolongTime: TimeInterval = 0.0) {
+        RunLoop.current.run(until: Date() + prolongTime)
     }
     
     private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
