@@ -124,6 +124,7 @@ class IAPAcceptanceTests: XCTestCase {
         try createLocalTestSession()
         let _ = tabController.iapController()
         
+        tabController.simulateViewAppear()
         XCTAssertEqual(loader.loadCallCount, 1, "Expect refresh after view load")
 
         simulateBuying(oneValidProduct(), observer: transactionObserver, paymentQueue: paymentQueue)

@@ -38,6 +38,7 @@ class IAPUIIntegrationTests: XCTestCase {
         let product2 = makeProduct(identifier: "another product identifier", name: "another product name", price: 1.99)
         
         sut.loadViewIfNeeded()
+        sut.simulateViewAppear()
         assertThat(sut, isRendering: [])
 
         loader.completeLoading(with: [product1, product2], at: 0)
@@ -60,6 +61,7 @@ class IAPUIIntegrationTests: XCTestCase {
         let (sut, loader) = makeSUT()
 
         sut.loadViewIfNeeded()
+        sut.simulateViewAppear()
         XCTAssertEqual(sut.resultMessage(), nil)
 
         loader.completeLoading(with: [], at: 0)
@@ -77,7 +79,8 @@ class IAPUIIntegrationTests: XCTestCase {
         let (sut, loader) = makeSUT(paymentQueue: paymentQueue, canMakePayment: { false })
         let container = TestingContainerViewController(sut)
         let product = makeProduct()
-
+        
+        sut.simulateViewAppear()
         loader.completeLoading(with: [product])
 
         sut.simulateOnTapProduct(at: 0)
@@ -97,6 +100,7 @@ class IAPUIIntegrationTests: XCTestCase {
         let container = TestingContainerViewController(sut)
         let product = makeProduct()
 
+        sut.simulateViewAppear()
         loader.completeLoading(with: [product])
         sut.simulateOnTapProduct(at: 0)
         
@@ -109,6 +113,7 @@ class IAPUIIntegrationTests: XCTestCase {
         let exp = expectation(description: "wait for product loading")
         
         sut.loadViewIfNeeded()
+        sut.simulateViewAppear()
         DispatchQueue.global().async {
             loader.completeLoading(with: [])
             exp.fulfill()
