@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "B94808AA-8D09-46A4-B4E9-C15D0E34D8D5",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/Mastermind\/Mastermind.xcodeproj",
+        "identifier" : "C0EFCBE426B54BD80041A622",
+        "name" : "MastermindTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Mastermind\/Mastermind.xcodeproj",
+        "identifier" : "C034AA9026B67E7A006AABE6",
+        "name" : "MastermindiOSTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:My1A2BGame.xcodeproj",
+        "identifier" : "C07D1A5F23BCDAEE00197857",
+        "name" : "My1A2BGameTests"
+      }
+    }
+  ],
+  "version" : 1
+}
