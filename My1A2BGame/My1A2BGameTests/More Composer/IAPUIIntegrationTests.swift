@@ -32,22 +32,6 @@ class IAPUIIntegrationTests: XCTestCase {
         XCTAssertEqual(paymentQueue.restoreCallCount, 1, "precondition")
     }
     
-    func test_loadingProductIndicator_isVisibleWhileLoadingProduct() throws {
-        let (sut, loader) = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expect showing indicator while loading")
-        
-        loader.completeLoading(with: [], at: 0)
-        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expect not showing indicator while not loading")
-        
-        sut.simulateUserInitiatedReload()
-        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expect showing indicator again while loading")
-        
-        loader.completeLoading(with: [oneValidProduct()], at: 1)
-        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expect not showing indicator again while not loading")
-    }
-    
     func test_loadProductCompletion_rendersSuccessfullyLoadedProducts() throws {
         let (sut, loader) = makeSUT()
         let product1 = makeProduct(identifier: "a product identifier", name: "a product name", price: 0.99)

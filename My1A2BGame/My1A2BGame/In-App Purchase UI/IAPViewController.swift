@@ -20,10 +20,16 @@ public class IAPViewController: UITableViewController {
     var onRefresh: (() -> Void)?
     var onRestoreCompletedTransactions: (() -> Void)?
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    private var isFirstAppear = true
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        refresh()
+        if isFirstAppear {
+            isFirstAppear = false
+            
+            refresh()
+        }
     }
     
     @IBAction func reloadProducts(_ sender: Any) {
