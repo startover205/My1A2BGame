@@ -11,13 +11,17 @@ import Mastermind
 import MastermindiOS
 import AVFoundation
 
+extension AVSpeechSynthesizer {
+    static let shared = AVSpeechSynthesizer()
+}
+
 public final class GameUIComposer {
     private init() {}
     
     public static func gameComposedWith(
         gameVersion: GameVersion,
         userDefaults: UserDefaults,
-        speechSynthesizer: AVSpeechSynthesizer = .init(),
+        speechSynthesizer: AVSpeechSynthesizer,
         secret: DigitSecret,
         delegate: ReplenishChanceDelegate,
         currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,

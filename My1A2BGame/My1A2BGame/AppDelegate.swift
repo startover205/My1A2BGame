@@ -277,6 +277,7 @@ extension AppDelegate {
         let controller = GameUIComposer.gameComposedWith(
             gameVersion: gameVersion,
             userDefaults: userDefaults,
+            speechSynthesizer: .shared,
             secret: secret,
             delegate: rewardAdViewController,
             onWin: { score in
