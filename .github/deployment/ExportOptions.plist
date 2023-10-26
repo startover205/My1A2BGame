@@ -23,7 +23,7 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.samsapplab.1a2bfun</key>
-		<string>profile.mobileprovision</string>
+		<string>1A2B fun! (Production)</string>
 	</dict>
 </dict>
 </plist>
