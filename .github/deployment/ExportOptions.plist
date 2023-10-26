@@ -20,5 +20,10 @@
 	<false/>
 	<key>uploadSymbols</key>
 	<true/>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.samsapplab.1a2bfun</key>
+		<string>profile.mobileprovision</string>
+	</dict>
 </dict>
 </plist>
