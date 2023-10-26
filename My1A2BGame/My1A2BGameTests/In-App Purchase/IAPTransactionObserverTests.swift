@@ -95,26 +95,20 @@ class IAPTransactionObserverTests: XCTestCase {
         XCTAssertEqual(handlerCallCount, 0)
     }
     
-    func test_handleTransaction_notifiesHandlerError_onFailedTransaction() throws {
+    @available(iOS 17.0, *)
+    func test_handleTransaction_notifiesHandlerError_onFailedTransaction() async throws {
         let (sut, paymentQueue) = makeSUT()
-        let failureError = SKError(.invalidOfferIdentifier)
         let session = try createLocalTestSession()
-        session.failTransactionsEnabled = true
-        session.failureError = failureError.code
-        let exp = expectation(description: "wait for transaction")
-        exp.assertForOverFulfill = false
+        try await session.setSimulatedError(.generic(.unknown), forAPI: .purchase)
         
+        let exp = expectation(description: "wait for transaction")
         sut.onTransactionError = { error in
-            let error = error! as NSError
-            let failureError = failureError as NSError
-            XCTAssertEqual(error.domain, failureError.domain)
-            XCTAssertEqual(error.code, failureError.code)
-            
+            // we don't compare the error here since all error transform to unknown error under StoreKit2
             exp.fulfill()
         }
         paymentQueue.add(SKPayment(product: oneValidProduct()))
         
-        wait(for: [exp], timeout: 90.0)
+        await fulfillment(of: [exp], timeout: 5.0)
     }
     
     func test_handleTransaction_doesNotFinishesTransactionWithNoHandler_onFailedTransaction() throws {
