@@ -13,6 +13,7 @@ import AppTrackingTransparency
 import Mastermind
 import MastermindiOS
 import MessageUI
+import UserMessagingPlatform
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -250,15 +251,49 @@ extension AppDelegate {
     private func startNewBasicGame() {
         let gameVersion = basicGameVersion
         let secret = secretGenerator(gameVersion.digitCount)
-        let gameController = makeGameController(
+        var gameController: UIViewController?
+        gameController = makeGameController(
             navigationController: basicGameNavigationController,
             secret: secret,
             gameVersion: gameVersion,
             recordLoader: basicRecordLoader,
-            onViewLoaded: nil,
+            onViewLoaded: {
+                self.requestConsentInformation(hostVC: gameController!)
+            },
             onRestart: startNewBasicGame)
         
-        basicGameNavigationController.setViewControllers([gameController], animated: false)
+        basicGameNavigationController.setViewControllers([gameController!], animated: false)
+    }
+    
+    private func requestConsentInformation(hostVC: UIViewController) {
+        // Create a UMPRequestParameters object.
+        let parameters = UMPRequestParameters()
+        // Set tag for under age of consent. false means users are not under age
+        // of consent.
+        parameters.tagForUnderAgeOfConsent = false
+        
+        // Request an update for the consent information.
+        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) {
+            [weak self] error in
+            guard let self else { return }
+            
+            if let error {
+                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while requesting consent: \(error)-")
+                return
+            }
+            
+            UMPConsentForm.loadAndPresentIfRequired(from: hostVC) {
+                [weak self] error in
+                guard let self else { return }
+                
+                if let error {
+                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading and presenting consent form: \(error)-")
+                    return
+                }
+                
+                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-consent has been gathered-")
+              }
+        }
     }
     
     private func startNewAdvancedGame() {
