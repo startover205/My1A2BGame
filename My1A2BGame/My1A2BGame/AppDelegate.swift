@@ -255,6 +255,7 @@ extension AppDelegate {
             secret: secret,
             gameVersion: gameVersion,
             recordLoader: basicRecordLoader,
+            onViewLoaded: nil,
             onRestart: startNewBasicGame)
         
         basicGameNavigationController.setViewControllers([gameController], animated: false)
@@ -268,18 +269,20 @@ extension AppDelegate {
             secret: secret,
             gameVersion: gameVersion,
             recordLoader: advancedRecordLoader,
+            onViewLoaded: nil,
             onRestart: startNewAdvancedGame)
         
         advancedGameNavigationController.setViewControllers([gameController], animated: false)
     }
     
-    private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onRestart: @escaping () -> Void) -> GuessNumberViewController {
+    private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onViewLoaded: (() -> Void)?, onRestart: @escaping () -> Void) -> GuessNumberViewController {
         let controller = GameUIComposer.gameComposedWith(
             gameVersion: gameVersion,
             userDefaults: userDefaults,
             speechSynthesizer: .shared,
             secret: secret,
             delegate: rewardAdViewController,
+            onViewLoaded: onViewLoaded,
             onWin: { score in
                 let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader, appDownloadURL: AppStoreConfig.appStoreDownloadUrl)
                 navigationController.pushViewController(winController, animated: true)

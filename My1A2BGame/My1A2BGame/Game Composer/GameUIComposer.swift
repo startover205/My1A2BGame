@@ -25,6 +25,7 @@ public final class GameUIComposer {
         secret: DigitSecret,
         delegate: ReplenishChanceDelegate,
         currentDeviceTime: @escaping () -> TimeInterval = CACurrentMediaTime,
+        onViewLoaded: (() -> Void)?,
         onWin: @escaping (Score) -> Void,
         onLose: @escaping () -> Void,
         onRestart: @escaping () -> Void,
@@ -55,6 +56,7 @@ public final class GameUIComposer {
             })
         gameViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: voicePromptViewController.view)
         
+        gameViewController.onViewLoaded = onViewLoaded
         gameViewController.onRestart = onRestart
         gameViewController.animate = animate
         
