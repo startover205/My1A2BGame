@@ -453,13 +453,9 @@ extension AppDelegate {
                         guard UIApplication.shared.applicationState == .active else { return }
                         
                         ATTrackingManager.requestTrackingAuthorization { _ in
-                            print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]--")
-
                             startGoogleMobileAdsSDK()
                         }
                     } else {
-                        print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]--")
-
                         startGoogleMobileAdsSDK()
                     }
                 } else {
