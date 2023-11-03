@@ -278,44 +278,9 @@ extension AppDelegate {
             secret: secret,
             gameVersion: gameVersion,
             recordLoader: basicRecordLoader,
-            onViewLoaded: {
-                self.requestConsentInformation(hostVC: gameController!)
-            },
             onRestart: startNewBasicGame)
         
         basicGameNavigationController.setViewControllers([gameController!], animated: false)
-    }
-    
-    private func requestConsentInformation(hostVC: UIViewController) {
-//        // Create a UMPRequestParameters object.
-//        let parameters = UMPRequestParameters()
-//        // Set tag for under age of consent. false means users are not under age
-//        // of consent.
-//        parameters.tagForUnderAgeOfConsent = false
-//        
-//        // Request an update for the consent information.
-//        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) {
-//            [weak self] error in
-//            guard let self else { return }
-//            
-//            if let error {
-//                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while requesting consent: \(error)-")
-//                return
-//            }
-//            
-//            UMPConsentForm.loadAndPresentIfRequired(from: hostVC) {
-//                [weak self] error in
-//                guard let self else { return }
-//                
-//                if let error {
-//                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading and presenting consent form: \(error)-")
-//                    return
-//                }
-//                
-//                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-consent has been gathered-")
-////                GADMobileAds.sharedInstance(). .start()
-//            }
-//        }
     }
     
     private func startNewAdvancedGame() {
@@ -326,20 +291,18 @@ extension AppDelegate {
             secret: secret,
             gameVersion: gameVersion,
             recordLoader: advancedRecordLoader,
-            onViewLoaded: nil,
             onRestart: startNewAdvancedGame)
         
         advancedGameNavigationController.setViewControllers([gameController], animated: false)
     }
     
-    private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onViewLoaded: (() -> Void)?, onRestart: @escaping () -> Void) -> GuessNumberViewController {
+    private func makeGameController(navigationController: UINavigationController, secret: DigitSecret, gameVersion: GameVersion, recordLoader: RecordLoader, onRestart: @escaping () -> Void) -> GuessNumberViewController {
         let controller = GameUIComposer.gameComposedWith(
             gameVersion: gameVersion,
             userDefaults: userDefaults,
             speechSynthesizer: .shared,
             secret: secret,
             delegate: rewardAdViewController,
-            onViewLoaded: onViewLoaded,
             onWin: { score in
                 let winController = WinUIComposer.winComposedWith(score: score, digitCount: gameVersion.digitCount, recordLoader: recordLoader, appDownloadURL: AppStoreConfig.appStoreDownloadUrl)
                 navigationController.pushViewController(winController, animated: true)

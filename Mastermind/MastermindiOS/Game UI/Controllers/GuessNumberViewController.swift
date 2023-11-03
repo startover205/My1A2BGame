@@ -18,7 +18,6 @@ public class GuessNumberViewController: UIViewController {
     public var onTapGiveUp: (() -> Void)?
     public var onConfirmGiveUp: (() -> Void)?
     public var onGuessButtonPressed: (() -> Void)?
-    public var onViewLoaded: (() -> Void)?
     public var delegate: GuessNumberViewControllerDelegate?
     public var viewModel: GameSceneViewModel?
     
@@ -51,8 +50,6 @@ public class GuessNumberViewController: UIViewController {
         fadeOutViews.forEach { $0.alpha = 0 }
         
         delegate?.didRequestLeftChanceCountUpdate()
-        
-        onViewLoaded?()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
