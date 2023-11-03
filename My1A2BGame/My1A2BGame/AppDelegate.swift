@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced
     private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
-    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID)
+    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID, canLoadAd: { self.hasInitializedGoogleAdSDK })
     private lazy var rewardAdViewController = RewardAdControllerComposer.rewardAdComposedWith(
         loader: rewardAdLoader,
         rewardChanceCount: 5,
@@ -148,7 +148,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             bannerAd.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(bannerWidth)
             bannerAd.rootViewController = tabController
             bannerAd.adUnitID = GoogleAPIKeys.bottomAdID
-            bannerAd.load(GADRequest())
             
             tabBar.addSubview(bannerAd)
             bannerAd.translatesAutoresizingMaskIntoConstraints = false

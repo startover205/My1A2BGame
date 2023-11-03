@@ -53,6 +53,26 @@ class GoogleRewardAdLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_load_deliversFailureIfCanNotLoadAd() {
+        let sut = makeSUT(canLoadAd: { false })
+        let spy = GADRewardedAd.loadingSpy()
+        spy.startIntercepting()
+        let exp = expectation(description: "wait for loading")
+        
+        sut.load() { result in
+            switch result {
+            case .failure:
+                break
+            case .success:
+                XCTFail("Expect failure case")
+            }
+            exp.fulfill()
+        }
+        spy.completeLoadingWithEmptyAd()
+
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     func test_load_deliversAdOnSuccessfulLoading() {
         let adUnitID = testUnitID()
         let sut = makeSUT(adUnitID: adUnitID)
@@ -90,8 +110,8 @@ class GoogleRewardAdLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(adUnitID: String = "", file: StaticString = #filePath, line: UInt = #line) -> GoogleRewardAdLoader {
-        let sut = GoogleRewardAdLoader(adUnitID: adUnitID)
+    private func makeSUT(adUnitID: String = "", canLoadAd: @escaping () -> Bool = { true }, file: StaticString = #filePath, line: UInt = #line) -> GoogleRewardAdLoader {
+        let sut = GoogleRewardAdLoader(adUnitID: adUnitID, canLoadAd: canLoadAd)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

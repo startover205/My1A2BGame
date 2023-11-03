@@ -11,14 +11,22 @@ import GoogleMobileAds
 
 public final class GoogleRewardAdLoader: RewardAdLoader {
     private let adUnitID: String
+    private let canLoadAd: () -> Bool
     
-    public init(adUnitID: String) {
+    public init(adUnitID: String, canLoadAd: @escaping () -> Bool) {
         self.adUnitID = adUnitID
+        self.canLoadAd = canLoadAd
     }
     
     private struct UnexpectedValuesRepresentation: Error {}
+    private struct CanNotLoadAdError: Error {}
     
     public func load(completion: @escaping (RewardAdLoader.Result) -> Void) {
+        guard canLoadAd() else {
+            completion(.failure(CanNotLoadAdError()))
+            return
+        }
+        
         GADRewardedAd.load(withAdUnitID: adUnitID, request: nil) { [weak self] ad, error in
             guard self != nil else { return }
             
