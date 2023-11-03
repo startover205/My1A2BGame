@@ -97,18 +97,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
-                GADMobileAds.sharedInstance().start()
-            })
-        } else {
-            GADMobileAds.sharedInstance().start()
-        }
-        
         window = UIWindow(frame: UIScreen.main.bounds)
         configureWindow()
         
         return true
+    }
+    
+    private var isFirstActive = true
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if isFirstActive {
+            isFirstActive = false
+            
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
+                    GADMobileAds.sharedInstance().start()
+                })
+            } else {
+                GADMobileAds.sharedInstance().start()
+            }
+        }
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -292,7 +300,8 @@ extension AppDelegate {
                 }
                 
                 print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-consent has been gathered-")
-              }
+                GADMobileAds.sharedInstance().start()
+            }
         }
     }
     
