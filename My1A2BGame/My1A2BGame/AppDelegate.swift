@@ -51,7 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var userDefaults: UserDefaults = .standard
     
-    private weak var bannerAd: UIView?
+    private weak var bannerAd: GADBannerView?
+    private var hasInitializedGoogleAdSDK = false
+
     private var hasPurchasedRemovingAd: Bool { userDefaults.bool(forKey: UserDefaultsKeys.removeBottomAd) }
     private lazy var allProductIDs: [String] = [IAPProduct.removeBottomAd]
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
@@ -100,6 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         configureWindow()
         
+        // load immediatly if authorization is ready
+        initializeGoogleAdSDKIfNeeded(completion: {})
+        
         return true
     }
     
@@ -109,12 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isFirstActive {
             isFirstActive = false
             
-            if #available(iOS 14, *) {
-                ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
-                    GADMobileAds.sharedInstance().start()
-                })
-            } else {
-                GADMobileAds.sharedInstance().start()
+            // load again if previous timing is not ready
+            initializeGoogleAdSDKIfNeeded {
+                self.setAdForBannerIfReadyAndNeeded()
             }
         }
     }
@@ -159,7 +161,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 child.additionalSafeAreaInsets = newInset
             }
             self.bannerAd = bannerAd
+            
+            self.setAdForBannerIfReadyAndNeeded()
         }
+    }
+    
+    private var hasSetAdForBanner = false
+
+    private func setAdForBannerIfReadyAndNeeded() {
+        guard !hasSetAdForBanner, hasInitializedGoogleAdSDK else { return }
+        hasSetAdForBanner = true
+        
+        bannerAd?.load(GADRequest())
     }
     
     private func configureIAPTransactionObserver() {
@@ -274,35 +287,35 @@ extension AppDelegate {
     }
     
     private func requestConsentInformation(hostVC: UIViewController) {
-        // Create a UMPRequestParameters object.
-        let parameters = UMPRequestParameters()
-        // Set tag for under age of consent. false means users are not under age
-        // of consent.
-        parameters.tagForUnderAgeOfConsent = false
-        
-        // Request an update for the consent information.
-        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) {
-            [weak self] error in
-            guard let self else { return }
-            
-            if let error {
-                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while requesting consent: \(error)-")
-                return
-            }
-            
-            UMPConsentForm.loadAndPresentIfRequired(from: hostVC) {
-                [weak self] error in
-                guard let self else { return }
-                
-                if let error {
-                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading and presenting consent form: \(error)-")
-                    return
-                }
-                
-                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-consent has been gathered-")
-                GADMobileAds.sharedInstance().start()
-            }
-        }
+//        // Create a UMPRequestParameters object.
+//        let parameters = UMPRequestParameters()
+//        // Set tag for under age of consent. false means users are not under age
+//        // of consent.
+//        parameters.tagForUnderAgeOfConsent = false
+//        
+//        // Request an update for the consent information.
+//        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) {
+//            [weak self] error in
+//            guard let self else { return }
+//            
+//            if let error {
+//                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while requesting consent: \(error)-")
+//                return
+//            }
+//            
+//            UMPConsentForm.loadAndPresentIfRequired(from: hostVC) {
+//                [weak self] error in
+//                guard let self else { return }
+//                
+//                if let error {
+//                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading and presenting consent form: \(error)-")
+//                    return
+//                }
+//                
+//                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-consent has been gathered-")
+////                GADMobileAds.sharedInstance(). .start()
+//            }
+//        }
     }
     
     private func startNewAdvancedGame() {
@@ -431,4 +444,100 @@ extension AppDelegate: MFMailComposeViewControllerDelegate {
     }
 }
 
+// MARK: - GoogleAd
+extension AppDelegate {
+    /// This method should be called in both `appDidFinsiheLaunch` and the first time `appBecomesActive` to reduce latency of loading ads.
+    public func initializeGoogleAdSDKIfNeeded(completion: @escaping () -> Void) {
+        guard !hasInitializedGoogleAdSDK else {
+            completion()
+            return
+        }
+        
+        func startGoogleMobileAdsSDK() {
+            DispatchQueue.main.async { [self] in
+                guard !hasInitializedGoogleAdSDK else { return }
+                
+                GADMobileAds.sharedInstance().start()
+                hasInitializedGoogleAdSDK = true
+                completion()
+            }
+        }
+        
+        let parameters = UMPRequestParameters()
+        parameters.tagForUnderAgeOfConsent = false
+        
+        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) { [weak self] error in
+            guard let self else { return }
+
+            if let error {
+                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while requesting consent info update: \(error)-")
+                return
+            }
+            
+            guard let topVC = self.topViewController() else {
+                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-topVC not ready to present UMPConsentForm-")
+                return
+            }
+            
+            UMPConsentForm.loadAndPresentIfRequired(from: topVC) { error in
+                if let error {
+                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading ad: \(error)-")
+                    return
+                }
+                
+                if #available(iOS 14, *) {
+                    if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
+                        // app not ready to `requestTrackingAuthorization`, wait until the next call
+                        guard UIApplication.shared.applicationState == .active else { return }
+                        
+                        ATTrackingManager.requestTrackingAuthorization { _ in
+                            print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]--")
+
+                            startGoogleMobileAdsSDK()
+                        }
+                    } else {
+                        print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]--")
+
+                        startGoogleMobileAdsSDK()
+                    }
+                } else {
+                    startGoogleMobileAdsSDK()
+                }
+            }
+        }
+        
+        // load ad immediatly if possible to reduce latency
+        if #available(iOS 14, *) {
+            if UMPConsentInformation.sharedInstance.canRequestAds, ATTrackingManager.trackingAuthorizationStatus != .notDetermined {
+                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]--")
+
+                startGoogleMobileAdsSDK()
+                return
+            }
+        } else {
+            if UMPConsentInformation.sharedInstance.canRequestAds {
+                startGoogleMobileAdsSDK()
+                return
+            }
+        }
+    }
+    
+    private func topViewController() -> UIViewController? {
+        let keyWindow = UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .first(where: { $0 is UIWindowScene })
+            .flatMap({ $0 as? UIWindowScene })?.windows
+            .first(where: \.isKeyWindow)
+        
+        if var topController = keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            return topController
+        }
+        
+        return nil
+    }
+}
 
