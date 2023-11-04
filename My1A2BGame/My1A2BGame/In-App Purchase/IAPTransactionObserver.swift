@@ -20,6 +20,10 @@ public class IAPTransactionObserver: NSObject, SKPaymentTransactionObserver {
     public var onRestorationFinishedWithError: ((Error) -> Void)?
     public var onRestorationFinished: ((_ hasRestorableContent: Bool) -> Void)?
     
+    public func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
+        true
+    }
+    
     public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             
