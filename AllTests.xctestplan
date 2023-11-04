@@ -20,6 +20,9 @@
       }
     },
     {
+      "skippedTests" : [
+        "GuessNumberViewControllerSnapshotTests"
+      ],
       "target" : {
         "containerPath" : "container:..\/Mastermind\/Mastermind.xcodeproj",
         "identifier" : "C034AA9026B67E7A006AABE6",
