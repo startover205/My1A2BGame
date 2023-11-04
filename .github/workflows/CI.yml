@@ -15,9 +15,8 @@ jobs:
     timeout-minutes: 30
 
     steps:
-     - name: Install yeetd to solve Xcode15 slowness
-       run:
-           wget https://github.com/biscuitehh/yeetd/releases/download/1.0/yeetd-normal.pkg
+      - name: Install yeetd to solve Xcode15 slowness
+        run: wget https://github.com/biscuitehh/yeetd/releases/download/1.0/yeetd-normal.pkg
            sudo installer -pkg yeetd-normal.pkg -target /
            yeetd &
         
