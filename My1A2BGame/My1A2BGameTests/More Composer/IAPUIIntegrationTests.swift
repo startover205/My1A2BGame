@@ -166,10 +166,6 @@ class IAPUIIntegrationTests: XCTestCase {
         XCTAssertEqual(view?.detailTextLabel?.text, product.price, "Expected price text to be \(String(describing: product.price)) for product view at index (\(index))", file: file, line: line)
     }
     
-    private func executeRunLoopToCleanUpReferences(prolongTime: TimeInterval = 0.0) {
-        RunLoop.current.run(until: Date() + prolongTime)
-    }
-    
     private final class SKPaymentQueueSpy: SKPaymentQueue {
         private(set) var restoreCallCount = 0
         private(set) var capturedProductID: String?

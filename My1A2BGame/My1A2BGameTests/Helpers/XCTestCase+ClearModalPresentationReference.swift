@@ -16,4 +16,8 @@ extension XCTestCase {
         }
         waitForExpectations(timeout: 3)
     }
+    
+    func executeRunLoopToCleanUpReferences(prolongTime: TimeInterval = 0.0) {
+        RunLoop.current.run(until: Date() + prolongTime)
+    }
 }

@@ -281,10 +281,6 @@ class WinUIIntegrationTests: XCTestCase {
         Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
     
-    private func executeRunLoopToCleanUpReferences(prolongTime: TimeInterval = 0.0) {
-        RunLoop.current.run(until: Date() + prolongTime)
-    }
-    
     private func localizedInApp(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "Localizable"
         let bundle = Bundle.main
