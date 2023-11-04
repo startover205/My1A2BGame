@@ -82,14 +82,9 @@ class GameAcceptanceTests: XCTestCase{
         
         more.simulateOnShareButton()
         
-        let exp = expectation(description: "wait for UIActivityViewController to be presented.")
+        executeRunLoopToCleanUpReferences(prolongTime: 0.5)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            XCTAssertTrue(more.presentedViewController is UIActivityViewController)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 5.0)
+        XCTAssertTrue(more.presentedViewController is UIActivityViewController)
     }
     
     // MARK: - Helpers
