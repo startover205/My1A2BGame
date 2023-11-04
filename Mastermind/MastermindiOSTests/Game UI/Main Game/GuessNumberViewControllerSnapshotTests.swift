@@ -79,6 +79,10 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         
         controller.availableGuessLabel.text = "10 chances left"
         
+        controller.simulateViewAppear()
+        
+        RunLoop.current.run(until: Date() + 0.5)
+        
         return controller
     }
 }
