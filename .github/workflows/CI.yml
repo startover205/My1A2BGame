@@ -12,9 +12,15 @@ jobs:
   
     runs-on: macos-13
     
-    timeout-minutes: 60
+    timeout-minutes: 30
 
     steps:
+     - name: Install yeetd to solve Xcode15 slowness
+       run: |
+           wget https://github.com/biscuitehh/yeetd/releases/download/1.0/yeetd-normal.pkg
+           sudo installer -pkg yeetd-normal.pkg -target /
+           yeetd &
+        
       - name: Checkout
         uses: actions/checkout@v2
 
