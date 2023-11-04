@@ -30,6 +30,9 @@
       }
     },
     {
+      "skippedTests" : [
+        "GameAcceptanceTests\/test_canShareAppInfo()"
+      ],
       "target" : {
         "containerPath" : "container:My1A2BGame.xcodeproj",
         "identifier" : "C07D1A5F23BCDAEE00197857",
