@@ -14,20 +14,12 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
     func test_gameStart() {
         let sut = makeSUT()
         
-        sut.simulateViewAppear()
-        
-        RunLoop.current.run(until: Date() + 0.5)
-        
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GAME_START_light")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GAME_START_dark")
     }
     
     func test_gameStart_advanced() {
         let sut = makeSUT(secret: [1, 2, 3, 4, 5])
-        
-        sut.simulateViewAppear()
-        
-        RunLoop.current.run(until: Date() + 0.5)
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GAME_START_advanced_light")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GAME_START_advanced_dark")
@@ -37,10 +29,6 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         let sut = makeSUT()
         
         sut.simulateTurnOnHelper()
-        
-        sut.simulateViewAppear()
-        
-        RunLoop.current.run(until: Date() + 0.5)
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GAME_HELPER_light")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GAME_HELPER_dark")
@@ -52,10 +40,6 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         
         sut.simulateGameWithOneGuess()
         
-        sut.simulateViewAppear()
-        
-        RunLoop.current.run(until: Date() + 0.5)
-        
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GAME_ONE_GUESS_light")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GAME_ONE_GUESS_dark")
     }
@@ -64,10 +48,6 @@ class GuessNumberViewControllerSnapshotTests: XCTestCase {
         let sut = makeSUT()
         
         sut.simulateGameWithTwoGuess()
-        
-        sut.simulateViewAppear()
-        
-        RunLoop.current.run(until: Date() + 0.5)
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GAME_TWO_GUESS_light")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GAME_TWO_GUESS_dark")
