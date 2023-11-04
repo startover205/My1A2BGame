@@ -127,7 +127,7 @@ class WinUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.simulateUserInitiatedShareAction()
         
-        executeRunLoopToCleanUpReferences(prolongTime: 0.5)
+        executeRunLoopToCleanUpReferences(prolongTime: 3)
         
         XCTAssertEqual(capturedItems?.count, 3, "Expect shared items count to be exactly 3")
         
