@@ -100,9 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // load immediatly if authorization is ready
-        initializeGoogleAdSDKIfNeeded(completion: {})
-        
         window = UIWindow(frame: UIScreen.main.bounds)
         configureWindow()
         
