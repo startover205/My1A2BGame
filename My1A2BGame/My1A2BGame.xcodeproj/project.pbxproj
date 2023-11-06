@@ -21,6 +21,7 @@
 		C01C40E9279EA01400A863E2 /* FrequentlyAskedQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C40E8279EA01400A863E2 /* FrequentlyAskedQuestions.swift */; };
 		C01F4D212783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */; };
 		C01F4D2327856747008C9E87 /* GoogleRewardAdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */; };
+		C02D05382AF933E500BC6E96 /* GoogleAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D05372AF933E500BC6E96 /* GoogleAdManager.swift */; };
 		C03124DC2766450C0018CC92 /* UIViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */; };
 		C0314882278D207E00EAB263 /* RewardAdControllerComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0314881278D207E00EAB263 /* RewardAdControllerComposer.swift */; };
 		C0314884278D2ADA00EAB263 /* GoogleAPIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0314883278D2ADA00EAB263 /* GoogleAPIKeys.swift */; };
@@ -142,6 +143,7 @@
 		C01C40E8279EA01400A863E2 /* FrequentlyAskedQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequentlyAskedQuestions.swift; sourceTree = "<group>"; };
 		C01F4D202783E0DC008C9E87 /* GoogleRewardAdLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoaderTests.swift; sourceTree = "<group>"; };
 		C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRewardAdLoader.swift; sourceTree = "<group>"; };
+		C02D05372AF933E500BC6E96 /* GoogleAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdManager.swift; sourceTree = "<group>"; };
 		C03124DB2766450C0018CC92 /* UIViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		C0314881278D207E00EAB263 /* RewardAdControllerComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdControllerComposer.swift; sourceTree = "<group>"; };
 		C0314883278D2ADA00EAB263 /* GoogleAPIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPIKeys.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			children = (
 				C01F4D2227856747008C9E87 /* GoogleRewardAdLoader.swift */,
 				C0314883278D2ADA00EAB263 /* GoogleAPIKeys.swift */,
+				C02D05372AF933E500BC6E96 /* GoogleAdManager.swift */,
 			);
 			path = GoogleAds;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				C077B5E8277340B10022F9CF /* IAPProduct.swift in Sources */,
 				C077B5DE2771A82B0022F9CF /* ProductLoadingView.swift in Sources */,
 				C01C40E9279EA01400A863E2 /* FrequentlyAskedQuestions.swift in Sources */,
+				C02D05382AF933E500BC6E96 /* GoogleAdManager.swift in Sources */,
 				C077B5D62771A7F40022F9CF /* ProductPresenter.swift in Sources */,
 				C082F16926CF4B1F0091E44B /* WinUIComposer.swift in Sources */,
 				C01F4D2327856747008C9E87 /* GoogleRewardAdLoader.swift in Sources */,

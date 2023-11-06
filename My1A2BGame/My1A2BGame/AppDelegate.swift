@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let basicGameVersion: GameVersion = .basic
     private let advancedGameVersion: GameVersion = .advanced
     private lazy var secretGenerator: (Int) -> DigitSecret = RandomDigitSecretGenerator.generate(digitCount:)
-    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID, canLoadAd: { self.hasInitializedGoogleAdSDK })
+    private lazy var rewardAdLoader: RewardAdLoader = GoogleRewardAdLoader(adUnitID: GoogleAPIKeys.rewardAdID, canLoadAd: { GoogleAdManager.shared.hasInitializedGoogleAdSDK })
     private lazy var rewardAdViewController = RewardAdControllerComposer.rewardAdComposedWith(
         loader: rewardAdLoader,
         rewardChanceCount: 5,
@@ -51,9 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var userDefaults: UserDefaults = .standard
     
-    private weak var bannerAd: GADBannerView?
-    private var hasInitializedGoogleAdSDK = false
-
     private var hasPurchasedRemovingAd: Bool { userDefaults.bool(forKey: UserDefaultsKeys.removeBottomAd) }
     private lazy var allProductIDs: [String] = [IAPProduct.removeBottomAd]
     private lazy var transactionObserver: IAPTransactionObserver = IAPTransactionObserver.shared
@@ -113,9 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             isFirstActive = false
             
             // load again if previous timing is not ready
-            initializeGoogleAdSDKIfNeeded {
-                self.setAdForBannerIfReadyAndNeeded()
-            }
+            GoogleAdManager.shared.initializeGoogleAdSDKIfNeeded(completion: {})
         }
     }
     
@@ -134,44 +129,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureIAPTransactionObserver()
         
-        configureBannerAd()
-    }
-    
-    private func configureBannerAd() {
         if !hasPurchasedRemovingAd {
-            let tabBar = tabController.tabBar
-            let bannerWidth = tabBar.frame.inset(by: tabBar.safeAreaInsets).size.width
-            
-            let bannerAd = GADBannerView()
-            bannerAd.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(bannerWidth)
-            bannerAd.rootViewController = tabController
-            bannerAd.adUnitID = GoogleAPIKeys.bottomAdID
-            
-            tabBar.addSubview(bannerAd)
-            bannerAd.translatesAutoresizingMaskIntoConstraints = false
-            tabBar.topAnchor.constraint(equalTo: bannerAd.bottomAnchor).isActive = true
-            tabBar.leftAnchor.constraint(equalTo: bannerAd.leftAnchor).isActive = true
-            tabBar.rightAnchor.constraint(equalTo: bannerAd.rightAnchor).isActive = true
-            
-            let newInset = UIEdgeInsets(top: 0, left: 0, bottom: bannerAd.bounds.height, right: 0)
-            for child in tabController.children {
-                child.additionalSafeAreaInsets = newInset
-            }
-            self.bannerAd = bannerAd
-            
-            self.setAdForBannerIfReadyAndNeeded()
+            GoogleAdManager.shared.configureBannerAd(on: tabController)
         }
     }
     
     private var hasSetAdForBanner = false
 
-    private func setAdForBannerIfReadyAndNeeded() {
-        guard !hasSetAdForBanner, hasInitializedGoogleAdSDK else { return }
-        hasSetAdForBanner = true
-        
-        bannerAd?.load(GADRequest())
-    }
-    
     private func configureIAPTransactionObserver() {
         transactionObserver.onTransactionError = { error in
             let alert = UIAlertController(title: NSLocalizedString("PURCHASE_ERROR", comment: "The message for purchase error"), message: error?.localizedDescription, preferredStyle: .alert)
@@ -200,10 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.purhcaseRecordStore.insertPurchaseRecord(productIdentifier: productIdentifier)
             
             if productIdentifier == IAPProduct.removeBottomAd {
-                self.bannerAd?.alpha = 0
-                self.tabController.children.forEach {
-                    $0.additionalSafeAreaInsets = .zero
-                }
+                GoogleAdManager.shared.hideBannerAd(on: self.tabController)
             }
             
             self.iapController?.refresh()
@@ -401,95 +362,6 @@ extension AppDelegate {
 extension AppDelegate: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
-    }
-}
-
-// MARK: - GoogleAd
-extension AppDelegate {
-    /// This method should be called after the first time `appBecomesActive` to ensure App Tracking Transparency request can be displayed normally..
-    public func initializeGoogleAdSDKIfNeeded(completion: @escaping () -> Void) {
-        guard !hasInitializedGoogleAdSDK else {
-            DispatchQueue.main.async {
-                completion()
-            }
-            return
-        }
-        
-        func startGoogleMobileAdsSDK() {
-            DispatchQueue.main.async { [self] in
-                guard !hasInitializedGoogleAdSDK else {
-                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-GADMobileAds already initialized-")
-                    return
-                }
-                
-                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-GADMobileAds initialize!!-")
-                GADMobileAds.sharedInstance().start()
-                hasInitializedGoogleAdSDK = true
-                completion()
-            }
-        }
-        
-        let parameters = UMPRequestParameters()
-        parameters.tagForUnderAgeOfConsent = false
-        
-//        let debugSettings = UMPDebugSettings()
-//        debugSettings.geography = .EEA
-//        debugSettings.testDeviceIdentifiers = ["75D7D6A9-C9FC-49C7-8157-F5ABDBD9055D"]
-//        parameters.debugSettings = debugSettings
-        
-        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) { [weak self] error in
-            guard let self else { return }
-            
-            if let error {
-                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while requesting consent info update: \(error)-")
-                return
-            }
-            
-            guard let topVC = self.topViewController() else {
-                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-topVC not ready to present UMPConsentForm-")
-                return
-            }
-            
-            // handle UDPR or App Tracking Transparency according to the users region
-            UMPConsentForm.loadAndPresentIfRequired(from: topVC) { error in
-                if let error {
-                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading `UMPConsentForm`: \(error)-")
-                    // don't return as it will always throw error when using App Tracking Transparency
-                }
-
-                startGoogleMobileAdsSDK()
-            }
-        }
-        
-        // load ad immediatly if possible to reduce latency
-        if #available(iOS 14, *) {
-            if UMPConsentInformation.sharedInstance.canRequestAds {
-                startGoogleMobileAdsSDK()
-                return
-            }
-        } else {
-            if UMPConsentInformation.sharedInstance.canRequestAds {
-                startGoogleMobileAdsSDK()
-                return
-            }
-        }
-    }
-    
-    private func topViewController() -> UIViewController? {
-        let keyWindow = UIApplication.shared.connectedScenes
-            .first(where: { $0 is UIWindowScene })
-            .flatMap({ $0 as? UIWindowScene })?.windows
-            .first(where: \.isKeyWindow)
-        
-        if var topController = keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            
-            return topController
-        }
-        
-        return nil
     }
 }
 
