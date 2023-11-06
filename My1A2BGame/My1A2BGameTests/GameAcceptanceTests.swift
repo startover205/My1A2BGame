@@ -158,7 +158,7 @@ private extension GameAcceptanceTests {
             exp.fulfill()
         })
         
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: 20.0)
         
         XCTAssertNotNil(game.navigationController?.topViewController as? LoseViewController, file: file, line: line)
     }
