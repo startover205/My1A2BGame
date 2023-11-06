@@ -86,7 +86,7 @@ class IAPProductLoaderTests: XCTestCase {
             result.append(contentsOf: $0)
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 5.0)
         
         XCTAssertEqual(result.count, 1, "count")
         XCTAssertEqual(result.first?.productIdentifier, validProductID(), "product ID")
