@@ -406,17 +406,23 @@ extension AppDelegate: MFMailComposeViewControllerDelegate {
 
 // MARK: - GoogleAd
 extension AppDelegate {
-    /// This method should be called in both `appDidFinsiheLaunch` and the first time `appBecomesActive` to reduce latency of loading ads.
+    /// This method should be called after the first time `appBecomesActive` to ensure App Tracking Transparency request can be displayed normally..
     public func initializeGoogleAdSDKIfNeeded(completion: @escaping () -> Void) {
         guard !hasInitializedGoogleAdSDK else {
-            completion()
+            DispatchQueue.main.async {
+                completion()
+            }
             return
         }
         
         func startGoogleMobileAdsSDK() {
             DispatchQueue.main.async { [self] in
-                guard !hasInitializedGoogleAdSDK else { return }
+                guard !hasInitializedGoogleAdSDK else {
+                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-GADMobileAds already initialized-")
+                    return
+                }
                 
+                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-GADMobileAds initialize!!-")
                 GADMobileAds.sharedInstance().start()
                 hasInitializedGoogleAdSDK = true
                 completion()
@@ -426,47 +432,38 @@ extension AppDelegate {
         let parameters = UMPRequestParameters()
         parameters.tagForUnderAgeOfConsent = false
         
+//        let debugSettings = UMPDebugSettings()
+//        debugSettings.geography = .EEA
+//        debugSettings.testDeviceIdentifiers = ["75D7D6A9-C9FC-49C7-8157-F5ABDBD9055D"]
+//        parameters.debugSettings = debugSettings
+        
         UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) { [weak self] error in
             guard let self else { return }
-
+            
             if let error {
                 print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while requesting consent info update: \(error)-")
                 return
             }
             
             guard let topVC = self.topViewController() else {
-                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]-topVC not ready to present UMPConsentForm-")
+                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-topVC not ready to present UMPConsentForm-")
                 return
             }
             
+            // handle UDPR or App Tracking Transparency according to the users region
             UMPConsentForm.loadAndPresentIfRequired(from: topVC) { error in
                 if let error {
-                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading ad: \(error)-")
-                    return
+                    print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev⚠️]-error while loading `UMPConsentForm`: \(error)-")
+                    // don't return as it will always throw error when using App Tracking Transparency
                 }
-                
-                if #available(iOS 14, *) {
-                    if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
-                        // app not ready to `requestTrackingAuthorization`, wait until the next call
-                        guard UIApplication.shared.applicationState == .active else { return }
-                        
-                        ATTrackingManager.requestTrackingAuthorization { _ in
-                            startGoogleMobileAdsSDK()
-                        }
-                    } else {
-                        startGoogleMobileAdsSDK()
-                    }
-                } else {
-                    startGoogleMobileAdsSDK()
-                }
+
+                startGoogleMobileAdsSDK()
             }
         }
         
         // load ad immediatly if possible to reduce latency
         if #available(iOS 14, *) {
-            if UMPConsentInformation.sharedInstance.canRequestAds, ATTrackingManager.trackingAuthorizationStatus != .notDetermined {
-                print("\(Date())-\(#filePath)-\(#line)--\(#function)-[Dev🍎]--")
-
+            if UMPConsentInformation.sharedInstance.canRequestAds {
                 startGoogleMobileAdsSDK()
                 return
             }
@@ -480,7 +477,6 @@ extension AppDelegate {
     
     private func topViewController() -> UIViewController? {
         let keyWindow = UIApplication.shared.connectedScenes
-            .filter { $0.activationState == .foregroundActive }
             .first(where: { $0 is UIWindowScene })
             .flatMap({ $0 as? UIWindowScene })?.windows
             .first(where: \.isKeyWindow)
