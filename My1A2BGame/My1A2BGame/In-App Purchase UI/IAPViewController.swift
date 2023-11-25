@@ -22,8 +22,8 @@ public class IAPViewController: UITableViewController {
     
     private var isFirstAppear = true
     
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    public override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
         
         if isFirstAppear {
             isFirstAppear = false
@@ -31,7 +31,6 @@ public class IAPViewController: UITableViewController {
             refresh()
         }
     }
-    
     @IBAction func reloadProducts(_ sender: Any) {
         refresh()
     }
