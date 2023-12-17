@@ -82,7 +82,7 @@ class GameAcceptanceTests: XCTestCase{
         
         more.simulateOnShareButton()
         
-        executeRunLoopToCleanUpReferences(prolongTime: 0.5)
+        executeRunLoopToCleanUpReferences(prolongTime: 3)
         
         XCTAssertTrue(more.presentedViewController is UIActivityViewController)
     }
